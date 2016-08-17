@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-
+import MagicalRecord
+import JASidePanels
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,7 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.setUpMagicalDB()
+        self.setUpSidePanelview()
         return true
+    }
+    
+    func setUpSidePanelview(){
+    
+        let sidePanel : JASidePanelController = JASidePanelController.init()
+        
+        let leftPanel : LeftViewController = LeftViewController(nibName: "LeftViewController", bundle: nil)
+        let centerPanel : HomeViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        
+        sidePanel.leftPanel = leftPanel
+        sidePanel.centerPanel = centerPanel
+        
+        self.window?.rootViewController = sidePanel
+        self.window?.makeKeyAndVisible()
+
+    
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -45,6 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
+
+    func setUpMagicalDB() {
+        //MagicalRecord.setupCoreDataStackWithStoreNamed("Silly_Monks")
+        NSPersistentStoreCoordinator.MR_setDefaultStoreCoordinator(persistentStoreCoordinator)
+        NSManagedObjectContext.MR_initializeDefaultContextWithCoordinator(persistentStoreCoordinator)
+    }
 
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.CX.NowFloats" in the application's documents Application Support directory.
