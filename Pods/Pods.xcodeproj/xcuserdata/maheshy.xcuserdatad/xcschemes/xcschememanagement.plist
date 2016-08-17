@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>JASidePanels.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NowFloats.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NowFloatsTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NowFloatsUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0A4C5BA59754207A801DF16BEE01C3C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1CA0B98DC52C28DF3301DBD8547EA92E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDEABB547D2583B4B34F75D65153057E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CEB4E370F760D6127BBAE5EF7AB3445D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5F61B1AA6436180E4BAE2D86C3C38F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
