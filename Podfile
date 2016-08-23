@@ -8,6 +8,7 @@ target 'NowFloats' do
   # Pods for NowFloats
 pod 'JASidePanels', '~> 1.3'
 pod 'MagicalRecord/Shorthand'
+pod 'SwiftHTTP', '~> 1.0'
   target 'NowFloatsTests' do
     inherit! :search_paths
     # Pods for testing

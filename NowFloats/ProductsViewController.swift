@@ -1,21 +1,19 @@
 //
-//  LeftViewController.swift
+//  ProductsViewController.swift
 //  NowFloats
 //
-//  Created by Mahesh Y on 8/17/16.
+//  Created by Mahesh Y on 8/18/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 
 import UIKit
-class LeftViewController: UIViewController {
+
+class ProductsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.redColor()
-        self.sidePanelController.showCenterPanelAnimated(true)
+
         // Do any additional setup after loading the view.
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,4 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="CX_FeaturedProducts" syncable="YES">
+        <attribute name="campaign_Jobs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdByID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CX_FeaturedProductsJobs" syncable="YES">
+        <attribute name="createdByID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobTypeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CX_ProductCategory" syncable="YES">
+        <attribute name="createdByFullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="current_Job_Status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icon_Name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icon_URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publicURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CX_Rating" syncable="YES">
+        <attribute name="disabled" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postedId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userRatingValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CX_ServiceCategory" syncable="YES"/>
+    <entity name="CX_StoreCategory" syncable="YES">
+        <attribute name="createdByFullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publicURL" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CX_Stores" syncable="YES">
+        <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favourite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CX_StoreCategory" positionX="-198" positionY="-135" width="128" height="120"/>
+        <element name="CX_Stores" positionX="-486" positionY="9" width="128" height="150"/>
+        <element name="CX_Rating" positionX="-216" positionY="72" width="128" height="180"/>
+        <element name="CX_ProductCategory" positionX="45" positionY="-3" width="128" height="208"/>
+        <element name="CX_ServiceCategory" positionX="-180" positionY="72" width="128" height="45"/>
+        <element name="CX_FeaturedProducts" positionX="-171" positionY="81" width="128" height="165"/>
+        <element name="CX_FeaturedProductsJobs" positionX="-162" positionY="90" width="128" height="195"/>
+    </elements>
 </model>

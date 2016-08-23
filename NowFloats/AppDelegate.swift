@@ -23,15 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    //MARK: Sidepanel setup
     func setUpSidePanelview(){
     
         let sidePanel : JASidePanelController = JASidePanelController.init()
         
         let leftPanel : LeftViewController = LeftViewController(nibName: "LeftViewController", bundle: nil)
         let centerPanel : HomeViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        
+        let navitationCntl : UINavigationController = UINavigationController(rootViewController: centerPanel)
+
         sidePanel.leftPanel = leftPanel
-        sidePanel.centerPanel = centerPanel
+        sidePanel.centerPanel = navitationCntl
         
         self.window?.rootViewController = sidePanel
         self.window?.makeKeyAndVisible()
