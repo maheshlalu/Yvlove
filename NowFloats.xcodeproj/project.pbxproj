@@ -31,6 +31,8 @@
 		3B61E3641D6ACA0800B09F8E /* ADPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B61E3611D6ACA0800B09F8E /* ADPageModel.m */; };
 		3B61E3671D6B082400B09F8E /* CXProjectConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B61E3661D6B082400B09F8E /* CXProjectConfiguration.plist */; };
 		3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B61E3681D6B093000B09F8E /* CXAppConfig.swift */; };
+		3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */; };
+		3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
 		DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,8 @@
 		3B61E3611D6ACA0800B09F8E /* ADPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPageModel.m; sourceTree = "<group>"; };
 		3B61E3661D6B082400B09F8E /* CXProjectConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CXProjectConfiguration.plist; sourceTree = "<group>"; };
 		3B61E3681D6B093000B09F8E /* CXAppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAppConfig.swift; sourceTree = "<group>"; };
+		3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
+		3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAppDataManager.swift; sourceTree = "<group>"; };
 		AC2B91DFDCE12FD5F8E84038 /* Pods-NowFloats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE9E75EA922C9A4B362F253 /* Pods-NowFloatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloatsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloatsUITests/Pods-NowFloatsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				3B7D99B81D6D7D4F00D73CAD /* CX_DataServices */,
 				3B61E3651D6B06E600B09F8E /* ProjectConfigureFile */,
 				3B61E3541D6AC9D400B09F8E /* TabPager */,
 				3B4FD84B1D64500700A6EBBE /* Controllers */,
@@ -244,6 +249,15 @@
 				3B61E3681D6B093000B09F8E /* CXAppConfig.swift */,
 			);
 			name = ProjectConfigureFile;
+			sourceTree = "<group>";
+		};
+		3B7D99B81D6D7D4F00D73CAD /* CX_DataServices */ = {
+			isa = PBXGroup;
+			children = (
+				3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */,
+				3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */,
+			);
+			name = CX_DataServices;
 			sourceTree = "<group>";
 		};
 		5AFF7868B5E53374B0D43B75 /* Pods */ = {
@@ -532,6 +546,8 @@
 				3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
+				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
+				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,

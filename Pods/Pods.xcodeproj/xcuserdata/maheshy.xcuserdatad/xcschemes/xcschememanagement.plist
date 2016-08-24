@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JASidePanels.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,20 +34,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftHTTP.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D847C17C3D53D35E3593ED73A259E38</key>
+		<key>1CA0B98DC52C28DF3301DBD8547EA92E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CA0B98DC52C28DF3301DBD8547EA92E</key>
+		<key>31E7467C710B5A22B5F20A4296AD54CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -58,11 +63,6 @@
 			<true/>
 		</dict>
 		<key>D5F61B1AA6436180E4BAE2D86C3C38F1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FEAAF40080F527BD048DBB20E23094FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

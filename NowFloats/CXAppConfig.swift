@@ -38,35 +38,38 @@ class CXAppConfig {
      - Returns: the base url string from Config.plist      
      */
     func getBaseUrl() -> String {
-        return config!.valueForKey("base_url") as! String
+        return config!.valueForKey("BaseUrl") as! String
+    }
+    //getMaster
+    func getMasterUrl() -> String {
+        return config!.valueForKey("getMaster") as! String
     }
     
-    
-    /**
-     Get help images
-     
-     - returns: the help images
-     */
-    func getHelpImages() -> [String] {
-        return config!.valueForKey("help_images") as! [String]
+    //getMallID
+    func getAppMallID() -> String {
+        return config!.valueForKey("MALL_ID") as! String
+    }
+
+    func productName() -> String{
+        return config!.valueForKey("PRODUCT_NAME") as! String
+    }
+    func getSidePanelList() -> NSArray{
+        
+        return config!.valueForKey("SidePanelList") as! NSArray
     }
     
-    /**
-     Get good sample url from Config.plist
-     
-     - returns: the good sample url string
-     */
-    func getGoodSampleUrl() -> String {
-        return config!.valueForKey("good_sample_url") as! String
-    }
-    
-    /**
-     Get your sample url from Config.plist
-     
-     - returns: the your sample url string
-     */
-    func getYourSampleUrl() -> String {
-        return config!.valueForKey("your_sample_url") as! String
+    func getAppTheamColor() -> UIColor {
+        
+        let appTheamColorArr : NSArray = config!.valueForKey("AppTheamColor") as! NSArray
+        let red : Double = (appTheamColorArr.objectAtIndex(0) as! NSString).doubleValue
+        let green : Double = (appTheamColorArr.objectAtIndex(1) as! NSString).doubleValue
+        let black : Double = (appTheamColorArr.objectAtIndex(2) as! NSString).doubleValue
+        return UIColor(
+            red: CGFloat(red / 255.0),
+            green: CGFloat(green / 255.0),
+            blue: CGFloat(black / 255.0),
+            alpha: CGFloat(1.0)
+        )
     }
     
     

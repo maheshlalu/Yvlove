@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
+    
     
         let sidePanel : JASidePanelController = JASidePanelController.init()
         
