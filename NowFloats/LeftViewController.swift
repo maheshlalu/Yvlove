@@ -12,10 +12,9 @@ class LeftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.redColor()
-        self.sidePanelController.showCenterPanelAnimated(true)
         // Do any additional setup after loading the view.
         
-        
+
     }
 
     override func didReceiveMemoryWarning() {

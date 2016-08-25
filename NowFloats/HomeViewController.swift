@@ -13,13 +13,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+       // self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         //http://storeongo.com:8081/Services/getMasters?type=ProductCategories&mallId=530
+        let menuItem = UIBarButtonItem(image: UIImage(named: "reveal-icon"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
+        self.navigationItem.leftBarButtonItem = menuItem
         
-        print(CXAppConfig.sharedInstance.getSidePanelList())
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type": "ProductCategories","mallId": CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-            print(responseDict)
-        }
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        CXAppDataManager.sharedInstance.getTheStoreCategory()
     }
 
     override func didReceiveMemoryWarning() {

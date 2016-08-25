@@ -23,5 +23,53 @@ public class CXAppDataManager: NSObject {
         _sharedInstance = nil
     }
     
+    //Get The StoreCategory
+    func getTheStoreCategory(){
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+           // print("print store category\(responseDict)")
+               // CXDataProvider.sharedInstance.saveTheStoreCategory(responseDict)
+                //responseDict.valueForKey("jobs")! as! NSArray
+            //self.getTheStores()
+        }
+    }
+    
+    
+    func getTheStores(){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+           // print("print getTheStores\(responseDict)")
+            
+        }
+    }
+    
+    func getTheSigleMall(){
+        
+        
+    }
+    
+    
+    func getTheProductCategory(){
+        
+        
+    }
+    
+    func getTheServieCategory(){
+        
+        
+    }
+    
+    
+    func getTheFeaturedProduct(){
+        
+    }
+    
+    
+    func getTheFeaturedProductJobs(){
+        
+        
+    }
+    
+    
+    
+    
     
 }

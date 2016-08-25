@@ -9,9 +9,8 @@
 import UIKit
 import CoreData
 import MagicalRecord
-import JASidePanels
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDelegate{
 
     var window: UIWindow?
 
@@ -27,19 +26,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
     
-    
-        let sidePanel : JASidePanelController = JASidePanelController.init()
         
-        let leftPanel : LeftViewController = LeftViewController(nibName: "LeftViewController", bundle: nil)
-        let centerPanel : HomeViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        let navitationCntl : UINavigationController = UINavigationController(rootViewController: centerPanel)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        
+        
+        let homeView = storyBoard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
+        
+        let menuVC = storyBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        //        let menuVC = storyBoard.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
 
-        sidePanel.leftPanel = leftPanel
-        sidePanel.centerPanel = navitationCntl
         
-        self.window?.rootViewController = sidePanel
+        let navHome = UINavigationController(rootViewController: menuVC)
+        let revealVC = SWRevealViewController(rearViewController: homeView, frontViewController: navHome)
+        revealVC.delegate = self
+        revealVC.rearViewRevealWidth = CXAppConfig.sharedInstance.mainScreenSize().width-50
+        self.window?.rootViewController = revealVC
         self.window?.makeKeyAndVisible()
-
     
     }
 

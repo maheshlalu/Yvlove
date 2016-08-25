@@ -72,6 +72,10 @@ class CXAppConfig {
         )
     }
     
+    func mainScreenSize() -> CGSize {
+        return UIScreen.mainScreen().bounds.size
+    }
+    
     
     
     

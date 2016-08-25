@@ -3,7 +3,6 @@
 //
 
 #import <MagicalRecord/CoreData+MagicalRecord.h>
-#import <JASidePanels/JASidePanelController.h>
-#import <JASidePanels/UIViewController+JASidePanel.h>
 #import "ADPageModel.h"
 #import "ADPageControl.h"
+#import "SWRevealViewController.h"

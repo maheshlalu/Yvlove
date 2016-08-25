@@ -6,7 +6,6 @@ target 'NowFloats' do
   use_frameworks!
 
   # Pods for NowFloats
-pod 'JASidePanels', '~> 1.3'
 pod 'MagicalRecord/Shorthand'
 pod 'Alamofire', '~> 3.4'
   target 'NowFloatsTests' do
