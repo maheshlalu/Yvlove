@@ -35,6 +35,9 @@
 		3BDBF63B1D6EFB70003CA857 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */; };
 		3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63C1D6F024F003CA857 /* reveal-icon.png */; };
 		3BDBF6401D6F024F003CA857 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */; };
+		43674C171D71A14E002AD853 /* CCKFNavDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43674C131D71A14E002AD853 /* CCKFNavDrawer.m */; };
+		43674C181D71A14E002AD853 /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43674C151D71A14E002AD853 /* DrawerView.m */; };
+		43674C191D71A14E002AD853 /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43674C161D71A14E002AD853 /* DrawerView.xib */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
 		DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +99,11 @@
 		3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		3BDBF63C1D6F024F003CA857 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 		3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon@2x.png"; sourceTree = "<group>"; };
+		43674C121D71A14E002AD853 /* CCKFNavDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKFNavDrawer.h; sourceTree = "<group>"; };
+		43674C131D71A14E002AD853 /* CCKFNavDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCKFNavDrawer.m; sourceTree = "<group>"; };
+		43674C141D71A14E002AD853 /* DrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerView.h; sourceTree = "<group>"; };
+		43674C151D71A14E002AD853 /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
+		43674C161D71A14E002AD853 /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
 		AC2B91DFDCE12FD5F8E84038 /* Pods-NowFloats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE9E75EA922C9A4B362F253 /* Pods-NowFloatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloatsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloatsUITests/Pods-NowFloatsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +186,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				43674C111D71A11C002AD853 /* Sidepanel */,
 				3B7D99B81D6D7D4F00D73CAD /* CX_DataServices */,
 				3B61E3651D6B06E600B09F8E /* ProjectConfigureFile */,
 				3B61E3541D6AC9D400B09F8E /* TabPager */,
@@ -274,6 +283,18 @@
 				3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */,
 			);
 			name = SidePanel;
+			sourceTree = "<group>";
+		};
+		43674C111D71A11C002AD853 /* Sidepanel */ = {
+			isa = PBXGroup;
+			children = (
+				43674C121D71A14E002AD853 /* CCKFNavDrawer.h */,
+				43674C131D71A14E002AD853 /* CCKFNavDrawer.m */,
+				43674C141D71A14E002AD853 /* DrawerView.h */,
+				43674C151D71A14E002AD853 /* DrawerView.m */,
+				43674C161D71A14E002AD853 /* DrawerView.xib */,
+			);
+			name = Sidepanel;
 			sourceTree = "<group>";
 		};
 		5AFF7868B5E53374B0D43B75 /* Pods */ = {
@@ -411,6 +432,7 @@
 				3B4FD81C1D6446D300A6EBBE /* Main.storyboard in Resources */,
 				3B370D101D65976900DB332F /* UpdatesViewController.xib in Resources */,
 				3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */,
+				43674C191D71A14E002AD853 /* DrawerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,10 +591,12 @@
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
+				43674C171D71A14E002AD853 /* CCKFNavDrawer.m in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
 				3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */,
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
 				3B61E3641D6ACA0800B09F8E /* ADPageModel.m in Sources */,
+				43674C181D71A14E002AD853 /* DrawerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

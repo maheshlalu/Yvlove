@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDel
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         self.setUpMagicalDB()
-        self.setUpSidePanelview()
+       // self.setUpSidePanelview()
         return true
     }
     
@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDel
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
     
-        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         

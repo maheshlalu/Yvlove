@@ -15,12 +15,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
        // self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         //http://storeongo.com:8081/Services/getMasters?type=ProductCategories&mallId=530
-        let menuItem = UIBarButtonItem(image: UIImage(named: "reveal-icon"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
-        self.navigationItem.leftBarButtonItem = menuItem
         
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
-        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         CXAppDataManager.sharedInstance.getTheStoreCategory()
     }
 

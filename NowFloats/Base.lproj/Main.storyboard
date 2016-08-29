@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -92,16 +93,16 @@
                                 <exclude reference="P1G-Fh-3wt"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Bgg-eO-uI0"/>
-                                <exclude reference="keh-Ej-Kxo"/>
-                                <exclude reference="zgT-Yy-1pr"/>
+                                <exclude reference="zJs-yW-px5"/>
                                 <exclude reference="Loa-5M-vDQ"/>
                                 <exclude reference="cg0-Kf-KSA"/>
                                 <exclude reference="x2B-FW-APw"/>
+                                <exclude reference="Bgg-eO-uI0"/>
+                                <exclude reference="keh-Ej-Kxo"/>
+                                <exclude reference="zgT-Yy-1pr"/>
                                 <exclude reference="Q26-ok-THd"/>
                                 <exclude reference="RQi-Z5-SUd"/>
                                 <exclude reference="iGH-Ss-BAq"/>
-                                <exclude reference="zJs-yW-px5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -111,16 +112,16 @@
                                 <include reference="P1G-Fh-3wt"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Bgg-eO-uI0"/>
-                                <include reference="keh-Ej-Kxo"/>
-                                <include reference="zgT-Yy-1pr"/>
+                                <include reference="zJs-yW-px5"/>
                                 <include reference="Loa-5M-vDQ"/>
                                 <include reference="cg0-Kf-KSA"/>
                                 <include reference="x2B-FW-APw"/>
+                                <include reference="Bgg-eO-uI0"/>
+                                <include reference="keh-Ej-Kxo"/>
+                                <include reference="zgT-Yy-1pr"/>
                                 <include reference="Q26-ok-THd"/>
                                 <include reference="RQi-Z5-SUd"/>
                                 <include reference="iGH-Ss-BAq"/>
-                                <include reference="zJs-yW-px5"/>
                             </mask>
                         </variation>
                     </view>
@@ -129,40 +130,55 @@
             </objects>
             <point key="canvasLocation" x="190.5" y="216.75"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="euK-RP-N6G">
+        <!--Nav Drawer-->
+        <scene sceneID="ZgF-6Y-Wz1">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="62D-oI-Tzf" customClass="HomeViewController" customModule="NowFloats" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4zX-TW-aMp"/>
-                        <viewControllerLayoutGuide type="bottom" id="UcV-Rn-T0m"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KXy-6N-zUf">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.051632225769999998" green="0.55227421470000004" blue="0.29757002999999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="inE-Tu-oiL"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0tX-5O-umP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1846.5" y="24.75"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="YfH-De-SIv">
-            <objects>
-                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" id="SKY-wG-Qz2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="8jP-FS-pia">
+                <navigationController storyboardIdentifier="ODNEWS360Nav" id="2NF-ZE-gat" customClass="CCKFNavDrawer" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ipV-pl-vyv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
+                        <color key="barTintColor" red="0.92156862750000001" green="0.2274509804" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
                     <connections>
-                        <segue destination="62D-oI-Tzf" kind="relationship" relationship="viewControllers" id="KmH-14-aM1"/>
+                        <segue destination="hii-O0-TPV" kind="relationship" relationship="rootViewController" id="Mh0-2U-CSn"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P9w-bp-aUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sIi-Y4-QEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.5" y="24.75"/>
+            <point key="canvasLocation" x="-1734" y="-1305"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="lnG-NN-AFc">
+            <objects>
+                <viewController id="hii-O0-TPV" customClass="HomeViewController" customModule="NowFloats" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B3f-uU-JQ0"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZVQ-zm-AjE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ewa-lo-WCw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xf5-95-AdE"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="o1X-nY-1oj" id="NPI-Ni-btF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NyE-r6-xVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="o1X-nY-1oj">
+                    <connections>
+                        <outlet property="delegate" destination="hii-O0-TPV" id="ELI-nm-Uhs"/>
+                        <outlet property="searchContentsController" destination="hii-O0-TPV" id="jwB-cI-H84"/>
+                        <outlet property="searchResultsDataSource" destination="hii-O0-TPV" id="4h0-GK-Tlx"/>
+                        <outlet property="searchResultsDelegate" destination="hii-O0-TPV" id="oQt-0f-7YK"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-994" y="-1344"/>
         </scene>
     </scenes>
 </document>
