@@ -1,19 +1,20 @@
 //
-//  PhotosViewController.swift
+//  CXViewController.swift
 //  NowFloats
 //
-//  Created by Mahesh Y on 8/18/16.
+//  Created by apple on 30/08/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 
 import UIKit
 
-class PhotosViewController: CXViewController {
+class CXViewController: UIViewController {
 
+    var leftNavigationBarItemTitle : String!
+    var navController : CXNavDrawer = CXNavDrawer()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.redColor()
-        print("item 1 loaded")
+
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +22,7 @@ class PhotosViewController: CXViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*
@@ -33,4 +35,31 @@ class PhotosViewController: CXViewController {
     }
     */
 
+    
+    func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+    func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    func backButtonTapped(){
+        
+        
+    }
+    
+    func leftMenuTapped(){
+        
+        let navVC : CXNavDrawer = (self.navigationController as? CXNavDrawer)!
+        navVC.drawerToggle()
+    }
+    
+    
 }

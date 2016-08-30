@@ -10,13 +10,14 @@ import UIKit
 import CoreData
 import MagicalRecord
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.setUpMagicalDB()
        // self.setUpSidePanelview()
         return true
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDel
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
     
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+           /* let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         
         
@@ -36,12 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,SWRevealViewControllerDel
         //        let menuVC = storyBoard.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
 
         
-        let navHome = UINavigationController(rootViewController: menuVC)
+    let navHome = UINavigationController(rootViewController: menuVC)
         let revealVC = SWRevealViewController(rearViewController: homeView, frontViewController: navHome)
         revealVC.delegate = self
         revealVC.rearViewRevealWidth = CXAppConfig.sharedInstance.mainScreenSize().width-50
         self.window?.rootViewController = revealVC
-        self.window?.makeKeyAndVisible()
+        self.window?.makeKeyAndVisible()*/
     
     }
 

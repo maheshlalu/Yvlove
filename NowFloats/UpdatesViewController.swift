@@ -8,11 +8,12 @@
 
 import UIKit
 
-class UpdatesViewController: UIViewController {
+class UpdatesViewController: CXViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.greenColor()
+        print("item 1 loaded")
         // Do any additional setup after loading the view.
     }
 

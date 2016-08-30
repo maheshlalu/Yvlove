@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController {
+class ProductsViewController: CXViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.blueColor()
+        print("item 1 loaded")
         // Do any additional setup after loading the view.
     }
 

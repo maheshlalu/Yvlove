@@ -9,9 +9,11 @@
 import UIKit
 class LeftViewController: UIViewController {
 
+    var navController : CXNavDrawer = CXNavDrawer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.redColor()
+        self.view.backgroundColor = UIColor.blueColor()
         // Do any additional setup after loading the view.
         
 

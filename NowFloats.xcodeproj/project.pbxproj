@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0A76C861465BE1BECAE6F04C /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
+		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
+		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
 		3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D0D1D65976900DB332F /* UpdatesViewController.swift */; };
-		3B370D101D65976900DB332F /* UpdatesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B370D0E1D65976900DB332F /* UpdatesViewController.xib */; };
 		3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D111D65979200DB332F /* ProductsViewController.swift */; };
-		3B370D141D65979200DB332F /* ProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B370D121D65979200DB332F /* ProductsViewController.xib */; };
 		3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D151D6597AA00DB332F /* PhotosViewController.swift */; };
-		3B370D181D6597AA00DB332F /* PhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B370D161D6597AA00DB332F /* PhotosViewController.xib */; };
 		3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */; };
 		3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4FD8181D6446D300A6EBBE /* ViewController.swift */; };
 		3B4FD81C1D6446D300A6EBBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4FD81A1D6446D300A6EBBE /* Main.storyboard */; };
@@ -32,12 +31,8 @@
 		3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */; };
 		3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */; };
 		3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBF5B61D6ED61B003CA857 /* CXDataProvider.swift */; };
-		3BDBF63B1D6EFB70003CA857 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */; };
 		3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63C1D6F024F003CA857 /* reveal-icon.png */; };
 		3BDBF6401D6F024F003CA857 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */; };
-		43674C171D71A14E002AD853 /* CCKFNavDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43674C131D71A14E002AD853 /* CCKFNavDrawer.m */; };
-		43674C181D71A14E002AD853 /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43674C151D71A14E002AD853 /* DrawerView.m */; };
-		43674C191D71A14E002AD853 /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43674C161D71A14E002AD853 /* DrawerView.xib */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
 		DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 /* End PBXBuildFile section */
@@ -62,12 +57,11 @@
 /* Begin PBXFileReference section */
 		0A5A6D4A69436A2805EB787F /* Pods-NowFloats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.release.xcconfig"; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
+		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
-		3B370D0E1D65976900DB332F /* UpdatesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdatesViewController.xib; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
-		3B370D121D65979200DB332F /* ProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsViewController.xib; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		3B370D161D6597AA00DB332F /* PhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosViewController.xib; sourceTree = "<group>"; };
 		3B4FD8131D6446D200A6EBBE /* NowFloats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowFloats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B4FD8181D6446D300A6EBBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,15 +89,8 @@
 		3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
 		3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAppDataManager.swift; sourceTree = "<group>"; };
 		3BDBF5B61D6ED61B003CA857 /* CXDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataProvider.swift; sourceTree = "<group>"; };
-		3BDBF6391D6EFB70003CA857 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		3BDBF63C1D6F024F003CA857 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
 		3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon@2x.png"; sourceTree = "<group>"; };
-		43674C121D71A14E002AD853 /* CCKFNavDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKFNavDrawer.h; sourceTree = "<group>"; };
-		43674C131D71A14E002AD853 /* CCKFNavDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCKFNavDrawer.m; sourceTree = "<group>"; };
-		43674C141D71A14E002AD853 /* DrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerView.h; sourceTree = "<group>"; };
-		43674C151D71A14E002AD853 /* DrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerView.m; sourceTree = "<group>"; };
-		43674C161D71A14E002AD853 /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
 		AC2B91DFDCE12FD5F8E84038 /* Pods-NowFloats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE9E75EA922C9A4B362F253 /* Pods-NowFloatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloatsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloatsUITests/Pods-NowFloatsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +136,14 @@
 				EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18EC9D8B1D75ABBB001E27D4 /* ParentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */,
+			);
+			name = ParentViewController;
 			sourceTree = "<group>";
 		};
 		3B370D0C1D65973B00DB332F /* TabControllers */ = {
@@ -225,10 +220,9 @@
 		3B4FD84B1D64500700A6EBBE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18EC9D8B1D75ABBB001E27D4 /* ParentViewController */,
 				3BDBF6381D6EFB66003CA857 /* SidePanel */,
 				3B370D0C1D65973B00DB332F /* TabControllers */,
-				3B4FD84C1D64508500A6EBBE /* LeftViewController.swift */,
-				3B4FD8511D645BD500A6EBBE /* HomeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -236,9 +230,6 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3B370D0E1D65976900DB332F /* UpdatesViewController.xib */,
-				3B370D121D65979200DB332F /* ProductsViewController.xib */,
-				3B370D161D6597AA00DB332F /* PhotosViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -277,10 +268,10 @@
 		3BDBF6381D6EFB66003CA857 /* SidePanel */ = {
 			isa = PBXGroup;
 			children = (
+				3B4FD84C1D64508500A6EBBE /* LeftViewController.swift */,
+				3B4FD8511D645BD500A6EBBE /* HomeViewController.swift */,
 				3BDBF63C1D6F024F003CA857 /* reveal-icon.png */,
 				3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */,
-				3BDBF6391D6EFB70003CA857 /* SWRevealViewController.h */,
-				3BDBF63A1D6EFB70003CA857 /* SWRevealViewController.m */,
 			);
 			name = SidePanel;
 			sourceTree = "<group>";
@@ -288,11 +279,7 @@
 		43674C111D71A11C002AD853 /* Sidepanel */ = {
 			isa = PBXGroup;
 			children = (
-				43674C121D71A14E002AD853 /* CCKFNavDrawer.h */,
-				43674C131D71A14E002AD853 /* CCKFNavDrawer.m */,
-				43674C141D71A14E002AD853 /* DrawerView.h */,
-				43674C151D71A14E002AD853 /* DrawerView.m */,
-				43674C161D71A14E002AD853 /* DrawerView.xib */,
+				18EC9D871D756336001E27D4 /* CXNavDrawer.swift */,
 			);
 			name = Sidepanel;
 			sourceTree = "<group>";
@@ -426,13 +413,9 @@
 				3BDBF6401D6F024F003CA857 /* reveal-icon@2x.png in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
 				3B61E3671D6B082400B09F8E /* CXProjectConfiguration.plist in Resources */,
-				3B370D141D65979200DB332F /* ProductsViewController.xib in Resources */,
 				3B4FD8211D6446D300A6EBBE /* Assets.xcassets in Resources */,
-				3B370D181D6597AA00DB332F /* PhotosViewController.xib in Resources */,
 				3B4FD81C1D6446D300A6EBBE /* Main.storyboard in Resources */,
-				3B370D101D65976900DB332F /* UpdatesViewController.xib in Resources */,
 				3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */,
-				43674C191D71A14E002AD853 /* DrawerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,21 +565,20 @@
 			files = (
 				3B4FD8531D645BD500A6EBBE /* HomeViewController.swift in Sources */,
 				3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */,
-				3BDBF63B1D6EFB70003CA857 /* SWRevealViewController.m in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
+				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
-				43674C171D71A14E002AD853 /* CCKFNavDrawer.m in Sources */,
+				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
 				3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */,
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
 				3B61E3641D6ACA0800B09F8E /* ADPageModel.m in Sources */,
-				43674C181D71A14E002AD853 /* DrawerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

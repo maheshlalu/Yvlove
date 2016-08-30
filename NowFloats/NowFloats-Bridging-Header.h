@@ -5,4 +5,3 @@
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import "ADPageModel.h"
 #import "ADPageControl.h"
-#import "SWRevealViewController.h"
