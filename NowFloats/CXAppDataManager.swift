@@ -41,6 +41,21 @@ public class CXAppDataManager: NSObject {
         }
     }
     
+    func getProducts(){
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+             print("print products\(responseDict)")
+
+        }
+        
+        
+    }
+    
+    //http://nowfloats.ongostore.com:8081/Services/getMasters?type=Products&mallId=11
+    //http://nowfloats.ongostore.com:8081/Services/getMasters?type=Products&mallId=11&pageNumber=2&pageSize=5
+    
+    
+    
     func getTheSigleMall(){
         
         

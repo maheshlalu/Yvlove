@@ -30,6 +30,7 @@ class Constants {
 
 }
 
+
 class CXNavDrawer: UINavigationController {
     
     var pan_gr : UIPanGestureRecognizer!
@@ -235,7 +236,7 @@ class CXNavDrawer: UINavigationController {
             if self.drawerView.center.x > 0 {
                 self.openNavigationDrawer()
             }else if self.drawerView.center.x < 0{
-                self.closeNavigationDrawer()
+                self.closeNavigationDrawer()                                                                                                                              
             }
         }
     }
@@ -245,6 +246,8 @@ class CXNavDrawer: UINavigationController {
 extension CXNavDrawer : UINavigationControllerDelegate {
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        
+        print(viewController)
         viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
         viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())
 

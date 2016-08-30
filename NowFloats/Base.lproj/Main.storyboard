@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Left View Controller-->
@@ -75,6 +76,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-928.5" y="-162.75"/>
+        </scene>
+        <!--Offers View Controller-->
+        <scene sceneID="cPf-fD-mBa">
+            <objects>
+                <viewController storyboardIdentifier="OFFERS" id="SQE-Hz-Iey" customClass="OffersViewController" customModule="NowFloats" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Jb-z7-hVL"/>
+                        <viewControllerLayoutGuide type="bottom" id="XF9-7f-Nrk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Idt-cF-k6G">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search for products and offers" translatesAutoresizingMaskIntoConstraints="NO" id="sSt-8J-US6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Faw-vb-bTb"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Faw-vb-bTb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Faw-vb-bTb"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="SQE-Hz-Iey" id="xWi-NZ-AZL"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-ek-EiO">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Wb-ek-EiO" firstAttribute="top" secondItem="sSt-8J-US6" secondAttribute="bottom" id="ALV-un-NBO"/>
+                            <constraint firstItem="5Wb-ek-EiO" firstAttribute="leading" secondItem="Idt-cF-k6G" secondAttribute="leadingMargin" id="Egb-bW-zlR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="sSt-8J-US6" firstAttribute="leading" secondItem="Idt-cF-k6G" secondAttribute="leadingMargin" id="JDp-rv-oGR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="sSt-8J-US6" firstAttribute="top" secondItem="Idt-cF-k6G" secondAttribute="topMargin" id="OC2-X2-M15"/>
+                            <constraint firstItem="XF9-7f-Nrk" firstAttribute="top" secondItem="5Wb-ek-EiO" secondAttribute="bottom" id="Smr-QI-NIQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sSt-8J-US6" secondAttribute="trailing" id="UqN-Za-iZD">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Wb-ek-EiO" secondAttribute="trailing" id="ohu-Ex-aed">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="sSt-8J-US6"/>
+                                <exclude reference="5Wb-ek-EiO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="JDp-rv-oGR"/>
+                                <exclude reference="OC2-X2-M15"/>
+                                <exclude reference="UqN-Za-iZD"/>
+                                <exclude reference="ALV-un-NBO"/>
+                                <exclude reference="Egb-bW-zlR"/>
+                                <exclude reference="ohu-Ex-aed"/>
+                                <exclude reference="Smr-QI-NIQ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="sSt-8J-US6"/>
+                                <include reference="5Wb-ek-EiO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="JDp-rv-oGR"/>
+                                <include reference="OC2-X2-M15"/>
+                                <include reference="UqN-Za-iZD"/>
+                                <include reference="ALV-un-NBO"/>
+                                <include reference="Egb-bW-zlR"/>
+                                <include reference="ohu-Ex-aed"/>
+                                <include reference="Smr-QI-NIQ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="lnw-CC-858" id="GcQ-Fx-zLI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNo-kT-IUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="lnw-CC-858">
+                    <connections>
+                        <outlet property="delegate" destination="SQE-Hz-Iey" id="gfR-Vv-n46"/>
+                        <outlet property="searchBar" destination="sSt-8J-US6" id="vBl-ac-0UT"/>
+                        <outlet property="searchContentsController" destination="SQE-Hz-Iey" id="MHj-Lc-yXX"/>
+                        <outlet property="searchResultsDataSource" destination="SQE-Hz-Iey" id="yIo-Rt-pdB"/>
+                        <outlet property="searchResultsDelegate" destination="SQE-Hz-Iey" id="ccQ-oB-T6I"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="111" y="324"/>
         </scene>
         <!--Nav Drawer-->
         <scene sceneID="ZgF-6Y-Wz1">

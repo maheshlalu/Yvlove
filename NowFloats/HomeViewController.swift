@@ -48,7 +48,7 @@ class HomeViewController: UITabBarController {
        
         
 
-        let offers = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
+        let offers = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
         offers.title = "OFFERS"
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
@@ -58,7 +58,7 @@ class HomeViewController: UITabBarController {
         
         self.tabBarController?.setViewControllers([offers,product,photos], animated: true)
 
-
+//OFFERS
     }
 
 }

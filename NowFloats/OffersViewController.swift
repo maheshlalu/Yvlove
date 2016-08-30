@@ -1,20 +1,18 @@
 //
-//  UpdatesViewController.swift
+//  OffersViewController.swift
 //  NowFloats
 //
-//  Created by Mahesh Y on 8/18/16.
+//  Created by apple on 30/08/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 
 import UIKit
 
-class UpdatesViewController: CXViewController {
+class OffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.greenColor()
-        print("item 1 loaded")
-        CXAppDataManager.sharedInstance.getProducts()
+
         // Do any additional setup after loading the view.
     }
 

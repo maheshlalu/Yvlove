@@ -10,6 +10,8 @@
 		0A76C861465BE1BECAE6F04C /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
 		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
+		18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */; };
+		18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D911D75C7B7001E27D4 /* ViewPager.swift */; };
 		3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D0D1D65976900DB332F /* UpdatesViewController.swift */; };
 		3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D111D65979200DB332F /* ProductsViewController.swift */; };
 		3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D151D6597AA00DB332F /* PhotosViewController.swift */; };
@@ -59,6 +61,8 @@
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
+		18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
+		18EC9D911D75C7B7001E27D4 /* ViewPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -146,12 +150,21 @@
 			name = ParentViewController;
 			sourceTree = "<group>";
 		};
+		18EC9D901D75C7AA001E27D4 /* ViewPager */ = {
+			isa = PBXGroup;
+			children = (
+				18EC9D911D75C7B7001E27D4 /* ViewPager.swift */,
+			);
+			name = ViewPager;
+			sourceTree = "<group>";
+		};
 		3B370D0C1D65973B00DB332F /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
 				3B370D0D1D65976900DB332F /* UpdatesViewController.swift */,
 				3B370D111D65979200DB332F /* ProductsViewController.swift */,
 				3B370D151D6597AA00DB332F /* PhotosViewController.swift */,
+				18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */,
 			);
 			name = TabControllers;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 		3B61E3541D6AC9D400B09F8E /* TabPager */ = {
 			isa = PBXGroup;
 			children = (
+				18EC9D901D75C7AA001E27D4 /* ViewPager */,
 				3B61E35D1D6ACA0800B09F8E /* ADPageControl.h */,
 				3B61E35E1D6ACA0800B09F8E /* ADPageControl.m */,
 				3B61E35F1D6ACA0800B09F8E /* ADPageControl.xib */,
@@ -569,6 +583,7 @@
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
+				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
@@ -576,6 +591,7 @@
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
 				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
+				18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */,
 				3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */,
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
 				3B61E3641D6ACA0800B09F8E /* ADPageModel.m in Sources */,
