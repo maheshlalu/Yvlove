@@ -45,11 +45,9 @@ class HomeViewController: UITabBarController {
     func addTheTabBarControllers(){
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 
-       
-        
-
         let offers = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
         offers.title = "OFFERS"
+        
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
         
