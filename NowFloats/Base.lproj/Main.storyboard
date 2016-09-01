@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -237,6 +237,8 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="offersTableView" destination="5Wb-ek-EiO" id="8Pb-ik-cww"/>
+                        <outlet property="productsSearchBar" destination="sSt-8J-US6" id="C0i-cL-aBQ"/>
                         <outlet property="searchDisplayController" destination="lnw-CC-858" id="GcQ-Fx-zLI"/>
                     </connections>
                 </viewController>

@@ -10,9 +10,11 @@ import UIKit
 
 class OffersViewController: UIViewController {
 
+    @IBOutlet weak var offersTableView: UITableView!
+    @IBOutlet weak var productsSearchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CXAppDataManager.sharedInstance.getProducts()
         // Do any additional setup after loading the view.
     }
 
@@ -32,4 +34,9 @@ class OffersViewController: UIViewController {
     }
     */
 
+    
+    
+    
+    
+    
 }

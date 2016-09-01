@@ -44,7 +44,8 @@ public class CXAppDataManager: NSObject {
     func getProducts(){
         
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-             print("print products\(responseDict)")
+             //print("print products\(responseDict)")
+            CXDataProvider.sharedInstance.saveTheProducts(responseDict)
 
         }
         

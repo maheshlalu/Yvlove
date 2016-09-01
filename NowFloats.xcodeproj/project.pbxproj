@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0A76C861465BE1BECAE6F04C /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
+		1868BCF21D78316A0050BC72 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEE1D78316A0050BC72 /* KICamera.png */; };
+		1868BCF31D78316A0050BC72 /* KICamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEF1D78316A0050BC72 /* KICamera@2x.png */; };
+		1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF11D78316A0050BC72 /* KIImagePager.m */; };
+		1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF61D7831790050BC72 /* PagerCustomView.m */; };
+		1868BCF91D7831790050BC72 /* PagerCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCF71D7831790050BC72 /* PagerCustomView.xib */; };
+		1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1868BD1C1D7841220050BC72 /* CXConstant.swift */; };
+		1868BD201D7848840050BC72 /* CX_Products+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1868BD1E1D7848840050BC72 /* CX_Products+CoreDataProperties.swift */; };
+		1868BD211D7848840050BC72 /* CX_Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1868BD1F1D7848840050BC72 /* CX_Products.swift */; };
 		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
 		18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */; };
@@ -60,6 +68,16 @@
 /* Begin PBXFileReference section */
 		0A5A6D4A69436A2805EB787F /* Pods-NowFloats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.release.xcconfig"; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1868BCEE1D78316A0050BC72 /* KICamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KICamera.png; sourceTree = "<group>"; };
+		1868BCEF1D78316A0050BC72 /* KICamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KICamera@2x.png"; sourceTree = "<group>"; };
+		1868BCF01D78316A0050BC72 /* KIImagePager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIImagePager.h; sourceTree = "<group>"; };
+		1868BCF11D78316A0050BC72 /* KIImagePager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIImagePager.m; sourceTree = "<group>"; };
+		1868BCF51D7831790050BC72 /* PagerCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagerCustomView.h; sourceTree = "<group>"; };
+		1868BCF61D7831790050BC72 /* PagerCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerCustomView.m; sourceTree = "<group>"; };
+		1868BCF71D7831790050BC72 /* PagerCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PagerCustomView.xib; sourceTree = "<group>"; };
+		1868BD1C1D7841220050BC72 /* CXConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXConstant.swift; sourceTree = "<group>"; };
+		1868BD1E1D7848840050BC72 /* CX_Products+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_Products+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1868BD1F1D7848840050BC72 /* CX_Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_Products.swift; sourceTree = "<group>"; };
 		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
 		18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +162,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1868BCFA1D783A5B0050BC72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1868BCFB1D783A6F0050BC72 /* ManagedObjectContests */,
+				3B7D99B81D6D7D4F00D73CAD /* CX_DataServices */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1868BCFB1D783A6F0050BC72 /* ManagedObjectContests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ManagedObjectContests;
+			sourceTree = "<group>";
+		};
 		18EC9D8B1D75ABBB001E27D4 /* ParentViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +189,13 @@
 		18EC9D901D75C7AA001E27D4 /* ViewPager */ = {
 			isa = PBXGroup;
 			children = (
+				1868BCF51D7831790050BC72 /* PagerCustomView.h */,
+				1868BCF61D7831790050BC72 /* PagerCustomView.m */,
+				1868BCF71D7831790050BC72 /* PagerCustomView.xib */,
+				1868BCEE1D78316A0050BC72 /* KICamera.png */,
+				1868BCEF1D78316A0050BC72 /* KICamera@2x.png */,
+				1868BCF01D78316A0050BC72 /* KIImagePager.h */,
+				1868BCF11D78316A0050BC72 /* KIImagePager.m */,
 				18EC9D911D75C7B7001E27D4 /* ViewPager.swift */,
 			);
 			name = ViewPager;
@@ -196,8 +237,8 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				1868BCFA1D783A5B0050BC72 /* Model */,
 				43674C111D71A11C002AD853 /* Sidepanel */,
-				3B7D99B81D6D7D4F00D73CAD /* CX_DataServices */,
 				3B61E3651D6B06E600B09F8E /* ProjectConfigureFile */,
 				3B61E3541D6AC9D400B09F8E /* TabPager */,
 				3B4FD84B1D64500700A6EBBE /* Controllers */,
@@ -209,6 +250,8 @@
 				3B4FD8221D6446D300A6EBBE /* LaunchScreen.storyboard */,
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
 				3B4FD81D1D6446D300A6EBBE /* NowFloats.xcdatamodeld */,
+				1868BD1E1D7848840050BC72 /* CX_Products+CoreDataProperties.swift */,
+				1868BD1F1D7848840050BC72 /* CX_Products.swift */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
 			);
 			path = NowFloats;
@@ -276,6 +319,7 @@
 			children = (
 				3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */,
 				3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */,
+				1868BD1C1D7841220050BC72 /* CXConstant.swift */,
 				3BDBF5B61D6ED61B003CA857 /* CXDataProvider.swift */,
 			);
 			name = CX_DataServices;
@@ -426,6 +470,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
+				1868BCF91D7831790050BC72 /* PagerCustomView.xib in Resources */,
 				3B4FD8241D6446D300A6EBBE /* LaunchScreen.storyboard in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
 				4336BAB21D7801AF00A38498 /* pp.jpg in Resources */,
@@ -584,17 +630,22 @@
 				3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
 				4336BAAF1D77F14200A38498 /* LeftViewTableViewCell.swift in Sources */,
+				1868BD201D7848840050BC72 /* CX_Products+CoreDataProperties.swift in Sources */,
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
+				1868BD211D7848840050BC72 /* CX_Products.swift in Sources */,
+				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
+				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
 				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
+				1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */,
 				18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */,
 				3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */,
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
