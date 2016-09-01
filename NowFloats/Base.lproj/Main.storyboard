@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -15,16 +16,85 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dic-it-RRA">
+                                <rect key="frame" x="0.0" y="54" width="250" height="180"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jm9-Gd-iQL">
+                                        <rect key="frame" x="2" y="145" width="243" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xm-bZ-ldb">
+                                                <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
+                                                <state key="normal" image="callusBtnImage"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmP-Yx-13U">
+                                                <rect key="frame" x="83" y="0.0" width="77" height="30"/>
+                                                <state key="normal" title="Button" image="messageBtnImage"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-sa-o2y">
+                                                <rect key="frame" x="165" y="0.0" width="78" height="30"/>
+                                                <state key="normal" title="Button" image="viewMapImage"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="H6C-Fa-BFt"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="leading" secondItem="dic-it-RRA" secondAttribute="leading" constant="2" id="Fon-bU-Bbt"/>
+                                    <constraint firstAttribute="height" constant="180" id="XJm-JK-2sw"/>
+                                    <constraint firstAttribute="trailing" secondItem="jm9-Gd-iQL" secondAttribute="trailing" constant="5" id="ffm-gw-PwN"/>
+                                    <constraint firstAttribute="bottom" secondItem="jm9-Gd-iQL" secondAttribute="bottom" constant="5" id="p4h-uF-ehT"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-g7-1Om">
+                                <rect key="frame" x="0.0" y="750" width="250" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AaU-xQ-It0"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="42V-mk-HSL">
+                                <rect key="frame" x="0.0" y="234" width="250" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="RlW-CR-32V"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RUS-Ri-AfO"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dic-it-RRA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1VM-Qj-g2a"/>
+                            <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Fvb-VW-oBJ"/>
+                            <constraint firstItem="dic-it-RRA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="Hfz-FA-zzl"/>
+                            <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Q1p-dV-ERt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZfM-g7-1Om" secondAttribute="bottom" id="QnL-ck-GJp"/>
+                            <constraint firstItem="ZfM-g7-1Om" firstAttribute="top" secondItem="42V-mk-HSL" secondAttribute="bottom" id="Ybr-7E-mve"/>
+                            <constraint firstAttribute="trailing" secondItem="dic-it-RRA" secondAttribute="trailing" id="lDm-bv-Rmf"/>
+                            <constraint firstItem="42V-mk-HSL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mWr-k9-Cvt"/>
+                            <constraint firstAttribute="trailing" secondItem="ZfM-g7-1Om" secondAttribute="trailing" id="rVe-Do-4GI"/>
+                            <constraint firstItem="ZfM-g7-1Om" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tey-sO-U0S"/>
+                            <constraint firstAttribute="trailing" secondItem="42V-mk-HSL" secondAttribute="trailing" id="veh-gG-REJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Fvb-VW-oBJ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="200" height="800"/>
+                    <size key="freeformSize" width="250" height="800"/>
+                    <connections>
+                        <outlet property="contentsTableView" destination="42V-mk-HSL" id="wGj-jS-qUK"/>
+                        <outlet property="detailsView" destination="dic-it-RRA" id="zau-GY-pcR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1252.5" y="-231.75"/>
+            <point key="canvasLocation" x="-1275" y="-474"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="y8A-S7-YAu">
@@ -35,6 +105,7 @@
                         <viewControllerLayoutGuide type="bottom" id="x1e-xi-XHf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JCU-sr-pnJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -52,13 +123,14 @@
                         <viewControllerLayoutGuide type="bottom" id="tLx-SX-fOk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0ig-jz-GcU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZS-uL-56a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-990" y="-497.25"/>
+            <point key="canvasLocation" x="-818" y="-579"/>
         </scene>
         <!--Updates View Controller-->
         <scene sceneID="mII-Kq-AJ4">
@@ -69,13 +141,14 @@
                         <viewControllerLayoutGuide type="bottom" id="72Z-5g-DgY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hfF-pJ-00Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-928.5" y="-162.75"/>
+            <point key="canvasLocation" x="-752" y="-141"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="cPf-fD-mBa">
@@ -86,6 +159,7 @@
                         <viewControllerLayoutGuide type="bottom" id="XF9-7f-Nrk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Idt-cF-k6G">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search for products and offers" translatesAutoresizingMaskIntoConstraints="NO" id="sSt-8J-US6">
@@ -137,13 +211,13 @@
                                 <exclude reference="5Wb-ek-EiO"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Smr-QI-NIQ"/>
                                 <exclude reference="JDp-rv-oGR"/>
                                 <exclude reference="OC2-X2-M15"/>
                                 <exclude reference="UqN-Za-iZD"/>
                                 <exclude reference="ALV-un-NBO"/>
                                 <exclude reference="Egb-bW-zlR"/>
                                 <exclude reference="ohu-Ex-aed"/>
-                                <exclude reference="Smr-QI-NIQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -152,13 +226,13 @@
                                 <include reference="5Wb-ek-EiO"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Smr-QI-NIQ"/>
                                 <include reference="JDp-rv-oGR"/>
                                 <include reference="OC2-X2-M15"/>
                                 <include reference="UqN-Za-iZD"/>
                                 <include reference="ALV-un-NBO"/>
                                 <include reference="Egb-bW-zlR"/>
                                 <include reference="ohu-Ex-aed"/>
-                                <include reference="Smr-QI-NIQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -249,4 +323,9 @@
             <point key="canvasLocation" x="-568.5" y="-1374"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="callusBtnImage" width="100" height="45"/>
+        <image name="messageBtnImage" width="100" height="45"/>
+        <image name="viewMapImage" width="100" height="45"/>
+    </resources>
 </document>
