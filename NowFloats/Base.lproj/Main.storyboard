@@ -16,14 +16,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dic-it-RRA">
-                                <rect key="frame" x="0.0" y="54" width="250" height="180"/>
+                                <rect key="frame" x="0.0" y="54" width="250" height="140"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jm9-Gd-iQL">
-                                        <rect key="frame" x="2" y="145" width="243" height="30"/>
+                                        <rect key="frame" x="2" y="103" width="243" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xm-bZ-ldb">
                                                 <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
@@ -45,25 +45,26 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="jm9-Gd-iQL" firstAttribute="leading" secondItem="dic-it-RRA" secondAttribute="leading" constant="2" id="Fon-bU-Bbt"/>
-                                    <constraint firstAttribute="height" constant="180" id="XJm-JK-2sw"/>
+                                    <constraint firstAttribute="height" constant="140" id="XJm-JK-2sw"/>
                                     <constraint firstAttribute="trailing" secondItem="jm9-Gd-iQL" secondAttribute="trailing" constant="5" id="ffm-gw-PwN"/>
-                                    <constraint firstAttribute="bottom" secondItem="jm9-Gd-iQL" secondAttribute="bottom" constant="5" id="p4h-uF-ehT"/>
+                                    <constraint firstAttribute="bottom" secondItem="jm9-Gd-iQL" secondAttribute="bottom" constant="7" id="p4h-uF-ehT"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-g7-1Om">
-                                <rect key="frame" x="0.0" y="750" width="250" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="AaU-xQ-It0"/>
-                                </constraints>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="42V-mk-HSL">
-                                <rect key="frame" x="0.0" y="234" width="250" height="516"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="42V-mk-HSL">
+                                <rect key="frame" x="0.0" y="194" width="250" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="RlW-CR-32V"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RUS-Ri-AfO"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storeongoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-g7-1Om">
+                                <rect key="frame" x="0.0" y="750" width="136" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="0TC-KV-QcJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="AaU-xQ-It0"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,11 +73,10 @@
                             <constraint firstItem="dic-it-RRA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="Hfz-FA-zzl"/>
                             <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Q1p-dV-ERt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZfM-g7-1Om" secondAttribute="bottom" id="QnL-ck-GJp"/>
+                            <constraint firstItem="ZfM-g7-1Om" firstAttribute="leading" secondItem="42V-mk-HSL" secondAttribute="leading" id="UeN-aD-d8x"/>
                             <constraint firstItem="ZfM-g7-1Om" firstAttribute="top" secondItem="42V-mk-HSL" secondAttribute="bottom" id="Ybr-7E-mve"/>
                             <constraint firstAttribute="trailing" secondItem="dic-it-RRA" secondAttribute="trailing" id="lDm-bv-Rmf"/>
                             <constraint firstItem="42V-mk-HSL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mWr-k9-Cvt"/>
-                            <constraint firstAttribute="trailing" secondItem="ZfM-g7-1Om" secondAttribute="trailing" id="rVe-Do-4GI"/>
-                            <constraint firstItem="ZfM-g7-1Om" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tey-sO-U0S"/>
                             <constraint firstAttribute="trailing" secondItem="42V-mk-HSL" secondAttribute="trailing" id="veh-gG-REJ"/>
                         </constraints>
                         <variation key="default">
@@ -326,6 +326,7 @@
     <resources>
         <image name="callusBtnImage" width="100" height="45"/>
         <image name="messageBtnImage" width="100" height="45"/>
+        <image name="storeongoLogo" width="100" height="45"/>
         <image name="viewMapImage" width="100" height="45"/>
     </resources>
 </document>

@@ -33,8 +33,6 @@
 		3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */; };
 		3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */; };
 		3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBF5B61D6ED61B003CA857 /* CXDataProvider.swift */; };
-		3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63C1D6F024F003CA857 /* reveal-icon.png */; };
-		3BDBF6401D6F024F003CA857 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */; };
 		4336BAAF1D77F14200A38498 /* LeftViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */; };
 		4336BAB01D77F14200A38498 /* LeftViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */; };
 		4336BAB21D7801AF00A38498 /* pp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4336BAB11D7801AF00A38498 /* pp.jpg */; };
@@ -96,8 +94,6 @@
 		3B7D99B91D6D7EC700D73CAD /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
 		3B7D99BB1D6D884200D73CAD /* CXAppDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAppDataManager.swift; sourceTree = "<group>"; };
 		3BDBF5B61D6ED61B003CA857 /* CXDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataProvider.swift; sourceTree = "<group>"; };
-		3BDBF63C1D6F024F003CA857 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon.png"; sourceTree = "<group>"; };
-		3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon@2x.png"; sourceTree = "<group>"; };
 		4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewTableViewCell.swift; sourceTree = "<group>"; };
 		4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewTableViewCell.xib; sourceTree = "<group>"; };
 		4336BAB11D7801AF00A38498 /* pp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pp.jpg; sourceTree = "<group>"; };
@@ -293,8 +289,6 @@
 				4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */,
 				4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */,
 				3B4FD8511D645BD500A6EBBE /* HomeViewController.swift */,
-				3BDBF63C1D6F024F003CA857 /* reveal-icon.png */,
-				3BDBF63D1D6F024F003CA857 /* reveal-icon@2x.png */,
 			);
 			name = SidePanel;
 			sourceTree = "<group>";
@@ -433,14 +427,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4FD8241D6446D300A6EBBE /* LaunchScreen.storyboard in Resources */,
-				3BDBF6401D6F024F003CA857 /* reveal-icon@2x.png in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
 				4336BAB21D7801AF00A38498 /* pp.jpg in Resources */,
 				4336BAB01D77F14200A38498 /* LeftViewTableViewCell.xib in Resources */,
 				3B61E3671D6B082400B09F8E /* CXProjectConfiguration.plist in Resources */,
 				3B4FD8211D6446D300A6EBBE /* Assets.xcassets in Resources */,
 				3B4FD81C1D6446D300A6EBBE /* Main.storyboard in Resources */,
-				3BDBF63F1D6F024F003CA857 /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

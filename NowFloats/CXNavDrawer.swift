@@ -25,8 +25,8 @@ class Constants {
     static let SHAWDOW_ALPHA : Float = 0.5
     static let  MENU_DURATION : Float = 0.3
     static let MENU_TRIGGER_VELOCITY : CGFloat  = 350.0
-    static let LEFT_NAV_BUTTON_WIDTH : CGFloat = 40.0
-    static let LEFT_NAV_BUTTON_HEIGHT : CGFloat = 40.0
+    static let LEFT_NAV_BUTTON_WIDTH : CGFloat = 30.0
+    static let LEFT_NAV_BUTTON_HEIGHT : CGFloat = 30.0
 
 }
 
@@ -93,8 +93,8 @@ class CXNavDrawer: UINavigationController {
         let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
         //leftButtonsView.backgroundColor = UIColor.blueColor()
         
-        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 0, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_WIDTH))
-        sidePanelBtn.setBackgroundImage(UIImage(named:"reveal-icon"), forState: .Normal)
+        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
         
         leftButtonsView.addSubview(sidePanelBtn)
         return UIBarButtonItem(customView: leftButtonsView)

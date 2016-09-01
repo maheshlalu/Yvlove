@@ -16,6 +16,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var messageBtn: UIButton!
     var viewMapBtn: UIButton!
     var titleLable: UILabel!
+    var mailLable: UILabel!
     
     var navController : CXNavDrawer = CXNavDrawer()
     
@@ -37,13 +38,23 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
-        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,70 ))
-       // self.titleLable.backgroundColor = UIColor.redColor()
+        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-45 ,55 ))
+        self.titleLable.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
         titleLable.text = "68M Holidays Hyderabad"
         self.detailsView.addSubview(titleLable)
+        
+//        let mailImage = UIImageView.init(frame: CGRectMake())
+//        mailImage.image = UIImage(named: "storeongo_gray.png")
+//        self.sidePanelView.addSubview(mailImage)
+        
+        self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
+        mailLable.font = mailLable.font.fontWithSize(10)
+       // self.mailLable.backgroundColor = UIColor.yellowColor()
+        mailLable.text = "iamsky.mme@gmail.com"
+        self.detailsView.addSubview(mailLable)
         
         
         /*
@@ -96,7 +107,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LeftViewTableViewCell", forIndexPath: indexPath) as! LeftViewTableViewCell
         cell.contentsLbl.text = CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String
-
+        cell.iconImage.image = UIImage.init(imageLiteral: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
+        cell.contentsLbl.textColor = UIColor.grayColor()
+        cell.contentsLbl.font = cell.contentsLbl.font.fontWithSize(15)
         return cell
     }
     
