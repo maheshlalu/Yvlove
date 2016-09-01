@@ -49,6 +49,10 @@ class CXNavDrawer: UINavigationController {
     
     var shawdowView : UIView!
     var drawerView : UIView!
+    var cartBtn : UIButton!
+    var profileBtn : UIButton!
+    var notificationBellBtn : UIButton!
+    var navTitle : String!
 
     var leftViewController : LeftViewController!
     
@@ -86,7 +90,7 @@ class CXNavDrawer: UINavigationController {
     
     func designLeftBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 100, 50))
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
         //leftButtonsView.backgroundColor = UIColor.blueColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 0, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_WIDTH))
@@ -96,10 +100,40 @@ class CXNavDrawer: UINavigationController {
         return UIBarButtonItem(customView: leftButtonsView)
     }
     
+    func rightMenuButtonCreation(imageName:String,frame:CGRect) -> UIButton{
+        
+        let button = UIButton(type: .Custom) as UIButton
+        button.imageView?.image = UIImage(named: imageName)
+       // button.setTitle("Line 1\nLine 2", forState: .Normal)
+       // button.sizeToFit()
+       // button.titleLabel!.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        //button.titleLabel!.numberOfLines = 0
+        //button.titleLabel!.textAlignment = NSTextAlignment.Center
+        button.frame =  frame
+        //button.titleLabel?.textColor = UIColor.redColor()
+       // button.backgroundColor = UIColor.blackColor()
+        return button
+    }
+    
+    
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
-        let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 100, 50))
-        //rightButtonsView.backgroundColor = UIColor.cyanColor()
+        let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
+        rightButtonsView.backgroundColor = UIColor.redColor()
+        
+       /* self.profileBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
+        self.cartBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
+        self.notificationBellBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
+
+        
+        rightButtonsView.addSubview(self.profileBtn)
+        rightButtonsView.addSubview(self.cartBtn)
+        rightButtonsView.addSubview(self.notificationBellBtn)*/
+
+        
+        
+       // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
+
         
         return UIBarButtonItem(customView:rightButtonsView)
     }
