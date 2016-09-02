@@ -1,5 +1,5 @@
 //
-//  CX_Products+CoreDataProperties.swift
+//  CX_ProductCategory+CoreDataProperties.swift
 //  NowFloats
 //
 //  Created by apple on 02/09/16.
@@ -12,19 +12,18 @@
 import Foundation
 import CoreData
 
-extension CX_Products {
+extension CX_ProductCategory {
 
-    @NSManaged var addToCart: String?
+    @NSManaged var createdByFullName: String?
     @NSManaged var createdById: String?
-    @NSManaged var favourite: String?
+    @NSManaged var current_Job_Status: String?
+    @NSManaged var icon_Name: String?
+    @NSManaged var icon_URL: String?
     @NSManaged var itemCode: String?
-    @NSManaged var json: String?
     @NSManaged var name: String?
-    @NSManaged var pid: String?
-    @NSManaged var quantity: String?
+    @NSManaged var pID: String?
+    @NSManaged var productDescription: String?
+    @NSManaged var publicURL: String?
     @NSManaged var storeId: String?
-    @NSManaged var subCateNameId: String?
-    @NSManaged var type: String?
-    @NSManaged var imageUrl: String?
 
 }

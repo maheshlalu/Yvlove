@@ -43,6 +43,8 @@ public class CXAppDataManager: NSObject {
     
     func getProducts(){
         
+        
+        
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
              //print("print products\(responseDict)")
             CXDataProvider.sharedInstance.saveTheProducts(responseDict)
@@ -75,17 +77,32 @@ public class CXAppDataManager: NSObject {
     
     
     func getTheFeaturedProduct(){
-        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            print("print products\(responseDict)")
+            //CXDataProvider.sharedInstance.saveTheFeatureProducts(responseDict)
+            self.getTheFeaturedProductJobs(responseDict)
+        }
     }
     
     
-    func getTheFeaturedProductJobs(){
-        
-        
+    func getTheFeaturedProductJobs(jsonDic:NSDictionary){
+        //jobId
+        let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
+
+        for prod in jobs {
+            let jobsString : String = (prod.valueForKey("Campaign_Jobs") as? String)!
+                CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":jobsString,"mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+                    print("print products\(responseDict)")
+            }
+            
+            
+        }
     }
     
+
     
-    
-    
+    let operation = NSOperation()
+
+
     
 }

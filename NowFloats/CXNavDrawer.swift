@@ -119,7 +119,7 @@ class CXNavDrawer: UINavigationController {
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
-        rightButtonsView.backgroundColor = UIColor.redColor()
+        //rightButtonsView.backgroundColor = UIColor.redColor()
         
        /* self.profileBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
         self.cartBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))

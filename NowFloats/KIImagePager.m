@@ -9,7 +9,35 @@
 #define kPageControlHeight  30
 #define kOverlayWidth       50
 #define kOverlayHeight      15
+#import <SDWebImage/SDWebImageCompat.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDWebImageManager.h>
 
+#import <SDWebImage/NSData+ImageContentType.h>
+#import <SDWebImage/SDImageCache.h>
+
+#import <SDWebImage/SDWebImageDecoder.h>
+
+#import <SDWebImage/SDWebImageDownloader.h>
+
+#import <SDWebImage/SDWebImageDownloaderOperation.h>
+
+
+#import <SDWebImage/SDWebImageOperation.h>
+
+#import <SDWebImage/SDWebImagePrefetcher.h>
+
+#import <SDWebImage/UIButton+WebCache.h>
+
+#import <SDWebImage/UIImage+GIF.h>
+
+#import <SDWebImage/UIImage+MultiFormat.h>
+
+
+#import <SDWebImage/UIImageView+HighlightedWebCache.h>
+
+
+#import <SDWebImage/UIView+WebCacheOperation.h>
 #import "KIImagePager.h"
 
 @interface KIImagePagerDefaultImageSource : NSObject <KIImagePagerImageSource>
@@ -159,7 +187,7 @@
 {
     for (UIView *view in _scrollView.subviews)
         [view removeFromSuperview];
-
+ 
     [self loadData];
     [self checkWetherToToggleSlideshowTimer];
 }
@@ -182,7 +210,7 @@
     NSArray *aImageUrls = (NSArray *)[_dataSource arrayWithImages:self];
     _activityIndicators = [NSMutableDictionary new];
 
-    [self updateCaptionLabelForImageAtIndex:0];
+    //[self updateCaptionLabelForImageAtIndex:0];
 
     if([aImageUrls count] > 0) {
         [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * [aImageUrls count],
@@ -192,9 +220,14 @@
             //CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
            
             self.pagerView =  [[[NSBundle mainBundle] loadNibNamed:@"PagerCustomView" owner:self options:nil] objectAtIndex:0];
-
+            ProductModelClass *data = [_dataSource populateTheProductData:i inPager:self];
+            self.pagerView.productNameLbl.text = data.productName;
+           [self.pagerView.productImage sd_setImageWithURL:[NSURL URLWithString:data.productimage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+               
+           }];
             //CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i +50, 20, 100, 100);
-            self.pagerView.frame =  CGRectMake(_scrollView.frame.size.width * i , 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+            self.pagerView.frame =  CGRectMake(_scrollView.frame.size.width * i , 0, _scrollView.frame.size.width, _scrollView.frame.size.height-50);
+            
             
             // Add GestureRecognizer to ImageView
             UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
@@ -206,7 +239,7 @@
 
             [_scrollView addSubview:self.pagerView];
         }
-
+        [self updateCaptionLabelForImageAtIndex:0];
         [_countLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[_dataSource arrayWithImages:self] count]]];
         _pageControl.numberOfPages = [(NSArray *)[_dataSource arrayWithImages:self] count];
     } else {
@@ -292,6 +325,8 @@
 #pragma mark - Delegate Helper
 - (void) updateCaptionLabelForImageAtIndex:(NSUInteger)index
 {
+    //- (void)populateTheProductDataInPager:(NSUInteger)index  inPager:(KIImagePager*)pager;
+
     if ([_dataSource respondsToSelector:@selector(captionForImageAtIndex:inPager:)]) {
         if ([[_dataSource captionForImageAtIndex:index inPager:self] length] > 0) {
             [_captionLabel setHidden:NO];
@@ -299,6 +334,10 @@
             return;
         }
     }
+    if ([_dataSource respondsToSelector:@selector(populateTheProductDataInPager:inPager:)]) {
+        [_dataSource populateTheProductDataInPager:index inPager:self];
+    }
+    
     [_captionLabel setHidden:YES];
 }
 
@@ -329,6 +368,8 @@
 
 - (void) checkWetherToToggleSlideshowTimer
 {
+    
+    
     if (_slideshowTimeInterval > 0) {
         if ([(NSArray *)[_dataSource arrayWithImages:self] count] > 1) {
             if(_slideshowTimer){

@@ -19,10 +19,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.setUpMagicalDB()
+        blockOperationsTest1()
        // self.setUpSidePanelview()
         return true
     }
     
+    func blockOperationsTest1(){
+        
+        var operationQueue = NSOperationQueue()
+        
+        let operation1 : NSBlockOperation = NSBlockOperation (block: {
+            self.doCalculations()
+            
+            let operation2 : NSBlockOperation = NSBlockOperation (block: {
+                
+                self.doSomeMoreCalculations()
+                
+            })
+            operationQueue.addOperation(operation2)
+        })
+        operationQueue.addOperation(operation1)
+    }
+    
+    func doCalculations(){
+        NSLog("do Calculations")
+        for i in 100...105{
+            print("i in do calculations is \(i)")
+            sleep(1)
+        }
+    }
+    
+    func doSomeMoreCalculations(){
+        NSLog("do Some More Calculations")
+        for j in 1...5{
+            print("j in do some more calculations is \(j)")
+            sleep(1)
+        }
+        
+    }
     
     //MARK: Sidepanel setup
     func setUpSidePanelview(){

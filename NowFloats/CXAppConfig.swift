@@ -63,17 +63,59 @@ class CXAppConfig {
         let appTheamColorArr : NSArray = config!.valueForKey("AppTheamColor") as! NSArray
         let red : Double = (appTheamColorArr.objectAtIndex(0) as! NSString).doubleValue
         let green : Double = (appTheamColorArr.objectAtIndex(1) as! NSString).doubleValue
-        let black : Double = (appTheamColorArr.objectAtIndex(2) as! NSString).doubleValue
+        let blue : Double = (appTheamColorArr.objectAtIndex(2) as! NSString).doubleValue
         return UIColor(
             red: CGFloat(red / 255.0),
             green: CGFloat(green / 255.0),
-            blue: CGFloat(black / 255.0),
+            blue: CGFloat(blue / 255.0),
             alpha: CGFloat(1.0)
         )
     }
     
+    func getAppBGColor() -> UIColor {
+        
+        let appTheamColorArr : NSArray = config!.valueForKey("AppBgColr") as! NSArray
+        let red : Double = (appTheamColorArr.objectAtIndex(0) as! NSString).doubleValue
+        let green : Double = (appTheamColorArr.objectAtIndex(1) as! NSString).doubleValue
+        let blue : Double = (appTheamColorArr.objectAtIndex(2) as! NSString).doubleValue
+        return UIColor(
+            red: CGFloat(red / 255.0),
+            green: CGFloat(green / 255.0),
+            blue: CGFloat(blue / 255.0),
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    
+    
+    
     func mainScreenSize() -> CGSize {
         return UIScreen.mainScreen().bounds.size
+    }
+    
+    //MARK:FONTS
+    func appSmallFont() -> UIFont{
+        
+        return UIFont(name: config!.valueForKey("APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.valueForKey("APPFONT_SMALL") as?NSNumber)!))!
+        
+    }
+    
+    func appMediumFont() -> UIFont{
+        
+        return UIFont(name: config!.valueForKey("APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.valueForKey("APPFONT_MEDIUM") as?NSNumber)!))!
+    }
+    
+
+    func appLargeFont() -> UIFont{
+        
+        return UIFont(name: config!.valueForKey("APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.valueForKey("APPFONT_LARGE") as?NSNumber)!))!
+
+    }
+    
+    //MARK:Pager Enable
+    
+    func ispagerEnable() -> Bool {
+       return config!.valueForKey("ISPagerEnable") as! Bool
     }
     
     

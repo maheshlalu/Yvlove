@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PagerCustomView.h"
+#import "ProductModelClass.h"
 typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 
 @class KIImagePager;
@@ -24,6 +25,8 @@ typedef void(^KIImagePagerImageRequestBlock)(UIImage*image, NSError * error);
 - (UIImage *) placeHolderImageForImagePager:(KIImagePager*)pager;
 - (NSString *) captionForImageAtIndex:(NSUInteger)index  inPager:(KIImagePager*)pager;
 - (UIViewContentMode) contentModeForPlaceHolder:(KIImagePager*)pager;
+- (void)populateTheProductDataInPager:(NSUInteger)index  inPager:(KIImagePager*)pager;
+- (ProductModelClass*)populateTheProductData:(NSUInteger)index  inPager:(KIImagePager*)pager;
 
 @end
 
