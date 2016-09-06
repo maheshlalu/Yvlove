@@ -22,10 +22,10 @@ class HomeViewController: UITabBarController {
          CCKFNavDrawer* navC = (CCKFNavDrawer*)self.navigationController;
          [navC drawerToggle];
          */
-        
-        
+      LoadingView.show("Loading", animated: true)
+        CXAppDataManager.sharedInstance.dataDelegate = self
         CXAppDataManager.sharedInstance.getTheStoreCategory()
-        self.addTheTabBarControllers()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,10 +43,16 @@ class HomeViewController: UITabBarController {
     */
     
     func addTheTabBarControllers(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-
-        let offers = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
-        offers.title = "OFFERS"
+        
+      let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let firstTab : UIViewController!
+        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+            firstTab = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
+            firstTab.title = "UPDATES"
+        }else{
+            firstTab = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
+            firstTab.title = "OFFERS"
+        }
         
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
@@ -54,10 +60,19 @@ class HomeViewController: UITabBarController {
         let photos = storyBoard.instantiateViewControllerWithIdentifier("PHOTO") as! PhotosViewController
         photos.title = "PHOTOS"
         
-        self.tabBarController?.setViewControllers([offers,product,photos], animated: true)
+        self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
 
 //OFFERS
     }
 
+}
+
+extension HomeViewController :AppDataDelegate {
+    
+    func completedTheFetchingTheData(sender: CXAppDataManager) {
+         self.addTheTabBarControllers()
+        LoadingView.hide()
+    }
+    
 }
 

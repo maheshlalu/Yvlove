@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.setUpMagicalDB()
-        blockOperationsTest1()
+        self.configure()
+      //  blockOperationsTest1()
        // self.setUpSidePanelview()
         return true
     }
@@ -173,6 +174,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    //MARK: Loader configuration
+    
+    func configure (){
+        var config : LoadingView.Config = LoadingView.Config()
+        config.size = 100
+        config.backgroundColor = UIColor.blackColor() //UIColor(red:0.03, green:0.82, blue:0.7, alpha:1)
+        config.spinnerColor = UIColor.whiteColor()//UIColor(red:0.88, green:0.26, blue:0.18, alpha:1)
+        config.titleTextColor = UIColor.whiteColor()//UIColor(red:0.88, green:0.26, blue:0.18, alpha:1)
+        config.spinnerLineWidth = 2.0
+        config.foregroundColor = UIColor.blackColor()
+        config.foregroundAlpha = 0.5
+        LoadingView.setConfig(config)
+    }
+
 
 }
 
