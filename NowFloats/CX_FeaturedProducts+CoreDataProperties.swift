@@ -2,7 +2,7 @@
 //  CX_FeaturedProducts+CoreDataProperties.swift
 //  NowFloats
 //
-//  Created by apple on 02/09/16.
+//  Created by apple on 06/09/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,5 +22,6 @@ extension CX_FeaturedProducts {
     @NSManaged var jobId: String?
     @NSManaged var json: String?
     @NSManaged var name: String?
+    @NSManaged var itHasJobs: NSNumber?
 
 }

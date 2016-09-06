@@ -6,6 +6,7 @@
         <attribute name="fDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_Code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itHasJobs" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jobId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,7 +79,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CX_FeaturedProducts" positionX="-171" positionY="81" width="128" height="165"/>
+        <element name="CX_FeaturedProducts" positionX="-171" positionY="81" width="128" height="180"/>
         <element name="CX_FeaturedProductsJobs" positionX="-162" positionY="90" width="128" height="195"/>
         <element name="CX_ProductCategory" positionX="45" positionY="-3" width="128" height="208"/>
         <element name="CX_Products" positionX="-288" positionY="9" width="128" height="225"/>
