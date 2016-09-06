@@ -14,9 +14,18 @@ class OfferCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var finalPriceLbl: UILabel!
     @IBOutlet weak var productPriceLbl: UILabel!
+    @IBOutlet weak var orderNowBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.orderNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        self.orderNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appLargeFont()
+        
+        self.finalPriceLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+        self.productPriceLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+        self.productName.font = CXAppConfig.sharedInstance.appLargeFont()
+
     }
 
 }

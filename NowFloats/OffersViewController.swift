@@ -18,7 +18,6 @@ class OffersViewController: UIViewController {
       var storedOffsets = [Int: CGFloat]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        CXAppDataManager.sharedInstance.getTheFeaturedProduct()
         CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
         self.getTheProducts()
@@ -37,16 +36,6 @@ class OffersViewController: UIViewController {
         self.offersTableView.reloadData()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 
 }
 
@@ -63,16 +52,15 @@ extension OffersViewController{
         self.offersTableView.scrollEnabled = true
 
     }
-    
-    
-}
 
+}
 
 extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 3
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,6 +87,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         let pagerCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentFier , forIndexPath: indexPath) as! OfferPagerCelll
         pagerCell.pagerView.delegate = self
         pagerCell.pagerView.dataSource = self
+        
         if CXAppConfig.sharedInstance.ispagerEnable() {
             pagerCell.pagerView.slideshowTimeInterval = 2
         }else{
@@ -118,11 +107,23 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }
         feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
         feturedProuctsCell.detailCollectionView.allowsSelection = true
+        feturedProuctsCell.headerLbl.text = "Orders"
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         return feturedProuctsCell
         
     }
     
+//    
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+//        let arr:Array = ["Suresh","Mahesh","Balu"]
+//        
+//        if section < arr.count {
+//            return arr[section]
+//        }
+//        
+//        return nil
+//    
+//    }
     
     /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -135,7 +136,11 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     }
     */
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0{
+        return CXConstant.tableViewHeigh - 75;
+        }else{
         return CXConstant.tableViewHeigh - 25;
+        }
     }
 }
 
@@ -156,7 +161,9 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+
         }
+  
         
         return cell
         
@@ -194,6 +201,11 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         //  productModelData.productimage = productData.name
         productModelData.productSubTitle = productData.name
         pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+        pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        pager.indicatorDisabled = false
+        
+        pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        pager.pageControl.pageIndicatorTintColor = UIColor.grayColor();
         
         return productModelData
         

@@ -22,6 +22,7 @@
 
 
 #import "ADPageControl.h"
+//#import "CXAppConfig.swift"
 
 //Constants
 #define DEFAULT_TAB_TEXT_FONT [UIFont fontWithName:@"Roboto-Bold" size:15]
@@ -31,7 +32,7 @@
 //Default colors
 #define DEFAULT_COLOR_TITLE_BAR_BACKGROUND [UIColor colorWithRed:243.0/255 green:243.0f/255 blue:243.0f/255 alpha:1.0]
 #define DEFAULT_COLOR_TAB_TEXT [UIColor blackColor]
-#define DEFAULT_COLOR_PAGE_INDICATOR [UIColor colorWithRed:229/255.0f green:91/255.0f blue:1/255.0f alpha:1.0f]
+#define DEFAULT_COLOR_PAGE_INDICATOR [UIColor blackColor]
 #define DEFAULT_COLOR_PAGE_OVERSCROLL_BACKGROUND [UIColor colorWithRed:45.0/255 green:2.0/255 blue:89.0/255 alpha:1.0]
 
 //Tab button tag offset ( starting with tag zero will not work to check subview with tag, as default tag values are 0)
@@ -132,7 +133,7 @@
     _constraintPageIndicatorTop.constant = _iTitleViewHeight - _iPageIndicatorHeight;
     
     [_scrollViewTitle setBackgroundColor:_colorTitleBarBackground ? _colorTitleBarBackground : DEFAULT_COLOR_TITLE_BAR_BACKGROUND];
-    [_viewPageIndicator setBackgroundColor:_colorPageIndicator ? _colorPageIndicator : DEFAULT_COLOR_PAGE_INDICATOR];
+    [_viewPageIndicator setBackgroundColor:_colorPageIndicator ? _colorPageIndicator : [UIColor redColor]];
     _arrTabButtons = [[NSMutableArray alloc] init];
 }
 

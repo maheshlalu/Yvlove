@@ -32,20 +32,20 @@ class OfferFeaturedProductCell: UITableViewCell {
     func customizeBgView(){
         let cellWidth = UIScreen.mainScreen().bounds.size.width
         let viewHeight:CGFloat = CXConstant.RELATED_ARTICLES_CELL_HEIGHT-10
-         let cellFrame = CGRectMake(10, 0, cellWidth-20, viewHeight-25)
+        let cellFrame = CGRectMake(10, 0, cellWidth-20, viewHeight-25)
         
         
         self.bgView = UIView.init(frame: cellFrame)//CXConstant.DetailTableView_Width
-        self.bgView.layer.borderColor = UIColor.grayColor().CGColor
-        self.bgView.layer.borderWidth = 1.0
-        self.bgView.backgroundColor = UIColor.whiteColor()//UIColor.whiteColor()
+        //self.bgView.layer.borderColor = UIColor.grayColor().CGColor
+        //self.bgView.layer.borderWidth = 1.0
+        self.bgView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()//UIColor.whiteColor()
         self.addSubview(self.bgView)
         
         self.headerLbl = UILabel.init(frame: CGRectMake(0, 0, self.bgView.frame.size.width, 30))
         self.headerLbl.font = UIFont(name:"Roboto-Bold", size:16)
-        self.headerLbl.textAlignment = NSTextAlignment.Center
-        self.headerLbl.textColor = CXConstant.titleLabelColor
-        //self.bgView.addSubview(self.headerLbl)
+        self.headerLbl.textAlignment = NSTextAlignment.Left
+        self.headerLbl.textColor = UIColor.grayColor()
+        self.bgView.addSubview(self.headerLbl)
     }
     
     func customizeDetailCollectionView(){
@@ -57,7 +57,7 @@ class OfferFeaturedProductCell: UITableViewCell {
         layout.itemSize = CXConstant.DetailCollectionCellSize
         self.detailCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         self.detailCollectionView.showsHorizontalScrollIndicator = false
-        self.detailCollectionView.frame = CGRectMake(2, 20, cellWidth-4, CXConstant.DetailCollectionViewFrame.size.height-35)
+        self.detailCollectionView.frame = CGRectMake(2, 28, cellWidth-4, CXConstant.DetailCollectionViewFrame.size.height-35)
         self.detailCollectionView.backgroundColor = UIColor.redColor()
         
         // CXConstant.DetailCollectionViewFrame
