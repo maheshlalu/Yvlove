@@ -107,12 +107,69 @@
                     <view key="view" contentMode="scaleToFill" id="JCU-sr-pnJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XWH-tB-8vR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="0RA-U4-V9P">
+                                    <size key="itemSize" width="159" height="170"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="11" minY="10" maxX="10" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotosCollectionViewCell" id="rmc-mV-WI1" customClass="PhotosCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="159" height="170"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="159" height="170"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="rhY-rU-Zhe" id="ppU-UR-Lau"/>
+                                    <outlet property="delegate" destination="rhY-rU-Zhe" id="ldY-Cp-Jay"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XWH-tB-8vR" firstAttribute="top" secondItem="JCU-sr-pnJ" secondAttribute="topMargin" id="Vpj-2A-XF2"/>
+                            <constraint firstItem="x1e-xi-XHf" firstAttribute="top" secondItem="XWH-tB-8vR" secondAttribute="bottom" id="bjw-6b-ifg"/>
+                            <constraint firstItem="XWH-tB-8vR" firstAttribute="leading" secondItem="JCU-sr-pnJ" secondAttribute="leadingMargin" id="hAd-md-18c">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="XWH-tB-8vR" secondAttribute="trailing" id="teC-Iy-CXJ">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-19"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vpj-2A-XF2"/>
+                                <exclude reference="hAd-md-18c"/>
+                                <exclude reference="teC-Iy-CXJ"/>
+                                <exclude reference="bjw-6b-ifg"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Vpj-2A-XF2"/>
+                                <include reference="hAd-md-18c"/>
+                                <include reference="teC-Iy-CXJ"/>
+                                <include reference="bjw-6b-ifg"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="photosCollectionView" destination="XWH-tB-8vR" id="age-b7-uBc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Pj-6Q-Hvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1723.5" y="-579"/>
+            <point key="canvasLocation" x="-2913" y="-794.25"/>
         </scene>
         <!--Products View Controller-->
         <scene sceneID="3SF-5h-3bU">
@@ -148,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-752" y="-141"/>
+            <point key="canvasLocation" x="-766" y="-446"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="cPf-fD-mBa">
