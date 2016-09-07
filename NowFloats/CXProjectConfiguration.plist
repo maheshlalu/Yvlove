@@ -24,9 +24,9 @@
 	<key>APPFONT_NAME_REGULAR</key>
 	<string>Roboto-Regular</string>
 	<key>APPFONT_MEDIUM</key>
-	<integer>10</integer>
+	<integer>12</integer>
 	<key>APPFONT_LARGE</key>
-	<integer>13</integer>
+	<integer>15</integer>
 	<key>APPFONT_SMALL</key>
 	<integer>8</integer>
 	<key>ISPagerEnable</key>
