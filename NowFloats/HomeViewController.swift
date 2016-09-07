@@ -46,7 +46,8 @@ class HomeViewController: UITabBarController {
         
       let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let firstTab : UIViewController!
-        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+        //("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "")
+        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
             firstTab.title = "UPDATES"
         }else{

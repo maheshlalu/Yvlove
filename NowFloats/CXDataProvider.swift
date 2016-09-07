@@ -205,9 +205,15 @@ class CXDataProvider: NSObject {
 extension CXDataProvider {
     
     
-    func getTheTableDataFromDataBase(entityName: String ,predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+    
+    
+    func getTheTableDataFromDataBase(entityName: String ,predicate:NSPredicate,ispredicate:Bool,orederByKey:String) -> (dataArray:NSArray, totalCount:NSInteger){
         
         let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: entityName)
+        if !orederByKey.isEmpty {
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: orederByKey, ascending: false)]
+        }
+        // let fetchRequest = CX_Products.MR_requestAllSortedBy("storeID", ascending: false) /
         if ispredicate {
             fetchRequest.predicate = predicate
         }
@@ -225,6 +231,42 @@ extension CXDataProvider {
     }
     
     
+    func getTheProducts(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+        
+       // let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
+        
+        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
+
+        fetchRequest.predicate = predicate
+        let productCatList :NSArray = CX_Products.MR_executeFetchRequest(fetchRequest)
+        
+        return(productCatList,productCatList.count)
+    }
+    
+    
+    func getTheFeaturedProducts(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+        
+        let fetchRequest = CX_FeaturedProducts.MR_requestAllSortedBy("fID", ascending: false)
+         if ispredicate {
+            fetchRequest.predicate = predicate
+        }
+        
+        let productCatList :NSArray = CX_FeaturedProducts.MR_executeFetchRequest(fetchRequest)
+        
+        return(productCatList,productCatList.count)
+    }
+    
+    
+    func getTheFeaturedProductJobs(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+        
+        let fetchRequest = CX_FeaturedProductsJobs.MR_requestAllSortedBy("fID", ascending: false)
+        if ispredicate {
+            fetchRequest.predicate = predicate
+        }
+        let productCatList :NSArray = CX_FeaturedProductsJobs.MR_executeFetchRequest(fetchRequest)
+        
+        return(productCatList,productCatList.count)
+    }
     
     
 }

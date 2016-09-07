@@ -267,3 +267,15 @@ extension String {
         return escapedString!
     }
 }
+
+extension Constants {
+    
+    func setTheDefaultStoreID(storeID:String){
+        NSUserDefaults.standardUserDefaults().setObject(storeID, forKey: "STORE_ID")
+    }
+    
+    func getTheDefaultStoreID() -> String{
+        return (NSUserDefaults.standardUserDefaults().objectForKey("STORE_ID") as? String)!
+    }
+    
+}

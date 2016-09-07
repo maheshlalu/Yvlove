@@ -41,13 +41,13 @@ public class CXAppDataManager: NSObject {
     
     func getTheStores(){
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
-                    self.getProducts()
+  self.getProducts()
                 })
             }else{
-                self.getProducts()
-                
+              self.getProducts()
+
             }
             
             
@@ -57,7 +57,7 @@ public class CXAppDataManager: NSObject {
     func getProducts(){
         
         print("getProducts")
-        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
                 //print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
@@ -98,7 +98,7 @@ public class CXAppDataManager: NSObject {
     func getTheFeaturedProduct(){
         print("getTheFeaturedProduct")
 
-        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveTheFeatureProducts(responseDict, completion: { (isDataSaved) in
                     self.getTheFeaturedProductJobs()
@@ -113,7 +113,7 @@ public class CXAppDataManager: NSObject {
     func getTheFeaturedProductJobs(){
         print("getTheFeaturedProductJobs")
 
-        let jobsArray : NSArray =  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(format:"itHasJobs == 0" ), ispredicate: true).dataArray
+        let jobsArray : NSArray =  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(format:"itHasJobs == 0" ), ispredicate: true,orederByKey: "").dataArray
         if jobsArray.count != 0 {
           let featuredProducts:CX_FeaturedProducts =    (jobsArray.lastObject as? CX_FeaturedProducts)!
           //  NSManagedObjectContext.MR_contextForCurrentThread().save()
