@@ -46,6 +46,10 @@
 		189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189A1E3C1D79477000724120 /* RobotoCondensed-Light.ttf */; };
 		18A6BF851D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BF831D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift */; };
 		18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BF841D7FD96200D7D533 /* CX_SingleMall.swift */; };
+		18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BFBE1D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift */; };
+		18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BFBF1D8020F700D7D533 /* CX_Gallery.swift */; };
+		18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BFC31D802B5800D7D533 /* ProductsCollectionViewCell.swift */; };
+		18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */; };
 		18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */; };
 		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
@@ -143,6 +147,10 @@
 		189A1E3C1D79477000724120 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		18A6BF831D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_SingleMall+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18A6BF841D7FD96200D7D533 /* CX_SingleMall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_SingleMall.swift; sourceTree = "<group>"; };
+		18A6BFBE1D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_Gallery+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18A6BFBF1D8020F700D7D533 /* CX_Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_Gallery.swift; sourceTree = "<group>"; };
+		18A6BFC31D802B5800D7D533 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
 		18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +265,8 @@
 		1868BCFB1D783A6F0050BC72 /* ManagedObjectContests */ = {
 			isa = PBXGroup;
 			children = (
+				18A6BFBE1D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift */,
+				18A6BFBF1D8020F700D7D533 /* CX_Gallery.swift */,
 				18A6BF831D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift */,
 				18A6BF841D7FD96200D7D533 /* CX_SingleMall.swift */,
 				183573961D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift */,
@@ -300,6 +310,15 @@
 				189A1E3C1D79477000724120 /* RobotoCondensed-Light.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		18A6BFC21D802B4800D7D533 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18A6BFC31D802B5800D7D533 /* ProductsCollectionViewCell.swift */,
+				18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		18E46A6E1D7ED80F00B021C2 /* Loader */ = {
@@ -420,6 +439,7 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18A6BFC21D802B4800D7D533 /* Products */,
 				435521651D7FEE3A0099159D /* PHOTOS */,
 				183573911D79758400722AA2 /* OFFERS */,
 			);
@@ -615,6 +635,7 @@
 			files = (
 				435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */,
 				189A1E3D1D79479800724120 /* Roboto-Black.ttf in Resources */,
+				18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */,
 				189A1E3E1D79479800724120 /* Roboto-Bold.ttf in Resources */,
 				189A1E3F1D79479800724120 /* Roboto-Italic.ttf in Resources */,
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
@@ -795,6 +816,7 @@
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
+				18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				18A6BF851D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift in Sources */,
 				183573A61D798F5400722AA2 /* CX_StoreCategory+CoreDataProperties.swift in Sources */,
@@ -802,6 +824,7 @@
 				183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */,
 				1868BD211D7848840050BC72 /* CX_Products.swift in Sources */,
 				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
+				18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */,
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				183573A51D798F5400722AA2 /* CX_Rating.swift in Sources */,
@@ -819,6 +842,7 @@
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
 				183573AB1D798F5400722AA2 /* CX_FeaturedProducts.swift in Sources */,
 				1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */,
+				18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */,
 				18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */,
 				183573AA1D798F5400722AA2 /* CX_FeaturedProducts+CoreDataProperties.swift in Sources */,
 				3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */,
