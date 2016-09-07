@@ -118,7 +118,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }
         feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
         feturedProuctsCell.detailCollectionView.allowsSelection = true
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section] as? CX_FeaturedProducts)!
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         feturedProuctsCell.headerLbl.text = featureProducts.name
         print("Feature Product Cell Header: \(feturedProuctsCell.headerLbl.text)")
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
@@ -161,7 +161,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag+1] as? CX_FeaturedProducts)!
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true).totalCount    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
