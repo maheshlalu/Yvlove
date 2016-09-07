@@ -22,11 +22,12 @@ class OffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false).dataArray
-//        print("\(self.featureProducts.valueForKey("name"))")
-//        self.featureProductNames = NSMutableArray(array: (self.featureProducts.valueForKey("name")) as! [AnyObject])
-//        self.featureProductNames.insertObject("", atIndex: 0)
-//        print("\(self.featureProductNames)")
+        
+        self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
+
+        
+  
+
         CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
         self.getTheProducts()
@@ -116,7 +117,9 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
             tableView.registerNib(UINib(nibName: "OfferFeaturedProductCell", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
             feturedProuctsCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentFier) as? OfferFeaturedProductCell
         }
-        feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+        feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
+        print("indext path tag \(indexPath.section)")
+        //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         feturedProuctsCell.headerLbl.text = featureProducts.name
@@ -162,28 +165,24 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     func collectionView(collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
-        return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true).totalCount    }
+ 
+        return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").totalCount
+    
+    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCollectionViewCellIdentifier, forIndexPath: indexPath)
-//        //let collectionViewArray = sourceArray[collectionView.tag] as! Array<AnyObject>
-//        cell.backgroundColor = UIColor.blueColor()
-//        return cell
-//        
+
         let identifier = "OfferCollectionViewCell"
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-        //cell.productImageView.image =
-        /*
-         let prodCategory:CX_Product_Category = self.mallProductCategories[collectionView.tag] as! CX_Product_Category
-         let product: CX_Products = CXDBSettings.getProductsWithCategory(prodCategory)[indexPath.row] as! CX_Products
-         */
+  
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
-        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true).dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         cell.productName.text = featuredProductJobs.name
-        
+        cell.productImageView.sd_setImageWithURL(NSURL(string:featuredProductJobs.image_URL!)!)
+        //   cell.detailImageView.sd_setImageWithURL(NSURL(string:prodImage)!, placeholderImage: UIImage(named: "smlogo.png"), options:SDWebImageOptions.RefreshCached)
         return cell
         
     }
