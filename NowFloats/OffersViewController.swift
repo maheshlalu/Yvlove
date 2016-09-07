@@ -17,17 +17,10 @@ class OffersViewController: UIViewController {
     var products : NSArray! = nil
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
-//    var featureProductNames: NSMutableArray!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
-
-        
-  
-
         CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
         self.getTheProducts()
@@ -123,8 +116,8 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         feturedProuctsCell.headerLbl.text = featureProducts.name
-        print("Feature Product Cell Header: \(feturedProuctsCell.headerLbl.text)")
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+        
         return feturedProuctsCell
         
     }
@@ -153,12 +146,15 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     */
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0{
-        return CXConstant.tableViewHeigh - 75;
+            return CXConstant.tableViewHeigh - 75;
+        }else if indexPath.section == 2{
+            return CXConstant.tableViewHeigh - 5;
         }else{
-        return CXConstant.tableViewHeigh - 25;
+            return CXConstant.tableViewHeigh - 25;
         }
     }
 }
+
 
 extension OffersViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
@@ -171,26 +167,37 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
+        
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+    
         let identifier = "OfferCollectionViewCell"
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-  
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
-        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+
         cell.productName.text = featuredProductJobs.name
         cell.productImageView.sd_setImageWithURL(NSURL(string:featuredProductJobs.image_URL!)!)
         //   cell.detailImageView.sd_setImageWithURL(NSURL(string:prodImage)!, placeholderImage: UIImage(named: "smlogo.png"), options:SDWebImageOptions.RefreshCached)
+        
+        
+        if featureProducts.name == "Brands"{
+            cell.productPriceLbl.hidden = true
+            cell.finalPriceLbl.hidden = true
+            cell.orderNowBtn.hidden = true
+        
+        }
+  
+        
         return cell
         
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         // Set cell width to 100%
-        return CXConstant.DetailCollectionCellSize
-        
+
+            return CXConstant.DetailCollectionCellSize
     }
     
     
@@ -229,6 +236,5 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         return productModelData
         
     }
-    func constructTheProductsForPager(){
-    }
+    
 }
