@@ -31,19 +31,25 @@ public class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
-        self.getProducts()
+       // self.getProducts()
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-           // print("print store category\(responseDict)")
-               // CXDataProvider.sharedInstance.saveTheStoreCategory(responseDict)
-                //responseDict.valueForKey("jobs")! as! NSArray
-            //self.getTheStores()
+            print("print store category\(responseDict)")
+            self.getTheStores()
         }
     }
     
     
     func getTheStores(){
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-           // print("print getTheStores\(responseDict)")
+            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false).totalCount == 0{
+                CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
+                    self.getProducts()
+                })
+            }else{
+                self.getProducts()
+                
+            }
+            
             
         }
     }
@@ -74,8 +80,7 @@ public class CXAppDataManager: NSObject {
     
     
     func getTheSigleMall(){
-        
-        
+        //type=singleMall
     }
     
     
