@@ -160,6 +160,7 @@ class CXDataProvider: NSObject {
             enStore!.json = jsonString as String
             enStore!.createdById = CXConstant.resultString(prod.valueForKey("createdById")!)
             enStore!.itemCode = prod.valueForKey("ItemCode") as? String
+            self.SaveTheGallaryItems((prod.valueForKey("Attachments") as? NSArray)!)
                 }
         }) { (success, error) in
             if success == true {
@@ -169,14 +170,42 @@ class CXDataProvider: NSObject {
             }
             
         }
+    
+    }
+    
+    
+    func SaveTheGallaryItems(galeryItems:NSArray){
+        MagicalRecord.saveWithBlock({ (localContext) in
+            for gallaeryData in galeryItems {
+                let enStore = NSEntityDescription.insertNewObjectForEntityForName("CX_Gallery", inManagedObjectContext: localContext) as? CX_Gallery
+                enStore?.gID = CXConstant.resultString(gallaeryData.valueForKey("Id")!)
+                enStore?.gImageUrl = gallaeryData.valueForKey("URL") as? String
+                enStore?.isCoverImage = gallaeryData.valueForKey("isCoverImage") as? String
+                enStore?.isBannerImage = gallaeryData.valueForKey("isBannerImage") as? String
+            }
+        }) { (success, error) in
+            if success == true {
+              
+            } else {
+                print("Error\(error)")
+            }
+            
+        }
         
-
+/*
+         Id: "122890",
+         Image_Name: "1622269_937699392950680_7819671031120876039_n.jpg",
+         URL: "https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/1622269_937699392950680_7819671031120876039_n.jpg?oh=0083906ddd1af57bab5f5ef8e3985f0a&oe=57ED8C25",
+         albumName: "Mobile Uploads",
+         isCoverImage: "true",
+         mmType: "1",
+         isBannerImage: "false"*/
         
     }
     
     
-    func saveSingleMallInDB(resDict:NSDictionary) {
-        // print ("Single Mall Response \(resDict)")
+    func saveSingleMallInDB(resDict:NSDictionary ,completion:(isDataSaved:Bool) -> Void) {
+    print ("Single Mall Response \(resDict)")
         
         MagicalRecord.saveWithBlock({ (localContext) in
             let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
