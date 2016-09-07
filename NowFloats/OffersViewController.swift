@@ -15,13 +15,23 @@ class OffersViewController: UIViewController {
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
     var products : NSArray! = nil
-      var storedOffsets = [Int: CGFloat]()
+    var storedOffsets = [Int: CGFloat]()
+    var featureProducts: NSArray!
+//    var featureProductNames: NSMutableArray!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+       self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false).dataArray
+//        print("\(self.featureProducts.valueForKey("name"))")
+//        self.featureProductNames = NSMutableArray(array: (self.featureProducts.valueForKey("name")) as! [AnyObject])
+//        self.featureProductNames.insertObject("", atIndex: 0)
+//        print("\(self.featureProductNames)")
         CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
         self.getTheProducts()
-        // Do any additional setup after loading the view.
+   
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +48,7 @@ class OffersViewController: UIViewController {
 
 
 }
-
+// CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false)
 //MARK: Featured Product Tableview
 
 extension OffersViewController{
@@ -59,7 +69,8 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 3
+        return featureProducts.count+1
+        
         
     }
     
@@ -107,7 +118,9 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }
         feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
         feturedProuctsCell.detailCollectionView.allowsSelection = true
-        feturedProuctsCell.headerLbl.text = "Orders"
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section] as? CX_FeaturedProducts)!
+        feturedProuctsCell.headerLbl.text = featureProducts.name
+        print("Feature Product Cell Header: \(feturedProuctsCell.headerLbl.text)")
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         return feturedProuctsCell
         
@@ -148,8 +161,8 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag+1] as? CX_FeaturedProducts)!
+        return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true).totalCount    }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 //        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseCollectionViewCellIdentifier, forIndexPath: indexPath)
@@ -161,9 +174,15 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
-
         }
-  
+        //cell.productImageView.image =
+        /*
+         let prodCategory:CX_Product_Category = self.mallProductCategories[collectionView.tag] as! CX_Product_Category
+         let product: CX_Products = CXDBSettings.getProductsWithCategory(prodCategory)[indexPath.row] as! CX_Products
+         */
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true).dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+        cell.productName.text = featuredProductJobs.name
         
         return cell
         
@@ -202,6 +221,7 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         productModelData.productSubTitle = productData.name
         pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
         pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        pager.pagerView.orederNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appMediumFont()
         pager.indicatorDisabled = false
         
         pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()

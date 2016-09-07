@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="fqV-IN-Pqe">
-                        <rect key="frame" x="40" y="189" width="148" height="21"/>
+                        <rect key="frame" x="30" y="189" width="168" height="21"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2223" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdk-x5-I8X">
                                 <rect key="frame" x="0.0" y="0.0" width="51" height="21"/>
@@ -33,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4848" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHe-Ou-hFS">
-                                <rect key="frame" x="105" y="0.0" width="43" height="21"/>
+                                <rect key="frame" x="125" y="0.0" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                 <constraint firstAttribute="trailing" secondItem="fqV-IN-Pqe" secondAttribute="trailing" id="43w-z6-mEY"/>
                 <constraint firstItem="sdc-Sc-2Ax" firstAttribute="top" secondItem="229-dI-e7i" secondAttribute="bottom" constant="11" id="Fde-km-awk"/>
                 <constraint firstItem="sdc-Sc-2Ax" firstAttribute="leading" secondItem="229-dI-e7i" secondAttribute="leading" id="JJC-Qo-GOh"/>
-                <constraint firstAttribute="trailing" secondItem="fqV-IN-Pqe" secondAttribute="trailing" constant="40" id="LsZ-yQ-7l5"/>
+                <constraint firstAttribute="trailing" secondItem="fqV-IN-Pqe" secondAttribute="trailing" constant="30" id="LsZ-yQ-7l5"/>
                 <constraint firstAttribute="trailing" secondItem="sdc-Sc-2Ax" secondAttribute="trailing" id="NbP-N1-Ull"/>
                 <constraint firstItem="sdc-Sc-2Ax" firstAttribute="trailing" secondItem="229-dI-e7i" secondAttribute="trailing" id="Nso-Q2-Zbb"/>
                 <constraint firstAttribute="trailing" secondItem="fqV-IN-Pqe" secondAttribute="trailing" constant="3" id="Pfu-ln-Oo2"/>
@@ -70,7 +70,7 @@
                 <constraint firstAttribute="bottom" secondItem="fqV-IN-Pqe" secondAttribute="bottom" constant="35" id="YTR-tB-dN1"/>
                 <constraint firstItem="229-dI-e7i" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ccn-QV-Alq"/>
                 <constraint firstItem="sdc-Sc-2Ax" firstAttribute="centerX" secondItem="SqP-qL-ZeD" secondAttribute="centerX" id="dWv-sO-cDY"/>
-                <constraint firstItem="fqV-IN-Pqe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="hgz-qh-THG"/>
+                <constraint firstItem="fqV-IN-Pqe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="hgz-qh-THG"/>
                 <constraint firstItem="fqV-IN-Pqe" firstAttribute="top" secondItem="sdc-Sc-2Ax" secondAttribute="bottom" constant="14" id="l5N-ln-5vS"/>
                 <constraint firstItem="sdc-Sc-2Ax" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pl6-gc-mD9"/>
                 <constraint firstItem="fqV-IN-Pqe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="qys-Gh-H3q"/>
