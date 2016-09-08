@@ -10,13 +10,13 @@ import UIKit
 
 class UpdatesViewController: CXViewController {
 
+    let monthsMillisecond:Int64 = 2592000000
     @IBOutlet weak var updateTableView: UITableView!
     @IBOutlet weak var updatesSearch: UISearchBar!
     var updatesArray : NSArray! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updatesArray = NSArray()
-        view.backgroundColor = UIColor.greenColor()
         self.setUpTableView()
         self.getUpdates()
         // Do any additional setup after loading the view.
@@ -39,8 +39,6 @@ class UpdatesViewController: CXViewController {
         //self.tableview.contentInset = UIEdgeInsetsMake(0,5, 0,5)
         self.updateTableView.delegate =  self
         self.updateTableView.dataSource = self
-        
-        self.updateTableView.backgroundColor = UIColor.lightGrayColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,28 +104,75 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         
-        
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("UpdateTableViewCell", forIndexPath: indexPath)as! UpdateTableViewCell
         let updateDic : NSDictionary = self.updatesArray[indexPath.section] as! NSDictionary
+        cell.selectionStyle = .None
         cell.descriptionLabel.text = updateDic.valueForKey("message") as?String
-               return cell
         
-        /*
-         
-         @IBOutlet var monthLabel: UILabel!
-         @IBOutlet var descriptionLabel: UILabel!
-         @IBOutlet var nameimageView: UIImageView!
-         {
-         "_id" = 560d47f94ec0a41d447c1a32;
-         createdOn = "/Date(1443710969222)/";
-         imageUri = "/BizImages/Actual/560d47fd4ec0a41d447c1a34.jpg";
-         message = "Singapore Flyer:\nThe Singapore flyer is the World s largest observation wheel, giving amazing spectacular View of the city.It takes around 30min ride you can have view of Sentosa, Singapore River, Marina Bay, Changi Airport, Even You can see Malaysia and Indonesia\nSingapore flyer operating hours: 8:30am to 10:30 pm\nDuration : 30 Min\nCost Aprrox  starts from 25 USD\n";
-         tileImageUri = "/BizImages/Actual/560d47fd4ec0a41d447c1a34.jpg";
-         type = "<null>";
-         url = "http://68mholidays.com/bizFloat/560d47f94ec0a41d447c1a32/Singapore-Flyer-The-Singapore-flyer-is-the-World-s-largest-observation-wheel-giving-amazing-spectacular-View-of-the-city-It-takes-around-30min-ride-you-can-have-view-of-Sentosa-Singapore-River-Marina-Bay-Changi-Airport-Even-You-can-see-Malaysia-and-Indonesia-Singapore-flyer-operating-hours-8-30am-to-10-30-pm-Duration-30-Min-Cost-Aprrox-starts-from-25-USD-";
-         },
-         */
+        let createdDate = updateDic.valueForKey("createdOn") as?String
+        let createdTimeStr = getCreatedTime(createdDate!)
+        cell.monthLabel.text = createdTimeStr
+        
+        
+        let imgUrl = updateDic.valueForKey("imageUri") as?String
+        if (imgUrl!.lowercaseString.rangeOfString("https") != nil){
+            cell.nameimageView.sd_setImageWithURL(NSURL(string:imgUrl!))
+        }
+        
+        //let url = updateDic.valueForKey("url") as? String
+        //cell.shareBtn.addTarget(self, action: Selector(shareBtnAction(cell.descriptionLabel.text!, url: url!)), forControlEvents: .TouchUpInside)
+        
+        return cell
+
     }
     
+    func shareBtnAction(textToShare:String, url:String){
+        
+        let objectsToShare = [textToShare, url]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+        
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.presentViewController(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    func getCreatedTime(createdDate:String) -> String{
+
+        let component = createdDate.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        let list = component.filter({ $0 != "" })
+        let number: Int64? = Int64(list[0])
+        
+        let mydate = NSDate()
+        let currentTime = Int64(mydate.timeIntervalSince1970 * 1000)
+        
+        let finalDate = currentTime - number!
+        
+        var milliseconds : double_t = double_t(finalDate);
+        
+        milliseconds =  floor(milliseconds/1000);
+        let seconds = milliseconds //29825913.019
+        let minutes = floor(milliseconds/60) //497098.55031667
+        let hours = floor(minutes/60) //8284.9758386111661821
+        let days = floor(hours/24) //345.20732660879860987
+        let weeks = floor(days/7) //49.31533237268551062
+        let months = finalDate/monthsMillisecond
+        let years = months/12
+        
+        if years == 0 {
+            return "\(months) Months Ago"
+        }else if months == 0 {
+            return "\(weeks) Weeks Ago"
+        }else if weeks == 0 {
+            return "\(days) Days Ago"
+        }else if days == 0 {
+            return "\(hours) Hours Ago"
+        }else if hours == 0 {
+            return "\(minutes) Minutes Ago"
+        }else if minutes == 0 {
+            return "\(seconds) Seconds Ago"
+        }
+        return ""
+    }
 }

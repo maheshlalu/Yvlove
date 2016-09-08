@@ -9,9 +9,8 @@
 import UIKit
 
 class UpdateTableViewCell: UITableViewCell {
-
-    @IBAction func sharebuttonAction(sender: UIButton) {
-    }
+    
+    @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var nameimageView: UIImageView!
@@ -26,5 +25,4 @@ class UpdateTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

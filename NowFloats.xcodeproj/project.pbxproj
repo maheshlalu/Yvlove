@@ -242,7 +242,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		183573911D79758400722AA2 /* OFFERS */ = {
+		183573911D79758400722AA2 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
 				1868BD221D78534C0050BC72 /* OfferPagerCelll.swift */,
@@ -252,7 +252,7 @@
 				183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */,
 				183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */,
 			);
-			name = OFFERS;
+			name = Offers;
 			sourceTree = "<group>";
 		};
 		1868BCFA1D783A5B0050BC72 /* Model */ = {
@@ -454,8 +454,8 @@
 			children = (
 				1890B6ED1D8163DA00AF140A /* Updates */,
 				18A6BFC21D802B4800D7D533 /* Products */,
-				435521651D7FEE3A0099159D /* PHOTOS */,
-				183573911D79758400722AA2 /* OFFERS */,
+				435521651D7FEE3A0099159D /* Photos */,
+				183573911D79758400722AA2 /* Offers */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -505,13 +505,13 @@
 			name = SidePanel;
 			sourceTree = "<group>";
 		};
-		435521651D7FEE3A0099159D /* PHOTOS */ = {
+		435521651D7FEE3A0099159D /* Photos */ = {
 			isa = PBXGroup;
 			children = (
 				435521661D7FEE5B0099159D /* PhotosCollectionViewCell.swift */,
 				435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */,
 			);
-			name = PHOTOS;
+			name = Photos;
 			sourceTree = "<group>";
 		};
 		43674C111D71A11C002AD853 /* Sidepanel */ = {

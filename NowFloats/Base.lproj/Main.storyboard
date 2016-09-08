@@ -267,7 +267,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="atq-y0-PUP">
+                            <searchBar contentMode="redraw" placeholder="Search from Business Updates..." translatesAutoresizingMaskIntoConstraints="NO" id="atq-y0-PUP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ULH-Lm-gH6"/>
@@ -286,14 +286,14 @@
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-OK-rTL">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iEB-PT-Oi1" id="ssK-2x-YR2"/>
                                     <outlet property="delegate" destination="iEB-PT-Oi1" id="HQp-3Z-hCV"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="atq-y0-PUP" secondAttribute="trailing" constant="-20" id="1DK-4y-5BZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ngM-OK-rTL" secondAttribute="trailing" constant="-20" id="4ll-h3-NNC"/>
@@ -343,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-942" y="-655.5"/>
+            <point key="canvasLocation" x="-1239" y="-648"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="cPf-fD-mBa">
