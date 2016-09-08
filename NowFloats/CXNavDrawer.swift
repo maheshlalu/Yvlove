@@ -91,27 +91,21 @@ class CXNavDrawer: UINavigationController {
     func designLeftBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         
         let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        
         //leftButtonsView.backgroundColor = UIColor.blueColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
+        sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
         
         leftButtonsView.addSubview(sidePanelBtn)
         return UIBarButtonItem(customView: leftButtonsView)
     }
     
     func rightMenuButtonCreation(imageName:String,frame:CGRect) -> UIButton{
-        
         let button = UIButton(type: .Custom) as UIButton
-        button.imageView?.image = UIImage(named: imageName)
-       // button.setTitle("Line 1\nLine 2", forState: .Normal)
-       // button.sizeToFit()
-       // button.titleLabel!.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //button.titleLabel!.numberOfLines = 0
-        //button.titleLabel!.textAlignment = NSTextAlignment.Center
+        button.setBackgroundImage(UIImage(named:imageName), forState: .Normal)
         button.frame =  frame
-        //button.titleLabel?.textColor = UIColor.redColor()
-       // button.backgroundColor = UIColor.blackColor()
         return button
     }
     
@@ -119,21 +113,25 @@ class CXNavDrawer: UINavigationController {
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
-        //rightButtonsView.backgroundColor = UIColor.redColor()
-        
-       /* self.profileBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
-        self.cartBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
-        self.notificationBellBtn = self.rightMenuButtonCreation("", frame: CGRectMake(0, 0, 0, 0))
-
+        let buttondWidth : CGFloat = 35
+        self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth, 0, 35, 35))
+        self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*2, 0, 35, 35))
+        self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*3, 0, 35, 35))
+//whiteCartImage
         
         rightButtonsView.addSubview(self.profileBtn)
         rightButtonsView.addSubview(self.cartBtn)
-        rightButtonsView.addSubview(self.notificationBellBtn)*/
+        rightButtonsView.addSubview(self.notificationBellBtn)
 
         
+        self.profileBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
+        self.notificationBellBtn.addTarget(self, action: #selector(notificationBellAction), forControlEvents: .TouchUpInside)
+        self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
+
         
        // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
 
+        
         
         return UIBarButtonItem(customView:rightButtonsView)
     }
@@ -281,11 +279,35 @@ class CXNavDrawer: UINavigationController {
 extension CXNavDrawer : UINavigationControllerDelegate {
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        print("nav controlller \(viewController)")
         
-        print(viewController)
-        viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
-        viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())
+        if viewController.isKindOfClass(CXViewController) {
+            
+        }else{
+            viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
+            viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())
+        }
+       
+    }
+}
 
+
+extension CXNavDrawer {
+    
+    
+    func cartButtonAction(){
+       
+        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
+
+    }
+    
+    func notificationBellAction(){
         
     }
+    
+    func profileToggleAction(){
+        
+    }
+    
+    
 }

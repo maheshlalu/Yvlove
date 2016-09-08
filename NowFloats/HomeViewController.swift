@@ -65,6 +65,20 @@ class HomeViewController: UITabBarController {
 
 //OFFERS
     }
+    
+    func cartButtonAction(){
+        
+        
+    }
+    
+    func notificationBellAction(){
+        
+    }
+    
+    func profileToggleAction(){
+        
+    }
+    
 
 }
 

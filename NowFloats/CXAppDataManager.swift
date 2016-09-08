@@ -32,7 +32,6 @@ public class CXAppDataManager: NSObject {
     //Get The StoreCategory
     func getTheStoreCategory(){
          self.getTheSigleMall()
-        // self.getProducts()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             print("print store category\(responseDict)")
             self.getTheStores()
