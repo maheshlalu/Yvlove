@@ -113,6 +113,15 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return cell
     }
     
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.navController.drawerToggle()
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
+        self.navController.pushViewController(product, animated: true)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
