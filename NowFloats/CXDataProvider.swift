@@ -87,6 +87,9 @@ class CXDataProvider: NSObject {
     
     func saveTheFeatureProducts(jsonDic:NSDictionary ,completion:(isDataSaved:Bool) -> Void){
         let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
+        if  jobs.count == 0 {
+            completion(isDataSaved: false)
+        }
         MagicalRecord.saveWithBlock({ (localContext) in
             for prod in jobs {
                 let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_FeaturedProducts", inManagedObjectContext: localContext) as? CX_FeaturedProducts
@@ -109,7 +112,7 @@ class CXDataProvider: NSObject {
                 //                    delegate.didFinishProducts(productCatName)
                 //                }
             } else {
-                print("Error\(error)")
+                completion(isDataSaved: success)
             }
         }
     }
@@ -205,8 +208,12 @@ class CXDataProvider: NSObject {
     
     
     func saveSingleMallInDB(resDict:NSDictionary ,completion:(isDataSaved:Bool) -> Void) {
-    print ("Single Mall Response \(resDict)")
         
+    
+        CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.valueForKeyPath("orgs.fpId")!))
+        completion(isDataSaved: true)
+
+     /*   //orgs.appInfo.fpId
         MagicalRecord.saveWithBlock({ (localContext) in
             let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
             enSMall.mallID = CXConstant.resultString(resDict.valueForKey("id")!)
@@ -223,7 +230,7 @@ class CXDataProvider: NSObject {
             } else {
                 print("Error\(error)")
             }
-        }
+        }*/
         
         }
     
@@ -233,6 +240,12 @@ class CXDataProvider: NSObject {
 
 extension CXDataProvider {
     
+    func getJobID(input:String,inputDic:String) -> String {
+        let json :NSDictionary = (CXConstant.sharedInstance.convertStringToDictionary(inputDic))
+        let info : String = CXConstant.resultString(json.valueForKey(input)!)
+        return info
+        
+    }
     
     
     

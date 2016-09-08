@@ -31,7 +31,7 @@ public class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
-        // self.getTheSigleMall()
+         self.getTheSigleMall()
         // self.getProducts()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             print("print store category\(responseDict)")
@@ -99,7 +99,12 @@ public class CXAppDataManager: NSObject {
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveTheFeatureProducts(responseDict, completion: { (isDataSaved) in
-                    self.getTheFeaturedProductJobs()
+                    if isDataSaved{
+                        self.getTheFeaturedProductJobs()
+                    }else{
+                        self.dataDelegate?.completedTheFetchingTheData(self)
+                    }
+                    
                 })
             }
         }else{
@@ -113,7 +118,8 @@ public class CXAppDataManager: NSObject {
         
         let jobsArray : NSArray =  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(format:"itHasJobs == 0" ), ispredicate: true,orederByKey: "").dataArray
         if jobsArray.count != 0 {
-            let featuredProducts:CX_FeaturedProducts =    (jobsArray.lastObject as? CX_FeaturedProducts)!
+            let featuredProducts:CX_FeaturedProducts
+                =    (jobsArray.lastObject as? CX_FeaturedProducts)!
             //  NSManagedObjectContext.MR_contextForCurrentThread().save()
             
             CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs!,"mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in

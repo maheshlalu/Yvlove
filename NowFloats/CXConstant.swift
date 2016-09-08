@@ -150,6 +150,19 @@ class CXConstant: NSObject {
         return reqString
     }
     
+    
+    func saveTheFid(storeID:String){
+          print(storeID)
+        NSUserDefaults.standardUserDefaults().setObject(storeID, forKey: "FID")
+        
+    }
+    
+    func getTheFid()-> String{
+        
+      
+        return (NSUserDefaults.standardUserDefaults().objectForKey("FID") as? String)!
+    }
+    
     static func resultString(input: AnyObject) -> String{
         if let value: AnyObject = input {
             var reqType : String!
@@ -158,6 +171,8 @@ class CXConstant: NSObject {
                 reqType = "\(i)"
             case let s as NSString:
                 reqType = "\(s)"
+            case let a as NSArray:
+                reqType = "\(a.objectAtIndex(0))"
             default:
                 reqType = "Invalid Format"
             }
@@ -266,6 +281,8 @@ extension String {
         //print("escapedString: \(escapedString)")
         return escapedString!
     }
+    
+  
 }
 
 extension Constants {
@@ -278,4 +295,5 @@ extension Constants {
         return (NSUserDefaults.standardUserDefaults().objectForKey("STORE_ID") as? String)!
     }
     
+
 }
