@@ -226,10 +226,10 @@
                                 <exclude reference="qPW-Dm-Epm"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="AAp-hZ-Th0"/>
                                 <exclude reference="9is-uu-30q"/>
                                 <exclude reference="Eis-XT-tE0"/>
                                 <exclude reference="IZJ-Ut-CJB"/>
-                                <exclude reference="AAp-hZ-Th0"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -237,10 +237,10 @@
                                 <include reference="qPW-Dm-Epm"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="AAp-hZ-Th0"/>
                                 <include reference="9is-uu-30q"/>
                                 <include reference="Eis-XT-tE0"/>
                                 <include reference="IZJ-Ut-CJB"/>
-                                <include reference="AAp-hZ-Th0"/>
                             </mask>
                         </variation>
                     </view>

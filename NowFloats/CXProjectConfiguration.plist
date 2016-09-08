@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>MALL_ID</key>
-	<string>14210</string>
+	<string>11</string>
 	<key>AppTheamColor</key>
 	<array>
-		<string>102</string>
-		<string>0</string>
-		<string>102</string>
+		<string>65</string>
+		<string>105</string>
+		<string>225</string>
 	</array>
 	<key>BaseUrl</key>
-	<string>http://storeongo.com:8081/</string>
+	<string>http://nowfloats.ongostore.com:8081/</string>
 	<key>getMaster</key>
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>

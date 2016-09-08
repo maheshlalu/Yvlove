@@ -1,0 +1,30 @@
+//
+//  UpdateTableViewCell.swift
+//  updateScreen
+//
+//  Created by Rama kuppa on 30/08/16.
+//  Copyright © 2016 Mahesh. All rights reserved.
+//
+
+import UIKit
+
+class UpdateTableViewCell: UITableViewCell {
+
+    @IBAction func sharebuttonAction(sender: UIButton) {
+    }
+    @IBOutlet var monthLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var nameimageView: UIImageView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Initialization code
+    }
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+}
