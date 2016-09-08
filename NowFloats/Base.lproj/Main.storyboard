@@ -287,6 +287,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-OK-rTL">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iEB-PT-Oi1" id="ssK-2x-YR2"/>
+                                    <outlet property="delegate" destination="iEB-PT-Oi1" id="HQp-3Z-hCV"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -307,13 +311,13 @@
                                 <exclude reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="WJ7-2V-e0q"/>
                                 <exclude reference="1DK-4y-5BZ"/>
                                 <exclude reference="XqK-86-4hP"/>
                                 <exclude reference="vtD-5B-Fmd"/>
                                 <exclude reference="4ll-h3-NNC"/>
                                 <exclude reference="k7L-Ev-wN1"/>
                                 <exclude reference="zO3-qz-nFi"/>
-                                <exclude reference="WJ7-2V-e0q"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -322,16 +326,20 @@
                                 <include reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="WJ7-2V-e0q"/>
                                 <include reference="1DK-4y-5BZ"/>
                                 <include reference="XqK-86-4hP"/>
                                 <include reference="vtD-5B-Fmd"/>
                                 <include reference="4ll-h3-NNC"/>
                                 <include reference="k7L-Ev-wN1"/>
                                 <include reference="zO3-qz-nFi"/>
-                                <include reference="WJ7-2V-e0q"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="updateTableView" destination="ngM-OK-rTL" id="wTa-Yb-0vt"/>
+                        <outlet property="updatesSearch" destination="atq-y0-PUP" id="pJy-Ms-R9h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
