@@ -14,30 +14,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     var products: NSArray!
     @IBOutlet var updatecollectionview: UICollectionView!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = UIColor.clearColor()
-        //print("item 1 loaded")
-
+        self.view.backgroundColor = UIColor.lightGrayColor()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
-        
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         getTheProducts()
-        
-        
-        //self.tableView.rowHeight = UITableViewAutomaticDimension
-        //self.tableView.estimatedRowHeight = 10.0
-        
-        
-        /* let screenWidth = screenSize.width
-         //let screenHeight = screenSize.height
-         
-         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-         layout.itemSize = CGSize(width: screenWidth/2, height: 200)
-         updatecollectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-         //self.view.addSubview(updatecollectionview)*/
     }
     
     func getTheProducts(){
@@ -48,80 +31,46 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        
-        
         return self.products.count
-        
     }
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         
-        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionViewCell", forIndexPath: indexPath)as! ProductsCollectionViewCell
-        
-        
+
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         cell.productdescriptionLabel.text = products.name
         cell.produstimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
         cell.productdescriptionLabel.sizeToFit()
         
-        // Customize cell height
-        cell.cartaddedbutton.backgroundColor = UIColor.clearColor()
-        cell.cartaddedbutton.layer.cornerRadius = 12
-        cell.cartaddedbutton.layer.borderWidth = 1
-        cell.cartaddedbutton.layer.borderColor = UIColor.blueColor().CGColor
+        let rupee = "\u{20B9}"
+        let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
+        let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
-    cell.productdescriptionLabel.font = CXAppConfig.sharedInstance.appMediumFont()
-    //CXAppConfig.sharedInstance.getAppTheamColor()
-      cell.cartaddedbutton.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        return cell
-        
-       
-        /*button.backgroundColor = UIColor.clearColor()
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.blackColor().CGColor*/
-        
-        
-        
-        
-        /*  if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-         let itemWidth = view.bounds.width / 2
-         let itemHeight = layout.itemSize.height
-         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-         layout.invalidateLayout()
-         }*/
-        
-        
-        
+        if discount == "0"{
+            cell.productFinalPriceLabel.hidden = true
+            cell.productpriceLabel.text = "\(rupee) \(price)"
+            cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(13)
+            cell.productpriceLabel.textColor = UIColor.darkGrayColor()
+        }else{
+            cell.productFinalPriceLabel.hidden = false
+            cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(11)
+            cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            cell.productpriceLabel.attributedText = attributeString
+            
+            
+            let finalPriceNum:Int = Int(price)!-Int(discount)!
+            cell.productFinalPriceLabel.text = "\(rupee) \(String(finalPriceNum))"
+        }
+          return cell
     }
-    //     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
-    //     {
-    //
-    //        let screenWidth = screenSize.width
-    //        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    //        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-    //        layout.itemSize = CGSize(width: screenWidth/2, height: 200)
-    //
-    //        updatecollectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-    //        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    //       // self.view.addSubview(updatecollectionview)
-    //
-    //    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.mainScreen().bounds.size.width
         return CGSize(width: screenWidth/2-11, height: 200);
-        
     }
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        
-    }
-    
     
 }
