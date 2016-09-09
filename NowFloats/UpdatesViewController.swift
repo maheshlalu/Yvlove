@@ -118,23 +118,23 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         if (imgUrl!.lowercaseString.rangeOfString("https") != nil){
             cell.nameimageView.sd_setImageWithURL(NSURL(string:imgUrl!))
         }
-        
-        //let url = updateDic.valueForKey("url") as? String
-        //cell.shareBtn.addTarget(self, action: Selector(shareBtnAction(cell.descriptionLabel.text!, url: url!)), forControlEvents: .TouchUpInside)
+        cell.shareBtn.tag = indexPath.section+1
+        cell.shareBtn.addTarget(self, action: #selector(UpdatesViewController.shareBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+
         
         return cell
 
     }
     
-    func shareBtnAction(textToShare:String, url:String){
+    func shareBtnAction(button : UIButton!){
         
-        let objectsToShare = [textToShare, url]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        let updateDic : NSDictionary = self.updatesArray[button.tag-1] as! NSDictionary
+        let description = updateDic.valueForKey("message") as?String
+        let url = updateDic.valueForKey("url") as? String
         
-        activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-        
-        activityVC.popoverPresentationController?.sourceView = self.view
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [description!,url!], applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
+        self.presentViewController(activityViewController, animated: true, completion: nil)
         
     }
     

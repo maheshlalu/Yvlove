@@ -55,9 +55,6 @@
                                 <exclude reference="Ab9-ts-dNW"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <action selector="sharebuttonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UDY-4j-xd4"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMg-bL-us9">
                         <rect key="frame" x="8" y="120" width="107" height="20"/>

@@ -20,8 +20,8 @@ class CXViewController: UIViewController {
     func methodOfReceivedNotification(notification: NSNotification){
         //Take Action on Notification
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
-        self.navigationController?.pushViewController(product, animated: true)
+        let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
+        self.navigationController?.pushViewController(cart, animated: true)
         
     }
     

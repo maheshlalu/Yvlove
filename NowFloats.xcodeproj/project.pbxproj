@@ -81,6 +81,9 @@
 		4336BAAF1D77F14200A38498 /* LeftViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */; };
 		4336BAB01D77F14200A38498 /* LeftViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */; };
 		4336BAB21D7801AF00A38498 /* pp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4336BAB11D7801AF00A38498 /* pp.jpg */; };
+		4339EE681D82A17A009EDDB2 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4339EE671D82A17A009EDDB2 /* CartViewController.swift */; };
+		4339EE6B1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4339EE691D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.swift */; };
+		4339EE6C1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4339EE6A1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.xib */; };
 		435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435521661D7FEE5B0099159D /* PhotosCollectionViewCell.swift */; };
 		435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
@@ -193,6 +196,9 @@
 		4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewTableViewCell.swift; sourceTree = "<group>"; };
 		4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewTableViewCell.xib; sourceTree = "<group>"; };
 		4336BAB11D7801AF00A38498 /* pp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pp.jpg; sourceTree = "<group>"; };
+		4339EE671D82A17A009EDDB2 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		4339EE691D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowfloatsCartViewTableViewCell.swift; sourceTree = "<group>"; };
+		4339EE6A1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowfloatsCartViewTableViewCell.xib; sourceTree = "<group>"; };
 		435521661D7FEE5B0099159D /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		AC2B91DFDCE12FD5F8E84038 /* Pods-NowFloats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.debug.xcconfig"; sourceTree = "<group>"; };
@@ -452,6 +458,7 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4339EE661D82A167009EDDB2 /* Cart */,
 				1890B6ED1D8163DA00AF140A /* Updates */,
 				18A6BFC21D802B4800D7D533 /* Products */,
 				435521651D7FEE3A0099159D /* Photos */,
@@ -503,6 +510,16 @@
 				3B4FD8511D645BD500A6EBBE /* HomeViewController.swift */,
 			);
 			name = SidePanel;
+			sourceTree = "<group>";
+		};
+		4339EE661D82A167009EDDB2 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				4339EE671D82A17A009EDDB2 /* CartViewController.swift */,
+				4339EE691D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.swift */,
+				4339EE6A1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.xib */,
+			);
+			name = Cart;
 			sourceTree = "<group>";
 		};
 		435521651D7FEE3A0099159D /* Photos */ = {
@@ -655,6 +672,7 @@
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
 				189A1E421D79479800724120 /* Roboto-Regular.ttf in Resources */,
+				4339EE6C1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.xib in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
@@ -825,11 +843,13 @@
 				4336BAAF1D77F14200A38498 /* LeftViewTableViewCell.swift in Sources */,
 				1868BD241D78534C0050BC72 /* OfferPagerCelll.swift in Sources */,
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
+				4339EE6B1D82A187009EDDB2 /* NowfloatsCartViewTableViewCell.swift in Sources */,
 				183573A41D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift in Sources */,
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
+				4339EE681D82A17A009EDDB2 /* CartViewController.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
 				18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,

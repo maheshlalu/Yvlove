@@ -6,6 +6,15 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Left View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -201,7 +210,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="126" height="216"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -254,6 +263,185 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZS-uL-56a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-608" y="-648"/>
+        </scene>
+        <!--Cart View Controller-->
+        <scene sceneID="IOM-km-upo">
+            <objects>
+                <viewController storyboardIdentifier="CART" id="Vba-a2-QP1" customClass="CartViewController" customModule="NowFloats" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DGu-Hs-QHm"/>
+                        <viewControllerLayoutGuide type="bottom" id="BAD-MY-JJj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XGq-fk-Qxw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00l-kR-wq4">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zka-po-ryO">
+                                        <rect key="frame" x="-5" y="-11" width="142" height="88"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDo-dZ-Hwu">
+                                                <rect key="frame" x="20" y="20" width="84" height="21"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47747474" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEg-XM-OXk">
+                                                <rect key="frame" x="21" y="43" width="101" height="25"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <variation key="heightClass=regular-widthClass=compact" alignment="top" axis="vertical"/>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuQ-eh-qTp">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <color key="backgroundColor" red="0.7615384615384615" green="0.17963766370205836" blue="0.050528815599377191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="133" id="Dg3-xS-FpB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                        <state key="normal" title="Checkout Now">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Dg3-xS-FpB"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="Dg3-xS-FpB"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="cartCheckOutNowBtnAction:" destination="Vba-a2-QP1" eventType="touchUpInside" id="bCR-3l-Y5p"/>
+                                            <action selector="cartCheckoutBtnAction:" destination="Vba-a2-QP1" eventType="touchUpInside" id="kjN-yg-7v0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="LuQ-eh-qTp" firstAttribute="top" secondItem="00l-kR-wq4" secondAttribute="top" constant="14" id="4Fv-Ro-7TE"/>
+                                    <constraint firstAttribute="trailing" secondItem="LuQ-eh-qTp" secondAttribute="trailing" constant="24" id="F3M-Ie-8rS"/>
+                                    <constraint firstAttribute="bottom" secondItem="LuQ-eh-qTp" secondAttribute="bottom" constant="13" id="VlB-cE-0KW"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zka-po-ryO" secondAttribute="bottom" constant="15" id="ZCr-r9-zl3">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="12"/>
+                                    </constraint>
+                                    <constraint firstItem="Zka-po-ryO" firstAttribute="top" secondItem="00l-kR-wq4" secondAttribute="top" constant="9" id="g0l-l3-Dlb">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="12"/>
+                                    </constraint>
+                                    <constraint firstItem="Zka-po-ryO" firstAttribute="leading" secondItem="00l-kR-wq4" secondAttribute="leading" constant="15" id="nFp-AE-4oP"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="LuQ-eh-qTp"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="4Fv-Ro-7TE"/>
+                                        <exclude reference="F3M-Ie-8rS"/>
+                                        <exclude reference="VlB-cE-0KW"/>
+                                        <exclude reference="ZCr-r9-zl3"/>
+                                        <exclude reference="g0l-l3-Dlb"/>
+                                        <exclude reference="nFp-AE-4oP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="LuQ-eh-qTp"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="4Fv-Ro-7TE"/>
+                                        <include reference="F3M-Ie-8rS"/>
+                                        <include reference="VlB-cE-0KW"/>
+                                        <include reference="ZCr-r9-zl3"/>
+                                        <include reference="g0l-l3-Dlb"/>
+                                        <include reference="nFp-AE-4oP"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="plq-2N-9Ae">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="727" id="M6d-7e-tLe"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="M6d-7e-tLe"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="M6d-7e-tLe"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vba-a2-QP1" id="37O-Ug-pYv"/>
+                                    <outlet property="delegate" destination="Vba-a2-QP1" id="bbj-7o-ktF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="plq-2N-9Ae" firstAttribute="leading" secondItem="XGq-fk-Qxw" secondAttribute="leadingMargin" id="GAX-PE-6Rt">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="plq-2N-9Ae" firstAttribute="top" secondItem="XGq-fk-Qxw" secondAttribute="topMargin" id="HQ7-Ac-aGl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="00l-kR-wq4" secondAttribute="trailing" id="Ir3-ue-Dwt">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="plq-2N-9Ae" secondAttribute="trailing" constant="-20" id="j4a-yf-LDY"/>
+                            <constraint firstItem="00l-kR-wq4" firstAttribute="leading" secondItem="XGq-fk-Qxw" secondAttribute="leadingMargin" id="qNR-Ja-9ge">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="00l-kR-wq4" firstAttribute="top" secondItem="plq-2N-9Ae" secondAttribute="bottom" constant="8" symbolic="YES" id="sQM-UC-Wkn"/>
+                            <constraint firstItem="BAD-MY-JJj" firstAttribute="top" secondItem="00l-kR-wq4" secondAttribute="bottom" id="tg8-rn-RO8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="00l-kR-wq4"/>
+                                <exclude reference="plq-2N-9Ae"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="tg8-rn-RO8"/>
+                                <exclude reference="Ir3-ue-Dwt"/>
+                                <exclude reference="qNR-Ja-9ge"/>
+                                <exclude reference="sQM-UC-Wkn"/>
+                                <exclude reference="GAX-PE-6Rt"/>
+                                <exclude reference="HQ7-Ac-aGl"/>
+                                <exclude reference="j4a-yf-LDY"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="00l-kR-wq4"/>
+                                <include reference="plq-2N-9Ae"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="tg8-rn-RO8"/>
+                                <include reference="Ir3-ue-Dwt"/>
+                                <include reference="qNR-Ja-9ge"/>
+                                <include reference="sQM-UC-Wkn"/>
+                                <include reference="GAX-PE-6Rt"/>
+                                <include reference="HQ7-Ac-aGl"/>
+                                <include reference="j4a-yf-LDY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cartCheckOutNowBtn" destination="LuQ-eh-qTp" id="5qe-u6-Ibq"/>
+                        <outlet property="cartProductsCountLbl" destination="EDo-dZ-Hwu" id="wcB-YL-CgT"/>
+                        <outlet property="tableview" destination="plq-2N-9Ae" id="4Li-Yz-Gvd"/>
+                        <outlet property="totalCartProductsPriceLabel" destination="sEg-XM-OXk" id="Anu-DW-DNw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BAx-Ya-FlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1629" y="-658.5"/>
         </scene>
         <!--Updates View Controller-->
         <scene sceneID="mII-Kq-AJ4">
