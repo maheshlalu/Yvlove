@@ -7,6 +7,7 @@
 #import "ADPageControl.h"
 #import "KIImagePager.h"
 #import "PagerCustomView.h"
+#import "DOPDropDownMenu.h"
 #import "ProductModelClass.h"
 #import <SDWebImage/SDWebImageCompat.h>
 #import <SDWebImage/UIImageView+WebCache.h>

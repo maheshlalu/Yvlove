@@ -24,6 +24,7 @@
 		183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A11D798F5400722AA2 /* CX_ProductCategory.swift */; };
 		183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */; };
 		183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */; };
+		18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */; };
 		1868BCF21D78316A0050BC72 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEE1D78316A0050BC72 /* KICamera.png */; };
 		1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF11D78316A0050BC72 /* KIImagePager.m */; };
 		1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF61D7831790050BC72 /* PagerCustomView.m */; };
@@ -126,6 +127,8 @@
 		183573A11D798F5400722AA2 /* CX_ProductCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ProductCategory.swift; sourceTree = "<group>"; };
 		183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_ServiceCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ServiceCategory.swift; sourceTree = "<group>"; };
+		18540FB41D82E74600C6C9A7 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
+		18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
 		1868BCEE1D78316A0050BC72 /* KICamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KICamera.png; sourceTree = "<group>"; };
 		1868BCEF1D78316A0050BC72 /* KICamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KICamera@2x.png"; sourceTree = "<group>"; };
 		1868BCF01D78316A0050BC72 /* KIImagePager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIImagePager.h; sourceTree = "<group>"; };
@@ -259,6 +262,23 @@
 				183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */,
 			);
 			name = Offers;
+			sourceTree = "<group>";
+		};
+		18540FB21D82E72E00C6C9A7 /* ObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				18540FB31D82E73800C6C9A7 /* DropDown */,
+			);
+			name = ObjectiveC;
+			sourceTree = "<group>";
+		};
+		18540FB31D82E73800C6C9A7 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				18540FB41D82E74600C6C9A7 /* DOPDropDownMenu.h */,
+				18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */,
+			);
+			name = DropDown;
 			sourceTree = "<group>";
 		};
 		1868BCFA1D783A5B0050BC72 /* Model */ = {
@@ -407,6 +427,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				18540FB21D82E72E00C6C9A7 /* ObjectiveC */,
 				189A1E331D79475800724120 /* OtherResorces */,
 				1868BCFA1D783A5B0050BC72 /* Model */,
 				18E46A6E1D7ED80F00B021C2 /* Loader */,
@@ -847,6 +868,7 @@
 				183573A41D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift in Sources */,
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
+				18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
 				4339EE681D82A17A009EDDB2 /* CartViewController.swift in Sources */,

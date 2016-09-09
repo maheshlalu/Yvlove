@@ -29,9 +29,6 @@ class CartViewController: CXViewController,UITableViewDataSource,UITableViewDele
         [self.stepper setWraps:NO];
         [self.stepper setStepValue:1];
         [self.stepper setMaximumValue:300];*/
-        
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
     func getTheProducts(){
