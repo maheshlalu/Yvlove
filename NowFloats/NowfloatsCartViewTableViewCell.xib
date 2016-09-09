@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -174,12 +174,12 @@
                         <exclude reference="qP5-P2-um9"/>
                         <exclude reference="YpA-QK-hyv"/>
                         <exclude reference="eof-kZ-PeO"/>
-                        <exclude reference="a1P-Wg-UdR"/>
                         <exclude reference="3TA-uv-KcU"/>
                         <exclude reference="O6i-zN-L5h"/>
                         <exclude reference="pLc-x3-1vo"/>
                         <exclude reference="seR-o4-mm0"/>
                         <exclude reference="vui-fV-hnF"/>
+                        <exclude reference="a1P-Wg-UdR"/>
                         <exclude reference="GUi-d3-DP9"/>
                         <exclude reference="JFd-Lg-3MM"/>
                         <exclude reference="DOR-nC-KAc"/>
@@ -196,10 +196,10 @@
                 <outlet property="stepperLabel" destination="xFp-qC-5JS" id="NUa-fw-yHr"/>
                 <outlet property="wishlist" destination="qvV-WU-ajx" id="APh-bL-WIl"/>
             </connections>
-            <point key="canvasLocation" x="247" y="144"/>
+            <point key="canvasLocation" x="418" y="416"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Cartviewheartsymbol" width="20" height="20"/>
+        <image name="Cartviewheartsymbol" width="100" height="45"/>
     </resources>
 </document>

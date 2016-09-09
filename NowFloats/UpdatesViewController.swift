@@ -26,7 +26,6 @@ class UpdatesViewController: CXViewController {
         CXDataService.sharedInstance.getTheUpdatesFromServer(["clientId":"5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6","skipBy":"0","fpid":"\(CXConstant.sharedInstance.getTheFid())"]) { (responseDict) in
             self.updatesArray = NSArray(array: (responseDict.valueForKey("floats") as? NSArray)!)
             self.updateTableView.reloadData()
-            print(self.updatesArray)
         }
     }
     

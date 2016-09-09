@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A76C861465BE1BECAE6F04C /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
+		11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */; };
+		11FA2C491D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA2C461D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.swift */; };
+		11FA2C4A1D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FA2C471D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.xib */; };
+		11FA2C4B1D82F7EA0072CD46 /* WishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA2C481D82F7EA0072CD46 /* WishViewController.swift */; };
 		183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */; };
 		183573951D797B2300722AA2 /* OfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */; };
 		183573A41D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573961D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift */; };
@@ -110,6 +114,10 @@
 
 /* Begin PBXFileReference section */
 		0A5A6D4A69436A2805EB787F /* Pods-NowFloats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowFloats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NowFloats/Pods-NowFloats.release.xcconfig"; sourceTree = "<group>"; };
+		11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		11FA2C461D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowfloatWishlistTableViewCell.swift; sourceTree = "<group>"; };
+		11FA2C471D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowfloatWishlistTableViewCell.xib; sourceTree = "<group>"; };
+		11FA2C481D82F7EA0072CD46 /* WishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishViewController.swift; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -249,6 +257,24 @@
 				EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		11FA2C421D82BE4A0072CD46 /* ProductDetails */ = {
+			isa = PBXGroup;
+			children = (
+				11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */,
+			);
+			name = ProductDetails;
+			sourceTree = "<group>";
+		};
+		11FA2C451D82F7660072CD46 /* WishList */ = {
+			isa = PBXGroup;
+			children = (
+				11FA2C461D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.swift */,
+				11FA2C471D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.xib */,
+				11FA2C481D82F7EA0072CD46 /* WishViewController.swift */,
+			);
+			name = WishList;
 			sourceTree = "<group>";
 		};
 		183573911D79758400722AA2 /* Offers */ = {
@@ -479,6 +505,8 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				11FA2C451D82F7660072CD46 /* WishList */,
+				11FA2C421D82BE4A0072CD46 /* ProductDetails */,
 				4339EE661D82A167009EDDB2 /* Cart */,
 				1890B6ED1D8163DA00AF140A /* Updates */,
 				18A6BFC21D802B4800D7D533 /* Products */,
@@ -698,6 +726,7 @@
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
 				1868BD251D78534C0050BC72 /* OfferPagerCelll.xib in Resources */,
+				11FA2C4A1D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.xib in Resources */,
 				1868BCF91D7831790050BC72 /* PagerCustomView.xib in Resources */,
 				3B4FD8241D6446D300A6EBBE /* LaunchScreen.storyboard in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
@@ -857,6 +886,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4FD8531D645BD500A6EBBE /* HomeViewController.swift in Sources */,
+				11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */,
 				3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */,
 				1868BD281D7853760050BC72 /* OfferFeaturedProductCell.swift in Sources */,
 				183573A81D798F5400722AA2 /* CX_Stores+CoreDataProperties.swift in Sources */,
@@ -882,6 +912,7 @@
 				1868BD211D7848840050BC72 /* CX_Products.swift in Sources */,
 				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
 				18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */,
+				11FA2C491D82F7EA0072CD46 /* NowfloatWishlistTableViewCell.swift in Sources */,
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				183573A51D798F5400722AA2 /* CX_Rating.swift in Sources */,
@@ -893,6 +924,7 @@
 				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,
+				11FA2C4B1D82F7EA0072CD46 /* WishViewController.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,
 				183573AC1D798F5400722AA2 /* CX_FeaturedProductsJobs+CoreDataProperties.swift in Sources */,
 				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
