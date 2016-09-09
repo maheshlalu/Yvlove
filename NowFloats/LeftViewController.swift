@@ -117,8 +117,18 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
-        self.navController.pushViewController(product, animated: true)
+
+        
+        let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
+        if  itemName == "Wishlist" {
+            let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! WishViewController
+            self.navController.pushViewController(wishlist, animated: true)
+        }else{
+            let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
+            self.navController.pushViewController(product, animated: true)
+        }
+        
+        
     }
     
     
