@@ -87,7 +87,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
-        //productDetails.productString = products.json
+        productDetails.productString = products.json
         self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
