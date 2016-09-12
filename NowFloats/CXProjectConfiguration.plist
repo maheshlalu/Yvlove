@@ -6,9 +6,9 @@
 	<string>14210</string>
 	<key>AppTheamColor</key>
 	<array>
-		<string>65</string>
-		<string>105</string>
-		<string>225</string>
+		<string>255</string>
+		<string>199</string>
+		<string>59</string>
 	</array>
 	<key>BaseUrl</key>
 	<string>http://storeongo.com:8081/</string>
