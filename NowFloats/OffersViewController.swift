@@ -20,6 +20,7 @@ class OffersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.init(colorLiteralRed: 207.0/255.0, green: 206.0/255.0, blue: 207.0/255.0, alpha: 1)
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
         CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
@@ -170,28 +171,39 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
-    
+        
         let identifier = "OfferCollectionViewCell"
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-
+        
         cell.productName.text = featuredProductJobs.name
         cell.productImageView.sd_setImageWithURL(NSURL(string:featuredProductJobs.image_URL!)!)
-        //   cell.detailImageView.sd_setImageWithURL(NSURL(string:prodImage)!, placeholderImage: UIImage(named: "smlogo.png"), options:SDWebImageOptions.RefreshCached)
         
-        
+        if featuredProductJobs.fDescription != nil{
+            
+            let rupee = "\u{20B9}"
+            let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!)
+            let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+  
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(price)")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            cell.productPriceLbl.attributedText = attributeString
+            
+            
+            let finalPriceNum:Int = Int(price)!-Int(discount)!
+            cell.finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
+        }
+
         if featureProducts.name == "Brands"{
             cell.productPriceLbl.hidden = true
             cell.finalPriceLbl.hidden = true
             cell.orderNowBtn.hidden = true
-        
+            
         }
-  
-        
+
         return cell
-        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
