@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "placeorder20x20.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "products40x40.png",
+      "filename" : "placeorder40x40.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "products80x80.png",
+      "filename" : "placeorder80x80.png",
       "scale" : "3x"
     }
   ],

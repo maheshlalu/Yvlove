@@ -11,6 +11,7 @@ import Alamofire
 
 class HomeViewController: UITabBarController {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -24,7 +25,15 @@ class HomeViewController: UITabBarController {
          */
       LoadingView.show("Loading", animated: true)
         CXAppDataManager.sharedInstance.dataDelegate = self
-        self.tabBar.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        
+        
+//        for item in self.tabBar.items as UITabBarItem
+//        {
+//            item.image = item.selectedImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//            item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkGrayColor()], forState:UIControlState.Normal)
+//            item.setTitleTextAttributes([NSForegroundColorAttributeName: CXAppConfig.sharedInstance.getAppTheamColor()], forState:UIControlState.Selected)
+//        }
+//        
         CXAppDataManager.sharedInstance.getTheStoreCategory()
        
     }
@@ -33,21 +42,12 @@ class HomeViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIS toryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func addTheTabBarControllers(){
-        
+
       let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let firstTab : UIViewController!
-        //("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "")
+
         if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
             firstTab.title = "UPDATES"
@@ -57,16 +57,16 @@ class HomeViewController: UITabBarController {
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
             firstTab.title = "OFFERS"
             firstTab.tabBarItem.image = UIImage(named: "updatesTabImage")
-
         }
         
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
         product.tabBarItem.image = UIImage(named: "productsImage")
 
+
         let photos = storyBoard.instantiateViewControllerWithIdentifier("PHOTO") as! PhotosViewController
         photos.title = "PHOTOS"
-        photos.tabBarItem.image = UIImage(named: "picsImage")
+        photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         
         self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
 

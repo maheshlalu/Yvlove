@@ -120,15 +120,20 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
         
         let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
-        if  itemName == "Wishlist" {
+         if itemName == "Home"{
+            let home = storyBoard.instantiateViewControllerWithIdentifier("HOME") as! HomeViewController
+            self.navController.pushViewController(home, animated: true)
+        }else if itemName == "About us"{
+            let aboutUs = storyBoard.instantiateViewControllerWithIdentifier("ABOUT_US") as! AboutUsViewController
+            self.navController.pushViewController(aboutUs, animated: true)
+        }else if itemName == "Orders"{
+            let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
+            self.navController.pushViewController(orders, animated: true)
+        }else if itemName == "Wishlist" {
             let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
-        }else{
-            let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
-            self.navController.pushViewController(product, animated: true)
         }
-        
-        
+ 
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: CXViewController {
 
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
@@ -19,18 +19,22 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customisingBtns()
         self.productDetailsTableView.rowHeight = UITableViewAutomaticDimension
         self.productDetailsTableView.estimatedRowHeight = 10.0
         self.productDetailsTableView.separatorStyle = .None
         print(CXConstant.sharedInstance.convertStringToDictionary(productString))
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
         print("\(productDetailDic)")
-        print("\(productDetailDic.valueForKey("Description"))")
+      // print("\(productDetailDic.valueForKey("ShipmentDuration"))")
         /*[createdOn, hrsOfOperation, id, P3rdCategory, Name, Large_Image, publicURL, Current_Job_StatusId, Brand, jobTypeName, Category, Insights, guestUserEmail, Next_Seq_Nos, SubCategoryType, jobComments, PackageName, Image_URL, Current_Job_Status, Next_Job_Statuses, ItemCode, Description, Additional_Details, DiscountAmount, Image_Name, overallRating, CreatedSubJobs, Category_Mall, Quantity, Attachments, MRP, guestUserId, totalReviews, lastModifiedDate, createdByFullName, createdById, CategoryType, jobTypeId]*/
 
     }
     func customisingBtns(){
-    
+        placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        placeOrderBtn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        
+        addToCartBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -64,7 +68,7 @@ class ProductDetailsViewController: UIViewController {
             cell = tableView.dequeueReusableCellWithIdentifier(headerCellIdentifier)!
             cell?.selectionStyle = .None
             
-            let finalPriceLbl = (cell!.viewWithTag(1)! as! UILabel)
+            let finalPriceLbl = (cell!.viewWithTag(200)! as! UILabel)
             let discountPriceLbl = cell?.viewWithTag(300)! as! UILabel
             let discountPersentageLbl = cell?.viewWithTag(400)! as! UILabel
             
@@ -87,19 +91,18 @@ class ProductDetailsViewController: UIViewController {
                 let finalPriceNum:Int = Int(price)!-Int(discount)!
                 finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
                 
-//                let discountPersnt:Float = Float(25000)/Float(22000)
-//                let finalDiscount:Float = discountPersnt*100
-//                
-//                discountPersentageLbl.text = "\(finalDiscount)%"
-                
-                
+                let discountPrice: Float = Float(discount)!
+                let actualPrice: Float = Float(price)!
+                let perCent = 100*(discountPrice/actualPrice)
+                let perCentCGFloat =  Int(floor(CGFloat(perCent)))
+                discountPersentageLbl.text = "\(perCentCGFloat)%"
             }
             
         }else if indexPath.section == 2{
             let productInfoIdentifier = "ProductInfoCell"
             cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
             cell?.selectionStyle = .None
-            let textView = (cell!.viewWithTag(6)! as! UITextView)
+            let textView = (cell!.viewWithTag(600)! as! UITextView)
             
             textView.text = "\(productDetailDic.valueForKey("Description")!)"
             
@@ -108,7 +111,8 @@ class ProductDetailsViewController: UIViewController {
             cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
             cell?.selectionStyle = .None
             
-          //  let shipmentLbl =
+            let shipmentLbl = cell!.viewWithTag(800)! as! UILabel
+            shipmentLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
         }
         return cell!
         
@@ -123,5 +127,18 @@ class ProductDetailsViewController: UIViewController {
         
         return UITableViewAutomaticDimension
         
+    }
+    
+    @IBAction func addToCartAction(sender: UIButton) {
+        sender.selected = !sender.selected
+        
+    }
+    @IBAction func placeOrderNowAction(sender: AnyObject) {
+        
+        
+    }
+    
+    @IBAction func heartAction(sender: UIButton) {
+        sender.selected = !sender.selected
     }
 }
