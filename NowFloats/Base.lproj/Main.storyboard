@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -290,6 +290,9 @@
                                                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHV-gs-Rdi">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                                     <color key="backgroundColor" red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="1"/>
+                                                    </variation>
                                                 </view>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GB-3A-TOB">
                                                     <rect key="frame" x="267" y="9" width="43" height="33"/>
@@ -309,7 +312,8 @@
                                                             <exclude reference="RYI-OF-3gY"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="256" y="4" width="54" height="51"/>
                                                         <mask key="constraints">
                                                             <include reference="KLT-Xw-RuV"/>
                                                             <include reference="RYI-OF-3gY"/>
@@ -654,15 +658,23 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="18"/>
+                                                </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47747474" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEg-XM-OXk">
                                                 <rect key="frame" x="21" y="43" width="101" height="25"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="18" width="77" height="18"/>
+                                                </variation>
                                             </label>
                                         </subviews>
-                                        <variation key="heightClass=regular-widthClass=compact" alignment="top" axis="vertical"/>
+                                        <variation key="heightClass=regular-widthClass=compact" alignment="top" axis="vertical" misplaced="YES">
+                                            <rect key="frame" x="15" y="12" width="77" height="36"/>
+                                        </variation>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuQ-eh-qTp">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -710,12 +722,12 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="pM9-oZ-YFQ"/>
-                                        <exclude reference="ZCr-r9-zl3"/>
-                                        <exclude reference="g0l-l3-Dlb"/>
-                                        <exclude reference="nFp-AE-4oP"/>
                                         <exclude reference="4Fv-Ro-7TE"/>
                                         <exclude reference="F3M-Ie-8rS"/>
                                         <exclude reference="VlB-cE-0KW"/>
+                                        <exclude reference="ZCr-r9-zl3"/>
+                                        <exclude reference="g0l-l3-Dlb"/>
+                                        <exclude reference="nFp-AE-4oP"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -724,12 +736,12 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="pM9-oZ-YFQ"/>
-                                        <include reference="ZCr-r9-zl3"/>
-                                        <include reference="g0l-l3-Dlb"/>
-                                        <include reference="nFp-AE-4oP"/>
                                         <include reference="4Fv-Ro-7TE"/>
                                         <include reference="F3M-Ie-8rS"/>
                                         <include reference="VlB-cE-0KW"/>
+                                        <include reference="ZCr-r9-zl3"/>
+                                        <include reference="g0l-l3-Dlb"/>
+                                        <include reference="nFp-AE-4oP"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1018,14 +1030,14 @@
                                 <exclude reference="5Wb-ek-EiO"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Smr-QI-NIQ"/>
+                                <exclude reference="Xzk-4f-Uhy"/>
                                 <exclude reference="JDp-rv-oGR"/>
                                 <exclude reference="OC2-X2-M15"/>
                                 <exclude reference="UqN-Za-iZD"/>
                                 <exclude reference="ALV-un-NBO"/>
                                 <exclude reference="Egb-bW-zlR"/>
                                 <exclude reference="ohu-Ex-aed"/>
-                                <exclude reference="Smr-QI-NIQ"/>
-                                <exclude reference="Xzk-4f-Uhy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1034,14 +1046,14 @@
                                 <include reference="5Wb-ek-EiO"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Smr-QI-NIQ"/>
+                                <include reference="Xzk-4f-Uhy"/>
                                 <include reference="JDp-rv-oGR"/>
                                 <include reference="OC2-X2-M15"/>
                                 <include reference="UqN-Za-iZD"/>
                                 <include reference="ALV-un-NBO"/>
                                 <include reference="Egb-bW-zlR"/>
                                 <include reference="ohu-Ex-aed"/>
-                                <include reference="Smr-QI-NIQ"/>
-                                <include reference="Xzk-4f-Uhy"/>
                             </mask>
                         </variation>
                     </view>

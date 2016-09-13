@@ -70,11 +70,46 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             cell.productpriceLabel.attributedText = attributeString
             
-            
             let finalPriceNum:Int = Int(price)!-Int(discount)!
             cell.productFinalPriceLabel.text = "\(rupee) \(String(finalPriceNum))"
         }
+        
+        cell.cartaddedbutton.tag = indexPath.row+1
+        cell.likebutton.tag = indexPath.row+1
+
+        
+        cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
+
+        
           return cell
+    }
+    
+    
+    func assignCartButtonWishtListProperTy(tableViewCell:ProductsCollectionViewCell,indexPath:NSIndexPath,productData:CX_Products){
+        
+        if CXDataProvider.sharedInstance.isAddToCart(productData.pid!).isAddedToCart{
+            tableViewCell.cartaddedbutton.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            tableViewCell.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            tableViewCell.cartaddedbutton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+            tableViewCell.cartaddedbutton.selected = true
+        }else{
+            tableViewCell.cartaddedbutton.selected = false
+            tableViewCell.cartaddedbutton.backgroundColor = UIColor.whiteColor()
+            tableViewCell.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            tableViewCell.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        }
+        
+        if CXDataProvider.sharedInstance.isAddToCart(productData.pid!).isAddedToWishList{
+            tableViewCell.likebutton.selected = true
+
+        }else{
+                 tableViewCell.likebutton.selected = false
+        }
+        
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -93,6 +128,73 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
 }
+
+//Cart and Wishlist functios
+
+extension ProductsViewController {
+    
+    func productAddedToCart(sender:UIButton){
+        
+        let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
+        let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
+
+        //CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true)
+        
+        if sender.selected {
+            //Remove Item From Cart
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+                //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+            })
+            
+        }else{
+            
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                
+            })
+            // Add Item to Cart
+//            sender.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+//            sender.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+//            sender.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+//            sender.selected = true
+           // CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false)
+
+        }
+        
+     
+       
+        
+    }
+    
+    func productAddedToWishList(sender:UIButton){
+        
+        let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
+        let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
+        
+        if sender.selected {
+            //Remove Item From WishList
+            
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+            })
+            
+        }else{
+            
+            //Add Item to WishList
+            
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                
+            })
+            
+        }
+    }
+    
+}
+
+
 
 extension ProductsViewController : DOPDropDownMenuDelegate,DOPDropDownMenuDataSource {
     

@@ -19,11 +19,15 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var produstimageview: UIImageView!
     @IBOutlet weak var productFinalPriceLabel: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
         self.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.cartaddedbutton.backgroundColor = UIColor.whiteColor()
+        
+
+        
 
         self.cartaddedbutton.layer.cornerRadius = 12
         self.cartaddedbutton.layer.borderWidth = 1

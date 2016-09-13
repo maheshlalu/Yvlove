@@ -62,6 +62,8 @@
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
 		18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */; };
 		18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D911D75C7B7001E27D4 /* ViewPager.swift */; };
+		18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */; };
+		18F36C701D869E890043710A /* CX_Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36C6E1D869E890043710A /* CX_Cart.swift */; };
 		3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D0D1D65976900DB332F /* UpdatesViewController.swift */; };
 		3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D111D65979200DB332F /* ProductsViewController.swift */; };
 		3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D151D6597AA00DB332F /* PhotosViewController.swift */; };
@@ -174,6 +176,8 @@
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
 		18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		18EC9D911D75C7B7001E27D4 /* ViewPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
+		18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		18F36C6E1D869E890043710A /* CX_Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_Cart.swift; sourceTree = "<group>"; };
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 		1868BCFB1D783A6F0050BC72 /* ManagedObjectContests */ = {
 			isa = PBXGroup;
 			children = (
+				18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */,
+				18F36C6E1D869E890043710A /* CX_Cart.swift */,
 				18A6BFBE1D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift */,
 				18A6BFBF1D8020F700D7D533 /* CX_Gallery.swift */,
 				18A6BF831D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift */,
@@ -891,6 +897,7 @@
 				1868BD281D7853760050BC72 /* OfferFeaturedProductCell.swift in Sources */,
 				183573A81D798F5400722AA2 /* CX_Stores+CoreDataProperties.swift in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
+				18F36C701D869E890043710A /* CX_Cart.swift in Sources */,
 				4336BAAF1D77F14200A38498 /* LeftViewTableViewCell.swift in Sources */,
 				1868BD241D78534C0050BC72 /* OfferPagerCelll.swift in Sources */,
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
@@ -938,6 +945,7 @@
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
 				183573A91D798F5400722AA2 /* CX_Stores.swift in Sources */,
 				1890B6F01D8163EE00AF140A /* UpdateTableViewCell.swift in Sources */,
+				18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */,
 				183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */,
 				189A1E321D79412A00724120 /* CX_Products+CoreDataProperties.swift in Sources */,
 				3B61E3641D6ACA0800B09F8E /* ADPageModel.m in Sources */,

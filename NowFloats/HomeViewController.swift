@@ -24,6 +24,7 @@ class HomeViewController: UITabBarController {
          */
       LoadingView.show("Loading", animated: true)
         CXAppDataManager.sharedInstance.dataDelegate = self
+        self.tabBar.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         CXAppDataManager.sharedInstance.getTheStoreCategory()
        
     }
@@ -50,16 +51,22 @@ class HomeViewController: UITabBarController {
         if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
             firstTab.title = "UPDATES"
+            firstTab.tabBarItem.image = UIImage(named: "updatesTabImage")
+
         }else{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
             firstTab.title = "OFFERS"
+            firstTab.tabBarItem.image = UIImage(named: "updatesTabImage")
+
         }
         
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
-        
+        product.tabBarItem.image = UIImage(named: "productsImage")
+
         let photos = storyBoard.instantiateViewControllerWithIdentifier("PHOTO") as! PhotosViewController
         photos.title = "PHOTOS"
+        photos.tabBarItem.image = UIImage(named: "picsImage")
         
         self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
 

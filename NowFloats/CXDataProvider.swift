@@ -311,9 +311,185 @@ extension CXDataProvider {
     }
     
     
+    
+    
+    func itemAddToWishListOrCarts(productJson:String,itemID:String,isAddToWishList:Bool,isAddToCartList:Bool,isDeleteFromWishList:Bool,isDeleteFromCartList:Bool,completionHandler: (Bool) -> ()){
+        let productJsonDic = CXConstant.sharedInstance.convertStringToDictionary(productJson)
+        
+        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "pID = %@", itemID))
+        //var  cart : CX_Cart = (CX_Cart.MR_findFirstWithPredicate(NSPredicate(format: "pID = %@", itemID)) as?CX_Cart)!
+        if cartlist.count == 0{
+           let cart = CX_Cart.MR_createEntity() as!CX_Cart
+            if isAddToCartList {
+                cart.addToCart = NSNumber(bool: true)
+            }
+            if isAddToWishList {
+                cart.addToWishList = NSNumber(bool: true)
+            }
+            //enProduct.itemCode = product.itemCode
+            cart.name =  productJsonDic.valueForKey("Name") as? String
+            cart.pID = CXConstant.resultString(productJsonDic.valueForKey("id")!)
+            cart.imageUrl =  productJsonDic.valueForKey("Image_URL") as? String
+            //cart.managedObjectContext?.MR_saveToPersistentStoreAndWait()
+
+        }else{
+            do {
+                let cartItem : CX_Cart = (cartlist.lastObject as? CX_Cart)!
+                if isAddToCartList {
+                    cartItem.addToCart = NSNumber(bool: true)
+                }
+                
+                if isAddToWishList {
+                    cartItem.addToWishList = NSNumber(bool: true)
+                }
+                if isDeleteFromCartList{
+                    cartItem.addToCart = NSNumber(bool: false)
+                }
+                if isDeleteFromWishList{
+                    cartItem.addToWishList = NSNumber(bool: false)
+                    
+                }
+                
+            } catch {
+                
+            }
+
+            
+            
+        }
+       // appDelegate.saveContext()
+
+        
+   NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+         completionHandler(true)
+        
+//        MagicalRecord.saveWithBlock({ (localContext : NSManagedObjectContext!) in
+//            
+//            let productEn = NSEntityDescription.entityForName("CX_Cart", inManagedObjectContext: localContext)
+//            let predicate:NSPredicate = NSPredicate(format: "pID = %@", itemID)
+//            let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+//            fetchRequest.predicate = predicate
+//            let cartlist : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
+//            if cartlist.count == 0 {
+//                let enProduct = CX_Cart(entity: productEn!,insertIntoManagedObjectContext: localContext)
+//                if isAddToCartList {
+//                    enProduct.addToCart = "YES"
+//                }
+//                if isAddToWishList {
+//                    enProduct.addToWishList = "YES"
+//                }
+//                //enProduct.itemCode = product.itemCode
+//                enProduct.name =  productJsonDic.valueForKey("Name") as? String
+//                enProduct.pID = CXConstant.resultString(productJsonDic.valueForKey("id")!)
+//                enProduct.imageUrl =  productJsonDic.valueForKey("Image_URL") as? String
+//            }else{
+//                do {
+//                    let cartData : CX_Cart = (cartlist.lastObject as? CX_Cart)!
+//                    let cartItem =  try localContext.existingObjectWithID(cartData.objectID) as?CX_Cart
+//                    if isAddToCartList {
+//                        cartItem!.addToCart = "YES"
+//                    }
+//                    
+//                    if isAddToWishList {
+//                        cartItem!.addToWishList = "YES"
+//                    }
+//                    if isDeleteFromCartList{
+//                        cartItem!.addToCart = "NO"
+//                    }
+//                    if isDeleteFromWishList{
+//                        cartItem!.addToWishList = "NO"
+//                        
+//                    }
+//                } catch {
+//                    
+//                }
+//                
+//              /*  let cartData : CX_Cart = (cartlist.lastObject as? CX_Cart)!
+//                if isAddToCartList {
+//                    cartData.addToCart = "YES"
+//                }
+//                if isAddToWishList {
+//                    cartData.addToWishList = "YES"
+//                }
+//                if isDeleteFromCartList{
+//                    cartData.addToCart = "NO"
+//                }
+//                if isDeleteFromWishList{
+//                    cartData.addToWishList = "NO"
+//                    
+//                }*/
+//            }
+//            
+//            }, completion: { (success : Bool, error : NSError!) in
+//                print("save the data >>>>>")
+//                // NSNotificationCenter.defaultCenter().postNotificationName("updateCartBtnAction", object: nil)
+//                 completionHandler(success)
+//                //LoadingView.hide()
+//                // This block runs in main thread
+//        })
+        
+    }
+    
+    /*
+     do {
+     let fetchedEntities = try self.Context!.executeFetchRequest(request) as! [AccountDetail]
+     
+     for entity in fetchedEntities {
+     self.Context!.deleteObject(entity)
+     }
+     
+     try self.Context!.save()
+     } catch {
+     print(error)
+     }
+     */
+    
+    
+     func isAddToCart(productID : NSString) -> (isAddedToCart:Bool, isAddedToWishList:Bool) {
+        let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+        fetchRequest.predicate = NSPredicate(format: "pID = %@", productID)
+        let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
+        if cartsDataArrya.count != 0 {
+            let  cart = cartsDataArrya.lastObject as?CX_Cart
+            var  isAddToCart : Bool =  false
+            var isAddToWishList : Bool = false
+            if cart?.addToCart == NSNumber(integer: 1) {
+                isAddToCart = true
+            }
+            if cart?.addToWishList == NSNumber(integer: 1) {
+                isAddToWishList = true
+            }
+            return (isAddToCart,isAddToWishList)
+        }else{
+            return (false,false)
+        }
+    }
+    
+    
+      func deleteCartItem(productId : NSString){
+        let predicate:NSPredicate = NSPredicate(format: "pID = %@",productId)
+        let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+        fetchRequest.predicate = predicate
+        let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
+        NSManagedObjectContext.MR_contextForCurrentThread().deleteObject((cartsDataArrya.lastObject as?CX_Cart)!)
+        NSManagedObjectContext.MR_contextForCurrentThread().MR_saveOnlySelfAndWait()
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCartBtnAction", object: nil)
+    }
+    
+    
 }
+
+
+extension CXDataService {
+    
+    
+
+    
+}
+
 /*
- 
  
  @NSManaged var campaign_Jobs: String?
  @NSManaged var createdByID: String?
