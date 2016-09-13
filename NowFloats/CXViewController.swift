@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CXViewController: UIViewController {
+class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate {
 
     var leftNavigationBarItemTitle : String!
     var navController : CXNavDrawer = CXNavDrawer()
@@ -18,15 +18,33 @@ class CXViewController: UIViewController {
     }
 
     func methodOfReceivedNotification(notification: NSNotification){
-        //Take Action on Notification
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
-        self.navigationController?.pushViewController(cart, animated: true)
         
+        //Take Action on Notification
+        if notification.name == "SignInNotification"{
+            let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+            self.navigationController?.pushViewController(signInViewCnt, animated: true)
+        }
+        else if notification.name == "SignUpNotification"{
+            let signUpViewCnt : CXSignUpViewController = CXSignUpViewController()
+            self.navigationController?.pushViewController(signUpViewCnt, animated: true)
+        }else if notification.name == "ForgotNotification" {
+            let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
+            self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
+        }else if notification.name == "CartButtonNotification"{
+             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+             let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
+             self.navigationController?.pushViewController(cart, animated: true)
+        }
+        
+  
     }
-    
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"NotificationIdentifier", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"CartButtonNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignInNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignUpNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
+
+        
 
     }
     

@@ -114,9 +114,9 @@ class CXNavDrawer: UINavigationController {
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
         let buttondWidth : CGFloat = 35
-        self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth+20, 5, 30, 30))
-        self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(profileBtn.frame.size.width+1, 5, 35, 35))
-        self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*3, 5, 35, 35))
+        self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth+12, 5, 30, 30))
+        self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth-25,2, 35, 35))
+        self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*2-30, 1, 35, 35))
 //whiteCartImage
         
         rightButtonsView.addSubview(self.profileBtn)
@@ -296,16 +296,32 @@ extension CXNavDrawer {
     
     
     func cartButtonAction(){
-       
-        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifier", object: nil)
-
+        //CartButtonNotification
+        NSNotificationCenter.defaultCenter().postNotificationName("CartButtonNotification", object: nil)
+        
     }
     
     func notificationBellAction(){
         
     }
     
-    func profileToggleAction(){
+    func profileToggleAction(sender:UIButton){
+        
+        FTPopOverMenu.showForSender(sender, withMenu: ["SignIn", "SignUp", "Forgot Password"], imageNameArray:nil, doneBlock: {(selectedIndex: Int) -> Void in
+            if selectedIndex == 0{
+                NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
+                return
+            }
+            else if selectedIndex == 1{
+                NSNotificationCenter.defaultCenter().postNotificationName("SignUpNotification", object: nil)
+                return
+            }else if selectedIndex == 2 {
+                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+                return
+            }
+            }, dismissBlock: {() -> Void in
+    
+        })
         
     }
     

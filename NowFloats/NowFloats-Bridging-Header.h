@@ -9,9 +9,11 @@
 #import "PagerCustomView.h"
 #import "DOPDropDownMenu.h"
 #import "ProductModelClass.h"
+#import "FTPopOverMenu.h"
 #import <SDWebImage/SDWebImageCompat.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/SDWebImageManager.h>
+
 
 #import <SDWebImage/NSData+ImageContentType.h>
 #import <SDWebImage/SDImageCache.h>
@@ -38,3 +40,5 @@
 
 
 #import <SDWebImage/UIView+WebCacheOperation.h>
+
+
