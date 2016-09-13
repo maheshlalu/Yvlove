@@ -121,7 +121,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         if  itemName == "Wishlist" {
-            let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! WishViewController
+            let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
         }else{
             let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController

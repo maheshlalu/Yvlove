@@ -10,7 +10,7 @@ import UIKit
 let reuseTableViewCellIdentifier = "OfferTableViewCell"
 let reuseCollectionViewCellIdentifier = "OfferCollectionViewCell"
 
-class OffersViewController: UIViewController {
+class OffersViewController: CXViewController {
 
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
