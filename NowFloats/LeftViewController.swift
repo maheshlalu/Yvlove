@@ -142,6 +142,31 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
  
     }
     
+    @IBAction func callUsAction(sender: UIButton) {
+        callNumber("9640339556")
+    }
+    
+    @IBAction func messageAction(sender: UIButton) {
+    }
+    
+    @IBAction func viewMapAction(sender: UIButton) {
+        self.navController.drawerToggle()
+        let mapViewCnt : MapViewCntl = MapViewCntl()
+        self.navController.pushViewController(mapViewCnt, animated: true)
+        
+    }
+
+    private func callNumber(phoneNumber:String) {
+        //UIApplication.sharedApplication().openURL(NSURL(string: "tel:\("digits")")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
+        
+//        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneNumber)") {
+//            let application:UIApplication = UIApplication.sharedApplication()
+//            if (application.canOpenURL(phoneCallURL)) {
+//                application.openURL(phoneCallURL);
+//            }
+//        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

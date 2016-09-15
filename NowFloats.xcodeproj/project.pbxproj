@@ -12,6 +12,11 @@
 		110329BC1D8A6B9A0008A3B7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329BB1D8A6B9A0008A3B7 /* HistoryViewController.swift */; };
 		110329BE1D8A6BA00008A3B7 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 110329BD1D8A6BA00008A3B7 /* HistoryTableViewCell.xib */; };
 		110329C01D8A6BB00008A3B7 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329BF1D8A6BB00008A3B7 /* HistoryTableViewCell.swift */; };
+		110329C21D8A72990008A3B7 /* MapViewCntl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C11D8A72990008A3B7 /* MapViewCntl.swift */; };
+		110329C41D8A72B40008A3B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; };
+		110329C61D8A78410008A3B7 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C51D8A78410008A3B7 /* Station.swift */; };
+		110329CB1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */; };
+		110329CC1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */; };
 		11325D3B1D8A66CB00A7F10E /* MyordersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11325D361D8A66CB00A7F10E /* MyordersTableViewCell.swift */; };
 		11325D3C1D8A66CB00A7F10E /* MyordersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11325D371D8A66CB00A7F10E /* MyordersTableViewCell.xib */; };
 		11325D3D1D8A66CB00A7F10E /* MyorderTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11325D381D8A66CB00A7F10E /* MyorderTableViewCell1.swift */; };
@@ -159,6 +164,11 @@
 		110329BB1D8A6B9A0008A3B7 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		110329BD1D8A6BA00008A3B7 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		110329BF1D8A6BB00008A3B7 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		110329C11D8A72990008A3B7 /* MapViewCntl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCntl.swift; sourceTree = "<group>"; };
+		110329C31D8A72B40008A3B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		110329C51D8A78410008A3B7 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Station.swift; path = ../../NVAgencies/StoreOnGOApp/StoreOnGoApp/Station.swift; sourceTree = "<group>"; };
+		110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsExtraTableViewCell.swift; sourceTree = "<group>"; };
+		110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsExtraTableViewCell.xib; sourceTree = "<group>"; };
 		11325D361D8A66CB00A7F10E /* MyordersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyordersTableViewCell.swift; sourceTree = "<group>"; };
 		11325D371D8A66CB00A7F10E /* MyordersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyordersTableViewCell.xib; sourceTree = "<group>"; };
 		11325D381D8A66CB00A7F10E /* MyorderTableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyorderTableViewCell1.swift; sourceTree = "<group>"; };
@@ -310,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110329C41D8A72B40008A3B7 /* MapKit.framework in Frameworks */,
 				DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +347,7 @@
 		0E1CF002394DE794901016D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				110329C31D8A72B40008A3B7 /* MapKit.framework */,
 				15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */,
 				B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */,
 				EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */,
@@ -357,6 +369,8 @@
 		110329B81D8A6B730008A3B7 /* ViewMap */ = {
 			isa = PBXGroup;
 			children = (
+				110329C11D8A72990008A3B7 /* MapViewCntl.swift */,
+				110329C51D8A78410008A3B7 /* Station.swift */,
 			);
 			name = ViewMap;
 			sourceTree = "<group>";
@@ -426,6 +440,8 @@
 			isa = PBXGroup;
 			children = (
 				11F1DE661D883BA3002AF5B0 /* AboutUsViewController.swift */,
+				110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */,
+				110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */,
 				11F1DE5C1D883AF7002AF5B0 /* AboutusTableViewCell.swift */,
 				11F1DE5E1D883AFF002AF5B0 /* AboutusTableViewCell.xib */,
 			);
@@ -936,6 +952,7 @@
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
 				1890B6F11D8163EE00AF140A /* UpdateTableViewCell.xib in Resources */,
 				11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */,
+				110329CC1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib in Resources */,
 				183573951D797B2300722AA2 /* OfferCollectionViewCell.xib in Resources */,
 				4336BAB01D77F14200A38498 /* LeftViewTableViewCell.xib in Resources */,
 				1868BD291D7853760050BC72 /* OfferFeaturedProductCell.xib in Resources */,
@@ -1130,12 +1147,14 @@
 				1868BD211D7848840050BC72 /* CX_Products.swift in Sources */,
 				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
 				18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */,
+				110329CB1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift in Sources */,
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				183573A51D798F5400722AA2 /* CX_Rating.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				11370F6D1D89511700CCBE01 /* ProfileViewController.swift in Sources */,
 				183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */,
+				110329C21D8A72990008A3B7 /* MapViewCntl.swift in Sources */,
 				11F1DE4E1D883A31002AF5B0 /* DPDConstants.swift in Sources */,
 				11370F751D8973F400CCBE01 /* UserProfileViewController.swift in Sources */,
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
@@ -1144,6 +1163,7 @@
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
 				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
 				11F1DE611D883B24002AF5B0 /* ordersTableViewCell.swift in Sources */,
+				110329C61D8A78410008A3B7 /* Station.swift in Sources */,
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,

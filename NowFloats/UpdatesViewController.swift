@@ -14,6 +14,7 @@ class UpdatesViewController: CXViewController {
     @IBOutlet weak var updateTableView: UITableView!
     @IBOutlet weak var updatesSearch: UISearchBar!
     var updatesArray : NSArray! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updatesArray = NSArray()
