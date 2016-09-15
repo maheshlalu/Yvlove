@@ -307,7 +307,7 @@ extension CXNavDrawer {
     
     func profileToggleAction(sender:UIButton){
         
-        FTPopOverMenu.showForSender(sender, withMenu: ["SignIn", "SignUp", "Forgot Password"], imageNameArray:nil, doneBlock: {(selectedIndex: Int) -> Void in
+        FTPopOverMenu.showForSender(sender, withMenu: ["SignIn", "SignUp", "Forgot Password","Profile"], imageNameArray:nil, doneBlock: {(selectedIndex: Int) -> Void in
             if selectedIndex == 0{
                 NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
                 return
@@ -318,6 +318,10 @@ extension CXNavDrawer {
             }else if selectedIndex == 2 {
                 NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
                 return
+            }else if selectedIndex == 3{
+                NSNotificationCenter.defaultCenter().postNotificationName("ProfileNotification", object: nil)
+                return
+            
             }
             }, dismissBlock: {() -> Void in
     

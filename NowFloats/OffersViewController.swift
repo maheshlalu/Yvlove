@@ -20,9 +20,9 @@ class OffersViewController: CXViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(colorLiteralRed: 207.0/255.0, green: 206.0/255.0, blue: 207.0/255.0, alpha: 1)
+        //self.view.backgroundColor = UIColor.init(colorLiteralRed: 207.0/255.0, green: 206.0/255.0, blue: 207.0/255.0, alpha: 1)
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
-        CXAppConfig.sharedInstance.getAppBGColor()
+        //CXAppConfig.sharedInstance.getAppBGColor()
         self.registerTableViewCell()
         self.getTheProducts()
    

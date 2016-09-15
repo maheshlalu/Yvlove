@@ -51,12 +51,12 @@ class HomeViewController: UITabBarController {
         if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
             firstTab.title = "UPDATES"
-            firstTab.tabBarItem.image = UIImage(named: "updatesTabImage")
+            firstTab.tabBarItem.image = UIImage(named: "updateTabImg")
 
         }else{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
             firstTab.title = "OFFERS"
-            firstTab.tabBarItem.image = UIImage(named: "updatesTabImage")
+            firstTab.tabBarItem.image = UIImage(named: "updateTabImg")
         }
         
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController

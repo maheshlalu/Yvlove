@@ -120,9 +120,15 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
         
         let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
-         if itemName == "Home"{
-            let home = storyBoard.instantiateViewControllerWithIdentifier("HOME") as! HomeViewController
-            self.navController.pushViewController(home, animated: true)
+        if itemName == "Home"{
+            if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
+                let home = storyBoard.instantiateViewControllerWithIdentifier("UPDATE") as! UpdatesViewController
+                self.navController.pushViewController(home, animated: true)
+                
+            }else{
+                let home = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
+                self.navController.pushViewController(home, animated: true)
+            }
         }else if itemName == "About us"{
             let aboutUs = storyBoard.instantiateViewControllerWithIdentifier("ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)

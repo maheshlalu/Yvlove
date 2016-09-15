@@ -61,6 +61,13 @@ var nameArray = ["india","america","newzealand"]
         //return UITableViewAutomaticDimension
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("MY_ORDERS") as! MyOrderViewController
+        self.navigationController?.pushViewController(productDetails, animated: true)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

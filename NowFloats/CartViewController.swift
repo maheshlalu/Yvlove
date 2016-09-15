@@ -11,18 +11,20 @@ import UIKit
 class CartViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
     @IBOutlet weak var checkOutNowBtn: UIButton!
+    @IBOutlet weak var productsCountLbl: UILabel!
+    @IBOutlet weak var totalPriceLbl: UILabel!
+    var totalPriceString:NSString!
     
     @IBOutlet var collectionview: UICollectionView!
     var products: NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.collectionview.backgroundColor = UIColor.lightGrayColor()
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
-        
         self.collectionview.registerNib(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()
         
-        // Do any additional setup after loading the view, typically from a nib.
+        self.productsCountLbl.text = "\(self.products.count) Products"
+        
     }
     
     func getTheProducts(){
@@ -66,9 +68,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartviewimage.sd_setImageWithURL(NSURL(string: products.imageUrl!))
         
-        
-       // cell.wishlistdescriptionLabel.font =  CXAppConfig.sharedInstance.appMediumFont()
-        
         cell.cartviewimagetitlelabel.font = CXAppConfig.sharedInstance.appLargeFont()
         cell.cartviewpricelabel.font = CXAppConfig.sharedInstance.appLargeFont()
         
@@ -79,20 +78,51 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartviewpricelabel.text = "\(rupee)\(price)"
         
-       // cell.cartviewimagetitlelabel.text = nameArray[indexPath.item]
+        
+//        cell.shareBtn.tag = indexPath.section+1
+//        cell.shareBtn.addTarget(self, action: #selector(UpdatesViewController.shareBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cell.cartdeletebutton.tag = indexPath.section+1
+        cell.cartdeletebutton.addTarget(self, action: #selector(CartViewController.cartDeleteBtnAction(_:)), forControlEvents: .TouchUpInside)
+        
     return cell
-        
-        
-        
+  
     }
+    func cartDeleteBtnAction(button : UIButton!){
+       // let updateDic : NSDictionary = self.p[button.tag-1] as! NSDictionary
+      //  array.removeAtIndex(indexPath.section)
+        //self.collectionview.deleteItemsAtIndexPaths([indexPath])
+
+        print("delete the cell");
     
-    
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func checkoutNowBtn(sender: UIButton) {
+        
+        PopupController
+            .create(self)
+            .customize(
+                [
+                    .Animation(.SlideUp),
+                    .Scrollable(false),
+                    .Layout(.Center),
+                    .BackgroundStyle(.BlackFilter(alpha: 0.7))
+                ]
+            )
+            .didShowHandler { popup in
+                print("showed popup!")
+            }
+            .didCloseHandler { _ in
+                print("closed popup!")
+            }
+            .show(DemoPopupViewController2.instance())
+        
+    }
 
 }
 

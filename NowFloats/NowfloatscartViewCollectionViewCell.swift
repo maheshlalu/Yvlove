@@ -14,9 +14,9 @@ class NowfloatscartViewCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var cartdeletebutton: UIButton!
     @IBOutlet var cartwishlistbutton: UIButton!
-
+    
     @IBOutlet var cartviewplusbutton: UIButton!
-
+    
     @IBOutlet var cartviewminusbutton: UIButton!
     @IBAction func cartviewdeletebuttonAction(sender: UIButton) {
     }
@@ -36,13 +36,9 @@ class NowfloatscartViewCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//self.cartwishlistbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        //self.cartwishlistbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: UIControlState.Normal)
-        
         self.cartwishlistbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.cartwishlistbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: UIControlState.Normal)
         
-        // Initialization code
     }
-
+    
 }
