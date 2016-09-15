@@ -58,7 +58,7 @@ class CXDataProvider: NSObject {
         
         MagicalRecord.saveWithBlock({ (localContext) in
             for prod in jobs {
-                print(prod)
+               // print(prod)
                 let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_Products", inManagedObjectContext: localContext) as? CX_Products
                 let createByID : String = CXConstant.resultString(prod.valueForKey("createdById")!)
                 enProduct!.createdById = createByID
@@ -67,6 +67,14 @@ class CXDataProvider: NSObject {
                 enProduct!.json = jsonString as String
                 enProduct!.name = prod.valueForKey("Name") as? String
                 enProduct!.pid = CXConstant.resultString(prod.valueForKey("id")!)
+                enProduct?.pPrice = 1
+                let updateDate =  prod.valueForKey("UpdatedOn") as? String
+                
+                let component = updateDate!.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+                let list = component.filter({ $0 != "" })
+                let number = Int(list[0])
+                enProduct?.pUpdateDate =  number
+                enProduct?.pPrice = Int((prod.valueForKey("MRP") as? String)!)//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
                 enProduct!.type = prod.valueForKey("jobTypeName") as? String
                 enProduct?.imageUrl =  prod.valueForKey("Image_URL") as? String
@@ -316,7 +324,7 @@ extension CXDataProvider {
     func itemAddToWishListOrCarts(productJson:String,itemID:String,isAddToWishList:Bool,isAddToCartList:Bool,isDeleteFromWishList:Bool,isDeleteFromCartList:Bool,completionHandler: (Bool) -> ()){
         let productJsonDic = CXConstant.sharedInstance.convertStringToDictionary(productJson)
         
-        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "pID = %@", itemID))
         //var  cart : CX_Cart = (CX_Cart.MR_findFirstWithPredicate(NSPredicate(format: "pID = %@", itemID)) as?CX_Cart)!
@@ -332,6 +340,13 @@ extension CXDataProvider {
             cart.name =  productJsonDic.valueForKey("Name") as? String
             cart.pID = CXConstant.resultString(productJsonDic.valueForKey("id")!)
             cart.imageUrl =  productJsonDic.valueForKey("Image_URL") as? String
+            cart.json =  productJson
+            let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: productJson)
+            let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: productJson)
+            let finalPriceNum:Int = Int(price)!-Int(discount)!
+            let myNumber = NSNumber(integer:finalPriceNum)
+             cart.productPrice = myNumber
+            cart.quantity = 1
             //cart.managedObjectContext?.MR_saveToPersistentStoreAndWait()
 
         }else{
