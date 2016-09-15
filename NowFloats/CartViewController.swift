@@ -16,7 +16,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     var totalPriceString:NSString!
     
     @IBOutlet var collectionview: UICollectionView!
-    var products: NSArray!
+    var products: NSMutableArray!
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
@@ -28,8 +28,10 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     }
     
     func getTheProducts(){
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
-        self.products  = CX_Products.MR_executeFetchRequest(fetchRequest)
+       // let fetchRequest : NSFetchRequest = NSFetchRequest(format: "addToCart = %@", "1")
+        
+     let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "addToCart = %@", "1"))
+        self.products  = NSMutableArray(array: cartlist)
         self.collectionview.reloadData()
     }
     
@@ -61,8 +63,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         cell.cartviewLabel.layer.borderWidth=1
         cell.cartviewLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
         
-        let products:CX_Products = (self.products[indexPath.item]as?
-            CX_Products)!
+        let products:CX_Cart = (self.products[indexPath.item]as?
+            CX_Cart)!
         
         cell.cartviewimagetitlelabel.text = products.name
         
@@ -70,33 +72,57 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartviewimagetitlelabel.font = CXAppConfig.sharedInstance.appLargeFont()
         cell.cartviewpricelabel.font = CXAppConfig.sharedInstance.appLargeFont()
-        
-        
         let rupee = "\u{20B9}"
+        cell.cartviewpricelabel.text = "\(rupee)\(products.productPrice!)"
+        cell.cartviewLabel.text = "2"
         
-        let price = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
+        cell.cartviewminusbutton.tag = indexPath.row+1
+        cell.cartviewplusbutton.tag = indexPath.row+1
         
-        cell.cartviewpricelabel.text = "\(rupee)\(price)"
+        cell.cartdeletebutton.tag = indexPath.row+1
+        cell.cartwishlistbutton.tag = indexPath.row+1
         
-        
-//        cell.shareBtn.tag = indexPath.section+1
-//        cell.shareBtn.addTarget(self, action: #selector(UpdatesViewController.shareBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        cell.cartdeletebutton.tag = indexPath.section+1
         cell.cartdeletebutton.addTarget(self, action: #selector(CartViewController.cartDeleteBtnAction(_:)), forControlEvents: .TouchUpInside)
-        
+        cell.cartwishlistbutton.addTarget(self, action: #selector(CartViewController.cartWishListButtonAction(_:)), forControlEvents: .TouchUpInside)
+
     return cell
   
     }
     func cartDeleteBtnAction(button : UIButton!){
-       // let updateDic : NSDictionary = self.p[button.tag-1] as! NSDictionary
-      //  array.removeAtIndex(indexPath.section)
-        //self.collectionview.deleteItemsAtIndexPaths([indexPath])
-
-        print("delete the cell");
+        print(button.tag-1)
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        self.products.removeObjectAtIndex(button.tag-1)
+        self.collectionview.reloadData()
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+            
+        })
+       // print("delete the cell");
     
     }
+    
+    func cartWishListButtonAction(button : UIButton!){
+        //Add to wishList
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        self.products.removeObjectAtIndex(button.tag-1)
+        self.collectionview.reloadData()
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+            
+        })
+        
+    }
 
+    func quntityPlusButtonAction(){
+        
+        
+        
+    }
+    
+    func quantityMinusButtonAction(){
+        
+        
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

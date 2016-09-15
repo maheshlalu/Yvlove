@@ -45,6 +45,27 @@ class CXAppConfig {
         return config!.valueForKey("getMaster") as! String
     }
     
+    func getSignInUrl() -> String {
+        return config!.valueForKey("signInMethod") as! String
+    }
+    
+    func getSignUpInUrl() -> String {
+        return config!.valueForKey("signUpMethod") as! String
+    }
+    //    //forgotPassordMethod
+    func getForgotPassordUrl() -> String {
+        return config!.valueForKey("forgotPassordMethod") as! String
+    }
+    
+    //updateProfile
+    
+    func getupdateProfileUrl() -> String {
+        return config!.valueForKey("updateProfile") as! String
+    }
+    //photoUpload
+    func getphotoUploadUrl() -> String {
+        return config!.valueForKey("photoUpload") as! String
+    }
     //getMallID
     func getAppMallID() -> String {
         return config!.valueForKey("MALL_ID") as! String
@@ -57,6 +78,7 @@ class CXAppConfig {
         
         return config!.valueForKey("SidePanelList") as! NSArray
     }
+
     
     func getAppTheamColor() -> UIColor {
         

@@ -42,6 +42,41 @@ public class CXDataService: NSObject {
         
     }
     
+    public func synchDataToServerAndServerToMoblile(urlstring:String, parameters:[String: AnyObject]? = nil ,completion:(responseDict:NSDictionary) -> Void){
+    
+        Alamofire.request(.GET,urlstring, parameters: parameters)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("Validation Successful\(response.result.value)")
+                    completion(responseDict: (response.result.value as? NSDictionary)!)
+                    break
+                case .Failure(let error):
+                    print(error)
+                }
+        }
+
+        
+    }
+    
+    public func imageUpload(imageData:NSData,completion:(imageFileUrl:String) -> Void){
+        
+        Alamofire.upload(
+            .POST,
+            CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(),
+            headers: ["" : ""],
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: imageData, name: "srcFile",
+                    fileName: "uploadedFile.jpg", mimeType: "")
+            },
+            encodingCompletion: { encodingResult in
+                
+                print("result")
+            }
+        )
+    }
+    
     
     public func getTheUpdatesFromServer(parameters:[String: AnyObject]? = nil ,completion:(responseDict:NSDictionary) -> Void){
         
@@ -49,7 +84,7 @@ public class CXDataService: NSObject {
          
          clientId=5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6&skipBy=0&fpid=kljadlkcjasd898979
         */
-        print(parameters)
+        //print(parameters)
         Alamofire.request(.GET,"https://api.withfloats.com/Discover/v2/floatingPoint/bizFloats?", parameters: parameters)
             .validate()
             .responseJSON { response in

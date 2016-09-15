@@ -33,6 +33,16 @@
 	<false/>
 	<key>PRODUCT_NAME</key>
 	<string>NowFloats</string>
+	<key>signInMethod</key>
+	<string>MobileAPIs/loginConsumerForOrg?</string>
+	<key>signUpMethod</key>
+	<string>MobileAPIs/regAndloyaltyAPI?</string>
+	<key>forgotPassordMethod</key>
+	<string>MobileAPIs/forgotpwd?</string>
+	<key>updateProfile</key>
+	<string>MobileAPIs/updateUserDetails?</string>
+	<key>photoUpload</key>
+	<string>Services/uploadFileFromAndroidToServer</string>
 	<key>AppBgColr</key>
 	<array>
 		<string>207</string>

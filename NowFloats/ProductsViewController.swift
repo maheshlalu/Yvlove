@@ -29,6 +29,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         getTheProducts()
         setupDropDowns()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updatecollectionview.reloadData()
+    }
+    
     @IBAction func chooseBtnAction(sender: AnyObject) {
         chooseArticleDropDown.show()
     }
@@ -37,44 +43,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         setupChooseArticleDropDown()
     }
     
-    func setupChooseArticleDropDown() {
-        chooseArticleDropDown.anchorView = chooseArticleButton
-        
-        // Will set a custom with instead of anchor view width
-        //		dropDown.width = 100
-        
-        // By default, the dropdown will have its origin on the top left corner of its anchor view
-        // So it will come over the anchor view and hide it completely
-        // If you want to have the dropdown underneath your anchor view, you can do this:
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: chooseArticleButton.bounds.height)
-        
-        // You can also use localizationKeysDataSource instead. Check the docs.
-        chooseArticleDropDown.dataSource = [
-            "Popularity",
-            "Recent",
-            "High Price",
-            "Low Price",
-            "Oldest"
-        ]
-        
-        // Action triggered on selection
-        chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
-            self.chooseArticleButton.setTitle(item, forState: .Normal)
-            if index == 0{
-                print("POPULARITY")
-            }
-        }
-        
-        // Action triggered on dropdown cancelation (hide)
-        //		dropDown.cancelAction = { [unowned self] in
-        //			// You could for example deselect the selected item
-        //			self.dropDown.deselectRowAtIndexPath(self.dropDown.indexForSelectedRow)
-        //			self.actionButton.setTitle("Canceled", forState: .Normal)
-        //		}
-        
-        // You can manually select a row if needed
-        //		dropDown.selectRowAtIndex(3)
-    }
+
     func getTheProducts(){
         let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
         self.products  = CX_Products.MR_executeFetchRequest(fetchRequest)
@@ -333,5 +302,32 @@ extension ProductsViewController:UISearchBarDelegate{
     }
     
     
+}
+
+//Droup down
+extension ProductsViewController{
+    
+    func setupChooseArticleDropDown() {
+        chooseArticleDropDown.anchorView = chooseArticleButton
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: chooseArticleButton.bounds.height)
+        
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseArticleDropDown.dataSource = [
+            "Popularity",
+            "Recent",
+            "High Price",
+            "Low Price",
+            "Oldest"
+        ]
+        
+        // Action triggered on selection
+        chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
+            self.chooseArticleButton.setTitle(item, forState: .Normal)
+            if index == 0{
+                print("POPULARITY")
+            }
+        }
+                                   
+    }
 }
 
