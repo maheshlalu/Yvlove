@@ -14,7 +14,6 @@
 		110329C01D8A6BB00008A3B7 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329BF1D8A6BB00008A3B7 /* HistoryTableViewCell.swift */; };
 		110329C21D8A72990008A3B7 /* MapViewCntl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C11D8A72990008A3B7 /* MapViewCntl.swift */; };
 		110329C41D8A72B40008A3B7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; };
-		110329C61D8A78410008A3B7 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C51D8A78410008A3B7 /* Station.swift */; };
 		110329CB1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */; };
 		110329CC1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */; };
 		11325D3B1D8A66CB00A7F10E /* MyordersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11325D361D8A66CB00A7F10E /* MyordersTableViewCell.swift */; };
@@ -43,6 +42,7 @@
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
 		118346BB1D86C264000BE1D4 /* UIColor+SMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346BA1D86C264000BE1D4 /* UIColor+SMColor.swift */; };
 		118346BE1D86D789000BE1D4 /* FTPopOverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 118346BD1D86D789000BE1D4 /* FTPopOverMenu.m */; };
+		11F0B3E01D8AC11B00873979 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0B3DF1D8AC11B00873979 /* Station.swift */; };
 		11F1DE4E1D883A31002AF5B0 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */; };
 		11F1DE4F1D883A31002AF5B0 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */; };
 		11F1DE501D883A31002AF5B0 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4D1D883A30002AF5B0 /* DPDUIView+Extension.swift */; };
@@ -166,7 +166,6 @@
 		110329BF1D8A6BB00008A3B7 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		110329C11D8A72990008A3B7 /* MapViewCntl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCntl.swift; sourceTree = "<group>"; };
 		110329C31D8A72B40008A3B7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		110329C51D8A78410008A3B7 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Station.swift; path = ../../NVAgencies/StoreOnGOApp/StoreOnGoApp/Station.swift; sourceTree = "<group>"; };
 		110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsExtraTableViewCell.swift; sourceTree = "<group>"; };
 		110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsExtraTableViewCell.xib; sourceTree = "<group>"; };
 		11325D361D8A66CB00A7F10E /* MyordersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyordersTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +195,7 @@
 		118346BA1D86C264000BE1D4 /* UIColor+SMColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SMColor.swift"; sourceTree = "<group>"; };
 		118346BC1D86D789000BE1D4 /* FTPopOverMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPopOverMenu.h; sourceTree = "<group>"; };
 		118346BD1D86D789000BE1D4 /* FTPopOverMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPopOverMenu.m; sourceTree = "<group>"; };
+		11F0B3DF1D8AC11B00873979 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
 		11F1DE4D1D883A30002AF5B0 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DPDUIView+Extension.swift"; sourceTree = "<group>"; };
@@ -369,8 +369,8 @@
 		110329B81D8A6B730008A3B7 /* ViewMap */ = {
 			isa = PBXGroup;
 			children = (
+				11F0B3DF1D8AC11B00873979 /* Station.swift */,
 				110329C11D8A72990008A3B7 /* MapViewCntl.swift */,
-				110329C51D8A78410008A3B7 /* Station.swift */,
 			);
 			name = ViewMap;
 			sourceTree = "<group>";
@@ -1129,6 +1129,7 @@
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				11F1DE501D883A31002AF5B0 /* DPDUIView+Extension.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
+				11F0B3E01D8AC11B00873979 /* Station.swift in Sources */,
 				18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */,
 				11370F661D893BB600CCBE01 /* DemoPopupViewController2.swift in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
@@ -1163,7 +1164,6 @@
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
 				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
 				11F1DE611D883B24002AF5B0 /* ordersTableViewCell.swift in Sources */,
-				110329C61D8A78410008A3B7 /* Station.swift in Sources */,
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,
