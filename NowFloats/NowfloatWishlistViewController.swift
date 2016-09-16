@@ -16,7 +16,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.wishlistcollectionView.backgroundColor = UIColor.lightGrayColor()
+        self.wishlistcollectionView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         let nib = UINib(nibName: "WishlistCollectionViewCell", bundle: nil)
         self.wishlistcollectionView.registerNib(nib, forCellWithReuseIdentifier: "WishlistCollectionViewCell")
         
@@ -41,6 +41,10 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
+        let width = UIScreen.mainScreen().bounds.size.width - 6
+        flow.itemSize = CGSizeMake(width, 150)
 
         let cell = wishlistcollectionView.dequeueReusableCellWithReuseIdentifier("WishlistCollectionViewCell", forIndexPath: indexPath)as! WishlistCollectionViewCell
         cell.imagetitleLabel.text = self.products[indexPath.item] as? String
@@ -48,6 +52,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             CX_Cart)!
         
         cell.imagetitleLabel.text = products.name
+        cell.imagetitleLabel.font = CXAppConfig.sharedInstance.appLargeFont()
         cell.wishlistimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
         cell.wishlistaddtocartbutton.tag = indexPath.row+1
         cell.wishlistdeletebutton.tag = indexPath.row+1
@@ -76,6 +81,10 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             let finalPriceNum:Int = Int(price)!-Int(discount)!
             cell.wishlistpricelabel.text = "\(rupee) \(String(finalPriceNum))"
         }
+        cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
+        cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
+
 
         return cell
     }
@@ -87,7 +96,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
         self.products.removeObjectAtIndex(button.tag-1)
         self.wishlistcollectionView.reloadData()
-        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
         
@@ -108,7 +117,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
        // self.wishlistcollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
        // self.wishlistcollectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
        // print(proListData.pID)
-        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
         
@@ -119,6 +128,31 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return true
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func headerTitleText() -> String{
+        return "Wishlist"
     }
 
 

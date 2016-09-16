@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,11 +22,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="248" height="161"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-oB-W0B">
-                        <rect key="frame" x="5" y="5" width="238" height="62"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-oB-W0B">
+                        <rect key="frame" x="5" y="5" width="238" height="70"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IM-QP-v81">
-                        <rect key="frame" x="5" y="75" width="238" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IM-QP-v81">
+                        <rect key="frame" x="10" y="83" width="238" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="248" id="4iT-Gz-we7"/>
                             <constraint firstAttribute="width" secondItem="8IM-QP-v81" secondAttribute="height" multiplier="112:25" id="BQr-Hj-YBO"/>
@@ -86,10 +86,10 @@
                     <constraint firstAttribute="trailing" secondItem="nfB-oB-W0B" secondAttribute="trailing" constant="5" id="X61-F5-Eo1"/>
                     <constraint firstAttribute="trailing" secondItem="8IM-QP-v81" secondAttribute="trailing" id="YLu-Or-oNg"/>
                     <constraint firstItem="GMg-bL-us9" firstAttribute="top" secondItem="E75-zm-p2j" secondAttribute="top" id="awX-42-aIR"/>
-                    <constraint firstItem="8IM-QP-v81" firstAttribute="trailing" secondItem="nfB-oB-W0B" secondAttribute="trailing" id="b6V-Sz-TBq"/>
+                    <constraint firstItem="8IM-QP-v81" firstAttribute="trailing" secondItem="nfB-oB-W0B" secondAttribute="trailing" constant="5" id="b6V-Sz-TBq"/>
                     <constraint firstItem="8IM-QP-v81" firstAttribute="top" secondItem="nfB-oB-W0B" secondAttribute="bottom" constant="8" id="bIT-3W-XlC"/>
                     <constraint firstAttribute="bottom" secondItem="E75-zm-p2j" secondAttribute="bottom" constant="21" id="lkK-JD-ZYg"/>
-                    <constraint firstItem="8IM-QP-v81" firstAttribute="leading" secondItem="nfB-oB-W0B" secondAttribute="leading" id="p0y-ao-P5I"/>
+                    <constraint firstItem="8IM-QP-v81" firstAttribute="leading" secondItem="nfB-oB-W0B" secondAttribute="leading" constant="5" id="p0y-ao-P5I"/>
                     <constraint firstItem="GMg-bL-us9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="qwJ-FV-I8P"/>
                     <constraint firstItem="nfB-oB-W0B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="xp0-F8-bET"/>
                     <constraint firstItem="E75-zm-p2j" firstAttribute="leading" secondItem="GMg-bL-us9" secondAttribute="trailing" constant="128" id="ypD-x0-zE2"/>

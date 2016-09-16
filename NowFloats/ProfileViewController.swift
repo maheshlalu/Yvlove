@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: CXViewController {
 
     var coordinateManager: MTCoordinateManager?
     var tableView: UITableView!
@@ -121,6 +121,33 @@ class ProfileViewController: UIViewController {
         alertController.addAction(UIAlertAction.init(title: "OK", style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func headerTitleText() -> String{
+        return ""
+    }
+
+    
     
 }
 

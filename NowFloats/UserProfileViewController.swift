@@ -35,7 +35,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     func headerViewAlignments(){
         self.profileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.dpImageView.clipsToBounds = true
-        self.dpImageView.layer.cornerRadius = self.dpImageView.frame.size.width/3
+        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/2
         self.dpImageView.layer.borderWidth = 3.0
         self.dpImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
@@ -145,5 +145,30 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 10
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    override func headerTitleText() -> String{
+        return ""
+    }
+
 
 }

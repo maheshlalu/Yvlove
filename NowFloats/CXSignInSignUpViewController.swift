@@ -236,6 +236,31 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         self.cScrollView.setContentOffset(CGPointZero, animated: true)
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    override func headerTitleText() -> String{
+        return ""
+    }
+
 }
 
 

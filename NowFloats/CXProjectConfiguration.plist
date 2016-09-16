@@ -24,11 +24,11 @@
 	<key>APPFONT_NAME_REGULAR</key>
 	<string>Roboto-Regular</string>
 	<key>APPFONT_MEDIUM</key>
-	<integer>12</integer>
+	<integer>13</integer>
 	<key>APPFONT_LARGE</key>
 	<integer>15</integer>
 	<key>APPFONT_SMALL</key>
-	<integer>8</integer>
+	<integer>12</integer>
 	<key>ISPagerEnable</key>
 	<false/>
 	<key>PRODUCT_NAME</key>

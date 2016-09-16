@@ -113,6 +113,10 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         
     }
     
+    func headerTitleText() -> String{
+        return CXAppConfig.sharedInstance.productName()
+    }
+    
     func leftMenuTapped(){
         
         let navVC : CXNavDrawer = (self.navigationController as? CXNavDrawer)!

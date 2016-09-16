@@ -97,6 +97,32 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return true
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    
+    override func headerTitleText() -> String{
+        return "About Us"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+
     
 }
 

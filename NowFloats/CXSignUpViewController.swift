@@ -165,7 +165,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) in
                     //self.moveBackView()
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navController.popViewControllerAnimated(true)
                     
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -254,6 +254,31 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.cScrollView.endEditing(true)
+    }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+
+    override func headerTitleText() -> String{
+        return ""
     }
     
     func isValidEmail(email: String) -> Bool {

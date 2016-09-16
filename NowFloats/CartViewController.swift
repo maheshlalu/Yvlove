@@ -19,6 +19,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     var products: NSMutableArray!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
         self.collectionview.registerNib(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()
@@ -121,6 +122,31 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         
         
+    }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func headerTitleText() -> String{
+        return ""
     }
     
     override func didReceiveMemoryWarning() {
