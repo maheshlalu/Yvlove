@@ -18,7 +18,7 @@
         <attribute name="subCatNameID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CX_FeaturedProducts" representedClassName=".CX_FeaturedProducts" syncable="YES">
+    <entity name="CX_FeaturedProducts" representedClassName="CX_FeaturedProducts" syncable="YES">
         <attribute name="campaign_Jobs" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdByID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,7 +60,7 @@
         <attribute name="publicURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CX_Products" representedClassName=".CX_Products" syncable="YES">
+    <entity name="CX_Products" representedClassName="CX_Products" syncable="YES">
         <attribute name="addToCart" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favourite" optional="YES" attributeType="String" syncable="YES"/>

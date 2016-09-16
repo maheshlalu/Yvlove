@@ -265,7 +265,17 @@ public class CXAppDataManager: NSObject {
     
     //MARK : GET ALL ORDERS
     
-    
+    func getOrders(completion:(responseDict:NSDictionary) -> Void){
+       // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
+        //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"2003","type":"PlaceOrder","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            completion(responseDict: responseDict)
+        }
+
+
+        
+    }
     
     //MARK : UPDATE PROFILE
     
@@ -273,7 +283,7 @@ public class CXAppDataManager: NSObject {
         
         CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
             
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":"","firstName":"","lastName":"","mobileNo":"","city":"","state":"","country":"","userImagePath":imageFileUrl,"userBannerPath":imageFileUrl]) { (responseDict) in
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":imageFileUrl,"userBannerPath":imageFileUrl]) { (responseDict) in
                 completion(responseDict: responseDict)
             }
             

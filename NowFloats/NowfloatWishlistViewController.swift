@@ -37,6 +37,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
 
     }
     
+    
    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {

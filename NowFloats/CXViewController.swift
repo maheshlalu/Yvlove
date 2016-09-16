@@ -92,15 +92,22 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         return true
     }
     
-    func shouldShowLeftMenu() -> Bool{
+    func shouldShowNotificatoinBell() ->Bool{
         
         return true
     }
+    
     func shouldShowCart() -> Bool{
         
         return true
     }
     
+    
+    func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+
     func backButtonTapped(){
         
         

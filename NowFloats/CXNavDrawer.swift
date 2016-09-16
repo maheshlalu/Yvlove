@@ -112,6 +112,7 @@ class CXNavDrawer: UINavigationController {
     
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
+        
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
         let buttondWidth : CGFloat = 35
         self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth+12, 5, 30, 30))
@@ -135,6 +136,70 @@ class CXNavDrawer: UINavigationController {
         
         return UIBarButtonItem(customView:rightButtonsView)
     }
+    
+    
+    //MARK: Design left and right header component
+    func designLeftBarButtonItemsForCXController(viewController:CXViewController) -> UIBarButtonItem{
+
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        
+        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        
+        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
+        sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
+        
+        leftButtonsView.addSubview(sidePanelBtn)
+        return UIBarButtonItem(customView: leftButtonsView)
+    }
+    
+    func rightMenuButtonCreationForCXController(imageName:String,frame:CGRect) -> UIButton{
+        let button = UIButton(type: .Custom) as UIButton
+        button.setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+        button.frame =  frame
+        return button
+    }
+    
+    
+    
+    func designRightBarButtonItemsForCXController(viewController:CXViewController) -> UIBarButtonItem{
+        
+        let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
+        let buttondWidth : CGFloat = 35
+        var buttonXposition : CGFloat = rightButtonsView.frame.size.width-buttondWidth+12
+        if viewController.shouldShowRightMenu() {
+            self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(buttonXposition, 5, 30, 30))
+            buttonXposition =  buttonXposition-self.profileBtn.frame.size.width
+            rightButtonsView.addSubview(self.profileBtn)
+            self.profileBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
+
+        }
+        
+        if viewController.shouldShowNotificatoinBell() {
+            self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(buttonXposition,2, 35, 35))
+            buttonXposition = buttonXposition-self.notificationBellBtn.frame.size.width
+            rightButtonsView.addSubview(self.notificationBellBtn)
+            self.notificationBellBtn.addTarget(self, action: #selector(notificationBellAction), forControlEvents: .TouchUpInside)
+
+        }
+        
+        if viewController.shouldShowCart() {
+            self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
+            rightButtonsView.addSubview(self.cartBtn)
+            self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
+
+        }
+
+        //whiteCartImage
+        
+
+        // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
+        
+        
+        
+        return UIBarButtonItem(customView:rightButtonsView)
+    }
+    
     
     
     
@@ -282,6 +347,9 @@ extension CXNavDrawer : UINavigationControllerDelegate {
         print("nav controlller \(viewController)")
         
         if viewController.isKindOfClass(CXViewController) {
+            
+            viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
+
             
         }else{
             viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())

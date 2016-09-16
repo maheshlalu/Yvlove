@@ -13,8 +13,9 @@ class MyOrderViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 1
-    
     @IBOutlet weak var MyorderstableView: UITableView!
+    var orderData:NSDictionary! = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +25,7 @@ class MyOrderViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 10.0
         self.MyorderstableView.backgroundColor = UIColor.lightGrayColor()
+        //OrderItemId
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {

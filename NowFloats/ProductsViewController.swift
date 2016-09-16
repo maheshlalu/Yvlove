@@ -55,6 +55,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         return self.products.count
     }
     
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         
@@ -123,10 +124,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
     }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+        return 3.0
+    }
+    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.mainScreen().bounds.size.width
-        return CGSize(width: screenWidth/2-11, height: 200);
+        
+        return CGSize(width: screenWidth/2.2+7, height: 200);
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -302,6 +309,8 @@ extension ProductsViewController:UISearchBarDelegate{
     }
     
     
+    
+    
 }
 
 //Droup down
@@ -323,11 +332,22 @@ extension ProductsViewController{
         // Action triggered on selection
         chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
             self.chooseArticleButton.setTitle(item, forState: .Normal)
-            if index == 0{
-                print("POPULARITY")
+              if index == 0{
+                 self.products  = CX_Products.MR_findAll()
+            }else if index == 1{
+                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: false)
+            }else if index == 2{
+                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: false)
+            }else if index == 3{
+                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: true)
+            }else if index == 4{
+                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: true)
             }
+            
+            self.updatecollectionview.reloadData()
         }
                                    
     }
 }
+
 
