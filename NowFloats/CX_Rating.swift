@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(CX_Rating)
 
 class CX_Rating: NSManagedObject {
 

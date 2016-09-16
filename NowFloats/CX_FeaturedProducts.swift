@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(CX_FeaturedProducts)
 
 class CX_FeaturedProducts: NSManagedObject {
 

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(CX_StoreCategory)
 
 class CX_StoreCategory: NSManagedObject {
 

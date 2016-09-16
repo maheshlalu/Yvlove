@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(CX_Gallery)
 
 class CX_Gallery: NSManagedObject {
 

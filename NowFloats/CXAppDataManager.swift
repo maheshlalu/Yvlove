@@ -70,7 +70,7 @@ public class CXAppDataManager: NSObject {
     
     func getTheSigleMall(){
         //type=singleMall
-        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_SingleMall", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
+        if CX_SingleMall.MR_findAll().count == 0 {
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveSingleMallInDB(responseDict, completion: { (isDataSaved) in
                 })
