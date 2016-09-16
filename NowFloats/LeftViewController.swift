@@ -17,6 +17,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var viewMapBtn: UIButton!
     var titleLable: UILabel!
     var mailLable: UILabel!
+    var websiteLbl:UILabel!
     
     var navController : CXNavDrawer = CXNavDrawer()
     
@@ -34,7 +35,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-25,60,60))
         self.profileDPImageView .image = UIImage(named: "pp.jpg")
-        self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
+       // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
@@ -50,12 +51,18 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        mailImage.image = UIImage(named: "storeongo_gray.png")
 //        self.sidePanelView.addSubview(mailImage)
         
+    
         self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
         mailLable.font = mailLable.font.fontWithSize(10)
-       // self.mailLable.backgroundColor = UIColor.yellowColor()
+        // self.mailLable.backgroundColor = UIColor.yellowColor()
         mailLable.text = "iamsky.mme@gmail.com"
         self.detailsView.addSubview(mailLable)
         
+        self.websiteLbl = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.mailLable.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
+        websiteLbl.font = mailLable.font.fontWithSize(10)
+        // self.mailLable.backgroundColor = UIColor.yellowColor()
+        websiteLbl.text = "www.manishi.co.in"
+        self.detailsView.addSubview(websiteLbl)
         
         /*
         self.callUsBtn = self.createImageButton(CGRectMake(self.detailsView.frame.origin.x+5, self.detailsView.frame.size.height-60, 70 ,30), tag: 100, bImage:UIImage.init(imageLiteral: "callusBtnImage"))

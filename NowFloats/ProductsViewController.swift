@@ -26,6 +26,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.view.backgroundColor = UIColor.lightGrayColor()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
+        
+        chooseArticleButton.sizeToFit()
+        chooseArticleButton.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseArticleButton.imageView!.frame.size.width, 0, chooseArticleButton.imageView!.frame.size.width)
+        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+150, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+        
         getTheProducts()
         setupDropDowns()
     }
@@ -318,7 +323,7 @@ extension ProductsViewController{
     
     func setupChooseArticleDropDown() {
         chooseArticleDropDown.anchorView = chooseArticleButton
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: chooseArticleButton.bounds.height)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: self.productSearhBar.frame.size.height+10)
         
         // You can also use localizationKeysDataSource instead. Check the docs.
         chooseArticleDropDown.dataSource = [

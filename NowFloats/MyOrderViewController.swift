@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyOrderViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
     var nameArray = ["Order id : 30704","Singapore & Malaysia Package for 06 Nights / 07 Days:[1 items]","pakisthan","newzealand","india","america","pakisthan","newzealand","india","america","pakisthan","newzealand"]
     
     let cellReuseIdentifier = "cell"
