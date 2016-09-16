@@ -17,6 +17,9 @@ class UpdatesViewController: CXViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateTableView.backgroundView?.backgroundColor = UIColor.clearColor()
+        self.updateTableView.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor =  CXAppConfig.sharedInstance.getAppBGColor()
         self.updatesArray = NSArray()
         self.setUpTableView()
         self.getUpdates()
@@ -89,8 +92,12 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         
-        return 8.0
+        return 0.0
         
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 7.0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -105,6 +112,8 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
     {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("UpdateTableViewCell", forIndexPath: indexPath)as! UpdateTableViewCell
+        //cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundView?.backgroundColor = UIColor.clearColor()
         let updateDic : NSDictionary = self.updatesArray[indexPath.section] as! NSDictionary
         cell.selectionStyle = .None
         cell.descriptionLabel.text = updateDic.valueForKey("message") as?String
@@ -120,6 +129,9 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         }
         cell.shareBtn.tag = indexPath.section+1
         cell.shareBtn.addTarget(self, action: #selector(UpdatesViewController.shareBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.descriptionLabel.font = CXAppConfig.sharedInstance.appMediumFont()
+        cell.monthLabel.font = CXAppConfig.sharedInstance.appSmallFont()
+
 
         
         return cell

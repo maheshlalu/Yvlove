@@ -132,6 +132,18 @@ class ProductDetailsViewController: CXViewController {
     @IBAction func addToCartAction(sender: UIButton) {
         sender.selected = !sender.selected
         
+        if sender.selected {
+            
+//            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+//                //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+//            })
+            
+        }else{
+            
+            
+        }
+        
     }
     @IBAction func placeOrderNowAction(sender: AnyObject) {
         
@@ -141,4 +153,31 @@ class ProductDetailsViewController: CXViewController {
     @IBAction func heartAction(sender: UIButton) {
         sender.selected = !sender.selected
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return true
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    
+    override func headerTitleText() -> String{
+        return productDetailDic.valueForKey("Name")! as! String
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+
 }

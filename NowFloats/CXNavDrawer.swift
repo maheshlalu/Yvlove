@@ -97,7 +97,13 @@ class CXNavDrawer: UINavigationController {
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
-        
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 200, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        titleLable.textAlignment = .Left
+        titleLable.textColor = UIColor.whiteColor()
+        titleLable.text = CXAppConfig.sharedInstance.productName()
+        titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
+        leftButtonsView.addSubview(titleLable)
+
         leftButtonsView.addSubview(sidePanelBtn)
         return UIBarButtonItem(customView: leftButtonsView)
     }
@@ -149,6 +155,14 @@ class CXNavDrawer: UINavigationController {
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
         
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 200, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        titleLable.textAlignment = .Left
+        titleLable.textColor = UIColor.whiteColor()
+      
+        titleLable.text = viewController.headerTitleText()
+        titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
+        leftButtonsView.addSubview(titleLable)
+        
         leftButtonsView.addSubview(sidePanelBtn)
         return UIBarButtonItem(customView: leftButtonsView)
     }
@@ -169,7 +183,7 @@ class CXNavDrawer: UINavigationController {
         var buttonXposition : CGFloat = rightButtonsView.frame.size.width-buttondWidth+12
         if viewController.shouldShowRightMenu() {
             self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(buttonXposition, 5, 30, 30))
-            buttonXposition =  buttonXposition-self.profileBtn.frame.size.width
+            buttonXposition =  buttonXposition-self.notificationBellBtn.frame.size.width
             rightButtonsView.addSubview(self.profileBtn)
             self.profileBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
 
@@ -212,7 +226,7 @@ class CXNavDrawer: UINavigationController {
         self.isOPen = false
         
         self.leftViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("LeftViewController") as? LeftViewController)!
-        self.leftViewController.view.frame = CGRectMake(0, 0, self.outFrame.size.width-100, self.leftViewController.view.frame.size.height)
+        self.leftViewController.view.frame = CGRectMake(0, 0, 230, self.leftViewController.view.frame.size.height)
         self.leftViewController.navController = self
         
         self.drawerView = self.leftViewController.view
@@ -349,8 +363,11 @@ extension CXNavDrawer : UINavigationControllerDelegate {
         if viewController.isKindOfClass(CXViewController) {
             
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
-
-            
+            let viewCntl:CXViewController = (viewController as?CXViewController)!
+            if viewCntl.shouldShowLeftMenu() {
+                viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXController((viewController as?CXViewController)!)
+            }
+           
         }else{
             viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())

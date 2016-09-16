@@ -22,7 +22,8 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         self.orderstableview.rowHeight = UITableViewAutomaticDimension
         self.orderstableview.estimatedRowHeight = 10.0
-        self.orderstableview.backgroundColor = UIColor.lightGrayColor()
+        self.orderstableview.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         
         CXAppDataManager.sharedInstance.getOrders { (responseDict) in
             //  print("print the my orders \(responseDict)")
@@ -52,7 +53,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         
         let cell = orderstableview.dequeueReusableCellWithIdentifier("ordersTableViewCell", forIndexPath: indexPath)as! ordersTableViewCell
-        
+        cell.backgroundView?.backgroundColor = UIColor.clearColor()
         let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
         cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.valueForKey("id")!)
         cell.orderpriceresultlabel.text = orederDataDic.valueForKey("Total") as?String
@@ -84,7 +85,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("MY_ORDERS") as! MyOrderViewController
         productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
-        self.navigationController?.pushViewController(productDetails, animated: true)
+       // self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
     
@@ -101,13 +102,24 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     
     override func shouldShowNotificatoinBell() ->Bool{
         
-        return false
+        return true
     }
     
     override  func shouldShowCart() -> Bool{
         
         return true
     }
+    
+
+    override func headerTitleText() -> String{
+        return "Orders"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+
     
     
 }
