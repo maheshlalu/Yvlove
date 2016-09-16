@@ -132,50 +132,46 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
         })
     }
     
-//    func sendSignUpDetails() {
-//        //http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId=3&userEmailId
-//
-//        let signUpUrl = "http://storeongo.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
-//        SMSyncService.sharedInstance.startSyncProcessWithUrl(signUpUrl) { (responseDict) in
-//            print("Sign up response \(responseDict)")
-//            let status: Int = Int(responseDict.valueForKey("status") as! String)!
-//            if status == 1{
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("state"), forKey: "STATE")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("emailId"), forKey: "USER_EMAIL")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("firstName"), forKey: "FIRST_NAME")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("lastName"), forKey: "LAST_NAME")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("userBannerPath"), forKey: "USER_BANNER_PATH")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("gender"), forKey: "GENDER")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("userImagePath"), forKey: "USER_IMAGE_PATH")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("UserId"), forKey: "USER_ID")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macId"), forKey: "MAC_ID")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("mobile"), forKey: "MOBILE")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("address"), forKey: "ADDRESS")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("fullName"), forKey: "FULL_NAME")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("city"), forKey: "CITY")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("orgId"), forKey: "ORG_ID")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macIdJobId"), forKey: "MACID_JOBID")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("organisation"), forKey: "ORGANIZATION")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("msg"), forKey: "MESSAGE")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("status"), forKey: "STATUS")
-//            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("country"), forKey: "COUNTRY")
-//            NSUserDefaults.standardUserDefaults().synchronize()
-//            
-//                self.showAlertView("User Registered Successfully", status: status)
-//                
-//            }
-//            let message = responseDict.valueForKey("msg") as? String
-//            dispatch_async(dispatch_get_main_queue(), {
-//                let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-//                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) in
-//                    //self.moveBackView()
-//                    self.navigationController?.popViewControllerAnimated(true)
-//                    
-//                }))
-//                self.presentViewController(alert, animated: true, completion: nil)
-//            })
-//        }
-//    }
+    func sendSignUpDetails() {
+        CXAppDataManager.sharedInstance.signUpWithUserDetails(self.firstNameField.text!, lastName:self.lastNameField.text!, mobileNumber: self.mobileNumField.text!, email: self.emailAddressField.text!, password: self.passwordField.text!) { (responseDict) in
+            let status: Int = Int(responseDict.valueForKey("status") as! String)!
+            if status == 1{
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("state"), forKey: "STATE")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("emailId"), forKey: "USER_EMAIL")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("firstName"), forKey: "FIRST_NAME")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("lastName"), forKey: "LAST_NAME")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("userBannerPath"), forKey: "USER_BANNER_PATH")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("gender"), forKey: "GENDER")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("userImagePath"), forKey: "USER_IMAGE_PATH")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("UserId"), forKey: "USER_ID")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macId"), forKey: "MAC_ID")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("mobile"), forKey: "MOBILE")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("address"), forKey: "ADDRESS")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("fullName"), forKey: "FULL_NAME")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("city"), forKey: "CITY")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("orgId"), forKey: "ORG_ID")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macIdJobId"), forKey: "MACID_JOBID")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("organisation"), forKey: "ORGANIZATION")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("msg"), forKey: "MESSAGE")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("status"), forKey: "STATUS")
+                NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("country"), forKey: "COUNTRY")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
+                self.showAlertView("User Registered Successfully", status: status)
+            }
+            
+            let message = responseDict.valueForKey("msg") as? String
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) in
+                    //self.moveBackView()
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+    }
     
     func moveBackView() {
         let navControllers:NSArray = (self.navigationController?.viewControllers)!
@@ -209,7 +205,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 
                 return
             }
-            //self.sendSignUpDetails()
+            self.sendSignUpDetails()
             
         } else {
             let alert = UIAlertController(title: "Alert!!!", message: "All fields are mandatory. Please enter all fields.", preferredStyle: UIAlertControllerStyle.Alert)
