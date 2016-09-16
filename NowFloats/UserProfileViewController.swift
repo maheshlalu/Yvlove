@@ -61,8 +61,10 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             let imageCellIdentifier = "Orders"
             cell = tableView.dequeueReusableCellWithIdentifier(imageCellIdentifier)!
             cell?.accessoryType = .DisclosureIndicator;
+            cell?.selectionStyle = .None
             
             let btn = cell?.viewWithTag(100) as! UIButton
+            btn.userInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
            
@@ -76,9 +78,11 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         }else if indexPath.section == 2{
             let productInfoIdentifier = "Notifications"
             cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
+            cell?.accessoryType = .DisclosureIndicator;
             cell?.selectionStyle = .None
             
             let btn = cell?.viewWithTag(300) as! UIButton
+            btn.userInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             //btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
 
@@ -90,6 +94,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             cell?.accessoryType = .DisclosureIndicator;
             
             let btn = cell?.viewWithTag(400) as! UIButton
+            btn.userInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
            // btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
 
@@ -100,6 +105,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             cell?.accessoryType = .DisclosureIndicator;
             
             let btn = cell?.viewWithTag(500) as! UIButton
+            btn.userInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             //btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
             
@@ -111,6 +117,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             cell?.accessoryType = .DisclosureIndicator;
             
             let btn = cell?.viewWithTag(600) as! UIButton
+            btn.userInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
            // btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
         }
@@ -118,7 +125,13 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         
     }
     
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 3{
+            
+            let comentsView = CXCommentViewController.init()
+            self.navigationController?.pushViewController(comentsView, animated: true)
+        }
+    }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {

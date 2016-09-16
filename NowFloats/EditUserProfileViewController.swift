@@ -10,6 +10,9 @@ import UIKit
 
 class EditUserProfileViewController: CXViewController {
     
+    @IBOutlet weak var staticEmail: SkyFloatingLabelTextField!
+    @IBOutlet weak var staticMobileNumber: SkyFloatingLabelTextField!
+    @IBOutlet weak var saveChangesBtn: UIButton!
     @IBOutlet weak var editProfileView: UIView!
     @IBOutlet weak var editDPImage: UIImageView!
     @IBOutlet weak var stateTxtField: SkyFloatingLabelTextField!
@@ -27,7 +30,7 @@ class EditUserProfileViewController: CXViewController {
     }
     
     func headerViewAlignments(){
-        
+        saveChangesBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         stateTxtField.selectedLineColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cityTxtField.selectedLineColor = CXAppConfig.sharedInstance.getAppTheamColor()
         addressTxtField.selectedLineColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -36,8 +39,8 @@ class EditUserProfileViewController: CXViewController {
         
         
         self.editProfileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        self.editDPImage.layer.cornerRadius = self.editDPImage.frame.size.width / 4
         self.editDPImage.clipsToBounds = true
-        self.editDPImage.layer.cornerRadius = self.editDPImage.frame.size.width/5
         self.editDPImage.layer.borderWidth = 3.0
         self.editDPImage.layer.borderColor = UIColor.whiteColor().CGColor
     }

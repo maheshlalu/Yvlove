@@ -37,6 +37,9 @@
 		113E5DA21D87DFED0003DA8D /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5D9F1D87DFED0003DA8D /* CartViewController.swift */; };
 		113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */; };
 		113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113E5DA11D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib */; };
+		1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */; };
+		1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */; };
+		1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -189,6 +192,9 @@
 		113E5D9F1D87DFED0003DA8D /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowfloatscartViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		113E5DA11D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowfloatscartViewCollectionViewCell.xib; sourceTree = "<group>"; };
+		1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentRatingViewController.swift; sourceTree = "<group>"; };
+		1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentViewController.swift; sourceTree = "<group>"; };
+		1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +384,8 @@
 		11370F691D8950CF00CCBE01 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */,
+				1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */,
 				11370F6E1D89581200CCBE01 /* CalcConversionEx.swift */,
 				11370F6F1D89581200CCBE01 /* MTCoordinateContainer.swift */,
 				11370F701D89581200CCBE01 /* MTCoordinateManager.swift */,
@@ -396,6 +404,14 @@
 				11370F891D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift */,
 			);
 			name = FloatingTextField;
+			sourceTree = "<group>";
+		};
+		1147CB9C1D8BB4AB00138C4E /* RatingView */ = {
+			isa = PBXGroup;
+			children = (
+				1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */,
+			);
+			name = RatingView;
 			sourceTree = "<group>";
 		};
 		118346AD1D8696A4000BE1D4 /* PopUp */ = {
@@ -659,6 +675,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				1147CB9C1D8BB4AB00138C4E /* RatingView */,
 				11370F861D89A39D00CCBE01 /* FloatingTextField */,
 				11F1DE481D8839FE002AF5B0 /* DropDown */,
 				118346AD1D8696A4000BE1D4 /* PopUp */,
@@ -1132,6 +1149,7 @@
 				11F0B3E01D8AC11B00873979 /* Station.swift in Sources */,
 				18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */,
 				11370F661D893BB600CCBE01 /* DemoPopupViewController2.swift in Sources */,
+				1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
@@ -1161,6 +1179,7 @@
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				183573AD1D798F5400722AA2 /* CX_FeaturedProductsJobs.swift in Sources */,
+				1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */,
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
 				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
 				11F1DE611D883B24002AF5B0 /* ordersTableViewCell.swift in Sources */,
@@ -1175,6 +1194,7 @@
 				11370F731D89581200CCBE01 /* MTCoordinateManager.swift in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
 				183573AB1D798F5400722AA2 /* CX_FeaturedProducts.swift in Sources */,
+				1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */,
 				1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */,
 				11370F641D893B0E00CCBE01 /* PopupController.swift in Sources */,
 				11F1DE651D883B77002AF5B0 /* OrdersViewController.swift in Sources */,
