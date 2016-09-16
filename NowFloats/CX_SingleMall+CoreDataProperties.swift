@@ -2,7 +2,7 @@
 //  CX_SingleMall+CoreDataProperties.swift
 //  NowFloats
 //
-//  Created by apple on 07/09/16.
+//  Created by apple on 16/09/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -27,5 +27,6 @@ extension CX_SingleMall {
     @NSManaged var mobile: String?
     @NSManaged var name: String?
     @NSManaged var state: String?
+    @NSManaged var json: String?
 
 }

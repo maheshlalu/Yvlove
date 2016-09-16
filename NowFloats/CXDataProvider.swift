@@ -217,30 +217,44 @@ class CXDataProvider: NSObject {
     
     func saveSingleMallInDB(resDict:NSDictionary ,completion:(isDataSaved:Bool) -> Void) {
         
-    
+        print("single mall Dic \(resDict)")
+        let jobs : NSArray =  resDict.valueForKey("orgs")! as! NSArray
         CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.valueForKeyPath("orgs.fpId")!))
         completion(isDataSaved: true)
-
-     /*   //orgs.appInfo.fpId
         MagicalRecord.saveWithBlock({ (localContext) in
-            let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
-            enSMall.mallID = CXConstant.resultString(resDict.valueForKey("id")!)
-            enSMall.coverImage = resDict.valueForKey("Cover_Image") as? String
-            enSMall.mallDesc = resDict.valueForKey("description") as? String
-            enSMall.name = resDict.valueForKey("name") as? String
-            enSMall.email = resDict.valueForKey("email") as? String
-            enSMall.mobile = resDict.valueForKey("mobile") as? String
+            for prod in jobs {
+                let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
+                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
+                enSMall.json = jsonString as String
+            }
         }) { (success, error) in
             if success == true {
-//                if let delegate = self.delegate {
-//                    delegate.didFinishSingleMallSaving(CXConstant.resultString(resDict.valueForKey("id")!))
-//                }
+                
             } else {
                 print("Error\(error)")
             }
-        }*/
-        
         }
+        
+        /*   //orgs.appInfo.fpId
+         MagicalRecord.saveWithBlock({ (localContext) in
+         let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
+         enSMall.mallID = CXConstant.resultString(resDict.valueForKey("id")!)
+         enSMall.coverImage = resDict.valueForKey("Cover_Image") as? String
+         enSMall.mallDesc = resDict.valueForKey("description") as? String
+         enSMall.name = resDict.valueForKey("name") as? String
+         enSMall.email = resDict.valueForKey("email") as? String
+         enSMall.mobile = resDict.valueForKey("mobile") as? String
+         }) { (success, error) in
+         if success == true {
+         //                if let delegate = self.delegate {
+         //                    delegate.didFinishSingleMallSaving(CXConstant.resultString(resDict.valueForKey("id")!))
+         //                }
+         } else {
+         print("Error\(error)")
+         }
+         }*/
+        
+    }
     
 
 }
