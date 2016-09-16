@@ -14,6 +14,8 @@ class MapViewCntl: CXViewController {
     var mapView: MKMapView = MKMapView ()
     let screenSize = UIScreen.mainScreen().bounds.size
     let locationManager = CLLocationManager()
+    var lat:Double! = nil
+    var lon:Double! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +60,7 @@ class MapViewCntl: CXViewController {
     
     func zoomToRegion() {
         
-        let location = CLLocationCoordinate2D(latitude: 18.5184, longitude: 84.1514)
+        let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
         let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
         
@@ -78,11 +80,11 @@ class MapViewCntl: CXViewController {
         
         //18.5184° N, 84.1514° E
         
-        let lat = 18.5184
-        let long = 84.1514
+//        self.lat = 18.5184
+//        let long = 84.1514
         
         var annotations:Array = [Station]()
-        let annotation = Station(latitude: lat, longitude: long)
+        let annotation = Station(latitude:lat, longitude:lon)
         //let annotation1 = Station(latitude: 17.3840500	, longitude:  78.4563600)
         
         //annotations.append(annotation1)
@@ -103,16 +105,7 @@ class MapViewCntl: CXViewController {
         mapView.addOverlay(polyline)
         
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -129,15 +122,15 @@ extension MapViewCntl :MKMapViewDelegate,CLLocationManagerDelegate {
         return polylineRenderer
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-//        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//       
-        let location = locations.last! as CLLocation
-        
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.mapView.setRegion(region, animated: true)
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//
+//        let location = locations.last! as CLLocation
+//        
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//        
+//        self.mapView.setRegion(region, animated: true)
     }
 
 }

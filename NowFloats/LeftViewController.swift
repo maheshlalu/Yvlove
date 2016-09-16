@@ -9,15 +9,16 @@
 import UIKit
 class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
+    @IBOutlet weak var viewMapBtn: UIButton!
+    @IBOutlet weak var messageBtn: UIButton!
+    @IBOutlet weak var callUsBtn: UIButton!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var contentsTableView: UITableView!
     var profileDPImageView:UIImageView!
-    var callUsBtn: UIButton!
-    var messageBtn: UIButton!
-    var viewMapBtn: UIButton!
     var titleLable: UILabel!
     var mailLable: UILabel!
     var websiteLbl:UILabel!
+    var sidePanelDataDict: NSDictionary! = nil
     
     var navController : CXNavDrawer = CXNavDrawer()
     
@@ -27,15 +28,26 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.whiteColor()
         //self.detailsView.backgroundColor = UIColor.greenColor()
+        let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+        self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+        print(self.sidePanelDataDict)
+ 
         sidepanelView()
 
     }
+    func btnBorderAlignments(){
+        viewMapBtn.layer.cornerRadius = 2
+        messageBtn.layer.cornerRadius = 2
+        callUsBtn.layer.cornerRadius = 2
+    }
+    
     func sidepanelView(){
 
         
-        self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-25,60,60))
-        self.profileDPImageView .image = UIImage(named: "pp.jpg")
-       // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
+        self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-32,60,60))
+        let imgUrl = self.sidePanelDataDict.valueForKey("logo") as! String!
+        profileDPImageView.sd_setImageWithURL(NSURL(string: imgUrl))
+        // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
@@ -44,7 +56,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
-        titleLable.text = "68M Holidays Hyderabad"
+        let productName = self.sidePanelDataDict.valueForKeyPath("appInfo.ApplicationName")
+        let city = self.sidePanelDataDict.valueForKeyPath("address.city")
+        titleLable.text = "\(productName!) \(city!)"
         self.detailsView.addSubview(titleLable)
         
 //        let mailImage = UIImageView.init(frame: CGRectMake())
@@ -54,28 +68,30 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
         self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
         mailLable.font = mailLable.font.fontWithSize(10)
-        // self.mailLable.backgroundColor = UIColor.yellowColor()
-        mailLable.text = "iamsky.mme@gmail.com"
+        let mail = self.sidePanelDataDict.valueForKeyPath("email")
+        if mail != nil{
+            mailLable.text = "\(mail!)"
+        }
         self.detailsView.addSubview(mailLable)
+
         
         self.websiteLbl = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.mailLable.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
         websiteLbl.font = mailLable.font.fontWithSize(10)
-        // self.mailLable.backgroundColor = UIColor.yellowColor()
-        websiteLbl.text = "www.manishi.co.in"
-        self.detailsView.addSubview(websiteLbl)
-        
-        /*
-        self.callUsBtn = self.createImageButton(CGRectMake(self.detailsView.frame.origin.x+5, self.detailsView.frame.size.height-60, 70 ,30), tag: 100, bImage:UIImage.init(imageLiteral: "callusBtnImage"))
-         self.detailsView.addSubview(self.callUsBtn)
-        
-        self.messageBtn = self.createImageButton(CGRectMake(self.callUsBtn.frame.size.width+self.detailsView.frame.origin.x+5, self.detailsView.frame.size.height-60, 70 ,30), tag: 200, bImage:UIImage.init(imageLiteral: "callusBtnImage"))
-        self.detailsView.addSubview(self.messageBtn)
-        
-        self.viewMapBtn = self.createImageButton(CGRectMake(self.messageBtn.frame.size.width+callUsBtn.frame.size.width+self.detailsView.frame.origin.x+5, self.detailsView.frame.size.height-60, 70 ,30), tag: 300, bImage:UIImage.init(imageLiteral: "callusBtnImage"))
-        self.detailsView.addSubview(self.viewMapBtn)
-        */
-
+        websiteLbl.textColor = UIColor.blueColor()
+        let website = self.sidePanelDataDict.valueForKeyPath("website")
+        if website != nil{
+            websiteLbl.text = "\(website!)"
+        }
+        websiteLbl.userInteractionEnabled = true
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LeftViewController.labelAction))
+        websiteLbl.addGestureRecognizer(tap)
+        self.detailsView.addSubview(self.websiteLbl)
+    }
     
+    func labelAction(){
+        let website = self.sidePanelDataDict.valueForKeyPath("website") as! String!
+        UIApplication.sharedApplication().openURL(NSURL(string: "\(website)")!)
+        
     }
     
     func createButton(frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
@@ -128,8 +144,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         if itemName == "Home"{
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
+            self.navController.popToRootViewControllerAnimated(true)
 
         }else if itemName == "About us"{
             let aboutUs = storyBoard.instantiateViewControllerWithIdentifier("ABOUT_US") as! AboutUsViewController
@@ -145,15 +160,38 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func callUsAction(sender: UIButton) {
-        callNumber("9640339556")
+        
+        let website = self.sidePanelDataDict.valueForKeyPath("mobile") as! String!
+        callNumber(website!)
+//        let alert = UIAlertController(title:"", message: "Please Select A Number", preferredStyle: .Alert)
+//        
+//        alert.addAction(UIAlertAction(title: "Approve", style: .Default , handler:{ (UIAlertAction)in
+//           
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "Edit", style: .Default , handler:{ (UIAlertAction)in
+//            
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .Destructive , handler:{ (UIAlertAction)in
+//            print("User click Delete button")
+//        }))
+//        
+//        self.presentViewController(alert, animated: true, completion: {
+//            print("completion block")
+//        })
     }
     
     @IBAction func messageAction(sender: UIButton) {
+        
+        
     }
     
     @IBAction func viewMapAction(sender: UIButton) {
         self.navController.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
+        mapViewCnt.lat = Double(self.sidePanelDataDict.valueForKeyPath("latitude") as! String!)
+        mapViewCnt.lon = Double(self.sidePanelDataDict.valueForKeyPath("longitude") as! String!)
         self.navController.pushViewController(mapViewCnt, animated: true)
         
     }

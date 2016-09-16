@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "delete20x20-1.png",
+      "filename" : "message20x20-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "delete40x40-1.png",
+      "filename" : "message40x40(1).png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "delete80x80-1.png",
+      "filename" : "message80x80(1).png",
       "scale" : "3x"
     }
   ],
