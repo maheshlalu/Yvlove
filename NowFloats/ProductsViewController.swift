@@ -66,6 +66,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionViewCell", forIndexPath: indexPath)as! ProductsCollectionViewCell
 
+        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
+        let width = UIScreen.mainScreen().bounds.size.width  - 6
+        flow.itemSize = CGSizeMake(width/1, 186)
+        
+        
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         cell.productdescriptionLabel.text = products.name
         cell.produstimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))

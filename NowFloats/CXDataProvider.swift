@@ -220,7 +220,6 @@ class CXDataProvider: NSObject {
         print("single mall Dic \(resDict)")
         let jobs : NSArray =  resDict.valueForKey("orgs")! as! NSArray
         CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.valueForKeyPath("orgs.fpId")!))
-        completion(isDataSaved: true)
         MagicalRecord.saveWithBlock({ (localContext) in
             for prod in jobs {
                 let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
@@ -229,7 +228,7 @@ class CXDataProvider: NSObject {
             }
         }) { (success, error) in
             if success == true {
-                
+                completion(isDataSaved: true)
             } else {
                 print("Error\(error)")
             }

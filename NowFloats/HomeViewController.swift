@@ -56,7 +56,7 @@ class HomeViewController: UITabBarController {
         }else{
             firstTab = storyBoard.instantiateViewControllerWithIdentifier("OFFERS") as! OffersViewController
             firstTab.title = "OFFERS"
-            firstTab.tabBarItem.image = UIImage(named: "updateTabImg")
+            firstTab.tabBarItem.image = UIImage(named: "offers")
         }
         
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController

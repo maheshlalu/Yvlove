@@ -31,13 +31,22 @@ public class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
-         self.getTheSigleMall()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             print("print store category\(responseDict)")
             self.getTheStores()
         }
     }
     
+    func getSingleMall(completion:(isDataSaved:Bool) -> Void){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            CXDataProvider.sharedInstance.saveSingleMallInDB(responseDict, completion: { (isDataSaved) in
+                completion(isDataSaved: isDataSaved)
+            })
+        }
+
+      //  self.getTheSigleMall()
+
+    }
     
     func getTheStores(){
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in

@@ -27,12 +27,21 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.whiteColor()
+        //sidePanelDataDict = NSDictionary()
+        if CX_SingleMall.MR_findAll().count != 0  {
+            let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+            self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+            sidepanelView()
+        }else{
+            CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
+                let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+                self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+                self.sidepanelView()
+
+            })
+        }
+        
         //self.detailsView.backgroundColor = UIColor.greenColor()
-        let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
-        self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-        print(self.sidePanelDataDict)
- 
-        sidepanelView()
 
     }
     func btnBorderAlignments(){

@@ -40,6 +40,9 @@
 		1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */; };
 		1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */; };
 		1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */; };
+		1147CBA41D8C332E00138C4E /* EnquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CBA31D8C332E00138C4E /* EnquiryViewController.swift */; };
+		1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1147CBA51D8C333300138C4E /* EnquiryTableViewCell.xib */; };
+		1147CBA81D8C333C00138C4E /* EnquiryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -195,6 +198,9 @@
 		1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentRatingViewController.swift; sourceTree = "<group>"; };
 		1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentViewController.swift; sourceTree = "<group>"; };
 		1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
+		1147CBA31D8C332E00138C4E /* EnquiryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnquiryViewController.swift; sourceTree = "<group>"; };
+		1147CBA51D8C333300138C4E /* EnquiryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnquiryTableViewCell.xib; sourceTree = "<group>"; };
+		1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnquiryTableViewCell.swift; sourceTree = "<group>"; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +370,9 @@
 		110329B71D8A6B6C0008A3B7 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				1147CBA31D8C332E00138C4E /* EnquiryViewController.swift */,
+				1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */,
+				1147CBA51D8C333300138C4E /* EnquiryTableViewCell.xib */,
 				110329B91D8A6B890008A3B7 /* FormViewController.swift */,
 				110329BB1D8A6B9A0008A3B7 /* HistoryViewController.swift */,
 				110329BF1D8A6BB00008A3B7 /* HistoryTableViewCell.swift */,
@@ -955,6 +964,7 @@
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				11F1DE5F1D883AFF002AF5B0 /* AboutusTableViewCell.xib in Resources */,
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
+				1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */,
 				189A1E421D79479800724120 /* Roboto-Regular.ttf in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
@@ -1174,8 +1184,10 @@
 				11370F6D1D89511700CCBE01 /* ProfileViewController.swift in Sources */,
 				183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */,
 				110329C21D8A72990008A3B7 /* MapViewCntl.swift in Sources */,
+				1147CBA81D8C333C00138C4E /* EnquiryTableViewCell.swift in Sources */,
 				11F1DE4E1D883A31002AF5B0 /* DPDConstants.swift in Sources */,
 				11370F751D8973F400CCBE01 /* UserProfileViewController.swift in Sources */,
+				1147CBA41D8C332E00138C4E /* EnquiryViewController.swift in Sources */,
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				183573AD1D798F5400722AA2 /* CX_FeaturedProductsJobs.swift in Sources */,
