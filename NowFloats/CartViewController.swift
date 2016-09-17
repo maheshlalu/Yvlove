@@ -45,6 +45,10 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         
+        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
+        let width = UIScreen.mainScreen().bounds.size.width - 6
+        flow.itemSize = CGSizeMake(width, 189)
         
         let cell = collectionview.dequeueReusableCellWithReuseIdentifier("NowfloatscartViewCollectionViewCell", forIndexPath: indexPath)as! NowfloatscartViewCollectionViewCell
         

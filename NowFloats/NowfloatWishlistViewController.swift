@@ -52,7 +52,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             CX_Cart)!
         
         cell.imagetitleLabel.text = products.name
-        cell.imagetitleLabel.font = CXAppConfig.sharedInstance.appLargeFont()
+        cell.imagetitleLabel.font = CXAppConfig.sharedInstance.appMediumFont()
         cell.wishlistimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
         cell.wishlistaddtocartbutton.tag = indexPath.row+1
         cell.wishlistdeletebutton.tag = indexPath.row+1
