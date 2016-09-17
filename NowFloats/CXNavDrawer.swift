@@ -32,6 +32,7 @@ class Constants {
 
 
 class CXNavDrawer: UINavigationController {
+    let chooseArticleDropDown = DropDown()
     
     var pan_gr : UIPanGestureRecognizer!
     var isOPen : Bool = false
@@ -74,6 +75,7 @@ class CXNavDrawer: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+
 
     /*
     // MARK: - Navigation
@@ -391,28 +393,91 @@ extension CXNavDrawer {
     }
     
     func profileToggleAction(sender:UIButton){
+
+        if NSUserDefaults.standardUserDefaults().valueForKey("USER_ID") == nil{
+            //show Profile
+            chooseArticleDropDown.show()
+                chooseArticleDropDown.anchorView = profileBtn
+                chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+                
+                // You can also use localizationKeysDataSource instead. Check the docs.
+                chooseArticleDropDown.dataSource = [
+                    "Profile"
+                ]
+                
+                // Action triggered on selection
+                chooseArticleDropDown.selectionAction = {(index, item) in
+                    self.profileBtn.setTitle(nil, forState: .Normal)
+                    if index == 0{
+                        NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
+                    }
+                }
+           // NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector(signInView()), name: "SIGNIN", object: nil)
+        }else{
+        chooseArticleDropDown.show()
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-5)
         
-        FTPopOverMenu.showForSender(sender, withMenu: ["SignIn", "SignUp", "Forgot Password","Profile"], imageNameArray:nil, doneBlock: {(selectedIndex: Int) -> Void in
-            if selectedIndex == 0{
-                NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
-                return
-            }
-            else if selectedIndex == 1{
-                NSNotificationCenter.defaultCenter().postNotificationName("SignUpNotification", object: nil)
-                return
-            }else if selectedIndex == 2 {
-                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
-                return
-            }else if selectedIndex == 3{
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseArticleDropDown.dataSource = [
+            "Profile","Logout"
+        ]
+        
+        // Action triggered on selection
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
                 NSNotificationCenter.defaultCenter().postNotificationName("ProfileNotification", object: nil)
-                return
-            
+            }else if index == 1{
+                self.logout()
             }
-            }, dismissBlock: {() -> Void in
+            }
+        }
+
+}
     
-        })
-        
+    func logout(){
+
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("STATE")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("USER_EMAIL")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("FIRST_NAME")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("LAST_NAME")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("GENDER")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("USER_ID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("MAC_ID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("MOBILE")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("ADDRESS")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("FULL_NAME")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("CITY")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("ORG_ID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("MACID_JOBID")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("ORGANIZATION")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("MESSAGE")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("STATUS")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("COUNTRY")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("BANNER_PATH")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("IMAGE_PATH")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
-    
+    func signInView() {
+        print("signInPage")
+        NSNotificationCenter.defaultCenter().removeObserver("SIGNIN")
+        chooseArticleDropDown.show()
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseArticleDropDown.dataSource = [
+            "Forgot Password?"
+        ]
+        
+        // Action triggered on selection
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
+                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+            }
+        }
+    }
 }

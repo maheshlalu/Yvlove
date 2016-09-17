@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
         </mutableArray>
@@ -23,19 +22,22 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-86-3eo">
-                        <rect key="frame" x="0.0" y="6" width="185" height="115"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-86-3eo">
+                        <rect key="frame" x="5" y="5" width="175" height="107"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="107" id="A8O-g6-YhS"/>
                             <constraint firstAttribute="height" constant="92" id="H0Q-F9-55p"/>
+                            <constraint firstAttribute="height" constant="107" id="gvn-zs-mE9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="A8O-g6-YhS"/>
                                 <exclude reference="H0Q-F9-55p"/>
                             </mask>
                         </variation>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-JH-cHc">
-                        <rect key="frame" x="135" y="16" width="42" height="40"/>
+                        <rect key="frame" x="135" y="15" width="42" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="Re0-Ee-J0C"/>
                             <constraint firstAttribute="height" constant="40" id="Vgx-0R-Kjs"/>
@@ -44,12 +46,12 @@
                         <state key="selected" image="heart_selected"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4567" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn6-uw-wkP">
-                        <rect key="frame" x="5" y="184" width="74" height="20"/>
+                        <rect key="frame" x="8" y="198" width="74" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="8Qa-Lb-959"/>
                             <constraint firstAttribute="width" constant="74" id="Heo-3n-j1S"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
@@ -69,30 +71,15 @@
                         <state key="normal" title="ADD" image="addToCartImage"/>
                         <state key="selected" title="ADDED" image="addToCart_White"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23456" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsG-hu-zh8">
-                        <rect key="frame" x="8" y="166" width="74" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="36T-ZT-iSb"/>
-                            <constraint firstAttribute="width" constant="74" id="8l8-ay-k4L"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="36T-ZT-iSb"/>
-                            </mask>
-                        </variation>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ashggdjhgashjdgasjhdasdasdasdsdsdfsdfdssdf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKj-UO-GqA">
-                        <rect key="frame" x="5" y="123" width="175" height="36"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="ashggdjhgashjdgasjhdasdasdasdsdsdfsdfdssdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKj-UO-GqA">
+                        <rect key="frame" x="5" y="114" width="175" height="66"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="185" id="MJd-s6-xHb"/>
                             <constraint firstAttribute="width" constant="175" id="Vzo-cQ-oXV"/>
                             <constraint firstAttribute="width" constant="175" id="b2z-KN-rOr"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="yEj-cj-KK6"/>
+                            <constraint firstAttribute="height" constant="58" id="jGl-rn-Gog"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
@@ -100,6 +87,22 @@
                                 <exclude reference="MJd-s6-xHb"/>
                                 <exclude reference="Vzo-cQ-oXV"/>
                                 <exclude reference="b2z-KN-rOr"/>
+                                <exclude reference="jGl-rn-Gog"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23456" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsG-hu-zh8">
+                        <rect key="frame" x="8" y="182" width="74" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="36T-ZT-iSb"/>
+                            <constraint firstAttribute="width" constant="74" id="8l8-ay-k4L"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="36T-ZT-iSb"/>
                             </mask>
                         </variation>
                     </label>
@@ -109,24 +112,32 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="T3l-JH-cHc" secondAttribute="bottom" constant="-50" id="199-xr-7Xj"/>
-                <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="-2" id="CFG-5U-Vl4"/>
-                <constraint firstAttribute="trailing" secondItem="dgd-86-3eo" secondAttribute="trailing" id="FxJ-1L-gTs"/>
+                <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="-4" id="CFG-5U-Vl4"/>
+                <constraint firstAttribute="trailing" secondItem="dgd-86-3eo" secondAttribute="trailing" constant="5" id="FxJ-1L-gTs"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="ID3-np-Pvi"/>
                 <constraint firstAttribute="trailing" secondItem="zat-1g-efN" secondAttribute="trailing" constant="5" id="KCN-RV-GtW"/>
                 <constraint firstItem="xsG-hu-zh8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="NfD-i2-dvJ"/>
-                <constraint firstItem="xsG-hu-zh8" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="7" id="XcE-UX-c6Q"/>
-                <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="25" id="ZbU-1e-13s"/>
+                <constraint firstItem="xsG-hu-zh8" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="2" id="XcE-UX-c6Q"/>
+                <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="18" id="ZbU-1e-13s"/>
                 <constraint firstAttribute="trailing" secondItem="NKj-UO-GqA" secondAttribute="trailing" constant="5" id="a8q-mm-Z2a"/>
-                <constraint firstItem="dgd-86-3eo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fN7-JW-a2g"/>
-                <constraint firstItem="T3l-JH-cHc" firstAttribute="leading" secondItem="dgd-86-3eo" secondAttribute="trailing" constant="-50" id="kBa-6Q-qe4"/>
+                <constraint firstItem="dgd-86-3eo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="fN7-JW-a2g"/>
+                <constraint firstItem="T3l-JH-cHc" firstAttribute="leading" secondItem="dgd-86-3eo" secondAttribute="trailing" constant="-45" id="kBa-6Q-qe4"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ldM-TZ-NzC"/>
-                <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="ozP-n6-NOo"/>
+                <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ozP-n6-NOo"/>
                 <constraint firstAttribute="bottom" secondItem="zat-1g-efN" secondAttribute="bottom" constant="12" id="rbl-eq-Amh"/>
-                <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" constant="18" id="uQ2-Nk-xc3"/>
-                <constraint firstItem="Pn6-uw-wkP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="xRZ-4K-9ka"/>
-                <constraint firstAttribute="bottom" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="36" id="zOp-49-4Mv"/>
+                <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" constant="9" id="uQ2-Nk-xc3"/>
+                <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="wkH-jx-ZZM"/>
+                <constraint firstItem="Pn6-uw-wkP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xRZ-4K-9ka"/>
+                <constraint firstAttribute="bottom" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="25" id="zOp-49-4Mv"/>
             </constraints>
             <size key="customSize" width="218" height="224"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ID3-np-Pvi"/>
+                    <exclude reference="zOp-49-4Mv"/>
+                    <exclude reference="CFG-5U-Vl4"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="cartaddedbutton" destination="zat-1g-efN" id="ttd-65-abc"/>
                 <outlet property="likebutton" destination="T3l-JH-cHc" id="K2b-so-p5y"/>

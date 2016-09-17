@@ -118,7 +118,6 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
     }
     
     func leftMenuTapped(){
-        
         let navVC : CXNavDrawer = (self.navigationController as? CXNavDrawer)!
         navVC.drawerToggle()
     }

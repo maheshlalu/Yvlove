@@ -39,6 +39,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+    }
+    
     
     func customizeMainView() {
         self.cScrollView = UIScrollView.init(frame: CGRectMake(0,0, self.view.frame.size.width, (self.view.frame.size.height)))

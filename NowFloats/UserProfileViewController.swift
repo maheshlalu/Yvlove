@@ -35,7 +35,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     func headerViewAlignments(){
         self.profileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.dpImageView.clipsToBounds = true
-        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/2
+        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/6.5
         self.dpImageView.layer.borderWidth = 3.0
         self.dpImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }

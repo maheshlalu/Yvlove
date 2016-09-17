@@ -27,8 +27,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         
-        chooseArticleButton.sizeToFit()
-        chooseArticleButton.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseArticleButton.imageView!.frame.size.width, 0, chooseArticleButton.imageView!.frame.size.width)
+//        chooseArticleButton.sizeToFit()
+//        chooseArticleButton.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseArticleButton.imageView!.frame.size.width, 0, chooseArticleButton.imageView!.frame.size.width)
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+150, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         getTheProducts()
@@ -65,12 +65,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionViewCell", forIndexPath: indexPath)as! ProductsCollectionViewCell
-
-        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
-        let width = UIScreen.mainScreen().bounds.size.width  - 6
-        flow.itemSize = CGSizeMake(width/1, 186)
-        
         
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         cell.productdescriptionLabel.text = products.name
@@ -82,12 +76,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
         if discount == "0"{
-            cell.productFinalPriceLabel.hidden = true
-            cell.productpriceLabel.text = "\(rupee) \(price)"
-            cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(13)
-            cell.productpriceLabel.textColor = UIColor.darkGrayColor()
+            cell.productpriceLabel.hidden = true
+            cell.productFinalPriceLabel.text = "\(rupee) \(price)"
+            cell.productFinalPriceLabel.font = cell.productpriceLabel.font.fontWithSize(14)
+            cell.productFinalPriceLabel.textColor = UIColor.darkGrayColor()
         }else{
-            cell.productFinalPriceLabel.hidden = false
+            //cell.productFinalPriceLabel.hidden = false
+            cell.productpriceLabel.hidden = false
             cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(11)
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
@@ -135,18 +130,30 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
     }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-        return 3.0
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+//        
+//        return 3.0
+   // }
     
+    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        screenWidth =  UIScreen.mainScreen().bounds.size.width
+//        
+//        return CGSize(width: screenWidth/2.2+7, height: 222);
+//    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        screenWidth =  UIScreen.mainScreen().bounds.size.width
+        return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
         
-        return CGSize(width: screenWidth/2.2+7, height: 200);
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         
@@ -333,11 +340,11 @@ extension ProductsViewController{
         
         // You can also use localizationKeysDataSource instead. Check the docs.
         chooseArticleDropDown.dataSource = [
-            "Popularity",
-            "Recent",
-            "High Price",
-            "Low Price",
-            "Oldest"
+            "   Popularity",
+            "   Recent",
+            "   High Price",
+            "   Low Price",
+            "   Oldest"
         ]
         
         // Action triggered on selection
