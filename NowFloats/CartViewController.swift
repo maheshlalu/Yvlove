@@ -23,9 +23,10 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
         self.collectionview.registerNib(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()
-        
+        self.checkOutNowBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.productsCountLbl.text = "\(self.products.count) Products"
-        
+        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+        self.collectionview.backgroundView?.backgroundColor = UIColor.clearColor()
     }
     
     func getTheProducts(){
@@ -75,8 +76,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartviewimage.sd_setImageWithURL(NSURL(string: products.imageUrl!))
         
-        cell.cartviewimagetitlelabel.font = CXAppConfig.sharedInstance.appLargeFont()
-        cell.cartviewpricelabel.font = CXAppConfig.sharedInstance.appLargeFont()
+        cell.cartviewimagetitlelabel.font = CXAppConfig.sharedInstance.appMediumFont()
+        cell.cartviewpricelabel.font = CXAppConfig.sharedInstance.appMediumFont()
         let rupee = "\u{20B9}"
         cell.cartviewpricelabel.text = "\(rupee)\(products.productPrice!)"
         cell.cartviewLabel.text = "2"
@@ -160,7 +161,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
 
     @IBAction func checkoutNowBtn(sender: UIButton) {
         
-        PopupController
+        let popup = PopupController
             .create(self)
             .customize(
                 [
@@ -171,12 +172,18 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
                 ]
             )
             .didShowHandler { popup in
-                print("showed popup!")
             }
             .didCloseHandler { _ in
-                print("closed popup!")
-            }
-            .show(DemoPopupViewController2.instance())
+        }
+        let container = DemoPopupViewController2.instance()
+        container.closeHandler = { _ in
+            popup.dismiss()
+            CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!, completion: { (isDataSaved) in
+                
+                
+            })
+        }
+        popup.show(container)
         
     }
 

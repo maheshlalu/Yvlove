@@ -23,6 +23,8 @@ class PhotosViewController: CXViewController {
         let nib = UINib(nibName: "PhotosCollectionViewCell", bundle: nil)
         self.photosCollectionView.registerNib(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         self.getTheGalleryItems()
+        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+        self.photosCollectionView.backgroundColor = UIColor.clearColor()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,7 +43,17 @@ class PhotosViewController: CXViewController {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.mainScreen().bounds.size.width
-        return CGSize(width: screenWidth/2-11, height: 100);
+        return CGSize(width: screenWidth/2-13, height: 130);
+    }
+    
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
     }
     
     /*let browser = SKPhotoBrowser(photos: images)

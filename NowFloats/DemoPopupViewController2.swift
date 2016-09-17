@@ -9,7 +9,7 @@
 import UIKit
 
 class DemoPopupViewController2: UIViewController, PopupContentViewController{
-    
+    var closeHandler: (() -> Void)?
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
@@ -41,6 +41,9 @@ class DemoPopupViewController2: UIViewController, PopupContentViewController{
     
     func sizeForPopup(popupController: PopupController, size: CGSize, showingKeyboard: Bool) -> CGSize {
         return CGSizeMake(330, 350)
+    }
+    @IBAction func okButtonAction(sender: AnyObject) {
+        closeHandler?()
     }
     
 

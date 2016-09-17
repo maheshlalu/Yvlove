@@ -41,10 +41,6 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
-        let width = UIScreen.mainScreen().bounds.size.width - 6
-        flow.itemSize = CGSizeMake(width, 150)
 
         let cell = wishlistcollectionView.dequeueReusableCellWithReuseIdentifier("WishlistCollectionViewCell", forIndexPath: indexPath)as! WishlistCollectionViewCell
         cell.imagetitleLabel.text = self.products[indexPath.item] as? String
@@ -89,6 +85,22 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         return cell
     }
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
+        //let width = UIScreen.mainScreen().bounds.size.width - 6
+        //flow.itemSize = CGSizeMake(width, 150)
+        return CGSize(width: collectionView.bounds.size.width-10, height: 150)
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
     
     
     func addTocartBtnAction(button : UIButton!){
