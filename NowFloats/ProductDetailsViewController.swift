@@ -16,25 +16,62 @@ class ProductDetailsViewController: CXViewController {
     
     @IBOutlet weak var placeOrderBtn: UIButton!
     @IBOutlet weak var addToCartBtn: UIButton!
+    @IBOutlet weak var ratingView: FloatRatingView!
+    @IBOutlet weak var ratingBgView: UIView!
     
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var productRattingLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        customisingBtns()
         self.productDetailsTableView.rowHeight = UITableViewAutomaticDimension
         self.productDetailsTableView.estimatedRowHeight = 10.0
         self.productDetailsTableView.separatorStyle = .None
+        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         print(CXConstant.sharedInstance.convertStringToDictionary(productString))
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
-        print("\(productDetailDic)")
+        self.setUpRatingView()
+        customisingBtns()
+
+        //print("\(productDetailDic)")
       // print("\(productDetailDic.valueForKey("ShipmentDuration"))")
         /*[createdOn, hrsOfOperation, id, P3rdCategory, Name, Large_Image, publicURL, Current_Job_StatusId, Brand, jobTypeName, Category, Insights, guestUserEmail, Next_Seq_Nos, SubCategoryType, jobComments, PackageName, Image_URL, Current_Job_Status, Next_Job_Statuses, ItemCode, Description, Additional_Details, DiscountAmount, Image_Name, overallRating, CreatedSubJobs, Category_Mall, Quantity, Attachments, MRP, guestUserId, totalReviews, lastModifiedDate, createdByFullName, createdById, CategoryType, jobTypeId]*/
 
     }
+    
+    func setUpRatingView(){
+    //star
+        
+       // ratingView.emptyImage = UIImage(named: "star.png")
+        //ratingView.fullImage = UIImage(named: "star_sel_108.png")
+        // Optional params
+        //ratingView.delegate = self
+        ratingView.contentMode = UIViewContentMode.ScaleAspectFit
+       // ratingView.maxRating = 5
+        //ratingView.minRating = 0
+        //ratingView.rating = 0
+        ratingView.editable = false
+        ratingView.halfRatings = true
+        ratingView.floatRatings = false
+        self.ratingBgView.backgroundColor = UIColor.clearColor()
+        
+    }
+    
     func customisingBtns(){
         placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
         placeOrderBtn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
         addToCartBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        addToCartBtn.layer.cornerRadius = 2.0
+        addToCartBtn.layer.borderColor = UIColor.whiteColor().CGColor
+        addToCartBtn.layer.borderWidth = 1.0
+        
+        //CXConstant.resultString(prod.valueForKey("id")!)
+        //productDetailDic.valueForKey("id")! as! String
+        if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.valueForKey("id")!)).isAddedToCart{
+            addToCartBtn.selected = true
+        }else{
+            addToCartBtn.selected = false
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -62,7 +99,6 @@ class ProductDetailsViewController: CXViewController {
             let imgUrl = productDetailDic.valueForKey("Image_URL") as! String
             productImageView.sd_setImageWithURL(NSURL(string: imgUrl))
             
-            
         }else if indexPath.section == 1{
             let headerCellIdentifier = "Headercell"
             cell = tableView.dequeueReusableCellWithIdentifier(headerCellIdentifier)!
@@ -71,6 +107,14 @@ class ProductDetailsViewController: CXViewController {
             let finalPriceLbl = (cell!.viewWithTag(200)! as! UILabel)
             let discountPriceLbl = cell?.viewWithTag(300)! as! UILabel
             let discountPersentageLbl = cell?.viewWithTag(400)! as! UILabel
+            let favoriteBtn = cell?.viewWithTag(1000)! as! UIButton
+            
+            if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.valueForKey("id")!)).isAddedToWishList{
+                favoriteBtn.selected = true
+            }else{
+                favoriteBtn.selected = false
+            }
+
             
             let rupee = "\u{20B9}"
             let price:String = productDetailDic.valueForKey("MRP") as! String
@@ -103,8 +147,9 @@ class ProductDetailsViewController: CXViewController {
             cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
             cell?.selectionStyle = .None
             let textView = (cell!.viewWithTag(600)! as! UITextView)
-            
+            textView.font = CXAppConfig.sharedInstance.appMediumFont()
             textView.text = "\(productDetailDic.valueForKey("Description")!)"
+            cell?.backgroundColor = UIColor.whiteColor()
             
         }else if indexPath.section == 3{
             let footerIdentifier = "FooterCell"
@@ -130,28 +175,42 @@ class ProductDetailsViewController: CXViewController {
     }
     
     @IBAction func addToCartAction(sender: UIButton) {
-        sender.selected = !sender.selected
-        
         if sender.selected {
-            
-//            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
-//                //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
-//            })
+            //Remove Item
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+            })
             
         }else{
-            
-            
+            //Add item
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                
+            })
         }
+        sender.selected = !sender.selected
+
         
     }
     @IBAction func placeOrderNowAction(sender: AnyObject) {
-        
-        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
+        self.navigationController?.pushViewController(cart, animated: true)
     }
     
     @IBAction func heartAction(sender: UIButton) {
+        
+        if sender.selected {
+            //Remove Item
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            })
+            
+        }else{
+            //Add item
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                
+            })
+        }
         sender.selected = !sender.selected
+
     }
     
     //MAR:Heder options enable

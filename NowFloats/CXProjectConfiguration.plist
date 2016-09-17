@@ -6,9 +6,9 @@
 	<string>11</string>
 	<key>AppTheamColor</key>
 	<array>
-		<string>255</string>
-		<string>199</string>
-		<string>59</string>
+		<string>215</string>
+		<string>37</string>
+		<string>25</string>
 	</array>
 	<key>BaseUrl</key>
 	<string>http://nowfloats.ongostore.com:8081/</string>
@@ -32,11 +32,13 @@
 	<key>ISPagerEnable</key>
 	<false/>
 	<key>PRODUCT_NAME</key>
-	<string>NowFloats</string>
+	<string>68M Holidays</string>
 	<key>signInMethod</key>
 	<string>MobileAPIs/loginConsumerForOrg?</string>
 	<key>signUpMethod</key>
 	<string>MobileAPIs/regAndloyaltyAPI?</string>
+	<key>placeOrder</key>
+	<string>MobileAPIs/postedJobs?</string>
 	<key>forgotPassordMethod</key>
 	<string>MobileAPIs/forgotpwd?</string>
 	<key>updateProfile</key>
@@ -45,9 +47,9 @@
 	<string>Services/uploadFileFromAndroidToServer</string>
 	<key>AppBgColr</key>
 	<array>
-		<string>207</string>
-		<string>206</string>
-		<string>207</string>
+		<string>235</string>
+		<string>235</string>
+		<string>236</string>
 	</array>
 </dict>
 </plist>

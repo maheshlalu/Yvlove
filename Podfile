@@ -10,6 +10,7 @@ pod 'MagicalRecord/Shorthand'
 pod 'Alamofire', '~> 3.4'
 pod 'SDWebImage', '~> 3.8'
 pod 'SKPhotoBrowser', '~> 3.0'
+
   target 'NowFloatsTests' do
     inherit! :search_paths
     # Pods for testing

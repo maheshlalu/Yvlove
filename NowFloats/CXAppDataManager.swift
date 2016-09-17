@@ -145,15 +145,16 @@ public class CXAppDataManager: NSObject {
     
     //Mark Place order
     
-    func placeOder(completion:(isDataSaved:Bool) -> Void){
-        
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile("", parameters: ["json":self.checkOutCartItems(),"dt":"CAMPAIGNS","category":"Services","userId":"","consumerEmail":""]) { (responseDict) in
+    func placeOder(name:String ,email:String,address1:String,address2:String,number:String,completion:(isDataSaved:Bool) -> Void){
+        //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
+
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number),"dt":"CAMPAIGNS","category":"Services","userId":"2264","consumerEmail":email]) { (responseDict) in
             
         }
     }
     
     
-    func checkOutCartItems()-> String{
+    func checkOutCartItems(name:String ,email:String,address1:String,address2:String,number:String)-> String{
         
         let productEn = NSEntityDescription.entityForName("CX_Cart", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
         let fetchRequest = CX_Cart.MR_requestAllSortedBy("name", ascending: true)
@@ -168,15 +169,15 @@ public class CXAppDataManager: NSObject {
         let orderItemMRP: NSMutableString = NSMutableString()
         
         //let total: Double = 0
-        order.setValue("", forKey: "Name")
+        order.setValue(name, forKey: "Name")
         //order["Name"] = ("\("kushal")")
         //should be replaced
         // order["Address"] = ("\("madhapur hyd")")
-        order.setValue("", forKey: "Address")
+        order.setValue(address1, forKey: "Address")
         
         //should be replaced
         //order["Contact_Number"] = ("\("7893335553")")
-        order.setValue("", forKey: "Contact_Number")
+        order.setValue(number, forKey: "Contact_Number")
         
         //should be replaced
         
@@ -191,10 +192,10 @@ public class CXAppDataManager: NSObject {
                 orderItemMRP .appendString(("\("|")"))
             }
             orderItemName.appendString("\(cart.name! + "`" + cart.pID!)")
-            //orderItemQuantity.appendString("\(cart.quantity! + "`" + cart.pID!)")
+            orderItemQuantity.appendString("\(String(cart.quantity!) + "`" + cart.pID!)")
             //orderSubTotal.appendString(cart.name! + "`" + cart.pID!)
             orderItemId.appendString("\(cart.pID! + "`" + cart.pID!)")
-            //orderItemMRP.appendString(cart.name! + "`" + cart.pID!)
+            orderItemMRP.appendString(String(cart.productPrice!) + "`" + cart.pID!)
             //print("Item \(index): \(cart)")
         }
         

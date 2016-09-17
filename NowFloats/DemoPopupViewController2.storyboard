@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05Q-G7-9aQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="05Q-G7-9aQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -25,7 +27,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kWo-hi-e32"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fX4-NP-0jd">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="330" height="360"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-4t-TfY">
@@ -54,6 +56,9 @@
                                         <exclude reference="zl5-1A-1Xd"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="okButtonAction:" destination="05Q-G7-9aQ" eventType="touchUpInside" id="HeR-Jv-Q3F"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRn-ph-A15">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -72,16 +77,19 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Enter below details to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGX-n9-l1l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Enter below details to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGX-n9-l1l">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="12" y="19" width="275" height="33"/>
+                                </variation>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZYM-e0-4ec">
-                                <rect key="frame" x="0.0" y="-262" width="180" height="222"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZYM-e0-4ec">
+                                <rect key="frame" x="0.0" y="-252" width="180" height="222"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Suresh Kumar" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-w1-9dj">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-w1-9dj">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="fbO-fZ-Ub8"/>
@@ -99,7 +107,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="iamsky.mme@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q6b-0g-e3X">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q6b-0g-e3X">
                                         <rect key="frame" x="0.0" y="48" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="32r-lZ-mPX"/>
@@ -117,17 +125,17 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address line 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZW-Xj-48N">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address line 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZW-Xj-48N">
                                         <rect key="frame" x="0.0" y="96" width="180" height="30"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ctp-vX-JGe">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ctp-vX-JGe">
                                         <rect key="frame" x="0.0" y="144" width="180" height="30"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9640339556" borderStyle="roundedRect" placeholder="Contact Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOb-UX-foU">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOb-UX-foU">
                                         <rect key="frame" x="0.0" y="192" width="180" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -191,13 +199,15 @@
                                 <exclude reference="YGX-n9-l1l"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="2BD-Fv-7ca"/>
+                                <exclude reference="vZv-ys-516"/>
+                                <exclude reference="aPQ-90-C4h"/>
+                                <exclude reference="rf5-Q9-zT2"/>
                                 <exclude reference="1l9-Ta-cez"/>
                                 <exclude reference="FD7-wd-XWJ"/>
                                 <exclude reference="PAS-ZM-SGh"/>
                                 <exclude reference="Qmb-nm-Sec"/>
                                 <exclude reference="hT1-0c-3FE"/>
-                                <exclude reference="aPQ-90-C4h"/>
-                                <exclude reference="rf5-Q9-zT2"/>
                                 <exclude reference="0Zj-ZK-0h1"/>
                                 <exclude reference="Hc1-ds-FR5"/>
                                 <exclude reference="J9p-As-aXX"/>
@@ -205,8 +215,6 @@
                                 <exclude reference="fT9-Hu-BAC"/>
                                 <exclude reference="iM6-mm-fch"/>
                                 <exclude reference="zXf-33-InC"/>
-                                <exclude reference="2BD-Fv-7ca"/>
-                                <exclude reference="vZv-ys-516"/>
                                 <exclude reference="ihu-rO-lUW"/>
                                 <exclude reference="nfd-8p-QYe"/>
                             </mask>
@@ -218,18 +226,18 @@
                                 <include reference="YGX-n9-l1l"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="2BD-Fv-7ca"/>
+                                <include reference="vZv-ys-516"/>
+                                <include reference="aPQ-90-C4h"/>
+                                <include reference="rf5-Q9-zT2"/>
                                 <include reference="1l9-Ta-cez"/>
                                 <include reference="FD7-wd-XWJ"/>
                                 <include reference="PAS-ZM-SGh"/>
                                 <include reference="Qmb-nm-Sec"/>
                                 <exclude reference="hT1-0c-3FE"/>
-                                <include reference="aPQ-90-C4h"/>
-                                <include reference="rf5-Q9-zT2"/>
                                 <include reference="0Zj-ZK-0h1"/>
                                 <include reference="Hc1-ds-FR5"/>
                                 <exclude reference="iM6-mm-fch"/>
-                                <exclude reference="2BD-Fv-7ca"/>
-                                <include reference="vZv-ys-516"/>
                                 <exclude reference="0AK-Qv-QxW"/>
                                 <exclude reference="ihu-rO-lUW"/>
                                 <include reference="nfd-8p-QYe"/>
@@ -250,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01X-ar-iS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="594" y="399"/>
+            <point key="canvasLocation" x="348" y="380.25"/>
         </scene>
     </scenes>
 </document>

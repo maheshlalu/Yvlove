@@ -17,10 +17,10 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var questionBtn: UIButton!
     @IBOutlet weak var aboutusimageview: UIImageView!
     @IBOutlet weak var aboutustableview: UITableView!
-    
+    var aboutUsDic : NSDictionary!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.timingsLbl.layer.cornerRadius = 14.0
+        self.timingsLbl.layer.cornerRadius = 8.0
         self.questionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.aboutustableview?.registerNib(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
         self.aboutustableview?.registerNib(UINib(nibName: "AboutUsExtraTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutUsExtraTableViewCell")
@@ -29,7 +29,17 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.aboutustableview.rowHeight = UITableViewAutomaticDimension
         self.aboutustableview.estimatedRowHeight = 10.0
         
-        self.aboutustableview.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+        self.aboutustableview.backgroundColor = UIColor.clearColor()
+        //self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+        let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+        print(CXConstant.sharedInstance.convertStringToDictionary(appdata.json!))
+       self.aboutUsDic = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+       // sidepanelView()
+
+        //logo = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/11_1461743016987.png";
+        self.aboutusimageview.sd_setImageWithURL(NSURL(string: (aboutUsDic.valueForKey("imageUrl") as?String)!))
+
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -50,11 +60,14 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
             
             let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
             aboutUs.selectionStyle = .None
-            aboutUs.aboutusDescriptionlabel.text = nameArray[indexPath.section]
+            aboutUs.aboutusDescriptionlabel.text = self.aboutUsDic.valueForKeyPath("address.location") as?String
+            aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
             aboutUs.aboutusrootLabel.text = "We are Located in"
+            aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
+            aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appMediumFont()
             aboutUs.aboutuskmLabel.hidden = false
             aboutUs.aboutusgoogleLabel.hidden = false
-
+//address.location
             return aboutUs
             
         }else {
@@ -64,10 +77,12 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
             
             if indexPath.section == 1{
                 aboutUsExtra.extraTitleLbl.text = "We're happily available from"
+                aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUsExtra.extraDescLbl.text = "12:00Am to 11:30PM"
             }else if indexPath.section == 2{
                 aboutUsExtra.extraTitleLbl.text = "You can reacdh us at"
-                aboutUsExtra.extraDescLbl.text = "9640339556"
+                aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                aboutUsExtra.extraDescLbl.text = self.aboutUsDic.valueForKeyPath("mobile") as?String //"9640339556"//mobile
                 aboutUsExtra.callBtn.hidden = false
             }
             return aboutUsExtra
@@ -125,4 +140,101 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
 
     
 }
+/*
+ 
+ {
+ FacebookPageLink = 68MHolidays;
+ address =     {
+ city = Hyderabad;
+ country =         {
+ code = IN;
+ id = 36;
+ name = India;
+ };
+ id = 4;
+ location = "3-6-365, Office no 8 & 9, Upper Ground Floor, Liberty Plaza, Himayath Nagar, 500029";
+ state = "";
+ };
+ appInfo =     {
+ ApplicationName = "68M Holidays";
+ ApplicationType = Applications;
+ Category = Business;
+ "ConfirmEmailAddress:" = "anu.akilla@gmail.com";
+ ContainsADS = No;
+ ContentGuidelines = Yes;
+ ContentRating = "Medium Maturity";
+ Countries = India;
+ Email = "anu.akilla@gmail.com";
+ EmailAddress = "anu.akilla@gmail.com";
+ FeatureGraphic = "http://nowfloats.ongostore.com/public/icons/H/res/splash_image.png";
+ FullDescription = "";
+ "Hi-ResIcon" = "http://nowfloats.ongostore.com/public/icons/H/res/splash_image.png";
+ Language = No;
+ Miscellaneous = No;
+ Price = Free;
+ PrivacyPolicy = Yes;
+ ScreenShots =         {
+ screenshot1 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143039.png";
+ screenshot2 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143055.png";
+ screenshot3 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143103.png";
+ screenshot4 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143117.png";
+ screenshot5 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143125.png";
+ };
+ Sexuality = No;
+ Title = "68M Holidays";
+ "US_Export_Laws" = Yes;
+ Violent = No;
+ Website = "http://storeongo.com";
+ appfeatures =         {
+ Appfeature1 = "Quick and easy reach.";
+ Appfeature2 = "Order instantly.";
+ Appfeature3 = "Get rewards and points.";
+ Appfeature4 = "Stay updated.";
+ };
+ };
+ businessType =     (
+ );
+ category = Default;
+ currencyType = INR;
+ defaultStoreId = 157;
+ defaultStoreItemCode = "1461411810987_11";
+ description = "";
+ email = "deals_sog@68m.in";
+ fpApplicationId = A91B82DE3E93446A8141A52F288F69EFA1B09B1D13BB4E55BE743AB547B3489E;
+ fpId = 5285de044ec0a40db49f06a3;
+ fpTag = 68MHOLIDAYS;
+ gallery =     (
+ );
+ hrsOfOperation =     (
+ );
+ "ic_launcher_hdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-hdpi/11/ic_launcher.png";
+ "ic_launcher_ldpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-ldpi/11/ic_launcher.png";
+ "ic_launcher_mdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-mdpi/11/ic_launcher.png";
+ "ic_launcher_xhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xhdpi/11/ic_launcher.png";
+ "ic_launcher_xxhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xxhdpi/11/ic_launcher.png";
+ "ic_launcher_xxxhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xxxhdpi/11/ic_launcher.png";
+ id = 11;
+ imageUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118066821.jpg";
+ languageCode = en;
+ languageName = English;
+ latitude = "17.4065312623762";
+ logo = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/11_1461743016987.png";
+ logoUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079251.jpg";
+ longitude = "78.4774737052879";
+ mainCategory = "NowFloats Template";
+ mobile = 9700077768;
+ name = "68M Holidays";
+ offersCount = 0;
+ primaryColor = "#d72519";
+ promotionURL = "http://nowfloats.ongostore.com/m/11/webapp";
+ publicURL = "http://nowfloats.ongostore.com/application/m?orgid=11";
+ secondaryColor = "#edfcfb";
+ splashscreen = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable/11/splashscreen.png";
+ storesCount = 1;
+ tileImageUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079111.jpg";
+ tinyLogoUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079641.jpg";
+ website = "http://68mholidays.com";
+ }
 
+ 
+ */
