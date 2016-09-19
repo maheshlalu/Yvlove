@@ -43,7 +43,15 @@ class PhotosViewController: CXViewController {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.mainScreen().bounds.size.width
+        if CXConstant.sharedInstance == IPHONE_6
+        {
         return CGSize(width: screenWidth/2-13, height: 130);
+        }
+        else
+        {
+            return CGSize(width: screenWidth/2-9, height: 130)
+        }
+        
     }
     
     

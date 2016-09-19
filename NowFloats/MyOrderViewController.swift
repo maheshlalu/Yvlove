@@ -12,7 +12,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     var nameArray = ["Order id : 30704","Singapore & Malaysia Package for 06 Nights / 07 Days:[1 items]","pakisthan","newzealand","india","america","pakisthan","newzealand","india","america","pakisthan","newzealand"]
     
     let cellReuseIdentifier = "cell"
-    let cellSpacingHeight: CGFloat = 1
+    let cellSpacingHeight: CGFloat = 3
     @IBOutlet weak var MyorderstableView: UITableView!
     var orderData:NSDictionary! = nil
 

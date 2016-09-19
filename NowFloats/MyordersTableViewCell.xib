@@ -4,10 +4,18 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="151" id="KGk-i7-Jjw" customClass="MyordersTableViewCell" customModule="NowfloatsMyorders" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="151" id="KGk-i7-Jjw" customClass="MyordersTableViewCell" customModule="NowFloats" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="385" height="151"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -20,7 +28,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="JfN-tJ-X2m"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="156" id="bBx-1M-KIB"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -30,7 +38,7 @@
                             <constraint firstAttribute="width" constant="99" id="5Fz-Ka-qBs"/>
                             <constraint firstAttribute="height" constant="35" id="zb4-29-SDy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,6 +49,7 @@
                             <constraint firstAttribute="width" constant="141" id="PRb-Gc-Ra6"/>
                             <constraint firstAttribute="height" constant="41" id="fYD-f7-PPP"/>
                         </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                         <state key="normal" title="Placed">
                             <color key="titleColor" red="0.33944553405827976" green="0.57428243885869568" blue="0.1280604516437763" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -51,7 +60,7 @@
                             <constraint firstAttribute="width" constant="317" id="PST-0Z-Drc"/>
                             <constraint firstAttribute="height" constant="35" id="o6Q-l6-Zc2"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -89,7 +98,7 @@
                 <outlet property="orederPlacedonLabel" destination="IrE-mx-pvv" id="dEt-TO-jJN"/>
                 <outlet property="placedButton" destination="gsh-DI-TCm" id="qH6-DX-2R9"/>
             </connections>
-            <point key="canvasLocation" x="155.5" y="255.5"/>
+            <point key="canvasLocation" x="448.5" y="255.5"/>
         </tableViewCell>
     </objects>
 </document>
