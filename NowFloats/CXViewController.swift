@@ -38,16 +38,22 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let profile = storyBoard.instantiateViewControllerWithIdentifier("PROFILE") as! UserProfileViewController
             self.navigationController?.pushViewController(profile, animated: true)
+        }else if notification.name == "NotificationBellNotification"{
+            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let profile = storyBoard.instantiateViewControllerWithIdentifier("NOTIFICATIONS") as! NotificationsViewController
+            self.navigationController?.pushViewController(profile, animated: true)
+        
         }
         
   
     }
-    override func viewWillAppear(animated: Bool) {//ProfileNotification
+    override func viewWillAppear(animated: Bool) {//NotificationBellNotification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"CartButtonNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignInNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignUpNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ProfileNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"NotificationBellNotification", object: nil)
 
         
 
@@ -88,7 +94,6 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
 
     
     func shouldShowRightMenu() -> Bool{
-        
         return true
     }
     
@@ -110,7 +115,6 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
 
     func backButtonTapped(){
         
-        
     }
     
     func headerTitleText() -> String{
@@ -120,6 +124,9 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
     func leftMenuTapped(){
         let navVC : CXNavDrawer = (self.navigationController as? CXNavDrawer)!
         navVC.drawerToggle()
+    }
+    func profileDropdown() -> Bool{
+        return false
     }
     
     

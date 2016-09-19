@@ -85,7 +85,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("MY_ORDERS") as! MyOrderViewController
         productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
-       // self.navigationController?.pushViewController(productDetails, animated: true)
+        self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
     

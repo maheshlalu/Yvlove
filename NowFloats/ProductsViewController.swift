@@ -69,7 +69,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         cell.productdescriptionLabel.text = products.name
         cell.produstimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
-        cell.productdescriptionLabel.sizeToFit()
+        //cell.productdescriptionLabel.sizeToFit()
         
         let rupee = "\u{20B9}"
         let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
@@ -81,7 +81,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.productFinalPriceLabel.font = cell.productpriceLabel.font.fontWithSize(14)
             cell.productFinalPriceLabel.textColor = UIColor.darkGrayColor()
         }else{
-            //cell.productFinalPriceLabel.hidden = false
             cell.productpriceLabel.hidden = false
             cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(11)
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()

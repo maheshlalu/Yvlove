@@ -199,11 +199,15 @@ class CXNavDrawer: UINavigationController {
 
         }
         
-        if viewController.shouldShowCart() {
+        if viewController.shouldShowCart(){
             self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
             rightButtonsView.addSubview(self.cartBtn)
-            self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
+            self.cartBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
 
+        }
+        
+        if viewController.profileDropdown(){
+            self.profileBtn.addTarget(self, action: #selector(profileToggleActionForProfile), forControlEvents: .TouchUpInside)
         }
 
         //whiteCartImage
@@ -389,7 +393,7 @@ extension CXNavDrawer {
     }
     
     func notificationBellAction(){
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("NotificationBellNotification", object: nil)
     }
     
     func profileToggleAction(sender:UIButton){
@@ -412,7 +416,6 @@ extension CXNavDrawer {
                         NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
                     }
                 }
-           // NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector(signInView()), name: "SIGNIN", object: nil)
         }else{
         chooseArticleDropDown.show()
         chooseArticleDropDown.anchorView = profileBtn
@@ -460,9 +463,29 @@ extension CXNavDrawer {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
+    func profileToggleActionForProfile(sender:UIButton){
+        
+        chooseArticleDropDown.show()
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        
+        // You can also use localizationKeysDataSource instead. Check the docs.
+        chooseArticleDropDown.dataSource = [
+            "Forgot Password??"
+        ]
+        
+        // Action triggered on selection
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
+                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+            }
+        }
+
+    }
+    
     func signInView() {
         print("signInPage")
-        NSNotificationCenter.defaultCenter().removeObserver("SIGNIN")
         chooseArticleDropDown.show()
         chooseArticleDropDown.anchorView = profileBtn
         chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)

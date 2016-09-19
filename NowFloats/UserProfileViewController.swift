@@ -16,10 +16,12 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var userMobileLbl: UILabel!
     @IBOutlet weak var userMailLbl: UILabel!
     @IBOutlet weak var dpImageView: UIImageView!
+    var presentWindow:UIWindow?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presentWindow = UIApplication.sharedApplication().keyWindow
         self.profileTableView.rowHeight = UITableViewAutomaticDimension
         self.profileTableView.estimatedRowHeight = 10.0
         self.profileTableView.separatorStyle = .None
@@ -126,11 +128,32 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 3{
-            
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        if indexPath.section == 0{
+            let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
+            self.navigationController?.pushViewController(orders, animated: true)
+        }else if indexPath.section == 2{
+            let profile = storyBoard.instantiateViewControllerWithIdentifier("NOTIFICATIONS") as! NotificationsViewController
+            self.navigationController?.pushViewController(profile, animated: true)
+        }else if indexPath.section == 3{
             let comentsView = CXCommentViewController.init()
             self.navigationController?.pushViewController(comentsView, animated: true)
+        }else if indexPath.section == 4 {
+            shareAppAction()
+        }else if indexPath.section == 5{
+            presentWindow?.makeToast(message: "Disclaimer to be shown")
         }
+    }
+    
+    func shareAppAction(){
+    
+        let description = "Coming Soon"
+        let url = "Coming Soon"
+        
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [description,url], applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+        
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat

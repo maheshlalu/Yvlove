@@ -50,5 +50,27 @@ class EditUserProfileViewController: CXViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    override func headerTitleText() -> String{
+        return "Edit Profile"
+    }
     
 }

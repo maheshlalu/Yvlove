@@ -54,14 +54,14 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         let cell = collectionview.dequeueReusableCellWithReuseIdentifier("NowfloatscartViewCollectionViewCell", forIndexPath: indexPath)as! NowfloatscartViewCollectionViewCell
         
         cell.cartviewminusbutton.backgroundColor = UIColor.lightGrayColor()
-        cell.cartviewminusbutton.layer.cornerRadius = 9
+        cell.cartviewminusbutton.layer.cornerRadius = 10
         cell.cartviewminusbutton.layer.borderWidth = 1
         cell.cartviewminusbutton.layer.borderColor = UIColor.clearColor().CGColor
         
         
         
         cell.cartviewplusbutton.backgroundColor = UIColor.lightGrayColor()
-        cell.cartviewplusbutton.layer.cornerRadius = 9
+        cell.cartviewplusbutton.layer.cornerRadius = 10
         cell.cartviewplusbutton.layer.borderWidth = 1
         cell.cartviewplusbutton.layer.borderColor = UIColor.clearColor().CGColor
         
@@ -151,7 +151,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     }
     
     override func headerTitleText() -> String{
-        return ""
+        return "Your Cart"
     }
     
     override func didReceiveMemoryWarning() {

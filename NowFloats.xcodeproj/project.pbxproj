@@ -33,6 +33,8 @@
 		11370F8A1D89A3A800CCBE01 /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11370F871D89A3A800CCBE01 /* SkyFloatingLabelTextField.swift */; };
 		11370F8B1D89A3A800CCBE01 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11370F881D89A3A800CCBE01 /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		11370F8C1D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11370F891D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift */; };
+		113A995A1D8FEB88006B5BE5 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A99591D8FEB88006B5BE5 /* NotificationsViewController.swift */; };
+		113A995D1D8FF46A006B5BE5 /* HRToast+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A995C1D8FF46A006B5BE5 /* HRToast+UIView.swift */; };
 		113E5D9C1D87DFCB0003DA8D /* NowfloatWishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5D991D87DFCB0003DA8D /* NowfloatWishlistViewController.swift */; };
 		113E5DA21D87DFED0003DA8D /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5D9F1D87DFED0003DA8D /* CartViewController.swift */; };
 		113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */; };
@@ -192,6 +194,8 @@
 		11370F871D89A3A800CCBE01 /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		11370F881D89A3A800CCBE01 /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		11370F891D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
+		113A99591D8FEB88006B5BE5 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		113A995C1D8FF46A006B5BE5 /* HRToast+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HRToast+UIView.swift"; sourceTree = "<group>"; };
 		113E5D991D87DFCB0003DA8D /* NowfloatWishlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowfloatWishlistViewController.swift; sourceTree = "<group>"; };
 		113E5D9F1D87DFED0003DA8D /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowfloatscartViewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -415,6 +419,22 @@
 				11370F891D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift */,
 			);
 			name = FloatingTextField;
+			sourceTree = "<group>";
+		};
+		113A99581D8FEB5D006B5BE5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				113A99591D8FEB88006B5BE5 /* NotificationsViewController.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		113A995B1D8FF45E006B5BE5 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				113A995C1D8FF46A006B5BE5 /* HRToast+UIView.swift */,
+			);
+			name = Toast;
 			sourceTree = "<group>";
 		};
 		1147CB9C1D8BB4AB00138C4E /* RatingView */ = {
@@ -687,6 +707,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				113A995B1D8FF45E006B5BE5 /* Toast */,
 				1147CB9C1D8BB4AB00138C4E /* RatingView */,
 				11370F861D89A39D00CCBE01 /* FloatingTextField */,
 				11F1DE481D8839FE002AF5B0 /* DropDown */,
@@ -744,6 +765,7 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				113A99581D8FEB5D006B5BE5 /* Notifications */,
 				11370F691D8950CF00CCBE01 /* Profile */,
 				11F1DE5B1D883AE7002AF5B0 /* Orders */,
 				11F1DE5A1D883ADA002AF5B0 /* AboutUs */,
@@ -1184,6 +1206,7 @@
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
 				183573A51D798F5400722AA2 /* CX_Rating.swift in Sources */,
+				113A995D1D8FF46A006B5BE5 /* HRToast+UIView.swift in Sources */,
 				3B4FD8191D6446D300A6EBBE /* ViewController.swift in Sources */,
 				11370F6D1D89511700CCBE01 /* ProfileViewController.swift in Sources */,
 				183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */,
@@ -1193,6 +1216,7 @@
 				11370F751D8973F400CCBE01 /* UserProfileViewController.swift in Sources */,
 				1147CBA41D8C332E00138C4E /* EnquiryViewController.swift in Sources */,
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
+				113A995A1D8FEB88006B5BE5 /* NotificationsViewController.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				183573AD1D798F5400722AA2 /* CX_FeaturedProductsJobs.swift in Sources */,
 				1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */,
