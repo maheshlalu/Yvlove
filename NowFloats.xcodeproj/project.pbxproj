@@ -46,6 +46,7 @@
 		1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1147CBA51D8C333300138C4E /* EnquiryTableViewCell.xib */; };
 		1147CBA81D8C333C00138C4E /* EnquiryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */; };
 		114A12B91D90F94A006AC421 /* MessageHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */; };
+		114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12BB1D91323A006AC421 /* MIBadgeButton.swift */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -208,6 +209,7 @@
 		1147CBA51D8C333300138C4E /* EnquiryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnquiryTableViewCell.xib; sourceTree = "<group>"; };
 		1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnquiryTableViewCell.swift; sourceTree = "<group>"; };
 		114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHomeViewController.swift; sourceTree = "<group>"; };
+		114A12BB1D91323A006AC421 /* MIBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIBadgeButton.swift; sourceTree = "<group>"; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -446,6 +448,14 @@
 				1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */,
 			);
 			name = RatingView;
+			sourceTree = "<group>";
+		};
+		114A12BA1D91322B006AC421 /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				114A12BB1D91323A006AC421 /* MIBadgeButton.swift */,
+			);
+			name = Badge;
 			sourceTree = "<group>";
 		};
 		118346AD1D8696A4000BE1D4 /* PopUp */ = {
@@ -710,6 +720,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				114A12BA1D91322B006AC421 /* Badge */,
 				113A995B1D8FF45E006B5BE5 /* Toast */,
 				1147CB9C1D8BB4AB00138C4E /* RatingView */,
 				11370F861D89A39D00CCBE01 /* FloatingTextField */,
@@ -1226,6 +1237,7 @@
 				1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */,
 				3BDBF5B71D6ED61B003CA857 /* CXDataProvider.swift in Sources */,
 				1868BD1D1D7841220050BC72 /* CXConstant.swift in Sources */,
+				114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */,
 				11F1DE611D883B24002AF5B0 /* ordersTableViewCell.swift in Sources */,
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,

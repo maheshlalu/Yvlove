@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MIBadgeButton_Swift
 //static SHAWDOW_ALPHA 0.5
 /*
 #define SHAWDOW_ALPHA 0.5
