@@ -22,14 +22,14 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.productSearhBar.placeholder = "Search for products"
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        //self.productSearhBar.placeholder = "Search for products"
+        //self.view.backgroundColor = UIColor.lightGrayColor()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         
 //        chooseArticleButton.sizeToFit()
 //        chooseArticleButton.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseArticleButton.imageView!.frame.size.width, 0, chooseArticleButton.imageView!.frame.size.width)
-        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+150, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+       // chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+150, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         getTheProducts()
         setupDropDowns()

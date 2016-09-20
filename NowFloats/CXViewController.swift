@@ -129,5 +129,9 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         return false
     }
     
+    func profileDropdownForSignIn() -> Bool{
+        return false
+    }
+    
     
 }

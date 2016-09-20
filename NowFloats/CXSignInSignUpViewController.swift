@@ -93,8 +93,10 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
                 UIAlertAction in
                 if status == 1 {
                     //It should leads to Profile Screen
-                    let home : ViewController = ViewController.init()
-                    self.navigationController?.pushViewController(home, animated: false)                }
+//                    let home : HomeViewController = HomeViewController.init()
+//                    self.navigationController?.pushViewController(home, animated: false)
+                    self.navController.popToRootViewControllerAnimated(true)
+                }
             }
             alert.addAction(okAction)
             self.presentViewController(alert, animated: true, completion: nil)
@@ -158,6 +160,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
             
             self.showAlertView("Login successfully", status: status)
+            
                 
         } else {
                self.showAlertView("Please enter valid credentials", status: status)
@@ -262,6 +265,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
     }
     override func headerTitleText() -> String{
         return ""
+    }
+    override func profileDropdownForSignIn() -> Bool{
+        return true
     }
 
 }

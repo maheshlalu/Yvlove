@@ -192,6 +192,10 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     override func headerTitleText() -> String{
         return ""
     }
+    
+    override func profileDropdown() -> Bool{
+        return true
+    }
 
 
 }

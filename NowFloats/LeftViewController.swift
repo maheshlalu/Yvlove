@@ -24,6 +24,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.whiteColor()
@@ -46,8 +47,16 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     func btnBorderAlignments(){
         viewMapBtn.layer.cornerRadius = 2
+        viewMapBtn.layer.borderColor = UIColor.grayColor().CGColor
+        viewMapBtn.layer.borderWidth = 1
+        
         messageBtn.layer.cornerRadius = 2
+        messageBtn.layer.borderColor = UIColor.grayColor().CGColor
+        messageBtn.layer.borderWidth = 1
+        
         callUsBtn.layer.cornerRadius = 2
+        callUsBtn.layer.borderColor = UIColor.grayColor().CGColor
+        callUsBtn.layer.borderWidth = 1
     }
     
     func sidepanelView(){
@@ -60,7 +69,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
-        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-45 ,55 ))
+        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-45 ,65 ))
         self.titleLable.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
@@ -75,33 +84,33 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        self.sidePanelView.addSubview(mailImage)
         
     
-        self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
-        mailLable.font = mailLable.font.fontWithSize(10)
-        let mail = self.sidePanelDataDict.valueForKeyPath("email")
-        if mail != nil{
-            mailLable.text = "\(mail!)"
-        }
-        self.detailsView.addSubview(mailLable)
-
-        
-        self.websiteLbl = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.mailLable.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
-        websiteLbl.font = mailLable.font.fontWithSize(10)
-        websiteLbl.textColor = UIColor.blueColor()
-        let website = self.sidePanelDataDict.valueForKeyPath("website")
-        if website != nil{
-            websiteLbl.text = "\(website!)"
-        }
-        websiteLbl.userInteractionEnabled = true
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LeftViewController.labelAction))
-        websiteLbl.addGestureRecognizer(tap)
-        self.detailsView.addSubview(self.websiteLbl)
+//        self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
+//        mailLable.font = mailLable.font.fontWithSize(10)
+//        let mail = self.sidePanelDataDict.valueForKeyPath("email")
+//        if mail != nil{
+//            mailLable.text = "\(mail!)"
+//        }
+//        self.detailsView.addSubview(mailLable)
+//
+//        
+//        self.websiteLbl = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.mailLable.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
+//        websiteLbl.font = mailLable.font.fontWithSize(10)
+//        websiteLbl.textColor = UIColor.blueColor()
+//        let website = self.sidePanelDataDict.valueForKeyPath("website")
+//        if website != nil{
+//            websiteLbl.text = "\(website!)"
+//        }
+//        websiteLbl.userInteractionEnabled = true
+//        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LeftViewController.labelAction))
+//        websiteLbl.addGestureRecognizer(tap)
+//        self.detailsView.addSubview(self.websiteLbl)
     }
     
-    func labelAction(){
-        let website = self.sidePanelDataDict.valueForKeyPath("website") as! String!
-        UIApplication.sharedApplication().openURL(NSURL(string: "\(website)")!)
-        
-    }
+//    func labelAction(){
+//        let website = self.sidePanelDataDict.valueForKeyPath("website") as! String!
+//        UIApplication.sharedApplication().openURL(NSURL(string: "\(website)")!)
+//        
+//    }
     
     func createButton(frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
         let button: UIButton = UIButton()
@@ -192,7 +201,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func messageAction(sender: UIButton) {
-        
+         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let messageTabbar = storyBoard.instantiateViewControllerWithIdentifier("MESSAGE_TABBAR") as! MessageHomeViewController
+        self.navController.pushViewController(messageTabbar, animated: true)
         
     }
     

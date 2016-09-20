@@ -86,10 +86,11 @@
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2un-1y-SIs">
-                        <rect key="frame" x="131" y="145" width="99" height="36"/>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2un-1y-SIs">
+                        <rect key="frame" x="128" y="145" width="99" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="99" id="Otp-zA-Fpp"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="99" id="VD3-0R-tSt"/>
                             <constraint firstAttribute="height" constant="36" id="dDX-OV-LGh"/>
                             <constraint firstAttribute="width" constant="99" id="kbg-Q6-y0D"/>
                         </constraints>
@@ -106,10 +107,13 @@
                             <action selector="cartviewwishlistbuttonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DNu-yY-60P"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" verticalHuggingPriority="227" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-AZ-7m3">
-                        <rect key="frame" x="232" y="154" width="72" height="20"/>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" verticalHuggingPriority="227" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-AZ-7m3">
+                        <rect key="frame" x="226" y="145" width="78" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="fSW-4J-0is"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                        <state key="normal" title="DELETE" image="deleteImage">
+                        <state key="normal" title=" DELETE" image="deleteImage">
                             <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -150,7 +154,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="2un-1y-SIs" secondAttribute="bottom" constant="5" id="05q-Gs-d8l"/>
                 <constraint firstItem="iIk-c4-8s0" firstAttribute="top" secondItem="y6j-5N-cOK" secondAttribute="bottom" constant="7" id="2HB-Lo-8oz"/>
-                <constraint firstAttribute="bottom" secondItem="aBq-AZ-7m3" secondAttribute="bottom" constant="12" id="2Sv-0j-ckt"/>
+                <constraint firstAttribute="bottom" secondItem="aBq-AZ-7m3" secondAttribute="bottom" constant="5" id="2Sv-0j-ckt"/>
                 <constraint firstAttribute="trailing" secondItem="d5e-cc-2dr" secondAttribute="trailing" id="4XN-7w-580"/>
                 <constraint firstItem="2un-1y-SIs" firstAttribute="top" secondItem="d5e-cc-2dr" secondAttribute="bottom" constant="8" id="4mI-oW-cJy"/>
                 <constraint firstItem="YEb-Dj-4hT" firstAttribute="top" secondItem="y6j-5N-cOK" secondAttribute="bottom" constant="16" id="5UU-jw-AEg"/>
@@ -180,8 +184,8 @@
                 <constraint firstItem="XnC-bg-V3Y" firstAttribute="top" secondItem="y6j-5N-cOK" secondAttribute="bottom" constant="8" id="blg-IG-gm4"/>
                 <constraint firstItem="twT-Hf-FOi" firstAttribute="leading" secondItem="YEb-Dj-4hT" secondAttribute="trailing" constant="8" id="cJY-HA-Du8"/>
                 <constraint firstItem="6oA-MR-Gq7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="czE-RP-XXj"/>
-                <constraint firstItem="aBq-AZ-7m3" firstAttribute="leading" secondItem="2un-1y-SIs" secondAttribute="trailing" constant="2" id="fCZ-hc-yNd"/>
-                <constraint firstItem="aBq-AZ-7m3" firstAttribute="top" secondItem="d5e-cc-2dr" secondAttribute="bottom" constant="17" id="ikh-tH-RQv"/>
+                <constraint firstItem="aBq-AZ-7m3" firstAttribute="leading" secondItem="2un-1y-SIs" secondAttribute="trailing" constant="-1" id="fCZ-hc-yNd"/>
+                <constraint firstItem="aBq-AZ-7m3" firstAttribute="top" secondItem="d5e-cc-2dr" secondAttribute="bottom" constant="8" id="ikh-tH-RQv"/>
                 <constraint firstAttribute="bottom" secondItem="2un-1y-SIs" secondAttribute="bottom" constant="5" id="jxv-Kq-bYn"/>
                 <constraint firstItem="twT-Hf-FOi" firstAttribute="top" secondItem="y6j-5N-cOK" secondAttribute="bottom" constant="8" id="kDe-QJ-DCk"/>
                 <constraint firstItem="ErP-Bf-msk" firstAttribute="top" secondItem="iIk-c4-8s0" secondAttribute="bottom" constant="9" id="lOI-fk-RXa"/>

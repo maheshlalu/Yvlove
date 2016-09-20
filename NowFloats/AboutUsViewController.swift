@@ -123,7 +123,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         return true
     }
     
-    override  func shouldShowCart() -> Bool{
+    override func shouldShowCart() -> Bool{
         
         return true
     }

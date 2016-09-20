@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -48,10 +48,10 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPJ-S2-6Uh">
-                        <rect key="frame" x="4" y="8" width="361" height="36"/>
+                        <rect key="frame" x="4" y="8" width="361" height="25"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="36" id="KCJ-If-aA5"/>
+                            <constraint firstAttribute="height" constant="25" id="KCJ-If-aA5"/>
                             <constraint firstAttribute="width" constant="361" id="tRD-N7-YB9"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
@@ -66,7 +66,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="u2M-pO-LZL" secondAttribute="trailing" constant="8" id="b8M-B0-nJ1"/>
                     <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="u2M-pO-LZL" secondAttribute="top" id="kFW-hk-TWG"/>
                     <constraint firstAttribute="bottomMargin" secondItem="eZm-EK-Ep0" secondAttribute="bottom" id="pAa-oV-zVd"/>
-                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="xPJ-S2-6Uh" secondAttribute="bottom" constant="-3" id="vud-fu-N2z"/>
+                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="xPJ-S2-6Uh" secondAttribute="bottom" constant="8" id="vud-fu-N2z"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

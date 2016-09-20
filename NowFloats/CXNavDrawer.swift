@@ -202,12 +202,16 @@ class CXNavDrawer: UINavigationController {
         if viewController.shouldShowCart(){
             self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
             rightButtonsView.addSubview(self.cartBtn)
-            self.cartBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
+            self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
 
         }
         
         if viewController.profileDropdown(){
             self.profileBtn.addTarget(self, action: #selector(profileToggleActionForProfile), forControlEvents: .TouchUpInside)
+        }
+        
+        if viewController.profileDropdownForSignIn(){
+            self.profileBtn.addTarget(self, action: #selector(profileToggleActionForSignIn), forControlEvents: .TouchUpInside)
         }
 
         //whiteCartImage
@@ -385,6 +389,13 @@ extension CXNavDrawer : UINavigationControllerDelegate {
 
 extension CXNavDrawer {
     
+    override func viewWillAppear(animated: Bool) {
+        self.ToggleWithProfileForSignIn()
+        self.ToggleWithProfileForProfile()
+        self.ToggleWithProfileWithUserId()
+        self.ToggleWithProfileWithoutUserId()
+    }
+
     
     func cartButtonAction(){
         //CartButtonNotification
@@ -396,51 +407,88 @@ extension CXNavDrawer {
         NSNotificationCenter.defaultCenter().postNotificationName("NotificationBellNotification", object: nil)
     }
     
+    
+    
     func profileToggleAction(sender:UIButton){
-
+        
         if NSUserDefaults.standardUserDefaults().valueForKey("USER_ID") == nil{
-            //show Profile
             chooseArticleDropDown.show()
-                chooseArticleDropDown.anchorView = profileBtn
-                chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
-                
-                // You can also use localizationKeysDataSource instead. Check the docs.
-                chooseArticleDropDown.dataSource = [
-                    "Profile"
-                ]
-                
-                // Action triggered on selection
-                chooseArticleDropDown.selectionAction = {(index, item) in
-                    self.profileBtn.setTitle(nil, forState: .Normal)
-                    if index == 0{
-                        NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
-                    }
-                }
+            ToggleWithProfileWithoutUserId()
         }else{
+            chooseArticleDropDown.show()
+            ToggleWithProfileWithUserId()
+        }
+        
+    }
+    
+    func profileToggleActionForProfile(sender:UIButton){
+        
         chooseArticleDropDown.show()
+        ToggleWithProfileForProfile()
+    }
+    
+    func profileToggleActionForSignIn(sender:UIButton){
+        chooseArticleDropDown.show()
+        ToggleWithProfileForSignIn()
+    }
+    
+    
+    func ToggleWithProfileWithUserId(){
         chooseArticleDropDown.anchorView = profileBtn
         chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-5)
-        
-        // You can also use localizationKeysDataSource instead. Check the docs.
         chooseArticleDropDown.dataSource = [
             "Profile","Logout"
         ]
-        
-        // Action triggered on selection
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, forState: .Normal)
             if index == 0{
                 NSNotificationCenter.defaultCenter().postNotificationName("ProfileNotification", object: nil)
             }else if index == 1{
-                self.logout()
-            }
+                self.showAlertView("Are You Sure??", status: 1)
+                
             }
         }
-
-}
-    
+    }
+    func ToggleWithProfileWithoutUserId(){
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.dataSource = [
+            "Profile"
+        ]
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
+                NSNotificationCenter.defaultCenter().postNotificationName("SignInNotification", object: nil)
+            }
+        }
+    }
+    func ToggleWithProfileForSignIn(){
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.dataSource = [
+            "Forgot Password?"
+        ]
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
+                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+            }
+        }
+    }func ToggleWithProfileForProfile(){
+        chooseArticleDropDown.anchorView = profileBtn
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.dataSource = [
+            "Logout"
+        ]
+        chooseArticleDropDown.selectionAction = {(index, item) in
+            self.profileBtn.setTitle(nil, forState: .Normal)
+            if index == 0{
+                self.showAlertView("Are You Sure??", status: 1)
+            }
+        }
+    }
     func logout(){
-
+        
         NSUserDefaults.standardUserDefaults().removeObjectForKey("STATE")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("USER_EMAIL")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("FIRST_NAME")
@@ -462,45 +510,23 @@ extension CXNavDrawer {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("IMAGE_PATH")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
-    
-    func profileToggleActionForProfile(sender:UIButton){
-        
-        chooseArticleDropDown.show()
-        chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
-        
-        // You can also use localizationKeysDataSource instead. Check the docs.
-        chooseArticleDropDown.dataSource = [
-            "Forgot Password??"
-        ]
-        
-        // Action triggered on selection
-        chooseArticleDropDown.selectionAction = {(index, item) in
-            self.profileBtn.setTitle(nil, forState: .Normal)
-            if index == 0{
-                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+    func showAlertView(message:String, status:Int) {
+        let alert = UIAlertController(title:message, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            if status == 1 {
+                self.logout()
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }
-
-    }
-    
-    func signInView() {
-        print("signInPage")
-        chooseArticleDropDown.show()
-        chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
-        
-        // You can also use localizationKeysDataSource instead. Check the docs.
-        chooseArticleDropDown.dataSource = [
-            "Forgot Password?"
-        ]
-        
-        // Action triggered on selection
-        chooseArticleDropDown.selectionAction = {(index, item) in
-            self.profileBtn.setTitle(nil, forState: .Normal)
-            if index == 0{
-                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive) {
+            UIAlertAction in
+            if status == 1 {
+                
             }
         }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }

@@ -45,7 +45,7 @@ class PhotosViewController: CXViewController {
         screenWidth =  UIScreen.mainScreen().bounds.size.width
         if CXConstant.sharedInstance == IPHONE_6
         {
-        return CGSize(width: screenWidth/2-13, height: 130);
+            return CGSize(width: screenWidth/2-13, height: 130);
         }
         else
         {
