@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MIBadgeButton_Swift
 //static SHAWDOW_ALPHA 0.5
 /*
 #define SHAWDOW_ALPHA 0.5
@@ -50,7 +50,7 @@ class CXNavDrawer: UINavigationController {
     
     var shawdowView : UIView!
     var drawerView : UIView!
-    var cartBtn : UIButton!
+    var cartBtn : MIBadgeButton!
     var profileBtn : UIButton!
     var notificationBellBtn : UIButton!
     var navTitle : String!
@@ -63,7 +63,7 @@ class CXNavDrawer: UINavigationController {
         self.navigationBar.barTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationBar.translucent = false
-
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXNavDrawer.upodateTheCartItems), name:"CartCountUpdate", object: nil)
 
         self.setuUpNavDrawer()
         self.delegate  = self
@@ -75,6 +75,17 @@ class CXNavDrawer: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+    func upodateTheCartItems(){
+        
+        if (self.cartBtn != nil) {
+            let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "addToCart = %@", "1"))
+            if cartlist.count != 0 {
+                self.cartBtn.badgeString = String(cartlist.count)
+            }else{
+                self.cartBtn.badgeString = ""
+            }
+        }
+    }
 
 
     /*
@@ -117,6 +128,17 @@ class CXNavDrawer: UINavigationController {
         return button
     }
     
+    func createCartButton(imageName:String,frame:CGRect) -> MIBadgeButton {
+        
+        let button = MIBadgeButton(type: .Custom) as MIBadgeButton
+        button.setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+        button.frame =  frame
+        button.badgeTextColor = UIColor.redColor()
+        button.badgeBackgroundColor = UIColor.whiteColor()
+        button.badgeEdgeInsets = UIEdgeInsetsMake(13, 5, 0, 10)
+
+        return button
+    }
     
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
@@ -125,9 +147,10 @@ class CXNavDrawer: UINavigationController {
         let buttondWidth : CGFloat = 35
         self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth+12, 5, 30, 30))
         self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth-25,2, 35, 35))
-        self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*2-30, 1, 35, 35))
+        self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*2-30, 1, 35, 35))
+       // self.cartBtn.badgeString = "10"
 //whiteCartImage
-        
+      
         rightButtonsView.addSubview(self.profileBtn)
         rightButtonsView.addSubview(self.cartBtn)
         rightButtonsView.addSubview(self.notificationBellBtn)
@@ -136,7 +159,7 @@ class CXNavDrawer: UINavigationController {
         self.profileBtn.addTarget(self, action: #selector(profileToggleAction), forControlEvents: .TouchUpInside)
         self.notificationBellBtn.addTarget(self, action: #selector(notificationBellAction), forControlEvents: .TouchUpInside)
         self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
-
+        self.upodateTheCartItems()
         
        // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
 
@@ -200,10 +223,10 @@ class CXNavDrawer: UINavigationController {
         }
         
         if viewController.shouldShowCart(){
-            self.cartBtn = self.rightMenuButtonCreation("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
+            self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
             rightButtonsView.addSubview(self.cartBtn)
             self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
-
+            self.upodateTheCartItems()
         }
         
         if viewController.profileDropdown(){
@@ -369,7 +392,7 @@ extension CXNavDrawer : UINavigationControllerDelegate {
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         print("nav controlller \(viewController)")
-        
+        self.upodateTheCartItems()
         if viewController.isKindOfClass(CXViewController) {
             
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
@@ -394,6 +417,7 @@ extension CXNavDrawer {
         self.ToggleWithProfileForProfile()
         self.ToggleWithProfileWithUserId()
         self.ToggleWithProfileWithoutUserId()
+        self.upodateTheCartItems()
     }
 
     
