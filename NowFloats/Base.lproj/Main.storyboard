@@ -1523,7 +1523,8 @@
                                                 <exclude reference="uyj-w2-5TY"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="10" y="712" width="9" height="55"/>
                                             <mask key="constraints">
                                                 <exclude reference="7lo-a0-tHe"/>
                                                 <include reference="Vh6-oO-Mqy"/>
