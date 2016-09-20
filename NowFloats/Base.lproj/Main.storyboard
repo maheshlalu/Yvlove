@@ -823,7 +823,6 @@
                                 <color key="backgroundColor" red="0.86686698719999999" green="0.86686698719999999" blue="0.86686698719999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="732" id="35B-YN-m8b"/>
-                                    <constraint firstAttribute="height" constant="727" id="Zql-hJ-MEm"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ovB-di-GFu">
                                     <size key="itemSize" width="126" height="216"/>
@@ -845,13 +844,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="35B-YN-m8b"/>
-                                        <exclude reference="Zql-hJ-MEm"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="35B-YN-m8b"/>
-                                        <include reference="Zql-hJ-MEm"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -892,25 +889,16 @@
                                                     <action selector="chooseBtnAction:" destination="KtA-Nh-gTJ" eventType="touchUpInside" id="hzg-G4-Qde"/>
                                                 </connections>
                                             </button>
-                                            <searchBar clipsSubviews="YES" contentMode="redraw" searchBarStyle="minimal" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-fb-izn">
-                                                <rect key="frame" x="208" y="20" width="197" height="44"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="199" id="vMO-eu-dbc"/>
-                                                </constraints>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="vMO-eu-dbc"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
-                                                    <mask key="constraints">
-                                                        <exclude reference="vMO-eu-dbc"/>
-                                                    </mask>
-                                                </variation>
+                                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search for product" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMl-px-qon">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <scopeButtonTitles>
+                                                    <string>Title</string>
+                                                    <string>Title</string>
+                                                </scopeButtonTitles>
                                                 <connections>
-                                                    <outlet property="delegate" destination="KtA-Nh-gTJ" id="WF9-1B-SiU"/>
+                                                    <outlet property="delegate" destination="KtA-Nh-gTJ" id="c7r-n6-QOp"/>
                                                 </connections>
                                             </searchBar>
                                         </subviews>
@@ -963,6 +951,9 @@
                         <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="NdS-MP-LY1" firstAttribute="leading" secondItem="aj8-0E-h32" secondAttribute="leading" id="4ma-D6-Ad5"/>
+                            <constraint firstItem="8Im-CX-bjH" firstAttribute="top" secondItem="NdS-MP-LY1" secondAttribute="bottom" id="55A-53-Uas">
+                                <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="w4z-fy-dFK" secondAttribute="trailing" constant="-15" id="9MZ-Mb-hVg">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-12"/>
                             </constraint>
@@ -990,16 +981,17 @@
                                 <exclude reference="NdS-MP-LY1"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="9MZ-Mb-hVg"/>
+                                <exclude reference="ETK-fD-K4a"/>
+                                <exclude reference="FCc-0X-StN"/>
+                                <exclude reference="oRM-zZ-qWO"/>
                                 <exclude reference="4ma-D6-Ad5"/>
                                 <exclude reference="A5Z-xM-9yS"/>
                                 <exclude reference="b3v-9E-pb6"/>
                                 <exclude reference="kx7-Na-Ux9"/>
                                 <exclude reference="tig-Go-X45"/>
                                 <exclude reference="upC-Td-kRH"/>
-                                <exclude reference="9MZ-Mb-hVg"/>
-                                <exclude reference="ETK-fD-K4a"/>
-                                <exclude reference="FCc-0X-StN"/>
-                                <exclude reference="oRM-zZ-qWO"/>
+                                <exclude reference="55A-53-Uas"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1008,26 +1000,36 @@
                                 <include reference="w4z-fy-dFK"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="9MZ-Mb-hVg"/>
+                                <include reference="ETK-fD-K4a"/>
+                                <include reference="FCc-0X-StN"/>
+                                <exclude reference="oRM-zZ-qWO"/>
                                 <include reference="4ma-D6-Ad5"/>
                                 <exclude reference="A5Z-xM-9yS"/>
                                 <include reference="b3v-9E-pb6"/>
                                 <include reference="kx7-Na-Ux9"/>
                                 <exclude reference="tig-Go-X45"/>
                                 <exclude reference="upC-Td-kRH"/>
-                                <include reference="9MZ-Mb-hVg"/>
-                                <include reference="ETK-fD-K4a"/>
-                                <include reference="FCc-0X-StN"/>
-                                <exclude reference="oRM-zZ-qWO"/>
+                                <include reference="55A-53-Uas"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="chooseArticleButton" destination="LaG-az-Foh" id="Bsy-w0-2F3"/>
-                        <outlet property="productSearhBar" destination="Xi0-fb-izn" id="IfR-Vo-qUZ"/>
+                        <outlet property="productSearhBar" destination="xMl-px-qon" id="Cl5-8z-hsw"/>
+                        <outlet property="searchDisplayController" destination="J6A-66-EUO" id="fyU-rG-uyG"/>
                         <outlet property="updatecollectionview" destination="NdS-MP-LY1" id="dF8-ey-PfY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mdc-IP-Ug7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="J6A-66-EUO">
+                    <connections>
+                        <outlet property="delegate" destination="KtA-Nh-gTJ" id="kgd-Hr-VHo"/>
+                        <outlet property="searchContentsController" destination="KtA-Nh-gTJ" id="6Qk-an-MQf"/>
+                        <outlet property="searchResultsDataSource" destination="KtA-Nh-gTJ" id="vE4-Mj-HK0"/>
+                        <outlet property="searchResultsDelegate" destination="KtA-Nh-gTJ" id="Wol-GS-6CQ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-418.5" y="-1120.5"/>
         </scene>
@@ -2029,9 +2031,6 @@
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="0.0" width="380" height="19"/>
-                                                            </variation>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="600" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH2-tL-xGc">
                                                             <rect key="frame" x="81" y="0.0" width="240" height="128"/>
@@ -2048,8 +2047,7 @@
                                                                     <exclude reference="tBI-5L-cgq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="19" width="380" height="365"/>
+                                                            <variation key="heightClass=regular-widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <include reference="tBI-5L-cgq"/>
                                                                 </mask>
@@ -2080,8 +2078,7 @@
                                                             <exclude reference="hdE-tB-4ei"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" axis="vertical" misplaced="YES">
-                                                        <rect key="frame" x="10" y="0.0" width="380" height="384"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" axis="vertical">
                                                         <mask key="subviews">
                                                             <include reference="nH2-tL-xGc"/>
                                                         </mask>
