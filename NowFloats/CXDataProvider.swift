@@ -392,6 +392,9 @@ extension CXDataProvider {
         
    NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
          completionHandler(true)
+        NSNotificationCenter.defaultCenter().postNotificationName("CartCountUpdate", object: nil)
+
+        
         
 //        MagicalRecord.saveWithBlock({ (localContext : NSManagedObjectContext!) in
 //            
