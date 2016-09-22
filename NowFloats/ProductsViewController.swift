@@ -10,26 +10,21 @@ import UIKit
 
 
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    //let screenSize:CGRect = UIScreen.mainScreen().bounds
+    
     var screenWidth: CGFloat! = nil
     var products: NSArray!
-    @IBOutlet var updatecollectionview: UICollectionView!
     let chooseArticleDropDown = DropDown()
+    @IBOutlet var updatecollectionview: UICollectionView!
     @IBOutlet weak var chooseArticleButton: UIButton!
-
-    
     @IBOutlet weak var productSearhBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.productSearhBar.placeholder = "Search for products"
-        //self.view.backgroundColor = UIColor.lightGrayColor()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
-        
-//        chooseArticleButton.sizeToFit()
-//        chooseArticleButton.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseArticleButton.imageView!.frame.size.width, 0, chooseArticleButton.imageView!.frame.size.width)
-       // chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+150, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+        UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         getTheProducts()
         setupDropDowns()
@@ -44,11 +39,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         chooseArticleDropDown.show()
     }
     func setupDropDowns() {
-        self.chooseArticleButton.setTitle("\(" ")Popularity", forState: .Normal)
+        self.chooseArticleButton.setTitle("\("  ")Popularity", forState: .Normal)
         setupChooseArticleDropDown()
     }
     
-
+    
     func getTheProducts(){
         let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
         self.products  = CX_Products.MR_executeFetchRequest(fetchRequest)
@@ -63,6 +58,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionViewCell", forIndexPath: indexPath)as! ProductsCollectionViewCell
         
@@ -85,7 +81,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(11)
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.productpriceLabel.attributedText = attributeString
             
             let finalPriceNum:Int = Int(price)!-Int(discount)!
@@ -94,15 +90,15 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         cell.cartaddedbutton.tag = indexPath.row+1
         cell.likebutton.tag = indexPath.row+1
-
+        
         
         cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
-
         
-          return cell
+        
+        return cell
     }
     
     
@@ -122,24 +118,24 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         if CXDataProvider.sharedInstance.isAddToCart(productData.pid!).isAddedToWishList{
             tableViewCell.likebutton.selected = true
-
+            
         }else{
-                 tableViewCell.likebutton.selected = false
+            tableViewCell.likebutton.selected = false
         }
         
         
     }
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        
-//        return 3.0
-   // }
+    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    //
+    //        return 3.0
+    // }
     
     
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        screenWidth =  UIScreen.mainScreen().bounds.size.width
-//        
-//        return CGSize(width: screenWidth/2.2+7, height: 222);
-//    }
+    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    //        screenWidth =  UIScreen.mainScreen().bounds.size.width
+    //
+    //        return CGSize(width: screenWidth/2.2+7, height: 222);
+    //    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
@@ -335,7 +331,7 @@ extension ProductsViewController{
     
     func setupChooseArticleDropDown() {
         chooseArticleDropDown.anchorView = chooseArticleButton
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: self.productSearhBar.frame.size.height+10)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: self.productSearhBar.frame.size.height+4)
         
         // You can also use localizationKeysDataSource instead. Check the docs.
         chooseArticleDropDown.dataSource = [

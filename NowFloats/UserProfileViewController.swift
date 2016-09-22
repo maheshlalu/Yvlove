@@ -26,18 +26,44 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         self.profileTableView.estimatedRowHeight = 10.0
         self.profileTableView.separatorStyle = .None
         headerViewAlignments()
+        profileDataIntegration()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func profileDataIntegration(){
+        userNameLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("FULL_NAME") as? String
+        userMobileLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("MOBILE") as? String
+        userMailLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("USER_EMAIL") as? String
+        let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
+        if (imageUrl != ""){
+            dpImageView.sd_setImageWithURL(NSURL(string: (NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as?String)!))
+        }else{
+           // dpImageView.image = UIImage.init(imageLiteral: "placeholder")
+            dpImageView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        }
+        
+      
+    }
+    @IBAction func editBtnAction(sender: AnyObject) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let editProfile = storyBoard.instantiateViewControllerWithIdentifier("EDIT_PROFILE") as! EditUserProfileViewController
+        editProfile.firstName = NSUserDefaults.standardUserDefaults().valueForKey("FIRST_NAME") as? String
+        editProfile.lastName = NSUserDefaults.standardUserDefaults().valueForKey("LAST_NAME") as? String
+        editProfile.mobile = userMobileLbl.text!
+        editProfile.emai = userMailLbl.text!
+        let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
+        if (imageUrl != ""){
+            editProfile.dpImg = imageUrl
+        }
+        self.navigationController?.pushViewController(editProfile, animated: true)
+        
     }
 
     func headerViewAlignments(){
         self.profileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.dpImageView.clipsToBounds = true
-        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/6.5
+        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/6
         self.dpImageView.layer.borderWidth = 3.0
         self.dpImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
@@ -189,13 +215,23 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         
         return false
     }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
     override func headerTitleText() -> String{
-        return ""
+        return "Profile"
     }
     
     override func profileDropdown() -> Bool{
         return true
     }
-
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
 
 }

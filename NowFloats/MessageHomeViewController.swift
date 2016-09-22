@@ -28,13 +28,14 @@ class MessageHomeViewController: UITabBarController {
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
     
         let product = storyBoard.instantiateViewControllerWithIdentifier("FORM") as! FormViewController
-        //product.title = "PRODUCTS"
-        //product.tabBarItem.image = UIImage(named: "productsImage")
+        product.title = "FORM"
+        self.navigationController!.pushViewController(product, animated: true)
+
         
         
         let photos = storyBoard.instantiateViewControllerWithIdentifier("HISTORY") as! HistoryViewController
-        //photos.title = "PHOTOS"
-        //photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
+        photos.title = "HISTORY"
+        self.navigationController!.pushViewController(photos, animated: true)
         
         self.tabBarController?.setViewControllers([product,photos], animated: true)
         

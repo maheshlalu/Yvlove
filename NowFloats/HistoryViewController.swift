@@ -8,11 +8,11 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class HistoryViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var historytableview: UITableView!
     var nameArray = ["india","america","newzealand","srilanka","india","america","newzealand","srilanka","india","america","newzealand","srilanka"]
-    let cellReuseIdentifier = "cell"
-    let cellSpacingHeight: CGFloat = 2
+    //let cellReuseIdentifier = "cell"
+    //let cellSpacingHeight: CGFloat = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,14 @@ class HistoryViewController: UIViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         
-        return cellSpacingHeight
+        return 5
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("ENQUIRY") as! EnquiryViewController
+        self.navigationController?.pushViewController(productDetails, animated: true)
     }
     
     
@@ -64,15 +71,45 @@ class HistoryViewController: UIViewController,UITableViewDataSource,UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    override func shouldShowRightMenu() -> Bool{
+        return true
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return true
+    }
+    
+    override func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func headerTitleText() -> String{
+        return "Enquiry"
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
     
 }

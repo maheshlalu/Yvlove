@@ -191,6 +191,85 @@ class CXNavDrawer: UINavigationController {
         return UIBarButtonItem(customView: leftButtonsView)
     }
     
+    func designLeftBarButtonItemsForCXControllerWithBackBtn(viewController:CXViewController) -> UIBarButtonItem{
+        
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        
+        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        
+        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
+        sidePanelBtn.addTarget(self, action: #selector(backBtnAction), forControlEvents: .TouchUpInside)
+        
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH-10, 10, 150, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        titleLable.textAlignment = .Left
+        titleLable.textColor = UIColor.whiteColor()
+        
+        titleLable.text = viewController.headerTitleText()
+        titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
+        leftButtonsView.addSubview(titleLable)
+        
+        leftButtonsView.addSubview(sidePanelBtn)
+        return UIBarButtonItem(customView: leftButtonsView)
+    }
+    
+    func designLeftBarButtonItemsForCXControllerWithBackBtnAndLogo(viewController:CXViewController) -> UIBarButtonItem{
+        
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        
+        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        
+        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
+        
+        let imgUrl = NSUserDefaults.standardUserDefaults().valueForKey("LOGO") as? String
+        let sidePanelLogoBtn:UIButton = UIButton(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelLogoBtn.setImageWithURL(NSURL(string:imgUrl!), forState: .Normal)
+        sidePanelBtn.addTarget(self, action: #selector(backBtnAction), forControlEvents: .TouchUpInside)
+        sidePanelLogoBtn.addTarget(self, action: #selector(backBtnAction), forControlEvents: .TouchUpInside)
+        
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH+sidePanelLogoBtn.frame.size.width, 10, 100, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        titleLable.textAlignment = .Left
+        titleLable.textColor = UIColor.whiteColor()
+        
+        titleLable.text = viewController.headerTitleText()
+        titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
+        leftButtonsView.addSubview(titleLable)
+        
+        leftButtonsView.addSubview(sidePanelBtn)
+        leftButtonsView.addSubview(sidePanelLogoBtn)
+        
+        return UIBarButtonItem(customView: leftButtonsView)
+    }
+    
+    func headerWithLogoForAboutUs(viewController:CXViewController) -> UIBarButtonItem{
+        
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        
+        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        
+        let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
+        
+        let imgUrl = NSUserDefaults.standardUserDefaults().valueForKey("LOGO") as? String
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let sidePanelLogoBtn:UIButton = UIButton(frame: CGRectMake(screenWidth/2 - Constants.LEFT_NAV_BUTTON_WIDTH ,10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        sidePanelLogoBtn.setImageWithURL(NSURL(string:imgUrl!), forState: .Normal)
+        sidePanelLogoBtn.highlighted = false
+        sidePanelLogoBtn.userInteractionEnabled = false
+        sidePanelBtn.addTarget(self, action: #selector(backBtnAction), forControlEvents: .TouchUpInside)
+        
+        leftButtonsView.addSubview(sidePanelBtn)
+        leftButtonsView.addSubview(sidePanelLogoBtn)
+        
+        return UIBarButtonItem(customView: leftButtonsView)
+    }
+    
+    
+    func backBtnAction(){
+            self.popViewControllerAnimated(true)
+    }
+    
     func rightMenuButtonCreationForCXController(imageName:String,frame:CGRect) -> UIButton{
         let button = UIButton(type: .Custom) as UIButton
         button.setBackgroundImage(UIImage(named:imageName), forState: .Normal)
@@ -298,8 +377,6 @@ class CXNavDrawer: UINavigationController {
         self.closeNavigationDrawer()
     }
 
-
-    
     func drawerToggle(){
         if self.isOPen {
             self.closeNavigationDrawer()
@@ -396,11 +473,29 @@ extension CXNavDrawer : UINavigationControllerDelegate {
             
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
             let viewCntl:CXViewController = (viewController as?CXViewController)!
-            if viewCntl.shouldShowLeftMenu() {
+            if viewCntl.shouldShowLeftMenu(){
                 viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXController((viewController as?CXViewController)!)
+            }else{
+                //designLeftBarButtonItemsForCXControllerWithBackBtn
+                viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXControllerWithBackBtn((viewController as?CXViewController)!)
             }
-           
-        }else{
+            if viewCntl.shouldShowLeftMenuWithLogo(){
+                viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXControllerWithBackBtnAndLogo((viewController as?CXViewController)!)
+
+            }
+            
+            if viewCntl.showLogoForAboutUs(){
+                viewController.navigationItem.leftBarButtonItem = self.headerWithLogoForAboutUs((viewController as?CXViewController)!)
+
+            }
+            
+            if viewCntl.backButtonTapped(){
+                self.popToRootViewControllerAnimated(true)
+                
+            }
+            
+        }
+        else{
             viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())
         }
@@ -458,9 +553,9 @@ extension CXNavDrawer {
     
     func ToggleWithProfileWithUserId(){
         chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-5)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
         chooseArticleDropDown.dataSource = [
-            "Profile","Logout"
+            "Profile                    ","Logout                      "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, forState: .Normal)
@@ -474,9 +569,9 @@ extension CXNavDrawer {
     }
     func ToggleWithProfileWithoutUserId(){
         chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
         chooseArticleDropDown.dataSource = [
-            "Profile"
+            "Profile                    "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, forState: .Normal)
@@ -487,9 +582,9 @@ extension CXNavDrawer {
     }
     func ToggleWithProfileForSignIn(){
         chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
         chooseArticleDropDown.dataSource = [
-            "Forgot Password?"
+            "Forgot Password?              "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, forState: .Normal)
@@ -497,11 +592,14 @@ extension CXNavDrawer {
                 NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
             }
         }
-    }func ToggleWithProfileForProfile(){
+    }
+    
+    
+    func ToggleWithProfileForProfile(){
         chooseArticleDropDown.anchorView = profileBtn
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height)
+        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
         chooseArticleDropDown.dataSource = [
-            "Logout"
+            "Logout         "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, forState: .Normal)
@@ -510,6 +608,7 @@ extension CXNavDrawer {
             }
         }
     }
+    
     func logout(){
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey("STATE")
@@ -539,7 +638,7 @@ extension CXNavDrawer {
             UIAlertAction in
             if status == 1 {
                 self.logout()
-                self.navigationController?.popViewControllerAnimated(true)
+                self.popToRootViewControllerAnimated(true)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive) {

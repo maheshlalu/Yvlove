@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormViewController: UIViewController {
+class FormViewController: CXViewController {
 
     @IBAction func formSubmitbuttonAction(sender: UIButton) {
     }
@@ -26,6 +26,46 @@ class FormViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    
+    override func headerTitleText() -> String{
+        return "Enquiry"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return true
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
 
 }
 

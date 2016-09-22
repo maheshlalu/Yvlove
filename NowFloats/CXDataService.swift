@@ -26,6 +26,7 @@ public class CXDataService: NSObject {
     }
     
     public func getTheAppDataFromServer(parameters:[String: AnyObject]? = nil ,completion:(responseDict:NSDictionary) -> Void){
+        if Bool(1) {
         Alamofire.request(.GET,CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl() , parameters: parameters)
             .validate()
             .responseJSON { response in
@@ -38,7 +39,9 @@ public class CXDataService: NSObject {
                     print(error)
                 }
         }
-        
+        }else{
+            
+        }
         
     }
     

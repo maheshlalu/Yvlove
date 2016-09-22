@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -154,7 +154,7 @@
                                     <constraint firstAttribute="height" constant="22" id="PN0-zE-n9t"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
-                                <state key="normal" title="1" image="Dialogue Symbol">
+                                <state key="normal" title="1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -224,11 +224,10 @@
                 <outlet property="enquirymessageTextlabel" destination="pUl-aG-nE3" id="Rgh-VY-umL"/>
                 <outlet property="enquirymessagelabel" destination="rga-vp-ZkQ" id="jRH-6d-kXO"/>
             </connections>
-            <point key="canvasLocation" x="192" y="164"/>
+            <point key="canvasLocation" x="418" y="275"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Attachment Symbols" width="20" height="20"/>
-        <image name="Dialogue Symbol" width="20" height="20"/>
     </resources>
 </document>

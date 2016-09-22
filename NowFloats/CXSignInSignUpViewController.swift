@@ -93,9 +93,8 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
                 UIAlertAction in
                 if status == 1 {
                     //It should leads to Profile Screen
-//                    let home : HomeViewController = HomeViewController.init()
-//                    self.navigationController?.pushViewController(home, animated: false)
-                    self.navController.popToRootViewControllerAnimated(true)
+                    
+                    
                 }
             }
             alert.addAction(okAction)
@@ -159,7 +158,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
             NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("userImagePath"), forKey: "IMAGE_PATH")
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            self.showAlertView("Login successfully", status: status)
+                let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                let profile = storyBoard.instantiateViewControllerWithIdentifier("PROFILE") as! UserProfileViewController
+                self.navigationController?.pushViewController(profile, animated: true)
             
                 
         } else {
@@ -263,12 +264,24 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         
         return false
     }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
     override func headerTitleText() -> String{
         return ""
     }
-    override func profileDropdownForSignIn() -> Bool{
+   override func profileDropdown() -> Bool{
+        return false
+    }
+    
+   override func profileDropdownForSignIn() -> Bool{
         return true
     }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    
 
 }
 

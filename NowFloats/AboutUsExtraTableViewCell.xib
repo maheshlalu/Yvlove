@@ -6,10 +6,8 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
         </mutableArray>
@@ -25,7 +23,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZm-EK-Ep0">
-                        <rect key="frame" x="4" y="41" width="275" height="29"/>
+                        <rect key="frame" x="8" y="41" width="275" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="cnq-qm-pM0"/>
@@ -42,31 +40,31 @@
                             <constraint firstAttribute="width" constant="70" id="qN2-Af-Qbz"/>
                             <constraint firstAttribute="height" constant="29" id="sew-PC-zGL"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                         <state key="normal" title="Call">
                             <color key="titleColor" red="1" green="0.23540388039999999" blue="0.32778192449999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPJ-S2-6Uh">
-                        <rect key="frame" x="4" y="8" width="361" height="25"/>
+                        <rect key="frame" x="9" y="10" width="361" height="25"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="KCJ-If-aA5"/>
                             <constraint firstAttribute="width" constant="361" id="tRD-N7-YB9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-4" id="6Hg-cF-gI1"/>
-                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="leading" secondItem="xPJ-S2-6Uh" secondAttribute="leading" id="NfP-lN-0ve"/>
-                    <constraint firstItem="u2M-pO-LZL" firstAttribute="leading" secondItem="eZm-EK-Ep0" secondAttribute="trailing" constant="8" id="XQg-BD-Tdp"/>
+                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6Hg-cF-gI1"/>
+                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="leading" secondItem="xPJ-S2-6Uh" secondAttribute="leading" constant="-1" id="NfP-lN-0ve"/>
+                    <constraint firstItem="u2M-pO-LZL" firstAttribute="leading" secondItem="eZm-EK-Ep0" secondAttribute="trailing" constant="4" id="XQg-BD-Tdp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="u2M-pO-LZL" secondAttribute="trailing" constant="8" id="b8M-B0-nJ1"/>
                     <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="u2M-pO-LZL" secondAttribute="top" id="kFW-hk-TWG"/>
                     <constraint firstAttribute="bottomMargin" secondItem="eZm-EK-Ep0" secondAttribute="bottom" id="pAa-oV-zVd"/>
-                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="xPJ-S2-6Uh" secondAttribute="bottom" constant="8" id="vud-fu-N2z"/>
+                    <constraint firstItem="eZm-EK-Ep0" firstAttribute="top" secondItem="xPJ-S2-6Uh" secondAttribute="bottom" constant="6" id="vud-fu-N2z"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "drop-down-arrow20x20.png",
+      "filename" : "dialogue20x20.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "drop-down-arrow20x20-1.png",
+      "filename" : "dialogue40x40.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "drop-down-arrow20x20-2.png",
+      "filename" : "dialogue80x80.png",
       "scale" : "3x"
     }
   ],

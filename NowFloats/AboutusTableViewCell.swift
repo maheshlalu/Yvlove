@@ -21,7 +21,7 @@ class AboutusTableViewCell: UITableViewCell {
     
         aboutusgoogleLabel.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
         aboutusgoogleLabel.backgroundColor = UIColor.clearColor()
-        aboutusgoogleLabel.layer.cornerRadius = 10.0
+        aboutusgoogleLabel.layer.cornerRadius = 14.0
         aboutusgoogleLabel.layer.borderWidth = 1
         aboutusgoogleLabel.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().CGColor
         aboutusgoogleLabel.hidden = true

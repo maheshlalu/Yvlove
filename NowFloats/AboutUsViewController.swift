@@ -12,6 +12,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     var nameArray = ["indiadhasgdhjgashjgdjhagsdhjgasdsadsadsadasgfhdgsafhdsjhfghjdsgfjhgdsjhfgjhgdfhgsgfjshdgfhgsdjgfsdgfgsdjgfdsgfgsdjfgsdgfjsdgfjgsdjfgsdgfjshdgfhsgd","america","newzealand"]
     
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var timingsLbl: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var questionBtn: UIButton!
@@ -38,8 +39,11 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
        // sidepanelView()
 
         //logo = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/11_1461743016987.png";
+        
+        
+        self.titleLbl.text = aboutUsDic.valueForKeyPath("appInfo.ApplicationName") as? String
         self.aboutusimageview.sd_setImageWithURL(NSURL(string: (aboutUsDic.valueForKey("imageUrl") as?String)!))
-
+        //self.aboutusimageview.addSubview(overlay)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -64,10 +68,10 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
             aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
             aboutUs.aboutusrootLabel.text = "We are Located in"
             aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
-            aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appMediumFont()
+            aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
+            aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             aboutUs.aboutuskmLabel.hidden = false
             aboutUs.aboutusgoogleLabel.hidden = false
-//address.location
             return aboutUs
             
         }else {
@@ -79,11 +83,14 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                 aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUsExtra.extraDescLbl.text = "12:00Am to 11:30PM"
+                aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
             }else if indexPath.section == 2{
                 aboutUsExtra.extraTitleLbl.text = "You can reacdh us at"
                 aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUsExtra.extraDescLbl.text = self.aboutUsDic.valueForKeyPath("mobile") as?String //"9640339556"//mobile
+                aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUsExtra.callBtn.hidden = false
+                aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
             }
             return aboutUsExtra
         }
@@ -97,7 +104,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         if indexPath.section == 0{
-        return UITableViewAutomaticDimension
+            return UITableViewAutomaticDimension
         }else{
             return 70
         }
@@ -106,10 +113,32 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     /*func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }*/
+    func viewMapAction(button : UIButton!){
+        
+       // self.navigationController?.drawerToggle()
+        let mapViewCnt : MapViewCntl = MapViewCntl()
+        mapViewCnt.lat = Double(self.aboutUsDic.valueForKeyPath("latitude") as! String!)
+        mapViewCnt.lon = Double(self.aboutUsDic.valueForKeyPath("longitude") as! String!)
+        self.navigationController?.pushViewController(mapViewCnt, animated: true)
+    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func callAction(button:UIButton!){
+        
+        let website = self.aboutUsDic.valueForKeyPath("mobile") as! String!
+        callNumber(website!)
+    }
+    
+    private func callNumber(phoneNumber:String) {
+        //UIApplication.sharedApplication().openURL(NSURL(string: "tel:\("digits")")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
+        
+        //        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneNumber)") {
+        //            let application:UIApplication = UIApplication.sharedApplication()
+        //            if (application.canOpenURL(phoneCallURL)) {
+        //                application.openURL(phoneCallURL);
+        //            }
+        //        }
     }
     
     //MAR:Heder options enable
@@ -120,12 +149,12 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     override func shouldShowNotificatoinBell() ->Bool{
         
-        return true
+        return false
     }
     
     override func shouldShowCart() -> Bool{
         
-        return true
+        return false
     }
     
     
@@ -136,6 +165,22 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     override func shouldShowLeftMenu() -> Bool{
         
         return true
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return true
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
     }
 
     

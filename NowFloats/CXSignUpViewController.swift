@@ -276,6 +276,13 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
         
         return false
     }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
 
     override func headerTitleText() -> String{
         return ""

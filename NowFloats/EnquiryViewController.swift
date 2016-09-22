@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EnquiryViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
  var nameArray = ["indiadsaghfdhgafshgdfjhsafdjhfasjhdfhjasfdhjfasjhdfjhsafdjhfasjhdfjhsafdhjfsdhg"]
     @IBOutlet var enquiryTableview: UITableView!
     override func viewDidLoad() {
@@ -18,6 +18,8 @@ class EnquiryViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.enquiryTableview.registerNib(nib, forCellReuseIdentifier: "EnquiryTableViewCell")
         self.enquiryTableview.rowHeight = UITableViewAutomaticDimension
         self.enquiryTableview.estimatedRowHeight = 10.5
+        
+        UITabBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -41,6 +43,9 @@ class EnquiryViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        
+        
+        
         
        let cell = enquiryTableview.dequeueReusableCellWithIdentifier("EnquiryTableViewCell", forIndexPath: indexPath)as! EnquiryTableViewCell
         cell.selectionStyle = .None
@@ -77,10 +82,46 @@ class EnquiryViewController: UIViewController,UITableViewDataSource,UITableViewD
         
     }*/
    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    
+    override func headerTitleText() -> String{
+        return "Enquiry"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return true
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return true
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
     }
 
 

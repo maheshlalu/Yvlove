@@ -32,17 +32,6 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-bm-Po1">
-                        <rect key="frame" x="157" y="89" width="213" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="213" id="6uJ-da-g8S"/>
-                            <constraint firstAttribute="height" constant="21" id="hag-37-7aT"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                        <state key="normal" title="View On Google maps">
-                            <color key="titleColor" red="1" green="0.23540388039999999" blue="0.32778192449999999" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxW-mi-enJ">
                         <rect key="frame" x="8" y="43" width="362" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,27 +44,37 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.81 KM Away" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwR-s7-VQs">
-                        <rect key="frame" x="16" y="87" width="121" height="26"/>
+                        <rect key="frame" x="8" y="87" width="95" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="121" id="D7k-AV-h2C"/>
+                            <constraint firstAttribute="width" constant="95" id="D7k-AV-h2C"/>
                             <constraint firstAttribute="height" constant="26" id="ZbN-aM-DUw"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                         <color key="textColor" red="1" green="0.23540388039999999" blue="0.32778192449999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-bm-Po1">
+                        <rect key="frame" x="111" y="85" width="162" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="162" id="6uJ-da-g8S"/>
+                            <constraint firstAttribute="height" constant="30" id="hag-37-7aT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                        <state key="normal" title="View On Maps">
+                            <color key="titleColor" red="1" green="0.23540388039999999" blue="0.32778192449999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="uY9-91-yhb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="07F-by-wXn"/>
                     <constraint firstAttribute="bottom" secondItem="cwR-s7-VQs" secondAttribute="bottom" constant="17" id="29h-kH-vXh"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="ddY-bm-Po1" secondAttribute="bottom" constant="12" id="5pp-pk-6Jh"/>
-                    <constraint firstItem="cwR-s7-VQs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="GqP-H7-cGw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ddY-bm-Po1" secondAttribute="bottom" constant="7" id="5pp-pk-6Jh"/>
+                    <constraint firstItem="cwR-s7-VQs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="GqP-H7-cGw"/>
                     <constraint firstItem="zxW-mi-enJ" firstAttribute="top" secondItem="uY9-91-yhb" secondAttribute="bottom" constant="5" id="Hrm-Rc-dDz"/>
                     <constraint firstItem="zxW-mi-enJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Kj8-ff-4Rp"/>
                     <constraint firstItem="cwR-s7-VQs" firstAttribute="top" secondItem="zxW-mi-enJ" secondAttribute="bottom" constant="15" id="b9B-bZ-88g"/>
                     <constraint firstAttribute="trailing" secondItem="uY9-91-yhb" secondAttribute="trailing" constant="8" id="e7n-Ft-FYM"/>
-                    <constraint firstItem="ddY-bm-Po1" firstAttribute="leading" secondItem="cwR-s7-VQs" secondAttribute="trailing" constant="20" id="ecI-dF-Qey"/>
-                    <constraint firstItem="ddY-bm-Po1" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="kEC-kW-q3x"/>
+                    <constraint firstItem="ddY-bm-Po1" firstAttribute="leading" secondItem="cwR-s7-VQs" secondAttribute="trailing" constant="8" id="ecI-dF-Qey"/>
                     <constraint firstAttribute="trailing" secondItem="zxW-mi-enJ" secondAttribute="trailing" constant="8" id="sDj-bj-YgP"/>
                     <constraint firstItem="uY9-91-yhb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="vDI-LU-V1M"/>
                 </constraints>

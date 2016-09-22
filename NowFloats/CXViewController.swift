@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate {
+class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate{
 
     var leftNavigationBarItemTitle : String!
     var navController : CXNavDrawer = CXNavDrawer()
@@ -27,9 +27,6 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         else if notification.name == "SignUpNotification"{
             let signUpViewCnt : CXSignUpViewController = CXSignUpViewController()
             self.navigationController?.pushViewController(signUpViewCnt, animated: true)
-        }else if notification.name == "ForgotNotification" {
-            let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
-            self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
         }else if notification.name == "CartButtonNotification"{
              let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
              let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
@@ -51,12 +48,18 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"CartButtonNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignInNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignUpNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotificationForgotPsw(_:)), name:"ForgotNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ProfileNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"NotificationBellNotification", object: nil)
 
         
 
+    }
+    
+    func methodOfReceivedNotificationForgotPsw(notification: NSNotification){
+        
+        let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
+        self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,18 +84,6 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
     func shouldShowRightMenu() -> Bool{
         return true
     }
@@ -112,9 +103,18 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         
         return true
     }
-
-    func backButtonTapped(){
+    
+    func shouldShowLeftMenuWithLogo() -> Bool{
         
+        return false
+    }
+    
+    func showLogoForAboutUs() -> Bool{
+        return false
+    }
+
+    func backButtonTapped() -> Bool{
+        return false
     }
     
     func headerTitleText() -> String{

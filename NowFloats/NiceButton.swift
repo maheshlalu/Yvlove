@@ -14,7 +14,7 @@ class NiceButton: UIButton {
 		super.awakeFromNib()
 		
 		let view = UIView()
-		view.backgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 1.0)
+		//view.backgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 1.0)
 		
 		view.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(view)

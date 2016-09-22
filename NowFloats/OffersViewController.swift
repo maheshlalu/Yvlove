@@ -188,7 +188,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
   
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(price)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.productPriceLbl.attributedText = attributeString
             
             

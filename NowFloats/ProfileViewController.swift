@@ -142,9 +142,16 @@ class ProfileViewController: CXViewController {
         
         return true
     }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
     
     override func headerTitleText() -> String{
         return ""
+    }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
     }
 
     

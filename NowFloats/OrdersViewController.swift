@@ -119,6 +119,22 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         return true
     }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
 
     
     

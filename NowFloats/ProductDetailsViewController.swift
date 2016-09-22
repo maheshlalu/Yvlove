@@ -128,7 +128,7 @@ class ProductDetailsViewController: CXViewController {
                 discountPriceLbl.hidden = false
                 discountPersentageLbl.hidden = false
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-                attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+                attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
                 discountPriceLbl.attributedText = attributeString
                 
                 
@@ -238,5 +238,20 @@ class ProductDetailsViewController: CXViewController {
         
         return false
     }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
+
 
 }

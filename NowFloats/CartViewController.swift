@@ -149,9 +149,23 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         return false
     }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
     
     override func headerTitleText() -> String{
         return "Your Cart"
+    }
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
     }
     
     override func didReceiveMemoryWarning() {

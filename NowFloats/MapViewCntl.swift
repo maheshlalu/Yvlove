@@ -132,6 +132,48 @@ extension MapViewCntl :MKMapViewDelegate,CLLocationManagerDelegate {
 //        
 //        self.mapView.setRegion(region, animated: true)
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return false
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return false
+    }
+    
+    
+    override func headerTitleText() -> String{
+        return "Locate \(CXAppConfig.sharedInstance.productName())"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
 
 }
 

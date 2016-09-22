@@ -64,6 +64,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-32,60,60))
         let imgUrl = self.sidePanelDataDict.valueForKey("logo") as! String!
+        NSUserDefaults.standardUserDefaults().setObject(imgUrl, forKey: "LOGO")
         profileDPImageView.sd_setImageWithURL(NSURL(string: imgUrl))
         // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
         self.profileDPImageView .clipsToBounds = true
@@ -201,6 +202,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func messageAction(sender: UIButton) {
+        self.navController.drawerToggle()
          let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let messageTabbar = storyBoard.instantiateViewControllerWithIdentifier("MESSAGE_TABBAR") as! MessageHomeViewController
         self.navController.pushViewController(messageTabbar, animated: true)

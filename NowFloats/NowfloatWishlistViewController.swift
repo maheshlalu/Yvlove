@@ -70,7 +70,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             cell.discountBdgeLb.hidden = false
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.mrpLbl.attributedText = attributeString
             
             cell.discountBdgeLb.text = "\(discount)"
@@ -162,9 +162,24 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         
         return true
     }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
     
     override func headerTitleText() -> String{
         return "Wishlist"
+    }
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
     }
 
 

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         UITabBar.appearance().backgroundColor = UIColor.whiteColor()
+        
         // Override point for customization after application launch.
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.setUpMagicalDB()
