@@ -29,17 +29,13 @@ class MessageHomeViewController: UITabBarController {
     
         let product = storyBoard.instantiateViewControllerWithIdentifier("FORM") as! FormViewController
         product.title = "FORM"
-        self.navigationController!.pushViewController(product, animated: true)
 
-        
-        
         let photos = storyBoard.instantiateViewControllerWithIdentifier("HISTORY") as! HistoryViewController
         photos.title = "HISTORY"
-        self.navigationController!.pushViewController(photos, animated: true)
+
         
         self.tabBarController?.setViewControllers([product,photos], animated: true)
-        
-        //OFFERS
+
     }
 
 }

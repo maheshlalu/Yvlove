@@ -85,19 +85,6 @@ class CXNavDrawer: UINavigationController {
             }
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    //MARK: LeftBar Button Item and Right bar button item
     
     
     func designLeftBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
@@ -284,6 +271,7 @@ class CXNavDrawer: UINavigationController {
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
         let buttondWidth : CGFloat = 35
         var buttonXposition : CGFloat = rightButtonsView.frame.size.width-buttondWidth+12
+        
         if viewController.shouldShowRightMenu() {
             self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(buttonXposition, 5, 30, 30))
             buttonXposition =  buttonXposition-self.notificationBellBtn.frame.size.width
@@ -308,20 +296,15 @@ class CXNavDrawer: UINavigationController {
         }
         
         if viewController.profileDropdown(){
+            rightButtonsView.addSubview(self.profileBtn)
             self.profileBtn.addTarget(self, action: #selector(profileToggleActionForProfile), forControlEvents: .TouchUpInside)
         }
         
         if viewController.profileDropdownForSignIn(){
+             rightButtonsView.addSubview(self.profileBtn)
             self.profileBtn.addTarget(self, action: #selector(profileToggleActionForSignIn), forControlEvents: .TouchUpInside)
         }
 
-        //whiteCartImage
-        
-
-        // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
-        
-        
-        
         return UIBarButtonItem(customView:rightButtonsView)
     }
     
@@ -382,6 +365,12 @@ class CXNavDrawer: UINavigationController {
             self.closeNavigationDrawer()
         }else{
             self.openNavigationDrawer()
+        }
+    }
+    
+    func drawerHide(){
+        if self.isOPen{
+            self.closeNavigationDrawer()
         }
     }
     
@@ -465,7 +454,7 @@ class CXNavDrawer: UINavigationController {
 
 
 extension CXNavDrawer : UINavigationControllerDelegate {
-    
+
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         print("nav controlller \(viewController)")
         self.upodateTheCartItems()
@@ -493,6 +482,7 @@ extension CXNavDrawer : UINavigationControllerDelegate {
                 self.popToRootViewControllerAnimated(true)
                 
             }
+
             
         }
         else{
@@ -514,27 +504,30 @@ extension CXNavDrawer {
         self.upodateTheCartItems()
     }
 
-    
     func cartButtonAction(){
         //CartButtonNotification
+        drawerHide()
         NSNotificationCenter.defaultCenter().postNotificationName("CartButtonNotification", object: nil)
         
     }
     
     func notificationBellAction(){
+        drawerHide()
         NSNotificationCenter.defaultCenter().postNotificationName("NotificationBellNotification", object: nil)
     }
     
     
     
     func profileToggleAction(sender:UIButton){
-        
+        drawerHide()
         if NSUserDefaults.standardUserDefaults().valueForKey("USER_ID") == nil{
             chooseArticleDropDown.show()
             ToggleWithProfileWithoutUserId()
+            return
         }else{
             chooseArticleDropDown.show()
             ToggleWithProfileWithUserId()
+            return
         }
         
     }
@@ -546,7 +539,7 @@ extension CXNavDrawer {
     }
     
     func profileToggleActionForSignIn(sender:UIButton){
-        chooseArticleDropDown.show()
+        //chooseArticleDropDown.show()
         ToggleWithProfileForSignIn()
     }
     
@@ -580,6 +573,8 @@ extension CXNavDrawer {
             }
         }
     }
+    
+    
     func ToggleWithProfileForSignIn(){
         chooseArticleDropDown.anchorView = profileBtn
         chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
@@ -587,13 +582,17 @@ extension CXNavDrawer {
             "Forgot Password?              "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
-            self.profileBtn.setTitle(nil, forState: .Normal)
+            //self.profileBtn.setTitle(nil, forState: .Normal)
             if index == 0{
-                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+                //print("Forgot password")
+                //NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+//                let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
+//                let navController: UINavigationController = UINavigationController(rootViewController: forgotPswdViewCnt)
+//                self.presentViewController(navController, animated: true, completion: nil)
+                
             }
         }
     }
-    
     
     func ToggleWithProfileForProfile(){
         chooseArticleDropDown.anchorView = profileBtn

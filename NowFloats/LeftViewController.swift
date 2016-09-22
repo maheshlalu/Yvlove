@@ -32,6 +32,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if CX_SingleMall.MR_findAll().count != 0  {
             let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
             self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+            print("\(self.sidePanelDataDict)")
             sidepanelView()
         }else{
             CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
@@ -75,8 +76,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
-        let productName = self.sidePanelDataDict.valueForKeyPath("appInfo.ApplicationName")
-        let city = self.sidePanelDataDict.valueForKeyPath("address.city")
+        let productName = self.sidePanelDataDict.valueForKeyPath("name") as! String!
+        let city = self.sidePanelDataDict.valueForKeyPath("address.city") as! String!
         titleLable.text = "\(productName!) \(city!)"
         self.detailsView.addSubview(titleLable)
         
@@ -169,8 +170,14 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let aboutUs = storyBoard.instantiateViewControllerWithIdentifier("ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
         }else if itemName == "Orders"{
-            let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
-            self.navController.pushViewController(orders, animated: true)
+            if NSUserDefaults.standardUserDefaults().valueForKey("USER_ID") != nil{
+                let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
+                self.navController.pushViewController(orders, animated: true)
+            }else{
+                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                self.navController.pushViewController(signInViewCnt, animated: true)
+            }
+            
         }else if itemName == "Wishlist" {
             let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
@@ -219,15 +226,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
 
     private func callNumber(phoneNumber:String) {
-        //UIApplication.sharedApplication().openURL(NSURL(string: "tel:\("digits")")!)
         UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
-        
-//        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneNumber)") {
-//            let application:UIApplication = UIApplication.sharedApplication()
-//            if (application.canOpenURL(phoneCallURL)) {
-//                application.openURL(phoneCallURL);
-//            }
-//        }
     }
     
     override func didReceiveMemoryWarning() {

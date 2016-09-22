@@ -119,7 +119,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let mapViewCnt : MapViewCntl = MapViewCntl()
         mapViewCnt.lat = Double(self.aboutUsDic.valueForKeyPath("latitude") as! String!)
         mapViewCnt.lon = Double(self.aboutUsDic.valueForKeyPath("longitude") as! String!)
-        self.navigationController?.pushViewController(mapViewCnt, animated: true)
+        self.navigationController!.pushViewController(mapViewCnt, animated: true)
     }
     
     
@@ -130,15 +130,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     private func callNumber(phoneNumber:String) {
-        //UIApplication.sharedApplication().openURL(NSURL(string: "tel:\("digits")")!)
         UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
-        
-        //        if let phoneCallURL:NSURL = NSURL(string:"tel://\(phoneNumber)") {
-        //            let application:UIApplication = UIApplication.sharedApplication()
-        //            if (application.canOpenURL(phoneCallURL)) {
-        //                application.openURL(phoneCallURL);
-        //            }
-        //        }
     }
     
     //MAR:Heder options enable

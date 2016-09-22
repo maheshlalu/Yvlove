@@ -203,10 +203,43 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         
     }
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        
+        return false
+    }
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        
+        return false
+    }
+    override func headerTitleText() -> String{
+        return "Profile"
+    }
+    
+    override func profileDropdown() -> Bool{
+        return true
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
     }
     
 

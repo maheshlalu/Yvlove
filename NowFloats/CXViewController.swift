@@ -39,27 +39,19 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let profile = storyBoard.instantiateViewControllerWithIdentifier("NOTIFICATIONS") as! NotificationsViewController
             self.navigationController?.pushViewController(profile, animated: true)
-        
+        }else if notification.name == "ForgotNotification" {
+            let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
+            self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
         }
-        
   
     }
     override func viewWillAppear(animated: Bool) {//NotificationBellNotification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"CartButtonNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignInNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignUpNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotificationForgotPsw(_:)), name:"ForgotNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ProfileNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"NotificationBellNotification", object: nil)
-
-        
-
-    }
-    
-    func methodOfReceivedNotificationForgotPsw(notification: NSNotification){
-        
-        let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
-        self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

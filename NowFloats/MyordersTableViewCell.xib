@@ -5,9 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+            <string>Roboto-Bold</string>
+        </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
         </mutableArray>
@@ -23,12 +25,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order id : 30704" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpu-xY-9PN">
-                        <rect key="frame" x="7" y="30" width="156" height="21"/>
+                        <rect key="frame" x="7" y="19" width="190" height="41"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="JfN-tJ-X2m"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="156" id="bBx-1M-KIB"/>
+                            <constraint firstAttribute="width" constant="190" id="Ekq-6g-1pv"/>
+                            <constraint firstAttribute="height" constant="41" id="sM8-ge-fTU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -38,15 +40,14 @@
                             <constraint firstAttribute="width" constant="99" id="5Fz-Ka-qBs"/>
                             <constraint firstAttribute="height" constant="35" id="zb4-29-SDy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsh-DI-TCm">
-                        <rect key="frame" x="237" y="19" width="141" height="41"/>
-                        <color key="backgroundColor" red="0.76388817379999996" green="0.48998626579999999" blue="0.88064707880000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="274" y="19" width="104" height="41"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="141" id="PRb-Gc-Ra6"/>
+                            <constraint firstAttribute="width" constant="104" id="PRb-Gc-Ra6"/>
                             <constraint firstAttribute="height" constant="41" id="fYD-f7-PPP"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
@@ -54,13 +55,13 @@
                             <color key="titleColor" red="0.33944553405827976" green="0.57428243885869568" blue="0.1280604516437763" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placed On 05:30 Sep 14,2016" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrE-mx-pvv">
-                        <rect key="frame" x="39" y="101" width="317" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placed On 05:30 Sep 14,2016" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrE-mx-pvv">
+                        <rect key="frame" x="8" y="101" width="369" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="317" id="PST-0Z-Drc"/>
+                            <constraint firstAttribute="width" constant="369" id="PST-0Z-Drc"/>
                             <constraint firstAttribute="height" constant="35" id="o6Q-l6-Zc2"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -70,13 +71,13 @@
                     <constraint firstAttribute="trailing" secondItem="gsh-DI-TCm" secondAttribute="trailing" constant="12" id="AXp-hS-xCo"/>
                     <constraint firstItem="IrE-mx-pvv" firstAttribute="top" secondItem="e5N-3x-iSm" secondAttribute="bottom" constant="26" id="FyR-Il-xs0"/>
                     <constraint firstAttribute="bottom" secondItem="IrE-mx-pvv" secondAttribute="bottom" constant="14" id="JNV-Vu-qMz"/>
-                    <constraint firstItem="IrE-mx-pvv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="39" id="QcQ-cu-7dp"/>
+                    <constraint firstItem="IrE-mx-pvv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QcQ-cu-7dp"/>
                     <constraint firstItem="e5N-3x-iSm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="RCx-FN-qQE"/>
-                    <constraint firstAttribute="trailing" secondItem="IrE-mx-pvv" secondAttribute="trailing" constant="29" id="bOd-uu-Yml"/>
+                    <constraint firstAttribute="trailing" secondItem="IrE-mx-pvv" secondAttribute="trailing" constant="8" id="bOd-uu-Yml"/>
                     <constraint firstItem="gsh-DI-TCm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="cmq-4M-NLa"/>
-                    <constraint firstItem="e5N-3x-iSm" firstAttribute="top" secondItem="Qpu-xY-9PN" secondAttribute="bottom" constant="14" id="evB-wF-a3C"/>
+                    <constraint firstItem="e5N-3x-iSm" firstAttribute="top" secondItem="Qpu-xY-9PN" secondAttribute="bottom" constant="5" id="evB-wF-a3C"/>
                     <constraint firstAttribute="trailing" secondItem="gsh-DI-TCm" secondAttribute="trailing" constant="12" id="j1a-Tb-v6r"/>
-                    <constraint firstItem="Qpu-xY-9PN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="lOh-fy-emq"/>
+                    <constraint firstItem="Qpu-xY-9PN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="lOh-fy-emq"/>
                     <constraint firstAttribute="trailing" secondItem="gsh-DI-TCm" secondAttribute="trailing" constant="7" id="lmM-Sg-KWY"/>
                     <constraint firstItem="IrE-mx-pvv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="39" id="roN-t3-znd"/>
                     <constraint firstAttribute="bottom" secondItem="IrE-mx-pvv" secondAttribute="bottom" constant="11" id="sCR-Ni-BDA"/>

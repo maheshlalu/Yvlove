@@ -18,7 +18,7 @@ class HistoryViewController: CXViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         self.historytableview.rowHeight = UITableViewAutomaticDimension
-        self.historytableview.estimatedRowHeight = 10.0
+        self.historytableview.estimatedRowHeight = 5.0
         
         self.historytableview.registerNib(nib, forCellReuseIdentifier: "HistoryTableViewCell")
         // Do any additional setup after loading the view.
@@ -47,8 +47,8 @@ class HistoryViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        tableView.rowHeight = 120
-        return 120
+        tableView.rowHeight = 130
+        return 130
         
         //return UITableViewAutomaticDimension
     }

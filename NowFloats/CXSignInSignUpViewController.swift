@@ -267,19 +267,20 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
     override func showLogoForAboutUs() -> Bool{
         return false
     }
-    override func headerTitleText() -> String{
-        return ""
-    }
-   override func profileDropdown() -> Bool{
-        return false
-    }
-    
-   override func profileDropdownForSignIn() -> Bool{
-        return true
-    }
     override func shouldShowLeftMenuWithLogo() -> Bool{
         
         return false
+    }
+    override func headerTitleText() -> String{
+        return "Sign in and Sign up"
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return true
     }
     
 

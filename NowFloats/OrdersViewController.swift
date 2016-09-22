@@ -82,9 +82,16 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("MY_ORDERS") as! MyOrderViewController
+        
         productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
+        
+        productDetails.orderIdStr = CXConstant.resultString(orederDataDic.valueForKey("id")!)
+        productDetails.priceStr = orederDataDic.valueForKey("Total") as?String
+        productDetails.placedStr = orederDataDic.valueForKey("createdOn") as?String
+        
         self.navigationController?.pushViewController(productDetails, animated: true)
         
     }

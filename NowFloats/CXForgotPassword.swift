@@ -134,6 +134,7 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
     
     override func shouldShowLeftMenu() -> Bool{
         
+        
         return false
     }
     
@@ -142,7 +143,7 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
     }
     
     override func headerTitleText() -> String{
-        return ""
+        return "Forgot password"
     }
     override func shouldShowLeftMenuWithLogo() -> Bool{
         

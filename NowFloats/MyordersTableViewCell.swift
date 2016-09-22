@@ -13,7 +13,6 @@ class MyordersTableViewCell: UITableViewCell {
     @IBOutlet weak var placedButton: UIButton!
     @IBOutlet weak var orederPlacedonLabel: UILabel!
     @IBOutlet weak var orderPriceLabel: UILabel!
-    @IBOutlet weak var orderidnumberLabel: UILabel!
     @IBOutlet weak var orderdidLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

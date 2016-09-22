@@ -281,11 +281,11 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
     }
     override func shouldShowLeftMenuWithLogo() -> Bool{
         
-        return false
+        return true
     }
 
     override func headerTitleText() -> String{
-        return ""
+        return "Sign up"
     }
     
     func isValidEmail(email: String) -> Bool {

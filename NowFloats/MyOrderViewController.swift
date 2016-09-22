@@ -9,7 +9,9 @@
 import UIKit
 
 class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
-    var nameArray = ["Order id : 30704","Singapore & Malaysia Package for 06 Nights / 07 Days:[1 items]","pakisthan","newzealand","india","america","pakisthan","newzealand","india","america","pakisthan","newzealand"]
+    var orderIdStr:String!
+    var placedStr:String!
+    var priceStr:String!
     
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 3
@@ -24,13 +26,14 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 10.0
-        self.MyorderstableView.backgroundColor = UIColor.lightGrayColor()
+        
+        print("\(orderData.valueForKey("OrderItemName"))")
         //OrderItemId
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         
-        return nameArray.count
+        return 7
         
     }
     
@@ -45,13 +48,19 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         if indexPath.section == 0 {
             
             let myordercell:MyordersTableViewCell! = tableView.dequeueReusableCellWithIdentifier("MyordersTableViewCell") as? MyordersTableViewCell
-            myordercell.orderdidLabel?.text = nameArray[indexPath.section]
+            myordercell.orderdidLabel?.text = "Order id : \(orderIdStr)"
+            let rupee = "\u{20B9}"
+            myordercell.orderPriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            myordercell.orderPriceLabel.text = "\(rupee) \(priceStr)"
+            myordercell.orederPlacedonLabel.text = "Placed On \(placedStr)"
             myordercell.selectionStyle = .None
+            
+            
             return myordercell
         }else {
             
             let myordercell1:MyorderTableViewCell1! = tableView.dequeueReusableCellWithIdentifier("MyorderTableViewCell1") as? MyorderTableViewCell1
-            myordercell1.myorderDescriptionLabel.text = nameArray[indexPath.section]
+            myordercell1.myorderDescriptionLabel.text = "Suresh"
             myordercell1.selectionStyle = .None
             return myordercell1
         }
