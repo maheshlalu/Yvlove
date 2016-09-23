@@ -47,7 +47,7 @@ public class CXDataService: NSObject {
     
     public func synchDataToServerAndServerToMoblile(urlstring:String, parameters:[String: AnyObject]? = nil ,completion:(responseDict:NSDictionary) -> Void){
     
-        Alamofire.request(.GET,urlstring, parameters: parameters)
+        Alamofire.request(.POST,urlstring, parameters: parameters)
             .validate()
             .responseJSON { response in
                 switch response.result {

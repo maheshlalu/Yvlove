@@ -149,7 +149,23 @@ public class CXAppDataManager: NSObject {
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
 
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number),"dt":"CAMPAIGNS","category":"Services","userId":"2264","consumerEmail":email]) { (responseDict) in
+            completion(isDataSaved: true)
+            let string = responseDict.valueForKeyPath("myHashMap.status")
             
+            if ((string?.rangeOfString("1")) != nil){
+                // print("All Malls \(jsonData)")
+                let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+                let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
+                for (index, element) in cartsDataArrya.enumerate() {
+                    let cart : CX_Cart = element as! CX_Cart
+                    NSManagedObjectContext.MR_contextForCurrentThread().deleteObject(cart)
+                    NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreAndWait()
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSNotificationCenter.defaultCenter().postNotificationName("updateCartBtnAction", object: nil)
+                })
+                
+            }
         }
     }
     
@@ -191,9 +207,11 @@ public class CXAppDataManager: NSObject {
                 orderItemId .appendString(("\("|")"))
                 orderItemMRP .appendString(("\("|")"))
             }
-            orderItemName.appendString("\(cart.name! + "`" + cart.pID!)")
-            orderItemQuantity.appendString("\(String(cart.quantity!) + "`" + cart.pID!)")
-            //orderSubTotal.appendString(cart.name! + "`" + cart.pID!)
+            //            let responseString = String(data: data!, encoding: NSUTF8StringEncoding)
+
+            orderItemName.appendString("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
+            orderItemQuantity.appendString("\(String(cart.quantity!).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)! + "`" + cart.pID!)")
+            orderSubTotal.appendString(String(cart.quantity!) + "`" + cart.pID!)
             orderItemId.appendString("\(cart.pID! + "`" + cart.pID!)")
             orderItemMRP.appendString(String(cart.productPrice!) + "`" + cart.pID!)
             //print("Item \(index): \(cart)")
@@ -306,4 +324,16 @@ public class CXAppDataManager: NSObject {
     
     
     
+}
+
+extension String {
+    
+    func escapeStr() -> (String) {
+        var raw: NSString = self
+        var str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[].",":/?&=;+!@#$()',*",CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding))
+        
+        
+        
+        return str as (String)
+    }
 }
