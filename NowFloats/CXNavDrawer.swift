@@ -166,7 +166,7 @@ class CXNavDrawer: UINavigationController {
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
         
-        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 200, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 250, Constants.LEFT_NAV_BUTTON_HEIGHT))
         titleLable.textAlignment = .Left
         titleLable.textColor = UIColor.whiteColor()
       

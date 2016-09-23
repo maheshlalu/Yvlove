@@ -29,12 +29,29 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         self.collectionview.backgroundView?.backgroundColor = UIColor.clearColor()
     }
     
+    
+    func updateProductsPriceLabel(){
+        
+        let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "addToCart = %@", "1"))
+        var productPrice : Int = 0
+        
+        for (index, element) in cartlist.enumerate() {
+            let cart : CX_Cart = element as! CX_Cart
+            let price : Int = cart.quantity!.integerValue * cart.productPrice!.integerValue
+            productPrice =  price + productPrice
+            
+        }
+        self.totalPriceLbl.text = String(productPrice)
+         self.productsCountLbl.text = "\(cartlist.count) Products"
+    }
+    
     func getTheProducts(){
        // let fetchRequest : NSFetchRequest = NSFetchRequest(format: "addToCart = %@", "1")
         
      let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "addToCart = %@", "1"))
         self.products  = NSMutableArray(array: cartlist)
         self.collectionview.reloadData()
+        self.updateProductsPriceLabel()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -68,9 +85,13 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         cell.cartviewLabel.layer.cornerRadius = 5.0
         cell.cartviewLabel.layer.borderWidth=1
         cell.cartviewLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
-        
-        let products:CX_Cart = (self.products[indexPath.item]as?
+        var products:CX_Cart = (self.products[indexPath.item]as?
             CX_Cart)!
+        let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "pID = %@", products.pID!))
+        products =  (cartlist.lastObject as? CX_Cart)!
+
+        //let products:CX_Cart = (self.products[indexPath.item]as?
+          //  CX_Cart)!
         
         cell.cartviewimagetitlelabel.text = products.name
         
@@ -80,7 +101,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         cell.cartviewpricelabel.font = CXAppConfig.sharedInstance.appMediumFont()
         let rupee = "\u{20B9}"
         cell.cartviewpricelabel.text = "\(rupee)\(products.productPrice!)"
-        cell.cartviewLabel.text = "2"
+        cell.cartviewLabel.text = String(products.quantity!)
         
         cell.cartviewminusbutton.tag = indexPath.row+1
         cell.cartviewplusbutton.tag = indexPath.row+1
@@ -90,6 +111,9 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartdeletebutton.addTarget(self, action: #selector(CartViewController.cartDeleteBtnAction(_:)), forControlEvents: .TouchUpInside)
         cell.cartwishlistbutton.addTarget(self, action: #selector(CartViewController.cartWishListButtonAction(_:)), forControlEvents: .TouchUpInside)
+        
+        cell.cartviewplusbutton.addTarget(self, action: #selector(CartViewController.quntityPlusButtonAction(_:)), forControlEvents: .TouchUpInside)
+        cell.cartviewminusbutton.addTarget(self, action: #selector(CartViewController.quantityMinusButtonAction(_:)), forControlEvents: .TouchUpInside)
 
     return cell
   
@@ -103,6 +127,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             
         })
        // print("delete the cell");
+        self.updateProductsPriceLabel()
+
     
     }
     
@@ -114,17 +140,43 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
             
         })
+        self.updateProductsPriceLabel()
+
         
     }
 
-    func quntityPlusButtonAction(){
+    func quntityPlusButtonAction(button : UIButton!){
         
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        var mybalance = proListData.quantity! as NSNumber
+        print(proListData.json!)
+        mybalance = mybalance.integerValue + 1
+        proListData.quantity = mybalance
+        NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreAndWait()
+        self.collectionview.reloadData()
+        self.updateProductsPriceLabel()
+
+    }
+    
+    func quantityMinusButtonAction(button : UIButton!){
         
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        var mybalance = proListData.quantity! as NSNumber
+        if mybalance.integerValue > 1 {
+            mybalance = mybalance.integerValue - 1
+            proListData.quantity = mybalance
+            NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreAndWait()
+            self.collectionview.reloadData()
+            self.updateProductsPriceLabel()
+
+        }
+      
+      //  self.collectionview.reloadItemsAtIndexPaths(NSIndexPath(forItem: button.tag-1, inSection: 0))
+
         
     }
     
-    func quantityMinusButtonAction(){
-        
+    func updateQuantityItems(){
         
         
     }
