@@ -9,6 +9,7 @@
 import UIKit
 
 class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
+    
  var nameArray = ["indiadsaghfdhgafshgdfjhsafdjhfasjhdfhjasfdhjfasjhdfjhsafdjhfasjhdfjhsafdhjfsdhg"]
     @IBOutlet var enquiryTableview: UITableView!
     override func viewDidLoad() {
@@ -85,12 +86,12 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
         
-        return false
+        return true
     }
     
     override func shouldShowNotificatoinBell() ->Bool{
         
-        return false
+        return true
     }
     
     override  func shouldShowCart() -> Bool{
@@ -105,7 +106,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     override func shouldShowLeftMenu() -> Bool{
         
-        return true
+        return false
     }
     override func showLogoForAboutUs() -> Bool{
         return false
@@ -113,7 +114,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     override func shouldShowLeftMenuWithLogo() -> Bool{
         
-        return true
+        return false
     }
     
     override func profileDropdown() -> Bool{

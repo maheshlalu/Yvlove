@@ -58,7 +58,7 @@ class CXDataProvider: NSObject {
         
         MagicalRecord.saveWithBlock({ (localContext) in
             for prod in jobs {
-               // print(prod)
+                print(prod)
                 let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_Products", inManagedObjectContext: localContext) as? CX_Products
                 let createByID : String = CXConstant.resultString(prod.valueForKey("createdById")!)
                 enProduct!.createdById = createByID
@@ -68,12 +68,14 @@ class CXDataProvider: NSObject {
                 enProduct!.name = prod.valueForKey("Name") as? String
                 enProduct!.pid = CXConstant.resultString(prod.valueForKey("id")!)
                 enProduct?.pPrice = 1
-                let updateDate =  prod.valueForKey("UpdatedOn") as? String
+                
+                /*let updateDate =  prod.valueForKey("UpdatedOn") as? String
                 
                 let component = updateDate!.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
                 let list = component.filter({ $0 != "" })
                 let number = Int(list[0])
-                enProduct?.pUpdateDate =  number
+                enProduct?.pUpdateDate =  number */
+                
                 enProduct?.pPrice = Int((prod.valueForKey("MRP") as? String)!)//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
                 enProduct!.type = prod.valueForKey("jobTypeName") as? String

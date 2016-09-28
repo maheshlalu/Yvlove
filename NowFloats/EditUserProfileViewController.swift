@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditUserProfileViewController: CXViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class EditUserProfileViewController: CXViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate{
     
     var firstName:String!
     var lastName:String!
@@ -54,9 +54,19 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
     }
     
     @IBAction func saveChangesAction(sender: AnyObject) {
-        //  func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:UIImage,completion:(responseDict:NSDictionary)-> Void){
-        CXAppDataManager.sharedInstance.profileUpdate(self.staticEmail.text!, address:self.addressTxtField.text!, firstName: self.firstNameTxtField.text!, lastName: self.lastNameTxtField.text!, mobileNumber: self.staticMobileNumber.text!, city: self.cityTxtField.text!, state: self.stateTxtField.text!, country:"", image: self.editDPImage.image!) { (responseDict) in
-            print(responseDict)
+        self.view.endEditing(true)
+            
+            self.editProfileDetails()
+            
+}
+
+
+    func editProfileDetails(){
+//        func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:UIImage,completion:(responseDict:NSDictionary)-> Void){
+            CXAppDataManager.sharedInstance.profileUpdate(self.staticEmail.text!, address:self.addressTxtField.text!, firstName: self.firstNameTxtField.text!, lastName: self.lastNameTxtField.text!, mobileNumber: self.staticMobileNumber.text!, city: self.cityTxtField.text!, state: self.stateTxtField.text!, country:"", image: self.editDPImage.image!) { (responseDict) in
+                print(responseDict)
+//            }
+            
         }
     }
     
@@ -120,6 +130,30 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         self.editDPImage.clipsToBounds = true
         self.editDPImage.layer.borderWidth = 3.0
         self.editDPImage.layer.borderColor = UIColor.whiteColor().CGColor
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.tag == 3 {
+            if  range.length==1 && string.characters.count == 0 {
+                return true
+            }
+            if textField.text?.characters.count >= 10 {
+                return false
+            }
+            let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
+            return string.rangeOfCharacterFromSet(invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+        }
+        return true
+    }
+    
+    func isValidEmail(email: String) -> Bool {
+        // print("validate email: \(email)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailTest.evaluateWithObject(email) {
+            return true
+        }
+        return false
     }
     
     override func didReceiveMemoryWarning() {

@@ -42,7 +42,13 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         
         self.titleLbl.text = aboutUsDic.valueForKeyPath("appInfo.ApplicationName") as? String
-        self.aboutusimageview.sd_setImageWithURL(NSURL(string: (aboutUsDic.valueForKey("imageUrl") as?String)!))
+        let imgUrl = aboutUsDic.valueForKey("imageUrl") as?String
+        if (imgUrl != nil){
+            self.aboutusimageview.sd_setImageWithURL(NSURL(string: imgUrl!))
+        }else{
+            self.aboutusimageview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+        }
+        
         //self.aboutusimageview.addSubview(overlay)
     }
     
@@ -85,7 +91,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUsExtra.extraDescLbl.text = "12:00Am to 11:30PM"
                 aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
             }else if indexPath.section == 2{
-                aboutUsExtra.extraTitleLbl.text = "You can reacdh us at"
+                aboutUsExtra.extraTitleLbl.text = "You can reach us at"
                 aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUsExtra.extraDescLbl.text = self.aboutUsDic.valueForKeyPath("mobile") as?String //"9640339556"//mobile
                 aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()

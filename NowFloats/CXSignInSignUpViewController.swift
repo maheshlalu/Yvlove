@@ -36,10 +36,10 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         self.view.backgroundColor = UIColor.whiteColor();
         self.keyboardIsShown = false
         self.customizeMainView()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXSignInSignUpViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
     }
     
     
@@ -73,6 +73,14 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
       
         
     }
+    
+    override func methodOfReceivedNotification(notification: NSNotification){
+        
+        let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
+        self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)
+        
+    }
+    
     
     func  createPlainTextButton(frame:CGRect,title: String,tag:Int) -> UIButton {
         let button: UIButton = UIButton()

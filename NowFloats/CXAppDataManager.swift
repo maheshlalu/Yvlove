@@ -49,9 +49,11 @@ public class CXAppDataManager: NSObject {
     }
     
     func getTheStores(){
+        
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
+                    LoadingView.show("Loading", animated: true)
                     self.getProducts()
                 })
             }else{
@@ -320,9 +322,7 @@ public class CXAppDataManager: NSObject {
 
         
     }
-    
-    
-    
+  
     
 }
 

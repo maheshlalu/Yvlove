@@ -116,14 +116,23 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
-        feturedProuctsCell.headerLbl.text = featureProducts.name
+        let str = String(featureProducts.name!)
+        let str1 = str.stringByTrimmingCharactersInSet(NSCharacterSet.init(charactersInString: "_"))
+        //let headerStr = removeSpecialCharsFromString(str)
+        feturedProuctsCell.headerLbl.text = "\(str1)"
+        
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         
         return feturedProuctsCell
         
     }
     
-//    
+    func removeSpecialCharsFromString(text: String) -> String {
+        let okayChars : Set<Character> =
+            Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-*=(),.:!_".characters)
+        return String(text.characters.filter {okayChars.contains($0) })
+    }
+    
 //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
 //        let arr:Array = ["Suresh","Mahesh","Balu"]
 //        
@@ -158,6 +167,9 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
 
 
 extension OffersViewController : UICollectionViewDataSource,UICollectionViewDelegate{
+    
+    
+   
     
     func collectionView(collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
@@ -211,6 +223,12 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
 
             return CXConstant.DetailCollectionCellSize
     }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
+
     
     
     

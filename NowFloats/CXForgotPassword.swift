@@ -36,7 +36,7 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
         
         
         self.sendBtn = self.createButton(CGRectMake(25, self.emailAddressField.frame.size.height+self.emailAddressField.frame.origin.y+30, self.view.frame.size.width-50, 40), title: "SEND", tag: 3, bgColor: UIColor.signUpColor())
-        //self.sendBtn.addTarget(self, action: #selector(CXForgotPassword.sendButtonAction), forControlEvents: .TouchUpInside)
+        self.sendBtn.addTarget(self, action: #selector(CXForgotPassword.sendButtonAction), forControlEvents: .TouchUpInside)
         self.view.addSubview(self.sendBtn)
         
     }
@@ -47,20 +47,19 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-//    func sendButtonAction() {//"Please enter valid email address."
-//        self.view.endEditing(true)
-//        print("Send button")
-//        if self.isValidEmail(self.emailAddressField.text!) {
-//            let forgotUrl = "http://storeongo.com:8081/MobileAPIs/forgotpwd?email="+self.emailAddressField.text!
-//            SMSyncService.sharedInstance.startSyncProcessWithUrl(forgotUrl) { (responseDict) in
-//                // print("Forgot mail response \(responseDict)")
-//                let message = responseDict.valueForKey("result") as? String
-//                self.showAlert(message!)
-//            }
-//        } else {
-//            self.showAlert("Please enter valid email address.")
-//        }
-//    }
+    func sendButtonAction() {//"Please enter valid email address."
+        self.view.endEditing(true)
+        print("Send button")
+        if self.isValidEmail(self.emailAddressField.text!) {
+            CXAppDataManager.sharedInstance.forgotPassword(self.emailAddressField.text!, completion: { (responseDict) in
+                print(responseDict)
+                let message = responseDict.valueForKey("result") as? String
+                self.showAlert(message!)
+            })
+        } else {
+            self.showAlert("Please enter valid email address.")
+        }
+    }
     
     
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import AFNetworking
 private var _SingletonSharedInstance:CXDataService! = CXDataService()
 
 public class CXDataService: NSObject {
@@ -65,16 +65,19 @@ public class CXDataService: NSObject {
     
     public func imageUpload(imageData:NSData,completion:(imageFileUrl:String) -> Void){
         
+        
+        
+        
         Alamofire.upload(
             .POST,
             CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(),
-            headers: ["" : ""],
+            headers: ["Content-Type":"application/json"],
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: imageData, name: "srcFile",
                     fileName: "uploadedFile.jpg", mimeType: "")
             },
             encodingCompletion: { encodingResult in
-                
+                print(encodingResult)
                 print("result")
             }
         )

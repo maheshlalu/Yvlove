@@ -22,6 +22,10 @@ extension UIColor {
         return bgColor
     }
     
+    class func backgroundColorOffer() -> UIColor{
+        let bgColor = UIColor(red: 221.0/255.0, green: 221.0/255.0, blue: 221.0/255.0, alpha: 1.0)
+        return bgColor
+    }
 //    class func smOrangeColor () -> UIColor {
 //        let color = UIColor(red: 252.0/255.0, green: 193.0/255.0, blue: 40.0/255.0, alpha: 1.0)
 //        return color//252 193 40

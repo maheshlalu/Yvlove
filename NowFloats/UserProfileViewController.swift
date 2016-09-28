@@ -37,6 +37,8 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
         if (imageUrl != ""){
             dpImageView.sd_setImageWithURL(NSURL(string: (NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as?String)!))
+            dpImageView.alpha = 1
+            dpImageView.backgroundColor = UIColor.clearColor()
         }else{
            // dpImageView.image = UIImage.init(imageLiteral: "placeholder")
             dpImageView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -56,6 +58,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         if (imageUrl != ""){
             editProfile.dpImg = imageUrl
         }
+        
         self.navigationController?.pushViewController(editProfile, animated: true)
         
     }

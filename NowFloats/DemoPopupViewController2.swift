@@ -40,7 +40,7 @@ class DemoPopupViewController2: UIViewController, PopupContentViewController{
     }
     
     func sizeForPopup(popupController: PopupController, size: CGSize, showingKeyboard: Bool) -> CGSize {
-        return CGSizeMake(330, 350)
+        return CGSizeMake(280, 300)
     }
     @IBAction func okButtonAction(sender: AnyObject) {
         closeHandler?()

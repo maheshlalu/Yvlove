@@ -41,7 +41,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             productPrice =  price + productPrice
             
         }
-        self.totalPriceLbl.text = String(productPrice)
+         let rupee = "\u{20B9}"
+        self.totalPriceLbl.text = "\(rupee)\(String(productPrice))"
          self.productsCountLbl.text = "\(cartlist.count) Products"
     }
     

@@ -48,23 +48,6 @@ class UpdatesViewController: CXViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
-    /*
-     https://api.withfloats.com/Discover/v2/floatingPoint/bizFloats?clientId=5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6&skipBy=0&fpid=kljadlkcjasd898979
-     */
 
 }
 
@@ -87,8 +70,10 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return UITableViewAutomaticDimension
     }
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         

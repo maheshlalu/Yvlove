@@ -16,8 +16,8 @@ class OfferFeaturedProductCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
-        self.backgroundView?.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.backgroundColorOffer()
+        //self.backgroundView?.backgroundColor = UIColor.clearColor()
         self.selectionStyle = UITableViewCellSelectionStyle.None
         self.customizeBgView()
         self.customizeDetailCollectionView()
@@ -32,13 +32,13 @@ class OfferFeaturedProductCell: UITableViewCell {
     func customizeBgView(){
         let cellWidth = UIScreen.mainScreen().bounds.size.width
         let viewHeight:CGFloat = CXConstant.RELATED_ARTICLES_CELL_HEIGHT-10
-        let cellFrame = CGRectMake(10, 0, cellWidth-20, viewHeight-25)
+        let cellFrame = CGRectMake(10, 0, cellWidth-20, viewHeight-10)
         
         
         self.bgView = UIView.init(frame: cellFrame)//CXConstant.DetailTableView_Width
-        //self.bgView.layer.borderColor = UIColor.grayColor().CGColor
+        //self.bgView.backgroundColor = UIColor.redColor()
         //self.bgView.layer.borderWidth = 1.0
-        self.bgView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()//UIColor.whiteColor()
+        //self.bgView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()//UIColor.whiteColor()
         self.addSubview(self.bgView)
         
         self.headerLbl = UILabel.init(frame: CGRectMake(0, 0, self.bgView.frame.size.width, 30))
@@ -49,16 +49,16 @@ class OfferFeaturedProductCell: UITableViewCell {
     }
     
     func customizeDetailCollectionView(){
+        
         let cellWidth = UIScreen.mainScreen().bounds.size.width
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left:2, bottom:0, right: 2)
-        layout.minimumInteritemSpacing = -8
-        layout.minimumLineSpacing = 2.2
+        layout.sectionInset = UIEdgeInsets(top: 0, left:0, bottom:0, right: 0)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 5
         layout.itemSize = CXConstant.DetailCollectionCellSize
         self.detailCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         self.detailCollectionView.showsHorizontalScrollIndicator = false
-        self.detailCollectionView.frame = CGRectMake(2, 28, cellWidth-4, CXConstant.DetailCollectionViewFrame.size.height-35)
-        self.detailCollectionView.backgroundColor = UIColor.redColor()
+        self.detailCollectionView.frame = CGRectMake(0, 30, cellWidth-4, CXConstant.DetailCollectionViewFrame.size.height-35)
         
         // CXConstant.DetailCollectionViewFrame
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal

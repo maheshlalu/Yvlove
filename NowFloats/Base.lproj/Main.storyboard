@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2NF-ZE-gat">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -376,7 +376,7 @@
                                         <rect key="frame" x="5" y="5" width="310" height="186"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="186"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="183"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -480,7 +480,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="337" height="163"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -542,27 +542,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search from Business Updates..." backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="atq-y0-PUP">
+                            <searchBar contentMode="redraw" placeholder="Search for products and offers" backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="w1N-j8-KZx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="ULH-Lm-gH6"/>
+                                    <constraint firstAttribute="height" constant="44" id="Mty-pb-hdv"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="ULH-Lm-gH6"/>
+                                        <exclude reference="Mty-pb-hdv"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="ULH-Lm-gH6"/>
+                                        <include reference="Mty-pb-hdv"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="SQE-Hz-Iey" id="Pu8-Ix-5yY"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-OK-rTL">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.86686698719999999" green="0.86686698719999999" blue="0.86686698719999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.83529411764705885" green="0.83529411764705885" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.92941176469999998" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iEB-PT-Oi1" id="ssK-2x-YR2"/>
                                     <outlet property="delegate" destination="iEB-PT-Oi1" id="HQp-3Z-hCV"/>
@@ -571,57 +574,56 @@
                         </subviews>
                         <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="atq-y0-PUP" secondAttribute="trailing" constant="-20" id="1DK-4y-5BZ">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-10"/>
+                            <constraint firstItem="ngM-OK-rTL" firstAttribute="top" secondItem="w1N-j8-KZx" secondAttribute="bottom" constant="7" id="3vo-DV-aLK"/>
+                            <constraint firstAttribute="trailing" secondItem="ngM-OK-rTL" secondAttribute="trailing" constant="5" id="6qb-cY-km4">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="ngM-OK-rTL" secondAttribute="trailing" constant="-10" id="4ll-h3-NNC"/>
-                            <constraint firstItem="72Z-5g-DgY" firstAttribute="top" secondItem="ngM-OK-rTL" secondAttribute="bottom" id="WJ7-2V-e0q"/>
-                            <constraint firstItem="atq-y0-PUP" firstAttribute="top" secondItem="hfF-pJ-00Q" secondAttribute="topMargin" id="XqK-86-4hP">
+                            <constraint firstItem="w1N-j8-KZx" firstAttribute="trailing" secondItem="ngM-OK-rTL" secondAttribute="trailing" id="CMq-Cx-joV"/>
+                            <constraint firstItem="w1N-j8-KZx" firstAttribute="top" secondItem="hfF-pJ-00Q" secondAttribute="topMargin" constant="5" id="Y8S-Ca-8eA"/>
+                            <constraint firstItem="ngM-OK-rTL" firstAttribute="leading" secondItem="hfF-pJ-00Q" secondAttribute="leading" constant="5" id="fft-Kd-KBO">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            </constraint>
+                            <constraint firstItem="72Z-5g-DgY" firstAttribute="top" secondItem="ngM-OK-rTL" secondAttribute="bottom" id="gOr-5D-48d">
                                 <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                             </constraint>
                             <constraint firstItem="ngM-OK-rTL" firstAttribute="leading" secondItem="hfF-pJ-00Q" secondAttribute="leadingMargin" constant="10" id="k7L-Ev-wN1">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-10"/>
                             </constraint>
-                            <constraint firstItem="atq-y0-PUP" firstAttribute="leading" secondItem="hfF-pJ-00Q" secondAttribute="leadingMargin" constant="-20" id="vtD-5B-Fmd">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-10"/>
-                            </constraint>
-                            <constraint firstItem="ngM-OK-rTL" firstAttribute="top" secondItem="atq-y0-PUP" secondAttribute="bottom" constant="5" id="zO3-qz-nFi">
-                                <variation key="heightClass=regular-widthClass=compact" constant="7"/>
-                            </constraint>
+                            <constraint firstItem="w1N-j8-KZx" firstAttribute="leading" secondItem="ngM-OK-rTL" secondAttribute="leading" id="l9Y-KM-ekg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="atq-y0-PUP"/>
                                 <exclude reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="WJ7-2V-e0q"/>
-                                <exclude reference="1DK-4y-5BZ"/>
-                                <exclude reference="XqK-86-4hP"/>
-                                <exclude reference="vtD-5B-Fmd"/>
-                                <exclude reference="4ll-h3-NNC"/>
-                                <exclude reference="zO3-qz-nFi"/>
+                                <exclude reference="CMq-Cx-joV"/>
+                                <exclude reference="Y8S-Ca-8eA"/>
+                                <exclude reference="l9Y-KM-ekg"/>
+                                <exclude reference="3vo-DV-aLK"/>
+                                <exclude reference="6qb-cY-km4"/>
+                                <exclude reference="fft-Kd-KBO"/>
+                                <exclude reference="gOr-5D-48d"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="atq-y0-PUP"/>
+                                <include reference="w1N-j8-KZx"/>
                                 <include reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="WJ7-2V-e0q"/>
-                                <include reference="1DK-4y-5BZ"/>
-                                <include reference="XqK-86-4hP"/>
-                                <include reference="vtD-5B-Fmd"/>
-                                <include reference="4ll-h3-NNC"/>
-                                <include reference="k7L-Ev-wN1"/>
-                                <include reference="zO3-qz-nFi"/>
+                                <include reference="CMq-Cx-joV"/>
+                                <include reference="Y8S-Ca-8eA"/>
+                                <include reference="l9Y-KM-ekg"/>
+                                <include reference="3vo-DV-aLK"/>
+                                <include reference="6qb-cY-km4"/>
+                                <include reference="fft-Kd-KBO"/>
+                                <exclude reference="k7L-Ev-wN1"/>
+                                <include reference="gOr-5D-48d"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="updateTableView" destination="ngM-OK-rTL" id="wTa-Yb-0vt"/>
-                        <outlet property="updatesSearch" destination="atq-y0-PUP" id="pJy-Ms-R9h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-nC-Th2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -696,7 +698,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="5Wb-ek-EiO"/>
-                                <exclude reference="sSt-8J-US6"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Smr-QI-NIQ"/>
@@ -728,7 +729,7 @@
                     </view>
                     <connections>
                         <outlet property="offersTableView" destination="5Wb-ek-EiO" id="8Pb-ik-cww"/>
-                        <outlet property="productsSearchBar" destination="sSt-8J-US6" id="C0i-cL-aBQ"/>
+                        <outlet property="productsSearchBar" destination="sSt-8J-US6" id="bXs-0C-04Q"/>
                         <outlet property="searchDisplayController" destination="lnw-CC-858" id="GcQ-Fx-zLI"/>
                     </connections>
                 </viewController>
@@ -736,14 +737,13 @@
                 <searchDisplayController id="lnw-CC-858">
                     <connections>
                         <outlet property="delegate" destination="SQE-Hz-Iey" id="gfR-Vv-n46"/>
-                        <outlet property="searchBar" destination="sSt-8J-US6" id="vBl-ac-0UT"/>
                         <outlet property="searchContentsController" destination="SQE-Hz-Iey" id="MHj-Lc-yXX"/>
                         <outlet property="searchResultsDataSource" destination="SQE-Hz-Iey" id="yIo-Rt-pdB"/>
                         <outlet property="searchResultsDelegate" destination="SQE-Hz-Iey" id="ccQ-oB-T6I"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1423.5" y="-1114.5"/>
+            <point key="canvasLocation" x="-1320" y="-1138"/>
         </scene>
         <!--Nav Drawer-->
         <scene sceneID="ZgF-6Y-Wz1">
@@ -1088,7 +1088,8 @@
                                                             <exclude reference="5fC-xZ-PSg"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="75" width="304" height="1"/>
                                                         <mask key="constraints">
                                                             <include reference="5fC-xZ-PSg"/>
                                                         </mask>
@@ -1687,7 +1688,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="sample-icon" translatesAutoresizingMaskIntoConstraints="NO" id="JzS-zD-xjF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Ic_call120x120" translatesAutoresizingMaskIntoConstraints="NO" id="JzS-zD-xjF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="218" id="D9c-de-egM">
@@ -2036,7 +2037,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="wmy-mk-mgy">
-                                        <rect key="frame" x="-2" y="9" width="893" height="360"/>
+                                        <rect key="frame" x="-2" y="9" width="886" height="360"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" ambiguous="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-LX-rV0">
                                                 <rect key="frame" x="0.0" y="0.0" width="360" height="360"/>
@@ -2067,25 +2068,25 @@
                                                 </variation>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" text="Suresh Kumar Yadavalli" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVy-Ti-JMd">
-                                                <rect key="frame" x="361" y="0.0" width="245" height="360"/>
+                                                <rect key="frame" x="361" y="0.0" width="243" height="360"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="23"/>
                                                 <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="iamsky.mme@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-rS-ZNT">
-                                                <rect key="frame" x="607" y="0.0" width="159" height="360"/>
+                                                <rect key="frame" x="605" y="0.0" width="155" height="360"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9640339556" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edK-wu-2Cp">
-                                                <rect key="frame" x="767" y="0.0" width="85" height="360"/>
+                                                <rect key="frame" x="761" y="0.0" width="84" height="360"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6v-Iv-y7I">
-                                                <rect key="frame" x="853" y="0.0" width="40" height="360"/>
+                                                <rect key="frame" x="846" y="0.0" width="40" height="360"/>
                                                 <state key="normal" image="editProfileFrom40"/>
                                                 <connections>
                                                     <action selector="editBtnAction:" destination="p9e-WC-JK9" eventType="touchUpInside" id="7bS-0h-bKe"/>
@@ -2757,7 +2758,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBv-Kb-U6o">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBv-Kb-U6o">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -3052,10 +3053,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AGt-ma-Z0i">
-                                        <rect key="frame" x="30" y="249" width="415" height="40"/>
+                                        <rect key="frame" x="30" y="249" width="65" height="18"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-3f-ls1" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="79" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-3f-ls1" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="9" height="18"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -3087,8 +3088,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="First Name"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-gN-hhi" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="84" y="0.0" width="79" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-gN-hhi" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                                <rect key="frame" x="14" y="0.0" width="9" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="YiM-bH-oly">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -3138,8 +3139,8 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdq-iC-LRv" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="168" y="0.0" width="79" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdq-iC-LRv" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                                <rect key="frame" x="28" y="0.0" width="9" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="DXo-eQ-bQA">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -3189,8 +3190,8 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvN-vq-9Xf" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="252" y="0.0" width="79" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvN-vq-9Xf" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                                <rect key="frame" x="42" y="0.0" width="9" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="317" id="3b7-SB-7mu"/>
                                                     <constraint firstAttribute="height" constant="30" id="Zfw-xO-dVQ">
@@ -3240,8 +3241,8 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wp6-bf-veG" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="336" y="0.0" width="79" height="40"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wp6-bf-veG" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                                <rect key="frame" x="56" y="0.0" width="9" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="PYg-V4-Lwy">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -3459,6 +3460,7 @@
                                         </variation>
                                     </textField>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="db6-vN-vVx" firstAttribute="centerX" secondItem="lD3-0J-7JI" secondAttribute="centerX" id="5fM-Zg-GLW">
                                         <variation key="heightClass=regular-widthClass=compact" constant="3.5"/>
@@ -3599,7 +3601,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="126" height="216"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -3734,6 +3736,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Ic_call120x120" width="20" height="20"/>
         <image name="addToCart_White" width="20" height="20"/>
         <image name="bell_Stencil" width="20" height="20"/>
         <image name="black-line" width="300" height="300"/>
@@ -3747,7 +3750,6 @@
         <image name="message" width="20" height="20"/>
         <image name="placeOrderImg" width="20" height="20"/>
         <image name="placeholder" width="360" height="360"/>
-        <image name="sample-icon" width="400" height="267"/>
         <image name="shareImage" width="20" height="20"/>
         <image name="star.png" width="50" height="50"/>
         <image name="starImage" width="20" height="20"/>

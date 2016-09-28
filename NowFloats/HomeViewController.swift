@@ -23,7 +23,7 @@ class HomeViewController: UITabBarController {
          CCKFNavDrawer* navC = (CCKFNavDrawer*)self.navigationController;
          [navC drawerToggle];
          */
-      LoadingView.show("Loading", animated: true)
+      //LoadingView.show("Loading", animated: true)
         CXAppDataManager.sharedInstance.dataDelegate = self
         
         

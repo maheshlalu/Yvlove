@@ -55,10 +55,11 @@ class CXNavDrawer: UINavigationController {
     var navTitle : String!
 
     var leftViewController : LeftViewController!
-    
+    var presentWindow:UIWindow?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presentWindow = UIApplication.sharedApplication().keyWindow
         self.navigationBar.barTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationBar.translucent = false
@@ -89,7 +90,7 @@ class CXNavDrawer: UINavigationController {
     
     func designLeftBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, self.navigationBar.frame.size.height))
         
         //leftButtonsView.backgroundColor = UIColor.blueColor()
         
@@ -129,11 +130,13 @@ class CXNavDrawer: UINavigationController {
     
     func designRightBarButtonItems(viewController:UIViewController) -> UIBarButtonItem{
         
-        let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
+        let rightButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, 40))
+//        rightButtonsView.backgroundColor = UIColor.greenColor()
         let buttondWidth : CGFloat = 35
         self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth+12, 5, 30, 30))
         self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth-25,2, 35, 35))
         self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRectMake(rightButtonsView.frame.size.width-buttondWidth*2-30, 1, 35, 35))
+        self.cartBtn.highlighted = false
        // self.cartBtn.badgeString = "10"
 //whiteCartImage
       
@@ -158,15 +161,14 @@ class CXNavDrawer: UINavigationController {
     //MARK: Design left and right header component
     func designLeftBarButtonItemsForCXController(viewController:CXViewController) -> UIBarButtonItem{
 
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
-        
-        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, self.navigationBar.frame.size.height))
+        //leftButtonsView.backgroundColor = UIColor.redColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), forState: .Normal)
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), forControlEvents: .TouchUpInside)
         
-        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 250, Constants.LEFT_NAV_BUTTON_HEIGHT))
+        let titleLable : UILabel = UILabel(frame: CGRectMake(Constants.LEFT_NAV_BUTTON_WIDTH, 10, 100, Constants.LEFT_NAV_BUTTON_HEIGHT))
         titleLable.textAlignment = .Left
         titleLable.textColor = UIColor.whiteColor()
       
@@ -180,9 +182,8 @@ class CXNavDrawer: UINavigationController {
     
     func designLeftBarButtonItemsForCXControllerWithBackBtn(viewController:CXViewController) -> UIBarButtonItem{
         
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
-        
-        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, self.navigationBar.frame.size.height))
+        //leftButtonsView.backgroundColor = UIColor.redColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
@@ -202,9 +203,8 @@ class CXNavDrawer: UINavigationController {
     
     func designLeftBarButtonItemsForCXControllerWithBackBtnAndLogo(viewController:CXViewController) -> UIBarButtonItem{
         
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
-        
-        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, self.navigationBar.frame.size.height))
+        //leftButtonsView.backgroundColor = UIColor.redColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
@@ -231,9 +231,8 @@ class CXNavDrawer: UINavigationController {
     
     func headerWithLogoForAboutUs(viewController:CXViewController) -> UIBarButtonItem{
         
-        let leftButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 50))
-        
-        //leftButtonsView.backgroundColor = UIColor.blueColor()
+        let leftButtonsView: UIView = UIView(frame: CGRectMake(-10, 0, 100, self.navigationBar.frame.size.height))
+        //leftButtonsView.backgroundColor = UIColor.redColor()
         
         let sidePanelBtn : UIButton = UIButton(frame: CGRectMake(-10, 10, Constants.LEFT_NAV_BUTTON_WIDTH, Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), forState: .Normal)
@@ -269,9 +268,11 @@ class CXNavDrawer: UINavigationController {
     func designRightBarButtonItemsForCXController(viewController:CXViewController) -> UIBarButtonItem{
         
         let rightButtonsView: UIView = UIView(frame: CGRectMake(0, 0, 250, 40))
+       // rightButtonsView.backgroundColor = UIColor.brownColor()
         let buttondWidth : CGFloat = 35
         var buttonXposition : CGFloat = rightButtonsView.frame.size.width-buttondWidth+12
         
+
         if viewController.shouldShowRightMenu() {
             self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRectMake(buttonXposition, 5, 30, 30))
             buttonXposition =  buttonXposition-self.notificationBellBtn.frame.size.width
@@ -290,6 +291,7 @@ class CXNavDrawer: UINavigationController {
         
         if viewController.shouldShowCart(){
             self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRectMake(buttonXposition, 1, 35, 35))
+            self.cartBtn.highlighted = false
             rightButtonsView.addSubview(self.cartBtn)
             self.cartBtn.addTarget(self, action: #selector(cartButtonAction), forControlEvents: .TouchUpInside)
             self.upodateTheCartItems()
@@ -463,6 +465,7 @@ extension CXNavDrawer : UINavigationControllerDelegate {
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
             let viewCntl:CXViewController = (viewController as?CXViewController)!
             if viewCntl.shouldShowLeftMenu(){
+                
                 viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXController((viewController as?CXViewController)!)
             }else{
                 //designLeftBarButtonItemsForCXControllerWithBackBtn
@@ -585,7 +588,7 @@ extension CXNavDrawer {
             //self.profileBtn.setTitle(nil, forState: .Normal)
             if index == 0{
                 //print("Forgot password")
-                //NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("ForgotNotification", object: nil)
 //                let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
 //                let navController: UINavigationController = UINavigationController(rootViewController: forgotPswdViewCnt)
 //                self.presentViewController(navController, animated: true, completion: nil)
@@ -637,6 +640,7 @@ extension CXNavDrawer {
             UIAlertAction in
             if status == 1 {
                 self.logout()
+                 self.presentWindow?.makeToast(message: "User logout successfully")
                 self.popToRootViewControllerAnimated(true)
             }
         }

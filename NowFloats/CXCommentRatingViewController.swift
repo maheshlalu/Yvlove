@@ -90,8 +90,8 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     func customizeRatingView(frame:CGRect) -> FloatRatingView {
         let ratView : FloatRatingView = FloatRatingView.init(frame: frame)
         
-        ratView.emptyImage = UIImage(named: "star_unsel_108.png")
-        ratView.fullImage = UIImage(named: "star_sel_108.png")
+        ratView.emptyImage = UIImage(named: "rate")
+        ratView.fullImage = UIImage(named: "rateFilled")
         // Optional params
         ratView.delegate = self
         ratView.contentMode = UIViewContentMode.ScaleAspectFit
