@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YKQ-M7-S30">
-                        <rect key="frame" x="20" y="185" width="188" height="21"/>
+                        <rect key="frame" x="15" y="185" width="198" height="21"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2223" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FQ-RX-uiw">
                                 <rect key="frame" x="0.0" y="0.0" width="51" height="21"/>
@@ -33,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4848" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBk-0u-4oJ">
-                                <rect key="frame" x="145" y="0.0" width="43" height="21"/>
+                                <rect key="frame" x="155" y="0.0" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                 <constraint firstItem="Mmn-E1-wYl" firstAttribute="leading" secondItem="XKP-Cq-Cs8" secondAttribute="leading" id="3ht-Sm-yL1"/>
                 <constraint firstItem="Mmn-E1-wYl" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" id="7X6-UZ-huK"/>
                 <constraint firstAttribute="trailing" secondItem="YKQ-M7-S30" secondAttribute="trailing" id="AVh-Ro-I8r"/>
-                <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" constant="20" id="Bv8-h2-MpF"/>
+                <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" constant="15" id="Bv8-h2-MpF"/>
                 <constraint firstItem="Mmn-E1-wYl" firstAttribute="trailing" secondItem="XKP-Cq-Cs8" secondAttribute="trailing" id="C7w-lQ-0Fw"/>
                 <constraint firstItem="9a2-nh-WTG" firstAttribute="bottom" secondItem="waj-4o-qgz" secondAttribute="bottomMargin" constant="3" id="KY7-Ee-RNR"/>
                 <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" constant="3" id="MqW-t8-eMy"/>
@@ -70,7 +70,7 @@
                 <constraint firstAttribute="trailing" secondItem="Mmn-E1-wYl" secondAttribute="trailing" id="aZx-Ml-hRO"/>
                 <constraint firstItem="XKP-Cq-Cs8" firstAttribute="top" secondItem="waj-4o-qgz" secondAttribute="top" constant="8" id="hIx-xh-mT4"/>
                 <constraint firstItem="9a2-nh-WTG" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leadingMargin" id="lAI-70-HI1"/>
-                <constraint firstAttribute="trailing" secondItem="YKQ-M7-S30" secondAttribute="trailing" constant="20" id="qEK-ly-o66"/>
+                <constraint firstAttribute="trailing" secondItem="YKQ-M7-S30" secondAttribute="trailing" constant="15" id="qEK-ly-o66"/>
                 <constraint firstItem="Mmn-E1-wYl" firstAttribute="centerX" secondItem="9a2-nh-WTG" secondAttribute="centerX" id="wDA-gy-oay"/>
                 <constraint firstItem="YKQ-M7-S30" firstAttribute="top" secondItem="Mmn-E1-wYl" secondAttribute="bottom" constant="6" id="wxd-Ry-4qe"/>
                 <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" id="xiR-zk-eTD"/>
