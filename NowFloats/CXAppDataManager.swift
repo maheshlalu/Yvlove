@@ -148,10 +148,10 @@ public class CXAppDataManager: NSObject {
     
     //Mark Place order
     
-    func placeOder(name:String ,email:String,address1:String,address2:String,number:String,completion:(isDataSaved:Bool) -> Void){
+    func placeOder(name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:(isDataSaved:Bool) -> Void){
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
 
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number),"dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":email]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal),"dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":email]) { (responseDict) in
             completion(isDataSaved: true)
             let string = responseDict.valueForKeyPath("myHashMap.status")
             
@@ -173,7 +173,7 @@ public class CXAppDataManager: NSObject {
     }
     
     
-    func checkOutCartItems(name:String ,email:String,address1:String,address2:String,number:String)-> String{
+    func checkOutCartItems(name:String ,email:String,address1:String,address2:String,number:String,subTotal:String)-> String{
         
         let productEn = NSEntityDescription.entityForName("CX_Cart", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
         let fetchRequest = CX_Cart.MR_requestAllSortedBy("name", ascending: true)
@@ -211,10 +211,10 @@ public class CXAppDataManager: NSObject {
                 orderItemMRP .appendString(("\("|")"))
             }
             //            let responseString = String(data: data!, encoding: NSUTF8StringEncoding)
-
+            let finalSubtotal = (cart.quantity?.intValue)! * (cart.productPrice?.intValue)!
             orderItemName.appendString("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
             orderItemQuantity.appendString("\(String(cart.quantity!).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)! + "`" + cart.pID!)")
-            orderSubTotal.appendString(String(cart.quantity!) + "`" + cart.pID!)
+            orderSubTotal.appendString(String(finalSubtotal) + "`" + cart.pID!)
             orderItemId.appendString("\(cart.pID! + "`" + cart.pID!)")
             orderItemMRP.appendString(String(cart.productPrice!) + "`" + cart.pID!)
             //print("Item \(index): \(cart)")
@@ -235,6 +235,8 @@ public class CXAppDataManager: NSObject {
         
         // order["OrderItemMRP"] = ("\(orderItemMRP)")
         order.setValue(orderItemMRP, forKey: "OrderItemMRP")
+        
+        order.setValue(subTotal, forKey: "Total")
         
         
         //print("order dic \(order)")

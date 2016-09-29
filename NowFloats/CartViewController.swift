@@ -245,7 +245,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         let container = DemoPopupViewController2.instance()
         container.closeHandler = { _ in
             popup.dismiss()
-            CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!, completion: { (isDataSaved) in
+            CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
                 self.navController.popViewControllerAnimated(true)
             })
         }
