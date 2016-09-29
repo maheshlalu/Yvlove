@@ -45,6 +45,12 @@ public class CXDataService: NSObject {
         
     }
     
+    
+    func generateBoundaryString() -> String
+    {
+        return "\(NSUUID().UUIDString)"
+    }
+    
     public func synchDataToServerAndServerToMoblile(urlstring:String, parameters:[String: AnyObject]? = nil ,completion:(responseDict:NSDictionary) -> Void){
     
         Alamofire.request(.POST,urlstring, parameters: parameters)
@@ -64,23 +70,46 @@ public class CXDataService: NSObject {
     }
     
     public func imageUpload(imageData:NSData,completion:(imageFileUrl:String) -> Void){
+
+        let mutableRequest : AFHTTPRequestSerializer = AFHTTPRequestSerializer()
+        let request1 : NSMutableURLRequest =    mutableRequest.multipartFormRequestWithMethod("POST", URLString: CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(), parameters: ["refFileName": self.generateBoundaryString()], constructingBodyWithBlock: { (formatData:AFMultipartFormData) in
+            formatData.appendPartWithFileData(imageData, name: "srcFile", fileName: "uploadedFile.jpg", mimeType: "image/jpeg")
+            }, error: nil)
         
+        let session = NSURLSession.sharedSession()
         
-        
-        
-        Alamofire.upload(
-            .POST,
-            CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(),
-            headers: ["Content-Type":"application/json"],
-            multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: imageData, name: "srcFile",
-                    fileName: "uploadedFile.jpg", mimeType: "")
-            },
-            encodingCompletion: { encodingResult in
-                print(encodingResult)
-                print("result")
+        let task = session.dataTaskWithRequest(request1) {
+            (
+            let data, let response, let error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                print("error")
+                return
             }
-        )
+            
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print(dataString)
+            
+        }
+        
+        task.resume()
+        
+        
+        
+        
+//        Alamofire.upload(
+//            .POST,
+//            CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(),
+//            headers: ["Content-Type":"application/json"],
+//            multipartFormData: { multipartFormData in
+//                multipartFormData.appendBodyPart(data: imageData, name: "srcFile",
+//                    fileName: "uploadedFile.jpg", mimeType: "")
+//            },
+//            encodingCompletion: { encodingResult in
+//                print(encodingResult)
+//                print("result")
+//            }
+//        )
     }
     
     

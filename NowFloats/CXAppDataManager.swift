@@ -31,6 +31,7 @@ public class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
+        self.getProducts()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             print("print store category\(responseDict)")
             self.getTheStores()
@@ -150,7 +151,7 @@ public class CXAppDataManager: NSObject {
     func placeOder(name:String ,email:String,address1:String,address2:String,number:String,completion:(isDataSaved:Bool) -> Void){
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
 
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number),"dt":"CAMPAIGNS","category":"Services","userId":"2264","consumerEmail":email]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number),"dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":email]) { (responseDict) in
             completion(isDataSaved: true)
             let string = responseDict.valueForKeyPath("myHashMap.status")
             
@@ -311,13 +312,14 @@ public class CXAppDataManager: NSObject {
     
     func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:UIImage,completion:(responseDict:NSDictionary)-> Void){
         
-        CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
+       // CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
             
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":imageFileUrl,"userBannerPath":imageFileUrl]) { (responseDict) in
+            
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":"","userBannerPath":""]) { (responseDict) in
                 completion(responseDict: responseDict)
             }
             
-        }
+        //}
         //   NSString* urlString = [NSString stringWithFormat:@"%@orgId=%@&email=%@&dt=DEVICES&firstName=%@&lastName=%@&address=%@&mobileNo=%@&city=%@&state=%@&country=%@&userImagePath=%@&userBannerPath=%@",UpdateProfile_URL,mallId,dict[@"emailId"], dict[@"firstName"],dict[@"lastName"],dict[@"address"],dict[@"mobile"],dict[@"city"],dict[@"state"],dict[@"country"], dict[@"userImagePath"], dict[@"userBannerPath"]];
 
         
