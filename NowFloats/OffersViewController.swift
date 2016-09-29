@@ -199,7 +199,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!)
             let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
   
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(price)")
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.productPriceLbl.attributedText = attributeString
             
@@ -214,7 +214,10 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             cell.orderNowBtn.hidden = true
             
         }
+        let fId = Int(featuredProductJobs.fID! as String)
+        cell.orderNowBtn.tag = fId!
 
+        cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
     
@@ -224,14 +227,15 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             return CXConstant.DetailCollectionCellSize
     }
     
+    
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
     
-
-    
-    
-    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 0, height: 0)
+    }
+  
 }
 
 //MARK: KIPager Delegate and Datasorce
@@ -262,9 +266,39 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         
         pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         pager.pageControl.pageIndicatorTintColor = UIColor.grayColor();
+  
+        pager.pagerView.orederNowBtn.tag = Int(index+1)
+        pager.pagerView.orederNowBtn.addTarget(self, action: #selector(OffersViewController.pagerOrderNowBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         return productModelData
         
     }
     
+    func pagerOrderNowBtnAction(sender:UIButton){
+        print("\(sender.tag)")
+        let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+        productDetails.productString = proListData.json
+        self.navigationController?.pushViewController(productDetails, animated: true)
+    }
+    
+    
+}
+
+extension OffersViewController {
+    
+    func orderNowBtnAction(sender:UIButton){
+        print("\(sender.tag)")
+        let fID = String(sender.tag)
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+        productDetails.productString = featuredProductJobs.json
+        self.navigationController?.pushViewController(productDetails, animated: true)
+        
+        
+     
+}
 }
