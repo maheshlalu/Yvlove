@@ -542,7 +542,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for products and offers" backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="w1N-j8-KZx">
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" placeholder="Search for products and offers" backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="w1N-j8-KZx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Mty-pb-hdv"/>
@@ -596,12 +596,12 @@
                                 <exclude reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="CMq-Cx-joV"/>
-                                <exclude reference="Y8S-Ca-8eA"/>
-                                <exclude reference="l9Y-KM-ekg"/>
                                 <exclude reference="3vo-DV-aLK"/>
                                 <exclude reference="6qb-cY-km4"/>
                                 <exclude reference="fft-Kd-KBO"/>
+                                <exclude reference="CMq-Cx-joV"/>
+                                <exclude reference="Y8S-Ca-8eA"/>
+                                <exclude reference="l9Y-KM-ekg"/>
                                 <exclude reference="gOr-5D-48d"/>
                             </mask>
                         </variation>
@@ -611,13 +611,13 @@
                                 <include reference="ngM-OK-rTL"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="CMq-Cx-joV"/>
-                                <include reference="Y8S-Ca-8eA"/>
-                                <include reference="l9Y-KM-ekg"/>
                                 <include reference="3vo-DV-aLK"/>
                                 <include reference="6qb-cY-km4"/>
                                 <include reference="fft-Kd-KBO"/>
                                 <exclude reference="k7L-Ev-wN1"/>
+                                <include reference="CMq-Cx-joV"/>
+                                <include reference="Y8S-Ca-8eA"/>
+                                <include reference="l9Y-KM-ekg"/>
                                 <include reference="gOr-5D-48d"/>
                             </mask>
                         </variation>
@@ -651,7 +651,7 @@
                                     <outlet property="delegate" destination="SQE-Hz-Iey" id="afG-Ek-Mq9"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="Search for products and offers" backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="sSt-8J-US6">
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" placeholder="Search for products and offers" backgroundImage="whiteImage" translatesAutoresizingMaskIntoConstraints="NO" id="sSt-8J-US6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Faw-vb-bTb"/>
@@ -700,14 +700,14 @@
                                 <exclude reference="5Wb-ek-EiO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Smr-QI-NIQ"/>
-                                <exclude reference="Xzk-4f-Uhy"/>
-                                <exclude reference="JDp-rv-oGR"/>
-                                <exclude reference="OC2-X2-M15"/>
-                                <exclude reference="UqN-Za-iZD"/>
                                 <exclude reference="ALV-un-NBO"/>
                                 <exclude reference="Egb-bW-zlR"/>
                                 <exclude reference="ohu-Ex-aed"/>
+                                <exclude reference="JDp-rv-oGR"/>
+                                <exclude reference="OC2-X2-M15"/>
+                                <exclude reference="UqN-Za-iZD"/>
+                                <exclude reference="Smr-QI-NIQ"/>
+                                <exclude reference="Xzk-4f-Uhy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -716,14 +716,14 @@
                                 <include reference="sSt-8J-US6"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Smr-QI-NIQ"/>
-                                <include reference="Xzk-4f-Uhy"/>
-                                <include reference="JDp-rv-oGR"/>
-                                <include reference="OC2-X2-M15"/>
-                                <include reference="UqN-Za-iZD"/>
                                 <include reference="ALV-un-NBO"/>
                                 <include reference="Egb-bW-zlR"/>
                                 <include reference="ohu-Ex-aed"/>
+                                <include reference="JDp-rv-oGR"/>
+                                <include reference="OC2-X2-M15"/>
+                                <include reference="UqN-Za-iZD"/>
+                                <include reference="Smr-QI-NIQ"/>
+                                <include reference="Xzk-4f-Uhy"/>
                             </mask>
                         </variation>
                     </view>
@@ -1200,6 +1200,9 @@
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="0.0" width="380" height="19"/>
+                                                            </variation>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="600" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH2-tL-xGc">
                                                             <rect key="frame" x="81" y="0.0" width="240" height="128"/>
@@ -1216,7 +1219,8 @@
                                                                     <exclude reference="tBI-5L-cgq"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="19" width="380" height="365"/>
                                                                 <mask key="constraints">
                                                                     <include reference="tBI-5L-cgq"/>
                                                                 </mask>
@@ -1247,7 +1251,8 @@
                                                             <exclude reference="hdE-tB-4ei"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" axis="vertical">
+                                                    <variation key="heightClass=regular-widthClass=compact" axis="vertical" misplaced="YES">
+                                                        <rect key="frame" x="10" y="0.0" width="380" height="384"/>
                                                         <mask key="subviews">
                                                             <include reference="nH2-tL-xGc"/>
                                                         </mask>

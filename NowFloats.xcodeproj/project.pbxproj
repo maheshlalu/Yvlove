@@ -47,7 +47,6 @@
 		1147CBA81D8C333C00138C4E /* EnquiryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */; };
 		114A12B91D90F94A006AC421 /* MessageHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */; };
 		114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12BB1D91323A006AC421 /* MIBadgeButton.swift */; };
-		1156FDFE1D9B9F5500515F36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1156FDFD1D9B9F5500515F36 /* GoogleService-Info.plist */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -211,7 +210,6 @@
 		1147CBA71D8C333C00138C4E /* EnquiryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnquiryTableViewCell.swift; sourceTree = "<group>"; };
 		114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHomeViewController.swift; sourceTree = "<group>"; };
 		114A12BB1D91323A006AC421 /* MIBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIBadgeButton.swift; sourceTree = "<group>"; };
-		1156FDFD1D9B9F5500515F36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -746,7 +744,6 @@
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
 				3B4FD81D1D6446D300A6EBBE /* NowFloats.xcdatamodeld */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
-				1156FDFD1D9B9F5500515F36 /* GoogleService-Info.plist */,
 			);
 			path = NowFloats;
 			sourceTree = "<group>";
@@ -1023,7 +1020,6 @@
 				1890B6F11D8163EE00AF140A /* UpdateTableViewCell.xib in Resources */,
 				11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */,
 				110329CC1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib in Resources */,
-				1156FDFE1D9B9F5500515F36 /* GoogleService-Info.plist in Resources */,
 				183573951D797B2300722AA2 /* OfferCollectionViewCell.xib in Resources */,
 				4336BAB01D77F14200A38498 /* LeftViewTableViewCell.xib in Resources */,
 				1868BD291D7853760050BC72 /* OfferFeaturedProductCell.xib in Resources */,
@@ -1376,7 +1372,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "865618bf-2d4d-41ef-b28f-44503f5373f2";
+				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1416,7 +1412,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "865618bf-2d4d-41ef-b28f-44503f5373f2";
+				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1435,7 +1431,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "865618bf-2d4d-41ef-b28f-44503f5373f2";
+				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1454,7 +1450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "865618bf-2d4d-41ef-b28f-44503f5373f2";
+				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 			};
 			name = Release;

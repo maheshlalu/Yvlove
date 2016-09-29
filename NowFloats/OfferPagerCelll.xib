@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iml-KM-UJ1" customClass="KIImagePager">
-                        <rect key="frame" x="13" y="0.0" width="439" height="128"/>
+                        <rect key="frame" x="8" y="0.0" width="449" height="128"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="iml-KM-UJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="GLj-GP-DQT"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="iml-KM-UJ1" secondAttribute="trailing" constant="5" id="UsT-kj-pHC"/>
+                    <constraint firstItem="iml-KM-UJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="GLj-GP-DQT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="iml-KM-UJ1" secondAttribute="trailing" id="UsT-kj-pHC"/>
                     <constraint firstItem="iml-KM-UJ1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="mv5-wc-w9Q"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iml-KM-UJ1" secondAttribute="bottom" constant="-8" id="z0a-8f-DLE"/>
                 </constraints>

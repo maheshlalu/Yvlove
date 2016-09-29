@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import MagicalRecord
-import Firebase
+
 
 
 @UIApplicationMain
@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         self.setUpMagicalDB()
         self.configure()
-        FIRApp.configure()
       //  blockOperationsTest1()
        // self.setUpSidePanelview()
         return true

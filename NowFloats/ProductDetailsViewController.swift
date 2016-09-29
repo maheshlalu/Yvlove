@@ -157,7 +157,7 @@ class ProductDetailsViewController: CXViewController {
             cell?.selectionStyle = .None
             
             let shipmentLbl = cell!.viewWithTag(800)! as! UILabel
-            shipmentLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
+            //shipmentLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
         }
         return cell!
         

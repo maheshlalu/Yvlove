@@ -11,9 +11,7 @@ pod 'Alamofire', '~> 3.4'
 pod 'SDWebImage', '~> 3.8'
 pod 'SKPhotoBrowser', '~> 3.0'
 pod 'AFNetworking', '~> 3.1'
-pod 'Firebase/AppIndexing'
-pod 'Firebase'
-
+pod 'AFNetworking', '~> 3.1'
   target 'NowFloatsTests' do
     inherit! :search_paths
     # Pods for testing
