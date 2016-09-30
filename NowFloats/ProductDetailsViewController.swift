@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ProductDetailsViewController: CXViewController {
-
+class ProductDetailsViewController: CXViewController,UITextViewDelegate {
+    
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
     var productDetailDic:NSDictionary!
     
+    @IBOutlet weak var productImgView: UIImageView!
     @IBOutlet weak var placeOrderBtn: UIButton!
     @IBOutlet weak var addToCartBtn: UIButton!
     @IBOutlet weak var ratingView: FloatRatingView!
@@ -31,22 +32,21 @@ class ProductDetailsViewController: CXViewController {
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
         self.setUpRatingView()
         customisingBtns()
-
-        //print("\(productDetailDic)")
-      // print("\(productDetailDic.valueForKey("ShipmentDuration"))")
+        
+        print("\(productDetailDic)")
         /*[createdOn, hrsOfOperation, id, P3rdCategory, Name, Large_Image, publicURL, Current_Job_StatusId, Brand, jobTypeName, Category, Insights, guestUserEmail, Next_Seq_Nos, SubCategoryType, jobComments, PackageName, Image_URL, Current_Job_Status, Next_Job_Statuses, ItemCode, Description, Additional_Details, DiscountAmount, Image_Name, overallRating, CreatedSubJobs, Category_Mall, Quantity, Attachments, MRP, guestUserId, totalReviews, lastModifiedDate, createdByFullName, createdById, CategoryType, jobTypeId]*/
-
+        
     }
     
     func setUpRatingView(){
-    //star
+        //star
         
-       // ratingView.emptyImage = UIImage(named: "star.png")
+        // ratingView.emptyImage = UIImage(named: "star.png")
         //ratingView.fullImage = UIImage(named: "star_sel_108.png")
         // Optional params
         //ratingView.delegate = self
         ratingView.contentMode = UIViewContentMode.ScaleAspectFit
-       // ratingView.maxRating = 5
+        // ratingView.maxRating = 5
         //ratingView.minRating = 0
         //ratingView.rating = 0
         ratingView.editable = false
@@ -79,7 +79,7 @@ class ProductDetailsViewController: CXViewController {
         return 4
         
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
@@ -97,6 +97,11 @@ class ProductDetailsViewController: CXViewController {
             
             let productImageView = cell!.contentView.viewWithTag(100)! as! UIImageView
             let imgUrl = productDetailDic.valueForKey("Image_URL") as! String
+            if (productDetailDic.valueForKey("ShipmentDuration") != nil){
+                productImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            }else{
+                productImageView.contentMode = UIViewContentMode.ScaleAspectFit
+            }
             productImageView.sd_setImageWithURL(NSURL(string: imgUrl))
             
         }else if indexPath.section == 1{
@@ -114,7 +119,7 @@ class ProductDetailsViewController: CXViewController {
             }else{
                 favoriteBtn.selected = false
             }
-
+            
             
             let rupee = "\u{20B9}"
             let price:String = productDetailDic.valueForKey("MRP") as! String
@@ -156,8 +161,39 @@ class ProductDetailsViewController: CXViewController {
             cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
             cell?.selectionStyle = .None
             
-            let shipmentLbl = cell!.viewWithTag(800)! as! UILabel
-            //shipmentLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
+            if (productDetailDic.valueForKey("ShipmentDuration") != nil){
+                
+                let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
+                shipmentLbl.text = "Shipment Duration"
+                
+                let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
+                shipmentDurationLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
+                
+            }else if (productDetailDic.valueForKey("Brand") != nil){
+                
+                let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
+                shipmentLbl.text = "Brand"
+                
+                let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
+                shipmentDurationLbl.text = "\(productDetailDic.valueForKey("Brand")!)"
+            }
+            
+            
+        }else if indexPath.section == 4{
+            
+            let footerIdentifier = "FooterCell2"
+            cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
+            cell?.selectionStyle = .None
+            let category = productDetailDic.valueForKey("Category") as! String
+            if category != ""{
+                let category = cell!.viewWithTag(900)! as! UILabel
+                category.text = "Category"
+                
+                let categoryDesc = cell!.viewWithTag(901)! as! UILabel
+                categoryDesc.text = "\(productDetailDic.valueForKey("Category")!)"
+            }
+            
+            
         }
         return cell!
         
@@ -187,7 +223,7 @@ class ProductDetailsViewController: CXViewController {
             })
         }
         sender.selected = !sender.selected
-
+        
         
     }
     @IBAction func placeOrderNowAction(sender: AnyObject) {
@@ -210,7 +246,16 @@ class ProductDetailsViewController: CXViewController {
             })
         }
         sender.selected = !sender.selected
-
+        
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        let fixedWidth = textView.frame.size.width
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = textView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        textView.frame = newFrame;
     }
     
     //MAR:Heder options enable
@@ -252,6 +297,6 @@ class ProductDetailsViewController: CXViewController {
     override func profileDropdownForSignIn() -> Bool{
         return false
     }
-
-
+    
+    
 }

@@ -1,22 +1,19 @@
 //
-//  ProductsViewController.swift
+//  ProductSearchViewController.swift
 //  NowFloats
 //
-//  Created by Mahesh Y on 8/18/16.
+//  Created by Manishi on 9/30/16.
 //  Copyright © 2016 CX. All rights reserved.
 //
 
 import UIKit
 
+class ProductSearchViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
-class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
     var screenWidth: CGFloat! = nil
     var products: NSArray!
-    let chooseArticleDropDown = DropDown()
+
     @IBOutlet var updatecollectionview: UICollectionView!
-    @IBOutlet weak var chooseArticleButton: UIButton!
-    @IBOutlet weak var productSearhBar: UISearchBar!
     
     
     override func viewDidLoad() {
@@ -24,25 +21,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         getTheProducts()
-        setupDropDowns()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.updatecollectionview.reloadData()
     }
-    
-    @IBAction func chooseBtnAction(sender: AnyObject) {
-        chooseArticleDropDown.show()
-    }
-    func setupDropDowns() {
-        self.chooseArticleButton.setTitle("\("  ")Popularity", forState: .Normal)
-        setupChooseArticleDropDown()
-    }
-    
+
     
     func getTheProducts(){
         let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
@@ -131,21 +119,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
     }
-    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-    //
-    //        return 3.0
-    // }
-    
-    
-    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    //        screenWidth =  UIScreen.mainScreen().bounds.size.width
-    //
-    //        return CGSize(width: screenWidth/2.2+7, height: 222);
-    //    }
+
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
-        
+        return CGSize(width: self.view.frame.size.width-20, height: 222)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -169,13 +146,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
 
 //Cart and Wishlist functios
 
-extension ProductsViewController {
+extension ProductSearchViewController {
     
     func productAddedToCart(sender:UIButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
-
+        
         //CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true)
         
         if sender.selected {
@@ -192,16 +169,16 @@ extension ProductsViewController {
                 
             })
             // Add Item to Cart
-//            sender.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-//            sender.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-//            sender.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-//            sender.selected = true
-           // CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false)
-
+            //            sender.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            //            sender.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            //            sender.setTitleColor(UIColor.whiteColor(), forState: .Selected)
+            //            sender.selected = true
+            // CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false)
+            
         }
         
-     
-       
+        
+        
         
     }
     
@@ -230,143 +207,6 @@ extension ProductsViewController {
         }
     }
     
-}
-
-
-
-extension ProductsViewController : DOPDropDownMenuDelegate,DOPDropDownMenuDataSource {
-    
-    func numberOfColumnsInMenu(menu: DOPDropDownMenu!) -> Int {
-        return 1
-    }
-    
-    func menu(menu: DOPDropDownMenu!, numberOfRowsInColumn column: Int) -> Int {
-        return 3
-    }
-    
-    func menu(menu: DOPDropDownMenu!, titleForRowAtIndexPath indexPath: DOPIndexPath!) -> String! {
-        return "test1"
-    }
-   
-}
-
-
-
-extension ProductsViewController:UISearchBarDelegate{
-    func searchBarSearchButtonClicked( searchBar: UISearchBar)
-    {
-        self.productSearhBar.resignFirstResponder()
-        self.doSearch()
-    }
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // print("search string \(searchText)")
-        if (self.productSearhBar.text!.characters.count > 0) {
-            self.doSearch()
-        } else {
-            self.loadDefaultList()
-        }
-        
-    }
-    
-    func loadDefaultList (){
-        self.getTheProducts()
-        /*if isProductCategory {
-            let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Products List(129121)")
-            self.getProductSubCategory(predicate)
-        }else{
-            let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Miscellaneous(135918)")
-            self.getProductSubCategory(predicate)
-        }*/
-    }
-    
-    func refreshSearchBar (){
-        self.productSearhBar.resignFirstResponder()
-        // Clear search bar text
-        self.productSearhBar.text = "";
-        // Hide the cancel button
-        self.productSearhBar.showsCancelButton = false;
-        
-    }
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.refreshSearchBar()
-        // Do a default fetch of the beers
-        self.loadDefaultList()
-    }
-    
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.productSearhBar.showsCancelButton = true;
-        
-    }
-    
-    func doSearch () {
- 
-        let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
-        let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productSearhBar.text!)
-        let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
-        fetchRequest.predicate = predicate
-        fetchRequest.entity = productEn
-        self.products = CX_Products.MR_executeFetchRequest(fetchRequest)
-       self.updatecollectionview.reloadData()
-        
-        /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
-        let fetchRequest = TABLE_PRODUCT_SUB_CATEGORIES.MR_requestAllSortedBy("id", ascending: false)
-        var predicate:NSPredicate = NSPredicate()
-        
-        if isProductCategory {
-            predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Products List(129121)",self.searchBar.text!)
-        }else{
-            predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Miscellaneous(135918)",self.searchBar.text!)
-        }
-        
-        fetchRequest.predicate = predicate
-        fetchRequest.entity = productEn
-        
-        self.productCategories =   TABLE_PRODUCT_SUB_CATEGORIES.MR_executeFetchRequest(fetchRequest)
-        
-        self.productCollectionView.reloadData()*/
-        
-    }
-    
-    
-    
-    
-}
-
-//Droup down
-extension ProductsViewController{
-    
-    func setupChooseArticleDropDown() {
-        chooseArticleDropDown.anchorView = chooseArticleButton
-        chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y: self.productSearhBar.frame.size.height+4)
-        
-        // You can also use localizationKeysDataSource instead. Check the docs.
-        chooseArticleDropDown.dataSource = [
-            "   Popularity",
-            "   Recent",
-            "   High Price",
-            "   Low Price",
-            "   Oldest"
-        ]
-        
-        // Action triggered on selection
-        chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
-            self.chooseArticleButton.setTitle(item, forState: .Normal)
-              if index == 0{
-                 self.products  = CX_Products.MR_findAll()
-            }else if index == 1{
-                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: false)
-            }else if index == 2{
-                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: false)
-            }else if index == 3{
-                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: true)
-            }else if index == 4{
-                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: true)
-            }
-            
-            self.updatecollectionview.reloadData()
-        }
-                                   
-    }
 }
 
 

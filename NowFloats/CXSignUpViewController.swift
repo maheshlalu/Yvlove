@@ -203,6 +203,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 alert.addAction(okAction)
                 self.presentViewController(alert, animated: true, completion: nil)
                 
+                
                 return
             }
             self.sendSignUpDetails()

@@ -367,7 +367,7 @@ extension CXDataProvider {
         }else{
             do {
                 let cartItem : CX_Cart = (cartlist.lastObject as? CX_Cart)!
-                cartItem.quantity = 0
+                cartItem.quantity = 1
                 if isAddToCartList {
                     cartItem.addToCart = NSNumber(bool: true)
                 }

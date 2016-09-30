@@ -46,6 +46,9 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         
       
     }
+    override func viewWillAppear(animated: Bool) {
+        profileDataIntegration()
+    }
     @IBAction func editBtnAction(sender: AnyObject) {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())

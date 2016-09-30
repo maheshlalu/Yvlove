@@ -10,7 +10,7 @@ import UIKit
 let reuseTableViewCellIdentifier = "OfferTableViewCell"
 let reuseCollectionViewCellIdentifier = "OfferCollectionViewCell"
 
-class OffersViewController: CXViewController {
+class OffersViewController: CXViewController{
 
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
@@ -238,6 +238,17 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
   
 }
 
+
+extension OffersViewController :UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        let search = self.storyboard?.instantiateViewControllerWithIdentifier("ProductSearchViewController") as! ProductSearchViewController
+        search.view.frame = CGRectMake(5, self.productsSearchBar.frame.size.height+5, self.view.frame.size.width, self.view.frame.size.height)
+        self.view.addSubview(search.view)
+        addChildViewController(search)
+        search.didMoveToParentViewController(self)
+    }
+
+}
 //MARK: KIPager Delegate and Datasorce
 
 extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
