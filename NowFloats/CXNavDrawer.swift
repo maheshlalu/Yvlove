@@ -64,6 +64,7 @@ class CXNavDrawer: UINavigationController {
         self.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationBar.translucent = false
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXNavDrawer.upodateTheCartItems), name:"CartCountUpdate", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXNavDrawer.backBtnAction), name:"PlaceOrderSuccessFully", object: nil)
 
         self.setuUpNavDrawer()
         self.delegate  = self

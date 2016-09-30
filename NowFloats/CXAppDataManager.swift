@@ -145,12 +145,16 @@ public class CXAppDataManager: NSObject {
         }
     }
     
+    //Get Service Form
+    
+ 
     
     //Mark Place order
     
     func placeOder(name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:(isDataSaved:Bool) -> Void){
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
 
+        LoadingView.show("Processing Your Order", animated: true)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal),"dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":email]) { (responseDict) in
             completion(isDataSaved: true)
             let string = responseDict.valueForKeyPath("myHashMap.status")
@@ -160,12 +164,15 @@ public class CXAppDataManager: NSObject {
                 let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
                 let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
                 for (index, element) in cartsDataArrya.enumerate() {
+                    print(index)
                     let cart : CX_Cart = element as! CX_Cart
                     NSManagedObjectContext.MR_contextForCurrentThread().deleteObject(cart)
                     NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreAndWait()
                 }
                 dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("updateCartBtnAction", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("PlaceOrderSuccessFully", object: nil)
+                    LoadingView.hide()
+                    //CartCountUpdate
                 })
                 
             }
@@ -181,7 +188,7 @@ public class CXAppDataManager: NSObject {
         fetchRequest.entity = productEn
         
         let order: NSMutableDictionary = NSMutableDictionary()
-        var orderItemName: NSMutableString = NSMutableString()
+        let orderItemName: NSMutableString = NSMutableString()
         let orderItemQuantity: NSMutableString = NSMutableString()
         let orderSubTotal: NSMutableString = NSMutableString()
         let orderItemId: NSMutableString = NSMutableString()
@@ -302,7 +309,7 @@ public class CXAppDataManager: NSObject {
        // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
         //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"2003","type":"PlaceOrder","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"717","type":"PlaceOrder","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             completion(responseDict: responseDict)
         }
 
@@ -312,12 +319,12 @@ public class CXAppDataManager: NSObject {
     
     //MARK : UPDATE PROFILE
     
-    func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:UIImage,completion:(responseDict:NSDictionary)-> Void){
+    func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:(responseDict:NSDictionary)-> Void){
         
        // CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
             
             
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":"","userBannerPath":""]) { (responseDict) in
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":image,"userBannerPath":""]) { (responseDict) in
                 completion(responseDict: responseDict)
             }
             
@@ -326,6 +333,8 @@ public class CXAppDataManager: NSObject {
 
         
     }
+    
+    
   
     
 }
