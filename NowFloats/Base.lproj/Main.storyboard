@@ -3833,6 +3833,7 @@
         <!--Products View Controller-->
         <scene sceneID="l1P-b5-dQp">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XCd-FU-YIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PRODUCT" id="4T4-br-of1" customClass="ProductsViewController" customModule="NowFloats" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fsw-Am-djy"/>
@@ -3901,42 +3902,91 @@
                                     </searchBar>
                                 </subviews>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lw8-Ni-56b">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.86686698719999999" green="0.86686698719999999" blue="0.86686698719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HZg-vL-MYW">
+                                    <size key="itemSize" width="126" height="216"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mz1-1y-w69" customClass="ProductsCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="126" height="216"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="4T4-br-of1" id="m3h-oA-G70"/>
+                                    <outlet property="delegate" destination="4T4-br-of1" id="0GC-Ke-mHg"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="lw8-Ni-56b" firstAttribute="leading" secondItem="Z4T-gI-7mE" secondAttribute="leading" constant="5" id="5LT-6N-67t">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="miu-gg-k4A" secondAttribute="trailing" constant="5" id="6HG-u6-87w"/>
                             <constraint firstAttribute="trailing" secondItem="miu-gg-k4A" secondAttribute="trailing" constant="5" id="END-WX-SwW"/>
+                            <constraint firstItem="lw8-Ni-56b" firstAttribute="top" secondItem="miu-gg-k4A" secondAttribute="bottom" constant="5" id="dyr-6f-65Y">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="ucj-kK-1Rr" firstAttribute="top" secondItem="lw8-Ni-56b" secondAttribute="bottom" id="e2N-ud-9Fx"/>
                             <constraint firstItem="miu-gg-k4A" firstAttribute="leading" secondItem="Z4T-gI-7mE" secondAttribute="leading" constant="5" id="fLx-Ad-Zye"/>
+                            <constraint firstAttribute="trailing" secondItem="lw8-Ni-56b" secondAttribute="trailing" constant="5" id="xQu-wW-5np">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstItem="miu-gg-k4A" firstAttribute="top" secondItem="Z4T-gI-7mE" secondAttribute="top" constant="5" id="zFi-jh-tGp"/>
                             <constraint firstItem="miu-gg-k4A" firstAttribute="leading" secondItem="Z4T-gI-7mE" secondAttribute="leading" constant="5" id="zId-0L-Hlh"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="lw8-Ni-56b"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="6HG-u6-87w"/>
                                 <exclude reference="END-WX-SwW"/>
                                 <exclude reference="fLx-Ad-Zye"/>
                                 <exclude reference="zFi-jh-tGp"/>
                                 <exclude reference="zId-0L-Hlh"/>
+                                <exclude reference="5LT-6N-67t"/>
+                                <exclude reference="dyr-6f-65Y"/>
+                                <exclude reference="xQu-wW-5np"/>
+                                <exclude reference="e2N-ud-9Fx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="lw8-Ni-56b"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="6HG-u6-87w"/>
                                 <include reference="END-WX-SwW"/>
                                 <exclude reference="fLx-Ad-Zye"/>
                                 <include reference="zFi-jh-tGp"/>
                                 <include reference="zId-0L-Hlh"/>
+                                <include reference="5LT-6N-67t"/>
+                                <include reference="dyr-6f-65Y"/>
+                                <include reference="xQu-wW-5np"/>
+                                <include reference="e2N-ud-9Fx"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="chooseArticleButton" destination="1Kf-wX-6S4" id="ao6-Jn-hgA"/>
                         <outlet property="productSearhBar" destination="sVo-Fr-cAg" id="o6R-A6-mEY"/>
+                        <outlet property="updatecollectionview" destination="lw8-Ni-56b" id="Egh-RC-oxo"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XCd-FU-YIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="-1126.5"/>
+            <point key="canvasLocation" x="-1194" y="-1104.75"/>
         </scene>
     </scenes>
     <resources>
