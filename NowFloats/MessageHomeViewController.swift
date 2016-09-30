@@ -27,7 +27,7 @@ class MessageHomeViewController: UITabBarController {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
     
-        let product = storyBoard.instantiateViewControllerWithIdentifier("FORM") as! FormViewController
+        let product = storyBoard.instantiateViewControllerWithIdentifier("FORM") as! ServiceFormViewController
         product.title = "FORM"
 
         let photos = storyBoard.instantiateViewControllerWithIdentifier("HISTORY") as! HistoryViewController

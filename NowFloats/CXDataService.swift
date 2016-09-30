@@ -32,7 +32,7 @@ public class CXDataService: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print("Validation Successful\(response.result.value)")
+                    //print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .Failure(let error):
@@ -58,7 +58,7 @@ public class CXDataService: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print("Validation Successful\(response.result.value)")
+                   // print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .Failure(let error):
@@ -69,7 +69,7 @@ public class CXDataService: NSObject {
         
     }
     
-    public func imageUpload(imageData:NSData,completion:(imageFileUrl:String) -> Void){
+    public func imageUpload(imageData:NSData,completion:(Response:NSDictionary) -> Void){
 
         let mutableRequest : AFHTTPRequestSerializer = AFHTTPRequestSerializer()
         let request1 : NSMutableURLRequest =    mutableRequest.multipartFormRequestWithMethod("POST", URLString: CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(), parameters: ["refFileName": self.generateBoundaryString()], constructingBodyWithBlock: { (formatData:AFMultipartFormData) in
@@ -86,9 +86,9 @@ public class CXDataService: NSObject {
                 print("error")
                 return
             }
-            
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(dataString)
+            let myDic = CXConstant.sharedInstance.convertStringToDictionary(dataString! as String)
+            completion(Response:myDic)
             
         }
         
@@ -125,7 +125,7 @@ public class CXDataService: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print("Validation Successful\(response.result.value)")
+                   // print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .Failure(let error):

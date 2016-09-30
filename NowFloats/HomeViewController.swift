@@ -62,13 +62,16 @@ class HomeViewController: UITabBarController {
         let product = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
         product.tabBarItem.image = UIImage(named: "productsImage")
+        
+        let serviceForm : ServiceFormViewController = ServiceFormViewController()
+        serviceForm.title = "Form"
 
 
         let photos = storyBoard.instantiateViewControllerWithIdentifier("PHOTO") as! PhotosViewController
         photos.title = "PHOTOS"
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         
-        self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
+        self.tabBarController?.setViewControllers([firstTab,product,photos,serviceForm], animated: true)
 
 //OFFERS
     }
