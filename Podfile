@@ -12,6 +12,7 @@ pod 'SDWebImage', '~> 3.8'
 pod 'SKPhotoBrowser', '~> 3.0'
 pod 'AFNetworking', '~> 3.1'
 pod 'Eureka', '~> 1.7'
+pod 'XLForm', '~> 3.2'
   target 'NowFloatsTests' do
     inherit! :search_paths
     # Pods for testing

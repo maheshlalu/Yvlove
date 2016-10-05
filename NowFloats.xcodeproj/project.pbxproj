@@ -1392,7 +1392,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1432,7 +1432,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1451,7 +1451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1470,7 +1470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 			};
 			name = Release;

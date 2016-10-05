@@ -11,7 +11,7 @@
 #import "ProductModelClass.h"
 #import "FTPopOverMenu.h"
 
-
+#import <XLForm/XLForm.h>
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <SDWebImage/SDWebImageCompat.h>
 #import <SDWebImage/UIImageView+WebCache.h>
