@@ -172,4 +172,88 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         }
         return ""
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+}
+
+extension UpdatesViewController:UISearchBarDelegate{
+    func searchBarSearchButtonClicked( searchBar: UISearchBar)
+    {
+        self.updatesSearch.resignFirstResponder()
+        //self.doSearch()
+    }
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        // print("search string \(searchText)")
+        if (self.updatesSearch.text!.characters.count > 0) {
+            //self.doSearch()
+        } else {
+            self.loadDefaultList()
+        }
+        
+    }
+    
+    func loadDefaultList (){
+        self.getUpdates()
+        /*if isProductCategory {
+         let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Products List(129121)")
+         self.getProductSubCategory(predicate)
+         }else{
+         let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Miscellaneous(135918)")
+         self.getProductSubCategory(predicate)
+         }*/
+    }
+    
+    func refreshSearchBar (){
+        self.updatesSearch.resignFirstResponder()
+        // Clear search bar text
+        self.updatesSearch.text = "";
+        // Hide the cancel button
+        //eself.updatesSearch.showsCancelButton = false;
+        
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.refreshSearchBar()
+        // Do a default fetch of the beers
+        self.loadDefaultList()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.updatesSearch.showsCancelButton = false;
+        
+    }
+    
+    func doSearch () {
+        
+        let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.updatesSearch.text!)
+        let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
+        fetchRequest.predicate = predicate
+        fetchRequest.entity = productEn
+        self.updatesArray = CX_Products.MR_executeFetchRequest(fetchRequest)
+        self.updateTableView.reloadData()
+        
+        /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+         let fetchRequest = TABLE_PRODUCT_SUB_CATEGORIES.MR_requestAllSortedBy("id", ascending: false)
+         var predicate:NSPredicate = NSPredicate()
+         
+         if isProductCategory {
+         predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] k%@", "Products List(129121)",self.searchBar.text!)
+         }else{
+         predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Miscellaneous(135918)",self.searchBar.text!)
+         }
+         
+         fetchRequest.predicate = predicate
+         fetchRequest.entity = productEn
+         
+         self.productCategories =   TABLE_PRODUCT_SUB_CATEGORIES.MR_executeFetchRequest(fetchRequest)
+         
+         self.productCollectionView.reloadData()*/
+        
+    }
+    
+    
+    
+    
 }

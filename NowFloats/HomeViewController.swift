@@ -71,7 +71,7 @@ class HomeViewController: UITabBarController {
         photos.title = "PHOTOS"
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         
-        self.tabBarController?.setViewControllers([firstTab,product,photos,serviceForm], animated: true)
+        self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
 
 //OFFERS
     }

@@ -115,6 +115,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         cell.cartviewplusbutton.addTarget(self, action: #selector(CartViewController.quntityPlusButtonAction(_:)), forControlEvents: .TouchUpInside)
         cell.cartviewminusbutton.addTarget(self, action: #selector(CartViewController.quantityMinusButtonAction(_:)), forControlEvents: .TouchUpInside)
+        
+        
 
     return cell
   

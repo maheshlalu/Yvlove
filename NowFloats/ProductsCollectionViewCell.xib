@@ -61,11 +61,11 @@
                         </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zat-1g-efN">
-                        <rect key="frame" x="107" y="183" width="73" height="27"/>
+                        <rect key="frame" x="95" y="186" width="85" height="27"/>
                         <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="Mq9-xM-0HV"/>
-                            <constraint firstAttribute="width" constant="73" id="odC-tC-bfN"/>
+                            <constraint firstAttribute="width" constant="85" id="odC-tC-bfN"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
                         <state key="normal" title="ADD" image="addToCartImage"/>
@@ -124,7 +124,7 @@
                 <constraint firstItem="T3l-JH-cHc" firstAttribute="leading" secondItem="dgd-86-3eo" secondAttribute="trailing" constant="-45" id="kBa-6Q-qe4"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ldM-TZ-NzC"/>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ozP-n6-NOo"/>
-                <constraint firstAttribute="bottom" secondItem="zat-1g-efN" secondAttribute="bottom" constant="12" id="rbl-eq-Amh"/>
+                <constraint firstAttribute="bottom" secondItem="zat-1g-efN" secondAttribute="bottom" constant="9" id="rbl-eq-Amh"/>
                 <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" constant="9" id="uQ2-Nk-xc3"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="wkH-jx-ZZM"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xRZ-4K-9ka"/>

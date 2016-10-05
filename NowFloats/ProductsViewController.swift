@@ -1,4 +1,4 @@
-//
+                     //
 //  ProductsViewController.swift
 //  NowFloats
 //
@@ -26,6 +26,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
+        //chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)
         getTheProducts()
         setupDropDowns()
     }
@@ -165,6 +166,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
+    
 }
 
 //Cart and Wishlist functios
@@ -191,8 +196,9 @@ extension ProductsViewController {
                 self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
                 
             })
+            
             // Add Item to Cart
-//            sender.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+ //            sender.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
 //            sender.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
 //            sender.setTitleColor(UIColor.whiteColor(), forState: .Selected)
 //            sender.selected = true
@@ -294,7 +300,7 @@ extension ProductsViewController:UISearchBarDelegate{
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.productSearhBar.showsCancelButton = true;
+        self.productSearhBar.showsCancelButton = false;
         
     }
     
@@ -313,7 +319,7 @@ extension ProductsViewController:UISearchBarDelegate{
         var predicate:NSPredicate = NSPredicate()
         
         if isProductCategory {
-            predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Products List(129121)",self.searchBar.text!)
+            predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] k%@", "Products List(129121)",self.searchBar.text!)
         }else{
             predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Miscellaneous(135918)",self.searchBar.text!)
         }

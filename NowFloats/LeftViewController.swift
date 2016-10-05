@@ -71,8 +71,11 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         
         self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-32,60,60))
-        let imgUrl = self.sidePanelDataDict.valueForKey("logo") as! String!
+        let imgUrl = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "logo") ? (self.sidePanelDataDict.valueForKey("logo") as? String)! : ""
+
         NSUserDefaults.standardUserDefaults().setObject(imgUrl, forKey: "LOGO")
+        
+        
         profileDPImageView.sd_setImageWithURL(NSURL(string: imgUrl))
         // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
         self.profileDPImageView .clipsToBounds = true
@@ -83,9 +86,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
-        let productName = self.sidePanelDataDict.valueForKeyPath("name") as! String!
-        let city = self.sidePanelDataDict.valueForKeyPath("address.city") as! String!
-        titleLable.text = "\(productName!) \(city!)"
+        let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "name") ? (self.sidePanelDataDict.valueForKey("name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
+        //let city =  self.sidePanelDataDict.valueForKeyPath("address.city") as! String!
+        titleLable.text = "\(productName)"
         self.detailsView.addSubview(titleLable)
         
         //        let mailImage = UIImageView.init(frame: CGRectMake())
@@ -191,6 +194,13 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         
     }
+    
+  func isContansKey(responceDic : NSDictionary , key : String) -> Bool{
+        let allKeys : NSArray = responceDic.allKeys
+        return  allKeys.containsObject(key)
+        
+    }
+   
     
     @IBAction func callUsAction(sender: UIButton) {
         

@@ -201,7 +201,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         return 10
     }
     
-    //MAR:Heder options enable
+    //MAR:Heder options esable
     override  func shouldShowRightMenu() -> Bool{
         
         return true
@@ -239,5 +239,6 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     override func profileDropdownForSignIn() -> Bool{
         return false
     }
+
 
 }

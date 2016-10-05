@@ -17,6 +17,7 @@ class OffersViewController: CXViewController{
     var products : NSArray! = nil
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
+    var search:ProductSearchViewController! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,7 +164,12 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
             return CXConstant.tableViewHeigh - 25;
         }
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }
+
 
 
 extension OffersViewController : UICollectionViewDataSource,UICollectionViewDelegate{
@@ -181,6 +187,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         
@@ -189,7 +196,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         if cell == nil {
             collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-        
+        productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
         cell.productImageView.sd_setImageWithURL(NSURL(string:featuredProductJobs.image_URL!)!)
         
@@ -218,6 +225,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         cell.orderNowBtn.tag = fId!
 
         cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         return cell
     }
     
@@ -240,12 +248,110 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
 
 
 extension OffersViewController :UISearchBarDelegate{
+
+
+    func searchBarSearchButtonClicked( searchBar: UISearchBar)
+    {
+        self.productsSearchBar.resignFirstResponder()
+        //self.doSearch()
+      
+
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        // print("search string \(searchText)")
+        if (self.productsSearchBar.text!.characters.count > 0) {
+            //self.doSearch()
+        } else if self.productsSearchBar.text!.characters.count == 0{
+           // self.loadDefaultList()
+            //self.search.removeFromParentViewController()
+            
+            //self.search.willMoveToParentViewController(nil)
+            //self.search.view.removeFromSuperview()
+            //self.offersTableView.reloadData()
+            print("inMethodCharectersCount0")
+            //self.search.removeFromParentViewController()                                         
+        }else if searchText.isEmpty{
+            //self.search.view.removeFromSuperview()
+            //self.offersTableView.reloadData()
+            print("SearchTextEmptyMethod")
+        }
+       
+    }
+    
+    func loadDefaultList (){
+        self.getTheProducts()
+        /*if isProductCategory {
+         let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Products List(129121)")
+         self.getProductSubCategory(predicate)
+         }else{
+         let predicate:NSPredicate = NSPredicate(format: "masterCategory = %@", "Miscellaneous(135918)")
+         self.getProductSubCategory(predicate)
+         }*/
+    }
+    
+    func refreshSearchBar (){
+        self.productsSearchBar.resignFirstResponder()
+        // Clear search bar text
+        self.productsSearchBar.text = "";
+        // Hide the cancel button
+        self.productsSearchBar.showsCancelButton = false;
+        
+        
+        
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.refreshSearchBar()
+        
+        
+        // Do a default fetch of the beers
+        self.loadDefaultList()
+    }
+    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        let search = self.storyboard?.instantiateViewControllerWithIdentifier("ProductSearchViewController") as! ProductSearchViewController
-        search.view.frame = CGRectMake(5, self.productsSearchBar.frame.size.height+5, self.view.frame.size.width, self.view.frame.size.height)
+
+        //self.productsSearchBar.showsCancelButton = true;
+    }
+    
+    func removeSearch(){
+        
+    }
+    
+    
+    
+    func doSearch () {
+        self.search = self.storyboard?.instantiateViewControllerWithIdentifier("ProductSearchViewController") as! ProductSearchViewController
+        search.view.frame = CGRectMake(0,self.productsSearchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)
         self.view.addSubview(search.view)
         addChildViewController(search)
         search.didMoveToParentViewController(self)
+        
+        
+        let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productsSearchBar.text!)
+        let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
+        fetchRequest.predicate = predicate
+        fetchRequest.entity = productEn
+        self.search.products = CX_Products.MR_executeFetchRequest(fetchRequest)
+        self.search.updatecollectionview.reloadData()
+        
+        /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+         let fetchRequest = TABLE_PRODUCT_SUB_CATEGORIES.MR_requestAllSortedBy("id", ascending: false)
+         var predicate:NSPredicate = NSPredicate()
+         
+         if isProductCategory {
+         predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Products List(129121)",self.searchBar.text!)
+         }else{
+         predicate = NSPredicate(format: "masterCategory = %@ AND name contains[c] %@", "Miscellaneous(135918)",self.searchBar.text!)
+         }
+         
+         fetchRequest.predicate = predicate
+         fetchRequest.entity = productEn
+         
+         self.productCategories =   TABLE_PRODUCT_SUB_CATEGORIES.MR_executeFetchRequest(fetchRequest)
+         
+         self.productCollectionView.reloadData()*/
+        
     }
 
 }
@@ -308,8 +414,6 @@ extension OffersViewController {
         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = featuredProductJobs.json
         self.navigationController?.pushViewController(productDetails, animated: true)
-        
-        
-     
+   
 }
 }

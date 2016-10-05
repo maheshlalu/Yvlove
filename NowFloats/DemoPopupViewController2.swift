@@ -22,6 +22,8 @@ class DemoPopupViewController2: UIViewController, PopupContentViewController, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.topView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        self.mobileNoTxtField.tag = 3
+        mobileNoTxtField.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {

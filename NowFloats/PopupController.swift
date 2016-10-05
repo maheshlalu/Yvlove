@@ -66,7 +66,8 @@ public class PopupController: UIViewController {
     private var dismissWhenTaps: Bool = true {
         didSet {
             if dismissWhenTaps {
-                registerTapGesture()
+               // registerTapGesture()
+                self.view.endEditing(true)
             } else {
                 unregisterTapGesture()
             }
@@ -358,7 +359,7 @@ private extension PopupController {
             return
         }
         popupView.frame.size = child.sizeForPopup(self, size: maximumSize, showingKeyboard: isShowingKeyboard)
-        baseScrollView.contentInset.top = origin.y - popupView.frame.height
+        baseScrollView.contentInset.top = -45 //origin.y - popupView.frame.height
         baseScrollView.contentOffset.y = -baseScrollView.contentInset.top
         defaultContentOffset = baseScrollView.contentOffset
     }
@@ -444,7 +445,7 @@ private extension PopupController {
 extension PopupController: UIScrollViewDelegate {
     
     public func scrollViewDidScroll(scrollView: UIScrollView) {
-        let delta: CGFloat = defaultContentOffset.y - scrollView.contentOffset.y
+        let delta: CGFloat = defaultContentOffset.y - scrollView.contentOffset.y+50
         if delta > 20 && isShowingKeyboard {
             popupView.endEditing(true)
             return
