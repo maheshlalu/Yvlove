@@ -1260,7 +1260,6 @@
 				11370F721D89581200CCBE01 /* MTCoordinateContainer.swift in Sources */,
 				113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */,
 				11982DCC1D9E960800FAE0B0 /* ProductSearchViewController.swift in Sources */,
-				110329BA1D8A6B890008A3B7 /* FormViewController.swift in Sources */,
 				183573AC1D798F5400722AA2 /* CX_FeaturedProductsJobs+CoreDataProperties.swift in Sources */,
 				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
 				11370F731D89581200CCBE01 /* MTCoordinateManager.swift in Sources */,
@@ -1389,7 +1388,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1429,7 +1428,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1448,7 +1447,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1467,7 +1466,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ecc7a36-d2aa-4ab6-8013-88f6758afbc4";
+				PROVISIONING_PROFILE = "990b56cf-71f6-40c2-b513-7fcbf204cb33";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 			};
 			name = Release;
