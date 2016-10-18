@@ -1,4 +1,4 @@
-                     //
+//
 //  ProductsViewController.swift
 //  NowFloats
 //
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
@@ -211,14 +212,14 @@ extension ProductsViewController {
         
     }
     
-    func productAddedToWishList(sender:UIButton){
+    func productAddedToWishList(sender:SparkButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
         
         if sender.selected {
             //Remove Item From WishList
-            
+
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
@@ -227,7 +228,7 @@ extension ProductsViewController {
         }else{
             
             //Add Item to WishList
-            
+
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
                 
@@ -236,24 +237,6 @@ extension ProductsViewController {
         }
     }
     
-}
-
-
-
-extension ProductsViewController : DOPDropDownMenuDelegate,DOPDropDownMenuDataSource {
-    
-    func numberOfColumnsInMenu(menu: DOPDropDownMenu!) -> Int {
-        return 1
-    }
-    
-    func menu(menu: DOPDropDownMenu!, numberOfRowsInColumn column: Int) -> Int {
-        return 3
-    }
-    
-    func menu(menu: DOPDropDownMenu!, titleForRowAtIndexPath indexPath: DOPIndexPath!) -> String! {
-        return "test1"
-    }
-   
 }
 
 

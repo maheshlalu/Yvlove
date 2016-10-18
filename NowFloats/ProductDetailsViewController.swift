@@ -22,6 +22,9 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var productRattingLbl: UILabel!
+    
+    let searchQuoteIndex:Int! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.productDetailsTableView.rowHeight = UITableViewAutomaticDimension
@@ -34,9 +37,19 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         customisingBtns()
         
         print("\(productDetailDic)")
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProductDetailsViewController.displaySearchResult(_:)), name: "", object: nil)
         /*[createdOn, hrsOfOperation, id, P3rdCategory, Name, Large_Image, publicURL, Current_Job_StatusId, Brand, jobTypeName, Category, Insights, guestUserEmail, Next_Seq_Nos, SubCategoryType, jobComments, PackageName, Image_URL, Current_Job_Status, Next_Job_Statuses, ItemCode, Description, Additional_Details, DiscountAmount, Image_Name, overallRating, CreatedSubJobs, Category_Mall, Quantity, Attachments, MRP, guestUserId, totalReviews, lastModifiedDate, createdByFullName, createdById, CategoryType, jobTypeId]*/
         
     }
+    
+//    func displaySearchResult(notification:NSNotification){
+//    
+//        searchQuoteIndex = (notification.object as! NSString).integerValue
+//    
+//    }
+    
+    
     
     func setUpRatingView(){
         //star

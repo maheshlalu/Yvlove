@@ -1,3 +1,4 @@
+
 //
 //  LeftViewController.swift
 //  NowFloats
@@ -17,12 +18,15 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var contentsTableView: UITableView!
     
+    var sidePanelDataArr : NSArray!
+    
     
     var profileDPImageView:UIImageView!
     var titleLable: UILabel!
     var mailLable: UILabel!
     var websiteLbl:UILabel!
     var sidePanelDataDict: NSDictionary! = nil
+    var sidePanelSingleMallDataDict: NSDictionary!
     
     var navController : CXNavDrawer = CXNavDrawer()
     
@@ -32,26 +36,49 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.whiteColor()
-        //sidePanelDataDict = NSDictionary()
-        if CX_SingleMall.MR_findAll().count != 0  {
-            let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
-            self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-            print("\(self.sidePanelDataDict)")
-            sidepanelView()
-        }else{
-            CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
-                let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
-                self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-                self.sidepanelView()
-                
-            })
-        }
+        
+        self.getSingleMall()
+        self.getStores()
+        self.sidepanelView()
+       
+      
         
         //self.detailsView.backgroundColor = UIColor.greenColor()
         
     }
+   
+    func getSingleMall(){
+        
+        if CX_SingleMall.MR_findAll().count != 0  {
+            let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+            self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+            print("\(self.sidePanelSingleMallDataDict)")
+        }else{
+            CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
+                let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+                self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
+                print("\(self.sidePanelSingleMallDataDict)")
+                
+            })
+        }
+    }
     
-    
+    func getStores(){
+        
+        let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
+        let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
+        let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+        fetchRequest.predicate = predicate
+        fetchRequest.entity = productEn
+        self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
+        
+        let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
+        
+        self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+        print(sidePanelDataDict)
+        
+    }
     
     func btnBorderAlignments(){
         viewMapBtn.layer.cornerRadius = 2
@@ -71,7 +98,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         
         self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-32,60,60))
-        let imgUrl = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "logo") ? (self.sidePanelDataDict.valueForKey("logo") as? String)! : ""
+        let imgUrl = self.isContansKey(self.sidePanelSingleMallDataDict as NSDictionary, key: "logo") ? (self.sidePanelSingleMallDataDict .valueForKey("logo") as? String)! : ""
 
         NSUserDefaults.standardUserDefaults().setObject(imgUrl, forKey: "LOGO")
         
@@ -81,15 +108,17 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
-        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-45 ,65 ))
+        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-30 ,100 ))
+        //self.titleLable.backgroundColor = UIColor.redColor()
         self.titleLable.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         titleLable.lineBreakMode = .ByWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
-        let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "name") ? (self.sidePanelDataDict.valueForKey("name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
-        //let city =  self.sidePanelDataDict.valueForKeyPath("address.city") as! String!
-        titleLable.text = "\(productName)"
+        let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "Name") ? (self.sidePanelDataDict.valueForKey("Name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
+        let city =  self.sidePanelDataDict.valueForKeyPath("City") as! String!
+        titleLable.text = "\(productName) \(city)"
         self.detailsView.addSubview(titleLable)
+        
         
         //        let mailImage = UIImageView.init(frame: CGRectMake())
         //        mailImage.image = UIImage(named: "storeongo_gray.png")
@@ -204,7 +233,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     @IBAction func callUsAction(sender: UIButton) {
         
-        let website = self.sidePanelDataDict.valueForKeyPath("mobile") as! String!
+        let website = self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!
         callNumber(website!)
         //        let alert = UIAlertController(title:"", message: "Please Select A Number", preferredStyle: .Alert)
         //
@@ -229,7 +258,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let messageVC = MFMessageComposeViewController()
         messageVC.body = "Hi Do you have any query?";
-        messageVC.recipients = ["9640339556"]
+        messageVC.recipients = [self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!]
         messageVC.messageComposeDelegate = self;
         self.presentViewController(messageVC, animated: true, completion: nil)
         
@@ -256,8 +285,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBAction func viewMapAction(sender: UIButton) {
         self.navController.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
-        mapViewCnt.lat = Double(self.sidePanelDataDict.valueForKeyPath("latitude") as! String!)
-        mapViewCnt.lon = Double(self.sidePanelDataDict.valueForKeyPath("longitude") as! String!)
+        mapViewCnt.lat = Double(self.sidePanelDataDict.valueForKeyPath("Latitude") as! String!)
+        mapViewCnt.lon = Double(self.sidePanelDataDict.valueForKeyPath("Longitude") as! String!)
         self.navController.pushViewController(mapViewCnt, animated: true)
         
     }

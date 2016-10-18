@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutUsDescriptionTableViewCell" rowHeight="210" id="KGk-i7-Jjw" customClass="AboutUsDescriptionTableViewCell" customModule="NowFloats" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="372" height="209"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQ2-Na-d0h">
+                        <rect key="frame" x="13" y="8" width="351" height="34"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="TKY-WH-pwM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-pA-exc">
+                        <rect key="frame" x="8" y="43" width="356" height="158"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="leadingMargin" secondItem="uQ2-Na-d0h" secondAttribute="leading" constant="-5" id="9hP-9m-7bT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uQ2-Na-d0h" secondAttribute="trailing" id="AMB-Y5-z17"/>
+                    <constraint firstAttribute="topMargin" secondItem="uQ2-Na-d0h" secondAttribute="top" id="AdA-Ni-eWM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YZ1-pA-exc" secondAttribute="bottom" id="TqA-w1-zPQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YZ1-pA-exc" secondAttribute="trailing" id="X2j-NE-xMl"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="YZ1-pA-exc" secondAttribute="leading" id="YJ4-Cq-xmt"/>
+                    <constraint firstItem="YZ1-pA-exc" firstAttribute="leading" secondItem="uQ2-Na-d0h" secondAttribute="leading" constant="-5" id="bZK-Jc-5UO"/>
+                    <constraint firstItem="YZ1-pA-exc" firstAttribute="top" secondItem="uQ2-Na-d0h" secondAttribute="bottom" constant="1" id="ufG-iL-g2a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="aboutUSLbl" destination="uQ2-Na-d0h" id="3i9-oq-ajK"/>
+                <outlet property="aboutUsDesc" destination="YZ1-pA-exc" id="mkO-EM-jwn"/>
+            </connections>
+            <point key="canvasLocation" x="438" y="306"/>
+        </tableViewCell>
+    </objects>
+</document>

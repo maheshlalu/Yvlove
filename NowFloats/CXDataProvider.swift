@@ -9,8 +9,10 @@
 import UIKit
 import CoreData
 import MagicalRecord
-private var _sharedInstance:CXDataProvider! = CXDataProvider()
+import CoreSpotlight
+import MobileCoreServices
 
+private var _sharedInstance:CXDataProvider! = CXDataProvider()
 
 class CXDataProvider: NSObject {
     class var sharedInstance : CXDataProvider {
@@ -81,6 +83,9 @@ class CXDataProvider: NSObject {
                 enProduct!.type = prod.valueForKey("jobTypeName") as? String
                 enProduct?.imageUrl =  prod.valueForKey("Image_URL") as? String
                 // self.saveContext()
+                
+                self.addItemToSpotlightSearch((enProduct?.name)!, productImage: (enProduct?.imageUrl)!, productDesc: "" ,identifier: (enProduct?.pid)!)
+
             }
             
         }) { (success, error) in
@@ -112,6 +117,7 @@ class CXDataProvider: NSObject {
                 enProduct!.fID = CXConstant.resultString(prod.valueForKey("id")!)
                 enProduct?.campaign_Jobs = prod.valueForKey("Campaign_Jobs") as? String
                 enProduct?.itHasJobs = false
+                
             }
             
         }) { (success, error) in
@@ -142,6 +148,8 @@ class CXDataProvider: NSObject {
                 enProduct!.name = prod.valueForKey("Name") as? String
                 enProduct!.fID = CXConstant.resultString(prod.valueForKey("id")!)
                 enProduct?.parentID = parentID
+                
+
             }
             
         }) { (success, error) in
@@ -270,6 +278,25 @@ extension CXDataProvider {
         
     }
     
+    func addItemToSpotlightSearch(productName:String,productImage:String,productDesc:String,identifier:String){
+        
+
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        attributeSet.title = productName
+        attributeSet.thumbnailURL  = NSURL(string: productImage)
+        attributeSet.contentDescription = productDesc
+        
+    
+        
+        let item = CSSearchableItem(uniqueIdentifier: identifier, domainIdentifier: "com.nowFloats.cx", attributeSet: attributeSet)
+        CSSearchableIndex.defaultSearchableIndex().indexSearchableItems([item]) { (error: NSError?) -> Void in
+            if let error =  error {
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+                print("Search item successfully indexed")
+            }
+        }
+    }
     
     
     func getTheTableDataFromDataBase(entityName: String ,predicate:NSPredicate,ispredicate:Bool,orederByKey:String) -> (dataArray:NSArray, totalCount:NSInteger){

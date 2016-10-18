@@ -36,7 +36,7 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-JH-cHc">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-JH-cHc" customClass="SparkButton" customModule="NowFloats" customModuleProvider="target">
                         <rect key="frame" x="135" y="15" width="42" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="Re0-Ee-J0C"/>
@@ -44,6 +44,9 @@
                         </constraints>
                         <state key="normal" image="heart_unselected"/>
                         <state key="selected" image="heart_selected"/>
+                        <connections>
+                            <action selector="productlikebuttonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9yM-pR-Vi3"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4567" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn6-uw-wkP">
                         <rect key="frame" x="8" y="198" width="74" height="15"/>
@@ -146,7 +149,7 @@
                 <outlet property="productpriceLabel" destination="Pn6-uw-wkP" id="Gni-yJ-yL5"/>
                 <outlet property="produstimageview" destination="dgd-86-3eo" id="MQA-9p-fpJ"/>
             </connections>
-            <point key="canvasLocation" x="310.5" y="203"/>
+            <point key="canvasLocation" x="609.5" y="380"/>
         </collectionViewCell>
     </objects>
     <resources>

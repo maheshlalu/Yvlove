@@ -12,9 +12,9 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
+            <string>Roboto-Bold</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
-            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -71,7 +71,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dic-it-RRA">
                                 <rect key="frame" x="0.0" y="54" width="230" height="140"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jm9-Gd-iQL">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jm9-Gd-iQL">
                                         <rect key="frame" x="2" y="103" width="223" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xm-bZ-ldb">
@@ -80,6 +80,9 @@
                                                 <state key="normal" title="CALL US" image="call">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="callUsAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pd3-YX-AU0"/>
                                                 </connections>
@@ -100,6 +103,9 @@
                                                 <state key="normal" title="VIEW MAP" image="mapImage">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="149" y="0.0" width="71" height="30"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="viewMapAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XHN-BW-87b"/>
                                                 </connections>
@@ -111,11 +117,41 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="leading" secondItem="dic-it-RRA" secondAttribute="leading" constant="2" id="Fon-bU-Bbt"/>
-                                    <constraint firstAttribute="height" constant="140" id="XJm-JK-2sw"/>
-                                    <constraint firstAttribute="trailing" secondItem="jm9-Gd-iQL" secondAttribute="trailing" constant="5" id="ffm-gw-PwN"/>
-                                    <constraint firstAttribute="bottom" secondItem="jm9-Gd-iQL" secondAttribute="bottom" constant="7" id="p4h-uF-ehT"/>
+                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="leading" secondItem="dic-it-RRA" secondAttribute="leading" constant="5" id="6qt-tC-kSP"/>
+                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="leading" secondItem="dic-it-RRA" secondAttribute="leading" constant="10" id="SoT-Ex-u74">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="140" id="XJm-JK-2sw">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="166"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="jm9-Gd-iQL" secondAttribute="trailing" constant="5" id="eSd-8n-Xum"/>
+                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="centerX" secondItem="dic-it-RRA" secondAttribute="centerX" id="izA-TY-r9e"/>
+                                    <constraint firstItem="jm9-Gd-iQL" firstAttribute="bottom" secondItem="dic-it-RRA" secondAttribute="bottomMargin" id="ulc-VF-F6O"/>
+                                    <constraint firstAttribute="trailing" secondItem="jm9-Gd-iQL" secondAttribute="trailing" constant="10" id="zoN-3j-zrq"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6qt-tC-kSP"/>
+                                        <exclude reference="SoT-Ex-u74"/>
+                                        <exclude reference="eSd-8n-Xum"/>
+                                        <exclude reference="izA-TY-r9e"/>
+                                        <exclude reference="ulc-VF-F6O"/>
+                                        <exclude reference="zoN-3j-zrq"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="jm9-Gd-iQL"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="6qt-tC-kSP"/>
+                                        <exclude reference="SoT-Ex-u74"/>
+                                        <include reference="eSd-8n-Xum"/>
+                                        <exclude reference="izA-TY-r9e"/>
+                                        <include reference="ulc-VF-F6O"/>
+                                        <exclude reference="zoN-3j-zrq"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="42V-mk-HSL">
                                 <rect key="frame" x="0.0" y="194" width="230" height="556"/>
@@ -142,7 +178,9 @@
                             <constraint firstItem="dic-it-RRA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1VM-Qj-g2a"/>
                             <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Fvb-VW-oBJ"/>
                             <constraint firstItem="dic-it-RRA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="Hfz-FA-zzl"/>
-                            <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Q1p-dV-ERt"/>
+                            <constraint firstItem="42V-mk-HSL" firstAttribute="top" secondItem="dic-it-RRA" secondAttribute="bottom" id="Q1p-dV-ERt">
+                                <variation key="heightClass=regular-widthClass=compact" constant="1"/>
+                            </constraint>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZfM-g7-1Om" secondAttribute="bottom" id="QnL-ck-GJp"/>
                             <constraint firstItem="ZfM-g7-1Om" firstAttribute="leading" secondItem="42V-mk-HSL" secondAttribute="leading" id="UeN-aD-d8x"/>
                             <constraint firstItem="ZfM-g7-1Om" firstAttribute="top" secondItem="42V-mk-HSL" secondAttribute="bottom" id="Ybr-7E-mve">
@@ -170,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3428.25" y="-384.75"/>
+            <point key="canvasLocation" x="-3429" y="-384.75"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="y8A-S7-YAu">
@@ -1908,7 +1946,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Ic_call120x120" translatesAutoresizingMaskIntoConstraints="NO" id="JzS-zD-xjF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JzS-zD-xjF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="218" id="D9c-de-egM">
@@ -1960,7 +1998,7 @@
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0yV-fN-ljf">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-Sg-pxR">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-Sg-pxR">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0/5 Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3A-iZ-6h9">
@@ -1987,7 +2025,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-5v-gQs" customClass="FloatRatingView" customModule="NowFloats" customModuleProvider="target">
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-5v-gQs" customClass="FloatRatingView" customModule="NowFloats" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1997,7 +2035,18 @@
                                                     <constraint firstAttribute="height" constant="12" id="rUa-qz-9jj"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star.png"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="rate"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                        <integer key="value" value="0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="minImageSize">
+                                                        <size key="value" width="0.0" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="rateFilled"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -2033,7 +2082,6 @@
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="V3A-iZ-6h9"/>
-                                                <exclude reference="xFi-5v-gQs"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="SZq-Bk-mEd"/>
@@ -2059,33 +2107,20 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="68M Holides" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZr-hO-alQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="68M Holides" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZr-hO-alQ">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="bOb-PN-t5I"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="bOb-PN-t5I"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="bOb-PN-t5I"/>
-                                            </mask>
-                                        </variation>
                                     </label>
-                                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="OPEN TILL 11:30PM TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWx-S8-cjF">
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="OPEN TILL 11:30PM TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWx-S8-cjF">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.76862745099999996" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="g8J-O9-91c"/>
                                             <constraint firstAttribute="height" constant="26" id="hvt-vu-mIi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -2113,6 +2148,7 @@
                                     </constraint>
                                     <constraint firstItem="CZr-hO-alQ" firstAttribute="top" secondItem="0yV-fN-ljf" secondAttribute="top" constant="17" id="H2k-Ff-zU9"/>
                                     <constraint firstItem="CZr-hO-alQ" firstAttribute="leading" secondItem="0yV-fN-ljf" secondAttribute="leading" id="edv-dO-GgQ"/>
+                                    <constraint firstItem="YWx-S8-cjF" firstAttribute="top" secondItem="CZr-hO-alQ" secondAttribute="bottom" constant="26" id="hnT-sS-oeO"/>
                                     <constraint firstItem="YWx-S8-cjF" firstAttribute="centerX" secondItem="0yV-fN-ljf" secondAttribute="centerX" id="ifm-vx-aya">
                                         <variation key="heightClass=regular-widthClass=compact" constant="-2"/>
                                     </constraint>
@@ -2123,7 +2159,6 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="YXf-Sg-pxR"/>
                                         <exclude reference="CZr-hO-alQ"/>
                                     </mask>
                                     <mask key="constraints">
@@ -2134,6 +2169,7 @@
                                         <exclude reference="3Fb-wM-n41"/>
                                         <exclude reference="4nD-Bf-mgI"/>
                                         <exclude reference="xOX-Tq-4wZ"/>
+                                        <exclude reference="hnT-sS-oeO"/>
                                         <exclude reference="ifm-vx-aya"/>
                                     </mask>
                                 </variation>
@@ -2151,6 +2187,7 @@
                                         <include reference="3Fb-wM-n41"/>
                                         <include reference="4nD-Bf-mgI"/>
                                         <include reference="xOX-Tq-4wZ"/>
+                                        <include reference="hnT-sS-oeO"/>
                                         <include reference="ifm-vx-aya"/>
                                     </mask>
                                 </variation>
@@ -2230,13 +2267,15 @@
                         <outlet property="aboutustableview" destination="6bt-T7-Gzg" id="l8M-ab-kRj"/>
                         <outlet property="headerView" destination="0yV-fN-ljf" id="lhC-fH-JZo"/>
                         <outlet property="questionBtn" destination="saD-Ou-kws" id="h5o-i9-NWe"/>
+                        <outlet property="rateLbl" destination="V3A-iZ-6h9" id="LRS-ms-VLn"/>
+                        <outlet property="rateView" destination="xFi-5v-gQs" id="62b-ph-zO1"/>
                         <outlet property="timingsLbl" destination="YWx-S8-cjF" id="whr-O7-gvj"/>
                         <outlet property="titleLbl" destination="CZr-hO-alQ" id="336-PX-XqN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ojr-7L-odp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2956.5" y="480.75"/>
+            <point key="canvasLocation" x="-3619.5" y="525"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="riN-PS-dh5">
@@ -3993,7 +4032,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Ic_call120x120" width="20" height="20"/>
         <image name="addToCart_White" width="20" height="20"/>
         <image name="bell_Stencil" width="20" height="20"/>
         <image name="black-line" width="300" height="300"/>
@@ -4007,6 +4045,8 @@
         <image name="message" width="20" height="20"/>
         <image name="placeOrderImg" width="20" height="20"/>
         <image name="placeholder" width="360" height="360"/>
+        <image name="rate" width="40" height="40"/>
+        <image name="rateFilled" width="40" height="40"/>
         <image name="shareImage" width="20" height="20"/>
         <image name="star.png" width="50" height="50"/>
         <image name="starImage" width="20" height="20"/>

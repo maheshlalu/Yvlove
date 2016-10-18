@@ -211,8 +211,8 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             cell.productPriceLbl.attributedText = attributeString
             
             
-            let finalPriceNum:Int = Int(price)!-Int(discount)!
-            cell.finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
+            //let finalPriceNum:Int = Int(price)!-Int(discount)!
+            // cell.finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
         }
 
         if featureProducts.name == "Brands"{

@@ -47,6 +47,12 @@
 		114A12B91D90F94A006AC421 /* MessageHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */; };
 		114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12BB1D91323A006AC421 /* MIBadgeButton.swift */; };
 		11570CB41DA3B5C4002495C3 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */; };
+		11682CDF1DA5353A00A2B563 /* SparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDD1DA5353A00A2B563 /* SparkButton.swift */; };
+		11682CE01DA5353A00A2B563 /* SparkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDE1DA5353A00A2B563 /* SparkView.swift */; };
+		116FF6761DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116FF6741DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift */; };
+		116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */; };
+		117D1BC41DA61F0200BE4AE1 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; };
+		117D1BC61DA61F0900BE4AE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -213,6 +219,12 @@
 		114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHomeViewController.swift; sourceTree = "<group>"; };
 		114A12BB1D91323A006AC421 /* MIBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIBadgeButton.swift; sourceTree = "<group>"; };
 		11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		11682CDD1DA5353A00A2B563 /* SparkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkButton.swift; sourceTree = "<group>"; };
+		11682CDE1DA5353A00A2B563 /* SparkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkView.swift; sourceTree = "<group>"; };
+		116FF6741DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117D1BC61DA61F0900BE4AE1 /* MobileCoreServices.framework in Frameworks */,
+				117D1BC41DA61F0200BE4AE1 /* CoreSpotlight.framework in Frameworks */,
 				110329C41D8A72B40008A3B7 /* MapKit.framework in Frameworks */,
 				DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */,
 			);
@@ -375,6 +389,8 @@
 		0E1CF002394DE794901016D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */,
+				117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */,
 				110329C31D8A72B40008A3B7 /* MapKit.framework */,
 				15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */,
 				B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */,
@@ -463,6 +479,15 @@
 			name = Badge;
 			sourceTree = "<group>";
 		};
+		11682CDC1DA5350C00A2B563 /* SparkButton */ = {
+			isa = PBXGroup;
+			children = (
+				11682CDD1DA5353A00A2B563 /* SparkButton.swift */,
+				11682CDE1DA5353A00A2B563 /* SparkView.swift */,
+			);
+			name = SparkButton;
+			sourceTree = "<group>";
+		};
 		118346AD1D8696A4000BE1D4 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +530,8 @@
 			isa = PBXGroup;
 			children = (
 				11F1DE661D883BA3002AF5B0 /* AboutUsViewController.swift */,
+				116FF6741DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift */,
+				116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */,
 				110329C91D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift */,
 				110329CA1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib */,
 				11F1DE5C1D883AF7002AF5B0 /* AboutusTableViewCell.swift */,
@@ -735,6 +762,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				11682CDC1DA5350C00A2B563 /* SparkButton */,
 				114A12BA1D91322B006AC421 /* Badge */,
 				113A995B1D8FF45E006B5BE5 /* Toast */,
 				1147CB9C1D8BB4AB00138C4E /* RatingView */,
@@ -1024,6 +1052,7 @@
 				189A1E421D79479800724120 /* Roboto-Regular.ttf in Resources */,
 				18C089D41D8D2132005DFF7C /* star.png in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
+				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
@@ -1194,6 +1223,7 @@
 				3B4FD8531D645BD500A6EBBE /* HomeViewController.swift in Sources */,
 				11F1DE581D883A4B002AF5B0 /* DropDown+Appearance.swift in Sources */,
 				110329C01D8A6BB00008A3B7 /* HistoryTableViewCell.swift in Sources */,
+				116FF6761DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift in Sources */,
 				11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */,
 				11370F711D89581200CCBE01 /* CalcConversionEx.swift in Sources */,
 				118346BE1D86D789000BE1D4 /* FTPopOverMenu.m in Sources */,
@@ -1217,6 +1247,7 @@
 				11F0B3E01D8AC11B00873979 /* Station.swift in Sources */,
 				18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */,
 				11370F661D893BB600CCBE01 /* DemoPopupViewController2.swift in Sources */,
+				11682CE01DA5353A00A2B563 /* SparkView.swift in Sources */,
 				1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
@@ -1250,6 +1281,7 @@
 				1147CBA41D8C332E00138C4E /* EnquiryViewController.swift in Sources */,
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
 				113A995A1D8FEB88006B5BE5 /* NotificationsViewController.swift in Sources */,
+				11682CDF1DA5353A00A2B563 /* SparkButton.swift in Sources */,
 				3B61E3691D6B093000B09F8E /* CXAppConfig.swift in Sources */,
 				183573AD1D798F5400722AA2 /* CX_FeaturedProductsJobs.swift in Sources */,
 				1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */,

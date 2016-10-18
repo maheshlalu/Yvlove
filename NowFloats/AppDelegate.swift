@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import CoreSpotlight
+import MobileCoreServices
 import MagicalRecord
 
 
@@ -108,6 +110,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        
+        /*   let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+         
+         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+         productDetails.productString = products.json
+         self.navigationController?.pushViewController(productDetails, animated: true)*/
+        
+//        let viewController = window?.rootViewController as! CXNavDrawer
+//        viewController.restoreUserActivityState(userActivity)
+//        
+//        return true
+
+        if userActivity.activityType == CSSearchableItemActionType{
+            let identifier = userActivity.userInfo![CSSearchableItemActivityIdentifier]
+            NSNotificationCenter.defaultCenter().postNotificationName("DisplaySearchResult", object: identifier)
+        
+        }
+        return true
     }
 
     // MARK: - Core Data stack

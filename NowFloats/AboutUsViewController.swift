@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import Foundation
 
 class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
-    
-    var nameArray = ["indiadhasgdhjgashjgdjhagsdhjgasdsadsadsadasgfhdgsafhdsjhfghjdsgfjhgdsjhfgjhgdfhgsgfjshdgfhgsdjgfsdgfgsdjgfdsgfgsdjfgsdgfjsdgfjgsdjfgsdgfjshdgfhsgd","america","newzealand"]
     
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var timingsLbl: UILabel!
@@ -18,13 +17,22 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var questionBtn: UIButton!
     @IBOutlet weak var aboutusimageview: UIImageView!
     @IBOutlet weak var aboutustableview: UITableView!
-    var aboutUsDic : NSDictionary!
+    @IBOutlet weak var rateLbl: UILabel!
+    @IBOutlet weak var rateView: FloatRatingView!
+    
+    var str:String = ""
+    var aboutUsArray : NSArray!
+    var aboutUsDict: NSDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.timingsLbl.layer.cornerRadius = 8.0
+        
+        self.getStores()
+        self.timingsLbl.layer.cornerRadius = 10
         self.questionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.aboutustableview?.registerNib(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
         self.aboutustableview?.registerNib(UINib(nibName: "AboutUsExtraTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutUsExtraTableViewCell")
+        self.aboutustableview.registerNib(UINib(nibName: "AboutUsDescriptionTableViewCell",bundle: nil), forCellReuseIdentifier: "AboutUsDescriptionTableViewCell")
         
         self.aboutustableview.separatorStyle = .None
         self.aboutustableview.rowHeight = UITableViewAutomaticDimension
@@ -32,30 +40,169 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         self.aboutustableview.backgroundColor = UIColor.clearColor()
-        //self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
-        let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
-        print(CXConstant.sharedInstance.convertStringToDictionary(appdata.json!))
-       self.aboutUsDic = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-       // sidepanelView()
+        
+        self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
 
-        //logo = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/11_1461743016987.png";
-        
-        
-        self.titleLbl.text = aboutUsDic.valueForKeyPath("appInfo.ApplicationName") as? String
-        let imgUrl = aboutUsDic.valueForKey("imageUrl") as?String
+        self.titleLbl.text = aboutUsDict.valueForKeyPath("Name") as? String
+        let imgUrl = aboutUsDict.valueForKey("Image_URL") as?String
         if (imgUrl != nil){
             self.aboutusimageview.sd_setImageWithURL(NSURL(string: imgUrl!))
         }else{
             self.aboutusimageview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         }
         
+        rateView.rating = Float((self.aboutUsDict.valueForKeyPath("overallRating") as? String)!)!
+        rateLbl.text = ("\(rateView.rating)/5 Ratings")
         //self.aboutusimageview.addSubview(overlay)
+        self.weekDayCalculation()
     }
     
+    func weekDayCalculation(){
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+
+        let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
+        print(weekday)
+
+        let hrsOfOperation = self.aboutUsDict.valueForKey("hrsOfOperation")as! NSArray
+        print(hrsOfOperation.description)
+        
+        switch weekday {
+        case 1:
+            print("Sunday")
+            let dayOperations = hrsOfOperation[0] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 2:
+            print("Monday")
+            let dayOperations = hrsOfOperation[6] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 3:
+            print("Tuesday")
+            let dayOperations = hrsOfOperation[5] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 4:
+            print("Wednesday")
+            let dayOperations = hrsOfOperation[4] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 5:
+            print("Thursday")
+            let dayOperations = hrsOfOperation[3] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 6:
+            print("Friday")
+            let dayOperations = hrsOfOperation[2] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        case 7:
+            print("Saturday")
+            let dayOperations = hrsOfOperation[1] as! NSDictionary
+            print(dayOperations.valueForKey("endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+        default:break
+        }
+ 
+    }
+    
+    
+    
+    func availability() -> String {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        
+        let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
+        print(weekday)
+
+        let hrsOfOperation = self.aboutUsDict.valueForKey("hrsOfOperation")as! NSArray
+        print(hrsOfOperation.description)
+        
+        switch weekday {
+        case 1:
+            print("Sunday")
+            let dayOperations = hrsOfOperation[0] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 2:
+            print("Monday")
+            let dayOperations = hrsOfOperation[6] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 3:
+            print("Tuesday")
+            let dayOperations = hrsOfOperation[5] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 4:
+            print("Wednesday")
+            let dayOperations = hrsOfOperation[4] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 5:
+            print("Thursday")
+            let dayOperations = hrsOfOperation[3] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 6:
+            print("Friday")
+            let dayOperations = hrsOfOperation[2] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        case 7:
+            print("Saturday")
+            let dayOperations = hrsOfOperation[1] as! NSDictionary
+            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+        default:break
+        }
+        return str
+    }
+    
+    func getStores(){
+        
+        let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
+        let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
+        let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+        fetchRequest.predicate = predicate
+        fetchRequest.entity = productEn
+        self.aboutUsArray = CX_Stores.MR_executeFetchRequest(fetchRequest)
+        
+        let storesEntity : CX_Stores = self.aboutUsArray.lastObject as! CX_Stores
+
+        self.aboutUsDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+        print(aboutUsDict)
+        
+    }
+    
+    // getting day of the week
+    func getDayOfWeek(today:String)->Int {
+        
+        let formatter  = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = formatter.dateFromString(today)!
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
+        let weekDay = myComponents.weekday
+        return weekDay
+    }
+
+    
+    // pragma mark - delegate
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return nameArray.count
- 
+        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
+            return 3
+        }else{
+            return 4
+        }
     }
     
     
@@ -66,53 +213,122 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        if indexPath.section == 0 {
+        
+        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
             
-            let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
-            aboutUs.selectionStyle = .None
-            aboutUs.aboutusDescriptionlabel.text = self.aboutUsDic.valueForKeyPath("address.location") as?String
-            aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
-            aboutUs.aboutusrootLabel.text = "We are Located in"
-            aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
-            aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
-            aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            aboutUs.aboutuskmLabel.hidden = false
-            aboutUs.aboutusgoogleLabel.hidden = false
-            return aboutUs
-            
-        }else {
-            
-            let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
-            aboutUsExtra.selectionStyle = .None
-            
-            if indexPath.section == 1{
-                aboutUsExtra.extraTitleLbl.text = "We're happily available from"
-                aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                aboutUsExtra.extraDescLbl.text = "12:00Am to 11:30PM"
-                aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-            }else if indexPath.section == 2{
-                aboutUsExtra.extraTitleLbl.text = "You can reach us at"
-                aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                aboutUsExtra.extraDescLbl.text = self.aboutUsDic.valueForKeyPath("mobile") as?String //"9640339556"//mobile
-                aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                aboutUsExtra.callBtn.hidden = false
-                aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
+            if indexPath.section == 0{
+                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
+                aboutUs.selectionStyle = .None
+                
+                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
+                aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
+                aboutUs.aboutusrootLabel.text = "We are Located in"
+                aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
+                aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
+                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                aboutUs.aboutuskmLabel.hidden = false
+                aboutUs.aboutusgoogleLabel.hidden = false
+                
+                return aboutUs
+                
+            }else{
+                
+                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
+                aboutUsExtra.selectionStyle = .None
+                
+                if indexPath.section == 1{
+                    aboutUsExtra.extraTitleLbl.text = "We're happily available from"
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraDescLbl.text = self.availability()
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                }else if indexPath.section == 2{
+                    aboutUsExtra.extraTitleLbl.text = "You can reach us at"
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.valueForKeyPath("Contact Number") as?String //"9640339556"//mobile
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                    aboutUsExtra.callBtn.hidden = false
+                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
+                }
+                return aboutUsExtra
             }
-            return aboutUsExtra
+            
+        } else{
+            
+            if indexPath.section == 0{
+                
+                let aboutUsDescription:AboutUsDescriptionTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsDescriptionTableViewCell") as? AboutUsDescriptionTableViewCell
+                aboutUsDescription.selectionStyle = .None
+                
+                aboutUsDescription.aboutUSLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                aboutUsDescription.aboutUsDesc.font = CXAppConfig.sharedInstance.appMediumFont()
+                aboutUsDescription.aboutUsDesc.text = self.aboutUsDict.valueForKey("Description") as? String
+                
+                return aboutUsDescription
+                
+            }else if indexPath.section == 1{
+                
+                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
+                aboutUs.selectionStyle = .None
+                
+                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
+                aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
+                aboutUs.aboutusrootLabel.text = "We are Located in"
+                aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
+                aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
+                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                aboutUs.aboutuskmLabel.hidden = false
+                aboutUs.aboutusgoogleLabel.hidden = false
+                
+                return aboutUs
+                
+            }else {
+                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
+                aboutUsExtra.selectionStyle = .None
+                
+                if indexPath.section == 2{
+                    aboutUsExtra.extraTitleLbl.text = "We're happily available from"
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraDescLbl.text = self.availability()
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                    aboutUsExtra.callBtn.hidden = true
+                }else if indexPath.section == 3{
+                    aboutUsExtra.extraTitleLbl.text = "You can reach us at"
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.valueForKeyPath("Contact Number") as?String //"9640339556"//mobile
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                    aboutUsExtra.callBtn.hidden = false
+                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
+                }
+                return aboutUsExtra
+                
+            }
         }
     }
-    
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         return 5.0
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        if indexPath.section == 0{
-            return UITableViewAutomaticDimension
-        }else{
-            return 70
+        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
+            
+            if indexPath.section == 0{
+                return UITableViewAutomaticDimension
+            }else {
+                return 70
+            }
+            
+        }else {
+            
+            if indexPath.section == 0{
+                return UITableViewAutomaticDimension
+            }else if indexPath.section == 1 {
+                return UITableViewAutomaticDimension
+            }else {
+                return 70
+            }
         }
     }
     
@@ -123,21 +339,22 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         
        // self.navigationController?.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
-        mapViewCnt.lat = Double(self.aboutUsDic.valueForKeyPath("latitude") as! String!)
-        mapViewCnt.lon = Double(self.aboutUsDic.valueForKeyPath("longitude") as! String!)
+        mapViewCnt.lat = Double(self.aboutUsDict.valueForKeyPath("Latitude") as! String!)
+        mapViewCnt.lon = Double(self.aboutUsDict.valueForKeyPath("Longitude") as! String!)
         self.navigationController!.pushViewController(mapViewCnt, animated: true)
     }
     
     
     func callAction(button:UIButton!){
         
-        let website = self.aboutUsDic.valueForKeyPath("mobile") as! String!
+        let website = self.aboutUsDict.valueForKeyPath("Contact Number") as! String!
         callNumber(website!)
     }
     
     private func callNumber(phoneNumber:String) {
         UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
     }
+    
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
@@ -183,6 +400,21 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
 
     
 }
+
+/*extension AboutUsViewController:FloatRatingViewDelegate{
+
+    func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
+        //ratingView.rating = 0
+        //        let signInView = CXSignInSignUpViewController.init()
+        //        self.navigationController?.pushViewController(signInView, animated: true)
+    }
+    
+    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
+        //ratingView.rating = 0
+        self.rateLbl.text = NSString(format: "%.1f", self.rateView.rating) as String
+    }
+
+}*/
 /*
  
  {
