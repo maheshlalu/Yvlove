@@ -38,12 +38,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.getSingleMall()
-        self.getStores()
-        self.sidepanelView()
-       
-      
-        
-        //self.detailsView.backgroundColor = UIColor.greenColor()
+
         
     }
    
@@ -53,31 +48,51 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
             self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
             print("\(self.sidePanelSingleMallDataDict)")
+            self.getStores()
         }else{
             CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
                 let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
                 self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
                 print("\(self.sidePanelSingleMallDataDict)")
+                self.getStores()
                 
             })
         }
     }
     
     func getStores(){
+        if CX_Stores.MR_findAll().count != 0{
+            let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+            //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
+            let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
+            let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+            fetchRequest.predicate = predicate
+            fetchRequest.entity = productEn
+            self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
+            
+            let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
+            
+            self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+            print(sidePanelDataDict)
+            self.sidepanelView()
         
-        let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
-        //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
-        let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
-        let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
-        fetchRequest.predicate = predicate
-        fetchRequest.entity = productEn
-        self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
-        
-        let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
-        
-        self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        print(sidePanelDataDict)
-        
+        }else{
+            CXAppDataManager.sharedInstance.getTheStores({(isDataSaved) in
+                let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+                //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
+                let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
+                let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+                fetchRequest.predicate = predicate
+                fetchRequest.entity = productEn
+                self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
+                
+                let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
+                
+                self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+                print(self.sidePanelDataDict)
+                self.sidepanelView()
+            })
+        }
     }
     
     func btnBorderAlignments(){
@@ -97,7 +112,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func sidepanelView(){
         
         
-        self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-32,60,60))
+        self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-20,60,60))
         let imgUrl = self.isContansKey(self.sidePanelSingleMallDataDict as NSDictionary, key: "logo") ? (self.sidePanelSingleMallDataDict .valueForKey("logo") as? String)! : ""
 
         NSUserDefaults.standardUserDefaults().setObject(imgUrl, forKey: "LOGO")
@@ -108,7 +123,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
-        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-30 ,100 ))
+        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-30 ,90 ))
         //self.titleLable.backgroundColor = UIColor.redColor()
         self.titleLable.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         titleLable.lineBreakMode = .ByWordWrapping

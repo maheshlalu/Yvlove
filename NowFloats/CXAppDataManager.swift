@@ -34,7 +34,8 @@ public class CXAppDataManager: NSObject {
         self.getProducts()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             print("print store category\(responseDict)")
-            self.getTheStores()
+          self.getTheStores({(isDataSaved) in
+          })
         }
     }
     
@@ -49,12 +50,13 @@ public class CXAppDataManager: NSObject {
 
     }
     
-    func getTheStores(){
+    func getTheStores(completion:(isDataSaved:Bool) -> Void){
         
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
             if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
                     LoadingView.show("Loading", animated: true)
+                    completion(isDataSaved: isDataSaved)
                     self.getProducts()
                 })
             }else{

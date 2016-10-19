@@ -84,7 +84,12 @@ class CXDataProvider: NSObject {
                 enProduct?.imageUrl =  prod.valueForKey("Image_URL") as? String
                 // self.saveContext()
                 
-                self.addItemToSpotlightSearch((enProduct?.name)!, productImage: (enProduct?.imageUrl)!, productDesc: "" ,identifier: (enProduct?.pid)!)
+                let productDic = CXConstant.sharedInstance.convertStringToDictionary(enProduct!.json!)
+                
+                let imageUrlSptLt = NSURL(string: (enProduct?.imageUrl)!)
+                let imageData = NSData(contentsOfURL:imageUrlSptLt!)
+
+                self.addItemToSpotlightSearch((enProduct?.name)!, productImage:imageData!, productDesc:(productDic.valueForKey("Description")as! String) ,identifier: (enProduct?.pid)!)
 
             }
             
@@ -278,12 +283,12 @@ extension CXDataProvider {
         
     }
     
-    func addItemToSpotlightSearch(productName:String,productImage:String,productDesc:String,identifier:String){
+    func addItemToSpotlightSearch(productName:String,productImage:NSData,productDesc:String,identifier:String){
         
 
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
         attributeSet.title = productName
-        attributeSet.thumbnailURL  = NSURL(string: productImage)
+        attributeSet.thumbnailData  = productImage
         attributeSet.contentDescription = productDesc
         
     

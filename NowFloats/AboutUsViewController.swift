@@ -8,8 +8,9 @@
 
 import UIKit
 import Foundation
+import CoreLocation
 
-class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
+class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var timingsLbl: UILabel!
@@ -19,15 +20,18 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var aboutustableview: UITableView!
     @IBOutlet weak var rateLbl: UILabel!
     @IBOutlet weak var rateView: FloatRatingView!
+    let locationManager = CLLocationManager()
     
     var str:String = ""
     var aboutUsArray : NSArray!
     var aboutUsDict: NSDictionary!
+    var mallDistance:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.getStores()
+        self.locationManagerAuthentication()
         self.timingsLbl.layer.cornerRadius = 10
         self.questionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.aboutustableview?.registerNib(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
@@ -55,6 +59,20 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         rateLbl.text = ("\(rateView.rating)/5 Ratings")
         //self.aboutusimageview.addSubview(overlay)
         self.weekDayCalculation()
+    }
+    
+    func locationManagerAuthentication(){
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func weekDayCalculation(){
@@ -113,8 +131,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         }
  
     }
-    
-    
     
     func availability() -> String {
         let date = NSDate()
@@ -223,6 +239,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
+                aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -273,6 +290,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
+                aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -335,6 +353,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     /*func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }*/
+    
     func viewMapAction(button : UIButton!){
         
        // self.navigationController?.drawerToggle()
@@ -344,6 +363,14 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.navigationController!.pushViewController(mapViewCnt, animated: true)
     }
     
+    func distanceBetweenTwoLocations(source:CLLocation,destination:CLLocation) -> Double{
+        
+        let distanceMeters = source.distanceFromLocation(destination)
+        let distanceKM = distanceMeters / 1000
+        let roundedTwoDigit = distanceKM.roundedTwoDigit
+        return roundedTwoDigit
+        
+    }
     
     func callAction(button:UIButton!){
         
@@ -354,7 +381,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     private func callNumber(phoneNumber:String) {
         UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
     }
-    
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
@@ -398,23 +424,37 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         return false
     }
 
-    
 }
+extension AboutUsViewController{
 
-/*extension AboutUsViewController:FloatRatingViewDelegate{
-
-    func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
-        //ratingView.rating = 0
-        //        let signInView = CXSignInSignUpViewController.init()
-        //        self.navigationController?.pushViewController(signInView, animated: true)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.mallDistance = mallDistance(locValue.latitude, currentLon: locValue.longitude)
+        self.aboutustableview.reloadData()
     }
     
-    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
-        //ratingView.rating = 0
-        self.rateLbl.text = NSString(format: "%.1f", self.rateView.rating) as String
+    func mallDistance(currentLat:Double,currentLon:Double)->String{
+        
+        let currentLat:Double = currentLat
+        let currentLon:Double = currentLon
+        let myLocation:CLLocation = CLLocation(latitude:currentLat, longitude: currentLon)
+        
+        let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.valueForKeyPath("Latitude") as! String!)!, longitude: Double(self.aboutUsDict.valueForKeyPath("Longitude") as! String!)!)
+        
+        let distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
+        print(distance)
+        
+        let formatter = NSNumberFormatter()
+        formatter.minimumFractionDigits = 0
+        
+        let distanceInKM = formatter.stringFromNumber(distance)
+        print(distanceInKM!)
+        
+        return distanceInKM!
     }
-
-}*/
+}
 /*
  
  {

@@ -9,18 +9,30 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewCntl: CXViewController {
+class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate  {
     var mapView: MKMapView = MKMapView ()
     let screenSize = UIScreen.mainScreen().bounds.size
     let locationManager = CLLocationManager()
+    var startLocation: CLLocation!
+    var currentLat:Double! = nil
+    var currentLon:Double! = nil
+    var myLocation:CLLocation!
+    
     var lat:Double! = nil
     var lon:Double! = nil
+    
+    var distance:Double! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.designMapview()
-
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -29,6 +41,7 @@ class MapViewCntl: CXViewController {
             locationManager.startUpdatingLocation()
         }
 
+      
         // Do any additional setup after loading the view.
     }
 
@@ -42,6 +55,7 @@ class MapViewCntl: CXViewController {
         self.mapView = MKMapView.init(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
         self.view.addSubview(self.mapView)
         self.mapView.delegate = self
+        self.mapView.showsUserLocation = true
         self.zoomToRegion()
         self.addShowDirectionButton()
     }
@@ -73,21 +87,14 @@ class MapViewCntl: CXViewController {
     
     func showMapDirection(){
         
-        self.showMapPointLocation()
+        //self.showMapPointLocation()
         
     }
     func showMapPointLocation () {
-        
-        //18.5184° N, 84.1514° E
-        
-//        self.lat = 18.5184
-//        let long = 84.1514
-        
+
         var annotations:Array = [Station]()
         let annotation = Station(latitude:lat, longitude:lon)
-        //let annotation1 = Station(latitude: 17.3840500	, longitude:  78.4563600)
-        
-        //annotations.append(annotation1)
+
         annotations.append(annotation)
         
         self.mapView.addAnnotation(annotation)
@@ -105,6 +112,81 @@ class MapViewCntl: CXViewController {
         mapView.addOverlay(polyline)
         
     }
+    
+    func distanceBetweenTwoLocations(source:CLLocation,destination:CLLocation) -> Double{
+        
+        let distanceMeters = source.distanceFromLocation(destination)
+        let distanceKM = distanceMeters / 1000
+        let roundedTwoDigit = distanceKM.roundedTwoDigit
+        return roundedTwoDigit
+        
+    }
+    
+    // delegate methods
+    
+    /*
+     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+     let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+     
+     if overlay is MKPolyline {
+     polylineRenderer.strokeColor = UIColor.redColor()
+     polylineRenderer.lineWidth = 3
+     
+     }
+     return polylineRenderer
+     }*/
+    //    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    //        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+    //        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    ////
+    ////        let location = locations.last! as CLLocation
+    ////
+    ////        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    ////        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    ////
+    ////        self.mapView.setRegion(region, animated: true)
+    //    }
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+//    {
+//        let location = locations.last
+//        
+//        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+//        
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+//        
+//        self.mapView.setRegion(region, animated: true)
+//        
+//        self.locationManager.stopUpdatingLocation()
+//    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.currentLat = locValue.latitude
+        self.currentLon = locValue.longitude
+        myLocation  = CLLocation(latitude:currentLat, longitude: currentLon)
+        
+        let mallLocation = CLLocation(latitude: lat, longitude: lon)
+        
+        distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
+        print(distance)
+        
+        let formatter = NSNumberFormatter()
+        formatter.minimumFractionDigits = 0
+        
+       let distanceInKM = formatter.stringFromNumber(distance)
+        print(distanceInKM!)
+        
+ 
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
+    {
+        print("Errors: " + error.localizedDescription)
+    }
+    
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
@@ -147,32 +229,13 @@ class MapViewCntl: CXViewController {
 
 }
 
-extension MapViewCntl :MKMapViewDelegate,CLLocationManagerDelegate {
+
+extension Double{
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+    var roundedTwoDigit:Double{
         
-        if overlay is MKPolyline {
-            polylineRenderer.strokeColor = UIColor.redColor()
-            polylineRenderer.lineWidth = 3
-            
-        }
-        return polylineRenderer
+        return Double(round(100*self)/100)
+        
     }
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//
-//        let location = locations.last! as CLLocation
-//        
-//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//        
-//        self.mapView.setRegion(region, animated: true)
-    }
-    
-
-
-
 }
 

@@ -127,9 +127,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
 
         if userActivity.activityType == CSSearchableItemActionType{
-            let identifier = userActivity.userInfo![CSSearchableItemActivityIdentifier]
-            NSNotificationCenter.defaultCenter().postNotificationName("DisplaySearchResult", object: identifier)
-        
+            
+            let identifier = userActivity.userInfo![CSSearchableItemActivityIdentifier] as! String
+            
+            let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+            let predicate:NSPredicate =  NSPredicate(format: "pid == %@",identifier)
+            let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: true)
+            fetchRequest.predicate = predicate
+            fetchRequest.entity = productEn
+            let productArr = CX_Products.MR_executeFetchRequest(fetchRequest) as NSArray
+            
+            let storesEntity : CX_Products = productArr.lastObject as! CX_Products
+            
+            let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+            let productString = CXConstant.sharedInstance.convertDictionayToString(productDic)
+            print(productDic)
+            
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+            productDetails.productString = productString as String
+            
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.pushViewController(productDetails, animated: true)
+            
+            
+           // self.navigationController?.pushViewController(productDetails, animated: true)
+            
+            
+            /*UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+             LoginDropboxViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"LoginDropbox"];
+             [(UINavigationController*)self.window.rootViewController pushViewController:ivc animated:NO];*/
+            
         }
         return true
     }

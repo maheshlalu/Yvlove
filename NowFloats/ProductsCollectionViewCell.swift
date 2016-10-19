@@ -48,7 +48,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
 //
 //    }
     
-    @IBAction func productlikebuttonAction(sender: UIButton) {
+    @IBAction func productlikebuttonAction(sender: SparkButton) {
         sender.selected = !sender.selected
     }
 

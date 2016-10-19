@@ -212,14 +212,14 @@ extension ProductsViewController {
         
     }
     
-    func productAddedToWishList(sender:SparkButton){
+    func productAddedToWishList(sender:UIButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
         
         if sender.selected {
             //Remove Item From WishList
-
+            
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
@@ -228,7 +228,7 @@ extension ProductsViewController {
         }else{
             
             //Add Item to WishList
-
+            
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
                 
