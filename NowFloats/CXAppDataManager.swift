@@ -57,10 +57,10 @@ public class CXAppDataManager: NSObject {
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
                     LoadingView.show("Loading", animated: true)
                     completion(isDataSaved: isDataSaved)
-                    self.getProducts()
+                    //self.getProducts()
                 })
             }else{
-                self.getProducts()
+               // self.getProducts()
             }
         }
     }

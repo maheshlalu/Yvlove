@@ -30,6 +30,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
     @IBOutlet weak var lastNameTxtField: SkyFloatingLabelTextField!
     @IBOutlet weak var saveImageBtn: UIButton!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         headerViewAlignments()
@@ -91,6 +92,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
                             NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("orgId"), forKey: "ORG_ID")
                             NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macIdJobId"), forKey: "MACID_JOBID")
                             NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("organisation"), forKey: "ORGANIZATION")
+                            NSUserDefaults.standardUserDefaults().synchronize()
                             LoadingView.hide()
                             self.showAlertView("Profile Updated Successfully!!!", status: 1)
                         })

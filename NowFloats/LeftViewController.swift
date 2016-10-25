@@ -32,12 +32,13 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getSingleMall()
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.whiteColor()
-        
-        self.getSingleMall()
+
 
         
     }
@@ -248,8 +249,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     @IBAction func callUsAction(sender: UIButton) {
         
-        let website = self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!
-        callNumber(website!)
+        let primaryNumber = self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!
+        callNumber(primaryNumber!)
         //        let alert = UIAlertController(title:"", message: "Please Select A Number", preferredStyle: .Alert)
         //
         //        alert.addAction(UIAlertAction(title: "Approve", style: .Default , handler:{ (UIAlertAction)in
