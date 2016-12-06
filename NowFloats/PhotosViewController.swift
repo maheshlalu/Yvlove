@@ -21,10 +21,10 @@ class PhotosViewController: CXViewController {
         super.viewDidLoad()
         //self.navigationController?.navigationBarHidden = true
         let nib = UINib(nibName: "PhotosCollectionViewCell", bundle: nil)
-        self.photosCollectionView.registerNib(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
+        self.photosCollectionView.register(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         self.getTheGalleryItems()
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
-        self.photosCollectionView.backgroundColor = UIColor.clearColor()
+        self.photosCollectionView.backgroundColor = UIColor.clear
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,17 +32,17 @@ class PhotosViewController: CXViewController {
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotosCollectionViewCell", forIndexPath: indexPath)as! PhotosCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath as IndexPath)as! PhotosCollectionViewCell
         cell.layer.cornerRadius = 10
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: cell.layer.cornerRadius).CGPath
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: cell.layer.cornerRadius).cgPath
         cell.layer.masksToBounds = true
         let gallaeryData : CX_Gallery =  (self.gallaryItems[indexPath.item] as? CX_Gallery)!
-        cell.photosImage.sd_setImageWithURL(NSURL(string: gallaeryData.gImageUrl!))
+        cell.photosImage.sd_setImage(with: NSURL(string: gallaeryData.gImageUrl!) as URL!)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        screenWidth =  UIScreen.mainScreen().bounds.size.width
+        screenWidth =  UIScreen.main.bounds.size.width
         if CXConstant.currentDeviceScreen() == IPHONE_6PLUS
         {
             return CGSize(width: screenWidth/2-13, height: 130);
@@ -74,7 +74,7 @@ class PhotosViewController: CXViewController {
         
         let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(indexPath.row)
-        presentViewController(browser, animated: true, completion: {})
+        present(browser, animated: true, completion: {})
         
         print("You selected cell #\(indexPath.item)!")
     }

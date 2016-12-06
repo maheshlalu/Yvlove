@@ -37,8 +37,8 @@ class OffersViewController: CXViewController{
     
     
     func getTheProducts(){
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
-         self.products  = CX_Products.MR_executeFetchRequest(fetchRequest)
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+         self.products  = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
         self.offersTableView.reloadData()
     }
 
@@ -50,12 +50,12 @@ class OffersViewController: CXViewController{
 extension OffersViewController{
     
     func registerTableViewCell(){
-        self.offersTableView.backgroundColor = UIColor.clearColor()
-        self.offersTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.offersTableView.backgroundColor = UIColor.clear
+        self.offersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.offersTableView.contentInset = UIEdgeInsetsMake(0, 0,30, 0)
         self.offersTableView.rowHeight = UITableViewAutomaticDimension
         self.offersTableView.showsVerticalScrollIndicator = false
-        self.offersTableView.scrollEnabled = true
+        self.offersTableView.isScrollEnabled = true
 
     }
 
@@ -63,18 +63,18 @@ extension OffersViewController{
 
 extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return featureProducts.count+1
         
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         if indexPath.section == 0 {
@@ -88,10 +88,10 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     
-    func pagerCell(tableView: UITableView,indexPath: NSIndexPath,reuseIdentFier : String) -> UITableViewCell{
+    func pagerCell(_ tableView: UITableView,indexPath: IndexPath,reuseIdentFier : String) -> UITableViewCell{
         
-        tableView.registerNib(UINib(nibName: "OfferPagerCelll", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
-        let pagerCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentFier , forIndexPath: indexPath) as! OfferPagerCelll
+        tableView.register(UINib(nibName: "OfferPagerCelll", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
+        let pagerCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentFier , for: indexPath) as! OfferPagerCelll
         pagerCell.pagerView.delegate = self
         pagerCell.pagerView.dataSource = self
         
@@ -104,21 +104,21 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     
-    func featureProuctsCell(tableView: UITableView,indexPath: NSIndexPath,reuseIdentFier : String) -> UITableViewCell{
+    func featureProuctsCell(_ tableView: UITableView,indexPath: IndexPath,reuseIdentFier : String) -> UITableViewCell{
         
         
-        var feturedProuctsCell: OfferFeaturedProductCell! = tableView.dequeueReusableCellWithIdentifier(reuseIdentFier) as? OfferFeaturedProductCell
+        var feturedProuctsCell: OfferFeaturedProductCell! = tableView.dequeueReusableCell(withIdentifier: reuseIdentFier) as? OfferFeaturedProductCell
         if feturedProuctsCell == nil {
-            tableView.registerNib(UINib(nibName: "OfferFeaturedProductCell", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
-            feturedProuctsCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentFier) as? OfferFeaturedProductCell
+            tableView.register(UINib(nibName: "OfferFeaturedProductCell", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
+            feturedProuctsCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentFier) as? OfferFeaturedProductCell
         }
-        feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
+        //feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
         print("indext path tag \(indexPath.section)")
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         let str = String(featureProducts.name!)
-        let str1 = str.stringByTrimmingCharactersInSet(NSCharacterSet.init(charactersInString: "_"))
+        let str1 = str?.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
         //let headerStr = removeSpecialCharsFromString(str)
         feturedProuctsCell.headerLbl.text = "\(str1)"
         
@@ -128,7 +128,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         
     }
     
-    func removeSpecialCharsFromString(text: String) -> String {
+    func removeSpecialCharsFromString(_ text: String) -> String {
         let okayChars : Set<Character> =
             Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-*=(),.:!_".characters)
         return String(text.characters.filter {okayChars.contains($0) })
@@ -155,7 +155,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         return 150
     }
     */
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return CXConstant.tableViewHeigh - 75;
         }else if indexPath.section == 2{
@@ -165,7 +165,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
 }
@@ -177,7 +177,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
    
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
  
@@ -185,20 +185,20 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         
         let identifier = "OfferCollectionViewCell"
-        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as?OfferCollectionViewCell
+        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
         if cell == nil {
-            collectionView.registerNib(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+            collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
         productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
-        cell.productImageView.sd_setImageWithURL(NSURL(string:featuredProductJobs.image_URL!)!)
+        cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
         if featuredProductJobs.fDescription != nil{
             
@@ -216,31 +216,31 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         }
 
         if featureProducts.name == "Brands"{
-            cell.productPriceLbl.hidden = true
-            cell.finalPriceLbl.hidden = true
-            cell.orderNowBtn.hidden = true
+            cell.productPriceLbl.isHidden = true
+            cell.finalPriceLbl.isHidden = true
+            cell.orderNowBtn.isHidden = true
             
         }
         let fId = Int(featuredProductJobs.fID! as String)
         cell.orderNowBtn.tag = fId!
 
-        cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
         self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         // Set cell width to 100%
 
             return CXConstant.DetailCollectionCellSize
     }
     
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: 0, height: 0)
     }
   
@@ -250,7 +250,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
 extension OffersViewController :UISearchBarDelegate{
 
 
-    func searchBarSearchButtonClicked( searchBar: UISearchBar)
+    func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
         self.productsSearchBar.resignFirstResponder()
         //self.doSearch()
@@ -258,7 +258,7 @@ extension OffersViewController :UISearchBarDelegate{
 
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // print("search string \(searchText)")
         if (self.productsSearchBar.text!.characters.count > 0) {
             //self.doSearch()
@@ -300,7 +300,7 @@ extension OffersViewController :UISearchBarDelegate{
         
         
     }
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.refreshSearchBar()
         
         
@@ -308,7 +308,7 @@ extension OffersViewController :UISearchBarDelegate{
         self.loadDefaultList()
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 
         //self.productsSearchBar.showsCancelButton = true;
     }
@@ -320,19 +320,19 @@ extension OffersViewController :UISearchBarDelegate{
     
     
     func doSearch () {
-        self.search = self.storyboard?.instantiateViewControllerWithIdentifier("ProductSearchViewController") as! ProductSearchViewController
-        search.view.frame = CGRectMake(0,self.productsSearchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)
+        self.search = self.storyboard?.instantiateViewController(withIdentifier: "ProductSearchViewController") as! ProductSearchViewController
+        search.view.frame = CGRect(x: 0,y: self.productsSearchBar.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.addSubview(search.view)
         addChildViewController(search)
-        search.didMoveToParentViewController(self)
+        search.didMove(toParentViewController: self)
         
         
-        let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
         let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productsSearchBar.text!)
-        let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CX_Products.mr_requestAllSorted(by: "pid", ascending: false)
         fetchRequest.predicate = predicate
         fetchRequest.entity = productEn
-        self.search.products = CX_Products.MR_executeFetchRequest(fetchRequest)
+        self.search.products = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
         self.search.updatecollectionview.reloadData()
         
         /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
@@ -358,44 +358,49 @@ extension OffersViewController :UISearchBarDelegate{
 //MARK: KIPager Delegate and Datasorce
 
 extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
-    
-    func arrayWithImages(pager: KIImagePager!) -> [AnyObject]! {
-        
-        return ["","","","",""]
+    public func array(withImages pager: KIImagePager!) -> [Any]! {
+        return ["" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject]
+
     }
+
     
-    func contentModeForImage(image: UInt, inPager pager: KIImagePager!) -> UIViewContentMode {
+//    func array(withImages pager: KIImagePager!) -> [AnyObject]! {
+//        
+//        return ["" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject]
+//    }
+    
+    func contentMode(forImage image: UInt, in pager: KIImagePager!) -> UIViewContentMode {
         
         
-        return .Center
+        return .center
     }
-    func populateTheProductData(index: UInt, inPager pager: KIImagePager!) -> ProductModelClass! {
-        let productData : CX_Products = self.products.objectAtIndex(Int(index)) as! CX_Products
+    func populateTheProductData(_ index: UInt, in pager: KIImagePager!) -> ProductModelClass! {
+        let productData : CX_Products = self.products.object(at: Int(index)) as! CX_Products
         let productModelData : ProductModelClass = ProductModelClass.init()
         productModelData.productName = productData.name
         productModelData.productimage = productData.imageUrl;
         //  productModelData.productimage = productData.name
         productModelData.productSubTitle = productData.name
         pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-        pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         pager.pagerView.orederNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appMediumFont()
         pager.indicatorDisabled = false
         
         pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        pager.pageControl.pageIndicatorTintColor = UIColor.grayColor();
+        pager.pageControl.pageIndicatorTintColor = UIColor.gray;
   
         pager.pagerView.orederNowBtn.tag = Int(index+1)
-        pager.pagerView.orederNowBtn.addTarget(self, action: #selector(OffersViewController.pagerOrderNowBtnAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        pager.pagerView.orederNowBtn.addTarget(self, action: #selector(OffersViewController.pagerOrderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
         
         return productModelData
         
     }
     
-    func pagerOrderNowBtnAction(sender:UIButton){
+    func pagerOrderNowBtnAction(_ sender:UIButton){
         print("\(sender.tag)")
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = proListData.json
         self.navigationController?.pushViewController(productDetails, animated: true)
     }
@@ -405,13 +410,13 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
 
 extension OffersViewController {
     
-    func orderNowBtnAction(sender:UIButton){
+    func orderNowBtnAction(_ sender:UIButton){
         print("\(sender.tag)")
         let fID = String(sender.tag)
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = featuredProductJobs.json
         self.navigationController?.pushViewController(productDetails, animated: true)
    

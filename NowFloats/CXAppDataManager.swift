@@ -10,10 +10,10 @@ import UIKit
 private var _sharedInstance:CXAppDataManager! = CXAppDataManager()
 
 protocol AppDataDelegate {
-    func completedTheFetchingTheData(sender: CXAppDataManager)
+    func completedTheFetchingTheData(_ sender: CXAppDataManager)
     
 }
-public class CXAppDataManager: NSObject {
+open class CXAppDataManager: NSObject {
     
     var dataDelegate:AppDataDelegate?
     
@@ -21,7 +21,7 @@ public class CXAppDataManager: NSObject {
         return _sharedInstance
     }
     
-    private override init() {
+    fileprivate override init() {
         
     }
     
@@ -32,17 +32,17 @@ public class CXAppDataManager: NSObject {
     //Get The StoreCategory
     func getTheStoreCategory(){
         self.getProducts()
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             print("print store category\(responseDict)")
           self.getTheStores({(isDataSaved) in
           })
         }
     }
     
-    func getSingleMall(completion:(isDataSaved:Bool) -> Void){
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+    func getSingleMall(_ completion:@escaping (_ isDataSaved:Bool) -> Void){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             CXDataProvider.sharedInstance.saveSingleMallInDB(responseDict, completion: { (isDataSaved) in
-                completion(isDataSaved: isDataSaved)
+                completion(isDataSaved)
             })
         }
 
@@ -50,13 +50,13 @@ public class CXAppDataManager: NSObject {
 
     }
     
-    func getTheStores(completion:(isDataSaved:Bool) -> Void){
+    func getTheStores(_ completion:@escaping (_ isDataSaved:Bool) -> Void){
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
                     LoadingView.show("Loading", animated: true)
-                    completion(isDataSaved: isDataSaved)
+                    completion(isDataSaved)
                     //self.getProducts()
                 })
             }else{
@@ -67,7 +67,7 @@ public class CXAppDataManager: NSObject {
     
     func getProducts(){
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
-            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 //print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     self.getTheFeaturedProduct()
@@ -84,8 +84,8 @@ public class CXAppDataManager: NSObject {
     
     func getTheSigleMall(){
         //type=singleMall
-        if CX_SingleMall.MR_findAll().count == 0 {
-            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+        if CX_SingleMall.mr_findAll().count == 0 {
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"singleMall" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveSingleMallInDB(responseDict, completion: { (isDataSaved) in
                 })
             }
@@ -110,7 +110,7 @@ public class CXAppDataManager: NSObject {
         print("getTheFeaturedProduct")
         
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
-            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveTheFeatureProducts(responseDict, completion: { (isDataSaved) in
                     if isDataSaved{
                         self.getTheFeaturedProductJobs()
@@ -135,10 +135,10 @@ public class CXAppDataManager: NSObject {
                 =    (jobsArray.lastObject as? CX_FeaturedProducts)!
             //  NSManagedObjectContext.MR_contextForCurrentThread().save()
             
-            CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs!,"mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
+            CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 CXDataProvider.sharedInstance.saveTheFeaturedProductJobs(responseDict, parentID: featuredProducts.fID!, completion: { (isDataSaved) in
                     featuredProducts.itHasJobs = true
-                    NSManagedObjectContext.MR_contextForCurrentThread().MR_saveOnlySelfAndWait()
+                    NSManagedObjectContext.mr_contextForCurrentThread().mr_saveOnlySelfAndWait()
                     self.getTheFeaturedProductJobs()
                 })
             }
@@ -153,26 +153,26 @@ public class CXAppDataManager: NSObject {
     
     //Mark Place order
     
-    func placeOder(name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:(isDataSaved:Bool) -> Void){
+    func placeOder(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:@escaping (_ isDataSaved:Bool) -> Void){
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
 
         LoadingView.show("Processing Your Order", animated: true)
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder","json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal),"dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":email]) { (responseDict) in
-            completion(isDataSaved: true)
-            let string = responseDict.valueForKeyPath("myHashMap.status")
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder" as AnyObject,"json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
+            completion(true)
+            let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
             
-            if ((string?.rangeOfString("1")) != nil){
+            if (string.contains("1")){
                 // print("All Malls \(jsonData)")
-                let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
-                let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
-                for (index, element) in cartsDataArrya.enumerate() {
+                let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Cart")
+                let cartsDataArrya : NSArray = CX_Cart.mr_executeFetchRequest(fetchRequest) as NSArray
+                for (index, element) in cartsDataArrya.enumerated() {
                     print(index)
                     let cart : CX_Cart = element as! CX_Cart
-                    NSManagedObjectContext.MR_contextForCurrentThread().deleteObject(cart)
-                    NSManagedObjectContext.MR_contextForCurrentThread().MR_saveToPersistentStoreAndWait()
+                    NSManagedObjectContext.mr_contextForCurrentThread().delete(cart)
+                    NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
                 }
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("PlaceOrderSuccessFully", object: nil)
+                DispatchQueue.main.async(execute: {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "PlaceOrderSuccessFully"), object: nil)
                     LoadingView.hide()
                     //CartCountUpdate
                 })
@@ -182,10 +182,10 @@ public class CXAppDataManager: NSObject {
     }
     
     
-    func checkOutCartItems(name:String ,email:String,address1:String,address2:String,number:String,subTotal:String)-> String{
+    func checkOutCartItems(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String)-> String{
         
-        let productEn = NSEntityDescription.entityForName("CX_Cart", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
-        let fetchRequest = CX_Cart.MR_requestAllSortedBy("name", ascending: true)
+        let productEn = NSEntityDescription.entity(forEntityName: "CX_Cart", in: NSManagedObjectContext.mr_contextForCurrentThread())
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = CX_Cart.mr_requestAllSorted(by: "name", ascending: true)
         // fetchRequest.predicate = predicate
         fetchRequest.entity = productEn
         
@@ -210,22 +210,22 @@ public class CXAppDataManager: NSObject {
         //should be replaced
         
         
-        for (index, element) in CX_Cart.MR_executeFetchRequest(fetchRequest).enumerate() {
+        for (index, element) in CX_Cart.mr_executeFetchRequest(fetchRequest).enumerated() {
             let cart : CX_Cart = element as! CX_Cart
             if index != 0 {
-                orderItemName.appendString(("\("|")"))
-                orderItemQuantity .appendString(("\("|")"))
-                orderSubTotal .appendString(("\("|")"))
-                orderItemId .appendString(("\("|")"))
-                orderItemMRP .appendString(("\("|")"))
+                orderItemName.append(("\("|")"))
+                orderItemQuantity .append(("\("|")"))
+                orderSubTotal .append(("\("|")"))
+                orderItemId .append(("\("|")"))
+                orderItemMRP .append(("\("|")"))
             }
             //            let responseString = String(data: data!, encoding: NSUTF8StringEncoding)
-            let finalSubtotal = (cart.quantity?.intValue)! * (cart.productPrice?.intValue)!
-            orderItemName.appendString("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
-            orderItemQuantity.appendString("\(String(cart.quantity!).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)! + "`" + cart.pID!)")
-            orderSubTotal.appendString(String(finalSubtotal) + "`" + cart.pID!)
-            orderItemId.appendString("\(cart.pID! + "`" + cart.pID!)")
-            orderItemMRP.appendString(String(cart.productPrice!) + "`" + cart.pID!)
+            let finalSubtotal = (cart.quantity?.int32Value)! * (cart.productPrice?.int32Value)!
+            orderItemName.append("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
+            orderItemQuantity.append("\(String(describing: cart.quantity!).addingPercentEscapes(using: String.Encoding.utf8)! + "`" + cart.pID!)")
+            orderSubTotal.append(String(finalSubtotal) + "`" + cart.pID!)
+            orderItemId.append("\(cart.pID! + "`" + cart.pID!)")
+            orderItemMRP.append(String(describing: cart.productPrice!) + "`" + cart.pID!)
             //print("Item \(index): \(cart)")
         }
         
@@ -252,20 +252,20 @@ public class CXAppDataManager: NSObject {
         
         let listArray : NSMutableArray = NSMutableArray()
         
-        listArray.addObject(order)
+        listArray.add(order)
         
         let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
-        cartJsonDict.setObject(listArray, forKey: "list")
+        cartJsonDict.setObject(listArray, forKey: "list" as NSCopying)
         
         //let jsonString = cartJsonDict.JSONString()
-        var jsonData : NSData = NSData()
+        var jsonData : Data = Data()
         do {
-            jsonData = try NSJSONSerialization.dataWithJSONObject(cartJsonDict, options: NSJSONWritingOptions.PrettyPrinted)
+            jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
             print(error)
         }
-        let jsonStringFormat = String(data: jsonData, encoding: NSUTF8StringEncoding)
+        let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
         //print("order dic \(jsonStringFormat)")
         
         return jsonStringFormat!
@@ -276,43 +276,43 @@ public class CXAppDataManager: NSObject {
 
     //MARK : SIGN 
     //http://storeongo.com:8081/MobileAPIs/loginConsumerForOrg?
-    func singWithUserDetails(email:String, password:String ,completion:(responseDict:NSDictionary) -> Void){
+    func singWithUserDetails(_ email:String, password:String ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","password":password]) { (responseDict) in
-            completion(responseDict: responseDict)
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject]) { (responseDict) in
+            completion(responseDict)
         }
         
     }
     
     //MARK: SIGN UP
-    func signUpWithUserDetails (fistName:String, lastName:String,mobileNumber:String, email:String, password:String, completion:(responseDict:NSDictionary) -> Void){
+    func signUpWithUserDetails (_ fistName:String, lastName:String,mobileNumber:String, email:String, password:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
     // let signUpUrl = "http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
         
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"userEmailId":email,"dt":"DEVICES","password":password,"firstName":fistName,"lastName":lastName]) { (responseDict) in
-            completion(responseDict: responseDict)
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"userEmailId":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject,"firstName":fistName as AnyObject,"lastName":lastName as AnyObject]) { (responseDict) in
+            completion(responseDict)
 
         }
     }
     
     //MARK : FORGOOT PASSWORD
     
-    func  forgotPassword(email:String,completion:(responseDict:NSDictionary) -> Void){
+    func  forgotPassword(_ email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES"]) { (responseDict) in
-            completion(responseDict: responseDict)
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject]) { (responseDict) in
+            completion(responseDict)
 
         }
     }
     
     //MARK : GET ALL ORDERS
     
-    func getOrders(completion:(responseDict:NSDictionary) -> Void){
+    func getOrders(_ completion:@escaping (_ responseDict:NSDictionary) -> Void){
        // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
         //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"717","type":"PlaceOrder","mallId":CXAppConfig.sharedInstance.getAppMallID()]) { (responseDict) in
-            completion(responseDict: responseDict)
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"717" as AnyObject,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            completion(responseDict)
         }
 
 
@@ -321,13 +321,13 @@ public class CXAppDataManager: NSObject {
     
     //MARK : UPDATE PROFILE
     
-    func profileUpdate(email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:(responseDict:NSDictionary)-> Void){
+    func profileUpdate(_ email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:@escaping (_ responseDict:NSDictionary)-> Void){
         
        // CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
             
             
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID(),"email":email,"dt":"DEVICES","address":address,"firstName":firstName,"lastName":lastName,"mobileNo":mobileNumber,"city":city,"state":state,"country":country,"userImagePath":image,"userBannerPath":""]) { (responseDict) in
-                completion(responseDict: responseDict)
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"address":address as AnyObject,"firstName":firstName as AnyObject,"lastName":lastName as AnyObject,"mobileNo":mobileNumber as AnyObject,"city":city as AnyObject,"state":state as AnyObject,"country":country as AnyObject,"userImagePath":image as AnyObject,"userBannerPath":"" as AnyObject]) { (responseDict) in
+                completion(responseDict)
             }
             
         //}
@@ -344,9 +344,9 @@ public class CXAppDataManager: NSObject {
 extension String {
     
     func escapeStr() -> (String) {
-        var raw: NSString = self
-        var str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[].",":/?&=;+!@#$()',*",CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding))
+        let raw: NSString = self as NSString
+        let str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[]." as CFString!,":/?&=;+!@#$()',*" as CFString!,CFStringConvertNSStringEncodingToEncoding(String.Encoding.utf8.rawValue))
 
-        return str as (String)
+        return str as! (String)
     }
 }

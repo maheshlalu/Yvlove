@@ -19,7 +19,7 @@ class OfferCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.orderNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        self.orderNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         self.orderNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appLargeFont()
         
         self.finalPriceLbl.font = CXAppConfig.sharedInstance.appMediumFont()

@@ -34,28 +34,28 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.locationManagerAuthentication()
         self.timingsLbl.layer.cornerRadius = 10
         self.questionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        self.aboutustableview?.registerNib(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
-        self.aboutustableview?.registerNib(UINib(nibName: "AboutUsExtraTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutUsExtraTableViewCell")
-        self.aboutustableview.registerNib(UINib(nibName: "AboutUsDescriptionTableViewCell",bundle: nil), forCellReuseIdentifier: "AboutUsDescriptionTableViewCell")
+        self.aboutustableview?.register(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
+        self.aboutustableview?.register(UINib(nibName: "AboutUsExtraTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutUsExtraTableViewCell")
+        self.aboutustableview.register(UINib(nibName: "AboutUsDescriptionTableViewCell",bundle: nil), forCellReuseIdentifier: "AboutUsDescriptionTableViewCell")
         
-        self.aboutustableview.separatorStyle = .None
+        self.aboutustableview.separatorStyle = .none
         self.aboutustableview.rowHeight = UITableViewAutomaticDimension
         self.aboutustableview.estimatedRowHeight = 10.0
         
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
-        self.aboutustableview.backgroundColor = UIColor.clearColor()
+        self.aboutustableview.backgroundColor = UIColor.clear
         
         self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
 
-        self.titleLbl.text = aboutUsDict.valueForKeyPath("Name") as? String
-        let imgUrl = aboutUsDict.valueForKey("Image_URL") as?String
+        self.titleLbl.text = aboutUsDict.value(forKeyPath: "Name") as? String
+        let imgUrl = aboutUsDict.value(forKey: "Image_URL") as?String
         if (imgUrl != nil){
-            self.aboutusimageview.sd_setImageWithURL(NSURL(string: imgUrl!))
+            self.aboutusimageview.sd_setImage(with: URL(string: imgUrl!))
         }else{
             self.aboutusimageview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         }
         
-        rateView.rating = Float((self.aboutUsDict.valueForKeyPath("overallRating") as? String)!)!
+        rateView.rating = Float((self.aboutUsDict.value(forKeyPath: "overallRating") as? String)!)!
         rateLbl.text = ("\(rateView.rating)/5 Ratings")
         //self.aboutusimageview.addSubview(overlay)
         self.weekDayCalculation()
@@ -77,9 +77,9 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     func weekDayCalculation(){
         
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let date = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
         let year =  components.year
         let month = components.month
@@ -88,54 +88,54 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
         print(weekday)
 
-        let hrsOfOperation = self.aboutUsDict.valueForKey("hrsOfOperation")as! NSArray
+        let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
         print(hrsOfOperation.description)
         
         switch weekday {
         case 1:
             print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 2:
             print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 3:
             print("Tuesday")
             let dayOperations = hrsOfOperation[5] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 4:
             print("Wednesday")
             let dayOperations = hrsOfOperation[4] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 5:
             print("Thursday")
             let dayOperations = hrsOfOperation[3] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 6:
             print("Friday")
             let dayOperations = hrsOfOperation[2] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 7:
             print("Saturday")
             let dayOperations = hrsOfOperation[1] as! NSDictionary
-            print(dayOperations.valueForKey("endTime"))
-            self.timingsLbl.text = "OPEN TILL \(dayOperations.valueForKey("endTime") as! String) TODAY"
+            print(dayOperations.value(forKey: "endTime"))
+            self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         default:break
         }
  
     }
     
     func availability() -> String {
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let date = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         
         let year =  components.year
         let month = components.month
@@ -144,38 +144,38 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
         print(weekday)
 
-        let hrsOfOperation = self.aboutUsDict.valueForKey("hrsOfOperation")as! NSArray
+        let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
         print(hrsOfOperation.description)
         
         switch weekday {
         case 1:
             print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 2:
             print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 3:
             print("Tuesday")
             let dayOperations = hrsOfOperation[5] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 4:
             print("Wednesday")
             let dayOperations = hrsOfOperation[4] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 5:
             print("Thursday")
             let dayOperations = hrsOfOperation[3] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 6:
             print("Friday")
             let dayOperations = hrsOfOperation[2] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 7:
             print("Saturday")
             let dayOperations = hrsOfOperation[1] as! NSDictionary
-            str = "\(dayOperations.valueForKey("startTime") as! String) to \(dayOperations.valueForKey("endTime") as! String)"
+            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         default:break
         }
         return str
@@ -183,38 +183,36 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     func getStores(){
         
-        let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
         //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
         let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
-        let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
-        fetchRequest.predicate = predicate
-        fetchRequest.entity = productEn
-        self.aboutUsArray = CX_Stores.MR_executeFetchRequest(fetchRequest)
-        
+        let fetchRequest = CX_Stores.mr_requestAllSorted(by: "itemCode", ascending: true)
+        fetchRequest?.predicate = predicate
+        fetchRequest?.entity = productEn
+        self.aboutUsArray = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
         let storesEntity : CX_Stores = self.aboutUsArray.lastObject as! CX_Stores
-
         self.aboutUsDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        print(aboutUsDict)
+        
         
     }
     
     // getting day of the week
-    func getDayOfWeek(today:String)->Int {
+    func getDayOfWeek(_ today:String)->Int {
         
-        let formatter  = NSDateFormatter()
+        let formatter  = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let todayDate = formatter.dateFromString(today)!
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
+        let todayDate = formatter.date(from: today)!
+        let myCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        let myComponents = (myCalendar as NSCalendar).components(.weekday, from: todayDate)
         let weekDay = myComponents.weekday
-        return weekDay
+        return weekDay!
     }
 
     
     // pragma mark - delegate
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
-        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
+        if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
             return 3
         }else{
             return 4
@@ -222,36 +220,36 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
         
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
+        if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
             
             if indexPath.section == 0{
-                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
-                aboutUs.selectionStyle = .None
+                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutusTableViewCell") as? AboutusTableViewCell
+                aboutUs.selectionStyle = .none
                 
-                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
+                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.value(forKeyPath: "Address") as?String
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
                 aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
-                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-                aboutUs.aboutuskmLabel.hidden = false
-                aboutUs.aboutusgoogleLabel.hidden = false
+                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
+                aboutUs.aboutuskmLabel.isHidden = false
+                aboutUs.aboutusgoogleLabel.isHidden = false
                 
                 return aboutUs
                 
             }else{
                 
-                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
-                aboutUsExtra.selectionStyle = .None
+                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
+                aboutUsExtra.selectionStyle = .none
                 
                 if indexPath.section == 1{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
@@ -261,10 +259,10 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 }else if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "You can reach us at"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.valueForKeyPath("Contact Number") as?String //"9640339556"//mobile
+                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Contact Number") as?String //"9640339556"//mobile
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                    aboutUsExtra.callBtn.hidden = false
-                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
+                    aboutUsExtra.callBtn.isHidden = false
+                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
                 }
                 return aboutUsExtra
             }
@@ -273,49 +271,49 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
             
             if indexPath.section == 0{
                 
-                let aboutUsDescription:AboutUsDescriptionTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsDescriptionTableViewCell") as? AboutUsDescriptionTableViewCell
-                aboutUsDescription.selectionStyle = .None
+                let aboutUsDescription:AboutUsDescriptionTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutUsDescriptionTableViewCell") as? AboutUsDescriptionTableViewCell
+                aboutUsDescription.selectionStyle = .none
                 
                 aboutUsDescription.aboutUSLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUsDescription.aboutUsDesc.font = CXAppConfig.sharedInstance.appMediumFont()
-                aboutUsDescription.aboutUsDesc.text = self.aboutUsDict.valueForKey("Description") as? String
+                aboutUsDescription.aboutUsDesc.text = self.aboutUsDict.value(forKey: "Description") as? String
                 
                 return aboutUsDescription
                 
             }else if indexPath.section == 1{
                 
-                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutusTableViewCell") as? AboutusTableViewCell
-                aboutUs.selectionStyle = .None
+                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutusTableViewCell") as? AboutusTableViewCell
+                aboutUs.selectionStyle = .none
                 
-                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.valueForKeyPath("Address") as?String
+                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.value(forKeyPath: "Address") as?String
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
                 aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
-                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-                aboutUs.aboutuskmLabel.hidden = false
-                aboutUs.aboutusgoogleLabel.hidden = false
+                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
+                aboutUs.aboutuskmLabel.isHidden = false
+                aboutUs.aboutusgoogleLabel.isHidden = false
                 
                 return aboutUs
                 
             }else {
-                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCellWithIdentifier("AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
-                aboutUsExtra.selectionStyle = .None
+                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
+                aboutUsExtra.selectionStyle = .none
                 
                 if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
                     aboutUsExtra.extraDescLbl.text = self.availability()
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                    aboutUsExtra.callBtn.hidden = true
+                    aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{
                     aboutUsExtra.extraTitleLbl.text = "You can reach us at"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.valueForKeyPath("Contact Number") as?String //"9640339556"//mobile
+                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Contact Number") as?String //"9640339556"//mobile
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                    aboutUsExtra.callBtn.hidden = false
-                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), forControlEvents: .TouchUpInside)
+                    aboutUsExtra.callBtn.isHidden = false
+                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
                 }
                 return aboutUsExtra
                 
@@ -323,14 +321,14 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         }
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         return 5.0
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if (self.aboutUsDict.valueForKeyPath("Description") as?String) == ""{
+        if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
             
             if indexPath.section == 0{
                 return UITableViewAutomaticDimension
@@ -354,32 +352,32 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         return UITableViewAutomaticDimension
     }*/
     
-    func viewMapAction(button : UIButton!){
+    func viewMapAction(_ button : UIButton!){
         
        // self.navigationController?.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
-        mapViewCnt.lat = Double(self.aboutUsDict.valueForKeyPath("Latitude") as! String!)
-        mapViewCnt.lon = Double(self.aboutUsDict.valueForKeyPath("Longitude") as! String!)
+        mapViewCnt.lat = Double(self.aboutUsDict.value(forKeyPath: "Latitude") as! String!)
+        mapViewCnt.lon = Double(self.aboutUsDict.value(forKeyPath: "Longitude") as! String!)
         self.navigationController!.pushViewController(mapViewCnt, animated: true)
     }
     
-    func distanceBetweenTwoLocations(source:CLLocation,destination:CLLocation) -> Double{
+    func distanceBetweenTwoLocations(_ source:CLLocation,destination:CLLocation) -> Double{
         
-        let distanceMeters = source.distanceFromLocation(destination)
+        let distanceMeters = source.distance(from: destination)
         let distanceKM = distanceMeters / 1000
         let roundedTwoDigit = distanceKM.roundedTwoDigit
         return roundedTwoDigit
         
     }
     
-    func callAction(button:UIButton!){
+    func callAction(_ button:UIButton!){
         
-        let website = self.aboutUsDict.valueForKeyPath("Contact Number") as! String!
+        let website = self.aboutUsDict.value(forKeyPath: "Contact Number") as! String!
         callNumber(website!)
     }
     
-    private func callNumber(phoneNumber:String) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
+    fileprivate func callNumber(_ phoneNumber:String) {
+        UIApplication.shared.openURL(URL(string: "tel://\(phoneNumber)")!)
     }
     
     //MAR:Heder options enable
@@ -427,7 +425,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
 }
 extension AboutUsViewController{
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -435,24 +433,25 @@ extension AboutUsViewController{
         self.aboutustableview.reloadData()
     }
     
-    func mallDistance(currentLat:Double,currentLon:Double)->String{
+    func mallDistance(_ currentLat:Double,currentLon:Double)->String{
         
         let currentLat:Double = currentLat
         let currentLon:Double = currentLon
         let myLocation:CLLocation = CLLocation(latitude:currentLat, longitude: currentLon)
         
-        let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.valueForKeyPath("Latitude") as! String!)!, longitude: Double(self.aboutUsDict.valueForKeyPath("Longitude") as! String!)!)
+        let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.value(forKeyPath: "Latitude") as! String!)!, longitude: Double(self.aboutUsDict.value(forKeyPath: "Longitude") as! String!)!)
         
         let distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
         print(distance)
         
-        let formatter = NSNumberFormatter()
+        let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         
-        let distanceInKM = formatter.stringFromNumber(distance)
+        /*let distanceInKM = formatter.string(from: NSNumber(distance))
         print(distanceInKM!)
         
-        return distanceInKM!
+        return distanceInKM!*/
+        return ""
     }
 }
 /*

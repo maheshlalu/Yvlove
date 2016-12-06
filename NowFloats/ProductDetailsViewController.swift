@@ -29,7 +29,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         super.viewDidLoad()
         self.productDetailsTableView.rowHeight = UITableViewAutomaticDimension
         self.productDetailsTableView.estimatedRowHeight = 10.0
-        self.productDetailsTableView.separatorStyle = .None
+        self.productDetailsTableView.separatorStyle = .none
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         print(CXConstant.sharedInstance.convertStringToDictionary(productString))
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
@@ -58,93 +58,93 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         //ratingView.fullImage = UIImage(named: "star_sel_108.png")
         // Optional params
         //ratingView.delegate = self
-        ratingView.contentMode = UIViewContentMode.ScaleAspectFit
+        ratingView.contentMode = UIViewContentMode.scaleAspectFit
         // ratingView.maxRating = 5
         //ratingView.minRating = 0
         //ratingView.rating = 0
         ratingView.editable = false
         ratingView.halfRatings = true
         ratingView.floatRatings = false
-        self.ratingBgView.backgroundColor = UIColor.clearColor()
+        self.ratingBgView.backgroundColor = UIColor.clear
         
     }
     
     func customisingBtns(){
-        placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+        placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         placeOrderBtn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
         addToCartBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         addToCartBtn.layer.cornerRadius = 2.0
-        addToCartBtn.layer.borderColor = UIColor.whiteColor().CGColor
+        addToCartBtn.layer.borderColor = UIColor.white.cgColor
         addToCartBtn.layer.borderWidth = 1.0
         
         //CXConstant.resultString(prod.valueForKey("id")!)
         //productDetailDic.valueForKey("id")! as! String
-        if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.valueForKey("id")!)).isAddedToCart{
-            addToCartBtn.selected = true
+        if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToCart{
+            addToCartBtn.isSelected = true
         }else{
-            addToCartBtn.selected = false
+            addToCartBtn.isSelected = false
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
     {
         return 4
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
         return 1
         
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
         var cell: UITableViewCell? = nil
         
         if indexPath.section == 0{
             let imageCellIdentifier = "ImageCell"
-            cell = tableView.dequeueReusableCellWithIdentifier(imageCellIdentifier)!
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdentifier)!
+            cell?.selectionStyle = .none
             
             let productImageView = cell!.contentView.viewWithTag(100)! as! UIImageView
-            let imgUrl = productDetailDic.valueForKey("Image_URL") as! String
-            if (productDetailDic.valueForKey("ShipmentDuration") != nil){
-                productImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            let imgUrl = productDetailDic.value(forKey: "Image_URL") as! String
+            if (productDetailDic.value(forKey: "ShipmentDuration") != nil){
+                productImageView.contentMode = UIViewContentMode.scaleAspectFill
             }else{
-                productImageView.contentMode = UIViewContentMode.ScaleAspectFit
+                productImageView.contentMode = UIViewContentMode.scaleAspectFit
             }
-            productImageView.sd_setImageWithURL(NSURL(string: imgUrl))
+            productImageView.sd_setImage(with: URL(string: imgUrl))
             
         }else if indexPath.section == 1{
             let headerCellIdentifier = "Headercell"
-            cell = tableView.dequeueReusableCellWithIdentifier(headerCellIdentifier)!
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier)!
+            cell?.selectionStyle = .none
             
             let finalPriceLbl = (cell!.viewWithTag(200)! as! UILabel)
             let discountPriceLbl = cell?.viewWithTag(300)! as! UILabel
             let discountPersentageLbl = cell?.viewWithTag(400)! as! UILabel
             let favoriteBtn = cell?.viewWithTag(1000)! as! UIButton
             
-            if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.valueForKey("id")!)).isAddedToWishList{
-                favoriteBtn.selected = true
+            if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToWishList{
+                favoriteBtn.isSelected = true
             }else{
-                favoriteBtn.selected = false
+                favoriteBtn.isSelected = false
             }
             
             
             let rupee = "\u{20B9}"
-            let price:String = productDetailDic.valueForKey("MRP") as! String
-            let discount:String = productDetailDic.valueForKey("DiscountAmount") as! String
+            let price:String = productDetailDic.value(forKey: "MRP") as! String
+            let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
             
             if discount == "0"{
-                discountPriceLbl.hidden = true
-                discountPersentageLbl.hidden = true
+                discountPriceLbl.isHidden = true
+                discountPersentageLbl.isHidden = true
                 finalPriceLbl.text = "\(rupee) \(price)"
             }else{
-                discountPriceLbl.hidden = false
-                discountPersentageLbl.hidden = false
+                discountPriceLbl.isHidden = false
+                discountPersentageLbl.isHidden = false
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
                 attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
                 discountPriceLbl.attributedText = attributeString
@@ -162,48 +162,48 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             
         }else if indexPath.section == 2{
             let productInfoIdentifier = "ProductInfoCell"
-            cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: productInfoIdentifier)!
+            cell?.selectionStyle = .none
             let textView = (cell!.viewWithTag(600)! as! UITextView)
             textView.font = CXAppConfig.sharedInstance.appMediumFont()
-            textView.text = "\(productDetailDic.valueForKey("Description")!)"
-            cell?.backgroundColor = UIColor.whiteColor()
+            textView.text = "\(productDetailDic.value(forKey: "Description")!)"
+            cell?.backgroundColor = UIColor.white
             
         }else if indexPath.section == 3{
             let footerIdentifier = "FooterCell"
-            cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
+            cell?.selectionStyle = .none
             
-            if (productDetailDic.valueForKey("ShipmentDuration") != nil){
+            if (productDetailDic.value(forKey: "ShipmentDuration") != nil){
                 
                 let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
                 shipmentLbl.text = "Shipment Duration"
                 
                 let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
-                shipmentDurationLbl.text = "\(productDetailDic.valueForKey("ShipmentDuration")!) Days"
+                shipmentDurationLbl.text = "\(productDetailDic.value(forKey: "ShipmentDuration")!) Days"
                 
-            }else if (productDetailDic.valueForKey("Brand") != nil){
+            }else if (productDetailDic.value(forKey: "Brand") != nil){
                 
                 let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
                 shipmentLbl.text = "Brand"
                 
                 let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
-                shipmentDurationLbl.text = "\(productDetailDic.valueForKey("Brand")!)"
+                shipmentDurationLbl.text = "\(productDetailDic.value(forKey: "Brand")!)"
             }
             
             
         }else if indexPath.section == 4{
             
             let footerIdentifier = "FooterCell2"
-            cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
-            cell?.selectionStyle = .None
-            let category = productDetailDic.valueForKey("Category") as! String
+            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
+            cell?.selectionStyle = .none
+            let category = productDetailDic.value(forKey: "Category") as! String
             if category != ""{
                 let category = cell!.viewWithTag(900)! as! UILabel
                 category.text = "Category"
                 
                 let categoryDesc = cell!.viewWithTag(901)! as! UILabel
-                categoryDesc.text = "\(productDetailDic.valueForKey("Category")!)"
+                categoryDesc.text = "\(productDetailDic.value(forKey: "Category")!)"
             }
             
             
@@ -212,60 +212,60 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
     {
         
         return UITableViewAutomaticDimension
         
     }
     
-    @IBAction func addToCartAction(sender: UIButton) {
-        if sender.selected {
+    @IBAction func addToCartAction(_ sender: UIButton) {
+        if sender.isSelected {
             //Remove Item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
             })
             
         }else{
             //Add item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 
             })
         }
-        sender.selected = !sender.selected
+        sender.isSelected = !sender.isSelected
         
         
     }
-    @IBAction func placeOrderNowAction(sender: AnyObject) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
+    @IBAction func placeOrderNowAction(_ sender: AnyObject) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
         self.navigationController?.pushViewController(cart, animated: true)
     }
     
-    @IBAction func heartAction(sender: UIButton) {
+    @IBAction func heartAction(_ sender: UIButton) {
         
-        if sender.selected {
+        if sender.isSelected {
             //Remove Item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             })
             
         }else{
             //Add item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.valueForKey("id")!), isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 
             })
         }
-        sender.selected = !sender.selected
+        sender.isSelected = !sender.isSelected
         
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         let fixedWidth = textView.frame.size.width
-        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = textView.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         textView.frame = newFrame;
@@ -289,7 +289,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     
     override func headerTitleText() -> String{
-        return productDetailDic.valueForKey("Name")! as! String
+        return productDetailDic.value(forKey: "Name")! as! String
     }
     
     override func shouldShowLeftMenu() -> Bool{

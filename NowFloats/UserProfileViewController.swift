@@ -21,24 +21,24 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presentWindow = UIApplication.sharedApplication().keyWindow
+        presentWindow = UIApplication.shared.keyWindow
         self.profileTableView.rowHeight = UITableViewAutomaticDimension
         self.profileTableView.estimatedRowHeight = 10.0
-        self.profileTableView.separatorStyle = .None
+        self.profileTableView.separatorStyle = .none
         headerViewAlignments()
         profileDataIntegration()
 
     }
     
     func profileDataIntegration(){
-        userNameLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("FULL_NAME") as? String
-        userMobileLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("MOBILE") as? String
-        userMailLbl.text = NSUserDefaults.standardUserDefaults().valueForKey("USER_EMAIL") as? String
-        let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
+        userNameLbl.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
+        userMobileLbl.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
+        userMailLbl.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
+        let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
         if (imageUrl != ""){
-            dpImageView.sd_setImageWithURL(NSURL(string: (NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as?String)!))
+            dpImageView.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
             dpImageView.alpha = 1
-            dpImageView.backgroundColor = UIColor.clearColor()
+            dpImageView.backgroundColor = UIColor.clear
         }else{
            // dpImageView.image = UIImage.init(imageLiteral: "placeholder")
             dpImageView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -46,18 +46,18 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         
       
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         profileDataIntegration()
     }
-    @IBAction func editBtnAction(sender: AnyObject) {
+    @IBAction func editBtnAction(_ sender: AnyObject) {
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let editProfile = storyBoard.instantiateViewControllerWithIdentifier("EDIT_PROFILE") as! EditUserProfileViewController
-        editProfile.firstName = NSUserDefaults.standardUserDefaults().valueForKey("FIRST_NAME") as? String
-        editProfile.lastName = NSUserDefaults.standardUserDefaults().valueForKey("LAST_NAME") as? String
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let editProfile = storyBoard.instantiateViewController(withIdentifier: "EDIT_PROFILE") as! EditUserProfileViewController
+        editProfile.firstName = UserDefaults.standard.value(forKey: "FIRST_NAME") as? String
+        editProfile.lastName = UserDefaults.standard.value(forKey: "LAST_NAME") as? String
         editProfile.mobile = userMobileLbl.text!
         editProfile.emai = userMailLbl.text!
-        let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
+        let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
         if (imageUrl != ""){
             editProfile.dpImg = imageUrl
         }
@@ -71,87 +71,87 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         self.dpImageView.clipsToBounds = true
         self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/6
         self.dpImageView.layer.borderWidth = 3.0
-        self.dpImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        self.dpImageView.layer.borderColor = UIColor.white.cgColor
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         return 6
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
         return 1
         
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         var cell: UITableViewCell? = nil
         
         if indexPath.section == 0{
             let imageCellIdentifier = "Orders"
-            cell = tableView.dequeueReusableCellWithIdentifier(imageCellIdentifier)!
-            cell?.accessoryType = .DisclosureIndicator;
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: imageCellIdentifier)!
+            cell?.accessoryType = .disclosureIndicator;
+            cell?.selectionStyle = .none
             
             let btn = cell?.viewWithTag(100) as! UIButton
-            btn.userInteractionEnabled = false
+            btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-            btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+            btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
            
         
         }else if indexPath.section == 1{
             let headerCellIdentifier = "Address"
-            cell = tableView.dequeueReusableCellWithIdentifier(headerCellIdentifier)!
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifier)!
+            cell?.selectionStyle = .none
             
             
         }else if indexPath.section == 2{
             let productInfoIdentifier = "Notifications"
-            cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
-            cell?.accessoryType = .DisclosureIndicator;
-            cell?.selectionStyle = .None
+            cell = tableView.dequeueReusableCell(withIdentifier: productInfoIdentifier)!
+            cell?.accessoryType = .disclosureIndicator;
+            cell?.selectionStyle = .none
             
             let btn = cell?.viewWithTag(300) as! UIButton
-            btn.userInteractionEnabled = false
+            btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             //btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
 
             
         }else if indexPath.section == 3{
             let footerIdentifier = "Rate"
-            cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
-            cell?.selectionStyle = .None
-            cell?.accessoryType = .DisclosureIndicator;
+            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
+            cell?.selectionStyle = .none
+            cell?.accessoryType = .disclosureIndicator;
             
             let btn = cell?.viewWithTag(400) as! UIButton
-            btn.userInteractionEnabled = false
+            btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
            // btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
 
         }else if indexPath.section == 4{
             let productInfoIdentifier = "Share"
-            cell = tableView.dequeueReusableCellWithIdentifier(productInfoIdentifier)!
-            cell?.selectionStyle = .None
-            cell?.accessoryType = .DisclosureIndicator;
+            cell = tableView.dequeueReusableCell(withIdentifier: productInfoIdentifier)!
+            cell?.selectionStyle = .none
+            cell?.accessoryType = .disclosureIndicator;
             
             let btn = cell?.viewWithTag(500) as! UIButton
-            btn.userInteractionEnabled = false
+            btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             //btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
             
             
         }else if indexPath.section == 5{
             let footerIdentifier = "Legal"
-            cell = tableView.dequeueReusableCellWithIdentifier(footerIdentifier)!
-            cell?.selectionStyle = .None
-            cell?.accessoryType = .DisclosureIndicator;
+            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
+            cell?.selectionStyle = .none
+            cell?.accessoryType = .disclosureIndicator;
             
             let btn = cell?.viewWithTag(600) as! UIButton
-            btn.userInteractionEnabled = false
+            btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
            // btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
         }
@@ -159,13 +159,13 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if indexPath.section == 0{
-            let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
+            let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
             self.navigationController?.pushViewController(orders, animated: true)
         }else if indexPath.section == 2{
-            let profile = storyBoard.instantiateViewControllerWithIdentifier("NOTIFICATIONS") as! NotificationsViewController
+            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
             self.navigationController?.pushViewController(profile, animated: true)
         }else if indexPath.section == 3{
             let comentsView = CXCommentViewController.init()
@@ -183,21 +183,21 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         let url = "Coming Soon"
         
         let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [description,url], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypeCopyToPasteboard, UIActivityTypeAddToReadingList, UIActivityTypePostToVimeo]
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        activityViewController.excludedActivityTypes = [UIActivityType.print, UIActivityType.postToWeibo, UIActivityType.copyToPasteboard, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
        
     }
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableViewAutomaticDimension
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 10
     }
     

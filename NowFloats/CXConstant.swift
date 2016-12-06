@@ -27,7 +27,7 @@ class CXConstant: NSObject {
         return _SingletonSharedInstance
     }
     
-    private override init() {
+    fileprivate override init() {
         
     }
     
@@ -40,11 +40,11 @@ class CXConstant: NSObject {
     static let tableViewHeigh : CGFloat = 275
     
     static let someString : String = "Some Text" // struct
-    static let collectiViewCellSize :  CGSize = CGSize(width: UIScreen.mainScreen().bounds.size.width-20,height: tableViewHeigh)
+    static let collectiViewCellSize :  CGSize = CGSize(width: UIScreen.main.bounds.size.width-20,height: tableViewHeigh)
     
-    static let collectionViewFrame : CGRect = CGRectMake(8, 30, UIScreen.mainScreen().bounds.size.width-20, tableViewHeigh-50)
+    static let collectionViewFrame : CGRect = CGRect(x: 8, y: 30, width: UIScreen.main.bounds.size.width-20, height: tableViewHeigh-50)
     
-    static let HOME_COLLECTION_FRAME : CGRect = CGRectMake(10, 20, UIScreen.mainScreen().bounds.size.width-20, tableViewHeigh-50)
+    static let HOME_COLLECTION_FRAME : CGRect = CGRect(x: 10, y: 20, width: UIScreen.main.bounds.size.width-20, height: tableViewHeigh-50)
     
     static let titleLabelColor : UIColor = UIColor(red: 240.0/255.0, green: 40.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     
@@ -52,7 +52,7 @@ class CXConstant: NSObject {
     static let collectionCellborderColor : UIColor = UIColor(red: 191.0/255.0, green: 191.0/255.0, blue: 191.0/255.0, alpha: 1.0)
     
     
-    static let DetailTableView_Width = UIScreen.mainScreen().bounds.width-20
+    static let DetailTableView_Width = UIScreen.main.bounds.width-20
     // static let DetailCollectionCellSize :  CGSize = CGSize(width: 180,height: tableViewHeigh-50)
     static let DetailCollectionCellSize :  CGSize = CGSize(width: 135,height: tableViewHeigh-50)
     
@@ -62,11 +62,11 @@ class CXConstant: NSObject {
     
     ///
     
-    static let DetailCollectionViewFrame : CGRect = CGRectMake(4, 10, DetailTableView_Width-8, tableViewHeigh-50)
+    static let DetailCollectionViewFrame : CGRect = CGRect(x: 4, y: 10, width: DetailTableView_Width-8, height: tableViewHeigh-50)
     
     
     
-    static let DETAIL_IMAGE_TABLE_WIDTH:CGFloat = UIScreen.mainScreen().bounds.width-20
+    static let DETAIL_IMAGE_TABLE_WIDTH:CGFloat = UIScreen.main.bounds.width-20
     static let DETAIL_IMAGE_CELL_HEIGHT:CGFloat = DETAIL_IMAGE_TABLE_WIDTH/2
     
     static let RELATED_ARTICLES_CELL_HEIGHT:CGFloat = 280
@@ -74,7 +74,7 @@ class CXConstant: NSObject {
     
     static let PRODUCT_CELL_HEIGHT:CGFloat = PRODUCT_IMAGE_HEIGHT+55
     
-    static let PRODUCT_IMAGE_HEIGHT:CGFloat = (UIScreen.mainScreen().bounds.width - 8)/2
+    static let PRODUCT_IMAGE_HEIGHT:CGFloat = (UIScreen.main.bounds.width - 8)/2
     
     
     
@@ -126,7 +126,7 @@ class CXConstant: NSObject {
     static let PRODUCT_CATEGORY_URL = "http://52.74.102.199:8081/services/getmasters?type=ProductCategories&mallId="
     
     
-    static func restrictRotation(isRestricted: Bool) {
+    static func restrictRotation(_ isRestricted: Bool) {
        // let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
       //  appDelegate.restrictRotation = isRestricted
         
@@ -136,14 +136,14 @@ class CXConstant: NSObject {
     
     
     
-    func productURL(productType:String, mallId: String) -> String {
-        let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+    func productURL(_ productType:String, mallId: String) -> String {
+        let escapedString = productType.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         let reqString = "http://52.74.102.199:8081/services/getmasters?type="+escapedString!+"&mallId="+mallId
         return reqString
     }
     
-    func checkProductCountURL(productType:String, mallId: String) -> String {
-        let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+    func checkProductCountURL(_ productType:String, mallId: String) -> String {
+        let escapedString = productType.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         let reqString = "http://sillymonksapp.com:8081/Services/categoryJobsCount?"+"mallId="+mallId+"&type="+escapedString!
         //http://sillymonksapp.com:8081/Services/categoryJobsCount?mallId=3&type=movies
         //type="+escapedString!
@@ -151,19 +151,19 @@ class CXConstant: NSObject {
     }
     
     
-    func saveTheFid(storeID:String){
+    func saveTheFid(_ storeID:String){
           print(storeID)
-        NSUserDefaults.standardUserDefaults().setObject(storeID, forKey: "FID")
+        UserDefaults.standard.set(storeID, forKey: "FID")
         
     }
     
     func getTheFid()-> String{
         
       
-        return (NSUserDefaults.standardUserDefaults().objectForKey("FID") as? String)!
+        return (UserDefaults.standard.object(forKey: "FID") as? String)!
     }
     
-    static func resultString(input: AnyObject) -> String{
+    static func resultString(_ input: AnyObject) -> String{
         if let value: AnyObject = input {
             var reqType : String!
             switch value {
@@ -172,7 +172,7 @@ class CXConstant: NSObject {
             case let s as NSString:
                 reqType = "\(s)"
             case let a as NSArray:
-                reqType = "\(a.objectAtIndex(0))"
+                reqType = "\(a.object(at: 0))"
             default:
                 reqType = "Invalid Format"
             }
@@ -181,36 +181,36 @@ class CXConstant: NSObject {
         return ""
     }
     
-    func convertDictionayToString(dictionary:NSDictionary) -> NSString {
+    func convertDictionayToString(_ dictionary:NSDictionary) -> NSString {
         var dataString: String!
         do {
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(dictionary, options: NSJSONWritingOptions.PrettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
             //print("JSON data is \(jsonData)")
-            dataString = String(data: jsonData, encoding: NSUTF8StringEncoding)
+            dataString = String(data: jsonData, encoding: String.Encoding.utf8)
             //print("Converted JSON string is \(dataString)")
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
             dataString = ""
             print(error)
         }
-        return dataString
+        return dataString as NSString
     }
     
-    func convertStringToDictionary(string:String) -> NSDictionary {
+    func convertStringToDictionary(_ string:String) -> NSDictionary {
         var jsonDict : NSDictionary = NSDictionary()
-        let data = string.dataUsingEncoding(NSUTF8StringEncoding)
+        let data = string.data(using: String.Encoding.utf8)
         do {
-            jsonDict = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary            // CXDBSettings.sharedInstance.saveAllMallsInDB((jsonData.valueForKey("orgs") as? NSArray)!)
+            jsonDict = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.mutableContainers ) as! NSDictionary            // CXDBSettings.sharedInstance.saveAllMallsInDB((jsonData.valueForKey("orgs") as? NSArray)!)
         } catch {
             //print("Error in parsing")
         }
         return jsonDict
     }
     
-    static func getImageFromUrlString(imgUrlString:String) ->UIImage {
+    static func getImageFromUrlString(_ imgUrlString:String) ->UIImage {
         
-        if let imgUrl = NSURL(string:imgUrlString) {
-            if let cImageData = NSData(contentsOfURL: imgUrl) {
+        if let imgUrl = URL(string:imgUrlString) {
+            if let cImageData = try? Data(contentsOf: imgUrl) {
                 let cImage = UIImage(data: cImageData)
                 if cImage != nil {
                     return cImage!
@@ -239,7 +239,7 @@ class CXConstant: NSObject {
 //    }
     
     static func currentDeviceScreen() -> String {
-        let bounds = UIScreen.mainScreen().bounds
+        let bounds = UIScreen.main.bounds
         let height = bounds.size.height
         
         switch height {
@@ -277,7 +277,7 @@ class CXConstant: NSObject {
 extension String {
     
     func urlEncoding() -> String {
-        let escapedString = self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         //print("escapedString: \(escapedString)")
         return escapedString!
     }
@@ -287,12 +287,12 @@ extension String {
 
 extension Constants {
     
-    func setTheDefaultStoreID(storeID:String){
-        NSUserDefaults.standardUserDefaults().setObject(storeID, forKey: "STORE_ID")
+    func setTheDefaultStoreID(_ storeID:String){
+        UserDefaults.standard.set(storeID, forKey: "STORE_ID")
     }
     
     func getTheDefaultStoreID() -> String{
-        return (NSUserDefaults.standardUserDefaults().objectForKey("STORE_ID") as? String)!
+        return (UserDefaults.standard.object(forKey: "STORE_ID") as? String)!
     }
     
 

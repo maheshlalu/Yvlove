@@ -10,9 +10,9 @@ import UIKit
 
 class EnquiryTableViewCell: UITableViewCell {
 
-    @IBAction func enquiry1buttonAction(sender: UIButton) {
+    @IBAction func enquiry1buttonAction(_ sender: UIButton) {
     }
-    @IBAction func enquiry0buttonAction(sender: UIButton) {
+    @IBAction func enquiry0buttonAction(_ sender: UIButton) {
     }
    
     @IBOutlet var enquiryUIview1: UIView!
@@ -29,7 +29,7 @@ class EnquiryTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

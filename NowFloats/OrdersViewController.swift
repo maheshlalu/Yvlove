@@ -18,79 +18,79 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         let nib = UINib(nibName: "ordersTableViewCell", bundle: nil)
         
-        self.orderstableview.registerNib(nib, forCellReuseIdentifier: "ordersTableViewCell")
+        self.orderstableview.register(nib, forCellReuseIdentifier: "ordersTableViewCell")
         
         self.orderstableview.rowHeight = UITableViewAutomaticDimension
         self.orderstableview.estimatedRowHeight = 10.0
-        self.orderstableview.backgroundColor = UIColor.clearColor()
+        self.orderstableview.backgroundColor = UIColor.clear
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         
         CXAppDataManager.sharedInstance.getOrders { (responseDict) in
             //  print("print the my orders \(responseDict)")
-            let jobs : NSArray =  responseDict.valueForKey("jobs")! as! NSArray
+            let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             self.ordersArray = jobs
             self.orderstableview.reloadData()
         }
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         
         return ordersArray.count
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
         return 1
         
         
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
         
-        let cell = orderstableview.dequeueReusableCellWithIdentifier("ordersTableViewCell", forIndexPath: indexPath)as! ordersTableViewCell
-        cell.backgroundView?.backgroundColor = UIColor.clearColor()
+        let cell = orderstableview.dequeueReusableCell(withIdentifier: "ordersTableViewCell", for: indexPath)as! ordersTableViewCell
+        cell.backgroundView?.backgroundColor = UIColor.clear
         let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
-        cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.valueForKey("id")!)
-        cell.orderpriceresultlabel.text = orederDataDic.valueForKey("Total") as?String
+        cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+        cell.orderpriceresultlabel.text = orederDataDic.value(forKey: "Total") as?String
         cell.statusresultlabel.text = "Placed"
-        cell.placedonresultlabel.text = orederDataDic.valueForKey("createdOn") as?String
-        cell.selectionStyle = .None
+        cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as?String
+        cell.selectionStyle = .none
         
         return cell
         
     }
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 3
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         
         //orderstableview.rowHeight = 15.0
         return 3
         
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return 100.0
         //return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("MY_ORDERS") as! MyOrderViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productDetails = storyBoard.instantiateViewController(withIdentifier: "MY_ORDERS") as! MyOrderViewController
         
         productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
         
-        productDetails.orderIdStr = CXConstant.resultString(orederDataDic.valueForKey("id")!)
-        productDetails.priceStr = orederDataDic.valueForKey("Total") as?String
-        productDetails.placedStr = orederDataDic.valueForKey("createdOn") as?String
+        productDetails.orderIdStr = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+        productDetails.priceStr = orederDataDic.value(forKey: "Total") as?String
+        productDetails.placedStr = orederDataDic.value(forKey: "createdOn") as?String
         
         self.navigationController?.pushViewController(productDetails, animated: true)
         

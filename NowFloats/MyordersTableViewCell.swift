@@ -17,16 +17,16 @@ class MyordersTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.placedButton.backgroundColor = UIColor.clearColor()
+        self.placedButton.backgroundColor = UIColor.clear
         self.placedButton.layer.cornerRadius = 19
         self.placedButton.layer.borderWidth = 2
-        self.placedButton.layer.borderColor = UIColor.init(colorLiteralRed: 61.0/255.0, green: 130.0/255.0, blue: 41.0/255.0, alpha: 1).CGColor
+        self.placedButton.layer.borderColor = UIColor.init(colorLiteralRed: 61.0/255.0, green: 130.0/255.0, blue: 41.0/255.0, alpha: 1).cgColor
         
         
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

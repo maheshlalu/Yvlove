@@ -32,32 +32,32 @@ class CXCommentViewController: CXViewController {
 //        let vHeight = self.view.frame.size.height
         //print("Screen height \(height) and view frame \(vHeight)")
         
-        let comentImageView = UIImageView.init(frame: CGRectMake((self.view.frame.size.width - 60)/2,(self.view.frame.size.height-65-60-50)/2 , 60, 60))
+        let comentImageView = UIImageView.init(frame: CGRect(x: (self.view.frame.size.width - 60)/2,y: (self.view.frame.size.height-65-60-50)/2 , width: 60, height: 60))
         //comentImageView.backgroundColor = UIColor.redColor()
         //comentImageView.center = self.view.center
         comentImageView.image = UIImage(named: "writeComment")
         self.view.addSubview(comentImageView)
         
-        let writeLbl = UILabel.init(frame: CGRectMake(20, comentImageView.frame.size.height+comentImageView.frame.origin.y, self.view.frame.size.width-40, 30))
+        let writeLbl = UILabel.init(frame: CGRect(x: 20, y: comentImageView.frame.size.height+comentImageView.frame.origin.y, width: self.view.frame.size.width-40, height: 30))
         writeLbl.text = "Be the first to write"
-        writeLbl.textColor = UIColor.blackColor()
+        writeLbl.textColor = UIColor.black
         writeLbl.font = UIFont(name: "Roboto-Regular", size: 15)
-        writeLbl.textAlignment = NSTextAlignment.Center
+        writeLbl.textAlignment = NSTextAlignment.center
         self.view.addSubview(writeLbl)
         
         
-        let btnsView = UIView.init(frame: CGRectMake(0, self.view.frame.size.height-65-50, self.view.frame.size.width, 50))
-        btnsView.backgroundColor = UIColor.yellowColor()
+        let btnsView = UIView.init(frame: CGRect(x: 0, y: self.view.frame.size.height-65-50, width: self.view.frame.size.width, height: 50))
+        btnsView.backgroundColor = UIColor.yellow
         self.view.addSubview(btnsView)
         
         let writeColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
         
-        self.writeBtn = self.createButton(CGRectMake(0, 0, btnsView.frame.size.width/2, 50), title: "WRITE", tag: 1, bgColor: writeColor)
-        self.writeBtn.addTarget(self, action: #selector(CXCommentViewController.writeCommentAction), forControlEvents: UIControlEvents.TouchUpInside)
+        self.writeBtn = self.createButton(CGRect(x: 0, y: 0, width: btnsView.frame.size.width/2, height: 50), title: "WRITE", tag: 1, bgColor: writeColor)
+        self.writeBtn.addTarget(self, action: #selector(CXCommentViewController.writeCommentAction), for: UIControlEvents.touchUpInside)
         btnsView.addSubview(self.writeBtn)
         
-        self.ratingBtn = self.createButton(CGRectMake(self.writeBtn.frame.size.width+self.writeBtn.frame.origin.x, 0, btnsView.frame.size.width/2, 50), title: "OVERALL RATING", tag: 2, bgColor:CXAppConfig.sharedInstance.getAppTheamColor())
-        self.ratingBtn.addTarget(self, action: #selector(CXCommentViewController.overallRatingAction), forControlEvents: UIControlEvents.TouchUpInside)
+        self.ratingBtn = self.createButton(CGRect(x: self.writeBtn.frame.size.width+self.writeBtn.frame.origin.x, y: 0, width: btnsView.frame.size.width/2, height: 50), title: "OVERALL RATING", tag: 2, bgColor:CXAppConfig.sharedInstance.getAppTheamColor())
+        self.ratingBtn.addTarget(self, action: #selector(CXCommentViewController.overallRatingAction), for: UIControlEvents.touchUpInside)
         btnsView.addSubview(self.ratingBtn)
         
     }
@@ -73,16 +73,16 @@ class CXCommentViewController: CXViewController {
     }
 
     func backAction() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func createButton(frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
+    func createButton(_ frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
         let button: UIButton = UIButton()
         button.frame = frame
-        button.setTitle(title, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.init(name:"Roboto-Bold", size: 15)
-        button.titleLabel?.textAlignment = NSTextAlignment.Center
-        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.titleLabel?.textAlignment = NSTextAlignment.center
+        button.setTitleColor(UIColor.white, for: UIControlState())
         button.backgroundColor = bgColor
         return button
     }

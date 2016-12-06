@@ -32,13 +32,13 @@ class ProfileViewController: CXViewController {
     }
 
     func setupView() {
-        tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style:.Plain)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.separatorStyle = .None
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style:.plain)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         
-        let headerView = UIView.init(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/3+20))
+        let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/3+20))
         headerView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
         // set header view
@@ -57,7 +57,7 @@ class ProfileViewController: CXViewController {
     
     // MARK: - scroll event
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let manager = coordinateManager else {
             return
         }
@@ -73,15 +73,15 @@ class ProfileViewController: CXViewController {
         let centerX = self.view.frame.width / 2
         let iconSize = 110.f
         let startX = centerX - (iconSize / 2)
-        self.dpImageView.frame = CGRectMake(startX, 20, iconSize, iconSize)
+        self.dpImageView.frame = CGRect(x: startX, y: 20, width: iconSize, height: iconSize)
         let radius:Float = 0.5
         self.dpImageView.layer.cornerRadius = self.dpImageView.frame.width * radius.f
         self.dpImageView.clipsToBounds = true
         self.dpImageView.layer.masksToBounds = true
         self.dpImageView.layer.borderWidth = 3.f
-        self.dpImageView.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8).CGColor
+        self.dpImageView.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8).cgColor
         
-        let dpImageView = MTCoordinateContainer.init(view: self.dpImageView, endForm: CGRectMake(centerX, 120, 0, 0), corner: radius, completion: {
+        let dpImageView = MTCoordinateContainer.init(view: self.dpImageView, endForm: CGRect(x: centerX, y: 120, width: 0, height: 0), corner: radius, completion: {
             
             })
         return dpImageView
@@ -89,14 +89,14 @@ class ProfileViewController: CXViewController {
     
     func createNameLblView() -> MTCoordinateContainer{
         let lblView = UILabel.init()
-        lblView.frame = CGRectMake(0, self.dpImageView.frame.size.height+10, self.view.frame.size.width, 70)
+        lblView.frame = CGRect(x: 0, y: self.dpImageView.frame.size.height+10, width: self.view.frame.size.width, height: 70)
         lblView.text = "Suresh Kumar"
-        lblView.font = lblView.font.fontWithSize(20)
-        lblView.textColor = UIColor.whiteColor()
-        lblView.textAlignment = .Center
+        lblView.font = lblView.font.withSize(20)
+        lblView.textColor = UIColor.white
+        lblView.textAlignment = .center
         
         
-        let firstChildView = MTCoordinateContainer.init(view: lblView, endForm: CGRectMake(0, 120, 0,0), corner:0, completion: {
+        let firstChildView = MTCoordinateContainer.init(view: lblView, endForm: CGRect(x: 0, y: 120, width: 0,height: 0), corner:0, completion: {
 
             })
         return firstChildView
@@ -105,9 +105,9 @@ class ProfileViewController: CXViewController {
     
     func createSecondView() -> MTCoordinateContainer {
         let btnView = UIImageView.init(image: UIImage(named: "sample-button"))
-        btnView.frame = CGRectMake(self.view.frame.size.width - 70, self.view.frame.size.height + 70, 0, 0)
+        btnView.frame = CGRect(x: self.view.frame.size.width - 70, y: self.view.frame.size.height + 70, width: 0, height: 0)
         
-        let secondChildView = MTCoordinateContainer.init(view: btnView, endForm: CGRectMake(self.view.frame.size.width - 70, self.view.frame.size.height, 50, 50), mode: .FIXITY, completion: { [weak self] in
+        let secondChildView = MTCoordinateContainer.init(view: btnView, endForm: CGRect(x: self.view.frame.size.width - 70, y: self.view.frame.size.height, width: 50, height: 50), mode: .fixity, completion: { [weak self] in
             self?.tapEvent("Button Tap Event")
             })
         return secondChildView
@@ -116,10 +116,10 @@ class ProfileViewController: CXViewController {
     
     // MARK: - tap event
     
-    func tapEvent(msg: String) {
-        let alertController = UIAlertController.init(title: msg, message: nil, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction.init(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+    func tapEvent(_ msg: String) {
+        let alertController = UIAlertController.init(title: msg, message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MAR:Heder options enable
@@ -165,26 +165,26 @@ extension ProfileViewController: UITableViewDelegate {
 // MARK: - <#UITableViewDataSource#>
 extension ProfileViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 6
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
-        cell.frame = CGRectMake(5, 5, self.tableView.bounds.size.width, 100)
-        cell.selectionStyle = .None
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.frame = CGRect(x: 5, y: 5, width: self.tableView.bounds.size.width, height: 100)
+        cell.selectionStyle = .none
         cell.textLabel?.text = "Manage Notifications"
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
 }

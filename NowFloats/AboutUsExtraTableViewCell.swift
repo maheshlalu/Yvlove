@@ -17,16 +17,16 @@ class AboutUsExtraTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        callBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
-        callBtn.backgroundColor = UIColor.clearColor()
+        callBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
+        callBtn.backgroundColor = UIColor.clear
         callBtn.layer.cornerRadius = 15
         callBtn.layer.borderWidth = 1
-        callBtn.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().CGColor
-        callBtn.hidden = true
+        callBtn.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
+        callBtn.isHidden = true
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

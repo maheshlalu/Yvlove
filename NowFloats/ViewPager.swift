@@ -9,13 +9,13 @@
 import UIKit
 
 @objc public protocol  ViewPagerDataSource {
-    func numberOfItems(viewPager:ViewPager) -> Int
-    func viewAtIndex(viewPager:ViewPager, index:Int, view:UIView?) -> UIView
-    optional func didSelectedItem(index:Int)
+    func numberOfItems(_ viewPager:ViewPager) -> Int
+    func viewAtIndex(_ viewPager:ViewPager, index:Int, view:UIView?) -> UIView
+    @objc optional func didSelectedItem(_ index:Int)
     
 }
 
-public class ViewPager: UIView {
+open class ViewPager: UIView {
     
     var pageControl:UIPageControl = UIPageControl()
     var scrollView:UIScrollView = UIScrollView()
@@ -49,68 +49,68 @@ public class ViewPager: UIView {
     }
     
     func setupScroolView() {
-        scrollView.pagingEnabled = true;
+        scrollView.isPagingEnabled = true;
         scrollView.alwaysBounceHorizontal = false
         scrollView.bounces = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self;
         let topContraints = NSLayoutConstraint(item: scrollView, attribute:
-            .Top, relatedBy: .Equal, toItem: self,
-                  attribute: NSLayoutAttribute.Top, multiplier: 1.0,
+            .top, relatedBy: .equal, toItem: self,
+                  attribute: NSLayoutAttribute.top, multiplier: 1.0,
                   constant: 0)
         
         let bottomContraints = NSLayoutConstraint(item: scrollView, attribute:
-            .Bottom, relatedBy: .Equal, toItem: self,
-                     attribute: NSLayoutAttribute.Bottom, multiplier: 1.0,
+            .bottom, relatedBy: .equal, toItem: self,
+                     attribute: NSLayoutAttribute.bottom, multiplier: 1.0,
                      constant: 0)
         
         let leftContraints = NSLayoutConstraint(item: scrollView, attribute:
-            .LeadingMargin, relatedBy: .Equal, toItem: self,
-                            attribute: .LeadingMargin, multiplier: 1.0,
+            .leadingMargin, relatedBy: .equal, toItem: self,
+                            attribute: .leadingMargin, multiplier: 1.0,
                             constant: 0)
         
         let rightContraints = NSLayoutConstraint(item: scrollView, attribute:
-            .TrailingMargin, relatedBy: .Equal, toItem: self,
-                             attribute: .TrailingMargin, multiplier: 1.0,
+            .trailingMargin, relatedBy: .equal, toItem: self,
+                             attribute: .trailingMargin, multiplier: 1.0,
                              constant: 0)
         
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([topContraints,rightContraints,leftContraints,bottomContraints])
+        NSLayoutConstraint.activate([topContraints,rightContraints,leftContraints,bottomContraints])
     }
     
     func setupPageControl() {
         
         self.pageControl.numberOfPages = numberOfItems
         self.pageControl.currentPage = 0
-        self.pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
-        self.pageControl.currentPageIndicatorTintColor = UIColor.greenColor()
+        self.pageControl.pageIndicatorTintColor = UIColor.lightGray
+        self.pageControl.currentPageIndicatorTintColor = UIColor.green
         
         
         let heightContraints = NSLayoutConstraint(item: pageControl, attribute:
-            .Height, relatedBy: .Equal, toItem: nil,
-                     attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0,
+            .height, relatedBy: .equal, toItem: nil,
+                     attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0,
                      constant: 25)
         
         let bottomContraints = NSLayoutConstraint(item: pageControl, attribute:
-            .Bottom, relatedBy: .Equal, toItem: self,
-                     attribute: NSLayoutAttribute.Bottom, multiplier: 1.0,
+            .bottom, relatedBy: .equal, toItem: self,
+                     attribute: NSLayoutAttribute.bottom, multiplier: 1.0,
                      constant: 0)
         
         let leftContraints = NSLayoutConstraint(item: pageControl, attribute:
-            .LeadingMargin, relatedBy: .Equal, toItem: self,
-                            attribute: .LeadingMargin, multiplier: 1.0,
+            .leadingMargin, relatedBy: .equal, toItem: self,
+                            attribute: .leadingMargin, multiplier: 1.0,
                             constant: 0)
         
         let rightContraints = NSLayoutConstraint(item: pageControl, attribute:
-            .TrailingMargin, relatedBy: .Equal, toItem: self,
-                             attribute: .TrailingMargin, multiplier: 1.0,
+            .trailingMargin, relatedBy: .equal, toItem: self,
+                             attribute: .trailingMargin, multiplier: 1.0,
                              constant: 0)
         
         
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([heightContraints,rightContraints,leftContraints,bottomContraints])
+        NSLayoutConstraint.activate([heightContraints,rightContraints,leftContraints,bottomContraints])
     }
     
     
@@ -125,14 +125,14 @@ public class ViewPager: UIView {
             view.removeFromSuperview()
         }
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width *  CGFloat(self.numberOfItems) , self.scrollView.frame.height)
+        DispatchQueue.main.async {
+            self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width *  CGFloat(self.numberOfItems) , height: self.scrollView.frame.height)
             self.reloadViews(0)
         }
         
     }
     
-    func loadViewAtIndex(index:Int){
+    func loadViewAtIndex(_ index:Int){
         let view:UIView?
         if(dataSource != nil){
             view =  (dataSource?.viewAtIndex(self, index: index, view: itemViews[index]))!
@@ -163,7 +163,7 @@ public class ViewPager: UIView {
     }
     
     
-    func reloadViews(index:Int){
+    func reloadViews(_ index:Int){
         
         for i in (index-1)...(index+1) {
             if(i>=0 && i<numberOfItems){
@@ -174,7 +174,7 @@ public class ViewPager: UIView {
         // print(scrollView.subviews.count)
     }
     
-    func setFrameForView(view:UIView,index:Int){
+    func setFrameForView(_ view:UIView,index:Int){
         view.frame = CGRect(x: self.scrollView.frame.width*CGFloat(index), y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height);
     }
     
@@ -183,7 +183,7 @@ public class ViewPager: UIView {
 
 extension ViewPager:UIScrollViewDelegate{
     
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
         pageControl.currentPage = Int(pageNumber)
@@ -198,7 +198,7 @@ extension ViewPager{
     
     
     func animationNext(){
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(ViewPager.moveToNextPage), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewPager.moveToNextPage), userInfo: nil, repeats: true)
     }
     func moveToNextPage (){
         if(currentPosition <= numberOfItems && currentPosition > 0) {
@@ -210,7 +210,7 @@ extension ViewPager{
         }
     }
     
-    func scrollToPage(index:Int) {
+    func scrollToPage(_ index:Int) {
         if(index <= numberOfItems && index > 0) {
             let zIndex = index - 1
             let iframe = CGRect(x: self.scrollView.frame.width*CGFloat(zIndex), y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height);

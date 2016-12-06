@@ -19,7 +19,7 @@ class CXDataProvider: NSObject {
         return _sharedInstance
     }
     
-    private override init() {
+    fileprivate override init() {
         
     }
     
@@ -29,11 +29,11 @@ class CXDataProvider: NSObject {
     
     //MARK:Save The StoreCategory
     
-    func saveTheStoreCategory(jsonDic:NSDictionary){
+    func saveTheStoreCategory(_ jsonDic:NSDictionary){
         
-        let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
+        let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
         
-        MagicalRecord.saveWithBlock({ (localContext) in
+        MagicalRecord.save({ (localContext) in
             
             for storeCategory in jobs{
                 
@@ -53,22 +53,22 @@ class CXDataProvider: NSObject {
         
     }
  
-    func saveTheProducts(jsonDic:NSDictionary ,completion:(isDataSaved:Bool) -> Void){
+    func saveTheProducts(_ jsonDic:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void){
         
-        let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
+        let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
         
         
-        MagicalRecord.saveWithBlock({ (localContext) in
-            for prod in jobs {
-                print(prod)
-                let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_Products", inManagedObjectContext: localContext) as? CX_Products
-                let createByID : String = CXConstant.resultString(prod.valueForKey("createdById")!)
+        MagicalRecord.save({ (localContext) in
+            for prodDic in jobs {
+                let prod = prodDic as? NSDictionary
+                let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
+                let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                 enProduct!.createdById = createByID
-                enProduct!.itemCode = prod.valueForKey("ItemCode") as? String
-                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
+                enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
+                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
                 enProduct!.json = jsonString as String
-                enProduct!.name = prod.valueForKey("Name") as? String
-                enProduct!.pid = CXConstant.resultString(prod.valueForKey("id")!)
+                enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
+                enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
                 enProduct?.pPrice = 1
                 
                 /*let updateDate =  prod.valueForKey("UpdatedOn") as? String
@@ -78,24 +78,24 @@ class CXDataProvider: NSObject {
                 let number = Int(list[0])
                 enProduct?.pUpdateDate =  number */
                 
-                enProduct?.pPrice = Int((prod.valueForKey("MRP") as? String)!)//MRP
+                enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
-                enProduct!.type = prod.valueForKey("jobTypeName") as? String
-                enProduct?.imageUrl =  prod.valueForKey("Image_URL") as? String
+                enProduct!.type = (prod as AnyObject).value(forKey: "jobTypeName") as? String
+                enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
                 // self.saveContext()
                 
                 let productDic = CXConstant.sharedInstance.convertStringToDictionary(enProduct!.json!)
                 
-                let imageUrlSptLt = NSURL(string: (enProduct?.imageUrl)!)
-                let imageData = NSData(contentsOfURL:imageUrlSptLt!)
+                let imageUrlSptLt = URL(string: (enProduct?.imageUrl)!)
+                let imageData = try? Data(contentsOf: imageUrlSptLt!)
 
-                self.addItemToSpotlightSearch((enProduct?.name)!, productImage:imageData!, productDesc:(productDic.valueForKey("Description")as! String) ,identifier: (enProduct?.pid)!)
+                self.addItemToSpotlightSearch((enProduct?.name)!, productImage:imageData!, productDesc:(productDic.value(forKey: "Description")as! String) ,identifier: (enProduct?.pid)!)
 
             }
             
         }) { (success, error) in
             if success == true {
-                completion(isDataSaved: success)
+                completion(success)
                 //                if let delegate = self.delegate {
                 //                    delegate.didFinishProducts(productCatName)
                 //                }
@@ -105,53 +105,57 @@ class CXDataProvider: NSObject {
         }
     }
     
-    func saveTheFeatureProducts(jsonDic:NSDictionary ,completion:(isDataSaved:Bool) -> Void){
-        let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
+    func saveTheFeatureProducts(_ jsonDic:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void){
+        let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
         if  jobs.count == 0 {
-            completion(isDataSaved: false)
+            completion(false)
         }
-        MagicalRecord.saveWithBlock({ (localContext) in
-            for prod in jobs {
-                let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_FeaturedProducts", inManagedObjectContext: localContext) as? CX_FeaturedProducts
-                let createByID : String = CXConstant.resultString(prod.valueForKey("createdById")!)
+        MagicalRecord.save({ (localContext) in
+            for prodDic in jobs {
+                let prod = prodDic as? NSDictionary
+                let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_FeaturedProducts", into: localContext!) as? CX_FeaturedProducts
+                let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                 enProduct!.createdByID = createByID
-                enProduct!.item_Code = prod.valueForKey("ItemCode") as? String
-                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
+                enProduct!.item_Code = (prod as AnyObject).value(forKey: "ItemCode") as? String
+                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
                 enProduct!.json = jsonString as String
-                enProduct!.name = prod.valueForKey("Name") as? String
-                enProduct!.fID = CXConstant.resultString(prod.valueForKey("id")!)
-                enProduct?.campaign_Jobs = prod.valueForKey("Campaign_Jobs") as? String
+                enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
+                enProduct!.fID = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
+                enProduct?.campaign_Jobs = (prod as AnyObject).value(forKey: "Campaign_Jobs") as? String
                 enProduct?.itHasJobs = false
                 
             }
             
         }) { (success, error) in
             if success == true {
-                completion(isDataSaved: success)
+                completion(success)
 
                 //                if let delegate = self.delegate {
                 //                    delegate.didFinishProducts(productCatName)
                 //                }
             } else {
-                completion(isDataSaved: success)
+                completion(success)
             }
         }
     }
     
-    func saveTheFeaturedProductJobs(jsonDic:NSDictionary,parentID:String ,completion:(isDataSaved:Bool) -> Void) {
+    func saveTheFeaturedProductJobs(_ jsonDic:NSDictionary,parentID:String ,completion:@escaping (_ isDataSaved:Bool) -> Void) {
         
-        let jobs : NSArray =  jsonDic.valueForKey("jobs")! as! NSArray
-        MagicalRecord.saveWithBlock({ (localContext) in
-            for prod in jobs {
-                let enProduct =  NSEntityDescription.insertNewObjectForEntityForName("CX_FeaturedProductsJobs", inManagedObjectContext: localContext) as? CX_FeaturedProductsJobs
-                let createByID : String = CXConstant.resultString(prod.valueForKey("createdById")!)
+        let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
+        MagicalRecord.save({ (localContext) in
+            for prodDic in jobs {
+                
+                let prod = prodDic as? NSDictionary
+
+                let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_FeaturedProductsJobs", into: localContext!) as? CX_FeaturedProductsJobs
+                let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                 enProduct!.createdByID = createByID
-                enProduct?.image_URL =  prod.valueForKey("Image_URL") as? String
-                enProduct?.fDescription =  prod.valueForKey("Description") as? String
-                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
+                enProduct?.image_URL =  (prod as AnyObject).value(forKey: "Image_URL") as? String
+                enProduct?.fDescription =  (prod as AnyObject).value(forKey: "Description") as? String
+                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
                 enProduct!.json = jsonString as String
-                enProduct!.name = prod.valueForKey("Name") as? String
-                enProduct!.fID = CXConstant.resultString(prod.valueForKey("id")!)
+                enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
+                enProduct!.fID = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
                 enProduct?.parentID = parentID
                 
 
@@ -159,7 +163,7 @@ class CXDataProvider: NSObject {
             
         }) { (success, error) in
             if success == true {
-                completion(isDataSaved: success)
+                completion(success)
                 
                 //                if let delegate = self.delegate {
                 //                    delegate.didFinishProducts(productCatName)
@@ -172,25 +176,27 @@ class CXDataProvider: NSObject {
     
     
     
-    func saveStoreInDB(resDict:NSDictionary ,completion:(isDataSaved:Bool) -> Void) {
+    func saveStoreInDB(_ resDict:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void) {
 
-        let jobs : NSArray =  resDict.valueForKey("jobs")! as! NSArray
+        let jobs : NSArray =  resDict.value(forKey: "jobs")! as! NSArray
 
-        MagicalRecord.saveWithBlock({ (localContext) in
-          for prod in jobs {
-            let enStore = NSEntityDescription.insertNewObjectForEntityForName("CX_Stores", inManagedObjectContext: localContext) as? CX_Stores
-            enStore!.storeID = CXConstant.resultString(prod.valueForKey("id")!)
-            enStore!.name = prod.valueForKey("Name") as? String
-            enStore!.type = prod.valueForKey("Type") as? String
-            let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
+        MagicalRecord.save({ (localContext) in
+          for prodDic in jobs {
+            let prod = prodDic as? NSDictionary
+
+            let enStore = NSEntityDescription.insertNewObject(forEntityName: "CX_Stores", into: localContext!) as? CX_Stores
+            enStore!.storeID = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
+            enStore!.name = (prod as AnyObject).value(forKey: "Name") as? String
+            enStore!.type = (prod as AnyObject).value(forKey: "Type") as? String
+            let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
             enStore!.json = jsonString as String
-            enStore!.createdById = CXConstant.resultString(prod.valueForKey("createdById")!)
-            enStore!.itemCode = prod.valueForKey("ItemCode") as? String
-            self.SaveTheGallaryItems((prod.valueForKey("Attachments") as? NSArray)!)
+            enStore!.createdById = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
+            enStore!.itemCode = (prod as AnyObject).value(forKey: "ItemCode") as? String
+            self.SaveTheGallaryItems(((prod as AnyObject).value(forKey: "Attachments") as? NSArray)!)
                 }
         }) { (success, error) in
             if success == true {
-                completion(isDataSaved: success)
+                completion(success)
             } else {
                 print("Error\(error)")
             }
@@ -200,14 +206,17 @@ class CXDataProvider: NSObject {
     }
     
     
-    func SaveTheGallaryItems(galeryItems:NSArray){
-        MagicalRecord.saveWithBlock({ (localContext) in
-            for gallaeryData in galeryItems {
-                let enStore = NSEntityDescription.insertNewObjectForEntityForName("CX_Gallery", inManagedObjectContext: localContext) as? CX_Gallery
-                enStore?.gID = CXConstant.resultString(gallaeryData.valueForKey("Id")!)
-                enStore?.gImageUrl = gallaeryData.valueForKey("URL") as? String
-                enStore?.isCoverImage = gallaeryData.valueForKey("isCoverImage") as? String
-                enStore?.isBannerImage = gallaeryData.valueForKey("isBannerImage") as? String
+    func SaveTheGallaryItems(_ galeryItems:NSArray){
+        MagicalRecord.save({ (localContext) in
+            for prodDic in galeryItems {
+                
+                let gallaeryData = prodDic as? NSDictionary
+
+                let enStore = NSEntityDescription.insertNewObject(forEntityName: "CX_Gallery", into: localContext!) as? CX_Gallery
+                enStore?.gID = CXConstant.resultString(gallaeryData!.value(forKey: "Id")! as AnyObject)
+                enStore?.gImageUrl = (gallaeryData as AnyObject).value(forKey: "URL") as? String
+                enStore?.isCoverImage = (gallaeryData as AnyObject).value(forKey: "isCoverImage") as? String
+                enStore?.isBannerImage = (gallaeryData as AnyObject).value(forKey: "isBannerImage") as? String
             }
         }) { (success, error) in
             if success == true {
@@ -230,20 +239,20 @@ class CXDataProvider: NSObject {
     }
     
     
-    func saveSingleMallInDB(resDict:NSDictionary ,completion:(isDataSaved:Bool) -> Void) {
+    func saveSingleMallInDB(_ resDict:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void) {
         
         print("single mall Dic \(resDict)")
-        let jobs : NSArray =  resDict.valueForKey("orgs")! as! NSArray
-        CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.valueForKeyPath("orgs.fpId")!))
-        MagicalRecord.saveWithBlock({ (localContext) in
+        let jobs : NSArray =  resDict.value(forKey: "orgs")! as! NSArray
+        CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.value(forKeyPath: "orgs.fpId")! as AnyObject))
+        MagicalRecord.save({ (localContext) in
             for prod in jobs {
-                let enSMall = CX_SingleMall.MR_createInContext(localContext) as! CX_SingleMall
+                let enSMall = CX_SingleMall.mr_create(in: localContext) as! CX_SingleMall
                 let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod as! NSDictionary)
                 enSMall.json = jsonString as String
             }
         }) { (success, error) in
             if success == true {
-                completion(isDataSaved: true)
+                completion(true)
             } else {
                 print("Error\(error)")
             }
@@ -276,14 +285,14 @@ class CXDataProvider: NSObject {
 
 extension CXDataProvider {
     
-    func getJobID(input:String,inputDic:String) -> String {
+    func getJobID(_ input:String,inputDic:String) -> String {
         let json :NSDictionary = (CXConstant.sharedInstance.convertStringToDictionary(inputDic))
-        let info : String = CXConstant.resultString(json.valueForKey(input)!)
+        let info : String = CXConstant.resultString(json.value(forKey: input)! as AnyObject)
         return info
         
     }
     
-    func addItemToSpotlightSearch(productName:String,productImage:NSData,productDesc:String,identifier:String){
+    func addItemToSpotlightSearch(_ productName:String,productImage:Data,productDesc:String,identifier:String){
         
 
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
@@ -294,19 +303,19 @@ extension CXDataProvider {
     
         
         let item = CSSearchableItem(uniqueIdentifier: identifier, domainIdentifier: "com.nowFloats.cx", attributeSet: attributeSet)
-        CSSearchableIndex.defaultSearchableIndex().indexSearchableItems([item]) { (error: NSError?) -> Void in
+       /* CSSearchableIndex.default().indexSearchableItems([item]) { (error: NSError?) -> Void in
             if let error =  error {
                 print("Indexing error: \(error.localizedDescription)")
             } else {
                 print("Search item successfully indexed")
             }
-        }
+        }*/
     }
     
     
-    func getTheTableDataFromDataBase(entityName: String ,predicate:NSPredicate,ispredicate:Bool,orederByKey:String) -> (dataArray:NSArray, totalCount:NSInteger){
+    func getTheTableDataFromDataBase(_ entityName: String ,predicate:NSPredicate,ispredicate:Bool,orederByKey:String) -> (dataArray:NSArray, totalCount:NSInteger){
         
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: entityName)
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
         if !orederByKey.isEmpty {
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: orederByKey, ascending: false)]
         }
@@ -316,10 +325,10 @@ extension CXDataProvider {
         }
         
         do {
-            let result = try  NSManagedObjectContext.MR_contextForCurrentThread().executeFetchRequest(fetchRequest)
-            return(result ,result.count)
+            let result = try  NSManagedObjectContext.mr_contextForCurrentThread().fetch(fetchRequest)
+            return(result as NSArray ,result.count)
             
-        } catch {1
+        } catch {
             let fetchError = error as NSError
             print(fetchError)
         }
@@ -328,39 +337,39 @@ extension CXDataProvider {
     }
     
     
-    func getTheProducts(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+    func getTheProducts(_ predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
         
        // let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
         
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
 
         fetchRequest.predicate = predicate
-        let productCatList :NSArray = CX_Products.MR_executeFetchRequest(fetchRequest)
+        let productCatList :NSArray = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
         
         return(productCatList,productCatList.count)
     }
     
     
-    func getTheFeaturedProducts(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+    func getTheFeaturedProducts(_ predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
         
-        let fetchRequest = CX_FeaturedProducts.MR_requestAllSortedBy("fID", ascending: false)
+        let fetchRequest = CX_FeaturedProducts.mr_requestAllSorted(by: "fID", ascending: false)
          if ispredicate {
-            fetchRequest.predicate = predicate
+            fetchRequest?.predicate = predicate
         }
         
-        let productCatList :NSArray = CX_FeaturedProducts.MR_executeFetchRequest(fetchRequest)
+        let productCatList :NSArray = CX_FeaturedProducts.mr_executeFetchRequest(fetchRequest) as NSArray
         
         return(productCatList,productCatList.count)
     }
     
     
-    func getTheFeaturedProductJobs(predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
+    func getTheFeaturedProductJobs(_ predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
         
-        let fetchRequest = CX_FeaturedProductsJobs.MR_requestAllSortedBy("fID", ascending: false)
+        let fetchRequest = CX_FeaturedProductsJobs.mr_requestAllSorted(by: "fID", ascending: false)
         if ispredicate {
-            fetchRequest.predicate = predicate
+            fetchRequest?.predicate = predicate
         }
-        let productCatList :NSArray = CX_FeaturedProductsJobs.MR_executeFetchRequest(fetchRequest)
+        let productCatList :NSArray = CX_FeaturedProductsJobs.mr_executeFetchRequest(fetchRequest) as NSArray
         
         return(productCatList,productCatList.count)
     }
@@ -368,30 +377,30 @@ extension CXDataProvider {
     
     
     
-    func itemAddToWishListOrCarts(productJson:String,itemID:String,isAddToWishList:Bool,isAddToCartList:Bool,isDeleteFromWishList:Bool,isDeleteFromCartList:Bool,completionHandler: (Bool) -> ()){
+    func itemAddToWishListOrCarts(_ productJson:String,itemID:String,isAddToWishList:Bool,isAddToCartList:Bool,isDeleteFromWishList:Bool,isDeleteFromCartList:Bool,completionHandler: (Bool) -> ()){
         let productJsonDic = CXConstant.sharedInstance.convertStringToDictionary(productJson)
         
         //var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "pID = %@", itemID))
+        let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "pID = %@", itemID)) as NSArray
         //var  cart : CX_Cart = (CX_Cart.MR_findFirstWithPredicate(NSPredicate(format: "pID = %@", itemID)) as?CX_Cart)!
         if cartlist.count == 0{
-           let cart = CX_Cart.MR_createEntity() as!CX_Cart
+           let cart = CX_Cart.mr_createEntity() as!CX_Cart
             if isAddToCartList {
-                cart.addToCart = NSNumber(bool: true)
+                cart.addToCart = NSNumber(value: true as Bool)
             }
             if isAddToWishList {
-                cart.addToWishList = NSNumber(bool: true)
+                cart.addToWishList = NSNumber(value: true as Bool)
             }
             //enProduct.itemCode = product.itemCode
-            cart.name =  productJsonDic.valueForKey("Name") as? String
-            cart.pID = CXConstant.resultString(productJsonDic.valueForKey("id")!)
-            cart.imageUrl =  productJsonDic.valueForKey("Image_URL") as? String
+            cart.name =  productJsonDic.value(forKey: "Name") as? String
+            cart.pID = CXConstant.resultString(productJsonDic.value(forKey: "id")! as AnyObject)
+            cart.imageUrl =  productJsonDic.value(forKey: "Image_URL") as? String
             cart.json =  productJson
             let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: productJson)
             let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: productJson)
             let finalPriceNum:Int = Int(price)!-Int(discount)!
-            let myNumber = NSNumber(integer:finalPriceNum)
+            let myNumber = NSNumber(value: finalPriceNum as Int)
              cart.productPrice = myNumber
             cart.quantity = 1
             //cart.managedObjectContext?.MR_saveToPersistentStoreAndWait()
@@ -401,17 +410,17 @@ extension CXDataProvider {
                 let cartItem : CX_Cart = (cartlist.lastObject as? CX_Cart)!
                 cartItem.quantity = 1
                 if isAddToCartList {
-                    cartItem.addToCart = NSNumber(bool: true)
+                    cartItem.addToCart = NSNumber(value: true as Bool)
                 }
                 
                 if isAddToWishList {
-                    cartItem.addToWishList = NSNumber(bool: true)
+                    cartItem.addToWishList = NSNumber(value: true as Bool)
                 }
                 if isDeleteFromCartList{
-                    cartItem.addToCart = NSNumber(bool: false)
+                    cartItem.addToCart = NSNumber(value: false as Bool)
                 }
                 if isDeleteFromWishList{
-                    cartItem.addToWishList = NSNumber(bool: false)
+                    cartItem.addToWishList = NSNumber(value: false as Bool)
                     
                 }
                 
@@ -425,9 +434,9 @@ extension CXDataProvider {
        // appDelegate.saveContext()
 
         
-   NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+   NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
          completionHandler(true)
-        NSNotificationCenter.defaultCenter().postNotificationName("CartCountUpdate", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "CartCountUpdate"), object: nil)
 
         
         
@@ -513,18 +522,18 @@ extension CXDataProvider {
      */
     
     
-     func isAddToCart(productID : NSString) -> (isAddedToCart:Bool, isAddedToWishList:Bool) {
-        let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+     func isAddToCart(_ productID : NSString) -> (isAddedToCart:Bool, isAddedToWishList:Bool) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CX_Cart")
         fetchRequest.predicate = NSPredicate(format: "pID = %@", productID)
-        let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
+        let cartsDataArrya : NSArray = CX_Cart.mr_executeFetchRequest(fetchRequest) as NSArray
         if cartsDataArrya.count != 0 {
             let  cart = cartsDataArrya.lastObject as?CX_Cart
             var  isAddToCart : Bool =  false
             var isAddToWishList : Bool = false
-            if cart?.addToCart == NSNumber(integer: 1) {
+            if cart?.addToCart == NSNumber(value: 1 as Int) {
                 isAddToCart = true
             }
-            if cart?.addToWishList == NSNumber(integer: 1) {
+            if cart?.addToWishList == NSNumber(value: 1 as Int) {
                 isAddToWishList = true
             }
             return (isAddToCart,isAddToWishList)
@@ -534,14 +543,14 @@ extension CXDataProvider {
     }
     
     
-      func deleteCartItem(productId : NSString){
+      func deleteCartItem(_ productId : NSString){
         let predicate:NSPredicate = NSPredicate(format: "pID = %@",productId)
-        let fetchRequest = NSFetchRequest(entityName: "CX_Cart")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CX_Cart")
         fetchRequest.predicate = predicate
-        let cartsDataArrya : NSArray = CX_Cart.MR_executeFetchRequest(fetchRequest)
-        NSManagedObjectContext.MR_contextForCurrentThread().deleteObject((cartsDataArrya.lastObject as?CX_Cart)!)
-        NSManagedObjectContext.MR_contextForCurrentThread().MR_saveOnlySelfAndWait()
-        NSNotificationCenter.defaultCenter().postNotificationName("updateCartBtnAction", object: nil)
+        let cartsDataArrya : NSArray = CX_Cart.mr_executeFetchRequest(fetchRequest) as NSArray
+        NSManagedObjectContext.mr_contextForCurrentThread().delete((cartsDataArrya.lastObject as?CX_Cart)!)
+        NSManagedObjectContext.mr_contextForCurrentThread().mr_saveOnlySelfAndWait()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "updateCartBtnAction"), object: nil)
     }
     
     

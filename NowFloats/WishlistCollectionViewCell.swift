@@ -24,7 +24,7 @@ class WishlistCollectionViewCell: UICollectionViewCell {
         
         
         self.wishlistaddtocartbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        self.wishlistaddtocartbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: UIControlState.Normal)
+        self.wishlistaddtocartbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
  
 
         

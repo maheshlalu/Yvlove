@@ -36,8 +36,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.getSingleMall()
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
-        self.contentsTableView.registerNib(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.contentsTableView.register(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
+        self.view.backgroundColor = UIColor.white
 
 
         
@@ -45,14 +45,14 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
    
     func getSingleMall(){
         
-        if CX_SingleMall.MR_findAll().count != 0  {
-            let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+        if CX_SingleMall.mr_findAll().count != 0  {
+            let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
             self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
             print("\(self.sidePanelSingleMallDataDict)")
             self.getStores()
         }else{
             CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
-                let appdata:CX_SingleMall = CX_SingleMall.MR_findFirst() as! CX_SingleMall
+                let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
                 self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
                 print("\(self.sidePanelSingleMallDataDict)")
                 self.getStores()
@@ -62,14 +62,14 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func getStores(){
-        if CX_Stores.MR_findAll().count != 0{
-            let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        if CX_Stores.mr_findAll().count != 0{
+            let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
             //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
             let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
-            let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult>= CX_Stores.mr_requestAllSorted(by: "itemCode", ascending: true)
             fetchRequest.predicate = predicate
             fetchRequest.entity = productEn
-            self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
+            self.sidePanelDataArr = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
             
             let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
             
@@ -79,13 +79,13 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         }else{
             CXAppDataManager.sharedInstance.getTheStores({(isDataSaved) in
-                let productEn = NSEntityDescription.entityForName("CX_Stores", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+                let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
                 //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
                 let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
-                let fetchRequest = CX_Stores.MR_requestAllSortedBy("itemCode", ascending: true)
+                let fetchRequest : NSFetchRequest<NSFetchRequestResult> = CX_Stores.mr_requestAllSorted(by: "itemCode", ascending: true)
                 fetchRequest.predicate = predicate
                 fetchRequest.entity = productEn
-                self.sidePanelDataArr = CX_Stores.MR_executeFetchRequest(fetchRequest)
+                self.sidePanelDataArr = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
                 
                 let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
                 
@@ -98,40 +98,40 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func btnBorderAlignments(){
         viewMapBtn.layer.cornerRadius = 2
-        viewMapBtn.layer.borderColor = UIColor.grayColor().CGColor
+        viewMapBtn.layer.borderColor = UIColor.gray.cgColor
         viewMapBtn.layer.borderWidth = 1
         
         messageBtn.layer.cornerRadius = 2
-        messageBtn.layer.borderColor = UIColor.grayColor().CGColor
+        messageBtn.layer.borderColor = UIColor.gray.cgColor
         messageBtn.layer.borderWidth = 1
         
         callUsBtn.layer.cornerRadius = 2
-        callUsBtn.layer.borderColor = UIColor.grayColor().CGColor
+        callUsBtn.layer.borderColor = UIColor.gray.cgColor
         callUsBtn.layer.borderWidth = 1
     }
     
     func sidepanelView(){
         
         
-        self.profileDPImageView = UIImageView.init(frame: CGRectMake(self.detailsView.frame.origin.x+10,self.detailsView.frame.origin.y-20,60,60))
-        let imgUrl = self.isContansKey(self.sidePanelSingleMallDataDict as NSDictionary, key: "logo") ? (self.sidePanelSingleMallDataDict .valueForKey("logo") as? String)! : ""
+        self.profileDPImageView = UIImageView.init(frame: CGRect(x: self.detailsView.frame.origin.x+10,y: self.detailsView.frame.origin.y-20,width: 60,height: 60))
+        let imgUrl = self.isContansKey(self.sidePanelSingleMallDataDict as NSDictionary, key: "logo") ? (self.sidePanelSingleMallDataDict .value(forKey: "logo") as? String)! : ""
 
-        NSUserDefaults.standardUserDefaults().setObject(imgUrl, forKey: "LOGO")
+        UserDefaults.standard.set(imgUrl, forKey: "LOGO")
         
         
-        profileDPImageView.sd_setImageWithURL(NSURL(string: imgUrl))
+        profileDPImageView.sd_setImage(with: URL(string: imgUrl))
         // self.profileDPImageView .layer.cornerRadius = self.profileDPImageView.frame.size.width / 2
         self.profileDPImageView .clipsToBounds = true
         self.detailsView.addSubview(self.profileDPImageView )
         
-        self.titleLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,self.detailsView.frame.origin.y-32,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-30 ,90 ))
+        self.titleLable = UILabel.init(frame: CGRect(x: self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+20 ,y: self.detailsView.frame.origin.y-32,width: self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-30 ,height: 90 ))
         //self.titleLable.backgroundColor = UIColor.redColor()
         self.titleLable.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        titleLable.lineBreakMode = .ByWordWrapping
+        titleLable.lineBreakMode = .byWordWrapping
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
-        let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "Name") ? (self.sidePanelDataDict.valueForKey("Name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
-        let city =  self.sidePanelDataDict.valueForKeyPath("City") as! String!
+        let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "Name") ? (self.sidePanelDataDict.value(forKey: "Name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
+        let city =  self.sidePanelDataDict.value(forKeyPath: "City") as! String!
         titleLable.text = "\(productName) \(city)"
         self.detailsView.addSubview(titleLable)
         
@@ -169,64 +169,64 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //
     //    }
     
-    func createButton(frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
+    func createButton(_ frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
         let button: UIButton = UIButton()
         button.frame = frame
-        button.setTitle(title, forState: .Normal)
+        button.setTitle(title, for: UIControlState())
         button.titleLabel?.font = UIFont.init(name:"Roboto-Regular", size: 18)
-        button.titleLabel?.textAlignment = NSTextAlignment.Left
-        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        button.titleLabel?.textAlignment = NSTextAlignment.left
+        button.setTitleColor(UIColor.gray, for: UIControlState())
         button.layer.cornerRadius = 5.0
         button.layer.masksToBounds = true
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         button.backgroundColor = bgColor
         return button
     }
     
-    func createImageButton(frame:CGRect,tag:Int,bImage:UIImage) -> UIButton {
+    func createImageButton(_ frame:CGRect,tag:Int,bImage:UIImage) -> UIButton {
         let button: UIButton = UIButton()
         button.frame = frame
-        button.backgroundColor = UIColor.yellowColor()
-        button.setImage(bImage, forState: UIControlState.Normal)
-        button.backgroundColor = UIColor.clearColor()
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        button.backgroundColor = UIColor.yellow
+        button.setImage(bImage, for: UIControlState())
+        button.backgroundColor = UIColor.clear
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         return button
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return CXAppConfig.sharedInstance.getSidePanelList().count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LeftViewTableViewCell", forIndexPath: indexPath) as! LeftViewTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeftViewTableViewCell", for: indexPath) as! LeftViewTableViewCell
         cell.contentsLbl.text = CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String
-        cell.iconImage.image = UIImage.init(imageLiteral: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
-        cell.contentsLbl.textColor = UIColor.grayColor()
-        cell.contentsLbl.font = cell.contentsLbl.font.fontWithSize(15)
+        //cell.iconImage.image = UIImage.init(imageLiteral: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
+        cell.contentsLbl.textColor = UIColor.gray
+        cell.contentsLbl.font = cell.contentsLbl.font.withSize(15)
         return cell
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navController.drawerToggle()
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         
         let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         if itemName == "Home"{
-            self.navController.popToRootViewControllerAnimated(true)
+            self.navController.popToRootViewController(animated: true)
             
         }else if itemName == "About us"{
-            let aboutUs = storyBoard.instantiateViewControllerWithIdentifier("ABOUT_US") as! AboutUsViewController
+            let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
         }else if itemName == "Orders"{
-            if NSUserDefaults.standardUserDefaults().valueForKey("USER_ID") != nil{
-                let orders = storyBoard.instantiateViewControllerWithIdentifier("ORDERS") as! OrdersViewController
+            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
                 self.navController.pushViewController(orders, animated: true)
             }else{
                 let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
@@ -234,22 +234,22 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             
         }else if itemName == "Wishlist" {
-            let wishlist = storyBoard.instantiateViewControllerWithIdentifier("WISHLIST") as! NowfloatWishlistViewController
+            let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
         }
         
     }
     
-  func isContansKey(responceDic : NSDictionary , key : String) -> Bool{
-        let allKeys : NSArray = responceDic.allKeys
-        return  allKeys.containsObject(key)
+  func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{
+        let allKeys : NSArray = responceDic.allKeys as NSArray
+        return  allKeys.contains(key)
         
     }
    
     
-    @IBAction func callUsAction(sender: UIButton) {
+    @IBAction func callUsAction(_ sender: UIButton) {
         
-        let primaryNumber = self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!
+        let primaryNumber = self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!
         callNumber(primaryNumber!)
         //        let alert = UIAlertController(title:"", message: "Please Select A Number", preferredStyle: .Alert)
         //
@@ -270,45 +270,45 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //        })
     }
     
-    @IBAction func messageAction(sender: UIButton) {
+    @IBAction func messageAction(_ sender: UIButton) {
         
         let messageVC = MFMessageComposeViewController()
         messageVC.body = "Hi Do you have any query?";
-        messageVC.recipients = [self.sidePanelDataDict.valueForKeyPath("PrimaryNumber") as! String!]
+        messageVC.recipients = [self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]
         messageVC.messageComposeDelegate = self;
-        self.presentViewController(messageVC, animated: true, completion: nil)
+        self.present(messageVC, animated: true, completion: nil)
         
     }
     
-    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         switch result.rawValue {
-        case MessageComposeResultCancelled.rawValue :
+        case MessageComposeResult.cancelled.rawValue :
             print("message canceled")
             
-        case MessageComposeResultFailed.rawValue :
+        case MessageComposeResult.failed.rawValue :
             print("message failed")
             
-        case MessageComposeResultSent.rawValue :
+        case MessageComposeResult.sent.rawValue :
             print("message sent")
             
         default:
             break
         }
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func viewMapAction(sender: UIButton) {
+    @IBAction func viewMapAction(_ sender: UIButton) {
         self.navController.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
-        mapViewCnt.lat = Double(self.sidePanelDataDict.valueForKeyPath("Latitude") as! String!)
-        mapViewCnt.lon = Double(self.sidePanelDataDict.valueForKeyPath("Longitude") as! String!)
+        mapViewCnt.lat = Double(self.sidePanelDataDict.value(forKeyPath: "Latitude") as! String!)
+        mapViewCnt.lon = Double(self.sidePanelDataDict.value(forKeyPath: "Longitude") as! String!)
         self.navController.pushViewController(mapViewCnt, animated: true)
         
     }
     
-    private func callNumber(phoneNumber:String) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phoneNumber)")!)
+    fileprivate func callNumber(_ phoneNumber:String) {
+        UIApplication.shared.openURL(URL(string: "tel://\(phoneNumber)")!)
     }
     
     override func didReceiveMemoryWarning() {

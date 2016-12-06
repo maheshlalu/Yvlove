@@ -18,27 +18,28 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
          // Do any additional setup after loading the view.
     }
 
-    func methodOfReceivedNotification(notification: NSNotification){
+    func methodOfReceivedNotification(_ notification: Notification){
         
+        let notificationName = String(describing: notification.name)
         //Take Action on Notification
-        if notification.name == "SignInNotification"{
+        if notificationName == "SignInNotification"{
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
             self.navigationController?.pushViewController(signInViewCnt, animated: true)
         }
-        else if notification.name == "SignUpNotification"{
+        else if notificationName == "SignUpNotification"{
             let signUpViewCnt : CXSignUpViewController = CXSignUpViewController()
             self.navigationController?.pushViewController(signUpViewCnt, animated: true)
-        }else if notification.name == "CartButtonNotification"{
-             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-             let cart = storyBoard.instantiateViewControllerWithIdentifier("CART") as! CartViewController
+        }else if notificationName == "CartButtonNotification"{
+             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+             let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
              self.navigationController?.pushViewController(cart, animated: true)
-        }else if notification.name == "ProfileNotification"{
-            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            let profile = storyBoard.instantiateViewControllerWithIdentifier("PROFILE") as! UserProfileViewController
+        }else if notificationName == "ProfileNotification"{
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let profile = storyBoard.instantiateViewController(withIdentifier: "PROFILE") as! UserProfileViewController
             self.navigationController?.pushViewController(profile, animated: true)
-        }else if notification.name == "NotificationBellNotification"{
-            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            let profile = storyBoard.instantiateViewControllerWithIdentifier("NOTIFICATIONS") as! NotificationsViewController
+        }else if notificationName == "NotificationBellNotification"{
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
             self.navigationController?.pushViewController(profile, animated: true)
 //        }else if notification.name == "ForgotNotification" {
 //            let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
@@ -46,13 +47,13 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         }
   
     }
-    override func viewWillAppear(animated: Bool) {//NotificationBellNotification
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"CartButtonNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignInNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"SignUpNotification", object: nil)
+    override func viewWillAppear(_ animated: Bool) {//NotificationBellNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "SignInNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "SignUpNotification"), object: nil)
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ForgotNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"ProfileNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:"NotificationBellNotification", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ProfileNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "NotificationBellNotification"), object: nil)
     }
     
     
@@ -62,8 +63,8 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func cartButtonAction(){

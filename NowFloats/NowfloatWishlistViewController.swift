@@ -18,19 +18,19 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         super.viewDidLoad()
         self.wishlistcollectionView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         let nib = UINib(nibName: "WishlistCollectionViewCell", bundle: nil)
-        self.wishlistcollectionView.registerNib(nib, forCellWithReuseIdentifier: "WishlistCollectionViewCell")
+        self.wishlistcollectionView.register(nib, forCellWithReuseIdentifier: "WishlistCollectionViewCell")
         
         getTheProducts()
         
     }
     func getTheProducts(){
-        let cartlist : NSArray =  CX_Cart.MR_findAllWithPredicate(NSPredicate(format: "addToWishList = %@", "1"))
+        let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToWishList = %@", "1")) as NSArray
         self.products  = NSMutableArray(array: cartlist)
         self.wishlistcollectionView.reloadData()
     }
     
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         
         return  self.products.count
@@ -39,21 +39,21 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     
     
    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
 
-        let cell = wishlistcollectionView.dequeueReusableCellWithReuseIdentifier("WishlistCollectionViewCell", forIndexPath: indexPath)as! WishlistCollectionViewCell
+        let cell = wishlistcollectionView.dequeueReusableCell(withReuseIdentifier: "WishlistCollectionViewCell", for: indexPath)as! WishlistCollectionViewCell
         cell.imagetitleLabel.text = self.products[indexPath.item] as? String
         let products:CX_Cart = (self.products[indexPath.item]as?
             CX_Cart)!
         
         cell.imagetitleLabel.text = products.name
         cell.imagetitleLabel.font = CXAppConfig.sharedInstance.appMediumFont()
-        cell.wishlistimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
+        cell.wishlistimageview.sd_setImage(with: URL(string: products.imageUrl!))
         cell.wishlistaddtocartbutton.tag = indexPath.row+1
         cell.wishlistdeletebutton.tag = indexPath.row+1
-        cell.wishlistaddtocartbutton.addTarget(self, action: #selector(NowfloatWishlistViewController.addTocartBtnAction(_:)), forControlEvents: .TouchUpInside)
-        cell.wishlistdeletebutton.addTarget(self, action: #selector(NowfloatWishlistViewController.deleteWishListButtonAction(_:)), forControlEvents: .TouchUpInside)
+        cell.wishlistaddtocartbutton.addTarget(self, action: #selector(NowfloatWishlistViewController.addTocartBtnAction(_:)), for: .touchUpInside)
+        cell.wishlistdeletebutton.addTarget(self, action: #selector(NowfloatWishlistViewController.deleteWishListButtonAction(_:)), for: .touchUpInside)
         
         
         let rupee = "\u{20B9}"
@@ -61,13 +61,13 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
         if discount == "0"{
-            cell.mrpLbl.hidden = true
-            cell.discountBdgeLb.hidden = true
+            cell.mrpLbl.isHidden = true
+            cell.discountBdgeLb.isHidden = true
             cell.wishlistpricelabel.text = "\(rupee) \(price)"
             
         }else{
-            cell.mrpLbl.hidden = false
-            cell.discountBdgeLb.hidden = false
+            cell.mrpLbl.isHidden = false
+            cell.discountBdgeLb.isHidden = false
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
@@ -85,7 +85,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
         //let width = UIScreen.mainScreen().bounds.size.width - 6
@@ -94,19 +94,19 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
     }
     
     
-    func addTocartBtnAction(button : UIButton!){
+    func addTocartBtnAction(_ button : UIButton!){
 
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        self.products.removeObjectAtIndex(button.tag-1)
+        self.products.removeObject(at: button.tag-1)
         self.wishlistcollectionView.reloadData()
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
@@ -116,14 +116,14 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         
     }
     
-    func deleteWishListButtonAction(button : UIButton!){
+    func deleteWishListButtonAction(_ button : UIButton!){
         //Add to wishList
         
         // let updateDic : NSDictionary = self.p[button.tag-1] as! NSDictionary
         //   (indexPath.section)
         //self.collectionview.deleteItemsAtIndexPaths([indexPath])
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        self.products.removeObjectAtIndex(button.tag-1)
+        self.products.removeObject(at: button.tag-1)
         self.wishlistcollectionView.reloadData()
 
        // self.wishlistcollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])

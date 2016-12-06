@@ -13,7 +13,7 @@ class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var historylabel2: UILabel!
     @IBOutlet weak var historylabel1: UILabel!
     @IBOutlet weak var historymonthlabel: UILabel!
-    @IBAction func historybuttonAction(sender: UIButton) {
+    @IBAction func historybuttonAction(_ sender: UIButton) {
     }
     @IBOutlet weak var historynameLabel: UILabel!
   
@@ -22,7 +22,7 @@ class HistoryTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

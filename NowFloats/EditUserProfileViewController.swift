@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class EditUserProfileViewController: CXViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate{
     
@@ -36,7 +60,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         headerViewAlignments()
         dataIntegration()
         editDropDown()
-        self.saveImageBtn.hidden = true
+        self.saveImageBtn.isHidden = true
         let imgTap:UIGestureRecognizer = UITapGestureRecognizer.init()
         imgTap.addTarget(self, action: #selector(editBtnAction(_:)))
         editDPImage.addGestureRecognizer(imgTap)
@@ -49,18 +73,18 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         
         firstNameTxtField.text = firstName
         lastNameTxtField.text = lastName
-        addressTxtField.text = NSUserDefaults.standardUserDefaults().valueForKey("ADDRESS") as? String
-        cityTxtField.text = NSUserDefaults.standardUserDefaults().valueForKey("CITY") as? String
-        stateTxtField.hidden = true
+        addressTxtField.text = UserDefaults.standard.value(forKey: "ADDRESS") as? String
+        cityTxtField.text = UserDefaults.standard.value(forKey: "CITY") as? String
+        stateTxtField.isHidden = true
         
         
     
     }
-    @IBAction func editBtnAction(sender: AnyObject) {
+    @IBAction func editBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()
     }
     
-    @IBAction func saveChangesAction(sender: AnyObject) {
+    @IBAction func saveChangesAction(_ sender: AnyObject) {
         self.view.endEditing(true)
             
             self.editProfileDetails()
@@ -69,30 +93,30 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
 
 
     func editProfileDetails(){
-        let alert = UIAlertController(title:"Save Changes?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (UIAlertAction) in
+        let alert = UIAlertController(title:"Save Changes?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (UIAlertAction) in
             LoadingView.show("Uploading!!", animated: true)
-            let imgStr = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as! String
+            let imgStr = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
                 CXAppDataManager.sharedInstance.profileUpdate(self.staticEmail.text!, address:self.addressTxtField.text!, firstName: self.firstNameTxtField.text!, lastName: self.lastNameTxtField.text!, mobileNumber: self.staticMobileNumber.text!, city: self.cityTxtField.text!, state:"",country:"",image:imgStr ) { (responseDict) in
                     print(responseDict)
-                    let status: Int = Int(responseDict.valueForKey("status") as! String)!
+                    let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                     if status == 1{
-                        dispatch_async(dispatch_get_main_queue(), {
+                        DispatchQueue.main.async(execute: {
                             
                            // NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("state"), forKey: "STATE")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("emailId"), forKey: "USER_EMAIL")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("firstName"), forKey: "FIRST_NAME")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("lastName"), forKey: "LAST_NAME")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("UserId"), forKey: "USER_ID")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macId"), forKey: "MAC_ID")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("mobile"), forKey: "MOBILE")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("address"), forKey: "ADDRESS")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("fullName"), forKey: "FULL_NAME")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("city"), forKey: "CITY")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("orgId"), forKey: "ORG_ID")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("macIdJobId"), forKey: "MACID_JOBID")
-                            NSUserDefaults.standardUserDefaults().setObject(responseDict.valueForKey("organisation"), forKey: "ORGANIZATION")
-                            NSUserDefaults.standardUserDefaults().synchronize()
+                            UserDefaults.standard.set(responseDict.value(forKey: "emailId"), forKey: "USER_EMAIL")
+                            UserDefaults.standard.set(responseDict.value(forKey: "firstName"), forKey: "FIRST_NAME")
+                            UserDefaults.standard.set(responseDict.value(forKey: "lastName"), forKey: "LAST_NAME")
+                            UserDefaults.standard.set(responseDict.value(forKey: "UserId"), forKey: "USER_ID")
+                            UserDefaults.standard.set(responseDict.value(forKey: "macId"), forKey: "MAC_ID")
+                            UserDefaults.standard.set(responseDict.value(forKey: "mobile"), forKey: "MOBILE")
+                            UserDefaults.standard.set(responseDict.value(forKey: "address"), forKey: "ADDRESS")
+                            UserDefaults.standard.set(responseDict.value(forKey: "fullName"), forKey: "FULL_NAME")
+                            UserDefaults.standard.set(responseDict.value(forKey: "city"), forKey: "CITY")
+                            UserDefaults.standard.set(responseDict.value(forKey: "orgId"), forKey: "ORG_ID")
+                            UserDefaults.standard.set(responseDict.value(forKey: "macIdJobId"), forKey: "MACID_JOBID")
+                            UserDefaults.standard.set(responseDict.value(forKey: "organisation"), forKey: "ORGANIZATION")
+                            UserDefaults.standard.synchronize()
                             LoadingView.hide()
                             self.showAlertView("Profile Updated Successfully!!!", status: 1)
                         })
@@ -100,29 +124,29 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive) {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {
             (UIAlertAction) in
                 
             }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         }
     
-    @IBAction func saveImageAction(sender: AnyObject) {
+    @IBAction func saveImageAction(_ sender: AnyObject) {
         LoadingView.show("Uploading!!", animated: true)
         let image = self.editDPImage.image! as UIImage
-        let imageData = NSData(data: UIImagePNGRepresentation(image)!)
+        let imageData = NSData(data: UIImagePNGRepresentation(image)!) as Data
         CXDataService.sharedInstance.imageUpload(imageData) { (Response) in
             print("\(Response)")
             
-            let status: Int = Int(Response.valueForKey("status") as! String)!
+            let status: Int = Int(Response.value(forKey: "status") as! String)!
             if status == 1{
-                 dispatch_async(dispatch_get_main_queue(), {
-                let imgStr = Response.valueForKey("filePath") as! String
-                NSUserDefaults.standardUserDefaults().setValue(imgStr, forKey: "IMAGE_PATH")
-                self.saveImageBtn.hidden = true
+                 DispatchQueue.main.async(execute: {
+                let imgStr = Response.value(forKey: "filePath") as! String
+                UserDefaults.standard.setValue(imgStr, forKey: "IMAGE_PATH")
+                self.saveImageBtn.isHidden = true
                 LoadingView.hide()
                 self.showAlertView("Photo Uploaded Successfully!!!", status: 1)
 
@@ -145,9 +169,9 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
                 print("choose from photos")
                 let image = UIImagePickerController()
                 image.delegate = self
-                image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                image.sourceType = UIImagePickerControllerSourceType.photoLibrary
                 image.allowsEditing = false
-                self.presentViewController(image, animated: true, completion: nil)
+                self.present(image, animated: true, completion: nil)
                 
             }else if index == 1{
                 print("choose from fb")
@@ -155,7 +179,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             }else if index == 2{
                 self.editDPImage.image = UIImage(named:"placeholder")
                 self.editDPImage.alpha = 0.4
-                self.saveImageBtn.hidden = false
+                self.saveImageBtn.isHidden = false
             }
         }
     
@@ -163,21 +187,21 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
     
     // MARK: - UIImagePickerControllerDelegate Methods
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.saveImageBtn.hidden = false
-            editDPImage.contentMode = .ScaleToFill
+            self.saveImageBtn.isHidden = false
+            editDPImage.contentMode = .scaleToFill
             editDPImage.image = pickedImage
             editDPImage.alpha = 1
-            editDPImage.backgroundColor = UIColor.clearColor()
+            editDPImage.backgroundColor = UIColor.clear
             
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
        
     }
     
@@ -193,13 +217,13 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         self.editDPImage.layer.cornerRadius = self.editDPImage.frame.size.width / 4
         self.editDPImage.clipsToBounds = true
         self.editDPImage.layer.borderWidth = 3.0
-        self.editDPImage.layer.borderColor = UIColor.whiteColor().CGColor
+        self.editDPImage.layer.borderColor = UIColor.white.cgColor
         
-        let imageUrl = NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as? String
+        let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
         if (imageUrl != ""){
-            editDPImage.sd_setImageWithURL(NSURL(string: (NSUserDefaults.standardUserDefaults().valueForKey("IMAGE_PATH") as?String)!))
+            editDPImage.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
             editDPImage.alpha = 1
-            editDPImage.backgroundColor = UIColor.clearColor()
+            editDPImage.backgroundColor = UIColor.clear
         }else{
             editDPImage.image = UIImage(named: "placeholder")
             editDPImage.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -209,7 +233,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
        
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.tag == 3 {
             if  range.length==1 && string.characters.count == 0 {
                 return true
@@ -217,33 +241,33 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             if textField.text?.characters.count >= 10 {
                 return false
             }
-            let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
-            return string.rangeOfCharacterFromSet(invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+            let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+            //return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.characters.indices) == nil
         }
         return true
     }
     
-    func isValidEmail(email: String) -> Bool {
+    func isValidEmail(_ email: String) -> Bool {
         // print("validate email: \(email)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        if emailTest.evaluateWithObject(email) {
+        if emailTest.evaluate(with: email) {
             return true
         }
         return false
     }
     // AlertView
-    func showAlertView(message:String, status:Int) {
-        dispatch_async(dispatch_get_main_queue(), {
-            let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default) {
+    func showAlertView(_ message:String, status:Int) {
+        DispatchQueue.main.async(execute: {
+            let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
                 UIAlertAction in
                 if status == 1 {
-                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
             alert.addAction(okAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         })
     }
     

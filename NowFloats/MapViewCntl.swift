@@ -13,7 +13,7 @@ import CoreLocation
 
 class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate  {
     var mapView: MKMapView = MKMapView ()
-    let screenSize = UIScreen.mainScreen().bounds.size
+    let screenSize = UIScreen.main.bounds.size
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
     var currentLat:Double! = nil
@@ -52,7 +52,7 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     
     func designMapview () {
         
-        self.mapView = MKMapView.init(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
+        self.mapView = MKMapView.init(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
         self.view.addSubview(self.mapView)
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
@@ -61,14 +61,14 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     }
     
     func addShowDirectionButton () {
-        let showDirectionBtn : UIButton = UIButton.init(frame: CGRectMake(0, 0, 250, 30))
+        let showDirectionBtn : UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 250, height: 30))
         self.mapView.addSubview(showDirectionBtn)
-        showDirectionBtn.setTitle("Show Direction", forState: UIControlState.Normal)
-        showDirectionBtn.titleLabel?.textColor = UIColor.whiteColor()
+        showDirectionBtn.setTitle("Show Direction", for: UIControlState())
+        showDirectionBtn.titleLabel?.textColor = UIColor.white
         showDirectionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        showDirectionBtn.center = CGPointMake(screenSize.width/2, screenSize.height-100)
-        self.view.bringSubviewToFront(showDirectionBtn)
-        showDirectionBtn.addTarget(self, action: #selector(MapViewCntl.showMapDirection), forControlEvents: UIControlEvents.TouchUpInside)
+        showDirectionBtn.center = CGPoint(x: screenSize.width/2, y: screenSize.height-100)
+        self.view.bringSubview(toFront: showDirectionBtn)
+        showDirectionBtn.addTarget(self, action: #selector(MapViewCntl.showMapDirection), for: UIControlEvents.touchUpInside)
         
     }
     
@@ -109,13 +109,13 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
         
         let polyline = MKPolyline(coordinates: &points, count: points.count)
         
-        mapView.addOverlay(polyline)
+        mapView.add(polyline)
         
     }
     
-    func distanceBetweenTwoLocations(source:CLLocation,destination:CLLocation) -> Double{
+    func distanceBetweenTwoLocations(_ source:CLLocation,destination:CLLocation) -> Double{
         
-        let distanceMeters = source.distanceFromLocation(destination)
+        let distanceMeters = source.distance(from: destination)
         let distanceKM = distanceMeters / 1000
         let roundedTwoDigit = distanceKM.roundedTwoDigit
         return roundedTwoDigit
@@ -161,7 +161,7 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
 //    }
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.currentLat = locValue.latitude
@@ -173,16 +173,16 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
         distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
         print(distance)
         
-        let formatter = NSNumberFormatter()
+        let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         
-       let distanceInKM = formatter.stringFromNumber(distance)
+       let distanceInKM = formatter.string(from: distance as NSNumber)
         print(distanceInKM!)
         
  
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Errors: " + error.localizedDescription)
     }
@@ -234,7 +234,9 @@ extension Double{
     
     var roundedTwoDigit:Double{
         
-        return Double(round(100*self)/100)
+        return 10.0
+        //return Double(round(10.00))
+       // return Double(round(100*self)/100)
         
     }
 }

@@ -19,13 +19,13 @@ class AboutusTableViewCell: UITableViewCell {
         super.awakeFromNib()
         aboutuskmLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
     
-        aboutusgoogleLabel.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
-        aboutusgoogleLabel.backgroundColor = UIColor.clearColor()
+        aboutusgoogleLabel.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
+        aboutusgoogleLabel.backgroundColor = UIColor.clear
         aboutusgoogleLabel.layer.cornerRadius = 14.0
         aboutusgoogleLabel.layer.borderWidth = 1
-        aboutusgoogleLabel.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().CGColor
-        aboutusgoogleLabel.hidden = true
-        aboutuskmLabel.hidden = true
+        aboutusgoogleLabel.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
+        aboutusgoogleLabel.isHidden = true
+        aboutuskmLabel.isHidden = true
         
 
     }

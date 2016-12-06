@@ -23,7 +23,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
-        self.updatecollectionview.registerNib(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
+        self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
@@ -32,61 +32,62 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         setupDropDowns()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updatecollectionview.reloadData()
     }
     
-    @IBAction func chooseBtnAction(sender: AnyObject) {
+    @IBAction func chooseBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()
     }
     func setupDropDowns() {
-        self.chooseArticleButton.setTitle("\("  ")Popularity", forState: .Normal)
+        self.chooseArticleButton.setTitle("\("  ")Popularity", for: UIControlState())
         setupChooseArticleDropDown()
     }
     
     
     func getTheProducts(){
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: "CX_Products")
-        self.products  = CX_Products.MR_executeFetchRequest(fetchRequest)
-        self.updatecollectionview.reloadData()
+        //       let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+        self.products =  CX_Products.mr_findAll() as NSArray!
+        //        self.products  = CX_Products.mr_execute(fetchRequest)
+        //        self.updatecollectionview.reloadData()
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return self.products.count
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionViewCell", forIndexPath: indexPath)as! ProductsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath)as! ProductsCollectionViewCell
         
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-        let productJson = products.valueForKey("json") as! NSString
+        let productJson = products.value(forKey: "json") as! NSString
         let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
-        let shipmentDuration = dic.valueForKey("ShipmentDuration")
+        let shipmentDuration = dic.value(forKey: "ShipmentDuration")
         cell.productdescriptionLabel.text = products.name
         if shipmentDuration != nil {
-            cell.produstimageview.contentMode = UIViewContentMode.ScaleToFill
+            cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
         }else{
-            cell.produstimageview.contentMode = UIViewContentMode.ScaleAspectFit
+            cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
         }
-        cell.produstimageview.sd_setImageWithURL(NSURL(string: products.imageUrl!))
+        cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
         
         let rupee = "\u{20B9}"
         let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
         let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
         if discount == "0"{
-            cell.productpriceLabel.hidden = true
+            cell.productpriceLabel.isHidden = true
             cell.productFinalPriceLabel.text = "\(rupee) \(price)"
-            cell.productFinalPriceLabel.font = cell.productpriceLabel.font.fontWithSize(14)
-            cell.productFinalPriceLabel.textColor = UIColor.darkGrayColor()
+            cell.productFinalPriceLabel.font = cell.productpriceLabel.font.withSize(14)
+            cell.productFinalPriceLabel.textColor = UIColor.darkGray
         }else{
-            cell.productpriceLabel.hidden = false
-            cell.productpriceLabel.font = cell.productpriceLabel.font.fontWithSize(11)
+            cell.productpriceLabel.isHidden = false
+            cell.productpriceLabel.font = cell.productpriceLabel.font.withSize(11)
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
@@ -100,8 +101,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         cell.likebutton.tag = indexPath.row+1
         
         
-        cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), for: UIControlEvents.touchUpInside)
+        cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
         
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
         
@@ -110,25 +111,25 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
     
-    func assignCartButtonWishtListProperTy(tableViewCell:ProductsCollectionViewCell,indexPath:NSIndexPath,productData:CX_Products){
+    func assignCartButtonWishtListProperTy(_ tableViewCell:ProductsCollectionViewCell,indexPath:IndexPath,productData:CX_Products){
         
-        if CXDataProvider.sharedInstance.isAddToCart(productData.pid!).isAddedToCart{
+        if CXDataProvider.sharedInstance.isAddToCart(productData.pid! as NSString).isAddedToCart{
             tableViewCell.cartaddedbutton.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             tableViewCell.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-            tableViewCell.cartaddedbutton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-            tableViewCell.cartaddedbutton.selected = true
+            tableViewCell.cartaddedbutton.setTitleColor(UIColor.white, for: .selected)
+            tableViewCell.cartaddedbutton.isSelected = true
         }else{
-            tableViewCell.cartaddedbutton.selected = false
-            tableViewCell.cartaddedbutton.backgroundColor = UIColor.whiteColor()
+            tableViewCell.cartaddedbutton.isSelected = false
+            tableViewCell.cartaddedbutton.backgroundColor = UIColor.white
             tableViewCell.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-            tableViewCell.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
+            tableViewCell.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         }
         
-        if CXDataProvider.sharedInstance.isAddToCart(productData.pid!).isAddedToWishList{
-            tableViewCell.likebutton.selected = true
+        if CXDataProvider.sharedInstance.isAddToCart(productData.pid! as NSString).isAddedToWishList{
+            tableViewCell.likebutton.isSelected = true
             
         }else{
-            tableViewCell.likebutton.selected = false
+            tableViewCell.likebutton.isSelected = false
         }
         
         
@@ -145,29 +146,29 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     //        return CGSize(width: screenWidth/2.2+7, height: 222);
     //    }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
         
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = products.json
         self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
     
@@ -177,24 +178,24 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
 
 extension ProductsViewController {
     
-    func productAddedToCart(sender:UIButton){
+    func productAddedToCart(_ sender:UIButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
-        let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
+        let indexPath = IndexPath(row: sender.tag-1, section: 0)
 
         //CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true)
         
-        if sender.selected {
+        if sender.isSelected {
             //Remove Item From Cart
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
                 //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                self.updatecollectionview.reloadItems(at: [indexPath])
             })
             
         }else{
             
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                self.updatecollectionview.reloadItems(at: [indexPath])
                 
             })
             
@@ -212,17 +213,17 @@ extension ProductsViewController {
         
     }
     
-    func productAddedToWishList(sender:UIButton){
+    func productAddedToWishList(_ sender:UIButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
-        let indexPath = NSIndexPath(forRow: sender.tag-1, inSection: 0)
+        let indexPath = IndexPath(row: sender.tag-1, section: 0)
         
-        if sender.selected {
+        if sender.isSelected {
             //Remove Item From WishList
             
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 //self.updatecollectionview.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                self.updatecollectionview.reloadItems(at: [indexPath])
             })
             
         }else{
@@ -230,7 +231,7 @@ extension ProductsViewController {
             //Add Item to WishList
             
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-                self.updatecollectionview.reloadItemsAtIndexPaths([indexPath])
+                self.updatecollectionview.reloadItems(at: [indexPath])
                 
             })
             
@@ -242,12 +243,12 @@ extension ProductsViewController {
 
 
 extension ProductsViewController:UISearchBarDelegate{
-    func searchBarSearchButtonClicked( searchBar: UISearchBar)
+    func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
         self.productSearhBar.resignFirstResponder()
         self.doSearch()
     }
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // print("search string \(searchText)")
         if (self.productSearhBar.text!.characters.count > 0) {
             self.doSearch()
@@ -276,25 +277,29 @@ extension ProductsViewController:UISearchBarDelegate{
         self.productSearhBar.showsCancelButton = false;
         
     }
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.refreshSearchBar()
         // Do a default fetch of the beers
         self.loadDefaultList()
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.productSearhBar.showsCancelButton = false;
         
     }
     
     func doSearch () {
  
-        let productEn = NSEntityDescription.entityForName("CX_Products", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
+        let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
         let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productSearhBar.text!)
-        let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)
-        fetchRequest.predicate = predicate
-        fetchRequest.entity = productEn
-        self.products = CX_Products.MR_executeFetchRequest(fetchRequest)
+        
+        let fetchRequest = CX_Products.mr_requestAllSorted(by: "pid", ascending: false)
+        fetchRequest?.predicate = predicate
+        fetchRequest?.entity = productEn
+        
+        
+        
+        self.products = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
        self.updatecollectionview.reloadData()
         
         /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
@@ -339,17 +344,17 @@ extension ProductsViewController{
         
         // Action triggered on selection
         chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
-            self.chooseArticleButton.setTitle(item, forState: .Normal)
+            self.chooseArticleButton.setTitle(item, for: UIControlState())
               if index == 0{
-                 self.products  = CX_Products.MR_findAll()
+                 self.products  = CX_Products.mr_findAll() as NSArray!
             }else if index == 1{
-                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: false)
+                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: false) as NSArray!
             }else if index == 2{
-                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: false)
+                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: false) as NSArray!
             }else if index == 3{
-                self.products = CX_Products.MR_findAllSortedBy("pPrice", ascending: true)
+                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: true) as NSArray!
             }else if index == 4{
-                self.products = CX_Products.MR_findAllSortedBy("pUpdateDate", ascending: true)
+                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: true) as NSArray!
             }
             
             self.updatecollectionview.reloadData()

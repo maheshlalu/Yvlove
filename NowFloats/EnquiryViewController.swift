@@ -16,7 +16,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         
         let nib = UINib(nibName: "EnquiryTableViewCell", bundle: nil)
-        self.enquiryTableview.registerNib(nib, forCellReuseIdentifier: "EnquiryTableViewCell")
+        self.enquiryTableview.register(nib, forCellReuseIdentifier: "EnquiryTableViewCell")
         self.enquiryTableview.rowHeight = UITableViewAutomaticDimension
         self.enquiryTableview.estimatedRowHeight = 10.5
         
@@ -24,7 +24,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         
         
@@ -34,7 +34,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
         
@@ -42,27 +42,27 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
         
         
         
-       let cell = enquiryTableview.dequeueReusableCellWithIdentifier("EnquiryTableViewCell", forIndexPath: indexPath)as! EnquiryTableViewCell
-        cell.selectionStyle = .None
+       let cell = enquiryTableview.dequeueReusableCell(withIdentifier: "EnquiryTableViewCell", for: indexPath)as! EnquiryTableViewCell
+        cell.selectionStyle = .none
         
         cell.enquiryActivebutton.layer.cornerRadius = 10
         
         cell.enquiryActivebutton.clipsToBounds = true
 
         cell.enquiryActivebutton.layer.borderWidth = 1
-        cell.enquiryActivebutton.layer.backgroundColor = UIColor.blackColor().CGColor
+        cell.enquiryActivebutton.layer.backgroundColor = UIColor.black.cgColor
         
         cell.enquiryfpldTextlabel?.text = nameArray[indexPath.section]
         return cell
         
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
        /* tableView.rowHeight = 150
@@ -70,7 +70,7 @@ class EnquiryViewController: CXViewController,UITableViewDataSource,UITableViewD
         return UITableViewAutomaticDimension
         
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         
         return 20
