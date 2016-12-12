@@ -77,7 +77,6 @@ class CXDataProvider: NSObject {
                 let list = component.filter({ $0 != "" })
                 let number = Int(list[0])
                 enProduct?.pUpdateDate =  number */
-                
                 enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
                 enProduct!.type = (prod as AnyObject).value(forKey: "jobTypeName") as? String

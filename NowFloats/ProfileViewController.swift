@@ -150,7 +150,7 @@ class ProfileViewController: CXViewController {
         return ""
     }
     override func shouldShowLeftMenuWithLogo() -> Bool{
-        
+      
         return false
     }
 
@@ -181,8 +181,8 @@ extension ProfileViewController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
+   // func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ //   }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10

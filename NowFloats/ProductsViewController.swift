@@ -18,8 +18,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     @IBOutlet var updatecollectionview: UICollectionView!
     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
-    
-    
+    var type : String = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
@@ -47,10 +46,17 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     
     func getTheProducts(){
-        //       let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
-        self.products =  CX_Products.mr_findAll() as NSArray!
-        //        self.products  = CX_Products.mr_execute(fetchRequest)
-        //        self.updatecollectionview.reloadData()
+        
+        #if MyLabs
+            let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+            let predicate =  NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
+            fetchRequest.predicate = predicate
+            self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+        #else
+            self.products =  CX_Products.mr_findAll() as NSArray!
+            
+        #endif
+ 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -78,7 +84,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         let rupee = "\u{20B9}"
         let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
-        let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
+        let discount:String = "0"// CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
         if discount == "0"{
             cell.productpriceLabel.isHidden = true
@@ -289,17 +295,25 @@ extension ProductsViewController:UISearchBarDelegate{
     }
     
     func doSearch () {
- 
-        let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
-        let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productSearhBar.text!)
         
-        let fetchRequest = CX_Products.mr_requestAllSorted(by: "pid", ascending: false)
-        fetchRequest?.predicate = predicate
-        fetchRequest?.entity = productEn
+        #if MyLabs
+            //let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
+            let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@ AND type=='\(self.type)'",self.productSearhBar.text!)
+            let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+           // let predicate =  NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
+            fetchRequest.predicate = predicate
+            self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+        #else
+            let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
+            let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.productSearhBar.text!)
+            
+            let fetchRequest = CX_Products.mr_requestAllSorted(by: "pid", ascending: false)
+            fetchRequest?.predicate = predicate
+            fetchRequest?.entity = productEn
+            self.products = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
+
+        #endif
         
-        
-        
-        self.products = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
        self.updatecollectionview.reloadData()
         
         /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
@@ -342,19 +356,28 @@ extension ProductsViewController{
             "   Oldest"
         ]
         
+        var predicate : NSPredicate = NSPredicate()
+        
+        #if MyLabs
+           predicate = NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
+        #else
+        #endif
+        
         // Action triggered on selection
         chooseArticleDropDown.selectionAction = { [unowned self] (index, item) in
             self.chooseArticleButton.setTitle(item, for: UIControlState())
               if index == 0{
                  self.products  = CX_Products.mr_findAll() as NSArray!
             }else if index == 1{
-                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: false) as NSArray!
+    
+                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: false, with: predicate) as NSArray!
             }else if index == 2{
-                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: false) as NSArray!
+                //pPrice
+                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: false, with: predicate) as NSArray!
             }else if index == 3{
-                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: true) as NSArray!
+                self.products = CX_Products.mr_findAllSorted(by: "pPrice", ascending: true, with: predicate) as NSArray!
             }else if index == 4{
-                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: true) as NSArray!
+                self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: true, with: predicate) as NSArray!
             }
             
             self.updatecollectionview.reloadData()

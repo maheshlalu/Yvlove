@@ -58,20 +58,34 @@ class HomeViewController: UITabBarController {
             firstTab.title = "OFFERS"
             firstTab.tabBarItem.image = UIImage(named: "offers")
         }
-        
-        let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
-        product.title = "PRODUCTS"
-        product.tabBarItem.image = UIImage(named: "productsImage")
-        
-        let serviceForm : ServiceFormViewController = ServiceFormViewController()
-        serviceForm.title = "Form"
+   
+//        let serviceForm : ServiceFormViewController = ServiceFormViewController()
+//        serviceForm.title = "Form"
 
+        #if MyLabs
+            let radiology = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
+            radiology.title = "RADIOLOGY"
+            radiology.tabBarItem.image = UIImage(named: "productsImage")
+            radiology.type = "Radiology"
 
-        let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController
-        photos.title = "PHOTOS"
-        photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
+            let pathology = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
+            pathology.title = "PATHOLOGY"
+            pathology.tabBarItem.image = UIImage(named: "productsImage")
+            pathology.type = "Pathology"
+             self.tabBarController?.setViewControllers([firstTab,radiology,pathology], animated: true)
+        #else
+            let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
+            product.title = "PRODUCTS"
+            product.tabBarItem.image = UIImage(named: "productsImage")
+            
+            let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController
+            photos.title = "PHOTOS"
+            photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
+            self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
+
+        #endif
         
-        self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
+        
 
 //OFFERS
     }

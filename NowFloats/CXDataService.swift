@@ -90,8 +90,7 @@ open class CXDataService: NSObject {
                 case .failure(let error):
                     print(error)
                 }
-        }*/hfgyutyu6rhgnv u
-        
+        }*/
         Alamofire.request(urlstring, method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
             .validate()
             .validate(contentType: ["application/json"])

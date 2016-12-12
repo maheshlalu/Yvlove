@@ -112,6 +112,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
             tableView.register(UINib(nibName: "OfferFeaturedProductCell", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
             feturedProuctsCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentFier) as? OfferFeaturedProductCell
         }
+        feturedProuctsCell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, forRow: indexPath.row)
         //feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
         print("indext path tag \(indexPath.section)")
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section

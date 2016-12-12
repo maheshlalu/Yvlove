@@ -86,16 +86,27 @@ class CXAppConfig {
     
     func getAppTheamColor() -> UIColor {
         
-        let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
-        let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
-        let green : Double = (appTheamColorArr.object(at: 1) as! NSString).doubleValue
-        let blue : Double = (appTheamColorArr.object(at: 2) as! NSString).doubleValue
-        return UIColor(
-            red: CGFloat(red / 255.0),
-            green: CGFloat(green / 255.0),
-            blue: CGFloat(blue / 255.0),
-            alpha: CGFloat(1.0)
-        )
+        
+        #if MyLabs
+            return UIColor(
+                red: CGFloat(67 / 255.0),
+                green: CGFloat(160 / 255.0),
+                blue: CGFloat(221 / 255.0),
+                alpha: CGFloat(1.0)
+            )
+        #else
+            let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
+            let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
+            let green : Double = (appTheamColorArr.object(at: 1) as! NSString).doubleValue
+            let blue : Double = (appTheamColorArr.object(at: 2) as! NSString).doubleValue
+            return UIColor(
+                red: CGFloat(red / 255.0),
+                green: CGFloat(green / 255.0),
+                blue: CGFloat(blue / 255.0),
+                alpha: CGFloat(1.0)
+            )
+        #endif
+        return UIColor()
     }
     
     func getAppBGColor() -> UIColor {

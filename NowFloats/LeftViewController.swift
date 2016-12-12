@@ -78,7 +78,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.sidepanelView()
         
         }else{
-            CXAppDataManager.sharedInstance.getTheStores({(isDataSaved) in
+           /* CXAppDataManager.sharedInstance.getTheStores({(isDataSaved) in
                 let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
                 //Predicate predicateWithFormat:@"SUBQUERY(models, $m, ANY $m.trims IN %@).@count > 0",arrayOfTrims];
                 let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
@@ -92,7 +92,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
                 print(self.sidePanelDataDict)
                 self.sidepanelView()
-            })
+            })*/
+            
         }
     }
     

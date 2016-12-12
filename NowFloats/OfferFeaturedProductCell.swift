@@ -87,6 +87,15 @@ extension OfferFeaturedProductCell {
         }
     }
     
+    func setCollectionViewDataSourceDelegate(dataSource:UICollectionViewDataSource,delegate:UICollectionViewDelegate,forRow:Int){
+        
+        self.detailCollectionView.dataSource = dataSource
+        self.detailCollectionView.delegate = delegate
+        self.detailCollectionView.tag = forRow
+        self.detailCollectionView.reloadData()
+        
+    }
+    
 //    func setCollectionViewDataSourceDelegate<D: (UICollectionViewDataSource & UICollectionViewDelegate)>(_ dataSourceDelegate: D, forRow row: Int) {
 //        
 //        self.detailCollectionView.delegate = dataSourceDelegate

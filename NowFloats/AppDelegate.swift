@@ -29,6 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configure()
       //  blockOperationsTest1()
        // self.setUpSidePanelview()
+        
+        #if MyLabs
+            print("We have a banana")
+       #endif
+
+//        #elseif MELONA
+//            print("Melona")
+//        #else
+//            print("Kiwi")
+//        #endif
         return true
     }
     
