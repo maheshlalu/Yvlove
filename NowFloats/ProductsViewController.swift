@@ -165,12 +165,23 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         return 5
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-        
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-        productDetails.productString = products.json
-        self.navigationController?.pushViewController(productDetails, animated: true)
+        let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+        print(products.json!)
+
+        #if MyLabs
+            //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+            let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
+            MLProductDetails.productString = products.json
+            MLProductDetails.type = self.type
+            self.navigationController?.pushViewController(MLProductDetails, animated: true)
+            
+        #else
+            let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+            productDetails.productString = products.json
+            self.navigationController?.pushViewController(productDetails, animated: true)
+        #endif
+        
         
     }
     

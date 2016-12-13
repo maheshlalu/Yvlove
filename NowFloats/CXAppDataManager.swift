@@ -71,7 +71,7 @@ open class CXAppDataManager: NSObject {
    
             if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == Pathology", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Pathology" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                    //print("print products\(responseDict)")
+                    print("print products\(responseDict)")
                     CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     })
                 }
@@ -96,7 +96,9 @@ open class CXAppDataManager: NSObject {
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 //print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
-                    self.getTheFeaturedProduct()
+                    self.getTheFeatu
+                    
+                redProduct()
                 })
             }
         }else{
@@ -163,6 +165,15 @@ open class CXAppDataManager: NSObject {
             //  NSManagedObjectContext.MR_contextForCurrentThread().save()
             
             CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                print(responseDict)
+                
+                let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
+                
+                if jobs.count == 0{
+                    self.dataDelegate?.completedTheFetchingTheData(self)
+                    return
+                }
+
                 CXDataProvider.sharedInstance.saveTheFeaturedProductJobs(responseDict, parentID: featuredProducts.fID!, completion: { (isDataSaved) in
                     featuredProducts.itHasJobs = true
                     NSManagedObjectContext.mr_contextForCurrentThread().mr_saveOnlySelfAndWait()

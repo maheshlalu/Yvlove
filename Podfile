@@ -12,6 +12,7 @@ target 'NowFloats' do
     pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
     pod 'AFNetworking', '~> 3.1'
     pod 'XLForm', '~> 3.2'
+    
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing
@@ -21,6 +22,13 @@ target 'NowFloats' do
         inherit! :search_paths
         # Pods for testing
     end
+    
+    
+    target 'MyLabs' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

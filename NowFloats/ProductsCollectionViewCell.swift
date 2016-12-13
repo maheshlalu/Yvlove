@@ -22,15 +22,23 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
-        self.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        self.cartaddedbutton.backgroundColor = UIColor.white
-        self.cartaddedbutton.layer.cornerRadius = 12
-        self.cartaddedbutton.layer.borderWidth = 1
-        self.cartaddedbutton.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
         
-        //self.productdescriptionLabel.font = CXAppConfig.sharedInstance.appLargeFont()
-        self.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        #if MyLabs
+            cartaddedbutton.isHidden = true
+            self.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        #else
+            self.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
+            self.cartaddedbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            self.cartaddedbutton.backgroundColor = UIColor.white
+            self.cartaddedbutton.layer.cornerRadius = 12
+            self.cartaddedbutton.layer.borderWidth = 1
+            self.cartaddedbutton.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
+            
+            //self.productdescriptionLabel.font = CXAppConfig.sharedInstance.appLargeFont()
+            self.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            
+        #endif
+
         
     }
     

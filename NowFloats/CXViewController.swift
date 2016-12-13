@@ -18,9 +18,9 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
          // Do any additional setup after loading the view.
     }
 
-    func methodOfReceivedNotification(_ notification: Notification){
+    func methodOfReceivedNotification(_ notification: NSNotification){
         
-        let notificationName = String(describing: notification.name)
+        let notificationName = notification.name._rawValue
         //Take Action on Notification
         if notificationName == "SignInNotification"{
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()

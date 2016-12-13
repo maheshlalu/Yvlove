@@ -87,6 +87,9 @@ class DemoPopupViewController2: UIViewController, PopupContentViewController, UI
     @IBAction func okButtonAction(_ sender: AnyObject) {
         signUpBtnAction()
     }
+    @IBAction func cancelBtnAction(_ sender: Any) {
+        self.closeHandler?()
+    }
     
     func signUpBtnAction() {
         self.view.endEditing(true)

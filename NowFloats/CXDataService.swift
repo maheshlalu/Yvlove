@@ -216,11 +216,6 @@ open class CXDataService: NSObject {
                     print("\n\nAuth request failed with error:\n \(error)")
                     break
                 }
-                
         }
-        
-        
     }
-    
-    
 }

@@ -79,7 +79,7 @@ class CXDataProvider: NSObject {
                 enProduct?.pUpdateDate =  number */
                 enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
-                enProduct!.type = (prod as AnyObject).value(forKey: "jobTypeName") as? String
+                enProduct?.type = (prod as AnyObject).value(forKey: "jobTypeName") as? String
                 enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
                 // self.saveContext()
                 

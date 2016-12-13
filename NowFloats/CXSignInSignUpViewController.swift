@@ -74,7 +74,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         
     }
     
-    override func methodOfReceivedNotification(_ notification: Notification){
+    override func methodOfReceivedNotification(_ notification: NSNotification){
         
         let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
         self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)

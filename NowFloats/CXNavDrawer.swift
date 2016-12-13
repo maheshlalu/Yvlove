@@ -527,11 +527,9 @@ extension CXNavDrawer {
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             chooseArticleDropDown.show()
             ToggleWithProfileWithoutUserId()
-            return
         }else{
             chooseArticleDropDown.show()
             ToggleWithProfileWithUserId()
-            return
         }
         
     }
@@ -543,7 +541,7 @@ extension CXNavDrawer {
     }
     
     func profileToggleActionForSignIn(_ sender:UIButton){
-        //chooseArticleDropDown.show()
+        chooseArticleDropDown.show()
         ToggleWithProfileForSignIn()
     }
     

@@ -31,7 +31,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         self.productDetailsTableView.estimatedRowHeight = 10.0
         self.productDetailsTableView.separatorStyle = .none
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        print(CXConstant.sharedInstance.convertStringToDictionary(productString))
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
         self.setUpRatingView()
         customisingBtns()

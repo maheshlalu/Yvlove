@@ -132,7 +132,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         titleLable.numberOfLines = 0
         titleLable.font = UIFont(name: "Roboto-Bold", size: 15)
         let productName = self.isContansKey(self.sidePanelDataDict as NSDictionary, key: "Name") ? (self.sidePanelDataDict.value(forKey: "Name") as? String)! : "" // self.sidePanelDataDict.valueForKeyPath("name") as! String!
-        let city =  self.sidePanelDataDict.value(forKeyPath: "City") as! String!
+        let city =  self.sidePanelDataDict.value(forKeyPath: "City") as! String
         titleLable.text = "\(productName) \(city)"
         self.detailsView.addSubview(titleLable)
         

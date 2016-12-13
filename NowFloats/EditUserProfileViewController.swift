@@ -214,7 +214,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         lastNameTxtField.selectedLineColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.editProfileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
-        self.editDPImage.layer.cornerRadius = self.editDPImage.frame.size.width / 4
+        self.editDPImage.layer.cornerRadius = 50
         self.editDPImage.clipsToBounds = true
         self.editDPImage.layer.borderWidth = 3.0
         self.editDPImage.layer.borderColor = UIColor.white.cgColor

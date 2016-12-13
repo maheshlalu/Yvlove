@@ -41,8 +41,11 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
         
     }
     
-    func showAlert(_ message:String) {
+    func showAlert(_ message:String, status:Int) {
         let alert = UIAlertController(title: "Alert!!!", message:message , preferredStyle: UIAlertControllerStyle.alert)
+        if status == 1{
+            self.navigationController?.popToRootViewController(animated: true)
+        }
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -54,10 +57,13 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
             CXAppDataManager.sharedInstance.forgotPassword(self.emailAddressField.text!, completion: { (responseDict) in
                 print(responseDict)
                 let message = responseDict.value(forKey: "result") as? String
-                self.showAlert(message!)
+                let status: Int = Int(responseDict.value(forKey: "status") as! String)!
+                if status == 1{
+                self.showAlert(message!, status: 1)
+                }
             })
         } else {
-            self.showAlert("Please enter valid email address.")
+            self.showAlert("Please enter valid email address", status: 0)
         }
     }
     
