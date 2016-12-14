@@ -96,9 +96,7 @@ open class CXAppDataManager: NSObject {
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 //print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
-                    self.getTheFeatu
-                    
-                redProduct()
+                    self.getTheFeaturedProduct()
                 })
             }
         }else{

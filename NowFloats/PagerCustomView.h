@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *productSubLbl;
 @property (weak, nonatomic) IBOutlet UIButton *orederNowBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *pageImageView;
 @end

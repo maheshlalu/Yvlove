@@ -37,9 +37,20 @@ class OffersViewController: CXViewController{
     
     
     func getTheProducts(){
-        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
-         self.products  = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
-        self.offersTableView.reloadData()
+        
+        #if MyLabs
+            let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Gallery")
+            let predicate = NSPredicate(format:"isBannerImage=%@","false" )
+            fetchRequest.predicate = predicate
+            self.products  = CX_Gallery.mr_executeFetchRequest(fetchRequest) as NSArray
+            self.offersTableView.reloadData()
+        #else
+            let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+            self.products  = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
+            self.offersTableView.reloadData()
+        #endif
+
+    
     }
 
 
@@ -360,6 +371,12 @@ extension OffersViewController :UISearchBarDelegate{
 
 extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     public func array(withImages pager: KIImagePager!) -> [Any]! {
+        #if MyLabs
+            return self.products as! [Any]!
+        #else
+            
+        #endif
+
         return ["" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject]
 
     }
@@ -375,24 +392,37 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         
         return .center
     }
+    
+    func populateTheProductData(inPager index: UInt, in pager: KIImagePager!) {
+        
+        
+    }
+
     func populateTheProductData(_ index: UInt, in pager: KIImagePager!) -> ProductModelClass! {
-        let productData : CX_Products = self.products.object(at: Int(index)) as! CX_Products
         let productModelData : ProductModelClass = ProductModelClass.init()
-        productModelData.productName = productData.name
-        productModelData.productimage = productData.imageUrl;
-        //  productModelData.productimage = productData.name
-        productModelData.productSubTitle = productData.name
-        pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-        pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
-        pager.pagerView.orederNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appMediumFont()
-        pager.indicatorDisabled = false
-        
-        pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        pager.pageControl.pageIndicatorTintColor = UIColor.gray;
-  
-        pager.pagerView.orederNowBtn.tag = Int(index+1)
-        pager.pagerView.orederNowBtn.addTarget(self, action: #selector(OffersViewController.pagerOrderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
-        
+        #if MyLabs
+            let productData : CX_Gallery = self.products.object(at: Int(index)) as! CX_Gallery
+            productModelData.productimage = productData.gImageUrl
+
+        #else
+            let productData : CX_Products = self.products.object(at: Int(index)) as! CX_Products
+          //  let productModelData : ProductModelClass = ProductModelClass.init()
+            productModelData.productName = productData.name
+            productModelData.productimage = productData.imageUrl;
+            //  productModelData.productimage = productData.name
+            productModelData.productSubTitle = productData.name
+            pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+            pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
+            pager.pagerView.orederNowBtn.titleLabel?.font = CXAppConfig.sharedInstance.appMediumFont()
+            pager.indicatorDisabled = false
+            
+            pager.pageControl.currentPageIndicatorTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            pager.pageControl.pageIndicatorTintColor = UIColor.gray;
+            
+            pager.pagerView.orederNowBtn.tag = Int(index+1)
+            pager.pagerView.orederNowBtn.addTarget(self, action: #selector(OffersViewController.pagerOrderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
+
+        #endif
         return productModelData
         
     }

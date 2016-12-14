@@ -36,26 +36,6 @@
 		113E5DA21D87DFED0003DA8D /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5D9F1D87DFED0003DA8D /* CartViewController.swift */; };
 		113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */; };
 		113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113E5DA11D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib */; };
-		113F0F571DFE9DD6006CBA2E /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; };
-		113F0F591DFE9F10006CBA2E /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F631DFE9F3F006CBA2E /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; };
-		113F0F651DFE9FB2006CBA2E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; };
-		113F0F661DFE9FB2006CBA2E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F671DFE9FB2006CBA2E /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; };
-		113F0F681DFE9FB2006CBA2E /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F691DFE9FB2006CBA2E /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; };
-		113F0F6A1DFE9FB2006CBA2E /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F6C1DFE9FB2006CBA2E /* SKPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F6D1DFE9FB2006CBA2E /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; };
-		113F0F6E1DFE9FB2006CBA2E /* XLForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F6F1DFE9FB2006CBA2E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; };
-		113F0F701DFE9FB2006CBA2E /* CoreLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F711DFE9FB2006CBA2E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; };
-		113F0F721DFE9FB2006CBA2E /* MobileCoreServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F731DFE9FB2006CBA2E /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; };
-		113F0F741DFE9FB2006CBA2E /* CoreSpotlight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113F0F751DFE9FB2006CBA2E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; };
-		113F0F761DFE9FB2006CBA2E /* MapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		113F0F951DFECC2A006CBA2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4FD81A1D6446D300A6EBBE /* Main.storyboard */; };
 		1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */; };
 		1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */; };
@@ -265,6 +245,36 @@
 		183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A11D798F5400722AA2 /* CX_ProductCategory.swift */; };
 		183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */; };
 		183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */; };
+		1850F30B1E0019C900F55062 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; };
+		1850F30C1E0019C900F55062 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; };
+		1850F30D1E0019C900F55062 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; };
+		1850F30E1E0019C900F55062 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; };
+		1850F30F1E0019C900F55062 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; };
+		1850F3101E0019C900F55062 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; };
+		1850F3111E0019C900F55062 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; };
+		1850F3121E0019C900F55062 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; };
+		1850F3131E0019C900F55062 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; };
+		1850F3141E0019C900F55062 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; };
+		1850F3151E001A1F00F55062 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; };
+		1850F3161E001A1F00F55062 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3171E001A1F00F55062 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; };
+		1850F3181E001A1F00F55062 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3191E001A1F00F55062 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; };
+		1850F31A1E001A1F00F55062 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F31B1E001A1F00F55062 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; };
+		1850F31C1E001A1F00F55062 /* Pods_MyLabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F31D1E001A1F00F55062 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; };
+		1850F31E1E001A1F00F55062 /* Pods_NowFloats.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F31F1E001A1F00F55062 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; };
+		1850F3201E001A1F00F55062 /* Pods_NowFloatsTests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3211E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; };
+		1850F3221E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3231E001A1F00F55062 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; };
+		1850F3241E001A1F00F55062 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3251E001A1F00F55062 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; };
+		1850F3261E001A1F00F55062 /* SKPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1850F3271E001A1F00F55062 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; };
+		1850F3281E001A1F00F55062 /* XLForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */; };
 		1868BCF21D78316A0050BC72 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEE1D78316A0050BC72 /* KICamera.png */; };
 		1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF11D78316A0050BC72 /* KIImagePager.m */; };
@@ -328,7 +338,6 @@
 		435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
 		DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
-		FCF2441D7856A0D0FFFE45F2 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,22 +358,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		113F0F5A1DFE9F11006CBA2E /* Embed Frameworks */ = {
+		1850F3351E001A1F00F55062 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				113F0F6A1DFE9FB2006CBA2E /* SDWebImage.framework in Embed Frameworks */,
-				113F0F591DFE9F10006CBA2E /* AFNetworking.framework in Embed Frameworks */,
-				113F0F761DFE9FB2006CBA2E /* MapKit.framework in Embed Frameworks */,
-				113F0F6C1DFE9FB2006CBA2E /* SKPhotoBrowser.framework in Embed Frameworks */,
-				113F0F661DFE9FB2006CBA2E /* Alamofire.framework in Embed Frameworks */,
-				113F0F701DFE9FB2006CBA2E /* CoreLocation.framework in Embed Frameworks */,
-				113F0F741DFE9FB2006CBA2E /* CoreSpotlight.framework in Embed Frameworks */,
-				113F0F721DFE9FB2006CBA2E /* MobileCoreServices.framework in Embed Frameworks */,
-				113F0F6E1DFE9FB2006CBA2E /* XLForm.framework in Embed Frameworks */,
-				113F0F681DFE9FB2006CBA2E /* MagicalRecord.framework in Embed Frameworks */,
+				1850F3241E001A1F00F55062 /* SDWebImage.framework in Embed Frameworks */,
+				1850F3201E001A1F00F55062 /* Pods_NowFloatsTests.framework in Embed Frameworks */,
+				1850F31E1E001A1F00F55062 /* Pods_NowFloats.framework in Embed Frameworks */,
+				1850F3161E001A1F00F55062 /* AFNetworking.framework in Embed Frameworks */,
+				1850F3181E001A1F00F55062 /* Alamofire.framework in Embed Frameworks */,
+				1850F3221E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Embed Frameworks */,
+				1850F3281E001A1F00F55062 /* XLForm.framework in Embed Frameworks */,
+				1850F31C1E001A1F00F55062 /* Pods_MyLabs.framework in Embed Frameworks */,
+				1850F3261E001A1F00F55062 /* SKPhotoBrowser.framework in Embed Frameworks */,
+				1850F31A1E001A1F00F55062 /* MagicalRecord.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +484,17 @@
 		183573A11D798F5400722AA2 /* CX_ProductCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ProductCategory.swift; sourceTree = "<group>"; };
 		183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_ServiceCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ServiceCategory.swift; sourceTree = "<group>"; };
+		1850F2DE1E0018D100F55062 /* Pods_MyLabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_MyLabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1850F3011E0019C900F55062 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		1850F3021E0019C900F55062 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		1850F3031E0019C900F55062 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/MagicalRecord/MagicalRecord.framework"; sourceTree = "<group>"; };
+		1850F3041E0019C900F55062 /* Pods_MyLabs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MyLabs.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Pods_MyLabs.framework"; sourceTree = "<group>"; };
+		1850F3051E0019C900F55062 /* Pods_NowFloats.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloats.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Pods_NowFloats.framework"; sourceTree = "<group>"; };
+		1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloatsTests.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Pods_NowFloatsTests.framework"; sourceTree = "<group>"; };
+		1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloatsUITests.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Pods_NowFloatsUITests.framework"; sourceTree = "<group>"; };
+		1850F3081E0019C900F55062 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
+		1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/SKPhotoBrowser/SKPhotoBrowser.framework"; sourceTree = "<group>"; };
+		1850F30A1E0019C900F55062 /* XLForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLForm.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/XLForm/XLForm.framework"; sourceTree = "<group>"; };
 		18540FB41D82E74600C6C9A7 /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
 		18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
 		1868BCEE1D78316A0050BC72 /* KICamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KICamera.png; sourceTree = "<group>"; };
@@ -569,17 +589,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				113F0F671DFE9FB2006CBA2E /* MagicalRecord.framework in Frameworks */,
-				113F0F731DFE9FB2006CBA2E /* CoreSpotlight.framework in Frameworks */,
-				113F0F751DFE9FB2006CBA2E /* MapKit.framework in Frameworks */,
-				113F0F651DFE9FB2006CBA2E /* Alamofire.framework in Frameworks */,
-				113F0F631DFE9F3F006CBA2E /* SKPhotoBrowser.framework in Frameworks */,
-				113F0F571DFE9DD6006CBA2E /* AFNetworking.framework in Frameworks */,
-				113F0F6D1DFE9FB2006CBA2E /* XLForm.framework in Frameworks */,
-				113F0F6F1DFE9FB2006CBA2E /* CoreLocation.framework in Frameworks */,
-				113F0F691DFE9FB2006CBA2E /* SDWebImage.framework in Frameworks */,
-				113F0F711DFE9FB2006CBA2E /* MobileCoreServices.framework in Frameworks */,
-				FCF2441D7856A0D0FFFE45F2 /* Pods_MyLabs.framework in Frameworks */,
+				1850F30B1E0019C900F55062 /* AFNetworking.framework in Frameworks */,
+				1850F30C1E0019C900F55062 /* Alamofire.framework in Frameworks */,
+				1850F30D1E0019C900F55062 /* MagicalRecord.framework in Frameworks */,
+				1850F30E1E0019C900F55062 /* Pods_MyLabs.framework in Frameworks */,
+				1850F30F1E0019C900F55062 /* Pods_NowFloats.framework in Frameworks */,
+				1850F3101E0019C900F55062 /* Pods_NowFloatsTests.framework in Frameworks */,
+				1850F31B1E001A1F00F55062 /* Pods_MyLabs.framework in Frameworks */,
+				1850F3111E0019C900F55062 /* Pods_NowFloatsUITests.framework in Frameworks */,
+				1850F3211E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Frameworks */,
+				1850F3171E001A1F00F55062 /* Alamofire.framework in Frameworks */,
+				1850F3121E0019C900F55062 /* SDWebImage.framework in Frameworks */,
+				1850F31D1E001A1F00F55062 /* Pods_NowFloats.framework in Frameworks */,
+				1850F3191E001A1F00F55062 /* MagicalRecord.framework in Frameworks */,
+				1850F3131E0019C900F55062 /* SKPhotoBrowser.framework in Frameworks */,
+				1850F3141E0019C900F55062 /* XLForm.framework in Frameworks */,
+				1850F31F1E001A1F00F55062 /* Pods_NowFloatsTests.framework in Frameworks */,
+				1850F3271E001A1F00F55062 /* XLForm.framework in Frameworks */,
+				1850F3251E001A1F00F55062 /* SKPhotoBrowser.framework in Frameworks */,
+				1850F3231E001A1F00F55062 /* SDWebImage.framework in Frameworks */,
+				1850F3151E001A1F00F55062 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +647,16 @@
 		0E1CF002394DE794901016D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1850F3011E0019C900F55062 /* AFNetworking.framework */,
+				1850F3021E0019C900F55062 /* Alamofire.framework */,
+				1850F3031E0019C900F55062 /* MagicalRecord.framework */,
+				1850F3041E0019C900F55062 /* Pods_MyLabs.framework */,
+				1850F3051E0019C900F55062 /* Pods_NowFloats.framework */,
+				1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */,
+				1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */,
+				1850F3081E0019C900F55062 /* SDWebImage.framework */,
+				1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */,
+				1850F30A1E0019C900F55062 /* XLForm.framework */,
 				113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */,
 				113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */,
 				113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */,
@@ -995,6 +1034,7 @@
 		3B4FD80A1D6446D200A6EBBE = {
 			isa = PBXGroup;
 			children = (
+				1850F2DE1E0018D100F55062 /* Pods_MyLabs.framework */,
 				1818F67B1DF7EBD100841F5E /* MyLabs */,
 				3B4FD8151D6446D300A6EBBE /* NowFloats */,
 				3B4FD82D1D6446D300A6EBBE /* NowFloatsTests */,
@@ -1200,7 +1240,7 @@
 				1818F6501DF7EABC00841F5E /* Resources */,
 				1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */,
 				1818F6751DF7EABC00841F5E /* [CP] Copy Pods Resources */,
-				113F0F5A1DFE9F11006CBA2E /* Embed Frameworks */,
+				1850F3351E001A1F00F55062 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1470,7 +1510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F5DB1DF7EABC00841F5E /* [CP] Check Pods Manifest.lock */ = {
@@ -1485,7 +1525,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */ = {
@@ -1530,7 +1570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27B8D76FBFB0748BCD09A082 /* [CP] Copy Pods Resources */ = {
@@ -1605,7 +1645,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
