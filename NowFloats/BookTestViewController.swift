@@ -19,23 +19,42 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     @IBOutlet weak var chooseDateTxtField: UITextField!
     @IBOutlet weak var bookNowBt: UIButton!
     @IBOutlet weak var cScrollView: UIScrollView!
-
+    let toolBar:UIToolbar! = UIToolbar()
+    var isDatePicker:Bool = false
+    let limitLength = 10
+    var productDetails:NSDictionary!
     var pickOption = ["9:30 AM - 10:00AM", "10:00 AM - 10:30AM", "10:30 AM - 11:00AM", "11:00 AM - 11:30AM", "11:30 AM - 12:00PM","12:00 PM - 12:30PM", "12:30 PM - 1:00PM", "1:00 PM - 1:30PM", "1:30 PM - 2:00PM", "2:00 PM - 2:30PM","2:30 PM - 3:00PM", "3:00 PM - 3:30PM","3:30 PM - 4:00PM", "4:00 PM - 4:30PM","4:30 PM - 5:00PM", "5:00 PM - 5:30PM"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dataIntegration()
+        self.timePicker()
+        self.datePicker()
+        
         self.bookNowBt.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        let pickerView = UIPickerView()
-        
-        pickerView.delegate = self
-        chooseTimeTxtField.inputView = pickerView
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(BookTestViewController.handleTap(sender:)))
         self.view.addGestureRecognizer(tap)
     }
     
+    func dataIntegration(){
+        fullNameTxtField.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
+        mobileTxtField.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
+        emailTxtField.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
+    }
     
-    @IBAction func chooseCollectionDateAction(_ sender: UITextField) {
+    func timePicker(){
+        
+        let pickerView = UIPickerView()
+        self.toolBarView()
+        pickerView.delegate = self
+        chooseTimeTxtField.inputView = pickerView
+        chooseTimeTxtField.inputAccessoryView = toolBar
+    }
+    
+    func datePicker(){
+        
         let currentDate: NSDate = NSDate()
         let datePickerView  : UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.date
@@ -52,12 +71,28 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         datePickerView.minimumDate = minDate as Date
         datePickerView.maximumDate = maxDate as Date
         
-        sender.inputView = datePickerView
+        self.toolBarView()
+    
+        chooseDateTxtField.inputView = datePickerView
+        chooseDateTxtField.inputAccessoryView = toolBar
+            
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
     }
     
-    func handleDatePicker(sender: UIDatePicker) {
+    func toolBarView(){
         
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(BookTestViewController.cancelPicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+    }
+    
+    func handleDatePicker(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         chooseDateTxtField.text = dateFormatter.string(from: sender.date)
@@ -84,12 +119,126 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        chooseTimeTxtField.text =  pickOption[row]
         return pickOption[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        chooseTimeTxtField.text = pickOption[row]
+        chooseTimeTxtField.text =  pickOption[row]
     }
+    
+    func cancelPicker() {
+        chooseTimeTxtField.resignFirstResponder()
+        chooseDateTxtField.resignFirstResponder()
+    }
+    
+//    func cancelForDate(){
+//        let dateFormatter = DateFormatter()
+//        let currentDate: NSDate = NSDate()
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        chooseDateTxtField.text = dateFormatter.string(from: currentDate as Date)
+//        chooseDateTxtField.resignFirstResponder()
+//    }
+    
+    @IBAction func bookNowAction(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        if (self.fullNameTxtField.text?.characters.count)! > 0
+            && (self.add1TxtField.text?.characters.count)! > 0
+            && (self.emailTxtField.text?.characters.count)! > 0
+            && (self.chooseTimeTxtField.text?.characters.count)! > 0 &&
+            (self.mobileTxtField.text?.characters.count)! > 0 && (chooseDateTxtField.text?.characters.count)! > 0 {
+            
+            if !self.isValidEmail(self.emailTxtField.text!) {
+                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email address.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            if (self.mobileTxtField.text?.characters.count)! < 10 {
+                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid Phone number.", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+                    UIAlertAction in
+                    //self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+                
+                
+                return
+            }
+            self.bookTestCall()
+            
+        } else {
+            let alert = UIAlertController(title: "Alert!!!", message: "All fields are mandatory. Please enter all fields.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        // print("validate email: \(email)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailTest.evaluate(with: email) {
+            return true
+        }
+        return false
+    }
+    
+    func bookTestCall(){
+        
+        print(self.productDetails)
+        
+        let name = self.fullNameTxtField.text! as String
+        let mobile = self.mobileTxtField.text! as String
+        let address = (self.add1TxtField.text! + self.add2TxtField.text!) as String
+        let email = self.emailTxtField.text! as String
+        let orderItemId = self.productDetails.value(forKey: "id")!
+        let orderItemQuantity = "1"
+        let orderItemName = (productDetails.value(forKey:"Name") as? String)!
+        let orderItemMRP = productDetails.value(forKey:"MRP") as! String
+        let orderItemSubTotal = productDetails.value(forKey:"MRP") as! String
+        let diagnosticCenter = "MyLabz"
+        let SampleCollectionTime = (self.chooseTimeTxtField.text! as String)+","+(self.chooseDateTxtField.text! as String)
+        
+        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
+         print(populatedDictionary)
+        
+        
+        let listArray : NSMutableArray = NSMutableArray()
+        listArray.add(populatedDictionary)
+        
+        let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
+        cartJsonDict.setObject(listArray, forKey: "list" as NSCopying)
+        
+        var jsonData : Data = Data()
+        do {
+            jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+            // here "jsonData" is the dictionary encoded in JSON data
+        } catch let error as NSError {
+            print(error)
+        }
+        let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
+   
+        LoadingView.show("Processing Your Order", animated: true)
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder" as AnyObject,"json":jsonStringFormat as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
+            
+            print(responseDict)
+            LoadingView.hide()
+
+            let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
+            if (string.contains("1")){
+                print("successfully ordered!!!")
+                
+            }
+        }
+
+    }
+    
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
         
@@ -140,5 +289,12 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.cScrollView.setContentOffset(CGPoint.zero, animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = mobileTxtField.text else { return true }
+        
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= 10 // Bool
     }
 }

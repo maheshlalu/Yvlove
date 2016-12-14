@@ -49,6 +49,44 @@
 		11570CB41DA3B5C4002495C3 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */; };
 		11682CDF1DA5353A00A2B563 /* SparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDD1DA5353A00A2B563 /* SparkButton.swift */; };
 		11682CE01DA5353A00A2B563 /* SparkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDE1DA5353A00A2B563 /* SparkView.swift */; };
+		1169F0F21E011BD600D9D740 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0E81E011BD600D9D740 /* AFNetworking.framework */; };
+		1169F0F31E011BD600D9D740 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0E91E011BD600D9D740 /* Alamofire.framework */; };
+		1169F0F41E011BD600D9D740 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EA1E011BD600D9D740 /* MagicalRecord.framework */; };
+		1169F0F51E011BD600D9D740 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EB1E011BD600D9D740 /* Pods_MyLabs.framework */; };
+		1169F0F61E011BD600D9D740 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EC1E011BD600D9D740 /* Pods_NowFloats.framework */; };
+		1169F0F71E011BD600D9D740 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0ED1E011BD600D9D740 /* Pods_NowFloatsTests.framework */; };
+		1169F0F81E011BD600D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EE1E011BD600D9D740 /* Pods_NowFloatsUITests.framework */; };
+		1169F0F91E011BD600D9D740 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EF1E011BD600D9D740 /* SDWebImage.framework */; };
+		1169F0FA1E011BD600D9D740 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0F01E011BD600D9D740 /* SKPhotoBrowser.framework */; };
+		1169F0FB1E011BD600D9D740 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0F11E011BD600D9D740 /* XLForm.framework */; };
+		1169F0FC1E011BE200D9D740 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; };
+		1169F0FD1E011BE200D9D740 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F0FE1E011BE200D9D740 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; };
+		1169F0FF1E011BE200D9D740 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1001E011BE200D9D740 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; };
+		1169F1011E011BE200D9D740 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1021E011BE200D9D740 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; };
+		1169F1031E011BE200D9D740 /* SKPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1041E011BE200D9D740 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; };
+		1169F1051E011BE200D9D740 /* XLForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1061E011BE200D9D740 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; };
+		1169F1071E011BE200D9D740 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1081E011BE200D9D740 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; };
+		1169F1091E011BE200D9D740 /* CoreLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F10A1E011BE200D9D740 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; };
+		1169F10B1E011BE200D9D740 /* MobileCoreServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F10C1E011BE200D9D740 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; };
+		1169F10D1E011BE200D9D740 /* CoreSpotlight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F10E1E011BE200D9D740 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; };
+		1169F10F1E011BE200D9D740 /* MapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1101E011BE200D9D740 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
+		1169F1111E011BE200D9D740 /* Pods_NowFloats.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1121E011BE200D9D740 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
+		1169F1131E011BE200D9D740 /* Pods_NowFloatsTests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1141E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
+		1169F1151E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1169F1161E011BE200D9D740 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; };
+		1169F1171E011BE200D9D740 /* Pods_MyLabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		116C04061DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */; };
 		116C04071DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */; };
 		116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */; };
@@ -245,36 +283,6 @@
 		183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A11D798F5400722AA2 /* CX_ProductCategory.swift */; };
 		183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */; };
 		183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */; };
-		1850F30B1E0019C900F55062 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; };
-		1850F30C1E0019C900F55062 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; };
-		1850F30D1E0019C900F55062 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; };
-		1850F30E1E0019C900F55062 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; };
-		1850F30F1E0019C900F55062 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; };
-		1850F3101E0019C900F55062 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; };
-		1850F3111E0019C900F55062 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; };
-		1850F3121E0019C900F55062 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; };
-		1850F3131E0019C900F55062 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; };
-		1850F3141E0019C900F55062 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; };
-		1850F3151E001A1F00F55062 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; };
-		1850F3161E001A1F00F55062 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3011E0019C900F55062 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3171E001A1F00F55062 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; };
-		1850F3181E001A1F00F55062 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3021E0019C900F55062 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3191E001A1F00F55062 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; };
-		1850F31A1E001A1F00F55062 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3031E0019C900F55062 /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F31B1E001A1F00F55062 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; };
-		1850F31C1E001A1F00F55062 /* Pods_MyLabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3041E0019C900F55062 /* Pods_MyLabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F31D1E001A1F00F55062 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; };
-		1850F31E1E001A1F00F55062 /* Pods_NowFloats.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3051E0019C900F55062 /* Pods_NowFloats.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F31F1E001A1F00F55062 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; };
-		1850F3201E001A1F00F55062 /* Pods_NowFloatsTests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3061E0019C900F55062 /* Pods_NowFloatsTests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3211E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; };
-		1850F3221E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3071E0019C900F55062 /* Pods_NowFloatsUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3231E001A1F00F55062 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; };
-		1850F3241E001A1F00F55062 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3081E0019C900F55062 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3251E001A1F00F55062 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; };
-		1850F3261E001A1F00F55062 /* SKPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F3091E0019C900F55062 /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1850F3271E001A1F00F55062 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; };
-		1850F3281E001A1F00F55062 /* XLForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1850F30A1E0019C900F55062 /* XLForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18540FB61D82E74600C6C9A7 /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18540FB51D82E74600C6C9A7 /* DOPDropDownMenu.m */; };
 		1868BCF21D78316A0050BC72 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEE1D78316A0050BC72 /* KICamera.png */; };
 		1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF11D78316A0050BC72 /* KIImagePager.m */; };
@@ -358,22 +366,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1850F3351E001A1F00F55062 /* Embed Frameworks */ = {
+		1169F1181E011BE200D9D740 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1850F3241E001A1F00F55062 /* SDWebImage.framework in Embed Frameworks */,
-				1850F3201E001A1F00F55062 /* Pods_NowFloatsTests.framework in Embed Frameworks */,
-				1850F31E1E001A1F00F55062 /* Pods_NowFloats.framework in Embed Frameworks */,
-				1850F3161E001A1F00F55062 /* AFNetworking.framework in Embed Frameworks */,
-				1850F3181E001A1F00F55062 /* Alamofire.framework in Embed Frameworks */,
-				1850F3221E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Embed Frameworks */,
-				1850F3281E001A1F00F55062 /* XLForm.framework in Embed Frameworks */,
-				1850F31C1E001A1F00F55062 /* Pods_MyLabs.framework in Embed Frameworks */,
-				1850F3261E001A1F00F55062 /* SKPhotoBrowser.framework in Embed Frameworks */,
-				1850F31A1E001A1F00F55062 /* MagicalRecord.framework in Embed Frameworks */,
+				1169F1031E011BE200D9D740 /* SKPhotoBrowser.framework in Embed Frameworks */,
+				1169F1071E011BE200D9D740 /* AFNetworking.framework in Embed Frameworks */,
+				1169F10F1E011BE200D9D740 /* MapKit.framework in Embed Frameworks */,
+				1169F1111E011BE200D9D740 /* Pods_NowFloats.framework in Embed Frameworks */,
+				1169F1051E011BE200D9D740 /* XLForm.framework in Embed Frameworks */,
+				1169F0FF1E011BE200D9D740 /* MagicalRecord.framework in Embed Frameworks */,
+				1169F1171E011BE200D9D740 /* Pods_MyLabs.framework in Embed Frameworks */,
+				1169F1151E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Embed Frameworks */,
+				1169F1131E011BE200D9D740 /* Pods_NowFloatsTests.framework in Embed Frameworks */,
+				1169F1091E011BE200D9D740 /* CoreLocation.framework in Embed Frameworks */,
+				1169F10D1E011BE200D9D740 /* CoreSpotlight.framework in Embed Frameworks */,
+				1169F10B1E011BE200D9D740 /* MobileCoreServices.framework in Embed Frameworks */,
+				1169F1011E011BE200D9D740 /* SDWebImage.framework in Embed Frameworks */,
+				1169F0FD1E011BE200D9D740 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +441,16 @@
 		11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		11682CDD1DA5353A00A2B563 /* SparkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkButton.swift; sourceTree = "<group>"; };
 		11682CDE1DA5353A00A2B563 /* SparkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkView.swift; sourceTree = "<group>"; };
+		1169F0E81E011BD600D9D740 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		1169F0E91E011BD600D9D740 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		1169F0EA1E011BD600D9D740 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/MagicalRecord/MagicalRecord.framework"; sourceTree = "<group>"; };
+		1169F0EB1E011BD600D9D740 /* Pods_MyLabs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MyLabs.framework; path = "Pods/../build/Debug-iphoneos/Pods_MyLabs.framework"; sourceTree = "<group>"; };
+		1169F0EC1E011BD600D9D740 /* Pods_NowFloats.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloats.framework; path = "Pods/../build/Debug-iphoneos/Pods_NowFloats.framework"; sourceTree = "<group>"; };
+		1169F0ED1E011BD600D9D740 /* Pods_NowFloatsTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloatsTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_NowFloatsTests.framework"; sourceTree = "<group>"; };
+		1169F0EE1E011BD600D9D740 /* Pods_NowFloatsUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_NowFloatsUITests.framework; path = "Pods/../build/Debug-iphoneos/Pods_NowFloatsUITests.framework"; sourceTree = "<group>"; };
+		1169F0EF1E011BD600D9D740 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
+		1169F0F01E011BD600D9D740 /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = "Pods/../build/Debug-iphoneos/SKPhotoBrowser/SKPhotoBrowser.framework"; sourceTree = "<group>"; };
+		1169F0F11E011BD600D9D740 /* XLForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLForm.framework; path = "Pods/../build/Debug-iphoneos/XLForm/XLForm.framework"; sourceTree = "<group>"; };
 		116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPopupViewController2.swift; sourceTree = "<group>"; };
 		116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DemoPopupViewController2.storyboard; sourceTree = "<group>"; };
 		116C04191DFFFAD200AF4C89 /* BookTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTestViewController.swift; sourceTree = "<group>"; };
@@ -589,26 +611,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1850F30B1E0019C900F55062 /* AFNetworking.framework in Frameworks */,
-				1850F30C1E0019C900F55062 /* Alamofire.framework in Frameworks */,
-				1850F30D1E0019C900F55062 /* MagicalRecord.framework in Frameworks */,
-				1850F30E1E0019C900F55062 /* Pods_MyLabs.framework in Frameworks */,
-				1850F30F1E0019C900F55062 /* Pods_NowFloats.framework in Frameworks */,
-				1850F3101E0019C900F55062 /* Pods_NowFloatsTests.framework in Frameworks */,
-				1850F31B1E001A1F00F55062 /* Pods_MyLabs.framework in Frameworks */,
-				1850F3111E0019C900F55062 /* Pods_NowFloatsUITests.framework in Frameworks */,
-				1850F3211E001A1F00F55062 /* Pods_NowFloatsUITests.framework in Frameworks */,
-				1850F3171E001A1F00F55062 /* Alamofire.framework in Frameworks */,
-				1850F3121E0019C900F55062 /* SDWebImage.framework in Frameworks */,
-				1850F31D1E001A1F00F55062 /* Pods_NowFloats.framework in Frameworks */,
-				1850F3191E001A1F00F55062 /* MagicalRecord.framework in Frameworks */,
-				1850F3131E0019C900F55062 /* SKPhotoBrowser.framework in Frameworks */,
-				1850F3141E0019C900F55062 /* XLForm.framework in Frameworks */,
-				1850F31F1E001A1F00F55062 /* Pods_NowFloatsTests.framework in Frameworks */,
-				1850F3271E001A1F00F55062 /* XLForm.framework in Frameworks */,
-				1850F3251E001A1F00F55062 /* SKPhotoBrowser.framework in Frameworks */,
-				1850F3231E001A1F00F55062 /* SDWebImage.framework in Frameworks */,
-				1850F3151E001A1F00F55062 /* AFNetworking.framework in Frameworks */,
+				1169F0F21E011BD600D9D740 /* AFNetworking.framework in Frameworks */,
+				1169F1061E011BE200D9D740 /* AFNetworking.framework in Frameworks */,
+				1169F1121E011BE200D9D740 /* Pods_NowFloatsTests.framework in Frameworks */,
+				1169F10E1E011BE200D9D740 /* MapKit.framework in Frameworks */,
+				1169F10C1E011BE200D9D740 /* CoreSpotlight.framework in Frameworks */,
+				1169F1041E011BE200D9D740 /* XLForm.framework in Frameworks */,
+				1169F1161E011BE200D9D740 /* Pods_MyLabs.framework in Frameworks */,
+				1169F0F31E011BD600D9D740 /* Alamofire.framework in Frameworks */,
+				1169F0F41E011BD600D9D740 /* MagicalRecord.framework in Frameworks */,
+				1169F0F51E011BD600D9D740 /* Pods_MyLabs.framework in Frameworks */,
+				1169F0F61E011BD600D9D740 /* Pods_NowFloats.framework in Frameworks */,
+				1169F0F71E011BD600D9D740 /* Pods_NowFloatsTests.framework in Frameworks */,
+				1169F0F81E011BD600D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */,
+				1169F0FC1E011BE200D9D740 /* Alamofire.framework in Frameworks */,
+				1169F1141E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */,
+				1169F0FE1E011BE200D9D740 /* MagicalRecord.framework in Frameworks */,
+				1169F1001E011BE200D9D740 /* SDWebImage.framework in Frameworks */,
+				1169F1081E011BE200D9D740 /* CoreLocation.framework in Frameworks */,
+				1169F0F91E011BD600D9D740 /* SDWebImage.framework in Frameworks */,
+				1169F1101E011BE200D9D740 /* Pods_NowFloats.framework in Frameworks */,
+				1169F0FA1E011BD600D9D740 /* SKPhotoBrowser.framework in Frameworks */,
+				1169F10A1E011BE200D9D740 /* MobileCoreServices.framework in Frameworks */,
+				1169F1021E011BE200D9D740 /* SKPhotoBrowser.framework in Frameworks */,
+				1169F0FB1E011BD600D9D740 /* XLForm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +673,16 @@
 		0E1CF002394DE794901016D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1169F0E81E011BD600D9D740 /* AFNetworking.framework */,
+				1169F0E91E011BD600D9D740 /* Alamofire.framework */,
+				1169F0EA1E011BD600D9D740 /* MagicalRecord.framework */,
+				1169F0EB1E011BD600D9D740 /* Pods_MyLabs.framework */,
+				1169F0EC1E011BD600D9D740 /* Pods_NowFloats.framework */,
+				1169F0ED1E011BD600D9D740 /* Pods_NowFloatsTests.framework */,
+				1169F0EE1E011BD600D9D740 /* Pods_NowFloatsUITests.framework */,
+				1169F0EF1E011BD600D9D740 /* SDWebImage.framework */,
+				1169F0F01E011BD600D9D740 /* SKPhotoBrowser.framework */,
+				1169F0F11E011BD600D9D740 /* XLForm.framework */,
 				1850F3011E0019C900F55062 /* AFNetworking.framework */,
 				1850F3021E0019C900F55062 /* Alamofire.framework */,
 				1850F3031E0019C900F55062 /* MagicalRecord.framework */,
@@ -1240,7 +1276,7 @@
 				1818F6501DF7EABC00841F5E /* Resources */,
 				1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */,
 				1818F6751DF7EABC00841F5E /* [CP] Copy Pods Resources */,
-				1850F3351E001A1F00F55062 /* Embed Frameworks */,
+				1169F1181E011BE200D9D740 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1946,6 +1982,16 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Alamofire",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MagicalRecord",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SKPhotoBrowser",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XLForm",
+				);
 				INFOPLIST_FILE = "MyLabs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1970,6 +2016,16 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Alamofire",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MagicalRecord",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SKPhotoBrowser",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XLForm",
+				);
 				INFOPLIST_FILE = "MyLabs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

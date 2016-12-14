@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/ML_ProductDetailsViewController.swift"
-            timestampString = "503318937.433065"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "ML_ProductDetailsViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -81,6 +65,38 @@
             endingLineNumber = "179"
             landmarkName = "getTheFeaturedProductJobs()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.CXAppDataManager.(getTheFeaturedProductJobs () -&gt; ()).(closure #1)"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXAppDataManager.swift"
+                  timestampString = "503413230.36117"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "1728">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.CXAppDataManager.(getTheFeaturedProductJobs () -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXAppDataManager.swift"
+                  timestampString = "503413230.363129"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "331">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -97,6 +113,38 @@
             endingLineNumber = "180"
             landmarkName = "getTheFeaturedProductJobs()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.CXAppDataManager.getTheFeaturedProductJobs () -&gt; ()"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXAppDataManager.swift"
+                  timestampString = "503413230.366854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "2232">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.CXAppDataManager.(getTheFeaturedProductJobs () -&gt; ()).(closure #1)"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXAppDataManager.swift"
+                  timestampString = "503413230.368811"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "1793">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -214,16 +262,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NowFloats/ML_ProductDetailsViewController.swift"
-            timestampString = "503318938.871707"
+            filePath = "NowFloats/BookTestViewController.swift"
+            timestampString = "503412408.621161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "bookTestCall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/CXAppDataManager.swift"
+            timestampString = "503410352.027847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "checkOutCartItems(_:email:address1:address2:number:subTotal:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/CXAppDataManager.swift"
+            timestampString = "503410364.762413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "placeOder(_:email:address1:address2:number:subTotal:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,12 +314,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowFloats/BookTestViewController.swift"
-            timestampString = "503387980.138188"
+            timestampString = "503412408.621161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "textFieldDidBeginEditing(_:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "bookTestCall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,12 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowFloats/BookTestViewController.swift"
-            timestampString = "503387980.138188"
+            timestampString = "503412408.621161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "textFieldShouldReturn(_:)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "bookTestCall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -266,12 +346,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowFloats/BookTestViewController.swift"
-            timestampString = "503387980.138188"
+            timestampString = "503412408.621161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "textFieldDidEndEditing(_:)"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "bookTestCall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/BookTestViewController.swift"
+            timestampString = "503412408.621161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "bookTestCall()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.BookTestViewController.bookTestCall () -&gt; ()"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/BookTestViewController.swift"
+                  timestampString = "503413230.417184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "11070">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLabs.BookTestViewController.(bookTestCall () -&gt; ()).(closure #1)"
+                  moduleName = "MyLabs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/BookTestViewController.swift"
+                  timestampString = "503413230.419028"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/BookTestViewController.swift"
+            timestampString = "503412385.408712"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "bookTestCall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/BookTestViewController.swift"
+            timestampString = "503412389.686703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "bookTestCall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

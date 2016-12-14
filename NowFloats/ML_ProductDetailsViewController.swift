@@ -54,7 +54,7 @@ class ML_ProductDetailsViewController: CXViewController,UICollectionViewDataSour
         self.descriptionTextTestView.text = str
         self.productNameLbl.text! = (productDetailDic.value(forKey:"Name") as? String)!
         self.testTypeLbl.text! = "Test Type: "+"\(productDetailDic.value(forKey:"jobTypeName") as! String)"
-        self.testCodeLbl.text! = "Test Code: "+"\(productDetailDic.value(forKey:"Test Code") as! String)"
+        self.testCodeLbl.text! = "Test Code: "+"\(productDetailDic.value(forKey:"TestCode") as! String)"
         self.testPriceLbl.text! = "₹ "+"\(productDetailDic.value(forKey:"MRP") as! String)"
         self.collectionViewHeaderLbl.text! = "More From "+"\(productDetailDic.value(forKey:"jobTypeName") as! String)"
     }
@@ -99,6 +99,8 @@ class ML_ProductDetailsViewController: CXViewController,UICollectionViewDataSour
             print("has userid")
             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let orders = storyBoard.instantiateViewController(withIdentifier: "BookTestViewController") as! BookTestViewController
+            print(productDetailDic)
+            orders.productDetails = self.productDetailDic
             self.navigationController?.pushViewController(orders, animated: true)
         }
     }

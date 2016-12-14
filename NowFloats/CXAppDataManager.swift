@@ -219,7 +219,7 @@ open class CXAppDataManager: NSObject {
     
     
     func checkOutCartItems(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String)-> String{
-        
+
         let productEn = NSEntityDescription.entity(forEntityName: "CX_Cart", in: NSManagedObjectContext.mr_contextForCurrentThread())
         let fetchRequest : NSFetchRequest<NSFetchRequestResult> = CX_Cart.mr_requestAllSorted(by: "name", ascending: true)
         // fetchRequest.predicate = predicate

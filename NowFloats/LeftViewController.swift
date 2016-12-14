@@ -206,7 +206,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeftViewTableViewCell", for: indexPath) as! LeftViewTableViewCell
         cell.contentsLbl.text = CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String
-        //cell.iconImage.image = UIImage.init(imageLiteral: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
+        cell.iconImage.image = UIImage(named: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
         cell.contentsLbl.textColor = UIColor.gray
         cell.contentsLbl.font = cell.contentsLbl.font.withSize(15)
         return cell
@@ -222,7 +222,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if itemName == "Home"{
             self.navController.popToRootViewController(animated: true)
             
-        }else if itemName == "About us"{
+        }else if itemName == "About Us"{
             let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
         }else if itemName == "Orders"{
