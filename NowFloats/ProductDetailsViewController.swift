@@ -204,8 +204,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
                 let categoryDesc = cell!.viewWithTag(901)! as! UILabel
                 categoryDesc.text = "\(productDetailDic.value(forKey: "Category")!)"
             }
-            
-            
+
         }
         return cell!
         

@@ -19,6 +19,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
+    var FinalPrice:String! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
@@ -83,36 +85,40 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
         
         let rupee = "\u{20B9}"
-        let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
-        let discount:String = "0"// CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
-        if discount == "0"{
+        //Trimming Price And Discount
+        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        
+        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        //Setting AttributedPrice
+        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+        
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+         FinalPrice = String(finalPriceNum) as String
+        
+        if finalPrice == FinalPrice{
             cell.productpriceLabel.isHidden = true
-            cell.productFinalPriceLabel.text = "\(rupee) \(price)"
-            cell.productFinalPriceLabel.font = cell.productpriceLabel.font.withSize(14)
-            cell.productFinalPriceLabel.textColor = UIColor.darkGray
+            cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
         }else{
             cell.productpriceLabel.isHidden = false
-            cell.productpriceLabel.font = cell.productpriceLabel.font.withSize(11)
-            cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             cell.productpriceLabel.attributedText = attributeString
+            cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
             
-            let finalPriceNum:Int = Int(price)!-Int(discount)!
-            cell.productFinalPriceLabel.text = "\(rupee) \(String(finalPriceNum))"
         }
         
         cell.cartaddedbutton.tag = indexPath.row+1
         cell.likebutton.tag = indexPath.row+1
         
-        
         cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), for: UIControlEvents.touchUpInside)
         cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
         
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
-        
-        
+
         return cell
     }
     
@@ -140,17 +146,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
     }
-    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-    //
-    //        return 3.0
-    // }
-    
-    
-    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    //        screenWidth =  UIScreen.mainScreen().bounds.size.width
-    //
-    //        return CGSize(width: screenWidth/2.2+7, height: 222);
-    //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
@@ -164,16 +159,30 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         print(products.json!)
-
+        
+        //Trimming Price And Discount
+        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        
+        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let FinalPrice = String(finalPriceNum) as String
+      
         #if MyLabs
             //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
             let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
             MLProductDetails.productString = products.json
             MLProductDetails.type = self.type
+            MLProductDetails.FinalPrice = FinalPrice
+            MLProductDetails.isFromOffersView = false
             self.navigationController?.pushViewController(MLProductDetails, animated: true)
             
         #else

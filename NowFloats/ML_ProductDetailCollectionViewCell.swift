@@ -12,6 +12,8 @@ class ML_ProductDetailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionViewImg: UIImageView!
     @IBOutlet weak var collectionViewLbl: UILabel!
+    @IBOutlet weak var finalPriceLbl: UILabel!
+    @IBOutlet weak var priceLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

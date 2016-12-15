@@ -18,6 +18,7 @@ class OffersViewController: CXViewController{
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
     var search:ProductSearchViewController! = nil
+    var FinalPrice:String! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,9 +187,6 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
 
 extension OffersViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
-    
-   
-    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
@@ -198,7 +196,6 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
@@ -215,24 +212,40 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         if featuredProductJobs.fDescription != nil{
             
             let rupee = "\u{20B9}"
-            let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!)
-            let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
-  
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
+            
+            //Trimming Price And Discount
+            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+            
+            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+            
+            //Setting AttributedPrice
+            let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-            cell.productPriceLbl.attributedText = attributeString
             
+            //FinalPrice after subtracting the discount
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            FinalPrice = String(finalPriceNum) as String
             
-            //let finalPriceNum:Int = Int(price)!-Int(discount)!
-            // cell.finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
+            if finalPrice == FinalPrice{
+                cell.productPriceLbl.isHidden = true
+                cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
+            }else{
+                cell.productPriceLbl.isHidden = false
+                cell.productPriceLbl.attributedText = attributeString
+                cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
+            }
         }
 
         if featureProducts.name == "Brands"{
+            
             cell.productPriceLbl.isHidden = true
             cell.finalPriceLbl.isHidden = true
             cell.orderNowBtn.isHidden = true
             
         }
+        
         let fId = Int(featuredProductJobs.fID! as String)
         cell.orderNowBtn.tag = fId!
 
@@ -443,13 +456,41 @@ extension OffersViewController {
     
     func orderNowBtnAction(_ sender:UIButton){
         print("\(sender.tag)")
+        
         let fID = String(sender.tag)
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
-        
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-        productDetails.productString = featuredProductJobs.json
-        self.navigationController?.pushViewController(productDetails, animated: true)
-   
-}
+         print(featuredProductJobs.json!)
+        let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
+        
+        //Trimming Price And Discount
+        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        
+        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let FinalPrice = String(finalPriceNum) as String!
+    
+        #if MyLabs
+            let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
+            MLProductDetails.productString = featuredProductJobs.json
+            MLProductDetails.type = dict.value(forKey: "jobTypeName") as! String
+            MLProductDetails.isFromOffersView = true
+            MLProductDetails.FinalPrice = FinalPrice
+            self.navigationController?.pushViewController(MLProductDetails, animated: true)
+        #else
+            
+            let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+            productDetails.productString = featuredProductJobs.json
+            self.navigationController?.pushViewController(productDetails, animated: true)
+            
+        #endif
+        
+        
+        
+        
+    }
 }

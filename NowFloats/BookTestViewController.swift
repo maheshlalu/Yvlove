@@ -203,11 +203,23 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         let orderItemMRP = productDetails.value(forKey:"MRP") as! String
         let orderItemSubTotal = productDetails.value(forKey:"MRP") as! String
         let diagnosticCenter = "MyLabz"
-        let SampleCollectionTime = (self.chooseTimeTxtField.text! as String)+","+(self.chooseDateTxtField.text! as String)
+        let SampleCollectionTime = (self.chooseDateTxtField.text! as String)+" "+(self.chooseTimeTxtField.text! as String)
         
-        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
-         print(populatedDictionary)
+        let populatedDictionary : NSMutableDictionary = NSMutableDictionary(objects: [name,address,mobile,orderItemId,orderItemQuantity,orderItemName,orderItemMRP,orderItemSubTotal,diagnosticCenter,SampleCollectionTime], forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
         
+//        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
+        
+        print(populatedDictionary)
+        /*    Address = hgggtest;
+         "Contact_Number" = 9640339556;
+         "Diagnostic_Centre" = MyLabz;
+         Name = "mahesh y";
+         OrderItemId = 25614;
+         OrderItemMRP = "150.0";
+         OrderItemName = "Blood Urea";
+         OrderItemQuantity = 1;
+         OrderItemSubTotal = "150.0";
+         "Sample_Collection_Time" = "16/12/2016 9:30 AM - 10:00AM";*/
         
         let listArray : NSMutableArray = NSMutableArray()
         listArray.add(populatedDictionary)
@@ -223,20 +235,20 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
             print(error)
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-   
+        
         LoadingView.show("Processing Your Order", animated: true)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder" as AnyObject,"json":jsonStringFormat as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
             
             print(responseDict)
             LoadingView.hide()
-
+            
             let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
             if (string.contains("1")){
                 print("successfully ordered!!!")
                 
             }
         }
-
+        
     }
     
     //MAR:Heder options enable
@@ -298,3 +310,188 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         return newLength <= 10 // Bool
     }
 }
+
+/*    myHashMap =     {
+ jobId = 25696;
+ jobInfo =         {
+ "Additional_Details" =             {
+ };
+ Address = hgggtest;
+ Attachments =             (
+ );
+ "Contact_Number" = 9640339556;
+ CreatedSubJobs =             (
+ );
+ "Current_Job_Status" = Submitted;
+ "Current_Job_StatusId" = 2370;
+ "Diagnostic_Centre" = MyLabz;
+ Insights =             (
+ {
+ Pinterest = 0;
+ points = "0.0";
+ },
+ {
+ Twitter = 0;
+ points = "0.0";
+ },
+ {
+ Hangouts = 0;
+ points = "0.0";
+ },
+ {
+ Linkedin = 0;
+ points = "0.0";
+ },
+ {
+ Instagram = 0;
+ points = "0.0";
+ },
+ {
+ Messaging = 0;
+ points = "0.0";
+ },
+ {
+ Facebook = 0;
+ points = "0.0";
+ },
+ {
+ "Google+" = 0;
+ points = "0.0";
+ },
+ {
+ Gmail = 0;
+ points = "0.0";
+ },
+ {
+ Skype = 0;
+ points = "0.0";
+ },
+ {
+ WhatsApp = 0;
+ points = "0.0";
+ },
+ {
+ "Campaigns Comment" = 0;
+ points = "0.0";
+ },
+ {
+ "Campaigns Favorite" = 0;
+ points = "0.0";
+ },
+ {
+ "Campaigns Share" = 0;
+ points = "0.0";
+ },
+ {
+ "Campaigns View" = 0;
+ points = "0.0";
+ },
+ {
+ "Services Share" = 0;
+ points = "0.0";
+ },
+ {
+ "Services Comment" = 0;
+ points = "0.0";
+ },
+ {
+ "Services View" = 0;
+ points = "0.0";
+ },
+ {
+ "Services Favorite" = 0;
+ points = "0.0";
+ },
+ {
+ "Offers Share" = 0;
+ points = "0.0";
+ },
+ {
+ "Offers Comment" = 0;
+ points = "0.0";
+ },
+ {
+ "Offers Favorite" = 0;
+ points = "0.0";
+ },
+ {
+ "Offers View" = 0;
+ points = "0.0";
+ },
+ {
+ "Products Buy" = 0;
+ points = "0.0";
+ },
+ {
+ "Products Comment" = 0;
+ points = "0.0";
+ },
+ {
+ "Products Share" = 0;
+ points = "0.0";
+ },
+ {
+ "Products Cart" = 0;
+ points = "0.0";
+ },
+ {
+ Register = 0;
+ points = "0.0";
+ },
+ {
+ "Products View" = 0;
+ points = "0.0";
+ },
+ {
+ "Products Favorite" = 0;
+ points = "0.0";
+ },
+ {
+ Login = 0;
+ points = "0.0";
+ }
+ );
+ ItemCode = "b49d6dfb-67f8-45b1-80ca-9a59ebec4c46";
+ Name = "mahesh y";
+ "Next_Job_Statuses" =             (
+ {
+ SeqNo = 2;
+ "Status_Id" = 2371;
+ "Status_Name" = Approve;
+ "Sub_Jobtype_Forms" =                     (
+ );
+ },
+ {
+ SeqNo = 3;
+ "Status_Id" = 2373;
+ "Status_Name" = Reject;
+ "Sub_Jobtype_Forms" =                     (
+ );
+ }
+ );
+ "Next_Seq_Nos" = "2,3";
+ OrderItemId = 25614;
+ OrderItemMRP = "150.0";
+ OrderItemName = "Blood Urea";
+ OrderItemQuantity = 1;
+ OrderItemSubTotal = "150.0";
+ PackageName = "";
+ "Sample_Collection_Time" = "16/12/2016 9:30 AM - 10:00AM";
+ createdByFullName = yernagulamahesh;
+ createdById = 149;
+ createdOn = "14:26 Dec 15, 2016";
+ hrsOfOperation =             (
+ );
+ id = 25696;
+ jobComments =             (
+ );
+ jobTypeId = 1043;
+ jobTypeName = PlaceOrder;
+ lastModifiedDate = "15-12-2016 14:26:33:904";
+ overallRating = "0.0";
+ publicURL = "http://storeongo.com/app/92/Services;PlaceOrder;25696;_;SingleProduct";
+ totalReviews = 0;
+ };
+ message = "Jobs saved";
+ status = 1;
+ };*/
