@@ -153,21 +153,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let productString = CXConstant.sharedInstance.convertDictionayToString(productDic)
             print(productDic)
             
-            
             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-            productDetails.productString = productString as String
+            //Trimming Price And Discount
+            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: storesEntity.json!))!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
             
-            let rootViewController = self.window!.rootViewController as! UINavigationController
-            rootViewController.pushViewController(productDetails, animated: true)
+            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: storesEntity.json!))!
+            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
             
+            //FinalPrice after subtracting the discount
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            let FinalPrice = String(finalPriceNum) as String
             
-           // self.navigationController?.pushViewController(productDetails, animated: true)
+            #if MyLabs
+                
+                //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+                let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
+                MLProductDetails.productString = productString as String
+                MLProductDetails.type = productDic.value(forKey: "jobTypeName") as! String
+                MLProductDetails.isFromOffersView = false
+                MLProductDetails.FinalPrice = FinalPrice
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                rootViewController.pushViewController(MLProductDetails, animated: true)
+
+            #else
+                let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+                productDetails.productString = productString as String
+                
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                rootViewController.pushViewController(productDetails, animated: true)
+                
+            #endif
             
-            
-            /*UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-             LoginDropboxViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"LoginDropbox"];
-             [(UINavigationController*)self.window.rootViewController pushViewController:ivc animated:NO];*/
+
+  
+
             
         }
         return true

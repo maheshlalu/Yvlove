@@ -292,25 +292,23 @@ extension CXDataProvider {
         return info
         
     }
-    
+    // Spotlight search
     func addItemToSpotlightSearch(_ productName:String,productImage:Data,productDesc:String,identifier:String){
-        
-
+    
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
         attributeSet.title = productName
         attributeSet.thumbnailData  = productImage
         attributeSet.contentDescription = productDesc
         
-    
-        
         let item = CSSearchableItem(uniqueIdentifier: identifier, domainIdentifier: "com.nowFloats.cx", attributeSet: attributeSet)
-       /* CSSearchableIndex.default().indexSearchableItems([item]) { (error: NSError?) -> Void in
-            if let error =  error {
+        
+        CSSearchableIndex.default().indexSearchableItems([item]) { error in
+            if let error = error {
                 print("Indexing error: \(error.localizedDescription)")
             } else {
-                print("Search item successfully indexed")
+                print("Search item successfully indexed!")
             }
-        }*/
+        }
     }
     
     
