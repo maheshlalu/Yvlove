@@ -55,8 +55,41 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         cell.wishlistaddtocartbutton.addTarget(self, action: #selector(NowfloatWishlistViewController.addTocartBtnAction(_:)), for: .touchUpInside)
         cell.wishlistdeletebutton.addTarget(self, action: #selector(NowfloatWishlistViewController.deleteWishListButtonAction(_:)), for: .touchUpInside)
         
-        
         let rupee = "\u{20B9}"
+        
+        //Trimming Price And Discount
+        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        
+        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        //Setting AttributedPrice
+        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+        
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let FinalPrice = String(finalPriceNum) as String
+        
+        if finalPrice == FinalPrice{
+            cell.mrpLbl.isHidden = true
+            cell.discountBdgeLb.isHidden = true
+            cell.wishlistpricelabel.text = "\(rupee) \(FinalPrice)"
+        }else{
+            cell.mrpLbl.isHidden = false
+            cell.discountBdgeLb.isHidden = false
+            cell.mrpLbl.attributedText = attributeString
+            cell.discountBdgeLb.text = "\(finalDiscount)"
+            cell.wishlistpricelabel.text = "\(rupee) \(FinalPrice))"
+            
+        }
+        
+        cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
+        cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
+        
+        /*
         let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
         let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
@@ -81,7 +114,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
 
-
+*/
         return cell
     }
 

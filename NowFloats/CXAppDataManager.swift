@@ -69,8 +69,8 @@ open class CXAppDataManager: NSObject {
         
         #if MyLabs
    
-            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == Pathology", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
-                CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Pathology" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == RegularTests", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
+                CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Regular Tests" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                     print("print products\(responseDict)")
                     CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     })

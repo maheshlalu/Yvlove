@@ -25,6 +25,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
         
         #if MyLabs
             cartaddedbutton.isHidden = true
+            likebutton.isHidden = true
             self.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         #else
             self.cartaddedbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())

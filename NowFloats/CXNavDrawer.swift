@@ -68,6 +68,8 @@ class CXNavDrawer: UINavigationController {
 
         self.setuUpNavDrawer()
         self.delegate  = self
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -124,7 +126,11 @@ class CXNavDrawer: UINavigationController {
         button.badgeTextColor = UIColor.red
         button.badgeBackgroundColor = UIColor.white
         button.badgeEdgeInsets = UIEdgeInsetsMake(13, 5, 0, 10)
-
+        #if MyLabs
+            button.isHidden = true
+        #else
+            
+        #endif
         return button
     }
     
@@ -140,10 +146,15 @@ class CXNavDrawer: UINavigationController {
         self.cartBtn.isHighlighted = false
        // self.cartBtn.badgeString = "10"
 //whiteCartImage
-      
-        rightButtonsView.addSubview(self.profileBtn)
-        rightButtonsView.addSubview(self.cartBtn)
-        rightButtonsView.addSubview(self.notificationBellBtn)
+        #if MyLabs
+            rightButtonsView.addSubview(self.profileBtn)
+            rightButtonsView.addSubview(self.notificationBellBtn)
+        #else
+            rightButtonsView.addSubview(self.profileBtn)
+            rightButtonsView.addSubview(self.cartBtn)
+            rightButtonsView.addSubview(self.notificationBellBtn)
+        #endif
+
 
         
         self.profileBtn.addTarget(self, action: #selector(profileToggleAction), for: .touchUpInside)

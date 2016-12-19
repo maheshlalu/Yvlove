@@ -136,39 +136,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         titleLable.text = "\(productName) \(city)"
         self.detailsView.addSubview(titleLable)
         
-        
-        //        let mailImage = UIImageView.init(frame: CGRectMake())
-        //        mailImage.image = UIImage(named: "storeongo_gray.png")
-        //        self.sidePanelView.addSubview(mailImage)
-        
-        
-        //        self.mailLable = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.detailsView.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
-        //        mailLable.font = mailLable.font.fontWithSize(10)
-        //        let mail = self.sidePanelDataDict.valueForKeyPath("email")
-        //        if mail != nil{
-        //            mailLable.text = "\(mail!)"
-        //        }
-        //        self.detailsView.addSubview(mailLable)
-        //
-        //
-        //        self.websiteLbl = UILabel.init(frame: CGRectMake(self.profileDPImageView.frame.size.width + self.detailsView.frame.origin.x+15 ,self.mailLable.frame.origin.y-32+self.titleLable.frame.size.height-10,self.detailsView.frame.size.width - (self.profileDPImageView.frame.size.width)-50 ,20 ))
-        //        websiteLbl.font = mailLable.font.fontWithSize(10)
-        //        websiteLbl.textColor = UIColor.blueColor()
-        //        let website = self.sidePanelDataDict.valueForKeyPath("website")
-        //        if website != nil{
-        //            websiteLbl.text = "\(website!)"
-        //        }
-        //        websiteLbl.userInteractionEnabled = true
-        //        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LeftViewController.labelAction))
-        //        websiteLbl.addGestureRecognizer(tap)
-        //        self.detailsView.addSubview(self.websiteLbl)
     }
-    
-    //    func labelAction(){
-    //        let website = self.sidePanelDataDict.valueForKeyPath("website") as! String!
-    //        UIApplication.sharedApplication().openURL(NSURL(string: "\(website)")!)
-    //
-    //    }
     
     func createButton(_ frame:CGRect,title: String,tag:Int, bgColor:UIColor) -> UIButton {
         let button: UIButton = UIButton()
@@ -214,31 +182,51 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        
-        let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
-        if itemName == "Home"{
-            self.navController.popToRootViewController(animated: true)
-            
-        }else if itemName == "About Us"{
-            let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
-            self.navController.pushViewController(aboutUs, animated: true)
-        }else if itemName == "Orders"{
-            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
-                let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
-                self.navController.pushViewController(orders, animated: true)
-            }else{
-                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
-                self.navController.pushViewController(signInViewCnt, animated: true)
+        #if MyLabs
+            let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
+            if itemName == "Home"{
+                self.navController.popToRootViewController(animated: true)
+                
+            }else if itemName == "About us"{
+                let aboutUs = storyBoard.instantiateViewController(withIdentifier: "MyLabzAboutUsViewController") as! MyLabzAboutUsViewController
+                self.navController.pushViewController(aboutUs, animated: true)
+            }else if itemName == "Orders"{
+                if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                    let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
+                    self.navController.pushViewController(orders, animated: true)
+                }else{
+                    let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                    self.navController.pushViewController(signInViewCnt, animated: true)
+                }
             }
-            
-        }else if itemName == "Wishlist" {
-            let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
-            self.navController.pushViewController(wishlist, animated: true)
-        }
-        
+
+        #else
+            let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
+            if itemName == "Home"{
+                self.navController.popToRootViewController(animated: true)
+                
+            }else if itemName == "About Us"{
+                let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
+                self.navController.pushViewController(aboutUs, animated: true)
+            }else if itemName == "Orders"{
+                if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                    let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
+                    self.navController.pushViewController(orders, animated: true)
+                }else{
+                    let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                    self.navController.pushViewController(signInViewCnt, animated: true)
+                }
+                
+            }else if itemName == "Wishlist" {
+                let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
+                self.navController.pushViewController(wishlist, animated: true)
+            }
+
+        #endif
+
     }
     
   func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{

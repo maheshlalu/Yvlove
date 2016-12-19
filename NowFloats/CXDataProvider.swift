@@ -79,7 +79,9 @@ class CXDataProvider: NSObject {
                 enProduct?.pUpdateDate =  number */
                 enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
-                enProduct?.type = (prod as AnyObject).value(forKey: "jobTypeName") as? String
+                let str = (prod as AnyObject).value(forKey: "jobTypeName") as? String
+                let finalStr = str?.replacingOccurrences(of: " ", with: "")
+                enProduct?.type = finalStr //(prod as AnyObject).value(forKey: "jobTypeName") as? String //Remove The Spaces in JobType key
                 enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
                 // self.saveContext()
                 
@@ -396,11 +398,20 @@ extension CXDataProvider {
             cart.pID = CXConstant.resultString(productJsonDic.value(forKey: "id")! as AnyObject)
             cart.imageUrl =  productJsonDic.value(forKey: "Image_URL") as? String
             cart.json =  productJson
-            let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: productJson)
-            let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: productJson)
-            let finalPriceNum:Int = Int(price)!-Int(discount)!
-            let myNumber = NSNumber(value: finalPriceNum as Int)
-             cart.productPrice = myNumber
+            
+            //Trimming Price And Discount
+            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: productJson))!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+            
+            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: productJson))!
+            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+            
+            //FinalPrice after subtracting the discount
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            let FinalPrice = finalPriceNum
+            
+            
+            cart.productPrice = FinalPrice as NSNumber?
             cart.quantity = 1
             //cart.managedObjectContext?.MR_saveToPersistentStoreAndWait()
 

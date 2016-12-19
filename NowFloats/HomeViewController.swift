@@ -69,9 +69,9 @@ class HomeViewController: UITabBarController {
             radiology.type = "Radiology"
 
             let pathology = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
-            pathology.title = "PATHOLOGY"
+            pathology.title = "REGULAR TESTS"
             pathology.tabBarItem.image = UIImage(named: "micro")
-            pathology.type = "Pathology"
+            pathology.type = "RegularTests"
             
             self.tabBarController?.setViewControllers([firstTab,radiology,pathology], animated: true)
         

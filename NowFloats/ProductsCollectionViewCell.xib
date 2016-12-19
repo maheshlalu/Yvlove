@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Regular.ttf">
+        <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductsCollectionViewCell" id="gTV-IL-0wX" customClass="ProductsCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductsCollectionViewCell" id="gTV-IL-0wX" customClass="ProductsCollectionViewCell" customModule="MyLabs" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-86-3eo">
                         <rect key="frame" x="5" y="5" width="175" height="107"/>
@@ -43,7 +44,7 @@
                             <constraint firstAttribute="width" constant="74" id="Heo-3n-j1S"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -53,7 +54,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zat-1g-efN">
                         <rect key="frame" x="95" y="186" width="85" height="27"/>
-                        <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="Mq9-xM-0HV"/>
                             <constraint firstAttribute="width" constant="85" id="odC-tC-bfN"/>
@@ -71,7 +72,7 @@
                             <constraint firstAttribute="height" constant="58" id="jGl-rn-Gog"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -89,7 +90,7 @@
                             <constraint firstAttribute="width" constant="74" id="8l8-ay-k4L"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -107,9 +108,8 @@
                         <state key="selected" image="heart_selected"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="T3l-JH-cHc" secondAttribute="bottom" constant="-50" id="199-xr-7Xj"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="-4" id="CFG-5U-Vl4"/>

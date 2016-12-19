@@ -130,8 +130,8 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
-        let str = String(featureProducts.name!)
-        let str1 = str?.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
+        let str = featureProducts.name! as String
+        let str1 = str.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
         //let headerStr = removeSpecialCharsFromString(str)
         feturedProuctsCell.headerLbl.text = "\(str1)"
         
@@ -208,6 +208,11 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
         cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
+        #if MyLabs
+            cell.orderNowBtn.setTitle("BOOK NOW", for: .normal)
+        #else
+            
+        #endif
         
         if featuredProductJobs.fDescription != nil{
             

@@ -9,6 +9,7 @@
 import UIKit
 
 class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
+    
     var nameArray = ["india","america","newzealand"]
     var ordersArray:NSArray = NSArray()
     @IBOutlet weak var orderstableview: UITableView!
@@ -17,8 +18,13 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         super.viewDidLoad()
         
         let nib = UINib(nibName: "ordersTableViewCell", bundle: nil)
-        
         self.orderstableview.register(nib, forCellReuseIdentifier: "ordersTableViewCell")
+        
+        //MyLabzOrderDetailTableViewCell
+        //My Labz order cell
+        let myLabzOrderNib = UINib(nibName: "MyLabzOrderDetailTableViewCell", bundle: nil)
+        self.orderstableview.register(myLabzOrderNib, forCellReuseIdentifier: "MyLabzOrderDetailTableViewCell")
+        
         
         self.orderstableview.rowHeight = UITableViewAutomaticDimension
         self.orderstableview.estimatedRowHeight = 10.0
@@ -50,16 +56,45 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+
+        #if MyLabs
+            
+            let cell = orderstableview.dequeueReusableCell(withIdentifier: "MyLabzOrderDetailTableViewCell", for: indexPath)as! MyLabzOrderDetailTableViewCell
+            cell.backgroundView?.backgroundColor = UIColor.clear
+            cell.layer.cornerRadius = 4
+            let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
+            cell.selectionStyle = .none
+            cell.isUserInteractionEnabled = false
+            
+            cell.orderIdTxtLbl.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+            cell.placedOnTxtLbl.text = orederDataDic.value(forKey: "createdOn") as? String
+            
+            //Trimming MRP
+            let floatPrice: Float = Float((orederDataDic.value(forKey: "OrderItemMRP") as? String)!)!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+
+            cell.priceTxtLbl.text! = "₹ "+"\(finalPrice)"
+            cell.statusLbl.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
+            cell.collectionTimeTxtLbl.text = orederDataDic.value(forKey: "Sample_Collection_Time") as? String
+            
+        #else
+            
+            let cell = orderstableview.dequeueReusableCell(withIdentifier: "ordersTableViewCell", for: indexPath)as! ordersTableViewCell
+            cell.backgroundView?.backgroundColor = UIColor.clear
+            cell.layer.cornerRadius = 4
+            let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
+            cell.selectionStyle = .none
+            
+            cell.collectionTimeStackView.isHidden = true
+            cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+            cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as? String
+            cell.orderpriceresultlabel.text = "₹ "+orederDataDic.value(forKey: "Total") as? String
+            cell.statusresultlabel.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
+            
+        #endif
         
         
-        let cell = orderstableview.dequeueReusableCell(withIdentifier: "ordersTableViewCell", for: indexPath)as! ordersTableViewCell
-        cell.backgroundView?.backgroundColor = UIColor.clear
-        let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
-        cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
-        cell.orderpriceresultlabel.text = orederDataDic.value(forKey: "Total") as?String
-        cell.statusresultlabel.text = "Placed"
-        cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as?String
-        cell.selectionStyle = .none
+        
         
         return cell
         
@@ -69,30 +104,40 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        
         //orderstableview.rowHeight = 15.0
         return 3
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 100.0
-        //return UITableViewAutomaticDimension
+        #if MyLabs
+            return 241
+        #else
+           return UITableViewAutomaticDimension
+        #endif
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productDetails = storyBoard.instantiateViewController(withIdentifier: "MY_ORDERS") as! MyOrderViewController
+        #if MyLabs
+            
+            
+        #else
+            let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let productDetails = storyBoard.instantiateViewController(withIdentifier: "MY_ORDERS") as! MyOrderViewController
+            
+            productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
+            productDetails.orderIdStr = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+            productDetails.priceStr = orederDataDic.value(forKey: "Total") as?String
+            productDetails.placedStr = orederDataDic.value(forKey: "createdOn") as?String
+            
+            self.navigationController?.pushViewController(productDetails, animated: true)
+        #endif
+
         
-        productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
         
-        productDetails.orderIdStr = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
-        productDetails.priceStr = orederDataDic.value(forKey: "Total") as?String
-        productDetails.placedStr = orederDataDic.value(forKey: "createdOn") as?String
-        
-        self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
     

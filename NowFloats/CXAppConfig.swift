@@ -76,11 +76,24 @@ class CXAppConfig {
     }
 
     func productName() -> String{
-        return config!.value(forKey: "PRODUCT_NAME") as! String
+        #if MyLabs
+        return "My Labz"
+        #else
+         return config!.value(forKey: "PRODUCT_NAME") as! String
+        #endif
+       
     }
     func getSidePanelList() -> NSArray{
         
-        return config!.value(forKey: "SidePanelList") as! NSArray
+        #if MyLabs
+            var arr = config!.value(forKey: "SidePanelList") as! NSArray as! [String]
+            let arr1 = arr.remove(at: 3)
+            let mylabzArr = arr as NSArray
+            return mylabzArr
+        #else
+            return config!.value(forKey: "SidePanelList") as! NSArray
+        #endif
+
     }
 
     
