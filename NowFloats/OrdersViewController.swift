@@ -85,10 +85,9 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
             let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
             cell.selectionStyle = .none
             
-            cell.collectionTimeStackView.isHidden = true
             cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
             cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as? String
-            cell.orderpriceresultlabel.text = "₹ "+orederDataDic.value(forKey: "Total") as? String
+            cell.orderpriceresultlabel.text = "₹ \(orederDataDic.value(forKey: "Total") as? String)"
             cell.statusresultlabel.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
             
         #endif

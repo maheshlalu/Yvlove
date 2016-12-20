@@ -46,7 +46,6 @@
 		114A12B91D90F94A006AC421 /* MessageHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */; };
 		114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114A12BB1D91323A006AC421 /* MIBadgeButton.swift */; };
 		1155F8E41DB7516900886633 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; };
-		11570CB41DA3B5C4002495C3 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */; };
 		11682CDF1DA5353A00A2B563 /* SparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDD1DA5353A00A2B563 /* SparkButton.swift */; };
 		11682CE01DA5353A00A2B563 /* SparkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11682CDE1DA5353A00A2B563 /* SparkView.swift */; };
 		1169F0F21E011BD600D9D740 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0E81E011BD600D9D740 /* AFNetworking.framework */; };
@@ -97,6 +96,10 @@
 		116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */; };
 		117D1BC41DA61F0200BE4AE1 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; };
 		117D1BC61DA61F0900BE4AE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; };
+		117EDF0D1E090D6000591142 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4FD8251D6446D300A6EBBE /* Info.plist */; };
+		117EDF0E1E090D6000591142 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B4FD8251D6446D300A6EBBE /* Info.plist */; };
+		117EDF101E090D9A00591142 /* LaunchScreen_MyLabz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117EDF0F1E090D9A00591142 /* LaunchScreen_MyLabz.storyboard */; };
+		117EDF111E090D9A00591142 /* LaunchScreen_MyLabz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117EDF0F1E090D9A00591142 /* LaunchScreen_MyLabz.storyboard */; };
 		118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		118346B91D86C155000BE1D4 /* CXSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */; };
@@ -220,7 +223,6 @@
 		1818F6331DF7EABC00841F5E /* CXSignInSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */; };
 		1818F6341DF7EABC00841F5E /* MyordersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11325D361D8A66CB00A7F10E /* MyordersTableViewCell.swift */; };
 		1818F6351DF7EABC00841F5E /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D911D75C7B7001E27D4 /* ViewPager.swift */; };
-		1818F6361DF7EABC00841F5E /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */; };
 		1818F6371DF7EABC00841F5E /* CXForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118346B41D86C155000BE1D4 /* CXForgotPassword.swift */; };
 		1818F6381DF7EABC00841F5E /* ServiceFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B381A41D9D580500A02343 /* ServiceFormViewController.swift */; };
 		1818F6391DF7EABC00841F5E /* CX_FeaturedProducts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835739C1D798F5400722AA2 /* CX_FeaturedProducts+CoreDataProperties.swift */; };
@@ -444,7 +446,6 @@
 		114A12B81D90F94A006AC421 /* MessageHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHomeViewController.swift; sourceTree = "<group>"; };
 		114A12BB1D91323A006AC421 /* MIBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIBadgeButton.swift; sourceTree = "<group>"; };
 		1155F8E31DB7516900886633 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		11682CDD1DA5353A00A2B563 /* SparkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkButton.swift; sourceTree = "<group>"; };
 		11682CDE1DA5353A00A2B563 /* SparkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparkView.swift; sourceTree = "<group>"; };
 		1169F0E81E011BD600D9D740 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
@@ -464,6 +465,7 @@
 		116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		117EDF0F1E090D9A00591142 /* LaunchScreen_MyLabz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen_MyLabz.storyboard; sourceTree = "<group>"; };
 		118346B41D86C155000BE1D4 /* CXForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXForgotPassword.swift; sourceTree = "<group>"; };
 		118346B51D86C155000BE1D4 /* CXSignInSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignInSignUpViewController.swift; sourceTree = "<group>"; };
 		118346B61D86C155000BE1D4 /* CXSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXSignUpViewController.swift; sourceTree = "<group>"; };
@@ -580,7 +582,7 @@
 		3B4FD81E1D6446D300A6EBBE /* NowFloats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NowFloats.xcdatamodel; sourceTree = "<group>"; };
 		3B4FD8201D6446D300A6EBBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B4FD8231D6446D300A6EBBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3B4FD8251D6446D300A6EBBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B4FD8251D6446D300A6EBBE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B4FD82A1D6446D300A6EBBE /* NowFloatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NowFloatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4FD82E1D6446D300A6EBBE /* NowFloatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowFloatsTests.swift; sourceTree = "<group>"; };
 		3B4FD8301D6446D300A6EBBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1122,8 +1124,8 @@
 				3B4FD8181D6446D300A6EBBE /* ViewController.swift */,
 				3B4FD81A1D6446D300A6EBBE /* Main.storyboard */,
 				3B4FD8201D6446D300A6EBBE /* Assets.xcassets */,
-				11570CB31DA3B5C4002495C3 /* LaunchScreenViewController.swift */,
 				3B4FD8221D6446D300A6EBBE /* LaunchScreen.storyboard */,
+				117EDF0F1E090D9A00591142 /* LaunchScreen_MyLabz.storyboard */,
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
 				3B4FD81D1D6446D300A6EBBE /* NowFloats.xcdatamodeld */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
@@ -1415,6 +1417,7 @@
 				1818F6521DF7EABC00841F5E /* Roboto-Black.ttf in Resources */,
 				1818F6531DF7EABC00841F5E /* ProductsCollectionViewCell.xib in Resources */,
 				1818F6541DF7EABC00841F5E /* NowfloatscartViewCollectionViewCell.xib in Resources */,
+				117EDF111E090D9A00591142 /* LaunchScreen_MyLabz.storyboard in Resources */,
 				1818F6551DF7EABC00841F5E /* Roboto-Bold.ttf in Resources */,
 				113F0F951DFECC2A006CBA2E /* Main.storyboard in Resources */,
 				1818F6561DF7EABC00841F5E /* DropDownCell.xib in Resources */,
@@ -1438,6 +1441,7 @@
 				1818F6671DF7EABC00841F5E /* MyorderTableViewCell1.xib in Resources */,
 				1818F6681DF7EABC00841F5E /* MyordersTableViewCell.xib in Resources */,
 				1818F6691DF7EABC00841F5E /* ADPageControl.xib in Resources */,
+				117EDF0E1E090D6000591142 /* Info.plist in Resources */,
 				1818F66A1DF7EABC00841F5E /* UpdateTableViewCell.xib in Resources */,
 				116C04161DFFFA0900AF4C89 /* DemoPopupViewController2.storyboard in Resources */,
 				1818F66B1DF7EABC00841F5E /* WishlistCollectionViewCell.xib in Resources */,
@@ -1460,6 +1464,7 @@
 				113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */,
 				189A1E3E1D79479800724120 /* Roboto-Bold.ttf in Resources */,
 				11F1DE531D883A46002AF5B0 /* DropDownCell.xib in Resources */,
+				117EDF101E090D9A00591142 /* LaunchScreen_MyLabz.storyboard in Resources */,
 				189A1E3F1D79479800724120 /* Roboto-Italic.ttf in Resources */,
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				11F1DE5F1D883AFF002AF5B0 /* AboutusTableViewCell.xib in Resources */,
@@ -1474,6 +1479,7 @@
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
 				110329BE1D8A6BA00008A3B7 /* HistoryTableViewCell.xib in Resources */,
 				1868BD251D78534C0050BC72 /* OfferPagerCelll.xib in Resources */,
+				117EDF0D1E090D6000591142 /* Info.plist in Resources */,
 				1868BCF91D7831790050BC72 /* PagerCustomView.xib in Resources */,
 				3B4FD8241D6446D300A6EBBE /* LaunchScreen.storyboard in Resources */,
 				11325D3E1D8A66CB00A7F10E /* MyorderTableViewCell1.xib in Resources */,
@@ -1791,7 +1797,6 @@
 				1818F6331DF7EABC00841F5E /* CXSignInSignUpViewController.swift in Sources */,
 				1818F6341DF7EABC00841F5E /* MyordersTableViewCell.swift in Sources */,
 				1818F6351DF7EABC00841F5E /* ViewPager.swift in Sources */,
-				1818F6361DF7EABC00841F5E /* LaunchScreenViewController.swift in Sources */,
 				1818F6371DF7EABC00841F5E /* CXForgotPassword.swift in Sources */,
 				1818F6381DF7EABC00841F5E /* ServiceFormViewController.swift in Sources */,
 				1818F6391DF7EABC00841F5E /* CX_FeaturedProducts+CoreDataProperties.swift in Sources */,
@@ -1909,7 +1914,6 @@
 				118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */,
 				11325D3B1D8A66CB00A7F10E /* MyordersTableViewCell.swift in Sources */,
 				18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */,
-				11570CB41DA3B5C4002495C3 /* LaunchScreenViewController.swift in Sources */,
 				118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */,
 				18B381A51D9D580500A02343 /* ServiceFormViewController.swift in Sources */,
 				183573AA1D798F5400722AA2 /* CX_FeaturedProducts+CoreDataProperties.swift in Sources */,
@@ -1986,7 +1990,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30F85A60D666543E95A789BD /* Pods-MyLabs.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = MyLabsAppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_MyLabz;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2020,7 +2024,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0942C8092495C1C71EAF2AE3 /* Pods-MyLabs.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = MyLabsAppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_MyLabz;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

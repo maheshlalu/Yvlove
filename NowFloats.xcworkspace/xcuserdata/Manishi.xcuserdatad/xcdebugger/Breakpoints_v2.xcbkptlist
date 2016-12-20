@@ -90,7 +90,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/BookTestViewController.swift"
-                  timestampString = "503849837.740471"
+                  timestampString = "503911167.045402"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "234"
@@ -105,7 +105,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/BookTestViewController.swift"
-                  timestampString = "503849837.742356"
+                  timestampString = "503911167.046668"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "234"
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowFloats/OrdersViewController.swift"
-            timestampString = "503579212.249911"
+            timestampString = "503912714.282056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowFloats/OrdersViewController.swift"
-            timestampString = "503579212.249911"
+            timestampString = "503912714.282056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -778,7 +778,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXDataProvider.swift"
-                  timestampString = "503849837.844906"
+                  timestampString = "503911167.175392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
@@ -793,7 +793,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXDataProvider.swift"
-                  timestampString = "503849837.846338"
+                  timestampString = "503911167.177741"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
@@ -826,7 +826,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXDataProvider.swift"
-                  timestampString = "503849837.849128"
+                  timestampString = "503911167.181231"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "305"
@@ -841,7 +841,7 @@
                   moduleName = "MyLabs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/CX_OfferViewCode/NowFloats/CXDataProvider.swift"
-                  timestampString = "503849837.850411"
+                  timestampString = "503911167.182533"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "306"
@@ -880,6 +880,70 @@
             startingLineNumber = "166"
             endingLineNumber = "166"
             landmarkName = "application(_:continue:restorationHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/LeftViewController.swift"
+            timestampString = "503908957.360978"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "getStores()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/LeftViewController.swift"
+            timestampString = "503909381.655277"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getSingleMall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/LeftViewController.swift"
+            timestampString = "503909383.003346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getSingleMall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/LeftViewController.swift"
+            timestampString = "503909398.678195"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "getSingleMall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
