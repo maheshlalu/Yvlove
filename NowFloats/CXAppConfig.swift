@@ -72,7 +72,13 @@ class CXAppConfig {
     }
     //getMallID
     func getAppMallID() -> String {
-        return config!.value(forKey: "MALL_ID") as! String
+        
+        #if MyLabs
+            return config!.value(forKey: "MYLABZ_MALL_ID") as! String
+        #else
+            return config!.value(forKey: "NOWFLOATS_MALL_ID") as! String
+        #endif
+        
     }
 
     func productName() -> String{
