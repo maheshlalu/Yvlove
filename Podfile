@@ -27,6 +27,12 @@ target 'NowFloats' do
     target 'MyLabs' do
         inherit! :search_paths
         # Pods for testing
+        pod 'MagicalRecord/Shorthand'
+        pod 'Alamofire', '~> 4.0'
+        pod 'SDWebImage', '~> 3.8'
+        pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
+        pod 'AFNetworking', '~> 3.1'
+        pod 'XLForm', '~> 3.2'
     end
     
     

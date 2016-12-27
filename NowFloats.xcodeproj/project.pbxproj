@@ -58,34 +58,6 @@
 		1169F0F91E011BD600D9D740 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0EF1E011BD600D9D740 /* SDWebImage.framework */; };
 		1169F0FA1E011BD600D9D740 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0F01E011BD600D9D740 /* SKPhotoBrowser.framework */; };
 		1169F0FB1E011BD600D9D740 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1169F0F11E011BD600D9D740 /* XLForm.framework */; };
-		1169F0FC1E011BE200D9D740 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; };
-		1169F0FD1E011BE200D9D740 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5B1DFE9F3F006CBA2E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F0FE1E011BE200D9D740 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; };
-		1169F0FF1E011BE200D9D740 /* MagicalRecord.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5C1DFE9F3F006CBA2E /* MagicalRecord.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1001E011BE200D9D740 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; };
-		1169F1011E011BE200D9D740 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5D1DFE9F3F006CBA2E /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1021E011BE200D9D740 /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; };
-		1169F1031E011BE200D9D740 /* SKPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1041E011BE200D9D740 /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; };
-		1169F1051E011BE200D9D740 /* XLForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1061E011BE200D9D740 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; };
-		1169F1071E011BE200D9D740 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113F0F501DFE8D9C006CBA2E /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1081E011BE200D9D740 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; };
-		1169F1091E011BE200D9D740 /* CoreLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1155F8E31DB7516900886633 /* CoreLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F10A1E011BE200D9D740 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; };
-		1169F10B1E011BE200D9D740 /* MobileCoreServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC51DA61F0900BE4AE1 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F10C1E011BE200D9D740 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; };
-		1169F10D1E011BE200D9D740 /* CoreSpotlight.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117D1BC31DA61F0200BE4AE1 /* CoreSpotlight.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F10E1E011BE200D9D740 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; };
-		1169F10F1E011BE200D9D740 /* MapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 110329C31D8A72B40008A3B7 /* MapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1101E011BE200D9D740 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
-		1169F1111E011BE200D9D740 /* Pods_NowFloats.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1121E011BE200D9D740 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
-		1169F1131E011BE200D9D740 /* Pods_NowFloatsTests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1141E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; };
-		1169F1151E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EED9D7169B836DF209DF45F5 /* Pods_NowFloatsUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1169F1161E011BE200D9D740 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; };
-		1169F1171E011BE200D9D740 /* Pods_MyLabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		116C04061DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */; };
 		116C04071DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */; };
 		116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */; };
@@ -354,6 +326,7 @@
 		435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */; };
 		A6C3907747F7F462C0F7A648 /* Pods_NowFloatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CC96ABBAA2F4D3A8D0C9EE /* Pods_NowFloatsTests.framework */; };
 		DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
+		FA29B7802EF9284AEC9CB179 /* Pods_MyLabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1DE17D522CC4E7B8582AD9 /* Pods_MyLabs.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,33 +345,6 @@
 			remoteInfo = NowFloats;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		1169F1181E011BE200D9D740 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1169F1031E011BE200D9D740 /* SKPhotoBrowser.framework in Embed Frameworks */,
-				1169F1071E011BE200D9D740 /* AFNetworking.framework in Embed Frameworks */,
-				1169F10F1E011BE200D9D740 /* MapKit.framework in Embed Frameworks */,
-				1169F1111E011BE200D9D740 /* Pods_NowFloats.framework in Embed Frameworks */,
-				1169F1051E011BE200D9D740 /* XLForm.framework in Embed Frameworks */,
-				1169F0FF1E011BE200D9D740 /* MagicalRecord.framework in Embed Frameworks */,
-				1169F1171E011BE200D9D740 /* Pods_MyLabs.framework in Embed Frameworks */,
-				1169F1151E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Embed Frameworks */,
-				1169F1131E011BE200D9D740 /* Pods_NowFloatsTests.framework in Embed Frameworks */,
-				1169F1091E011BE200D9D740 /* CoreLocation.framework in Embed Frameworks */,
-				1169F10D1E011BE200D9D740 /* CoreSpotlight.framework in Embed Frameworks */,
-				1169F10B1E011BE200D9D740 /* MobileCoreServices.framework in Embed Frameworks */,
-				1169F1011E011BE200D9D740 /* SDWebImage.framework in Embed Frameworks */,
-				1169F0FD1E011BE200D9D740 /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0942C8092495C1C71EAF2AE3 /* Pods-MyLabs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLabs.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyLabs/Pods-MyLabs.release.xcconfig"; sourceTree = "<group>"; };
@@ -623,29 +569,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1169F0F21E011BD600D9D740 /* AFNetworking.framework in Frameworks */,
-				1169F1061E011BE200D9D740 /* AFNetworking.framework in Frameworks */,
-				1169F1121E011BE200D9D740 /* Pods_NowFloatsTests.framework in Frameworks */,
-				1169F10E1E011BE200D9D740 /* MapKit.framework in Frameworks */,
-				1169F10C1E011BE200D9D740 /* CoreSpotlight.framework in Frameworks */,
-				1169F1041E011BE200D9D740 /* XLForm.framework in Frameworks */,
-				1169F1161E011BE200D9D740 /* Pods_MyLabs.framework in Frameworks */,
 				1169F0F31E011BD600D9D740 /* Alamofire.framework in Frameworks */,
 				1169F0F41E011BD600D9D740 /* MagicalRecord.framework in Frameworks */,
 				1169F0F51E011BD600D9D740 /* Pods_MyLabs.framework in Frameworks */,
 				1169F0F61E011BD600D9D740 /* Pods_NowFloats.framework in Frameworks */,
 				1169F0F71E011BD600D9D740 /* Pods_NowFloatsTests.framework in Frameworks */,
 				1169F0F81E011BD600D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */,
-				1169F0FC1E011BE200D9D740 /* Alamofire.framework in Frameworks */,
-				1169F1141E011BE200D9D740 /* Pods_NowFloatsUITests.framework in Frameworks */,
-				1169F0FE1E011BE200D9D740 /* MagicalRecord.framework in Frameworks */,
-				1169F1001E011BE200D9D740 /* SDWebImage.framework in Frameworks */,
-				1169F1081E011BE200D9D740 /* CoreLocation.framework in Frameworks */,
 				1169F0F91E011BD600D9D740 /* SDWebImage.framework in Frameworks */,
-				1169F1101E011BE200D9D740 /* Pods_NowFloats.framework in Frameworks */,
 				1169F0FA1E011BD600D9D740 /* SKPhotoBrowser.framework in Frameworks */,
-				1169F10A1E011BE200D9D740 /* MobileCoreServices.framework in Frameworks */,
-				1169F1021E011BE200D9D740 /* SKPhotoBrowser.framework in Frameworks */,
 				1169F0FB1E011BD600D9D740 /* XLForm.framework in Frameworks */,
+				FA29B7802EF9284AEC9CB179 /* Pods_MyLabs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,7 +1215,6 @@
 				1818F6501DF7EABC00841F5E /* Resources */,
 				1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */,
 				1818F6751DF7EABC00841F5E /* [CP] Copy Pods Resources */,
-				1169F1181E011BE200D9D740 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1559,7 +1491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F5DB1DF7EABC00841F5E /* [CP] Check Pods Manifest.lock */ = {
@@ -1574,7 +1506,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */ = {
@@ -1619,7 +1551,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27B8D76FBFB0748BCD09A082 /* [CP] Copy Pods Resources */ = {
@@ -1694,7 +1626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1996,7 +1928,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
@@ -2030,7 +1962,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
@@ -2077,6 +2009,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2124,6 +2057,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -235,8 +235,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     @IBAction func callUsAction(_ sender: UIButton) {
         
-        let primaryNumber = self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!
-        callNumber(primaryNumber!)
+        let primaryNumber = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "PrimaryNumber")
+        callNumber(primaryNumber)
         //        let alert = UIAlertController(title:"", message: "Please Select A Number", preferredStyle: .Alert)
         //
         //        alert.addAction(UIAlertAction(title: "Approve", style: .Default , handler:{ (UIAlertAction)in
@@ -260,10 +260,14 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         let messageVC = MFMessageComposeViewController()
         messageVC.body = "Hi Do you have any query?";
-        messageVC.recipients = [self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]
-        messageVC.messageComposeDelegate = self;
-        self.present(messageVC, animated: true, completion: nil)
-        
+      //  messageVC.recipients = [self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]'
+        if !CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "PrimaryNumber").isEmpty {
+            messageVC.recipients = [CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "PrimaryNumber")]
+            //[self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]
+            messageVC.messageComposeDelegate = self;
+            self.present(messageVC, animated: true, completion: nil)
+        }
+
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
@@ -294,7 +298,11 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     fileprivate func callNumber(_ phoneNumber:String) {
-        UIApplication.shared.openURL(URL(string: "tel://\(phoneNumber)")!)
+        if !phoneNumber.isEmpty {
+            UIApplication.shared.openURL(URL(string: "tel://\(phoneNumber)")!)
+
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

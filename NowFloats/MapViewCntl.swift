@@ -163,7 +163,7 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+       // print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.currentLat = locValue.latitude
         self.currentLon = locValue.longitude
         myLocation  = CLLocation(latitude:currentLat, longitude: currentLon)

@@ -176,6 +176,14 @@ class CXAppConfig {
     
     
     
-    
+    func getTheDataInDictionaryFromKey(sourceDic:NSDictionary,sourceKey:NSString) ->String{
+        let keyExists = sourceDic[sourceKey] != nil
+        if keyExists {
+            // now val is not nil and the Optional has been unwrapped, so use it
+            return sourceDic[sourceKey]! as! String
+        }
+        return ""
+        
+    }
     
 }
