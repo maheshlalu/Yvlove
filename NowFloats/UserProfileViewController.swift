@@ -35,7 +35,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         userMobileLbl.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
         userMailLbl.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
         let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
-        if (imageUrl != ""){
+        if (imageUrl != "" && imageUrl != nil){
             dpImageView.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
             dpImageView.alpha = 1
             dpImageView.backgroundColor = UIColor.clear

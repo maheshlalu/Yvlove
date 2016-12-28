@@ -34,8 +34,8 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         
         self.bookNowBt.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(BookTestViewController.handleTap(sender:)))
-        self.view.addGestureRecognizer(tap)
+      //  let tap = UITapGestureRecognizer(target: self, action: #selector(BookTestViewController.handleTap(sender:)))
+       // self.view.addGestureRecognizer(tap)
     }
     
     func dataIntegration(){
@@ -191,7 +191,6 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     
     func bookTestCall(){
         
-        print(self.productDetails)
         
         let name = self.fullNameTxtField.text! as String
         let mobile = self.mobileTxtField.text! as String
@@ -199,13 +198,30 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         let email = self.emailTxtField.text! as String
         let orderItemId = self.productDetails.value(forKey: "id")!
         let orderItemQuantity = "1"
+        
+        
+        
+        let floatPrice: Float = Float(CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.productDetails, sourceKey: "MRP"))!
+
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        //DiscountAmount
+        let floatDiscount:Float = Float(CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.productDetails, sourceKey: "DiscountAmount"))!
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let FinalPrice = String(finalPriceNum) as String
+
+        
         let orderItemName = (productDetails.value(forKey:"Name") as? String)!
-        let orderItemMRP = productDetails.value(forKey:"MRP") as! String
-        let orderItemSubTotal = productDetails.value(forKey:"MRP") as! String
+        let orderItemMRP = FinalPrice
+        let orderItemSubTotal = FinalPrice
         let diagnosticCenter = "MyLabz"
         let SampleCollectionTime = (self.chooseDateTxtField.text! as String)+" "+(self.chooseTimeTxtField.text! as String)
         
-        let populatedDictionary : NSMutableDictionary = NSMutableDictionary(objects: [name,address,mobile,orderItemId,orderItemQuantity,orderItemName,orderItemMRP,orderItemSubTotal,diagnosticCenter,SampleCollectionTime], forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
+        let populatedDictionary : NSMutableDictionary = NSMutableDictionary(objects: [name,address,mobile,orderItemId,orderItemQuantity,orderItemName,orderItemMRP,orderItemSubTotal,diagnosticCenter,SampleCollectionTime],
+                                                                            
+                                                                            forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
         
 //        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
         
