@@ -57,6 +57,8 @@ class CXNavDrawer: UINavigationController {
     var leftViewController : LeftViewController!
     var presentWindow:UIWindow?
     
+    var fromProfile = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presentWindow = UIApplication.shared.keyWindow
@@ -65,7 +67,9 @@ class CXNavDrawer: UINavigationController {
         self.navigationBar.isTranslucent = false
         NotificationCenter.default.addObserver(self, selector: #selector(CXNavDrawer.upodateTheCartItems), name:NSNotification.Name(rawValue: "CartCountUpdate"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CXNavDrawer.backBtnAction), name:NSNotification.Name(rawValue: "PlaceOrderSuccessFully"), object: nil)
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CXNavDrawer.profileBackBtnAction), name:NSNotification.Name(rawValue: "FromProfile"), object: nil)
+        
         self.setuUpNavDrawer()
         self.delegate  = self
         
@@ -265,9 +269,16 @@ class CXNavDrawer: UINavigationController {
     
     
     func backBtnAction(){
+        if fromProfile{
+            self.popToRootViewController(animated: true)
+        }else{
             self.popViewController(animated: true)
+        }
     }
     
+    func profileBackBtnAction(){
+        fromProfile = true
+    }
     func rightMenuButtonCreationForCXController(_ imageName:String,frame:CGRect) -> UIButton{
         let button = UIButton(type: .custom) as UIButton
         button.setBackgroundImage(UIImage(named:imageName), for: UIControlState())

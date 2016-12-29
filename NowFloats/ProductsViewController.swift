@@ -23,14 +23,35 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
-        self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
-        UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+
+        #if MyLabs
+            
+            chooseArticleButton.isHidden = true
+            productSearhBar.placeholder = "Search for tests"
+            
+            let myLabzProductNib = UINib(nibName: "MyLabzProductCollectionViewCell", bundle: nil)
+            self.updatecollectionview.register(myLabzProductNib, forCellWithReuseIdentifier: "MyLabzProductCollectionViewCell")
+            
+            UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+            
+            getTheProducts()
+            
+        #else
+            
+            chooseArticleButton.isHidden = false
+            let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
+            self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
+            
+            UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+            
+            getTheProducts()
+            setupDropDowns()
+            
+        #endif
         
-        //chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)
-        getTheProducts()
-        setupDropDowns()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +71,15 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func getTheProducts(){
         
         #if MyLabs
+            
             let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
             let predicate =  NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
-            fetchRequest.predicate = predicate
+            if type != "both"{
+                fetchRequest.predicate = predicate
+            }
             self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+            print(self.products.count)
+            
         #else
             self.products =  CX_Products.mr_findAll() as NSArray!
             
@@ -70,58 +96,109 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath)as! ProductsCollectionViewCell
-        
-        let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-        let productJson = products.value(forKey: "json") as! NSString
-        let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
-        let shipmentDuration = dic.value(forKey: "ShipmentDuration")
-        cell.productdescriptionLabel.text = products.name
-        if shipmentDuration != nil {
-            cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
-        }else{
-            cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
-        }
-        cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
-        
-        let rupee = "\u{20B9}"
-        
-        //Trimming Price And Discount
-        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
-        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
-        
-        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
-        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
-        
-        //Setting AttributedPrice
-        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
-        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-        
-        //FinalPrice after subtracting the discount
-        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
-         FinalPrice = String(finalPriceNum) as String
-        
-        if finalPrice == FinalPrice{
-            cell.productpriceLabel.isHidden = true
-            cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
-        }else{
-            cell.productpriceLabel.isHidden = false
-            cell.productpriceLabel.attributedText = attributeString
-            cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+        #if MyLabs
             
-        }
-        
-        cell.cartaddedbutton.tag = indexPath.row+1
-        cell.likebutton.tag = indexPath.row+1
-        
-        cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), for: UIControlEvents.touchUpInside)
-        cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
-        
-        self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyLabzProductCollectionViewCell", for: indexPath)as! MyLabzProductCollectionViewCell
+            
+            let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+            let productJson = products.value(forKey: "json") as! NSString
+            let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
+            let shipmentDuration = dic.value(forKey: "ShipmentDuration")
+            cell.productdescriptionLabel.text = products.name
+            if shipmentDuration != nil {
+                cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
+            }else{
+                cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
+            }
+            cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+            cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            
+            let rupee = "\u{20B9}"
+            
+            //Trimming Price And Discount
+            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+            
+            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+            
+            //Setting AttributedPrice
+            let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            
+            //FinalPrice after subtracting the discount
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            FinalPrice = String(finalPriceNum) as String
+            
+            if finalPrice == FinalPrice{
+                cell.productpriceLabel.isHidden = true
+                cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+            }else{
+                cell.productpriceLabel.isHidden = false
+                cell.productpriceLabel.attributedText = attributeString
+                cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+                
+            }
+            
+            return cell
 
-        return cell
+            
+        #else
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath)as! ProductsCollectionViewCell
+            
+            let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
+            let productJson = products.value(forKey: "json") as! NSString
+            let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
+            let shipmentDuration = dic.value(forKey: "ShipmentDuration")
+            cell.productdescriptionLabel.text = products.name
+            if shipmentDuration != nil {
+                cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
+            }else{
+                cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
+            }
+            cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+            
+            let rupee = "\u{20B9}"
+            
+            //Trimming Price And Discount
+            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+            let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+            
+            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+            
+            //Setting AttributedPrice
+            let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            
+            //FinalPrice after subtracting the discount
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            FinalPrice = String(finalPriceNum) as String
+            
+            if finalPrice == FinalPrice{
+                cell.productpriceLabel.isHidden = true
+                cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+            }else{
+                cell.productpriceLabel.isHidden = false
+                cell.productpriceLabel.attributedText = attributeString
+                cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+                
+            }
+            
+            cell.cartaddedbutton.tag = indexPath.row+1
+            cell.likebutton.tag = indexPath.row+1
+            
+            cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), for: UIControlEvents.touchUpInside)
+            cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
+            
+            self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
+            
+            return cell
+            
+        #endif
+        
     }
-    
     
     func assignCartButtonWishtListProperTy(_ tableViewCell:ProductsCollectionViewCell,indexPath:IndexPath,productData:CX_Products){
         
@@ -143,13 +220,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         }else{
             tableViewCell.likebutton.isSelected = false
         }
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
         
+        #if MyLabs
+             return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 191)
+        #else
+             return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
+        #endif
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -161,6 +241,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         print(products.json!)
@@ -175,8 +256,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         //FinalPrice after subtracting the discount
         let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
         let FinalPrice = String(finalPriceNum) as String
-      
+        
         #if MyLabs
+            
             //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
             let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
             MLProductDetails.productString = products.json
@@ -260,15 +342,14 @@ extension ProductsViewController {
                 self.updatecollectionview.reloadItems(at: [indexPath])
                 
             })
-            
         }
     }
-    
 }
 
 
 
 extension ProductsViewController:UISearchBarDelegate{
+    
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
         self.productSearhBar.resignFirstResponder()
@@ -314,11 +395,24 @@ extension ProductsViewController:UISearchBarDelegate{
         
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        self.productSearhBar.resignFirstResponder()
+    }
+    
     func doSearch () {
         
         #if MyLabs
-            //let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
-            let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@ AND type=='\(self.type)'",self.productSearhBar.text!)
+            let predicate:NSPredicate
+            
+            if self.type == "both"{
+            predicate =  NSPredicate(format: "name contains[c] %@ ",self.productSearhBar.text!)
+
+            }else{
+                
+            predicate =  NSPredicate(format: "name contains[c] %@ AND type=='\(self.type)'",self.productSearhBar.text!)
+                
+            }
             let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
            // let predicate =  NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
             fetchRequest.predicate = predicate

@@ -325,7 +325,7 @@ open class CXAppDataManager: NSObject {
     // let signUpUrl = "http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
         
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"userEmailId":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject,"firstName":fistName as AnyObject,"lastName":lastName as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"userEmailId":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject,"firstName":fistName as AnyObject,"lastName":lastName as AnyObject,"mobile":mobileNumber as AnyObject]) { (responseDict) in
             completion(responseDict)
 
         }

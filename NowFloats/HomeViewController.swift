@@ -82,6 +82,7 @@ class HomeViewController: UITabBarController {
             
             let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController
             photos.title = "PHOTOS"
+            
             photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
             self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
 

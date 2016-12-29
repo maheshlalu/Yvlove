@@ -19,33 +19,36 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     @IBOutlet weak var chooseDateTxtField: UITextField!
     @IBOutlet weak var bookNowBt: UIButton!
     @IBOutlet weak var cScrollView: UIScrollView!
+    
     let toolBar:UIToolbar! = UIToolbar()
     var isDatePicker:Bool = false
     let limitLength = 10
     var productDetails:NSDictionary!
-    var pickOption = ["9:30 AM - 10:00AM", "10:00 AM - 10:30AM", "10:30 AM - 11:00AM", "11:00 AM - 11:30AM", "11:30 AM - 12:00PM","12:00 PM - 12:30PM", "12:30 PM - 1:00PM", "1:00 PM - 1:30PM", "1:30 PM - 2:00PM", "2:00 PM - 2:30PM","2:30 PM - 3:00PM", "3:00 PM - 3:30PM","3:30 PM - 4:00PM", "4:00 PM - 4:30PM","4:30 PM - 5:00PM", "5:00 PM - 5:30PM"]
+    
+    var pickOption = ["6:00AM - 6:30AM","6:30AM - 7:00AM","7:00AM - 7:30AM","7:30 AM - 8:00AM","8:00 AM - 8:30AM","8:30 AM - 9:00AM","9:00 AM - 9:30AM","9:30 AM - 10:00AM", "10:00 AM - 10:30AM", "10:30 AM - 11:00AM", "11:00 AM - 11:30AM", "11:30 AM - 12:00PM","12:00 PM - 12:30PM", "12:30 PM - 1:00PM", "1:00 PM - 1:30PM", "1:30 PM - 2:00PM", "2:00 PM - 2:30PM","2:30 PM - 3:00PM", "3:00 PM - 3:30PM","3:30 PM - 4:00PM", "4:00 PM - 4:30PM","4:30 PM - 5:00PM", "5:00 PM - 5:30PM"]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         self.dataIntegration()
         self.timePicker()
         self.datePicker()
         
         self.bookNowBt.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-
-      //  let tap = UITapGestureRecognizer(target: self, action: #selector(BookTestViewController.handleTap(sender:)))
-       // self.view.addGestureRecognizer(tap)
+        
+        //  let tap = UITapGestureRecognizer(target: self, action: #selector(BookTestViewController.handleTap(sender:)))
+        // self.view.addGestureRecognizer(tap)
     }
     
     func dataIntegration(){
         fullNameTxtField.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
         mobileTxtField.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
         emailTxtField.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
+        add1TxtField.isEnabled = true
     }
     
     func timePicker(){
-        
+
         let pickerView = UIPickerView()
         self.toolBarView()
         pickerView.delegate = self
@@ -72,10 +75,10 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         datePickerView.maximumDate = maxDate as Date
         
         self.toolBarView()
-    
+        
         chooseDateTxtField.inputView = datePickerView
         chooseDateTxtField.inputAccessoryView = toolBar
-            
+        
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
     }
     
@@ -132,17 +135,18 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         chooseDateTxtField.resignFirstResponder()
     }
     
-//    func cancelForDate(){
-//        let dateFormatter = DateFormatter()
-//        let currentDate: NSDate = NSDate()
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
-//        chooseDateTxtField.text = dateFormatter.string(from: currentDate as Date)
-//        chooseDateTxtField.resignFirstResponder()
-//    }
+    //    func cancelForDate(){
+    //        let dateFormatter = DateFormatter()
+    //        let currentDate: NSDate = NSDate()
+    //        dateFormatter.dateFormat = "dd/MM/yyyy"
+    //        chooseDateTxtField.text = dateFormatter.string(from: currentDate as Date)
+    //        chooseDateTxtField.resignFirstResponder()
+    //    }
     
     @IBAction func bookNowAction(_ sender: Any) {
         
         self.view.endEditing(true)
+        
         if (self.fullNameTxtField.text?.characters.count)! > 0
             && (self.add1TxtField.text?.characters.count)! > 0
             && (self.emailTxtField.text?.characters.count)! > 0
@@ -153,7 +157,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                 let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email address.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                return
+                
             }
             
             if (self.mobileTxtField.text?.characters.count)! < 10 {
@@ -161,13 +165,9 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                 let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
                     UIAlertAction in
                     //self.navigationController?.popViewControllerAnimated(true)
-                    
                 }
                 alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
-                
-                
-                return
             }
             self.bookTestCall()
             
@@ -202,7 +202,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         
         
         let floatPrice: Float = Float(CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.productDetails, sourceKey: "MRP"))!
-
+        
         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         //DiscountAmount
         let floatDiscount:Float = Float(CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.productDetails, sourceKey: "DiscountAmount"))!
@@ -211,7 +211,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         //FinalPrice after subtracting the discount
         let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
         let FinalPrice = String(finalPriceNum) as String
-
+        
         
         let orderItemName = (productDetails.value(forKey:"Name") as? String)!
         let orderItemMRP = FinalPrice
@@ -223,7 +223,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                                                                             
                                                                             forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
         
-//        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
+        //        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
         
         print(populatedDictionary)
         /*    Address = hgggtest;
@@ -282,7 +282,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         
         return false
     }
-
+    
     override func headerTitleText() -> String{
         return ""
     }
@@ -320,194 +320,14 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = mobileTxtField.text else { return true }
         
-        let newLength = text.characters.count + string.characters.count - range.length
-        return newLength <= 10 // Bool
+        if textField.tag == 100{
+            guard let text = mobileTxtField.text else { return true }
+            
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 10 // Bool
+        }else{ return true }
+        
     }
+    
 }
-
-/*    myHashMap =     {
- jobId = 25696;
- jobInfo =         {
- "Additional_Details" =             {
- };
- Address = hgggtest;
- Attachments =             (
- );
- "Contact_Number" = 9640339556;
- CreatedSubJobs =             (
- );
- "Current_Job_Status" = Submitted;
- "Current_Job_StatusId" = 2370;
- "Diagnostic_Centre" = MyLabz;
- Insights =             (
- {
- Pinterest = 0;
- points = "0.0";
- },
- {
- Twitter = 0;
- points = "0.0";
- },
- {
- Hangouts = 0;
- points = "0.0";
- },
- {
- Linkedin = 0;
- points = "0.0";
- },
- {
- Instagram = 0;
- points = "0.0";
- },
- {
- Messaging = 0;
- points = "0.0";
- },
- {
- Facebook = 0;
- points = "0.0";
- },
- {
- "Google+" = 0;
- points = "0.0";
- },
- {
- Gmail = 0;
- points = "0.0";
- },
- {
- Skype = 0;
- points = "0.0";
- },
- {
- WhatsApp = 0;
- points = "0.0";
- },
- {
- "Campaigns Comment" = 0;
- points = "0.0";
- },
- {
- "Campaigns Favorite" = 0;
- points = "0.0";
- },
- {
- "Campaigns Share" = 0;
- points = "0.0";
- },
- {
- "Campaigns View" = 0;
- points = "0.0";
- },
- {
- "Services Share" = 0;
- points = "0.0";
- },
- {
- "Services Comment" = 0;
- points = "0.0";
- },
- {
- "Services View" = 0;
- points = "0.0";
- },
- {
- "Services Favorite" = 0;
- points = "0.0";
- },
- {
- "Offers Share" = 0;
- points = "0.0";
- },
- {
- "Offers Comment" = 0;
- points = "0.0";
- },
- {
- "Offers Favorite" = 0;
- points = "0.0";
- },
- {
- "Offers View" = 0;
- points = "0.0";
- },
- {
- "Products Buy" = 0;
- points = "0.0";
- },
- {
- "Products Comment" = 0;
- points = "0.0";
- },
- {
- "Products Share" = 0;
- points = "0.0";
- },
- {
- "Products Cart" = 0;
- points = "0.0";
- },
- {
- Register = 0;
- points = "0.0";
- },
- {
- "Products View" = 0;
- points = "0.0";
- },
- {
- "Products Favorite" = 0;
- points = "0.0";
- },
- {
- Login = 0;
- points = "0.0";
- }
- );
- ItemCode = "b49d6dfb-67f8-45b1-80ca-9a59ebec4c46";
- Name = "mahesh y";
- "Next_Job_Statuses" =             (
- {
- SeqNo = 2;
- "Status_Id" = 2371;
- "Status_Name" = Approve;
- "Sub_Jobtype_Forms" =                     (
- );
- },
- {
- SeqNo = 3;
- "Status_Id" = 2373;
- "Status_Name" = Reject;
- "Sub_Jobtype_Forms" =                     (
- );
- }
- );
- "Next_Seq_Nos" = "2,3";
- OrderItemId = 25614;
- OrderItemMRP = "150.0";
- OrderItemName = "Blood Urea";
- OrderItemQuantity = 1;
- OrderItemSubTotal = "150.0";
- PackageName = "";
- "Sample_Collection_Time" = "16/12/2016 9:30 AM - 10:00AM";
- createdByFullName = yernagulamahesh;
- createdById = 149;
- createdOn = "14:26 Dec 15, 2016";
- hrsOfOperation =             (
- );
- id = 25696;
- jobComments =             (
- );
- jobTypeId = 1043;
- jobTypeName = PlaceOrder;
- lastModifiedDate = "15-12-2016 14:26:33:904";
- overallRating = "0.0";
- publicURL = "http://storeongo.com/app/92/Services;PlaceOrder;25696;_;SingleProduct";
- totalReviews = 0;
- };
- message = "Jobs saved";
- status = 1;
- };*/

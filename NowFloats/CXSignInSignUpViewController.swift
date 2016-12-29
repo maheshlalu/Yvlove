@@ -168,6 +168,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
             
                 let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let profile = storyBoard.instantiateViewController(withIdentifier: "PROFILE") as! UserProfileViewController
+                profile.isFromSignIn = true
                 self.navigationController?.pushViewController(profile, animated: true)
             
                 

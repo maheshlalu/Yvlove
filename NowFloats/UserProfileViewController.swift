@@ -16,11 +16,17 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var userMobileLbl: UILabel!
     @IBOutlet weak var userMailLbl: UILabel!
     @IBOutlet weak var dpImageView: UIImageView!
+    var isFromSignIn = false
     var presentWindow:UIWindow?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isFromSignIn{
+            let notif:NSNotification.Name = NSNotification.Name(rawValue: "FromProfile")
+            NotificationCenter.default.post(name: notif, object: nil)
+        }
         presentWindow = UIApplication.shared.keyWindow
         self.profileTableView.rowHeight = UITableViewAutomaticDimension
         self.profileTableView.estimatedRowHeight = 10.0
@@ -31,6 +37,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     }
     
     func profileDataIntegration(){
+        
         userNameLbl.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
         userMobileLbl.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
         userMailLbl.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
@@ -67,9 +74,10 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     }
 
     func headerViewAlignments(){
+        
         self.profileView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.dpImageView.clipsToBounds = true
-        self.dpImageView.layer.cornerRadius = self.dpImageView.bounds.size.width/6
+        self.dpImageView.layer.cornerRadius = 45.5
         self.dpImageView.layer.borderWidth = 3.0
         self.dpImageView.layer.borderColor = UIColor.white.cgColor
     }

@@ -10,16 +10,13 @@ import UIKit
 
 class ProductsCollectionViewCell: UICollectionViewCell {
 
-  
-  
     @IBOutlet var cartaddedbutton: UIButton!
     @IBOutlet var likebutton: UIButton!
     @IBOutlet var productpriceLabel: UILabel!
     @IBOutlet var productdescriptionLabel: UILabel!
     @IBOutlet var produstimageview: UIImageView!
     @IBOutlet weak var productFinalPriceLabel: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         

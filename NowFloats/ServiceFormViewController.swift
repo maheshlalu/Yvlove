@@ -44,7 +44,7 @@ class ServiceFormViewController: XLFormViewController {
     func getFormData(){
         
         LoadingView.show(true)
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"allServicesJobTypes" as AnyObject,"mallId":"530" as AnyObject/*CXAppConfig.sharedInstance.getAppMallID()*/]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"allServicesJobTypes" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject/*CXAppConfig.sharedInstance.getAppMallID()*/]) { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "orgs")! as! NSArray
             let service = Serices(name: "Email", addMore: "", type: "Small Text", dependentFields: "", mandatory: "", allowedValues: "", multiselect: "", groupName: "", propgateValueToSubFormFields: "")
             self.seriveformDataArray.add(service)
@@ -59,7 +59,7 @@ class ServiceFormViewController: XLFormViewController {
 
                         
                         let servicData = Serices(name: self.isContansKey(fieldDic , key: "name") ? (fieldDic.value(forKey: "name") as? String)! : "",
-                                                 addMore: self.isContansKey(fieldDic , key: "addMore") ? (fieldDic.value(forKey: "addMore") as? String)! : "",
+                                                 addMore:"",
                                                  type: self.isContansKey(fieldDic , key: "type") ? (fieldDic.value(forKey: "type") as? String)! : "",
                                                  dependentFields: self.isContansKey(fieldDic , key: "dependentFields") ? (fieldDic.value(forKey: "dependentFields") as? String)! : "",
                                                  mandatory: self.isContansKey(fieldDic , key: "mandatory") ? (fieldDic.value(forKey: "mandatory") as? String)! : "",
@@ -73,10 +73,10 @@ class ServiceFormViewController: XLFormViewController {
                         
                     }
                     
-                    
                     self.removeTheDublicateValuesInGroup()
                     self.formIntilizer()
                     LoadingView.hide()
+                    
                 }else{
                     LoadingView.hide()
                 }
@@ -86,9 +86,11 @@ class ServiceFormViewController: XLFormViewController {
         }
     }
     
+    //self.isContansKey(fieldDic , key: "addMore") ? (fieldDic.value(forKey: "addMore") as? String)! :
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.serViceCategory = "Book Appointment"
+        self.serViceCategory = "Enquiry"
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 50, 0)
         view.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.getFormData()
@@ -277,7 +279,7 @@ class ServiceFormViewController: XLFormViewController {
             print("Form Details \(formDic)")
             
             
-            self.submitServiceForm()
+            //self.submitServiceForm()
         }
         
     }

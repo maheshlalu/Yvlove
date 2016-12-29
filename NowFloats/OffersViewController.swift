@@ -18,10 +18,18 @@ class OffersViewController: CXViewController{
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
     var search:ProductSearchViewController! = nil
+    var searchMyLabz:ProductsViewController! = nil
     var FinalPrice:String! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if MyLabs
+            self.productsSearchBar.isHidden = true
+        #else
+
+        #endif
+
         //self.view.backgroundColor = UIColor.init(colorLiteralRed: 207.0/255.0, green: 206.0/255.0, blue: 207.0/255.0, alpha: 1)
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
         //CXAppConfig.sharedInstance.getAppBGColor()
@@ -96,7 +104,6 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
             return self.featureProuctsCell(tableView, indexPath: indexPath, reuseIdentFier: reuseTableViewCellIdentifier)
         }
         
-        return UITableViewCell()
     }
     
     
@@ -279,12 +286,19 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
 
 extension OffersViewController :UISearchBarDelegate{
 
-
+    
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
-        self.productsSearchBar.resignFirstResponder()
-        //self.doSearch()
-      
+        
+        #if MyLabs
+
+            
+        #else
+            self.productsSearchBar.resignFirstResponder()
+            self.doSearch()
+            
+        #endif
+        
 
     }
     
@@ -339,8 +353,18 @@ extension OffersViewController :UISearchBarDelegate{
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        #if MyLabs
+            
+            let search = self.storyboard?.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
+            search.type = "both"// it will display both radiology and regular tests
+            self.navigationController?.pushViewController(search, animated: true)
+            self.productsSearchBar.resignFirstResponder()
+            
+        #else
 
-        //self.productsSearchBar.showsCancelButton = true;
+            
+        #endif
     }
     
     func removeSearch(){
@@ -350,6 +374,7 @@ extension OffersViewController :UISearchBarDelegate{
     
     
     func doSearch () {
+
         self.search = self.storyboard?.instantiateViewController(withIdentifier: "ProductSearchViewController") as! ProductSearchViewController
         search.view.frame = CGRect(x: 0,y: self.productsSearchBar.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.view.addSubview(search.view)
@@ -364,6 +389,9 @@ extension OffersViewController :UISearchBarDelegate{
         fetchRequest.entity = productEn
         self.search.products = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
         self.search.updatecollectionview.reloadData()
+        
+        
+      
         
         /*let productEn = NSEntityDescription.entityForName("TABLE_PRODUCT_SUB_CATEGORIES", inManagedObjectContext: NSManagedObjectContext.MR_contextForCurrentThread())
          let fetchRequest = TABLE_PRODUCT_SUB_CATEGORIES.MR_requestAllSortedBy("id", ascending: false)

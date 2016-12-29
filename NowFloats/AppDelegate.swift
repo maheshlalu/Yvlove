@@ -11,6 +11,8 @@ import CoreData
 import CoreSpotlight
 import MobileCoreServices
 import MagicalRecord
+import Fabric
+import Crashlytics
 
 
 
@@ -21,26 +23,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
+        Fabric.with([Crashlytics.self])
+        
         UITabBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         UITabBar.appearance().backgroundColor = UIColor.white
         UIApplication.shared.statusBarStyle = .lightContent
         self.setUpMagicalDB()
         self.configure()
-      //  blockOperationsTest1()
-       // self.setUpSidePanelview()
+        
+        // TODO: Move this to where you establish a user session
+      //  self.logUser()
+
+        //  blockOperationsTest1()
+        // self.setUpSidePanelview()
         
         #if MyLabs
             print("We have a banana")
-       #endif
-
-//        #elseif MELONA
-//            print("Melona")
-//        #else
-//            print("Kiwi")
-//        #endif
+        #endif
+        
+        //        #elseif MELONA
+        //            print("Melona")
+        //        #else
+        //            print("Kiwi")
+        //        #endif
         return true
     }
+    
+//    func logUser() {
+//        // TODO: Use the current user's information
+//        // You can call any combination of these three methods
+//        Crashlytics.sharedInstance().setUserEmail("dearsureshkumar@outlook.com")
+//        Crashlytics.sharedInstance().setUserIdentifier("1198")
+//        Crashlytics.sharedInstance().setUserName("OngoiOS")
+//    }
+
     
     func blockOperationsTest1(){
         
