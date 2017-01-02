@@ -56,6 +56,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       // self.getTheProducts()
         self.updatecollectionview.reloadData()
     }
     

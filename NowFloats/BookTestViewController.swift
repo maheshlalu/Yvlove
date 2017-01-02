@@ -261,11 +261,28 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
             let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
             if (string.contains("1")){
                 print("successfully ordered!!!")
+                self.showAlertView("Your order is successfull!! Please check your mail.", status: 1)
                 
+            }else{
+                self.showAlertView("Something went wrong!!! Please check you mail and order again.", status: 1)
+
             }
         }
-        
     }
+    
+    func showAlertView(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "My Labz", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        //alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{

@@ -26,7 +26,7 @@ class MyLabzAboutUsViewController: CXViewController,UITableViewDataSource,UITabl
     var str:String = ""
     var aboutUsArray : NSArray!
     var aboutUsDict: NSDictionary!
-    var mallDistance:String!
+    var mallDistance:String = ""
     
     override func viewDidLoad() {
         
@@ -127,7 +127,7 @@ class MyLabzAboutUsViewController: CXViewController,UITableViewDataSource,UITabl
             aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.value(forKeyPath: "Address") as?String
             aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
             aboutUs.aboutusrootLabel.text = "We are Located in"
-            aboutUs.aboutuskmLabel.text! = "\(mallDistance) KM Away"
+            aboutUs.aboutuskmLabel.text! = "\(mallDistance as String) KM Away"
             aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
             aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
             aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
@@ -206,13 +206,13 @@ class MyLabzAboutUsViewController: CXViewController,UITableViewDataSource,UITabl
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
-        var string:String! = String()
-        string = mallDistance(locValue.latitude, currentLon: locValue.longitude)!
-        self.mallDistance = string!
-        self.aboutustableview.reloadData()
+        var string:String!
+        string = mallDistance(locValue.latitude, currentLon: locValue.longitude)
+        self.mallDistance = string
+        //self.aboutustableview.reloadData()
     }
     
-    func mallDistance(_ currentLat:Double,currentLon:Double)->String!{
+    func mallDistance(_ currentLat:Double,currentLon:Double) -> String{
         
         let currentLat:Double = currentLat
         let currentLon:Double = currentLon

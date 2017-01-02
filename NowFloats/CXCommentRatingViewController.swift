@@ -74,7 +74,7 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     }
     
     func showAlertView(_ message:String, status:Int) {
-        let alert = UIAlertController(title: "Silly Monks", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Alert!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
         //alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
         let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
             UIAlertAction in

@@ -101,6 +101,7 @@ open class CXAppDataManager: NSObject {
             }
         }else{
             self.getTheFeaturedProduct()
+            
         }
          #endif
     }
