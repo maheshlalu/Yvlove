@@ -2531,7 +2531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ojr-7L-odp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4346" y="511"/>
+            <point key="canvasLocation" x="-4877" y="524"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="riN-PS-dh5">
@@ -4275,6 +4275,9 @@
                                         <include reference="BRb-bZ-OWy"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="questionBtnAction:" destination="SsZ-rk-J2P" eventType="touchUpInside" id="2fr-MZ-he8"/>
+                                </connections>
                             </button>
                             <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcw-CA-4T4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
@@ -4556,7 +4559,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1v-iQ-cEc" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3698" y="510"/>
+            <point key="canvasLocation" x="-4224" y="524"/>
         </scene>
     </scenes>
     <resources>
