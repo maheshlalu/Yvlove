@@ -214,7 +214,10 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         }
         productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
-        cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
+       // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
+        
+        cell.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
+
         #if MyLabs
             cell.orderNowBtn.setTitle("BOOK NOW", for: .normal)
         #else

@@ -111,7 +111,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             }else{
                 cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
             }
-            cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+           // cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+            
+           // cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
+            cell.produstimageview.setImageWith(NSURL(string: products.imageUrl!) as URL!, usingActivityIndicatorStyle: .gray)
+            
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             
             let rupee = "\u{20B9}"
@@ -158,8 +162,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             }else{
                 cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
             }
-            cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
-            
+            //cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+            cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
+
             let rupee = "\u{20B9}"
             
             //Trimming Price And Discount

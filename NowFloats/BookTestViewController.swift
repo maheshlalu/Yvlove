@@ -214,8 +214,9 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         
         
         let orderItemName = (productDetails.value(forKey:"Name") as? String)!
-        let orderItemMRP = FinalPrice
-        let orderItemSubTotal = FinalPrice
+        let orderItemMRP = floatPrice
+        let orderItemSubTotal = floatPrice
+        let total =  FinalPrice
         let diagnosticCenter = "MyLabz"
         let SampleCollectionTime = (self.chooseDateTxtField.text! as String)+" "+(self.chooseTimeTxtField.text! as String)
         
@@ -224,6 +225,8 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                                                                             forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
         
         //        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
+       
+        populatedDictionary.setObject(total, forKey: "Total" as NSCopying)
         
         print(populatedDictionary)
         /*    Address = hgggtest;

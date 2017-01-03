@@ -85,13 +85,14 @@ class CXDataProvider: NSObject {
                 enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
                 // self.saveContext()
                 
-                let productDic = CXConstant.sharedInstance.convertStringToDictionary(enProduct!.json!)
+//                let productDic = CXConstant.sharedInstance.convertStringToDictionary(enProduct!.json!)
+              //  self.addItemToSpotlightSearch((enProduct?.name)!, productImage:imageData!, productDesc:CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Description") ,identifier: (enProduct?.pid)!)
+
+                self.addTheProductsToSpotlightSearch(productName: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Name"),
+                                                     thumNailUrl: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Image_URL"),
+                                                     productDic: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Description"),
+                                                     identfier: enProduct!.pid!)
                 
-                let imageUrlSptLt = URL(string: (enProduct?.imageUrl)!)
-                let imageData = try? Data(contentsOf: imageUrlSptLt!)
-
-                self.addItemToSpotlightSearch((enProduct?.name)!, productImage:imageData!, productDesc:(productDic.value(forKey: "Description")as! String) ,identifier: (enProduct?.pid)!)
-
             }
             
         }) { (success, error) in
@@ -303,10 +304,33 @@ extension CXDataProvider {
         let item = CSSearchableItem(uniqueIdentifier: identifier, domainIdentifier: "com.nowFloats.cx", attributeSet: attributeSet)
         
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
+            if let error = error { 
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+               // print("Search item successfully indexed!")
+            }
+        }
+    }
+    
+    //Products adding to SpotLight 
+    
+    func addTheProductsToSpotlightSearch(productName:String,
+                                         thumNailUrl:String,
+                                         productDic:String,
+                                         identfier:String){
+        
+        let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        attributeSet.title = productName
+        attributeSet.thumbnailURL  = NSURL(string: thumNailUrl) as URL?
+        attributeSet.contentDescription = productDic
+        
+        let item = CSSearchableItem(uniqueIdentifier: identfier, domainIdentifier: "com.nowFloats.cx", attributeSet: attributeSet)
+        
+        CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
                 print("Indexing error: \(error.localizedDescription)")
             } else {
-                print("Search item successfully indexed!")
+                // print("Search item successfully indexed!")
             }
         }
     }
