@@ -71,13 +71,14 @@ class CXDataProvider: NSObject {
                 enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
                 enProduct?.pPrice = 1
                 
-                /*let updateDate =  prod.valueForKey("UpdatedOn") as? String
+                let updateDate =  prod?.value(forKey: "UpdatedOn") as? String
                 
-                let component = updateDate!.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-                let list = component.filter({ $0 != "" })
-                let number = Int(list[0])
-                enProduct?.pUpdateDate =  number */
+                let component = updateDate?.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+                let list = component?.filter({ $0 != "" })
+                let number = Int((list?[0])!)
+                enProduct?.pUpdateDate =  number as NSNumber?
                 enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
+                
                 //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
                 let str = (prod as AnyObject).value(forKey: "jobTypeName") as? String
                 let finalStr = str?.replacingOccurrences(of: " ", with: "")

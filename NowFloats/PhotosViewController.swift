@@ -9,28 +9,31 @@
 import UIKit
 import SKPhotoBrowser
 import SDWebImage
-class PhotosViewController: CXViewController {
+
+class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var photosCollectionView: UICollectionView!
     var images = [SKPhoto]()
     var gallaryItems:NSArray!
     var screenWidth:CGFloat! = nil
-    let imageNames: NSArray = ["image1.jpeg", "image2.jpeg", "image3.jpeg"]
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        //self.navigationController?.navigationBarHidden = true
         let nib = UINib(nibName: "PhotosCollectionViewCell", bundle: nil)
         self.photosCollectionView.register(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         self.getTheGalleryItems()
+        print(gallaryItems.description)
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         self.photosCollectionView.backgroundColor = UIColor.clear
     }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.gallaryItems.count
+
+
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return gallaryItems.count
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath as IndexPath)as! PhotosCollectionViewCell
         cell.layer.cornerRadius = 10
@@ -41,7 +44,8 @@ class PhotosViewController: CXViewController {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.main.bounds.size.width
         if CXConstant.currentDeviceScreen() == IPHONE_6PLUS
         {
@@ -53,14 +57,12 @@ class PhotosViewController: CXViewController {
         }
         
     }
-    
-    
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
     
@@ -69,7 +71,7 @@ class PhotosViewController: CXViewController {
      presentViewController(browser, animated: true, completion: {})
      */
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         
         let browser = SKPhotoBrowser(photos: images)

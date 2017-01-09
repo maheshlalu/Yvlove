@@ -94,7 +94,7 @@ open class CXAppDataManager: NSObject {
         
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                //print("print products\(responseDict)")
+                print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     self.getTheFeaturedProduct()
                 })

@@ -22,10 +22,15 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var productRattingLbl: UILabel!
+    @IBOutlet weak var needMoreInfoBtn: UIButton!
+    
+    var isMRP = Bool()
+    var isLink = Bool()
     
     let searchQuoteIndex:Int! = nil
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.productDetailsTableView.rowHeight = UITableViewAutomaticDimension
         self.productDetailsTableView.estimatedRowHeight = 10.0
@@ -42,25 +47,15 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         
     }
     
-//    func displaySearchResult(notification:NSNotification){
-//    
-//        searchQuoteIndex = (notification.object as! NSString).integerValue
-//    
-//    }
-    
+    //    func displaySearchResult(notification:NSNotification){
+    //
+    //        searchQuoteIndex = (notification.object as! NSString).integerValue
+    //
+    //    }
     
     
     func setUpRatingView(){
-        //star
-        
-        // ratingView.emptyImage = UIImage(named: "star.png")
-        //ratingView.fullImage = UIImage(named: "star_sel_108.png")
-        // Optional params
-        //ratingView.delegate = self
         ratingView.contentMode = UIViewContentMode.scaleAspectFit
-        // ratingView.maxRating = 5
-        //ratingView.minRating = 0
-        //ratingView.rating = 0
         ratingView.editable = false
         ratingView.halfRatings = true
         ratingView.floatRatings = false
@@ -69,6 +64,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     }
     
     func customisingBtns(){
+        
         placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         placeOrderBtn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
@@ -77,14 +73,46 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         addToCartBtn.layer.borderColor = UIColor.white.cgColor
         addToCartBtn.layer.borderWidth = 1.0
         
-        //CXConstant.resultString(prod.valueForKey("id")!)
-        //productDetailDic.valueForKey("id")! as! String
-        if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToCart{
+        needMoreInfoBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        needMoreInfoBtn.layer.cornerRadius = 2.0
+        needMoreInfoBtn.layer.borderColor = UIColor.white.cgColor
+        needMoreInfoBtn.layer.borderWidth = 1.0
+        
+        if CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToCart{
             addToCartBtn.isSelected = true
         }else{
             addToCartBtn.isSelected = false
         }
+        
+        print(isMRP,isLink)
+        
+        
+        //MRP is False and Link is False
+        if !isMRP && !isLink {
+            
+            needMoreInfoBtn.isHidden = false
+            placeOrderBtn.isHidden = true
+            addToCartBtn.isHidden = true
+            needMoreInfoBtn.setTitle("Ask For A Quote", for: .normal)
+          
+            //MRP is False and Link is True
+        }else if !isMRP && isLink {
+            placeOrderBtn.isHidden = true
+            needMoreInfoBtn.isHidden = false
+            addToCartBtn.isHidden = false
+            needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+            addToCartBtn.setTitle("Proceed To Online Store", for: .normal)
+            
+            //MRP is True and Link is True
+        }else if isMRP && isLink {
+            placeOrderBtn.isHidden = false
+            needMoreInfoBtn.isHidden = false
+            addToCartBtn.isHidden = false
+            needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+        }
+        
     }
+    
     
     func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
     {
@@ -204,7 +232,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
                 let categoryDesc = cell!.viewWithTag(901)! as! UILabel
                 categoryDesc.text = "\(productDetailDic.value(forKey: "Category")!)"
             }
-
+            
         }
         return cell!
         
@@ -214,14 +242,24 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     {
         return UITableViewAutomaticDimension
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
     {
-        
         return UITableViewAutomaticDimension
-        
     }
     
     @IBAction func addToCartAction(_ sender: UIButton) {
+        
+        if addToCartBtn.titleLabel?.text == "Proceed To Online Store"{
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
+            online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
+            online.productName = productDetailDic.value(forKey: "Name") as! String!
+            self.navigationController?.pushViewController(online, animated: true)
+            
+        }else{
+        
         if sender.isSelected {
             //Remove Item
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
@@ -235,9 +273,10 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         }
         sender.isSelected = !sender.isSelected
         
-        
+        }
     }
     @IBAction func placeOrderNowAction(_ sender: AnyObject) {
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
         self.navigationController?.pushViewController(cart, animated: true)
@@ -258,6 +297,41 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         }
         sender.isSelected = !sender.isSelected
         
+    }
+    
+    @IBAction func needMoreAction(_ sender: Any) {
+        print("needMoreAction")
+        
+        let popup = PopupController
+            .create(self)
+            .customize(
+                [
+                    .animation(.slideUp),
+                    .scrollable(false),
+                    .layout(.center),
+                    .backgroundStyle(.blackFilter(alpha: 0.7))
+                ]
+            )
+            .didShowHandler { popup in
+            
+            }
+            .didCloseHandler { _ in
+        }
+        
+        
+        let container = InfoQueryViewController.instance()
+        
+        if (sender as! UIButton).titleLabel?.text == "Need More Info" {
+            container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+        }else{
+            container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
+        }
+    
+        container.closeHandler = { _ in
+            popup.dismiss()
+            
+        }
+        popup.show(container)
     }
     
     func textViewDidChange(_ textView: UITextView) {

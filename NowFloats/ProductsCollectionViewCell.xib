@@ -4,11 +4,15 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -107,16 +111,26 @@
                         <state key="normal" image="heart_unselected"/>
                         <state key="selected" image="heart_selected"/>
                     </button>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTP-iN-g5d">
+                        <rect key="frame" x="5" y="186" width="175" height="29"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="T3l-JH-cHc" secondAttribute="bottom" constant="-50" id="199-xr-7Xj"/>
+                <constraint firstAttribute="bottom" secondItem="JTP-iN-g5d" secondAttribute="bottom" constant="7" id="7Yd-7R-cah"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="xsG-hu-zh8" secondAttribute="bottom" constant="-4" id="CFG-5U-Vl4"/>
                 <constraint firstAttribute="trailing" secondItem="dgd-86-3eo" secondAttribute="trailing" constant="5" id="FxJ-1L-gTs"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="ID3-np-Pvi"/>
                 <constraint firstAttribute="trailing" secondItem="zat-1g-efN" secondAttribute="trailing" constant="5" id="KCN-RV-GtW"/>
+                <constraint firstItem="JTP-iN-g5d" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="6" id="Kwb-9y-EwQ"/>
                 <constraint firstItem="xsG-hu-zh8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="NfD-i2-dvJ"/>
+                <constraint firstItem="JTP-iN-g5d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="UFO-jK-Wha"/>
                 <constraint firstItem="xsG-hu-zh8" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="2" id="XcE-UX-c6Q"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="top" secondItem="NKj-UO-GqA" secondAttribute="bottom" constant="18" id="ZbU-1e-13s"/>
                 <constraint firstAttribute="trailing" secondItem="NKj-UO-GqA" secondAttribute="trailing" constant="5" id="a8q-mm-Z2a"/>
@@ -125,6 +139,7 @@
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ldM-TZ-NzC"/>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ozP-n6-NOo"/>
                 <constraint firstAttribute="bottom" secondItem="zat-1g-efN" secondAttribute="bottom" constant="9" id="rbl-eq-Amh"/>
+                <constraint firstAttribute="trailing" secondItem="JTP-iN-g5d" secondAttribute="trailing" constant="5" id="re1-aa-pO3"/>
                 <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" constant="9" id="uQ2-Nk-xc3"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="wkH-jx-ZZM"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xRZ-4K-9ka"/>
@@ -145,6 +160,7 @@
                 <outlet property="productdescriptionLabel" destination="NKj-UO-GqA" id="R6r-l3-wmD"/>
                 <outlet property="productpriceLabel" destination="Pn6-uw-wkP" id="Gni-yJ-yL5"/>
                 <outlet property="produstimageview" destination="dgd-86-3eo" id="MQA-9p-fpJ"/>
+                <outlet property="viewMoreLbl" destination="JTP-iN-g5d" id="GL9-Kb-R8i"/>
             </connections>
             <point key="canvasLocation" x="19.5" y="110"/>
         </collectionViewCell>

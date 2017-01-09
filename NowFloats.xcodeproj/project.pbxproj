@@ -37,6 +37,7 @@
 		113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113E5DA01D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift */; };
 		113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113E5DA11D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib */; };
 		113F0F951DFECC2A006CBA2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4FD81A1D6446D300A6EBBE /* Main.storyboard */; };
+		1140274B1E2396A800C87D86 /* InfoQuery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1140274A1E2396A800C87D86 /* InfoQuery.storyboard */; };
 		1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */; };
 		1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */; };
 		1147CB9E1D8BB4DD00138C4E /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */; };
@@ -91,6 +92,8 @@
 		119E3BBD1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119E3BBA1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift */; };
 		119E3BBE1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */; };
 		119E3BBF1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */; };
+		11C8EF491E23BC110018EDE3 /* InfoQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8EF481E23BC110018EDE3 /* InfoQueryViewController.swift */; };
+		11C8EF4B1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8EF4A1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift */; };
 		11F0B3E01D8AC11B00873979 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0B3DF1D8AC11B00873979 /* Station.swift */; };
 		11F1DE4E1D883A31002AF5B0 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */; };
 		11F1DE4F1D883A31002AF5B0 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */; };
@@ -389,6 +392,7 @@
 		113F0F5E1DFE9F3F006CBA2E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = "../Library/Developer/Xcode/DerivedData/NowFloats-euvwetnysdbohxgbdfkpwemzfebj/Build/Products/Debug-iphonesimulator/SKPhotoBrowser/SKPhotoBrowser.framework"; sourceTree = "<group>"; };
 		113F0F5F1DFE9F3F006CBA2E /* XLForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLForm.framework; path = "../Library/Developer/Xcode/DerivedData/NowFloats-euvwetnysdbohxgbdfkpwemzfebj/Build/Products/Debug-iphonesimulator/XLForm/XLForm.framework"; sourceTree = "<group>"; };
 		113F0F961DFECCC5006CBA2E /* ML_ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ML_ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		1140274A1E2396A800C87D86 /* InfoQuery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoQuery.storyboard; sourceTree = "<group>"; };
 		1147CB981D8BB3ED00138C4E /* CXCommentRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentRatingViewController.swift; sourceTree = "<group>"; };
 		1147CB991D8BB3ED00138C4E /* CXCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCommentViewController.swift; sourceTree = "<group>"; };
 		1147CB9D1D8BB4DD00138C4E /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
@@ -432,6 +436,8 @@
 		11982DCB1D9E960800FAE0B0 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
 		119E3BBA1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLabzOrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLabzOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
+		11C8EF481E23BC110018EDE3 /* InfoQueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoQueryViewController.swift; sourceTree = "<group>"; };
+		11C8EF4A1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyOnlineWebViewController.swift; sourceTree = "<group>"; };
 		11F0B3DF1D8AC11B00873979 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
@@ -774,7 +780,9 @@
 			isa = PBXGroup;
 			children = (
 				116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */,
+				1140274A1E2396A800C87D86 /* InfoQuery.storyboard */,
 				116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */,
+				11C8EF481E23BC110018EDE3 /* InfoQueryViewController.swift */,
 				11370F631D893B0E00CCBE01 /* PopupController.swift */,
 				118346BC1D86D789000BE1D4 /* FTPopOverMenu.h */,
 				118346BD1D86D789000BE1D4 /* FTPopOverMenu.m */,
@@ -841,6 +849,7 @@
 			isa = PBXGroup;
 			children = (
 				11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */,
+				11C8EF4A1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift */,
 			);
 			name = ProductDetails;
 			sourceTree = "<group>";
@@ -1431,6 +1440,7 @@
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
 				1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */,
 				189A1E421D79479800724120 /* Roboto-Regular.ttf in Resources */,
+				1140274B1E2396A800C87D86 /* InfoQuery.storyboard in Resources */,
 				18C089D41D8D2132005DFF7C /* star.png in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
@@ -1545,7 +1555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F5DB1DF7EABC00841F5E /* [CP] Check Pods Manifest.lock */ = {
@@ -1560,7 +1570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1818F6741DF7EABC00841F5E /* [CP] Embed Pods Frameworks */ = {
@@ -1605,7 +1615,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27B8D76FBFB0748BCD09A082 /* [CP] Copy Pods Resources */ = {
@@ -1680,7 +1690,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1884,6 +1894,7 @@
 				114A12BC1D91323A006AC421 /* MIBadgeButton.swift in Sources */,
 				11F1DE611D883B24002AF5B0 /* ordersTableViewCell.swift in Sources */,
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
+				11C8EF491E23BC110018EDE3 /* InfoQueryViewController.swift in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,
 				11370F721D89581200CCBE01 /* MTCoordinateContainer.swift in Sources */,
@@ -1918,6 +1929,7 @@
 				18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */,
 				183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */,
 				11370F8B1D89A3A800CCBE01 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				11C8EF4B1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift in Sources */,
 				1825CCBF1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				11325D3D1D8A66CB00A7F10E /* MyorderTableViewCell1.swift in Sources */,
 				189A1E321D79412A00724120 /* CX_Products+CoreDataProperties.swift in Sources */,
@@ -2088,7 +2100,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "892c3fc1-e0c8-486e-820b-d5b258bfc312";
+				PROVISIONING_PROFILE = "668aa0bf-26b5-4fdd-b295-70de4ca62d93";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2130,7 +2142,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "892c3fc1-e0c8-486e-820b-d5b258bfc312";
+				PROVISIONING_PROFILE = "668aa0bf-26b5-4fdd-b295-70de4ca62d93";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

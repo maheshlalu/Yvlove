@@ -38,7 +38,12 @@ class CXAppConfig {
      - Returns: the base url string from Config.plist      
      */
     func getBaseUrl() -> String {
+        #if MyLabs
         return config!.value(forKey: "BaseUrl") as! String
+        #else
+        return config!.value(forKey: "NowFloats_BaseUrl") as! String
+        #endif
+        
     }
     //getMaster
     func getMasterUrl() -> String {

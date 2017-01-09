@@ -111,9 +111,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             }else{
                 cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
             }
-           // cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
+            // cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
             
-           // cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
+            // cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
             cell.produstimageview.setImageWith(NSURL(string: products.imageUrl!) as URL!, usingActivityIndicatorStyle: .gray)
             
             cell.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -146,7 +146,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             }
             
             return cell
-
+            
             
         #else
             
@@ -156,13 +156,14 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             let productJson = products.value(forKey: "json") as! NSString
             let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
             let shipmentDuration = dic.value(forKey: "ShipmentDuration")
+            
             cell.productdescriptionLabel.text = products.name
+
             if shipmentDuration != nil {
                 cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
             }else{
                 cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
             }
-            //cell.produstimageview.sd_setImage(with: URL(string: products.imageUrl!))
             cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
 
             let rupee = "\u{20B9}"
@@ -199,6 +200,23 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
             
             self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
+            
+            // Enhancements in nowfloats
+            let MRP = FinalPrice
+            print(MRP!)
+            
+            if MRP == "0"{
+                cell.viewMoreLbl.isHidden = false
+                cell.productpriceLabel.isHidden = true
+                cell.productFinalPriceLabel.isHidden = true
+                cell.cartaddedbutton.isHidden = true
+                
+            }else{
+                cell.viewMoreLbl.isHidden = true
+                cell.productpriceLabel.isHidden = false
+                cell.productFinalPriceLabel.isHidden = false
+                cell.cartaddedbutton.isHidden = false
+            }
             
             return cell
             
@@ -265,7 +283,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         #if MyLabs
             
-            //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
             let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
             MLProductDetails.productString = products.json
             MLProductDetails.type = self.type
@@ -276,7 +293,24 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         #else
             let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
             productDetails.productString = products.json
+            let dict = CXConstant.sharedInstance.convertStringToDictionary(products.json!)
+            print(dict)
+            var link = Bool()
+            var mrp = Bool()
+            if dict.value(forKey: "BuyOnlineLink") as! String == ""{
+                link = false
+            }else{link = true}
+            
+            if dict.value(forKey: "MRP") as! String == "0"{
+                mrp = false
+            }else{mrp = true}
+            
+            print(link,mrp)
+            
+            productDetails.isMRP = mrp
+            productDetails.isLink = link
             self.navigationController?.pushViewController(productDetails, animated: true)
+            
         #endif
         
         
@@ -489,7 +523,6 @@ extension ProductsViewController{
               if index == 0{
                  self.products  = CX_Products.mr_findAll() as NSArray!
             }else if index == 1{
-    
                 self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: false, with: predicate) as NSArray!
             }else if index == 2{
                 //pPrice
@@ -499,7 +532,6 @@ extension ProductsViewController{
             }else if index == 4{
                 self.products = CX_Products.mr_findAllSorted(by: "pUpdateDate", ascending: true, with: predicate) as NSArray!
             }
-            
             self.updatecollectionview.reloadData()
         }
                                    

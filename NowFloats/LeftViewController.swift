@@ -182,6 +182,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
         #if MyLabs
             let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
             if itemName == "Home"{
@@ -190,7 +191,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }else if itemName == "About us"{
                 let aboutUs = storyBoard.instantiateViewController(withIdentifier: "MyLabzAboutUsViewController") as! MyLabzAboutUsViewController
                 self.navController.pushViewController(aboutUs, animated: true)
+
             }else if itemName == "Orders"{
+                
                 if UserDefaults.standard.value(forKey: "USER_ID") != nil{
                     let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
                     self.navController.pushViewController(orders, animated: true)
@@ -199,13 +202,14 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                     self.navController.pushViewController(signInViewCnt, animated: true)
                 }
             }
-
+            
         #else
+            
             let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
             if itemName == "Home"{
                 self.navController.popToRootViewController(animated: true)
                 
-            }else if itemName == "About Us"{
+            }else if itemName == "About us"{
                 let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
                 self.navController.pushViewController(aboutUs, animated: true)
             }else if itemName == "Orders"{
@@ -221,9 +225,9 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
                 self.navController.pushViewController(wishlist, animated: true)
             }
-
+            
         #endif
-
+        
     }
     
   func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{

@@ -17,6 +17,8 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var produstimageview: UIImageView!
     @IBOutlet weak var productFinalPriceLabel: UILabel!
 
+    @IBOutlet weak var viewMoreLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,8 +34,8 @@ class ProductsCollectionViewCell: UICollectionViewCell {
             self.cartaddedbutton.layer.borderWidth = 1
             self.cartaddedbutton.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
             
-            //self.productdescriptionLabel.font = CXAppConfig.sharedInstance.appLargeFont()
             self.productpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            self.viewMoreLbl.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             
         #endif
 

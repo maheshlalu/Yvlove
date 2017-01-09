@@ -58,7 +58,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         rateView.rating = Float((self.aboutUsDict.value(forKeyPath: "overallRating") as? String)!)!
         rateLbl.text = ("\(rateView.rating)/5 Ratings")
         //self.aboutusimageview.addSubview(overlay)
-        self.weekDayCalculation()
+       // self.weekDayCalculation()
     }
     
     func locationManagerAuthentication(){
@@ -254,7 +254,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 if indexPath.section == 1{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.availability()
+                    //aboutUsExtra.extraDescLbl.text = self.availability()
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                 }else if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "You can reach us at"
@@ -304,7 +304,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.availability()
+                    //aboutUsExtra.extraDescLbl.text = self.availability()
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{

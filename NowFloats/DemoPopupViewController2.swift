@@ -43,7 +43,7 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class DemoPopupViewController2: UIViewController, PopupContentViewController, UITextFieldDelegate{
+class DemoPopupViewController2: CXViewController, PopupContentViewController, UITextFieldDelegate{
     var closeHandler: (() -> Void)?
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var nameTxtField: UITextField!
