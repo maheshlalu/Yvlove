@@ -10,6 +10,7 @@ import UIKit
 
 class UpdatesViewController: CXViewController {
 
+    @IBOutlet weak var offersNotAvailLbl: UILabel!
     let monthsMillisecond:Int64 = 2592000000
     @IBOutlet weak var updateTableView: UITableView!
     @IBOutlet weak var updatesSearch: UISearchBar!
@@ -20,9 +21,25 @@ class UpdatesViewController: CXViewController {
         self.updateTableView.backgroundView?.backgroundColor = UIColor.clear
         self.updateTableView.backgroundColor = UIColor.clear
         self.view.backgroundColor =  CXAppConfig.sharedInstance.getAppBGColor()
+        self.offersNotAvailLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.updatesArray = NSArray()
+        
+        if updatesArray.count == 0{
+            self.offersNotAvailLbl.isHidden = false
+            self.updateTableView.isHidden = true
+            self.updatesSearch.isHidden = true
+        }else{
+            self.offersNotAvailLbl.isHidden = true
+            self.updateTableView.isHidden = false
+            self.updatesSearch.isHidden = false
+        }
+        
         self.setUpTableView()
         self.getUpdates()
+        
+        print(updatesArray.count)
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -42,11 +59,6 @@ class UpdatesViewController: CXViewController {
         //self.tableview.contentInset = UIEdgeInsetsMake(0,5, 0,5)
         self.updateTableView.delegate =  self
         self.updateTableView.dataSource = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

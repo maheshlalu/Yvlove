@@ -14,6 +14,7 @@ class WishlistCollectionViewCell: UICollectionViewCell {
     @IBOutlet var wishlistView: UIView!
     @IBOutlet weak var wishlistdeletebutton: UIButton!
     @IBOutlet weak var wishlistaddtocartbutton: UIButton!
+    @IBOutlet weak var onlineStoreBtn: UIButton!
     @IBOutlet weak var wishlistpricelabel: UILabel!
     @IBOutlet weak var imagetitleLabel: UILabel!
     @IBOutlet weak var wishlistimageview: UIImageView!
@@ -24,12 +25,9 @@ class WishlistCollectionViewCell: UICollectionViewCell {
         
         
         self.wishlistaddtocartbutton.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        self.wishlistaddtocartbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
- 
+        self.wishlistaddtocartbutton.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: .normal)
+        self.onlineStoreBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: .normal)
 
-        
-        
-        // Initialization code
     }
 
 }

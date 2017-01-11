@@ -49,11 +49,11 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         if indexPath.section == 0 {
             
             let myordercell:MyordersTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "MyordersTableViewCell") as? MyordersTableViewCell
-            myordercell.orderdidLabel?.text = "Order id : \(orderIdStr)"
+            myordercell.orderdidLabel?.text = "Order id : \(orderIdStr!)"
             let rupee = "\u{20B9}"
             myordercell.orderPriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
-            myordercell.orderPriceLabel.text = "\(rupee) \(priceStr)"
-            myordercell.orederPlacedonLabel.text = "Placed On \(placedStr)"
+            myordercell.orderPriceLabel.text = "\(rupee) \(priceStr!)"
+            myordercell.orederPlacedonLabel.text = "Placed On \(placedStr!)"
             myordercell.selectionStyle = .none
             
             

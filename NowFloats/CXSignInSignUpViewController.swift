@@ -122,6 +122,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
     func sendSignDetails() {
   
         CXAppDataManager.sharedInstance.singWithUserDetails(self.emailAddressField.text!, password: self.passwordField.text!) { (responseDict) in
+            
             /*   UserId = 2003;
              address = "";
              city = "";

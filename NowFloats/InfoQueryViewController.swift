@@ -15,9 +15,10 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
     @IBOutlet weak var contactTxtField: UITextField!
     @IBOutlet weak var sendMsgBtn: UIButton!
     
-    var textViewString:String!
+    var textViewString:String! = nil
+    var emailTxt = String()
     
-    var closeHandler: (() -> Void)?
+    var closeHandler:(() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,9 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
         self.contactTxtField.layer.borderWidth = 1
         
         queryTxtView.text = textViewString!
+        emailTxt = UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String
+
+        contactTxtField.text = emailTxt
         
     }
     
@@ -72,28 +76,55 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
     }
     
     func sendMessage(){
+        
         self.view.endEditing(true)
         if (self.queryTxtView.text?.characters.count)! > 0 && (self.contactTxtField.text?.characters.count)! > 0 {
             
-            //            if !self.isValidEmail(self.emailTxtField.text!) {
-            //                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email address.", preferredStyle: UIAlertControllerStyle.alert)
-            //                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-            //                self.present(alert, animated: true, completion: nil)
-            //                return
-            //            }
-            //
-            //            if self.mobileNoTxtField.text?.characters.count < 10 {
-            //                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid Phone number.", preferredStyle: UIAlertControllerStyle.alert)
-            //                let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
-            //                    UIAlertAction in
-            //                    //self.navigationController?.popViewControllerAnimated(true)
-            //
-            //                }
-            //                alert.addAction(okAction)
-            //                self.present(alert, animated: true, completion: nil)
-            //                return
-            //            }
-            closeHandler?()
+            if !self.isValidEmail(self.contactTxtField.text!) {
+                
+                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email address.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+                
+            }else{
+                
+                let dict:NSMutableDictionary = NSMutableDictionary()
+                let str = self.queryTxtView.text.replacingOccurrences(of: "\"", with: "")
+                dict.setObject(str, forKey: "Message" as NSCopying)
+                //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
+                print(dict)
+                
+                let listArray : NSMutableArray = NSMutableArray()
+                
+                listArray.add(dict)
+                
+                let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
+                cartJsonDict.setObject(listArray, forKey: "list" as NSCopying)
+                
+                var jsonData : Data = Data()
+                do {
+                    jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    // here "jsonData" is the dictionary encoded in JSON data
+                } catch let error as NSError {
+                    print(error)
+                }
+                let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
+                
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"Enquiry" as AnyObject ,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":self.contactTxtField.text as AnyObject]) { (responseDict) in
+                    print(responseDict)
+                
+                    let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                    
+                    if status == 1{
+                    self.showAlertView("Success!!!", status: 1)
+                    
+                    }else{
+                        self.showAlertView("Something went wrong!! Please Try Again!!", status: 0)
+                    }
+                }
+                
+            }
             
         } else {
             let alert = UIAlertController(title: "Alert!!!", message: "All fields are mandatory. Please enter all fields.", preferredStyle: UIAlertControllerStyle.alert)
@@ -110,6 +141,21 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
             return true
         }
         return false
+    }
+    
+    func showAlertView(_ message:String, status:Int) {
+        
+        let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                self.navigationController?.popViewController(animated: true)
+            }else{
+            
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

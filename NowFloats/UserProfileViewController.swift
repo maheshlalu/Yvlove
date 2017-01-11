@@ -173,8 +173,8 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
             self.navigationController?.pushViewController(orders, animated: true)
         }else if indexPath.section == 2{
-            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
-            self.navigationController?.pushViewController(profile, animated: true)
+//            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
+//            self.navigationController?.pushViewController(profile, animated: true)
         }else if indexPath.section == 3{
             let comentsView = CXCommentViewController.init()
             self.navigationController?.pushViewController(comentsView, animated: true)

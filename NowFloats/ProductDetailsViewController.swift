@@ -94,6 +94,8 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             placeOrderBtn.isHidden = true
             addToCartBtn.isHidden = true
             needMoreInfoBtn.setTitle("Ask For A Quote", for: .normal)
+            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+            needMoreInfoBtn.setImage(nil, for: .normal)
           
             //MRP is False and Link is True
         }else if !isMRP && isLink {
@@ -101,7 +103,11 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             needMoreInfoBtn.isHidden = false
             addToCartBtn.isHidden = false
             needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+            needMoreInfoBtn.setImage(nil, for: .normal)
             addToCartBtn.setTitle("Proceed To Online Store", for: .normal)
+            addToCartBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+            addToCartBtn.setImage(nil, for: .normal)
             
             //MRP is True and Link is True
         }else if isMRP && isLink {
@@ -109,6 +115,8 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             needMoreInfoBtn.isHidden = false
             addToCartBtn.isHidden = false
             needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+            needMoreInfoBtn.setImage(nil, for: .normal)
         }
         
     }
@@ -165,7 +173,17 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             let price:String = productDetailDic.value(forKey: "MRP") as! String
             let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
             
-            if discount == "0"{
+            if price == "0"{
+                discountPriceLbl.isHidden = true
+                discountPersentageLbl.isHidden = true
+                finalPriceLbl.isHidden = true
+            }else{
+                discountPriceLbl.isHidden = false
+                discountPersentageLbl.isHidden = false
+                finalPriceLbl.isHidden = false
+            }
+            
+            if discount == "0" {
                 discountPriceLbl.isHidden = true
                 discountPersentageLbl.isHidden = true
                 finalPriceLbl.text = "\(rupee) \(price)"
@@ -321,15 +339,24 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         
         let container = InfoQueryViewController.instance()
         
-        if (sender as! UIButton).titleLabel?.text == "Need More Info" {
-            container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
-        }else{
+        if (sender as! UIButton).titleLabel?.text == "Ask For A Quote"{
             container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
         }
-    
+        
+        if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+            
+            if (sender as! UIButton).titleLabel?.text == "Need More Info" {
+                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+            }
+            
+        }else{
+            let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+            self.navigationController?.pushViewController(signInViewCnt, animated: true)
+            return
+        }
+       
         container.closeHandler = { _ in
             popup.dismiss()
-            
         }
         popup.show(container)
     }

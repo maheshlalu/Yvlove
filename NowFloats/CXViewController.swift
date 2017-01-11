@@ -38,9 +38,9 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
             let profile = storyBoard.instantiateViewController(withIdentifier: "PROFILE") as! UserProfileViewController
             self.navigationController?.pushViewController(profile, animated: true)
         }else if notificationName == "NotificationBellNotification"{
-            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
-            self.navigationController?.pushViewController(profile, animated: true)
+//            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            let profile = storyBoard.instantiateViewController(withIdentifier: "NOTIFICATIONS") as! NotificationsViewController
+//            self.navigationController?.pushViewController(profile, animated: true)
 //        }else if notification.name == "ForgotNotification" {
 //            let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
 //            self.navigationController?.pushViewController(forgotPswdViewCnt, animated: true)

@@ -11,9 +11,11 @@ let reuseTableViewCellIdentifier = "OfferTableViewCell"
 let reuseCollectionViewCellIdentifier = "OfferCollectionViewCell"
 
 class OffersViewController: CXViewController{
+    @IBOutlet weak var offersNotAvailLbl: UILabel!
 
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
+    
     var products : NSArray! = nil
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
@@ -30,13 +32,11 @@ class OffersViewController: CXViewController{
 
         #endif
 
-        //self.view.backgroundColor = UIColor.init(colorLiteralRed: 207.0/255.0, green: 206.0/255.0, blue: 207.0/255.0, alpha: 1)
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
-        //CXAppConfig.sharedInstance.getAppBGColor()
+  
         self.registerTableViewCell()
         self.getTheProducts()
-   
-        
+ 
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,7 +85,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return featureProducts.count+1
+        return featureProducts.count
         
         
     }

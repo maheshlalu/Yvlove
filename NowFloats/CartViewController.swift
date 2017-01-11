@@ -10,6 +10,8 @@ import UIKit
 
 class CartViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var emptyCartLbl: UILabel!
     @IBOutlet weak var checkOutNowBtn: UIButton!
     @IBOutlet weak var productsCountLbl: UILabel!
     @IBOutlet weak var totalPriceLbl: UILabel!
@@ -23,6 +25,19 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
         self.collectionview.register(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()
+        self.emptyCartLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        
+        if products.count == 0{
+            emptyCartLbl.isHidden = false
+            bottomView.isHidden = true
+            collectionview.isHidden = true
+            
+        }else{
+            emptyCartLbl.isHidden = true
+            bottomView.isHidden = false
+            collectionview.isHidden = false
+        }
+        
         self.checkOutNowBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.productsCountLbl.text = "\(self.products.count) Products"
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()

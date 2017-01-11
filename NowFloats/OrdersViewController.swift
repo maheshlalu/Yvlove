@@ -27,7 +27,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         
         self.orderstableview.rowHeight = UITableViewAutomaticDimension
-        self.orderstableview.estimatedRowHeight = 10.0
+        self.orderstableview.estimatedRowHeight = 96
         self.orderstableview.backgroundColor = UIColor.clear
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         
@@ -87,7 +87,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
             
             cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
             cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as? String
-            cell.orderpriceresultlabel.text = "₹ \(orederDataDic.value(forKey: "Total") as? String)"
+            cell.orderpriceresultlabel.text = "₹ \(orederDataDic.value(forKey: "Total")!)"
             cell.statusresultlabel.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
             
         #endif
@@ -112,7 +112,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         #if MyLabs
             return 241
         #else
-           return UITableViewAutomaticDimension
+           return 96
         #endif
         
     }
