@@ -50,6 +50,8 @@
 	<string>App needs location to find current location. </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs location to find current location. </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>for profile picture </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>

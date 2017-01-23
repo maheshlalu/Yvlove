@@ -11,7 +11,7 @@ import UIKit
 class Serices {
 
     var name: String
-    var addMore: String
+    var addMore: Bool
     var type: String
     var mandatory: String
     var allowedValues: String
@@ -22,7 +22,7 @@ class Serices {
 
     
     init(name: String,
-         addMore: String,
+         addMore: Bool,
          type: String,
          dependentFields: String,
          mandatory: String,

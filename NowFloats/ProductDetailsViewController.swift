@@ -269,12 +269,16 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     @IBAction func addToCartAction(_ sender: UIButton) {
         
         if addToCartBtn.titleLabel?.text == "Proceed To Online Store"{
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
-            online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
-            online.productName = productDetailDic.value(forKey: "Name") as! String!
-            self.navigationController?.pushViewController(online, animated: true)
+            #if MyLabs
+                
+            #else
+                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
+                online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
+                online.productName = productDetailDic.value(forKey: "Name") as! String!
+                self.navigationController?.pushViewController(online, animated: true)
+            #endif
+
             
         }else{
         
@@ -320,45 +324,52 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     @IBAction func needMoreAction(_ sender: Any) {
         print("needMoreAction")
         
-        let popup = PopupController
-            .create(self)
-            .customize(
-                [
-                    .animation(.slideUp),
-                    .scrollable(false),
-                    .layout(.center),
-                    .backgroundStyle(.blackFilter(alpha: 0.7))
-                ]
-            )
-            .didShowHandler { popup in
+        #if MyLabs
             
-            }
-            .didCloseHandler { _ in
-        }
-        
-        
-        let container = InfoQueryViewController.instance()
-        
-        if (sender as! UIButton).titleLabel?.text == "Ask For A Quote"{
-            container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
-        }
-        
-        if UserDefaults.standard.value(forKey: "USER_ID") != nil{
-            
-            if (sender as! UIButton).titleLabel?.text == "Need More Info" {
-                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+        #else
+            let popup = PopupController
+                .create(self)
+                .customize(
+                    [
+                        .animation(.slideUp),
+                        .scrollable(false),
+                        .layout(.center),
+                        .backgroundStyle(.blackFilter(alpha: 0.7))
+                    ]
+                )
+                .didShowHandler { popup in
+                    
+                }
+                .didCloseHandler { _ in
             }
             
-        }else{
-            let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
-            self.navigationController?.pushViewController(signInViewCnt, animated: true)
-            return
-        }
+            
+            let container = InfoQueryViewController.instance()
+            
+            if (sender as! UIButton).titleLabel?.text == "Ask For A Quote"{
+                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
+            }
+            
+            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                
+                if (sender as! UIButton).titleLabel?.text == "Need More Info" {
+                    container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+                }
+                
+            }else{
+                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                self.navigationController?.pushViewController(signInViewCnt, animated: true)
+                return
+            }
+            
+            container.closeHandler = { _ in
+                popup.dismiss()
+            }
+            popup.show(container)
+            
+        #endif
+        
        
-        container.closeHandler = { _ in
-            popup.dismiss()
-        }
-        popup.show(container)
     }
     
     func textViewDidChange(_ textView: UITextView) {

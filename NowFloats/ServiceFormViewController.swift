@@ -40,14 +40,16 @@ class ServiceFormViewController: XLFormViewController {
     var seriveformDataArray : NSMutableArray = NSMutableArray()
     var groupNames : NSMutableArray = NSMutableArray()
     var serViceCategory : String = String()
-    
+    var addmoreBool:Bool = Bool()
+    var navController:UINavigationController = UINavigationController()
     func getFormData(){
-        
+ 
         LoadingView.show(true)
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"allServicesJobTypes" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject/*CXAppConfig.sharedInstance.getAppMallID()*/]) { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "orgs")! as! NSArray
-            let service = Serices(name: "Email", addMore: "", type: "Small Text", dependentFields: "", mandatory: "", allowedValues: "", multiselect: "", groupName: "", propgateValueToSubFormFields: "")
+            let service = Serices(name: "Email", addMore: false, type: "Small Text", dependentFields: "", mandatory: "", allowedValues: "", multiselect: "", groupName: "", propgateValueToSubFormFields: "")
             self.seriveformDataArray.add(service)
+            
             for srDic in jobs {
                 let serviceDic : NSDictionary =  (srDic as? NSDictionary)!
                 
@@ -56,10 +58,11 @@ class ServiceFormViewController: XLFormViewController {
                     for fldDic in (serviceDic.value(forKey: "Fields") as? NSArray)! {
                         
                         let fieldDic : NSDictionary =  (fldDic as? NSDictionary)!
-
+                        print("\(self.isContansKey(fieldDic , key: "addMore") as Bool)")
+                        
                         
                         let servicData = Serices(name: self.isContansKey(fieldDic , key: "name") ? (fieldDic.value(forKey: "name") as? String)! : "",
-                                                 addMore:"",
+                                                 addMore:self.isContansKey(fieldDic , key: "addMore") as Bool ? (fieldDic.value(forKey: "addMore") as! Bool):false,
                                                  type: self.isContansKey(fieldDic , key: "type") ? (fieldDic.value(forKey: "type") as? String)! : "",
                                                  dependentFields: self.isContansKey(fieldDic , key: "dependentFields") ? (fieldDic.value(forKey: "dependentFields") as? String)! : "",
                                                  mandatory: self.isContansKey(fieldDic , key: "mandatory") ? (fieldDic.value(forKey: "mandatory") as? String)! : "",
@@ -86,21 +89,26 @@ class ServiceFormViewController: XLFormViewController {
         }
     }
     
-    //self.isContansKey(fieldDic , key: "addMore") ? (fieldDic.value(forKey: "addMore") as? String)! :
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.serViceCategory = "Enquiry"
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 50, 0)
         view.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        self.navController.navigationBar.isHidden = true
         self.getFormData()
-        // Do any additional setup after loading the view.
+        
+        showAlertView("happy", status: 1)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
            }
     
     func removeTheDublicateValuesInGroup(){
+        
         //self.groupNames.removeObject("")
         let orderSet : NSOrderedSet = NSOrderedSet(array: self.groupNames as [AnyObject])
         self.groupNames.removeAllObjects()
@@ -278,8 +286,7 @@ class ServiceFormViewController: XLFormViewController {
             let formDic : NSDictionary = self.httpParameters() as NSDictionary
             print("Form Details \(formDic)")
             
-            
-            //self.submitServiceForm()
+            self.submitServiceForm()
         }
         
     }
@@ -344,30 +351,67 @@ class ServiceFormViewController: XLFormViewController {
  
     
     func subMitTheServiceFormData(_ serviceFormDic:NSMutableDictionary){
-        
+
+        serviceFormDic.removeObject(forKey: "Submit")
         print(serviceFormDic)
+        
+        let dict:NSMutableDictionary = NSMutableDictionary()
+        dict.setObject(serviceFormDic.value(forKey: "Name")!, forKey: "Name" as NSCopying)
+        dict.setObject(serviceFormDic.value(forKey: "Message")!, forKey: "Message" as NSCopying)
+        dict.setObject(serviceFormDic.value(forKey: "Address")!, forKey: "Address" as NSCopying)
+        dict.setObject(serviceFormDic.value(forKey: "Phone number")!, forKey: "Phone number" as NSCopying)
+        //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
+        print(dict)
+        
+        let listArray : NSMutableArray = NSMutableArray()
+        
+        listArray.add(dict)
+        
+        let formDict :NSMutableDictionary = NSMutableDictionary()
+        formDict.setObject(listArray, forKey: "list" as NSCopying)
+        
         var jsonData : Data = Data()
         do {
-            jsonData = try JSONSerialization.data(withJSONObject: serviceFormDic, options: JSONSerialization.WritingOptions.prettyPrinted)
+            jsonData = try JSONSerialization.data(withJSONObject: formDict, options: JSONSerialization.WritingOptions.prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
             print(error)
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":"530" as AnyObject/*CXAppConfig.sharedInstance.getAppMallID()*/,"consumerEmail":"yernagulamahesh@gmail.com" as AnyObject]) { (responseDict) in
+        
+        if UserDefaults.standard.value(forKey: "USER_EMAIL") as? String != nil {
             
-            let string = responseDict.value(forKeyPath: "myHashMap.status")
+            let email = UserDefaults.standard.value(forKey: "USER_EMAIL")
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail": email as AnyObject]) { (responseDict) in
+                print(responseDict)
+                
+                let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                
+                if status == 1{
+                    self.showAlertView("Success!!!", status: 1)
+                    
+                }else{
+                    self.showAlertView("Something went wrong!! Please Try Again!!", status: 0)
+                }
+            }
             
-//            if ((string?.range(of: "1")) != nil){
-//                
-//            }
+        }else{
+            
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                print(responseDict)
+                
+                let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                
+                if status == 1{
+                    self.showAlertView("Success!!!", status: 1)
+                    
+                }else{
+                    self.showAlertView("Something went wrong!! Please Try Again!!", status: 0)
+                }
+            }
         }
-        
     }
-    
-    
     
     
     func serviceFormDesign(){
@@ -384,34 +428,30 @@ class ServiceFormViewController: XLFormViewController {
                     LoadingView.hide()
                     
                 })
-                
             }
         }
-        
     }
-    
 
-    
-    
     func formIntilizer(){
         self.serviceFormDesigning()
         return
       
-    } 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    func showAlertView(_ message:String, status:Int) {
+        
+        let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                self.navController.popViewController(animated: true)
+            }else{
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-
-
 
 /*
  

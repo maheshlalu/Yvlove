@@ -190,69 +190,73 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     
     
     func addTocartBtnAction(_ button : UIButton!){
-
-        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        
-        if (button.titleLabel?.text == "MORE INFO") || (button.titleLabel?.text == "ASK FOR A QUOTE") {
+        #if MyLabs
             
-            let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
-            let products  = NSMutableArray(array: productsList)
-            let storesEntity : CX_Products = products.lastObject as! CX_Products
-            let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-            print(productDic)
+        #else
+            let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
             
-            let popup = PopupController
-                .create(self)
-                .customize(
-                    [
-                        .animation(.slideUp),
-                        .scrollable(false),
-                        .layout(.center),
-                        .backgroundStyle(.blackFilter(alpha: 0.7))
-                    ]
-                )
-                .didShowHandler { popup in
-                }
-                .didCloseHandler { _ in
-            }
-
-            let container = InfoQueryViewController.instance()
-
-            if button.titleLabel?.text == "ASK FOR A QUOTE"{
-                container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
-            }
-            
-            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+            if (button.titleLabel?.text == "MORE INFO") || (button.titleLabel?.text == "ASK FOR A QUOTE") {
                 
-                if button.titleLabel?.text == "MORE INFO" {
-                    
-                    container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+                let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
+                let products  = NSMutableArray(array: productsList)
+                let storesEntity : CX_Products = products.lastObject as! CX_Products
+                let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+                print(productDic)
+                
+                let popup = PopupController
+                    .create(self)
+                    .customize(
+                        [
+                            .animation(.slideUp),
+                            .scrollable(false),
+                            .layout(.center),
+                            .backgroundStyle(.blackFilter(alpha: 0.7))
+                        ]
+                    )
+                    .didShowHandler { popup in
+                    }
+                    .didCloseHandler { _ in
                 }
+                
+                let container = InfoQueryViewController.instance()
+                
+                if button.titleLabel?.text == "ASK FOR A QUOTE"{
+                    container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
+                }
+                
+                if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                    
+                    if button.titleLabel?.text == "MORE INFO" {
+                        
+                        container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+                    }
+                    
+                }else{
+                    let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                    self.navigationController?.pushViewController(signInViewCnt, animated: true)
+                    return
+                }
+                
+                container.closeHandler = { _ in
+                    popup.dismiss()
+                }
+                
+                popup.show(container)
                 
             }else{
-                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
-                self.navigationController?.pushViewController(signInViewCnt, animated: true)
-                return
+                
+                self.products.removeObject(at: button.tag-1)
+                self.wishlistcollectionView.reloadData()
+                CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                    
+                })
+                
+                print("delete the cell")
+                
             }
 
-            container.closeHandler = { _ in
-                popup.dismiss()
+        #endif
             }
-            
-            popup.show(container)
-            
-        }else{
-            
-        self.products.removeObject(at: button.tag-1)
-        self.wishlistcollectionView.reloadData()
-        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-            
-        })
-        
-        print("delete the cell")
-            
-        }
-    }
     
     func deleteWishListButtonAction(_ button : UIButton!){
         //Add to wishList
@@ -277,21 +281,25 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     
     
     func sendToOnlineTab(_ button : UIButton!){
-        
-        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        
-        let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
-        let products  = NSMutableArray(array: productsList)
-        let storesEntity : CX_Products = products.lastObject as! CX_Products
-        let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        print(productDic)
-        
-        
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
-        online.url = productDic.value(forKey: "BuyOnlineLink") as! String!
-        online.productName = productDic.value(forKey: "Name") as! String!
-        self.navigationController?.pushViewController(online, animated: true)
+        #if MyLabs
+            
+        #else
+            let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+            
+            let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
+            let products  = NSMutableArray(array: productsList)
+            let storesEntity : CX_Products = products.lastObject as! CX_Products
+            let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+            print(productDic)
+            
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
+            online.url = productDic.value(forKey: "BuyOnlineLink") as! String!
+            online.productName = productDic.value(forKey: "Name") as! String!
+            self.navigationController?.pushViewController(online, animated: true)
+        #endif
+
         
     }
     
