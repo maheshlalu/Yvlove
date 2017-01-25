@@ -39,6 +39,9 @@ target 'NowFloats' do
         
         pod 'Fabric'
         pod 'Crashlytics'
+        
+        pod 'FacebookCore'
+        pod 'FacebookLogin'
 
     end
     

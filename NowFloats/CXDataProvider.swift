@@ -80,7 +80,6 @@ class CXDataProvider: NSObject {
                     let list = component?.filter({ $0 != "" })
                     let number = Int((list?[0])!)
                     enProduct?.pUpdateDate =  number as NSNumber?
-                    
                 #endif
                 
                 

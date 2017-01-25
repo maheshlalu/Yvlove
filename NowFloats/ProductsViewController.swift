@@ -35,7 +35,32 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
             chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
             
-            getTheProducts()
+            if self.type == "RegularTests"{
+            //If Regulartests first check the local data, if its exist get the data and display in list otherwise fetch the data from server
+                if self.getTheProductsFromLocalDB().count == 0 {
+                    
+                    CXAppDataManager.sharedInstance.getRegularTests({ (respoce) in
+                         self.getTheProducts()
+                        self.updatecollectionview.reloadData()
+
+                    })
+                }else{
+                    self.updatecollectionview.reloadData()
+                }
+            }else{
+                //If Regulartests first check the local data, if its exist get the data and display in list otherwise fetch the data from server
+                if self.getTheProductsFromLocalDB().count == 0 {
+                    
+                    CXAppDataManager.sharedInstance.getRadiologyTests({ (respoce) in
+                        self.getTheProducts()
+                        self.updatecollectionview.reloadData()
+                        
+                    })
+                }else{
+                    self.updatecollectionview.reloadData()
+
+                }
+            }
             
         #else
             
@@ -66,6 +91,17 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func setupDropDowns() {
         self.chooseArticleButton.setTitle("\("  ")Popularity", for: UIControlState())
         setupChooseArticleDropDown()
+    }
+    
+    func getTheProductsFromLocalDB()->NSArray{
+       
+        let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+        let predicate =  NSPredicate(format: "type=='\(self.type)'", argumentArray: nil)
+        if type != "both"{
+            fetchRequest.predicate = predicate
+        }
+        self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+        return self.products
     }
     
     

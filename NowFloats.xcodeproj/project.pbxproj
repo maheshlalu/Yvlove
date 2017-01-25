@@ -92,8 +92,12 @@
 		119E3BBD1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119E3BBA1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift */; };
 		119E3BBE1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */; };
 		119E3BBF1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */; };
+		11BE21D31E361F3D00F15C14 /* CXFBEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE21D21E361F3C00F15C14 /* CXFBEvents.swift */; };
+		11BE21D41E361F3D00F15C14 /* CXFBEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE21D21E361F3C00F15C14 /* CXFBEvents.swift */; };
 		11C8EF491E23BC110018EDE3 /* InfoQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8EF481E23BC110018EDE3 /* InfoQueryViewController.swift */; };
 		11C8EF4B1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8EF4A1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift */; };
+		11E883801E35E7B00036070F /* MyLabs-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11E8837F1E35E7B00036070F /* MyLabs-Info.plist */; };
+		11E883811E35E7B00036070F /* MyLabs-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11E8837F1E35E7B00036070F /* MyLabs-Info.plist */; };
 		11F0B3E01D8AC11B00873979 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0B3DF1D8AC11B00873979 /* Station.swift */; };
 		11F1DE4E1D883A31002AF5B0 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */; };
 		11F1DE4F1D883A31002AF5B0 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */; };
@@ -436,8 +440,10 @@
 		11982DCB1D9E960800FAE0B0 /* ProductSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
 		119E3BBA1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLabzOrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		119E3BBB1E03F53D007FF403 /* MyLabzOrderDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLabzOrderDetailTableViewCell.xib; sourceTree = "<group>"; };
+		11BE21D21E361F3C00F15C14 /* CXFBEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXFBEvents.swift; sourceTree = "<group>"; };
 		11C8EF481E23BC110018EDE3 /* InfoQueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoQueryViewController.swift; sourceTree = "<group>"; };
 		11C8EF4A1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyOnlineWebViewController.swift; sourceTree = "<group>"; };
+		11E8837F1E35E7B00036070F /* MyLabs-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MyLabs-Info.plist"; sourceTree = "<group>"; };
 		11F0B3DF1D8AC11B00873979 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		11F1DE4B1D883A30002AF5B0 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
 		11F1DE4C1D883A30002AF5B0 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
@@ -460,7 +466,6 @@
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		180F249D1D9E732F00E69B0A /* Serices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serices.swift; sourceTree = "<group>"; };
 		1818F6791DF7EABC00841F5E /* MyLabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1818F67A1DF7EABD00841F5E /* MyLabs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MyLabs-Info.plist"; path = "/Users/apple/NowFloats/CX_OfferViewCode/MyLabs-Info.plist"; sourceTree = "<absolute>"; };
 		1825CCBD1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1047,7 +1052,6 @@
 				3B4FD8141D6446D200A6EBBE /* Products */,
 				5AFF7868B5E53374B0D43B75 /* Pods */,
 				0E1CF002394DE794901016D5 /* Frameworks */,
-				1818F67A1DF7EABD00841F5E /* MyLabs-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1084,6 +1088,7 @@
 				3B4FD84B1D64500700A6EBBE /* Controllers */,
 				3B4FD8501D64508B00A6EBBE /* Views */,
 				3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */,
+				11BE21D21E361F3C00F15C14 /* CXFBEvents.swift */,
 				118346BA1D86C264000BE1D4 /* UIColor+SMColor.swift */,
 				3B4FD8181D6446D300A6EBBE /* ViewController.swift */,
 				3B4FD81A1D6446D300A6EBBE /* Main.storyboard */,
@@ -1091,6 +1096,7 @@
 				3B4FD8221D6446D300A6EBBE /* LaunchScreen.storyboard */,
 				117EDF0F1E090D9A00591142 /* LaunchScreen_MyLabz.storyboard */,
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
+				11E8837F1E35E7B00036070F /* MyLabs-Info.plist */,
 				3B4FD81D1D6446D300A6EBBE /* NowFloats.xcdatamodeld */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
 			);
@@ -1397,6 +1403,7 @@
 				1818F65C1DF7EABC00841F5E /* Roboto-Regular.ttf in Resources */,
 				1818F65D1DF7EABC00841F5E /* star.png in Resources */,
 				1818F65E1DF7EABC00841F5E /* RobotoCondensed-Bold.ttf in Resources */,
+				11E883811E35E7B00036070F /* MyLabs-Info.plist in Resources */,
 				1818F65F1DF7EABC00841F5E /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				1818F6601DF7EABC00841F5E /* RobotoCondensed-Light.ttf in Resources */,
 				1818F6611DF7EABC00841F5E /* ordersTableViewCell.xib in Resources */,
@@ -1444,6 +1451,7 @@
 				18C089D41D8D2132005DFF7C /* star.png in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
+				11E883801E35E7B00036070F /* MyLabs-Info.plist in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
@@ -1747,6 +1755,7 @@
 				1818F6051DF7EABC00841F5E /* CX_ProductCategory+CoreDataProperties.swift in Sources */,
 				1818F6061DF7EABC00841F5E /* CX_ServiceCategory.swift in Sources */,
 				1818F6071DF7EABC00841F5E /* CX_Products.swift in Sources */,
+				11BE21D41E361F3D00F15C14 /* CXFBEvents.swift in Sources */,
 				1818F6081DF7EABC00841F5E /* PagerCustomView.m in Sources */,
 				1818F6091DF7EABC00841F5E /* CX_Gallery.swift in Sources */,
 				1818F60A1DF7EABC00841F5E /* AboutUsExtraTableViewCell.swift in Sources */,
@@ -1869,6 +1878,7 @@
 				1868BD211D7848840050BC72 /* CX_Products.swift in Sources */,
 				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
 				18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */,
+				11BE21D31E361F3D00F15C14 /* CXFBEvents.swift in Sources */,
 				110329CB1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift in Sources */,
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
@@ -2008,6 +2018,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SKPhotoBrowser",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/XLForm",
+					"$(PROJECT_DIR)/NowFloats",
 				);
 				INFOPLIST_FILE = "MyLabs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2042,6 +2053,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SKPhotoBrowser",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/XLForm",
+					"$(PROJECT_DIR)/NowFloats",
 				);
 				INFOPLIST_FILE = "MyLabs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2158,6 +2170,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NowFloats",
+				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2181,6 +2197,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NowFloats",
+				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

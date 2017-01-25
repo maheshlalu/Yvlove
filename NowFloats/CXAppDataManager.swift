@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookCore
+
 private var _sharedInstance:CXAppDataManager! = CXAppDataManager()
 
 protocol AppDataDelegate {
@@ -31,7 +33,9 @@ open class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
-        self.getProducts()
+        //self.getProducts()
+        self.getTheFeaturedProduct()
+
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             print("print store category\(responseDict)")
           self.getTheStores({(isDataSaved) in
@@ -65,31 +69,43 @@ open class CXAppDataManager: NSObject {
         }
     }
     
+    
+    func getRegularTests(_ completion:@escaping (_ responce:Bool) -> Void){
+       // if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == RegularTests", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
+        LoadingView.show("Loading...", animated: true)
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Regular Tests" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                print("print products\(responseDict)")
+                CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
+                    completion(true)
+                    AppEventsLogger.log("Regular Tests Content Viewed")
+                    LoadingView.hide()
+                })
+            }
+        //}
+    }
+    
+    func getRadiologyTests(_ completion:@escaping (_ responce:Bool) -> Void){
+       // if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == Radiology", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
+        LoadingView.show("Loading...", animated: true)
+
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Radiology" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                //print("print products\(responseDict)")
+                CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
+                    completion(true)
+                    AppEventsLogger.log("Radiology Content Viewed")
+                    LoadingView.hide()
+
+                })
+            //}}else{
+        }
+    }
+
+ 
     func getProducts(){
         
         #if MyLabs
    
-            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == RegularTests", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
-                CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Regular Tests" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                    print("print products\(responseDict)")
-                    CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
-                    })
-                }
-            }
-            
-            if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(format: "type == Radiology", argumentArray: nil), ispredicate: false,orederByKey: "").totalCount == 0{
-                CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Radiology" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                    //print("print products\(responseDict)")
-                    CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
-                        self.getTheFeaturedProduct()
-
-                    })
-                }
-            }else{
-                self.getTheFeaturedProduct()
-
-            }
-
+  
         #else
         
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
