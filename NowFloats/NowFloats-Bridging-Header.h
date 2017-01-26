@@ -14,4 +14,4 @@
 #import <XLForm/XLForm.h>
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
-
+#import "Mixpanel/Mixpanel.h"

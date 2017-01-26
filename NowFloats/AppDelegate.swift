@@ -16,7 +16,6 @@ import Crashlytics
 import FacebookCore
 import FBSDKCoreKit
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -40,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "App Launched", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
         }
         
+        
+        //MARK: Mixpanel Integration
+        CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
+        
 
         //  self.logUser()
         //  blockOperationsTest1()
@@ -57,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //    }
     
     
+
     func blockOperationsTest1(){
         
         let operationQueue = OperationQueue()

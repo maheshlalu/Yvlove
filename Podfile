@@ -18,7 +18,7 @@ target 'NowFloats' do
     
     pod 'FacebookCore'
     pod 'FacebookLogin'
-    
+    pod 'Mixpanel'
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing

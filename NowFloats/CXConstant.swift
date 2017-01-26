@@ -159,7 +159,7 @@ class CXConstant: NSObject {
     
     func getTheFid()-> String{
         
-      
+      return ""
         return (UserDefaults.standard.object(forKey: "FID") as? String)!
     }
     
