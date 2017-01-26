@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -193,6 +195,8 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 UserDefaults.standard.synchronize()
                 
                 self.showAlertView("User Registered Successfully", status: status)
+                
+                CXFBEvents.sharedInstance.logCompletedRegistrationEvent("Email")
             }
             
             let message = responseDict.value(forKey: "msg") as? String

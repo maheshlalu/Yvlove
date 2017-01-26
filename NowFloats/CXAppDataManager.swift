@@ -77,7 +77,6 @@ open class CXAppDataManager: NSObject {
                 print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     completion(true)
-                    AppEventsLogger.log("Regular Tests Content Viewed")
                     LoadingView.hide()
                 })
             }
@@ -92,7 +91,6 @@ open class CXAppDataManager: NSObject {
                 //print("print products\(responseDict)")
                 CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                     completion(true)
-                    AppEventsLogger.log("Radiology Content Viewed")
                     LoadingView.hide()
 
                 })
@@ -338,7 +336,7 @@ open class CXAppDataManager: NSObject {
     }
     
     //MARK: SIGN UP
-    func signUpWithUserDetails (_ fistName:String, lastName:String,mobileNumber:String, email:String, password:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
+    func signUpWithUserDetails (_ fistName:String, lastName:String, mobileNumber:String, email:String, password:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
     // let signUpUrl = "http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
         
         

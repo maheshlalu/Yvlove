@@ -92,14 +92,13 @@ class ServiceFormViewController: XLFormViewController {
     //
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.serViceCategory = "Enquiry"
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 50, 0)
         view.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.navController.navigationBar.isHidden = true
         self.getFormData()
-        
-        showAlertView("happy", status: 1)
         
     }
     

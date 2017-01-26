@@ -67,7 +67,6 @@
 		116C04071DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04031DFFF4F400AF4C89 /* DemoPopupViewController2.swift */; };
 		116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */; };
 		116C04161DFFFA0900AF4C89 /* DemoPopupViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116C04141DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard */; };
-		116C041A1DFFFAD200AF4C89 /* BookTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04191DFFFAD200AF4C89 /* BookTestViewController.swift */; };
 		116C041B1DFFFAD200AF4C89 /* BookTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C04191DFFFAD200AF4C89 /* BookTestViewController.swift */; };
 		116FF6761DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116FF6741DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift */; };
 		116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 116FF6751DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib */; };
@@ -1934,7 +1933,6 @@
 				183573A91D798F5400722AA2 /* CX_Stores.swift in Sources */,
 				11370F8C1D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift in Sources */,
 				11F1DE671D883BA3002AF5B0 /* AboutUsViewController.swift in Sources */,
-				116C041A1DFFFAD200AF4C89 /* BookTestViewController.swift in Sources */,
 				1890B6F01D8163EE00AF140A /* UpdateTableViewCell.swift in Sources */,
 				18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */,
 				183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */,

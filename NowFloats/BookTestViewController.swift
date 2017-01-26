@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FacebookCore
 
 class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
     
@@ -48,7 +50,7 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
     }
     
     func timePicker(){
-
+        
         let pickerView = UIPickerView()
         self.toolBarView()
         pickerView.delegate = self
@@ -199,8 +201,6 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
         let orderItemId = self.productDetails.value(forKey: "id")!
         let orderItemQuantity = "1"
         
-        
-        
         let floatPrice: Float = Float(CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.productDetails, sourceKey: "MRP"))!
         
         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
@@ -225,8 +225,10 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                                                                             forKeys: ["Name" as NSCopying,"Address" as NSCopying,"Contact_Number" as NSCopying,"OrderItemId" as NSCopying,"OrderItemQuantity" as NSCopying,"OrderItemName" as NSCopying,"OrderItemMRP" as NSCopying,"OrderItemSubTotal" as NSCopying,"Diagnostic_Centre" as NSCopying,"Sample_Collection_Time" as NSCopying])
         
         //        let populatedDictionary = ["Name":name,"Contact_Number":mobile,"Address":address,"OrderItemId":orderItemId,"OrderItemQuantity":orderItemQuantity,"OrderItemName":orderItemName,"OrderItemMRP":orderItemMRP,"OrderItemSubTotal":orderItemSubTotal,"Diagnostic_Centre":diagnosticCenter,"Sample_Collection_Time":SampleCollectionTime] as NSMutableDictionary
-       
+        
         populatedDictionary.setObject(total, forKey: "Total" as NSCopying)
+        CXFBEvents.sharedInstance.logInitiatedCheckoutEvent( String(describing: orderItemId), contentType: "product", numItems: 1, paymentInfoAvailable: true, currency: "INR", valToSum:Double(finalPriceNum))
+        
         
         print(populatedDictionary)
         /*    Address = hgggtest;
@@ -266,9 +268,19 @@ class BookTestViewController: CXViewController ,UITextFieldDelegate,UIScrollView
                 print("successfully ordered!!!")
                 self.showAlertView("Your order is successfull!! Please check your mail.", status: 1)
                 
+                let prodName = responseDict.value(forKeyPath: "myHashMap.jobInfo.OrderItemName") as! String
+                let params: [AnyHashable: Any] = [
+                    "USER EMAIL" : UserDefaults.standard.value(forKey: "USER_EMAIL")!,
+                    "COST" : responseDict.value(forKeyPath: "myHashMap.jobInfo.Total") as! String,
+                    "NUM OF ITEMS" : "1",
+                    "TYPE" : "Product",
+                    
+                    ]
+                FBSDKAppEvents.logEvent("Slot Booked For \(prodName)", parameters: params)
+                
             }else{
                 self.showAlertView("Something went wrong!!! Please check you mail and order again.", status: 1)
-
+                
             }
         }
     }

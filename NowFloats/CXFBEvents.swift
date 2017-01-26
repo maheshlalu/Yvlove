@@ -103,7 +103,9 @@ class CXFBEvents{
     
     func logCompletedRegistrationEvent(_ registrationMethod: String) {
         let params: [AnyHashable: Any] = [
-            FBSDKAppEventParameterNameRegistrationMethod : registrationMethod
+            FBSDKAppEventParameterNameRegistrationMethod : registrationMethod,
+            "UserEmail" : UserDefaults.standard.value(forKey: "USER_EMAIL")!
+            
         ]
         
         FBSDKAppEvents.logEvent(FBSDKAppEventNameCompletedRegistration, parameters: params)
@@ -222,5 +224,17 @@ class CXFBEvents{
         FBSDKAppEvents.logEvent(FBSDKAppEventNameViewedContent, valueToSum: price, parameters: params)
     }
     //*****************************************************************************************************************
+    
+    
+    // CUSTOM EVENTS
+    
+    
+    func logAppLaunchedEvent(_eventName:String ,_ userEmail: String) {
+        let params: [AnyHashable: Any] = [
+            "UserEmail" : userEmail
+        ]
+        FBSDKAppEvents.logEvent(_eventName, parameters: params)
+    }
+    
     
 }

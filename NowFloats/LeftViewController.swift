@@ -9,6 +9,7 @@
 
 import UIKit
 import MessageUI
+import FacebookCore
 
 class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,MFMessageComposeViewControllerDelegate {
     
@@ -189,6 +190,13 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.navController.popToRootViewController(animated: true)
                 
             }else if itemName == "About us"{
+                
+                if UserDefaults.standard.value(forKey: "USER_ID") == nil{
+                    AppEventsLogger.log("About Clicked")
+                }else{
+                   CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "About Clicked", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
+                }
+                
                 let aboutUs = storyBoard.instantiateViewController(withIdentifier: "MyLabzAboutUsViewController") as! MyLabzAboutUsViewController
                 self.navController.pushViewController(aboutUs, animated: true)
 
@@ -239,6 +247,13 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     @IBAction func callUsAction(_ sender: UIButton) {
         
+        if UserDefaults.standard.value(forKey: "USER_ID") == nil{
+            AppEventsLogger.log("Call Attempted")
+        }else{
+            
+         CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "Call Attempted", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
+        }
+        
         let primaryNumber = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "Primary Number")
         callNumber(primaryNumber)
 
@@ -250,6 +265,12 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.navController.drawerToggle()
             let signInViewCnt : ServiceFormViewController = ServiceFormViewController()
             self.navController.pushViewController(signInViewCnt, animated: true)
+            
+            if UserDefaults.standard.value(forKey: "USER_ID") == nil{
+                AppEventsLogger.log("Enquiry Attempted")
+            }else{
+        CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "Enquiry Attempted", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
+            }
             
         #else
             let messageVC = MFMessageComposeViewController()
@@ -290,6 +311,12 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         mapViewCnt.lon = Double(self.sidePanelDataDict.value(forKeyPath: "Longitude") as! String!)
         self.navController.pushViewController(mapViewCnt, animated: true)
         
+        if UserDefaults.standard.value(forKey: "USER_ID") == nil{
+            AppEventsLogger.log("Map Attempted")
+        }else{
+            
+    CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "Map Attempted", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
+        }
     }
     
     fileprivate func callNumber(_ phoneNumber:String) {

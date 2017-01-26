@@ -8,6 +8,8 @@
 
 import UIKit
 import QuartzCore
+import FacebookCore
+import FBSDKCoreKit
 
 
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
@@ -23,7 +25,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         #if MyLabs
             
             chooseArticleButton.isHidden = true
@@ -36,13 +38,14 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
             
             if self.type == "RegularTests"{
-            //If Regulartests first check the local data, if its exist get the data and display in list otherwise fetch the data from server
+                //If Regulartests first check the local data, if its exist get the data and display in list otherwise fetch the data from server
                 if self.getTheProductsFromLocalDB().count == 0 {
                     
                     CXAppDataManager.sharedInstance.getRegularTests({ (respoce) in
-                         self.getTheProducts()
+                        
+                        self.getTheProducts()
                         self.updatecollectionview.reloadData()
-
+                        
                     })
                 }else{
                     self.updatecollectionview.reloadData()
@@ -58,7 +61,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                     })
                 }else{
                     self.updatecollectionview.reloadData()
-
+                    
                 }
             }
             
@@ -76,7 +79,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             
         #endif
         
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -325,6 +328,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             MLProductDetails.FinalPrice = FinalPrice
             MLProductDetails.isFromOffersView = false
             self.navigationController?.pushViewController(MLProductDetails, animated: true)
+            AppEventsLogger.log("Product Viewed in \(self.type)")
             
         #else
             let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController

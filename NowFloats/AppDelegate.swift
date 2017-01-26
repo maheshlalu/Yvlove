@@ -34,10 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpMagicalDB()
         self.configure()
         
-        AppEventsLogger.log("appLaunched")
+        if UserDefaults.standard.value(forKey: "USER_ID") == nil{
+            AppEventsLogger.log("App Launched")
+        }else{
+            CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "App Launched", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
+        }
+        
 
-        
-        
         //  self.logUser()
         //  blockOperationsTest1()
         // self.setUpSidePanelview()

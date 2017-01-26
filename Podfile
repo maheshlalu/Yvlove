@@ -16,6 +16,9 @@ target 'NowFloats' do
     pod 'Fabric'
     pod 'Crashlytics'
     
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing
