@@ -23,6 +23,7 @@ class ProfileViewController: CXViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        CXMixpanel.sharedInstance.mixelProfileTarck()
         // Do any additional setup after loading the view.
     }
 

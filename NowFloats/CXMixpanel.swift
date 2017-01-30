@@ -25,6 +25,7 @@ public static   PREF_LOYALITY_NOTIFICATION = "Notifications"
 private var _SingletonSharedInstance:CXMixpanel! = CXMixpanel()
 
 class CXMixpanel: NSObject {
+    var mixpanel = Mixpanel.sharedInstance()
 
     class var sharedInstance : CXMixpanel {
         return _SingletonSharedInstance
@@ -40,26 +41,17 @@ class CXMixpanel: NSObject {
     
     func registerMixpanelFrameWorkWithApiKey(){
         
-        let token = "5994a860f45df9b9ea37d031466a3855"
-        
+        let token = "82b5997b37b626e21cbe7be6691688ec"
         Mixpanel.sharedInstance(withToken: token)
-        
-        self.trackTheCallInformation()
-        
+       mixpanel = Mixpanel.sharedInstance()
        // let mixpanel = Mixpanel.sharedInstanceWithToken(token)
     }
     
     //MARK: Call, Message us, View Map
     
     func trackTheCallInformation(){
-        
-        let mixpanel = Mixpanel.sharedInstance()
-        let properties = ["Plan": "Premium"]
-        mixpanel.track("Initail Launch", properties: properties)
-        
-        
-        mixpanel.timeEvent("Image Upload")
-        mixpanel.track("Image Upload")
+        mixpanel.timeEvent("Call")
+        mixpanel.track("Call")
     }
     
     func mixelcallTrack(){
@@ -67,22 +59,59 @@ class CXMixpanel: NSObject {
     }
     
     func mixelMessageTrack(){
-        
+        mixpanel.timeEvent("Messaging")
+        mixpanel.track("Messaging")
     }
     func mixelViewMapTrack(){
-        
+        mixpanel.timeEvent("Map")
+        mixpanel.track("Map")
     }
-    func mixelHomeTrack(){
-        
+    func mixelAboutTrack(){
+        mixpanel.timeEvent("About us")
+        mixpanel.track("About us")
     }
     func mixelOrdersTrack(){
+        mixpanel.timeEvent("Orders")
+        mixpanel.track("Orders")
+    }
+    
+    func mixelProfileTarck(){
+        mixpanel.timeEvent("Profile")
+        mixpanel.track("Profile")
+    }
+    
+    func mixelCartTrack(){
+        mixpanel.timeEvent("Cart View")
+        mixpanel.track("Cart View")
         
     }
     
+    func mixelFavoriteTrack(){
+        mixpanel.timeEvent("Products Favorite")
+        mixpanel.track("Products Favorite")
+    }
+    
+    func mixelWishListTrack(){
+        mixpanel.timeEvent("Wishlist")
+        mixpanel.track("Wishlist")
+    }
+    
+    func mixelGalleryTrack(){
+        mixpanel.timeEvent("Gallery")
+        mixpanel.track("Gallery")
+    }
+    
+    func mixelNotificationTrack(){
+        mixpanel.timeEvent("Notifications")
+        mixpanel.track("Notifications")
+    }
     /*
      
      Team, these are the events which needs to be tracked.
-     
+     public static   PREF_LOYALITY_FAV = "Products Favorite";
+     public static   PREF_LOYALITY_WISHLIST = "Wishlist";
+     public static   PREF_LOYALITY_GALLERY = "Gallery";
+     public static   PREF_LOYALITY_NOTIFICATION = "Notifications"
      1. Call, Message us, View Map
      2. Home, About us, Orders, Wish list
      3. Add to cart

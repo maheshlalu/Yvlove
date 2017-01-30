@@ -33,8 +33,8 @@ open class CXAppDataManager: NSObject {
     
     //Get The StoreCategory
     func getTheStoreCategory(){
-        //self.getProducts()
-        self.getTheFeaturedProduct()
+        self.getProducts()
+       // self.getTheFeaturedProduct()
 
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             print("print store category\(responseDict)")
@@ -56,7 +56,22 @@ open class CXAppDataManager: NSObject {
     
     func getTheStores(_ completion:@escaping (_ isDataSaved:Bool) -> Void){
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+        if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
+            CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                    CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
+                        LoadingView.show("Loading", animated: true)
+                        completion(isDataSaved)
+                        //self.getProducts()
+                    })
+                
+            }
+            
+        }else{
+            // self.getProducts()
+        }
+        
+        
+     /*   CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Stores", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
                 CXDataProvider.sharedInstance.saveStoreInDB(responseDict, completion: { (isDataSaved) in
                     LoadingView.show("Loading", animated: true)
@@ -66,7 +81,7 @@ open class CXAppDataManager: NSObject {
             }else{
                // self.getProducts()
             }
-        }
+        }*/
     }
     
     

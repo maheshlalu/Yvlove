@@ -18,7 +18,7 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
     var screenWidth:CGFloat! = nil
     
     override func viewDidLoad() {
-        
+        CXMixpanel.sharedInstance.mixelGalleryTrack()
         super.viewDidLoad()
         let nib = UINib(nibName: "PhotosCollectionViewCell", bundle: nil)
         self.photosCollectionView.register(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")

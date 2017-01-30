@@ -21,7 +21,8 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     var products: NSMutableArray!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        CXMixpanel.sharedInstance.mixelCartTrack()
+
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
         self.collectionview.register(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()

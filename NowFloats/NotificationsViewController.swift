@@ -12,7 +12,7 @@ class NotificationsViewController: CXViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CXMixpanel.sharedInstance.mixelNotificationTrack()
         // Do any additional setup after loading the view.
     }
 

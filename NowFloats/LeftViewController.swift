@@ -190,7 +190,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.navController.popToRootViewController(animated: true)
                 
             }else if itemName == "About us"{
-                
+
                 if UserDefaults.standard.value(forKey: "USER_ID") == nil{
                     AppEventsLogger.log("About Clicked")
                 }else{
@@ -201,7 +201,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.navController.pushViewController(aboutUs, animated: true)
 
             }else if itemName == "Orders"{
-                
+
                 if UserDefaults.standard.value(forKey: "USER_ID") != nil{
                     let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
                     self.navController.pushViewController(orders, animated: true)
@@ -218,9 +218,12 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.navController.popToRootViewController(animated: true)
                 
             }else if itemName == "About us"{
+                CXMixpanel.sharedInstance.mixelAboutTrack()
+
                 let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
                 self.navController.pushViewController(aboutUs, animated: true)
             }else if itemName == "Orders"{
+                CXMixpanel.sharedInstance.mixelOrdersTrack()
                 if UserDefaults.standard.value(forKey: "USER_ID") != nil{
                     let orders = storyBoard.instantiateViewController(withIdentifier: "ORDERS") as! OrdersViewController
                     self.navController.pushViewController(orders, animated: true)
@@ -230,6 +233,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 }
                 
             }else if itemName == "Wishlist" {
+                CXMixpanel.sharedInstance.mixelWishListTrack()
+
                 let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
                 self.navController.pushViewController(wishlist, animated: true)
             }
@@ -246,7 +251,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
    
     
     @IBAction func callUsAction(_ sender: UIButton) {
-        
+        CXMixpanel.sharedInstance.trackTheCallInformation()
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             AppEventsLogger.log("Call Attempted")
         }else{
@@ -260,7 +265,8 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func messageAction(_ sender: UIButton) {
-        
+        CXMixpanel.sharedInstance.mixelMessageTrack()
+
         #if MyLabs
             self.navController.drawerToggle()
             let signInViewCnt : ServiceFormViewController = ServiceFormViewController()
@@ -305,6 +311,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     @IBAction func viewMapAction(_ sender: UIButton) {
+        CXMixpanel.sharedInstance.mixelViewMapTrack()
         self.navController.drawerToggle()
         let mapViewCnt : MapViewCntl = MapViewCntl()
         mapViewCnt.lat = Double(self.sidePanelDataDict.value(forKeyPath: "Latitude") as! String!)

@@ -22,7 +22,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        CXMixpanel.sharedInstance.mixelProfileTarck()
         if isFromSignIn{
             let notif:NSNotification.Name = NSNotification.Name(rawValue: "FromProfile")
             NotificationCenter.default.post(name: notif, object: nil)

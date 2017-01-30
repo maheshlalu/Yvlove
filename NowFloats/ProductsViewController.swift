@@ -239,11 +239,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
             
             self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
-            
             // Enhancements in nowfloats
             let MRP = FinalPrice
-            print(MRP!)
-            
             if MRP == "0"{
                 cell.viewMoreLbl.isHidden = false
                 cell.productpriceLabel.isHidden = true
