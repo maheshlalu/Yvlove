@@ -57,9 +57,20 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             productPrice =  price + productPrice
             
         }
-         let rupee = "\u{20B9}"
+        let rupee = "\u{20B9}"
         self.totalPriceLbl.text = "\(rupee)\(String(productPrice))"
-         self.productsCountLbl.text = "\(cartlist.count) Products"
+        self.productsCountLbl.text = "\(cartlist.count) Products"
+        
+        if (self.totalPriceLbl.text == "\(rupee)0"){
+            emptyCartLbl.isHidden = false
+            bottomView.isHidden = true
+            collectionview.isHidden = true
+        }else{
+            emptyCartLbl.isHidden = true
+            bottomView.isHidden = false
+            collectionview.isHidden = false
+        }
+        
     }
     
     func getTheProducts(){
@@ -145,7 +156,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
             
         })
-       // print("delete the cell");
         self.updateProductsPriceLabel()
 
     

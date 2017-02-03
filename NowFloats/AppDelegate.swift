@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         Fabric.with([Crashlytics.self])
-
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         UITabBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
@@ -39,28 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "App Launched", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
         }
         
-        
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         
-
-        //  self.logUser()
-        //  blockOperationsTest1()
-        // self.setUpSidePanelview()
         
         return true
     }
-
-    //    func logUser() {
-    //        // TODO: Use the current user's information
-    //        // You can call any combination of these three methods
-    //        Crashlytics.sharedInstance().setUserEmail("dearsureshkumar@outlook.com")
-    //        Crashlytics.sharedInstance().setUserIdentifier("1198")
-    //        Crashlytics.sharedInstance().setUserName("OngoiOS")
-    //    }
     
-    
-
     func blockOperationsTest1(){
         
         let operationQueue = OperationQueue()
@@ -142,25 +127,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
         return isHandled
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        
-        /*   let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-         
-         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-         let productDetails = storyBoard.instantiateViewControllerWithIdentifier("PRODUCT_DETAILS") as! ProductDetailsViewController
-         productDetails.productString = products.json
-         self.navigationController?.pushViewController(productDetails, animated: true)*/
-        
-        //        let viewController = window?.rootViewController as! CXNavDrawer
-        //        viewController.restoreUserActivityState(userActivity)
-        //
-        //        return true
         
         if userActivity.activityType == CSSearchableItemActionType{
             
@@ -191,25 +164,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
             let FinalPrice = String(finalPriceNum) as String
             
-            #if MyLabs
-                
-                //let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-                let MLProductDetails = storyBoard.instantiateViewController(withIdentifier:"ML_ProductDetailsViewController") as! ML_ProductDetailsViewController
-                MLProductDetails.productString = productString as String
-                MLProductDetails.type = productDic.value(forKey: "jobTypeName") as! String
-                MLProductDetails.isFromOffersView = false
-                MLProductDetails.FinalPrice = FinalPrice
-                let rootViewController = self.window!.rootViewController as! UINavigationController
-                rootViewController.pushViewController(MLProductDetails, animated: true)
-                
-            #else
-                let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-                productDetails.productString = productString as String
-                
-                let rootViewController = self.window!.rootViewController as! UINavigationController
-                rootViewController.pushViewController(productDetails, animated: true)
-                
-            #endif
+            
+            let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+            productDetails.productString = productString as String
+            
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            rootViewController.pushViewController(productDetails, animated: true)
             
         }
         return true

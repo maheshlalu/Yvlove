@@ -23,16 +23,14 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         let nib = UINib(nibName: "PhotosCollectionViewCell", bundle: nil)
         self.photosCollectionView.register(nib, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         self.getTheGalleryItems()
-        print(gallaryItems.description)
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
         self.photosCollectionView.backgroundColor = UIColor.clear
     }
-
-
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return gallaryItems.count
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath as IndexPath)as! PhotosCollectionViewCell
@@ -44,20 +42,11 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         return cell
     }
     
-
     private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         screenWidth =  UIScreen.main.bounds.size.width
-        if CXConstant.currentDeviceScreen() == IPHONE_6PLUS
-        {
-            return CGSize(width: screenWidth/2-13, height: 130);
-        }
-        else
-        {
-            return CGSize(width: screenWidth/2-9, height: 130)
-        }
-        
+         return CGSize(width: screenWidth/2-30, height: 130);
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
@@ -66,25 +55,15 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         return 5
     }
     
-    /*let browser = SKPhotoBrowser(photos: images)
-     browser.initializePageIndex(0)
-     presentViewController(browser, animated: true, completion: {})
-     */
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
-        
         let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(indexPath.row)
         present(browser, animated: true, completion: {})
-        
-        print("You selected cell #\(indexPath.item)!")
     }
-    
 }
 
 extension PhotosViewController {
-    
     
     func getTheGalleryItems(){
         self.gallaryItems = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Gallery", predicate: NSPredicate(format:"isBannerImage=%@","false" ), ispredicate: true, orederByKey: "").dataArray
@@ -95,27 +74,5 @@ extension PhotosViewController {
             photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
             images.append(photo)
         }
-  
     }
-    
-    
 }
-
-//extension PhotosViewController : SwiftPhotoGalleryDataSource,SwiftPhotoGalleryDelegate{
-//    
-//
-//    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
-//        return imageNames.count
-//    }
-//    
-//    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
-//        
-//        
-//        return UIImage(named: imageNames[forIndex] as! String)
-//    }
-//    
-//    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
-//        // do something cool like:
-//        dismissViewControllerAnimated(true, completion: nil)
-//    }
-//}

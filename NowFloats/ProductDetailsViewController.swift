@@ -96,7 +96,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             needMoreInfoBtn.setTitle("Ask For A Quote", for: .normal)
             needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
             needMoreInfoBtn.setImage(nil, for: .normal)
-          
+            
             //MRP is False and Link is True
         }else if !isMRP && isLink {
             placeOrderBtn.isHidden = true
@@ -269,32 +269,30 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     @IBAction func addToCartAction(_ sender: UIButton) {
         
         if addToCartBtn.titleLabel?.text == "Proceed To Online Store"{
-            #if MyLabs
-                
-            #else
-                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
-                online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
-                online.productName = productDetailDic.value(forKey: "Name") as! String!
-                self.navigationController?.pushViewController(online, animated: true)
-            #endif
-
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
+            online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
+            online.productName = productDetailDic.value(forKey: "Name") as! String!
+            self.navigationController?.pushViewController(online, animated: true)
+            
+            
             
         }else{
-        
-        if sender.isSelected {
-            //Remove Item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
-            })
             
-        }else{
-            //Add item
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            if sender.isSelected {
+                //Remove Item
+                CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
+                })
                 
-            })
-        }
-        sender.isSelected = !sender.isSelected
-        
+            }else{
+                //Add item
+                CXDataProvider.sharedInstance.itemAddToWishListOrCarts(CXConstant.sharedInstance.convertDictionayToString(productDetailDic) as String, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                    
+                })
+            }
+            sender.isSelected = !sender.isSelected
+            
         }
     }
     @IBAction func placeOrderNowAction(_ sender: AnyObject) {
@@ -323,53 +321,40 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     @IBAction func needMoreAction(_ sender: Any) {
         print("needMoreAction")
-        
-        #if MyLabs
-            
-        #else
-            let popup = PopupController
-                .create(self)
-                .customize(
-                    [
-                        .animation(.slideUp),
-                        .scrollable(false),
-                        .layout(.center),
-                        .backgroundStyle(.blackFilter(alpha: 0.7))
-                    ]
-                )
-                .didShowHandler { popup in
-                    
-                }
-                .didCloseHandler { _ in
-            }
-            
-            
-            let container = InfoQueryViewController.instance()
-            
-            if (sender as! UIButton).titleLabel?.text == "Ask For A Quote"{
-                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
-            }
-            
-            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+        let popup = PopupController
+            .create(self)
+            .customize(
+                [
+                    .animation(.slideUp),
+                    .scrollable(false),
+                    .layout(.center),
+                    .backgroundStyle(.blackFilter(alpha: 0.7))
+                ]
+            )
+            .didShowHandler { popup in
                 
-                if (sender as! UIButton).titleLabel?.text == "Need More Info" {
-                    container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
-                }
-                
-            }else{
-                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
-                self.navigationController?.pushViewController(signInViewCnt, animated: true)
-                return
             }
-            
-            container.closeHandler = { _ in
-                popup.dismiss()
-            }
-            popup.show(container)
-            
-        #endif
+            .didCloseHandler { _ in
+        }
+        let container = InfoQueryViewController.instance()
         
-       
+        if (sender as! UIButton).titleLabel?.text == "Ask For A Quote"{
+            container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
+        }
+        if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+            
+            if (sender as! UIButton).titleLabel?.text == "Need More Info" {
+                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
+            }
+        }else{
+            let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+            self.navigationController?.pushViewController(signInViewCnt, animated: true)
+            return
+        }
+        container.closeHandler = { _ in
+            popup.dismiss()
+        }
+        popup.show(container)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -383,36 +368,33 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
-        
         return true
     }
     
     override func shouldShowNotificatoinBell() ->Bool{
-        
         return true
     }
     
     override  func shouldShowCart() -> Bool{
-        
         return true
     }
-    
     
     override func headerTitleText() -> String{
         return productDetailDic.value(forKey: "Name")! as! String
     }
     
     override func shouldShowLeftMenu() -> Bool{
-        
         return false
     }
+    
     override func shouldShowLeftMenuWithLogo() -> Bool{
-        
         return false
     }
+    
     override func showLogoForAboutUs() -> Bool{
         return false
     }
+    
     override func profileDropdown() -> Bool{
         return false
     }
@@ -420,6 +402,4 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     override func profileDropdownForSignIn() -> Bool{
         return false
     }
-    
-    
 }

@@ -7,7 +7,6 @@
 #import "ADPageControl.h"
 #import "KIImagePager.h"
 #import "PagerCustomView.h"
-#import "DOPDropDownMenu.h"
 #import "ProductModelClass.h"
 #import "FTPopOverMenu.h"
 

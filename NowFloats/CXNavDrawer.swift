@@ -19,20 +19,17 @@ import UIKit
 #define ICON_HEIGHT 35*/
 
 class Constants {
-    
     // MARK: List of Constants
     static let SHAWDOW_ALPHA : Float = 0.5
     static let  MENU_DURATION : Float = 0.3
     static let MENU_TRIGGER_VELOCITY : CGFloat  = 350.0
     static let LEFT_NAV_BUTTON_WIDTH : CGFloat = 30.0
     static let LEFT_NAV_BUTTON_HEIGHT : CGFloat = 30.0
-
 }
 
-
 class CXNavDrawer: UINavigationController {
-    let chooseArticleDropDown = DropDown()
     
+    let chooseArticleDropDown = DropDown()
     var pan_gr : UIPanGestureRecognizer!
     var isOPen : Bool = false
     var menuHeight: CGFloat = 0.0
@@ -41,22 +38,18 @@ class CXNavDrawer: UINavigationController {
         origin: CGPoint(x: 0, y: 0),
         size: UIScreen.main.bounds.size
     )
-
     var inFrame = CGRect(
         origin: CGPoint(x: 0, y: 0),
         size: UIScreen.main.bounds.size
     )
-    
     var shawdowView : UIView!
     var drawerView : UIView!
     var cartBtn : MIBadgeButton!
     var profileBtn : UIButton!
     var notificationBellBtn : UIButton!
     var navTitle : String!
-
     var leftViewController : LeftViewController!
     var presentWindow:UIWindow?
-    
     var fromProfile = false
     
     override func viewDidLoad() {
@@ -73,13 +66,6 @@ class CXNavDrawer: UINavigationController {
         self.setuUpNavDrawer()
         self.delegate  = self
         
-        
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func upodateTheCartItems(){
@@ -98,9 +84,6 @@ class CXNavDrawer: UINavigationController {
     func designLeftBarButtonItems(_ viewController:UIViewController) -> UIBarButtonItem{
         
         let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
-        
-        //leftButtonsView.backgroundColor = UIColor.blueColor()
-        
         let sidePanelBtn : UIButton = UIButton(frame: CGRect(x: -10, y: 10, width: Constants.LEFT_NAV_BUTTON_WIDTH, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), for: UIControlState())
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), for: .touchUpInside)
@@ -110,7 +93,7 @@ class CXNavDrawer: UINavigationController {
         titleLable.text = CXAppConfig.sharedInstance.productName()
         titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
         leftButtonsView.addSubview(titleLable)
-
+        
         leftButtonsView.addSubview(sidePanelBtn)
         return UIBarButtonItem(customView: leftButtonsView)
     }
@@ -130,45 +113,27 @@ class CXNavDrawer: UINavigationController {
         button.badgeTextColor = UIColor.red
         button.badgeBackgroundColor = UIColor.white
         button.badgeEdgeInsets = UIEdgeInsetsMake(13, 5, 0, 10)
-        #if MyLabs
-            button.isHidden = true
-        #else
-            
-        #endif
         return button
     }
     
     
-    func designRightBarButtonItems(_ viewController:UIViewController) -> UIBarButtonItem{
+    func designRightBarButtonItems(_ viewController:UIViewController) -> UIBarButtonItem {
         
         let rightButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: 40))
-//        rightButtonsView.backgroundColor = UIColor.greenColor()
         let buttondWidth : CGFloat = 35
         self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRect(x: rightButtonsView.frame.size.width-buttondWidth+12, y: 5, width: 30, height: 30))
         self.notificationBellBtn = self.rightMenuButtonCreation("whiteNotification", frame: CGRect(x: rightButtonsView.frame.size.width-buttondWidth-25,y: 2, width: 35, height: 35))
         self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRect(x: rightButtonsView.frame.size.width-buttondWidth*2-30, y: 1, width: 35, height: 35))
         self.cartBtn.isHighlighted = false
-       // self.cartBtn.badgeString = "10"
-//whiteCartImage
-        #if MyLabs
-            rightButtonsView.addSubview(self.profileBtn)
-            rightButtonsView.addSubview(self.notificationBellBtn)
-        #else
-            rightButtonsView.addSubview(self.profileBtn)
-            rightButtonsView.addSubview(self.cartBtn)
-            rightButtonsView.addSubview(self.notificationBellBtn)
-        #endif
-
-
+        
+        rightButtonsView.addSubview(self.profileBtn)
+        rightButtonsView.addSubview(self.cartBtn)
+        rightButtonsView.addSubview(self.notificationBellBtn)
         
         self.profileBtn.addTarget(self, action: #selector(profileToggleAction), for: .touchUpInside)
         self.notificationBellBtn.addTarget(self, action: #selector(notificationBellAction), for: .touchUpInside)
         self.cartBtn.addTarget(self, action: #selector(cartButtonAction), for: .touchUpInside)
         self.upodateTheCartItems()
-        
-       // let editButton   = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
-
-        
         
         return UIBarButtonItem(customView:rightButtonsView)
     }
@@ -176,10 +141,8 @@ class CXNavDrawer: UINavigationController {
     
     //MARK: Design left and right header component
     func designLeftBarButtonItemsForCXController(_ viewController:CXViewController) -> UIBarButtonItem{
-
-        let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
-        //leftButtonsView.backgroundColor = UIColor.redColor()
         
+        let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
         let sidePanelBtn : UIButton = UIButton(frame: CGRect(x: -10, y: 10, width: Constants.LEFT_NAV_BUTTON_WIDTH, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"sidePanel"), for: UIControlState())
         sidePanelBtn.addTarget(self, action: #selector(drawerToggle), for: .touchUpInside)
@@ -187,7 +150,7 @@ class CXNavDrawer: UINavigationController {
         let titleLable : UILabel = UILabel(frame: CGRect(x: Constants.LEFT_NAV_BUTTON_WIDTH, y: 10, width: 100, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         titleLable.textAlignment = .left
         titleLable.textColor = UIColor.white
-      
+        
         titleLable.text = viewController.headerTitleText()
         titleLable.font = CXAppConfig.sharedInstance.appLargeFont()
         leftButtonsView.addSubview(titleLable)
@@ -199,8 +162,6 @@ class CXNavDrawer: UINavigationController {
     func designLeftBarButtonItemsForCXControllerWithBackBtn(_ viewController:CXViewController) -> UIBarButtonItem{
         
         let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
-        //leftButtonsView.backgroundColor = UIColor.redColor()
-        
         let sidePanelBtn : UIButton = UIButton(frame: CGRect(x: -10, y: 10, width: Constants.LEFT_NAV_BUTTON_WIDTH, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), for: UIControlState())
         sidePanelBtn.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)
@@ -220,8 +181,6 @@ class CXNavDrawer: UINavigationController {
     func designLeftBarButtonItemsForCXControllerWithBackBtnAndLogo(_ viewController:CXViewController) -> UIBarButtonItem{
         
         let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
-        //leftButtonsView.backgroundColor = UIColor.redColor()
-        
         let sidePanelBtn : UIButton = UIButton(frame: CGRect(x: -10, y: 10, width: Constants.LEFT_NAV_BUTTON_WIDTH, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), for: UIControlState())
         
@@ -248,8 +207,6 @@ class CXNavDrawer: UINavigationController {
     func headerWithLogoForAboutUs(_ viewController:CXViewController) -> UIBarButtonItem{
         
         let leftButtonsView: UIView = UIView(frame: CGRect(x: -10, y: 0, width: 100, height: self.navigationBar.frame.size.height))
-        //leftButtonsView.backgroundColor = UIColor.redColor()
-        
         let sidePanelBtn : UIButton = UIButton(frame: CGRect(x: -10, y: 10, width: Constants.LEFT_NAV_BUTTON_WIDTH, height: Constants.LEFT_NAV_BUTTON_HEIGHT))
         sidePanelBtn.setBackgroundImage(UIImage(named:"backBtn"), for: UIControlState())
         
@@ -279,6 +236,7 @@ class CXNavDrawer: UINavigationController {
     func profileBackBtnAction(){
         fromProfile = true
     }
+    
     func rightMenuButtonCreationForCXController(_ imageName:String,frame:CGRect) -> UIButton{
         let button = UIButton(type: .custom) as UIButton
         button.setBackgroundImage(UIImage(named:imageName), for: UIControlState())
@@ -286,22 +244,18 @@ class CXNavDrawer: UINavigationController {
         return button
     }
     
-    
-    
     func designRightBarButtonItemsForCXController(_ viewController:CXViewController) -> UIBarButtonItem{
         
         let rightButtonsView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 40))
-       // rightButtonsView.backgroundColor = UIColor.brownColor()
+        // rightButtonsView.backgroundColor = UIColor.brownColor()
         let buttondWidth : CGFloat = 35
         var buttonXposition : CGFloat = rightButtonsView.frame.size.width-buttondWidth+12
         
-
         if viewController.shouldShowRightMenu() {
             self.profileBtn = self.rightMenuButtonCreation("dropDownIconImage", frame: CGRect(x: buttonXposition, y: 5, width: 30, height: 30))
             buttonXposition =  buttonXposition-self.notificationBellBtn.frame.size.width
             rightButtonsView.addSubview(self.profileBtn)
             self.profileBtn.addTarget(self, action: #selector(profileToggleAction), for: .touchUpInside)
-
         }
         
         if viewController.shouldShowNotificatoinBell() {
@@ -309,7 +263,6 @@ class CXNavDrawer: UINavigationController {
             buttonXposition = buttonXposition-self.notificationBellBtn.frame.size.width
             rightButtonsView.addSubview(self.notificationBellBtn)
             self.notificationBellBtn.addTarget(self, action: #selector(notificationBellAction), for: .touchUpInside)
-
         }
         
         if viewController.shouldShowCart(){
@@ -326,22 +279,16 @@ class CXNavDrawer: UINavigationController {
         }
         
         if viewController.profileDropdownForSignIn(){
-             rightButtonsView.addSubview(self.profileBtn)
+            rightButtonsView.addSubview(self.profileBtn)
             self.profileBtn.addTarget(self, action: #selector(profileToggleActionForSignIn), for: .touchUpInside)
         }
-
+        
         return UIBarButtonItem(customView:rightButtonsView)
     }
     
-    
-    
-    
     //MARK: SetUpDrawer
-    
     func setuUpNavDrawer(){
         //LeftViewController
-        
-        
         self.isOPen = false
         
         self.leftViewController = (self.storyboard?.instantiateViewController(withIdentifier: "LeftViewController") as? LeftViewController)!
@@ -355,8 +302,8 @@ class CXNavDrawer: UINavigationController {
         
         self.outFrame = CGRect(x: -self.menuWidth, y: 0, width: self.menuWidth, height: self.menuHeight)
         self.inFrame = CGRect(x: 0, y: 0, width: self.menuWidth, height: self.menuHeight)
-
-         // drawer shawdow and assign its gesture
+        
+        // drawer shawdow and assign its gesture
         self.shawdowView = UIView(frame: self.view.frame)
         self.shawdowView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         self.shawdowView.isHidden = true
@@ -367,24 +314,22 @@ class CXNavDrawer: UINavigationController {
         self.shawdowView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.shawdowView)
         
-         // add drawer view
+        // add drawer view
         self.drawerView.frame = self.outFrame
         self.view.addSubview(self.drawerView)
         
         // gesture on self.view
-        
         self.pan_gr = UIPanGestureRecognizer(target: self, action: #selector(CXNavDrawer.moveDrawer(_:)))
         self.pan_gr.maximumNumberOfTouches = 1
         self.view.addGestureRecognizer(self.pan_gr)
         self.view.bringSubview(toFront: self.navigationBar)
-
         
     }
     
     func tapOnShawdow(_ geture:UITapGestureRecognizer){
         self.closeNavigationDrawer()
     }
-
+    
     func drawerToggle(){
         if self.isOPen {
             self.closeNavigationDrawer()
@@ -400,18 +345,17 @@ class CXNavDrawer: UINavigationController {
     }
     
     func closeAndOpenNavDrawer(_ shadowBgColor:UIColor , drawerFrame: CGRect,isOpenDrawer:Bool){
-      
         
         //var duration: Float = MENU_DURATION / self.menuWidth * abs(self.drawerView.center.x) + MENU_DURATION / 2
-
+        
         let duration: Float = Constants.MENU_DURATION / Float(self.menuWidth) * abs(Float(self.drawerView.center.x)) +  Constants.MENU_DURATION / 2
-
+        
         self.shawdowView.isHidden = !isOpenDrawer
         UIView.animate(withDuration: Double(duration), delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             self.shawdowView.backgroundColor = shadowBgColor
-            }, completion: { (finished: Bool) -> Void in
-                // you can do this in a shorter, more concise way by setting the value to its opposite, NOT value
-                //isMenuHidden = !isMenuHidden
+        }, completion: { (finished: Bool) -> Void in
+            // you can do this in a shorter, more concise way by setting the value to its opposite, NOT value
+            //isMenuHidden = !isMenuHidden
         })
         // drawer
         
@@ -419,20 +363,19 @@ class CXNavDrawer: UINavigationController {
             
             self.drawerView.frame = drawerFrame;
             
-            }, completion: { (finished: Bool) -> Void in
-                
-                // you can do this in a shorter, more concise way by setting the value to its opposite, NOT value
-                //isMenuHidden = !isMenuHidden
+        }, completion: { (finished: Bool) -> Void in
+            
+            // you can do this in a shorter, more concise way by setting the value to its opposite, NOT value
+            //isMenuHidden = !isMenuHidden
         })
         self.isOPen = isOpenDrawer;
-        
         
     }
     
     //MARK: open and close action
     func openNavigationDrawer(){
         self.closeAndOpenNavDrawer(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: CGFloat(Constants.SHAWDOW_ALPHA)), drawerFrame:  self.inFrame, isOpenDrawer: true)
-          //self.isOPen = true;
+        //self.isOPen = true;
     }
     
     func closeNavigationDrawer(){
@@ -459,19 +402,19 @@ class CXNavDrawer: UINavigationController {
                 
                 self.drawerView.center = CGPoint(x: movingx, y: self.drawerView.center.y)
                 gesture.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
-               // let changingAlpha : CGFloat = Constants.SHAWDOW_ALPHA / self.menuWidth * movingx + Constants.SHAWDOW_ALPHA/2
+                // let changingAlpha : CGFloat = Constants.SHAWDOW_ALPHA / self.menuWidth * movingx + Constants.SHAWDOW_ALPHA/2
                 let changingAlpha: Float = Constants.SHAWDOW_ALPHA / Float(self.menuWidth) * Float(movingx) + Constants.SHAWDOW_ALPHA / 2
                 self.shawdowView.isHidden = false
                 self.shawdowView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: CGFloat(changingAlpha))
             }
-          
+            
         }
         if gesture.state == UIGestureRecognizerState.ended {
             
             if self.drawerView.center.x > 0 {
                 self.openNavigationDrawer()
             }else if self.drawerView.center.x < 0{
-                self.closeNavigationDrawer()                                                                                                                              
+                self.closeNavigationDrawer()
             }
         }
     }
@@ -479,7 +422,7 @@ class CXNavDrawer: UINavigationController {
 
 
 extension CXNavDrawer : UINavigationControllerDelegate {
-
+    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         print("nav controlller \(viewController)")
         self.upodateTheCartItems()
@@ -487,6 +430,7 @@ extension CXNavDrawer : UINavigationControllerDelegate {
             
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItemsForCXController((viewController as?CXViewController)!)
             let viewCntl:CXViewController = (viewController as?CXViewController)!
+            
             if viewCntl.shouldShowLeftMenu(){
                 
                 viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXController((viewController as?CXViewController)!)
@@ -494,28 +438,23 @@ extension CXNavDrawer : UINavigationControllerDelegate {
                 //designLeftBarButtonItemsForCXControllerWithBackBtn
                 viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXControllerWithBackBtn((viewController as?CXViewController)!)
             }
+            
             if viewCntl.shouldShowLeftMenuWithLogo(){
                 viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItemsForCXControllerWithBackBtnAndLogo((viewController as?CXViewController)!)
-
             }
             
             if viewCntl.showLogoForAboutUs(){
                 viewController.navigationItem.leftBarButtonItem = self.headerWithLogoForAboutUs((viewController as?CXViewController)!)
-
             }
             
             if viewCntl.backButtonTapped(){
                 self.popToRootViewController(animated: true)
-                
             }
-
-            
         }
         else{
             viewController.navigationItem.leftBarButtonItem = self.designLeftBarButtonItems(UpdatesViewController())
             viewController.navigationItem.rightBarButtonItem = self.designRightBarButtonItems(UpdatesViewController())
         }
-       
     }
 }
 
@@ -529,7 +468,7 @@ extension CXNavDrawer {
         self.ToggleWithProfileWithoutUserId()
         self.upodateTheCartItems()
     }
-
+    
     func cartButtonAction(){
         //CartButtonNotification
         drawerHide()
@@ -610,10 +549,6 @@ extension CXNavDrawer {
             if index == 0{
                 //print("Forgot password")
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "ForgotNotification"), object: nil)
-//                let forgotPswdViewCnt : CXForgotPassword = CXForgotPassword()
-//                let navController: UINavigationController = UINavigationController(rootViewController: forgotPswdViewCnt)
-//                self.presentViewController(navController, animated: true, completion: nil)
-                
             }
         }
     }
@@ -661,7 +596,7 @@ extension CXNavDrawer {
             UIAlertAction in
             if status == 1 {
                 self.logout()
-                 self.presentWindow?.makeToast(message: "User logout successfully")
+                self.presentWindow?.makeToast(message: "User logout successfully")
                 self.popToRootViewController(animated: true)
             }
         }

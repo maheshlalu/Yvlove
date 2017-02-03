@@ -14,8 +14,8 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     @IBOutlet var wishlistcollectionView: UICollectionView!
     var products: NSMutableArray!
     var screenwidth = [String]()
-
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.wishlistcollectionView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
@@ -45,12 +45,12 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return  self.products.count
-
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-
+        
         let cell = wishlistcollectionView.dequeueReusableCell(withReuseIdentifier: "WishlistCollectionViewCell", for: indexPath)as! WishlistCollectionViewCell
         cell.imagetitleLabel.text = self.products[indexPath.item] as? String
         let products:CX_Cart = (self.products[indexPath.item]as?
@@ -101,7 +101,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
         cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
-  
+        
         
         let MRP = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
         let Link = CXDataProvider.sharedInstance.getJobID("BuyOnlineLink", inputDic: products.json!)
@@ -119,13 +119,13 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             cell.discountBdgeLb.isHidden = false
             cell.wishlistpricelabel.isHidden = false
         }
-   
+        
         if MRP == "0" && Link == "" {
             
             cell.wishlistaddtocartbutton.setTitle("ASK FOR A QUOTE", for: .normal)
             cell.wishlistaddtocartbutton.setImage(nil, for: .normal)
             cell.onlineStoreBtn.isHidden = true
-
+            
         }else if MRP == "0" && Link != "" {
             
             cell.onlineStoreBtn.isHidden = false
@@ -137,40 +137,40 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         }
         
         /*else if MRP != "0" && Link != "" {
-            
-            cell.onlineStoreBtn.isHidden = true
-            
-        }*/
+         
+         cell.onlineStoreBtn.isHidden = true
+         
+         }*/
         
         /*
-        let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
-        let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
-        
-        if discount == "0"{
-            cell.mrpLbl.isHidden = true
-            cell.discountBdgeLb.isHidden = true
-            cell.wishlistpricelabel.text = "\(rupee) \(price)"
-            
-        }else{
-            cell.mrpLbl.isHidden = false
-            cell.discountBdgeLb.isHidden = false
-            
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-            cell.mrpLbl.attributedText = attributeString
-            
-            cell.discountBdgeLb.text = "\(discount)"
-            let finalPriceNum:Int = Int(price)!-Int(discount)!
-            cell.wishlistpricelabel.text = "\(rupee) \(String(finalPriceNum))"
-        }
-        cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
-        cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
-
-*/
+         let price:String = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
+         let discount:String = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
+         
+         if discount == "0"{
+         cell.mrpLbl.isHidden = true
+         cell.discountBdgeLb.isHidden = true
+         cell.wishlistpricelabel.text = "\(rupee) \(price)"
+         
+         }else{
+         cell.mrpLbl.isHidden = false
+         cell.discountBdgeLb.isHidden = false
+         
+         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
+         attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+         cell.mrpLbl.attributedText = attributeString
+         
+         cell.discountBdgeLb.text = "\(discount)"
+         let finalPriceNum:Int = Int(price)!-Int(discount)!
+         cell.wishlistpricelabel.text = "\(rupee) \(String(finalPriceNum))"
+         }
+         cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
+         cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+         cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
+         
+         */
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
@@ -190,73 +190,63 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     
     
     func addTocartBtnAction(_ button : UIButton!){
-        #if MyLabs
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        if (button.titleLabel?.text == "MORE INFO") || (button.titleLabel?.text == "ASK FOR A QUOTE") {
             
-        #else
-            let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+            let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
+            let products  = NSMutableArray(array: productsList)
+            let storesEntity : CX_Products = products.lastObject as! CX_Products
+            let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+            print(productDic)
             
-            if (button.titleLabel?.text == "MORE INFO") || (button.titleLabel?.text == "ASK FOR A QUOTE") {
-                
-                let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
-                let products  = NSMutableArray(array: productsList)
-                let storesEntity : CX_Products = products.lastObject as! CX_Products
-                let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-                print(productDic)
-                
-                let popup = PopupController
-                    .create(self)
-                    .customize(
-                        [
-                            .animation(.slideUp),
-                            .scrollable(false),
-                            .layout(.center),
-                            .backgroundStyle(.blackFilter(alpha: 0.7))
-                        ]
-                    )
-                    .didShowHandler { popup in
-                    }
-                    .didCloseHandler { _ in
+            let popup = PopupController
+                .create(self)
+                .customize(
+                    [
+                        .animation(.slideUp),
+                        .scrollable(false),
+                        .layout(.center),
+                        .backgroundStyle(.blackFilter(alpha: 0.7))
+                    ]
+                )
+                .didShowHandler { popup in
                 }
+                .didCloseHandler { _ in
+            }
+            
+            let container = InfoQueryViewController.instance()
+            
+            if button.titleLabel?.text == "ASK FOR A QUOTE"{
+                container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
+            }
+            
+            if UserDefaults.standard.value(forKey: "USER_ID") != nil{
                 
-                let container = InfoQueryViewController.instance()
-                
-                if button.titleLabel?.text == "ASK FOR A QUOTE"{
-                    container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need pricing regarding same. Please contact me."
-                }
-                
-                if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+                if button.titleLabel?.text == "MORE INFO" {
                     
-                    if button.titleLabel?.text == "MORE INFO" {
-                        
-                        container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
-                    }
-                    
-                }else{
-                    let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
-                    self.navigationController?.pushViewController(signInViewCnt, animated: true)
-                    return
+                    container.textViewString = "Hi, I am interested in \"\(productDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
                 }
-                
-                container.closeHandler = { _ in
-                    popup.dismiss()
-                }
-                
-                popup.show(container)
                 
             }else{
-                
-                self.products.removeObject(at: button.tag-1)
-                self.wishlistcollectionView.reloadData()
-                CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-                    
-                })
-                
-                print("delete the cell")
-                
+                let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
+                self.navigationController?.pushViewController(signInViewCnt, animated: true)
+                return
             }
-
-        #endif
+            
+            container.closeHandler = { _ in
+                popup.dismiss()
             }
+            
+            popup.show(container)
+            
+        }else{
+            self.products.removeObject(at: button.tag-1)
+            self.wishlistcollectionView.reloadData()
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            })
+            print("delete the cell")
+        }
+    }
     
     func deleteWishListButtonAction(_ button : UIButton!){
         //Add to wishList
@@ -267,10 +257,10 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
         self.products.removeObject(at: button.tag-1)
         self.wishlistcollectionView.reloadData()
-
-       // self.wishlistcollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
-       // self.wishlistcollectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
-       // print(proListData.pID)
+        
+        // self.wishlistcollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
+        // self.wishlistcollectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
+        // print(proListData.pID)
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
@@ -281,26 +271,20 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     
     
     func sendToOnlineTab(_ button : UIButton!){
-        #if MyLabs
-            
-        #else
-            let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-            
-            let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
-            let products  = NSMutableArray(array: productsList)
-            let storesEntity : CX_Products = products.lastObject as! CX_Products
-            let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-            print(productDic)
-            
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
-            online.url = productDic.value(forKey: "BuyOnlineLink") as! String!
-            online.productName = productDic.value(forKey: "Name") as! String!
-            self.navigationController?.pushViewController(online, animated: true)
-        #endif
-
         
+        let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
+        let productsList : NSArray =  CX_Products.mr_findAll(with: NSPredicate(format: "pid = %@",proListData.pID!)) as NSArray
+        let products  = NSMutableArray(array: productsList)
+        let storesEntity : CX_Products = products.lastObject as! CX_Products
+        let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
+        print(productDic)
+        
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let online = storyBoard.instantiateViewController(withIdentifier: "BuyOnlineWebViewController") as! BuyOnlineWebViewController
+        online.url = productDic.value(forKey: "BuyOnlineLink") as! String!
+        online.productName = productDic.value(forKey: "Name") as! String!
+        self.navigationController?.pushViewController(online, animated: true)
     }
     
     
@@ -348,7 +332,7 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
     override func profileDropdownForSignIn() -> Bool{
         return false
     }
-
-
+    
+    
 }
 

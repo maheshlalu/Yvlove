@@ -10,17 +10,17 @@ import UIKit
 
 class MyordersTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var placedButton: UIButton!
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var orederPlacedonLabel: UILabel!
     @IBOutlet weak var orderPriceLabel: UILabel!
     @IBOutlet weak var orderdidLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.placedButton.backgroundColor = UIColor.clear
-        self.placedButton.layer.cornerRadius = 19
-        self.placedButton.layer.borderWidth = 2
-        self.placedButton.layer.borderColor = UIColor.init(colorLiteralRed: 61.0/255.0, green: 130.0/255.0, blue: 41.0/255.0, alpha: 1).cgColor
+        self.statusLbl.backgroundColor = UIColor.clear
+        self.statusLbl.layer.cornerRadius = 19
+        self.statusLbl.layer.borderWidth = 2
+        self.statusLbl.layer.borderColor = UIColor.init(colorLiteralRed: 61.0/255.0, green: 130.0/255.0, blue: 41.0/255.0, alpha: 1).cgColor
         
         
         // Initialization code

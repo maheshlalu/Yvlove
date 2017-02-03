@@ -21,7 +21,7 @@
         <!--Demo Popup View Controller2-->
         <scene sceneID="ZPl-XE-XZo">
             <objects>
-                <viewController id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="MyLabs" sceneMemberID="viewController">
+                <viewController id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="NowFloats" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n5c-fn-lEd"/>
                         <viewControllerLayoutGuide type="bottom" id="kWo-hi-e32"/>

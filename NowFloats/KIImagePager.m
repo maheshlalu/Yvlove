@@ -222,14 +222,7 @@
             
             self.pagerView =  [[[NSBundle mainBundle] loadNibNamed:@"PagerCustomView" owner:self options:nil] objectAtIndex:0];
             ProductModelClass *data = [_dataSource populateTheProductData:i inPager:self];
-        
-          #if MyLabs
-            self.pagerView.productNameLbl.text = data.productName;
-            [self.pagerView.productImage sd_setImageWithURL:[NSURL URLWithString:data.productimage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                
-            }];
-            
-          #else
+
             self.pagerView.productImage.hidden = YES;
             self.pagerView.productNameLbl.hidden = YES;
             self.pagerView.productSubLbl.hidden = YES;
@@ -237,9 +230,7 @@
             [self.pagerView.pageImageView sd_setImageWithURL:[NSURL URLWithString:data.productimage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
             }];
-           #endif
            
-      
             //CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i +50, 20, 100, 100);
             self.pagerView.frame =  CGRectMake(_scrollView.frame.size.width * i , 0, _scrollView.frame.size.width, _scrollView.frame.size.height-50);
             

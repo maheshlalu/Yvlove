@@ -9,7 +9,6 @@
 import Foundation
 
 class CXAppConfig {
-    
     /// the singleton
     static let sharedInstance = CXAppConfig()
     
@@ -28,24 +27,19 @@ class CXAppConfig {
         if let path = Bundle.main.path(forResource: "CXProjectConfiguration", ofType: "plist") {
             config = NSDictionary(contentsOfFile: path)
             
-            print(config)
+            print(config!)
         }
     }
     
     /**
      Get base url from Config.plist
      
-     - Returns: the base url string from Config.plist      
+     - Returns: the base url string from Config.plist
      */
     func getBaseUrl() -> String {
-        #if MyLabs
-        return config!.value(forKey: "BaseUrl") as! String
-        #else
         return config!.value(forKey: "NowFloats_BaseUrl") as! String
-        #endif
-        
     }
-    //getMaster
+    
     func getMasterUrl() -> String {
         return config!.value(forKey: "getMaster") as! String
     }
@@ -57,7 +51,6 @@ class CXAppConfig {
     func getSignUpInUrl() -> String {
         return config!.value(forKey: "signUpMethod") as! String
     }
-    //    //forgotPassordMethod
     func getForgotPassordUrl() -> String {
         return config!.value(forKey: "forgotPassordMethod") as! String
     }
@@ -66,75 +59,41 @@ class CXAppConfig {
         return config!.value(forKey: "placeOrder") as! String
     }
     
-    //updateProfile
-    
     func getupdateProfileUrl() -> String {
         return config!.value(forKey: "updateProfile") as! String
     }
-    //photoUpload
+    
     func getphotoUploadUrl() -> String {
         return config!.value(forKey: "photoUpload") as! String
     }
-    //getMallID
+    
     func getAppMallID() -> String {
-        
-        #if MyLabs
-            return config!.value(forKey: "MYLABZ_MALL_ID") as! String
-        #else
-            return config!.value(forKey: "NOWFLOATS_MALL_ID") as! String
-        #endif
-        
+        return config!.value(forKey: "NOWFLOATS_MALL_ID") as! String
     }
-
+    
     func productName() -> String{
-        #if MyLabs
-        return "My Labz"
-        #else
-         return config!.value(forKey: "PRODUCT_NAME") as! String
-        #endif
-       
+            return config!.value(forKey: "PRODUCT_NAME") as! String
     }
+    
     func getSidePanelList() -> NSArray{
-        
-        #if MyLabs
-            var arr = config!.value(forKey: "SidePanelList") as! NSArray as! [String]
-            let arr1 = arr.remove(at: 3)
-            let mylabzArr = arr as NSArray
-            return mylabzArr
-        #else
             return config!.value(forKey: "SidePanelList") as! NSArray
-        #endif
-
     }
-
     
     func getAppTheamColor() -> UIColor {
+        let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
+        let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
+        let green : Double = (appTheamColorArr.object(at: 1) as! NSString).doubleValue
+        let blue : Double = (appTheamColorArr.object(at: 2) as! NSString).doubleValue
         
-        
-        #if MyLabs
-            return UIColor(
-                red: CGFloat(67 / 255.0),
-                green: CGFloat(160 / 255.0),
-                blue: CGFloat(221 / 255.0),
-                alpha: CGFloat(1.0)
-            )
-        #else
-            let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
-            let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
-            let green : Double = (appTheamColorArr.object(at: 1) as! NSString).doubleValue
-            let blue : Double = (appTheamColorArr.object(at: 2) as! NSString).doubleValue
-            return UIColor(
-                red: CGFloat(red / 255.0),
-                green: CGFloat(green / 255.0),
-                blue: CGFloat(blue / 255.0),
-                alpha: CGFloat(1.0)
-            )
-        #endif
-        return UIColor()
+        return UIColor(
+            red: CGFloat(red / 255.0),
+            green: CGFloat(green / 255.0),
+            blue: CGFloat(blue / 255.0),
+            alpha: CGFloat(1.0)
+        )
     }
     
     func getAppBGColor() -> UIColor {
-        
         let appTheamColorArr : NSArray = config!.value(forKey: "AppBgColr") as! NSArray
         let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
         let green : Double = (appTheamColorArr.object(at: 1) as! NSString).doubleValue
@@ -146,41 +105,30 @@ class CXAppConfig {
             alpha: CGFloat(1.0)
         )
     }
-    
-    
-    
-    
+
     func mainScreenSize() -> CGSize {
         return UIScreen.main.bounds.size
     }
     
     //MARK:FONTS
     func appSmallFont() -> UIFont{
-        
         return UIFont(name: config!.value(forKey: "APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.value(forKey: "APPFONT_SMALL") as?NSNumber)!))!
-        
     }
     
     func appMediumFont() -> UIFont{
-        
         return UIFont(name: config!.value(forKey: "APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.value(forKey: "APPFONT_MEDIUM") as?NSNumber)!))!
     }
-    
 
     func appLargeFont() -> UIFont{
-        
         return UIFont(name: config!.value(forKey: "APPFONT_NAME_REGULAR") as! String, size: CGFloat((config!.value(forKey: "APPFONT_LARGE") as?NSNumber)!))!
-
     }
     
     //MARK:Pager Enable
-    
     func ispagerEnable() -> Bool {
-       return config!.value(forKey: "ISPagerEnable") as! Bool
+        return config!.value(forKey: "ISPagerEnable") as! Bool
     }
     
-    
-    
+
     func getTheDataInDictionaryFromKey(sourceDic:NSDictionary,sourceKey:NSString) ->String{
         let keyExists = sourceDic[sourceKey] != nil
         if keyExists {

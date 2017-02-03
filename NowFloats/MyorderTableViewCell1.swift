@@ -15,7 +15,8 @@ class MyorderTableViewCell1: UITableViewCell {
     @IBOutlet weak var myorderDescriptionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        myorderimageView.layer.borderColor = UIColor.white.cgColor
+        myorderimageView.layer.borderWidth = 3
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
