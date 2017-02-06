@@ -95,37 +95,37 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         case 1:
             print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 2:
             print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 3:
             print("Tuesday")
             let dayOperations = hrsOfOperation[5] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 4:
             print("Wednesday")
             let dayOperations = hrsOfOperation[4] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 5:
             print("Thursday")
             let dayOperations = hrsOfOperation[3] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 6:
             print("Friday")
             let dayOperations = hrsOfOperation[2] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 7:
             print("Saturday")
             let dayOperations = hrsOfOperation[1] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime"))
+            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         default:break
         }
@@ -348,9 +348,11 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         }
     }
     
-    /*func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }*/
+    @IBAction func askUsAction(_ sender: Any) {
+        let act = ServiceFormViewController()
+        self.navigationController?.pushViewController(act, animated: true)
+    }
+
     
     func viewMapAction(_ button : UIButton!){
         
@@ -371,7 +373,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     func callAction(_ button:UIButton!){
-        
         let website = self.aboutUsDict.value(forKeyPath: "Contact Number") as! String!
         callNumber(website!)
     }
@@ -382,27 +383,22 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
-        
         return true
     }
     
     override func shouldShowNotificatoinBell() ->Bool{
-        
         return false
     }
     
     override func shouldShowCart() -> Bool{
-        
         return false
     }
-    
     
     override func headerTitleText() -> String{
         return "About Us"
     }
     
     override func shouldShowLeftMenu() -> Bool{
-        
         return true
     }
     override func showLogoForAboutUs() -> Bool{
@@ -418,10 +414,8 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     override func shouldShowLeftMenuWithLogo() -> Bool{
-        
         return false
     }
-
 }
 extension AboutUsViewController{
 

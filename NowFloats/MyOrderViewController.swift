@@ -23,17 +23,21 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     var orderData:NSDictionary! = nil
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 3
-    
+    var orderProductImages:NSMutableArray = NSMutableArray()
     @IBOutlet weak var MyorderstableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getOrderDetails()
-        
+
         self.MyorderstableView?.register(UINib(nibName: "MyordersTableViewCell", bundle: nil), forCellReuseIdentifier: "MyordersTableViewCell")
         self.MyorderstableView?.register(UINib(nibName: "MyorderTableViewCell1", bundle: nil), forCellReuseIdentifier: "MyorderTableViewCell1")
         
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 70
+        
+        DispatchQueue.main.async {
+            self.getOrderDetails()
+        }
         
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,12 +70,11 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         }else {
             
             let myordercell1:MyorderTableViewCell1! = tableView.dequeueReusableCell(withIdentifier: "MyorderTableViewCell1") as? MyorderTableViewCell1
-            
             let orderDetails: orderDetails =  (orderDetailsArr[indexPath.section-1] as? orderDetails)!
             
             myordercell1.myorderDescriptionLabel.text = orderDetails.orderName
             myordercell1.myordertotalpriceLabel.text = orderDetails.orderSubTotal
-            myordercell1.myorderimageView.sd_setImage(with: URL(fileURLWithPath: orderDetails.orderProductPicture))
+            myordercell1.myorderimageView.sd_setImage(with:URL(string: orderDetails.orderProductPicture))
             myordercell1.selectionStyle = .none
             return myordercell1
         }
@@ -90,7 +93,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     
     func getOrderDetails(){
-        
+        LoadingView.show(true)
         var orderName:NSMutableArray = NSMutableArray()
         var orderPrice:NSMutableArray = NSMutableArray()
         var orderItemId:NSMutableArray = NSMutableArray()
@@ -134,21 +137,30 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         }
         
         let stringRepresentation = orderItemId.componentsJoined(by: "_")
-        orderProductImages = getProductPic(strUrl: stringRepresentation)
-        DispatchQueue.main.async {
+        CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":stringRepresentation as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            let jobs : NSArray =  responseDict.value(forKeyPath: "jobs.Large_Image_URL") as! NSArray
+            if jobs.count == 1{
+                let strOrder = jobs[0] as! String
+                self.orderProductImages.adding(strOrder)
+            }else{
+                self.orderProductImages = jobs.mutableCopy() as! NSMutableArray
+            }
+            orderProductImages = self.orderProductImages
             for i in 0..<orderName.count {
                 if i < orderPrice.count {
                     if i < orderItemId.count{
                         if i < orderSubTotal.count{
                             if i < orderProductImages.count{
-                                
                                 let name = orderName[i]
+                                let finalStr = (name as! String).removingPercentEncoding
                                 let quantity = orderPrice[i]
                                 let itemId = orderItemId[i]
                                 let price = orderSubTotal[i]
                                 let picture = orderProductImages[i]
-                                let orderStruct : orderDetails = orderDetails(orderItemId: itemId as! String, orderName: name as! String, orderQuantity: quantity as! String, orderSubTotal: price as! String, orderProductPicture: picture as! String)
+                                let orderStruct : orderDetails = orderDetails(orderItemId: itemId as! String, orderName: finalStr!, orderQuantity: quantity as! String, orderSubTotal: price as! String, orderProductPicture: picture as! String)
                                 self.orderDetailsArr.append(orderStruct)
+                                LoadingView.hide()
+                                self.MyorderstableView.reloadData()
                             }
                         }
                     }
@@ -157,22 +169,6 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         }
     }
     
-    func getProductPic(strUrl:String) -> NSMutableArray{
-        var orderProductImages:NSMutableArray = NSMutableArray()
-        
-        CXAppDataManager.sharedInstance.getOrderProductImage(itemId: strUrl, completion:{ (responseDict) in
-            print(responseDict)
-            let jobs : NSArray =  responseDict.value(forKey: "jobs.Large_Image_URL")! as! NSArray
-            //orderProductPicture
-            if jobs.count == 1{
-                let strOrder = jobs[0] as! String
-                orderProductImages.adding(strOrder)
-            }else{
-                orderProductImages = jobs.mutableCopy() as! NSMutableArray
-            }
-        })
-        return orderProductImages 
-    }
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{

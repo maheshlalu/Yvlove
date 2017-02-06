@@ -111,7 +111,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.productpriceLabel.isHidden = false
             cell.productpriceLabel.attributedText = attributeString
             cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
-            
         }
         
         cell.cartaddedbutton.tag = indexPath.row+1

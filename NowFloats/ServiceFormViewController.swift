@@ -267,16 +267,8 @@ class ServiceFormViewController: XLFormViewController {
                 // row.cellConfig["textLabel.font"] = UIFont.systemFontOfSize(40)
                 section.addFormRow(row)
             }
-
-           
-            // form = Section(sectionName)
-            
         }
-
-
-        
          self.form = form
-        
     }
     
     override func didSelectFormRow(_ formRow: XLFormRowDescriptor!) {
@@ -425,7 +417,6 @@ class ServiceFormViewController: XLFormViewController {
                     let imgStr = Response.value(forKey: "filePath") as! String
                     UserDefaults.standard.setValue(imgStr, forKey: "IMAGE_PATH")
                     LoadingView.hide()
-                    
                 })
             }
         }

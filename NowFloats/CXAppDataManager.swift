@@ -270,9 +270,7 @@ open class CXAppDataManager: NSObject {
     //MARK : GET ORDER HISTORY PICS
     //http://nowfloats.ongostore.com:8081/Services/getMasters?mallId=11&PrefferedJobs=163_165
     func getOrderProductImage(itemId:String ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
-        CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":itemId as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-             completion(responseDict)
-        }
+
     }
     
     //MARK : SIGN
