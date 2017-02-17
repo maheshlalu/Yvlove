@@ -177,7 +177,14 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
             let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
             
-            let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+            let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+            
+            var floatDiscount:Float = Float()
+            
+            if floatDis == ""{
+                floatDiscount = 0.0
+            }
+            
             let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
             
             //Setting AttributedPrice
@@ -357,7 +364,16 @@ extension OffersViewController {
         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         
-        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+        //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+        
+        let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+        
+        var floatDiscount:Float = Float()
+        
+        if floatDis == ""{
+            floatDiscount = 0.0
+        }
+        
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
         
         //FinalPrice after subtracting the discount

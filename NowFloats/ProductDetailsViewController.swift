@@ -171,7 +171,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             
             let rupee = "\u{20B9}"
             let price:String = productDetailDic.value(forKey: "MRP") as! String
-            let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
+            var discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
             
             if price == "0"{
                 discountPriceLbl.isHidden = true
@@ -183,7 +183,8 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
                 finalPriceLbl.isHidden = false
             }
             
-            if discount == "0" {
+            if discount == "" {
+                
                 discountPriceLbl.isHidden = true
                 discountPersentageLbl.isHidden = true
                 finalPriceLbl.text = "\(rupee) \(price)"

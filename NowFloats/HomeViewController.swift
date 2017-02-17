@@ -11,10 +11,13 @@ import Alamofire
 
 class HomeViewController: UITabBarController {
     
+    let additionalCatArr: NSMutableArray = NSMutableArray()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CXAppDataManager.sharedInstance.dataDelegate = self
         CXAppDataManager.sharedInstance.getTheStoreCategory()
+        //getAddtinalCategryList()
     }
     
     func addTheTabBarControllers(){
@@ -52,6 +55,40 @@ class HomeViewController: UITabBarController {
     
     func profileToggleAction(){
     }
+    
+    
+    func getAddtinalCategryList(){
+        
+        
+        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
+        {
+            print("NULL")
+        }else{
+            
+            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
+            
+            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+                
+                //print("Jobs data is \(responceDic.value(forKey: "jobs")!)")
+                
+                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+                
+                print("job desc \(jobsData)")
+                
+                for dictData in jobsData {
+                    
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    print(name)
+                    self.additionalCatArr.add(name)
+                    
+                }
+                UserDefaults.standard.set(self.additionalCatArr, forKey: "CategeryAdditinal")
+            }
+
+        }
+    }
+    
 }
 
 extension HomeViewController :AppDataDelegate {

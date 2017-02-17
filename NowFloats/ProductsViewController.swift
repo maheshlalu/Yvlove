@@ -10,10 +10,13 @@ import UIKit
 import QuartzCore
 import FacebookCore
 import FBSDKCoreKit
+import Alamofire
 
 
-class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+
+
+class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,KYButtonDelegate {
+    var arrAdditinalCategery = NSMutableArray()
     var screenWidth: CGFloat! = nil
     var products: NSArray!
     let chooseArticleDropDown = DropDown()
@@ -22,6 +25,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
+     @IBOutlet weak var button: KYButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +36,96 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
+        getAddtinalCategryList()
+        
+        button.kyDelegate = self
+        button.openType = .popUp
+        button.plusColor = UIColor.black
+        button.fabTitleColor = UIColor.white
         getTheProducts()
-        setupDropDowns()
+        //setupDropDowns()
+    }
+    
+    func openKYButton(_ button: KYButton) {
+        print("> <")
+    }
+    
+    func closeKYButton(_ button: KYButton) {
+        print("= =")
+    }
+    
+    func getAddtinalCategryList(){
+        
+        button.kyDelegate = self
+        button.openType = .popUp
+        button.plusColor = UIColor.black
+        button.fabTitleColor = UIColor.white
+        
+        var dictcategeryadd = NSMutableArray()
+        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
+        {
+            print("NULL")
+        }else{
+            dictcategeryadd = UserDefaults.standard.value(forKey: "CategeryAdditinal") as! NSMutableArray
+        }
+        
+        if (dictcategeryadd.count == 0){
+            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
+            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+                for dictData in jobsData {
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    self.arrAdditinalCategery.add(name)
+                    self.button.add(color: CXAppConfig.sharedInstance.getAppTheamColor(), title: name as? String)
+                }
+                UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
+            }
+        }else{
+            
+            
+            for name in dictcategeryadd
+            {
+                self.button.add(color: CXAppConfig.sharedInstance.getAppTheamColor(), title: name as? String, image: UIImage(named: "sidePanel")!){
+                    (item) in
+                    print(item._titleLabel?.text! as Any)
+                    self.callAddtinalCategerySevice(str: (item._titleLabel?.text!)! as String as NSString)
+                }
+            }
+            
+        }   }
+    
+    func callAddtinalCategerySevice(str : NSString)
+    {
+    
+        print(str)
+        
+    let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
+        CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+            //print("Sub categery details \(responceDic)")
+          //  var arrCategeryData =
+            
+            
+            
+            CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
+                print(response)
+                let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+                
+                let resultstr =  str.replacingOccurrences(of: " ", with: "")
+                
+                let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
+                    fetchRequest.predicate = predicate
+                self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+                self.updatecollectionview.reloadData()
+                
+            })
+            
+            }
+
+        
+    
+    
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,8 +185,18 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         
-        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
+        
+        var floatDiscount:Float = Float()
+        
+        if floatDis == ""{
+            floatDiscount = 0.0
+        }
+
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        
         
         //Setting AttributedPrice
         let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
@@ -195,9 +297,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         print(dict)
         var link = Bool()
         var mrp = Bool()
+        /*
         if dict.value(forKey: "BuyOnlineLink") as! String == ""{
             link = false
         }else{link = true}
+ */
         
         if dict.value(forKey: "MRP") as! String == "0"{
             mrp = false

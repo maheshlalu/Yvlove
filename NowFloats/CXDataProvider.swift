@@ -56,33 +56,41 @@ class CXDataProvider: NSObject {
         
         MagicalRecord.save({ (localContext) in
             for prodDic in jobs {
-                let prod = prodDic as? NSDictionary
-                let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
-                let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
-                enProduct!.createdById = createByID
-                enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
-                let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
-                enProduct!.json = jsonString as String
-                enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
-                enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
-                enProduct?.pPrice = 1
-                let updateDate = prod?.value(forKey: "UpdatedOn") as? String
-                let component = updateDate?.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
-                let list = component?.filter({ $0 != "" })
-                let number = Int((list?[0])!)
-                enProduct?.pUpdateDate =  number as NSNumber?
-                enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP
+                let predicate = NSPredicate.init(format: "pid=%@", CXConstant.resultString(prod!.value(forKey: "id")))
+                let cartlist : NSArray =  CX_Products.mr_findAll(with: predicate) as NSArray
                 
-                //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
-                let str = (prod as AnyObject).value(forKey: "jobTypeName") as? String
-                let finalStr = str?.replacingOccurrences(of: " ", with: "")
-                enProduct?.type = finalStr //(prod as AnyObject).value(forKey: "jobTypeName") as? String //Remove The Spaces in JobType key
-                enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
+                if cartlist.count == 0 {
+                    let prod = prodDic as? NSDictionary
+                    let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
+                    let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
+                    enProduct!.createdById = createByID
+                    enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
+                    let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
+                    enProduct!.json = jsonString as String
+                    enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
+                    enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
+                    enProduct?.pPrice = 1
+                    let updateDate = prod?.value(forKey: "UpdatedOn") as? String
+                    let component = updateDate?.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+                    /*let list = component?.filter({ $0 != "" })
+                     let number = Int((list?[0])!)
+                     enProduct?.pUpdateDate =  number as NSNumber?
+                     enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP*/
+                    
+                    //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
+                    let str = (prod as AnyObject).value(forKey: "jobTypeName") as? String
+                    let finalStr = str?.replacingOccurrences(of: " ", with: "")
+                    enProduct?.type = finalStr //(prod as AnyObject).value(forKey: "jobTypeName") as? String //Remove The Spaces in JobType key
+                    enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
+                    
+                    self.addTheProductsToSpotlightSearch(productName: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Name"),
+                                                         thumNailUrl: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Image_URL"),
+                                                         productDic: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Description"),
+                                                         identfier: enProduct!.pid!)
+                    
+
+                }
                 
-                self.addTheProductsToSpotlightSearch(productName: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Name"),
-                                                     thumNailUrl: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Image_URL"),
-                                                     productDic: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Description"),
-                                                     identfier: enProduct!.pid!)
                 
             }
             
@@ -242,8 +250,17 @@ extension CXDataProvider {
     
     func getJobID(_ input:String,inputDic:String) -> String {
         let json :NSDictionary = (CXConstant.sharedInstance.convertStringToDictionary(inputDic))
-        let info : String = CXConstant.resultString(json.value(forKey: input)! as AnyObject)
-        return info
+        
+        if (CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: json, sourceKey: input as NSString) == "") {
+            //let info : String = CXConstant.resultString(json.value(forKey: input)! as AnyObject)
+            return "0"
+            
+        } else {
+            let info : String = CXConstant.resultString(json.value(forKey: input)! as AnyObject)
+            return info
+            
+        }
+        return ""
         
     }
     // Spotlight search
