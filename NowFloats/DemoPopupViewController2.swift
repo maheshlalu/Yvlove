@@ -45,6 +45,7 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class DemoPopupViewController2: CXViewController, PopupContentViewController, UITextFieldDelegate{
     var closeHandler: (() -> Void)?
+    var sendDetails: (() -> Void)?
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
@@ -59,6 +60,13 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
         self.topView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.mobileNoTxtField.tag = 3
         mobileNoTxtField.delegate = self
+        dataForTextFields()
+    }
+    
+    func dataForTextFields(){
+        self.nameTxtField.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
+        self.emailTxtField.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
+        self.mobileNoTxtField.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,7 +126,7 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
                 
                 return
             }
-            closeHandler?()
+            sendDetails?()
             
         } else {
             let alert = UIAlertController(title: "Alert!!!", message: "All fields are mandatory. Please enter all fields.", preferredStyle: UIAlertControllerStyle.alert)

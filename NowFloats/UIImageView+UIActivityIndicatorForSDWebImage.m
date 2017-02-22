@@ -36,7 +36,7 @@ static char TAG_ACTIVITY_INDICATOR;
         
         self.activityIndicator.autoresizingMask = UIViewAutoresizingNone;
         //self.activityIndicator.tintColor =  [UIColor colorWithRed:11.0f/255.0f green:44.0f/255.0f blue:145.0f/255.0f alpha:1.0f];
-        [self.activityIndicator setColor:[UIColor colorWithRed:61.0f/255.0f green:152.0f/255.0f blue:223.0f/255.0f alpha:1.0f]];
+        [self.activityIndicator setColor:[UIColor colorWithRed:255.0f/255.0f green:150.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
 
         [self updateActivityIndicatorFrame];
         

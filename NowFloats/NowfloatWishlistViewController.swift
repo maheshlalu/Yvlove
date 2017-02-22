@@ -86,20 +86,12 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let FinalPrice = String(finalPriceNum) as String
         
         if finalPrice == FinalPrice{
-            cell.mrpLbl.isHidden = true
-            cell.discountBdgeLb.isHidden = true
             cell.wishlistpricelabel.text = "\(rupee) \(FinalPrice)"
         }else{
-            cell.mrpLbl.isHidden = false
-            cell.discountBdgeLb.isHidden = false
-            cell.mrpLbl.attributedText = attributeString
-            cell.discountBdgeLb.text = "\(finalDiscount)"
             cell.wishlistpricelabel.text = "\(rupee) \(FinalPrice))"
             
         }
-        
-        cell.mrpLbl.font =  CXAppConfig.sharedInstance.appMediumFont()
-        cell.mrpLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+
         cell.wishlistpricelabel.font =  CXAppConfig.sharedInstance.appMediumFont()
         
         
@@ -109,14 +101,10 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         print(MRP,Link)
         
         if CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!) == "0"{
-            
-            cell.mrpLbl.isHidden = true
-            cell.discountBdgeLb.isHidden = true
+
             cell.wishlistpricelabel.isHidden = true
             
         }else{
-            cell.mrpLbl.isHidden = false
-            cell.discountBdgeLb.isHidden = false
             cell.wishlistpricelabel.isHidden = false
         }
         

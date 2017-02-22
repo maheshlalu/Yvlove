@@ -9,23 +9,22 @@
 import UIKit
 @IBDesignable
 class KYButton: UIView{
-
-
-     enum openButtonType {
+    
+    enum openButtonType {
         case slideUp
         case slideDown
         case popUp
         case popDown
     }
-
+    
     
     /*
-    // Only override draw() if you perform custom drawing./Users/cuber7788/kybutton/KYButton/KYButton.xcodeproj
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+     // Only override draw() if you perform custom drawing./Users/cuber7788/kybutton/KYButton/KYButton.xcodeproj
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
     
     var kyDelegate:KYButtonDelegate?
     
@@ -51,7 +50,7 @@ class KYButton: UIView{
     }
     
     public init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        super.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         backgroundColor = UIColor.orange
     }
     
@@ -72,7 +71,7 @@ class KYButton: UIView{
     }
     
     override var intrinsicContentSize: CGSize{
-            return CGSize(width: 20, height: 20)
+        return CGSize(width: 20, height: 20)
     }
     
     
@@ -87,55 +86,53 @@ class KYButton: UIView{
         hilighColor = orignalColor
         buttonLayer?.backgroundColor = hilighColor.white(rate: 0.7).cgColor
     }
- 
+    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        
-        
-                if (self.isHide) {
-                    self.openButton()
-                }else{
-                    self.closeButton()
-                }
+        if (self.isHide) {
+            self.openButton()
+        }else{
+            self.closeButton()
+        }
         
         buttonLayer?.backgroundColor = orignalColor.cgColor
     }
     
     
     
-   fileprivate func openButton() {
-    
-    self.isHide = false
-    self.overLayView = OverLayView()
-    self.superview?.insertSubview(self.overLayView, belowSubview:self)
-    
-    overLayView.addTarget(self, action: #selector(KYButton.closeButton), for: .touchUpInside)
-    
-    
-    UIView.animate(withDuration: 0.3) {
-    self.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_4), 0.0, 0.0, 1)
-    self.overLayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-    }
-    
-    
-    for item in items {
-        self.overLayView.addSubview(item)
-    }
-    
-    switch openType {
-    case .slideUp:
-        self.slideUpAnimation(isShow: true)
-    case .slideDown:
-        slideDownAnimation(isShow: true)
-    case .popUp:
-        popAnimation(isShow: true)
-    case .popDown:
-        popDownAnimation(isShow: true)
+    fileprivate func openButton() {
+        
+        self.isHide = false
+        self.overLayView = OverLayView()
+        self.superview?.insertSubview(self.overLayView, belowSubview:self)
+        
+        overLayView.addTarget(self, action: #selector(KYButton.closeButton), for: .touchUpInside)
+        
+        
+        UIView.animate(withDuration: 0.3) {
+            self.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_4), 0.0, 0.0, 1)
+            self.overLayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         }
-    
-    self.kyDelegate?.openKYButton?(self)
-    
+        
+        
+        for item in items {
+            self.overLayView.addSubview(item)
+        }
+        
+        switch openType {
+        case .slideUp:
+            self.slideUpAnimation(isShow: true)
+        case .slideDown:
+            slideDownAnimation(isShow: true)
+        case .popUp:
+            popAnimation(isShow: true)
+        case .popDown:
+            popDownAnimation(isShow: true)
+        }
+        
+        self.kyDelegate?.openKYButton?(self)
+        
     }
     
     func closeButton() {
@@ -143,7 +140,7 @@ class KYButton: UIView{
         UIView.animate(withDuration: 0.3, animations: {
             self.layer.transform = CATransform3DMakeRotation(0, 0.0, 0.0, 1)
             self.overLayView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-            })
+        })
         
         
         switch openType {
@@ -211,47 +208,47 @@ class KYButton: UIView{
     
     
     
-//    ----------------------------------------------slideUp---------------------------------------------------
+    //    ----------------------------------------------slideUp---------------------------------------------------
     
     
     fileprivate func slideUpAnimation(isShow:Bool) {
-    
+        
         var delay = 0.0
         if isShow {
-        for (index,item) in items.enumerated() {
-            
-            item.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * CGFloat(index), width: self.frame.width, height: self.frame.height)
-            
-            UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
-                let shift = self.frame.height
-                item.transform = CGAffineTransform.init(translationX: 0, y:  -shift)
-                item.alpha = 1
+            for (index,item) in items.enumerated() {
+                
+                item.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - self.frame.height * CGFloat(index), width: self.frame.width, height: self.frame.height)
+                
+                UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
+                    let shift = self.frame.height
+                    item.transform = CGAffineTransform.init(translationX: 0, y:  -shift)
+                    item.alpha = 1
                 }, completion: nil)
-            delay += 0.25
+                delay += 0
             }
         }else {
             for (index,item) in items.reversed().enumerated(){
                 
-            UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
-                item.transform = CGAffineTransform.identity
-                item.alpha = 0
-                    }, completion: { (finish) in
-                        if index == self.items.count-1 && !isShow{
-                            self.isHide = true
-                            self.overLayView.removeFromSuperview()
-                        }
-                    })
-                delay += 0.25
+                UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
+                    item.transform = CGAffineTransform.identity
+                    item.alpha = 0
+                }, completion: { (finish) in
+                    if index == self.items.count-1 && !isShow{
+                        self.isHide = true
+                        self.overLayView.removeFromSuperview()
+                    }
+                })
+                delay += 0
             }
         }
     }
     
     
     
-//    ----------------------------------------------slideDown---------------------------------------------------
+    //    ----------------------------------------------slideDown---------------------------------------------------
     
     
-   fileprivate func slideDownAnimation(isShow:Bool) {
+    fileprivate func slideDownAnimation(isShow:Bool) {
         
         var delay = 0.0
         if isShow {
@@ -262,8 +259,8 @@ class KYButton: UIView{
                     let shift = self.frame.height
                     item.transform = CGAffineTransform.init(translationX: 0, y:  shift)
                     item.alpha = 1
-                    }, completion: nil)
-                delay += 0.25
+                }, completion: nil)
+                delay += 0.0
             }
         }else {
             for (index,item) in items.reversed().enumerated(){
@@ -271,21 +268,21 @@ class KYButton: UIView{
                 UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
                     item.transform = CGAffineTransform.identity
                     item.alpha = 0
-                    }, completion: { (finish) in
-                        if index == self.items.count-1 && !isShow{
-                            self.isHide = true
-                            self.overLayView.removeFromSuperview()
-                        }
+                }, completion: { (finish) in
+                    if index == self.items.count-1 && !isShow{
+                        self.isHide = true
+                        self.overLayView.removeFromSuperview()
+                    }
                 })
-                delay += 0.25
-                }
+                delay += 0.0
             }
         }
+    }
     
     
-//    ----------------------------------------------pop---------------------------------------------------
+    //    ----------------------------------------------pop---------------------------------------------------
     
-   fileprivate func popAnimation(isShow:Bool) {
+    fileprivate func popAnimation(isShow:Bool) {
         var delay = 0.0
         if isShow{
             for (index,item) in items.enumerated() {
@@ -294,8 +291,8 @@ class KYButton: UIView{
                 UIView.animate(withDuration: 0.3, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: {
                     item.transform = CGAffineTransform.identity
                     item.alpha = 1
-                    }, completion: nil)
-                delay += 0.25
+                }, completion: nil)
+                delay += 0.0
             }
         }else{
             for (index,item) in items.reversed().enumerated(){
@@ -303,14 +300,14 @@ class KYButton: UIView{
                     
                     item.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
                     item.alpha = 0
-                    }, completion: { (finish) in
-                        if index == self.items.count-1 && !isShow{
-                            self.isHide = true
-                            self.overLayView.removeFromSuperview()
-                        }
-                        item.transform = CGAffineTransform.identity
+                }, completion: { (finish) in
+                    if index == self.items.count-1 && !isShow{
+                        self.isHide = true
+                        self.overLayView.removeFromSuperview()
+                    }
+                    item.transform = CGAffineTransform.identity
                 })
-                delay += 0.25
+                delay += 0.0
             }
         }
     }
@@ -328,7 +325,7 @@ class KYButton: UIView{
                     item.transform = CGAffineTransform.identity
                     item.alpha = 1
                 }, completion: nil)
-                delay += 0.25
+                delay += 0.0
             }
         }else{
             for (index,item) in items.reversed().enumerated(){
@@ -343,7 +340,7 @@ class KYButton: UIView{
                     }
                     item.transform = CGAffineTransform.identity
                 })
-                delay += 0.25
+                delay += 0.0
             }
         }
     }

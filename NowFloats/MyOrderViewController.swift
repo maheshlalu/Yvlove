@@ -24,6 +24,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 3
     var orderProductImages:NSMutableArray = NSMutableArray()
+    var stringRepresentation:String = String()
     @IBOutlet weak var MyorderstableView: UITableView!
     
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.MyorderstableView?.register(UINib(nibName: "MyorderTableViewCell1", bundle: nil), forCellReuseIdentifier: "MyorderTableViewCell1")
         
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
-        self.MyorderstableView.estimatedRowHeight = 70
+        self.MyorderstableView.estimatedRowHeight = 196
         
         DispatchQueue.main.async {
             self.getOrderDetails()
@@ -54,7 +55,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             let myordercell:MyordersTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "MyordersTableViewCell") as? MyordersTableViewCell
             
             let orderIdStr = orderDetailDict.value(forKey: "id")
-            let placedStr = orderDetailDict.value(forKey: "createdOn")
+            let date :String =  (orderDetailDict.value(forKey: "createdOn") as? String)!
             let status = orderDetailDict.value(forKey: "Current_Job_Status") as! String
             let priceStr = orderDetailDict.value(forKey: "Total") as! String
             
@@ -62,7 +63,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             let rupee = "\u{20B9}"
             myordercell.orderPriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             myordercell.orderPriceLabel.text = "\(rupee) \(priceStr)"
-            myordercell.orederPlacedonLabel.text = "Placed On \(placedStr!)"
+            myordercell.orederPlacedonLabel.text = "Placed On \(date.getTheCurrentDateTime(dateString: date))"
             myordercell.statusLbl.text = status
             myordercell.selectionStyle = .none
             
@@ -73,7 +74,8 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             let orderDetails: orderDetails =  (orderDetailsArr[indexPath.section-1] as? orderDetails)!
             
             myordercell1.myorderDescriptionLabel.text = orderDetails.orderName
-            myordercell1.myordertotalpriceLabel.text = orderDetails.orderSubTotal
+            myordercell1.myordertotalpriceLabel.text = "₹ \(orderDetails.orderSubTotal)"
+            myordercell1.myordertotalpriceLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             myordercell1.myorderimageView.sd_setImage(with:URL(string: orderDetails.orderProductPicture))
             myordercell1.selectionStyle = .none
             return myordercell1
@@ -81,7 +83,11 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return UITableViewAutomaticDimension
+        if indexPath.section != 0{
+            return 143
+        }else{
+            return UITableViewAutomaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat{
@@ -122,9 +128,11 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         if orderDetailDict.value(forKey: "OrderItemId") is String{
             let strOrder = orderDetailDict.value(forKey: "OrderItemId")
             orderItemId[0] = strOrder!
+            stringRepresentation = orderItemId.componentsJoined(by: "_")
         }else{
             let order = orderDetailDict.value(forKey: "OrderItemId") as! NSArray
             orderItemId = order.mutableCopy() as! NSMutableArray
+            stringRepresentation = orderItemId.componentsJoined(by: "_")
         }
         
         //orderItemPrice
@@ -136,16 +144,17 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             orderSubTotal = order.mutableCopy() as! NSMutableArray
         }
         
-        let stringRepresentation = orderItemId.componentsJoined(by: "_")
+        print(stringRepresentation)
         CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":stringRepresentation as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            let jobs : NSArray =  responseDict.value(forKeyPath: "jobs.Large_Image_URL") as! NSArray
+            let jobs : NSArray =  responseDict.value(forKeyPath: "jobs.Image_URL") as! NSArray
             if jobs.count == 1{
                 let strOrder = jobs[0] as! String
-                self.orderProductImages.adding(strOrder)
+                self.orderProductImages.add(strOrder)
             }else{
                 self.orderProductImages = jobs.mutableCopy() as! NSMutableArray
             }
             orderProductImages = self.orderProductImages
+            
             for i in 0..<orderName.count {
                 if i < orderPrice.count {
                     if i < orderItemId.count{

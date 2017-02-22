@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,35 +38,30 @@
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9s-PY-z9N">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9s-PY-z9N">
                         <rect key="frame" x="8" y="65" width="48" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="SlU-ol-m7g"/>
+                            <constraint firstAttribute="height" constant="25" id="lvx-sn-Ahy"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0P-5R-hNG">
-                        <rect key="frame" x="64" y="67" width="88" height="21"/>
+                        <rect key="frame" x="64" y="67" width="105" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="7yw-aX-1Bf"/>
+                            <constraint firstAttribute="width" constant="105" id="nJY-Tc-tmL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-jW-gCo">
-                        <rect key="frame" x="160" y="66" width="64" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Sc9-s9-bsH"/>
-                            <constraint firstAttribute="width" constant="64" id="WAh-Ti-zIr"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kex-km-V3r">
-                        <rect key="frame" x="222" y="67" width="126" height="21"/>
+                        <rect key="frame" x="249" y="69" width="99" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="126" id="bvO-Ai-YmP"/>
+                            <constraint firstAttribute="width" constant="99" id="bvO-Ai-YmP"/>
                             <constraint firstAttribute="height" constant="21" id="qhj-IL-mS6"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,18 +82,26 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WW-jW-gCo">
+                        <rect key="frame" x="186" y="67" width="64" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Sc9-s9-bsH"/>
+                            <constraint firstAttribute="width" constant="64" id="WAh-Ti-zIr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Kex-km-V3r" firstAttribute="leading" secondItem="2WW-jW-gCo" secondAttribute="trailing" constant="-2" id="DcN-iW-MPW"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="y9s-PY-z9N" secondAttribute="bottom" id="HaD-Il-tS5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="y9s-PY-z9N" secondAttribute="bottom" constant="-3" id="HaD-Il-tS5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Kex-km-V3r" secondAttribute="trailing" id="UEz-Km-Iku"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Kex-km-V3r" secondAttribute="bottom" constant="-1" id="cLk-xg-ecZ"/>
-                    <constraint firstItem="2WW-jW-gCo" firstAttribute="leading" secondItem="f0P-5R-hNG" secondAttribute="trailing" constant="8" id="cSX-Zl-GrF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Kex-km-V3r" secondAttribute="bottom" constant="-3" id="cLk-xg-ecZ"/>
                     <constraint firstAttribute="leadingMargin" secondItem="y9s-PY-z9N" secondAttribute="leading" id="dfS-bZ-eFF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="f0P-5R-hNG" secondAttribute="bottom" constant="-1" id="g6B-Wc-gCl"/>
                     <constraint firstItem="f0P-5R-hNG" firstAttribute="leading" secondItem="y9s-PY-z9N" secondAttribute="trailing" constant="8" id="kxP-9c-p2H"/>
-                    <constraint firstItem="Kex-km-V3r" firstAttribute="leading" secondItem="2WW-jW-gCo" secondAttribute="trailing" constant="-2" id="o43-tU-0dl"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="2WW-jW-gCo" secondAttribute="bottom" id="wgr-EW-RKS"/>
+                    <constraint firstItem="Kex-km-V3r" firstAttribute="leading" secondItem="2WW-jW-gCo" secondAttribute="trailing" constant="-1" id="o43-tU-0dl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="2WW-jW-gCo" secondAttribute="bottom" constant="-1" id="wgr-EW-RKS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

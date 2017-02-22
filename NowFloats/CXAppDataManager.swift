@@ -310,7 +310,10 @@ open class CXAppDataManager: NSObject {
         // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
         //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"717" as AnyObject,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+        let number : NSNumber = UserDefaults.standard.value(forKey: "USER_ID") as! NSNumber
+        let userId : String = number.stringValue
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId": userId as AnyObject ,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
 

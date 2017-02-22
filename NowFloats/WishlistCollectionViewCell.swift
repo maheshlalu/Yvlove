@@ -18,8 +18,6 @@ class WishlistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var wishlistpricelabel: UILabel!
     @IBOutlet weak var imagetitleLabel: UILabel!
     @IBOutlet weak var wishlistimageview: UIImageView!
-    @IBOutlet weak var mrpLbl: UILabel!
-    @IBOutlet weak var discountBdgeLb: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

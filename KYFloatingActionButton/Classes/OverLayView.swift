@@ -13,7 +13,7 @@ class OverLayView: UIControl {
     
     init() {
         super.init(frame: CGRect.zero)
-        self.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        self.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 50)
         self.isUserInteractionEnabled = true
         self.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }

@@ -11,7 +11,7 @@ import UIKit
 import MessageUI
 import FacebookCore
 
-class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,MFMessageComposeViewControllerDelegate {
+class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var viewMapBtn: UIButton!
     @IBOutlet weak var messageBtn: UIButton!
@@ -33,19 +33,16 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.getSingleMall()
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.register(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.white
-        
-        
-        
+
     }
     
     func getSingleMall(){
-        
         if CX_SingleMall.mr_findAll().count != 0  {
             let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
             self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
@@ -111,6 +108,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.profileDPImageView = UIImageView.init(frame: CGRect(x: self.detailsView.frame.origin.x+10,y: self.detailsView.frame.origin.y-20,width: 60,height: 60))
         let imgUrl = self.isContansKey(self.sidePanelSingleMallDataDict as NSDictionary, key: "logo") ? (self.sidePanelSingleMallDataDict .value(forKey: "logo") as? String)! : ""
         UserDefaults.standard.set(imgUrl, forKey: "LOGO")
+        UserDefaults.standard.set(self.sidePanelSingleMallDataDict.value(forKey: "Cover_Image"), forKey: "CoverImage")
         
         profileDPImageView.sd_setImage(with: URL(string: imgUrl))
         self.profileDPImageView .clipsToBounds = true
@@ -219,33 +217,11 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     @IBAction func messageAction(_ sender: UIButton) {
         CXMixpanel.sharedInstance.mixelMessageTrack()
-        let messageVC = MFMessageComposeViewController()
-        messageVC.body = "Hi Do you have any query?";
-        //  messageVC.recipients = [self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]'
-        if !CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "PrimaryNumber").isEmpty {
-            messageVC.recipients = [CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "PrimaryNumber")]
-            //[self.sidePanelDataDict.value(forKeyPath: "PrimaryNumber") as! String!]
-            messageVC.messageComposeDelegate = self;
-            self.present(messageVC, animated: true, completion: nil)
-        }
+        self.navController.drawerToggle()
+        let signInViewCnt : ServiceFormViewController = ServiceFormViewController()
+        self.navController.pushViewController(signInViewCnt, animated: true)
     }
     
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        switch result.rawValue {
-        case MessageComposeResult.cancelled.rawValue :
-            print("message canceled")
-            
-        case MessageComposeResult.failed.rawValue :
-            print("message failed")
-            
-        case MessageComposeResult.sent.rawValue :
-            print("message sent")
-            
-        default:
-            break
-        }
-        controller.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func viewMapAction(_ sender: UIButton) {
         CXMixpanel.sharedInstance.mixelViewMapTrack()

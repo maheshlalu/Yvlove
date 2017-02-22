@@ -56,11 +56,12 @@ class CXDataProvider: NSObject {
         
         MagicalRecord.save({ (localContext) in
             for prodDic in jobs {
-                let predicate = NSPredicate.init(format: "pid=%@", CXConstant.resultString(prod!.value(forKey: "id")))
+                 let prod = prodDic as? NSDictionary
+                let predicate = NSPredicate.init(format: "pid=%@", CXConstant.resultString(prod!.value(forKey: "id") as AnyObject))
                 let cartlist : NSArray =  CX_Products.mr_findAll(with: predicate) as NSArray
                 
                 if cartlist.count == 0 {
-                    let prod = prodDic as? NSDictionary
+                   
                     let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
                     let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                     enProduct!.createdById = createByID

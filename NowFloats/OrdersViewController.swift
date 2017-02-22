@@ -50,7 +50,10 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         cell.selectionStyle = .none
         
         cell.orderidresultlabel.text = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
-        cell.placedonresultlabel.text = orederDataDic.value(forKey: "createdOn") as? String
+        
+        let date :String =  (orederDataDic.value(forKey: "createdOn") as? String)!
+        cell.placedonresultlabel.text = date.getTheCurrentDateTime(dateString: date)
+        
         cell.orderpriceresultlabel.text = "₹ \(orederDataDic.value(forKey: "Total")!)"
         cell.statusresultlabel.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
         
@@ -96,7 +99,6 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     override  func shouldShowCart() -> Bool{
         return true
     }
-    
     
     override func headerTitleText() -> String{
         return "Orders"

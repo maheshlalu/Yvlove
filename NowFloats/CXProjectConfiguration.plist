@@ -32,7 +32,7 @@
 	<key>ISPagerEnable</key>
 	<true/>
 	<key>PRODUCT_NAME</key>
-	<string>68M Holidays</string>
+	<string>NeedyBee</string>
 	<key>signInMethod</key>
 	<string>MobileAPIs/loginConsumerForOrg?</string>
 	<key>signUpMethod</key>

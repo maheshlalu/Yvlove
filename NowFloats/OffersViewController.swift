@@ -320,10 +320,8 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     func populateTheProductData(_ index: UInt, in pager: KIImagePager!) -> ProductModelClass! {
         let productModelData : ProductModelClass = ProductModelClass.init()
         let productData : CX_Products = self.products.object(at: Int(index)) as! CX_Products
-        //  let productModelData : ProductModelClass = ProductModelClass.init()
         productModelData.productName = productData.name
         productModelData.productimage = productData.imageUrl;
-        //  productModelData.productimage = productData.name
         productModelData.productSubTitle = productData.name
         pager.pagerView.productNameLbl.font = CXAppConfig.sharedInstance.appLargeFont()
         pager.pagerView.orederNowBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())

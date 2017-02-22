@@ -48,17 +48,18 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
 
         self.titleLbl.text = aboutUsDict.value(forKeyPath: "Name") as? String
-        let imgUrl = aboutUsDict.value(forKey: "Image_URL") as?String
+        self.titleLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        let imgUrl = UserDefaults.standard.value(forKey: "CoverImage")
         if (imgUrl != nil){
-            self.aboutusimageview.sd_setImage(with: URL(string: imgUrl!))
+            self.aboutusimageview.sd_setImage(with: URL(string: imgUrl! as! String))
         }else{
-            self.aboutusimageview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
+            self.aboutusimageview.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         }
         
         rateView.rating = Float((self.aboutUsDict.value(forKeyPath: "overallRating") as? String)!)!
         rateLbl.text = ("\(rateView.rating)/5 Ratings")
-        //self.aboutusimageview.addSubview(overlay)
-       // self.weekDayCalculation()
+        //\self.aboutusimageview.addSubview(overlay)
+        self.weekDayCalculation()
     }
     
     func locationManagerAuthentication(){
@@ -85,7 +86,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let month = components.month
         let day = components.day
 
-        let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
+        let weekday = getDayOfWeek(today: "\(year!)-\(month!)-\(day!)")//yyyy-mm-dd
         print(weekday)
 
         let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
@@ -141,7 +142,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let month = components.month
         let day = components.day
         
-        let weekday = getDayOfWeek("\(year)-\(month)-\(day)")//yyyy-mm-dd
+        let weekday = getDayOfWeek(today: "\(year!)-\(month!)-\(day!)")//yyyy-mm-dd
         print(weekday)
 
         let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
@@ -151,7 +152,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         case 1:
             print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
-            str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
+            str = "Closed Today"
         case 2:
             print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
@@ -192,12 +193,12 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.aboutUsArray = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
         let storesEntity : CX_Stores = self.aboutUsArray.lastObject as! CX_Stores
         self.aboutUsDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        
+        print(aboutUsDict)
         
     }
     
     // getting day of the week
-    func getDayOfWeek(_ today:String)->Int {
+    func getDayOfWeek(today:String)->Int {
         
         let formatter  = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -215,7 +216,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
             return 3
         }else{
-            return 4
+            return 5
         }
     }
     
@@ -227,47 +228,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
-        if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
-            
-            if indexPath.section == 0{
-                let aboutUs:AboutusTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutusTableViewCell") as? AboutusTableViewCell
-                aboutUs.selectionStyle = .none
-                
-                aboutUs.aboutusDescriptionlabel.text = self.aboutUsDict.value(forKeyPath: "Address") as?String
-                aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
-                aboutUs.aboutusrootLabel.text = "We are Located in"
-                aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
-                aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
-                aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
-                aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
-                aboutUs.aboutuskmLabel.isHidden = false
-                aboutUs.aboutusgoogleLabel.isHidden = false
-                
-                return aboutUs
-                
-            }else{
-                
-                let aboutUsExtra:AboutUsExtraTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "AboutUsExtraTableViewCell") as? AboutUsExtraTableViewCell
-                aboutUsExtra.selectionStyle = .none
-                
-                if indexPath.section == 1{
-                    aboutUsExtra.extraTitleLbl.text = "We're happily available from"
-                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    //aboutUsExtra.extraDescLbl.text = self.availability()
-                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                }else if indexPath.section == 2{
-                    aboutUsExtra.extraTitleLbl.text = "You can reach us at"
-                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Contact Number") as?String //"9640339556"//mobile
-                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                    aboutUsExtra.callBtn.isHidden = false
-                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
-                }
-                return aboutUsExtra
-            }
-            
-        } else{
             
             if indexPath.section == 0{
                 
@@ -304,7 +264,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    //aboutUsExtra.extraDescLbl.text = self.availability()
+                    aboutUsExtra.extraDescLbl.text = self.availability()
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{
@@ -314,12 +274,18 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = false
                     aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
+                }else if indexPath.section == 4{
+                    aboutUsExtra.extraTitleLbl.text = ""
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Primary Number") as?String //"9640339556"//mobile
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                    aboutUsExtra.callBtn.isHidden = false
+                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
+                
                 }
                 return aboutUsExtra
-                
             }
         }
-    }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
@@ -342,6 +308,8 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 return UITableViewAutomaticDimension
             }else if indexPath.section == 1 {
                 return UITableViewAutomaticDimension
+            }else if indexPath.section == 4 {
+                return 50
             }else {
                 return 70
             }
@@ -417,6 +385,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         return false
     }
 }
+
 extension AboutUsViewController{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -448,101 +417,3 @@ extension AboutUsViewController{
         return ""
     }
 }
-/*
- 
- {
- FacebookPageLink = 68MHolidays;
- address =     {
- city = Hyderabad;
- country =         {
- code = IN;
- id = 36;
- name = India;
- };
- id = 4;
- location = "3-6-365, Office no 8 & 9, Upper Ground Floor, Liberty Plaza, Himayath Nagar, 500029";
- state = "";
- };
- appInfo =     {
- ApplicationName = "68M Holidays";
- ApplicationType = Applications;
- Category = Business;
- "ConfirmEmailAddress:" = "anu.akilla@gmail.com";
- ContainsADS = No;
- ContentGuidelines = Yes;
- ContentRating = "Medium Maturity";
- Countries = India;
- Email = "anu.akilla@gmail.com";
- EmailAddress = "anu.akilla@gmail.com";
- FeatureGraphic = "http://nowfloats.ongostore.com/public/icons/H/res/splash_image.png";
- FullDescription = "";
- "Hi-ResIcon" = "http://nowfloats.ongostore.com/public/icons/H/res/splash_image.png";
- Language = No;
- Miscellaneous = No;
- Price = Free;
- PrivacyPolicy = Yes;
- ScreenShots =         {
- screenshot1 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143039.png";
- screenshot2 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143055.png";
- screenshot3 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143103.png";
- screenshot4 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143117.png";
- screenshot5 = "http://nowfloats.ongostore.com/public/images/screenshot/Screenshot_20160518-143125.png";
- };
- Sexuality = No;
- Title = "68M Holidays";
- "US_Export_Laws" = Yes;
- Violent = No;
- Website = "http://storeongo.com";
- appfeatures =         {
- Appfeature1 = "Quick and easy reach.";
- Appfeature2 = "Order instantly.";
- Appfeature3 = "Get rewards and points.";
- Appfeature4 = "Stay updated.";
- };
- };
- businessType =     (
- );
- category = Default;
- currencyType = INR;
- defaultStoreId = 157;
- defaultStoreItemCode = "1461411810987_11";
- description = "";
- email = "deals_sog@68m.in";
- fpApplicationId = A91B82DE3E93446A8141A52F288F69EFA1B09B1D13BB4E55BE743AB547B3489E;
- fpId = 5285de044ec0a40db49f06a3;
- fpTag = 68MHOLIDAYS;
- gallery =     (
- );
- hrsOfOperation =     (
- );
- "ic_launcher_hdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-hdpi/11/ic_launcher.png";
- "ic_launcher_ldpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-ldpi/11/ic_launcher.png";
- "ic_launcher_mdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-mdpi/11/ic_launcher.png";
- "ic_launcher_xhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xhdpi/11/ic_launcher.png";
- "ic_launcher_xxhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xxhdpi/11/ic_launcher.png";
- "ic_launcher_xxxhdpi" = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable-xxxhdpi/11/ic_launcher.png";
- id = 11;
- imageUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118066821.jpg";
- languageCode = en;
- languageName = English;
- latitude = "17.4065312623762";
- logo = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/11_1461743016987.png";
- logoUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079251.jpg";
- longitude = "78.4774737052879";
- mainCategory = "NowFloats Template";
- mobile = 9700077768;
- name = "68M Holidays";
- offersCount = 0;
- primaryColor = "#d72519";
- promotionURL = "http://nowfloats.ongostore.com/m/11/webapp";
- publicURL = "http://nowfloats.ongostore.com/application/m?orgid=11";
- secondaryColor = "#edfcfb";
- splashscreen = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/res/drawable/11/splashscreen.png";
- storesCount = 1;
- tileImageUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079111.jpg";
- tinyLogoUrl = "https://s3-ap-southeast-1.amazonaws.com/store-ongo/users/images/2_14614118079641.jpg";
- website = "http://68mholidays.com";
- }
-
- 
- */

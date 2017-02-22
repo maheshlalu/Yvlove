@@ -274,6 +274,7 @@ class CXConstant: NSObject {
     
 }
 
+
 extension String {
     
     func urlEncoding() -> String {
@@ -281,7 +282,22 @@ extension String {
         //print("escapedString: \(escapedString)")
         return escapedString!
     }
-    
+
+    func getTheCurrentDateTime(dateString:String) -> String{
+        
+        // create dateFormatter with UTC time format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm MMM d',' yyyy"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        let date = dateFormatter.date(from: dateString)
+        
+        // change to a readable time format and change to local time zone
+        dateFormatter.dateFormat = "h:mm a MMM d',' yyyy"
+        dateFormatter.timeZone = NSTimeZone.local
+        let timeStamp = dateFormatter.string(from: date!)
+        
+        return timeStamp
+    }
   
 }
 

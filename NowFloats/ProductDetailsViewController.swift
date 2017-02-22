@@ -12,9 +12,10 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
-    var productDetailDic:NSDictionary!
+    var productDetailDic: NSDictionary!
+    var descriptionTagsArr:NSMutableArray = NSMutableArray()
+    var descriptionTagsDescArr:NSMutableArray = NSMutableArray()
     
-    @IBOutlet weak var productImgView: UIImageView!
     @IBOutlet weak var placeOrderBtn: UIButton!
     @IBOutlet weak var addToCartBtn: UIButton!
     @IBOutlet weak var ratingView: FloatRatingView!
@@ -37,22 +38,59 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         self.productDetailsTableView.separatorStyle = .none
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
+        
+        self.productDetailsTableView?.register(UINib(nibName: "NeedyBeeDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "NeedyBeeDetailTableViewCell")
+        
         self.setUpRatingView()
         customisingBtns()
+        getDescriptionTags()
         
         print("\(productDetailDic)")
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProductDetailsViewController.displaySearchResult(_:)), name: "", object: nil)
-        /*[createdOn, hrsOfOperation, id, P3rdCategory, Name, Large_Image, publicURL, Current_Job_StatusId, Brand, jobTypeName, Category, Insights, guestUserEmail, Next_Seq_Nos, SubCategoryType, jobComments, PackageName, Image_URL, Current_Job_Status, Next_Job_Statuses, ItemCode, Description, Additional_Details, DiscountAmount, Image_Name, overallRating, CreatedSubJobs, Category_Mall, Quantity, Attachments, MRP, guestUserId, totalReviews, lastModifiedDate, createdByFullName, createdById, CategoryType, jobTypeId]*/
-        
+ 
     }
     
-    //    func displaySearchResult(notification:NSNotification){
-    //
-    //        searchQuoteIndex = (notification.object as! NSString).integerValue
-    //
-    //    }
-    
+    func getDescriptionTags(){
+        
+        if productDetailDic.value(forKey: "SKU") as! String != ""{
+            descriptionTagsArr.add("SKU")
+            descriptionTagsDescArr.add("SKU")
+        }
+        
+        if productDetailDic.value(forKey: "width") as! String != ""{
+            descriptionTagsArr.add("Width")
+            descriptionTagsDescArr.add("width")
+        }
+        
+        if productDetailDic.value(forKey: "height") as! String != ""{
+            descriptionTagsArr.add("Height")
+            descriptionTagsDescArr.add("height")
+        }
+        
+        if productDetailDic.value(forKey: "fabric") as! String != ""{
+            descriptionTagsArr.add("Fabric")
+            descriptionTagsDescArr.add("fabric")
+        }
+        
+        if productDetailDic.value(forKey: "disclaimer") as! String != ""{
+            descriptionTagsArr.add("Disclaimer")
+            descriptionTagsDescArr.add("disclaimer")
+        }
+        
+        if productDetailDic.value(forKey: "color") as! String != ""{
+            descriptionTagsArr.add("Color")
+            descriptionTagsDescArr.add("color")
+        }
+        
+        if productDetailDic.value(forKey: "weight") as! String != ""{
+            descriptionTagsArr.add("Weight")
+            descriptionTagsDescArr.add("weight")
+        }
+        
+        if productDetailDic.value(forKey: "recommended_age") as! String != ""{
+            descriptionTagsArr.add("Recommended Age")
+            descriptionTagsDescArr.add("recommended_age")
+        }
+    }
     
     func setUpRatingView(){
         ratingView.contentMode = UIViewContentMode.scaleAspectFit
@@ -60,7 +98,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         ratingView.halfRatings = true
         ratingView.floatRatings = false
         self.ratingBgView.backgroundColor = UIColor.clear
-        
     }
     
     func customisingBtns(){
@@ -122,21 +159,17 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     }
     
     
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
-    {
-        return 4
-        
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int{
+        return 2 + descriptionTagsArr.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
-        
     }
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
-    {
+    
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell{
         var cell: UITableViewCell? = nil
+        let needyBeeDetailCell:NeedyBeeDetailTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "NeedyBeeDetailTableViewCell") as? NeedyBeeDetailTableViewCell
         
         if indexPath.section == 0{
             let imageCellIdentifier = "ImageCell"
@@ -158,8 +191,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             cell?.selectionStyle = .none
             
             let finalPriceLbl = (cell!.viewWithTag(200)! as! UILabel)
-            let discountPriceLbl = cell?.viewWithTag(300)! as! UILabel
-            let discountPersentageLbl = cell?.viewWithTag(400)! as! UILabel
             let favoriteBtn = cell?.viewWithTag(1000)! as! UIButton
             
             if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToWishList{
@@ -168,103 +199,41 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
                 favoriteBtn.isSelected = false
             }
             
-            
             let rupee = "\u{20B9}"
             let price:String = productDetailDic.value(forKey: "MRP") as! String
-            var discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
             
             if price == "0"{
-                discountPriceLbl.isHidden = true
-                discountPersentageLbl.isHidden = true
                 finalPriceLbl.isHidden = true
             }else{
-                discountPriceLbl.isHidden = false
-                discountPersentageLbl.isHidden = false
                 finalPriceLbl.isHidden = false
-            }
-            
-            if discount == "" {
-                
-                discountPriceLbl.isHidden = true
-                discountPersentageLbl.isHidden = true
                 finalPriceLbl.text = "\(rupee) \(price)"
-            }else{
-                discountPriceLbl.isHidden = false
-                discountPersentageLbl.isHidden = false
-                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "\(rupee) \(price)")
-                attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-                discountPriceLbl.attributedText = attributeString
-                
-                
-                let finalPriceNum:Int = Int(price)!-Int(discount)!
-                finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
-                
-                let discountPrice: Float = Float(discount)!
-                let actualPrice: Float = Float(price)!
-                let perCent = 100*(discountPrice/actualPrice)
-                let perCentCGFloat =  Int(floor(CGFloat(perCent)))
-                discountPersentageLbl.text = "\(perCentCGFloat)%"
             }
-            
-        }else if indexPath.section == 2{
-            let productInfoIdentifier = "ProductInfoCell"
-            cell = tableView.dequeueReusableCell(withIdentifier: productInfoIdentifier)!
-            cell?.selectionStyle = .none
-            let textView = (cell!.viewWithTag(600)! as! UITextView)
-            textView.font = CXAppConfig.sharedInstance.appMediumFont()
-            textView.text = "\(productDetailDic.value(forKey: "Description")!)"
-            cell?.backgroundColor = UIColor.white
-            
-        }else if indexPath.section == 3{
-            let footerIdentifier = "FooterCell"
-            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
-            cell?.selectionStyle = .none
-            
-            if (productDetailDic.value(forKey: "ShipmentDuration") != nil){
-                
-                let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
-                shipmentLbl.text = "Shipment Duration"
-                
-                let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
-                shipmentDurationLbl.text = "\(productDetailDic.value(forKey: "ShipmentDuration")!) Days"
-                
-            }else if (productDetailDic.value(forKey: "Brand") != nil){
-                
-                let shipmentLbl = cell!.viewWithTag(700)! as! UILabel
-                shipmentLbl.text = "Brand"
-                
-                let shipmentDurationLbl = cell!.viewWithTag(800)! as! UILabel
-                shipmentDurationLbl.text = "\(productDetailDic.value(forKey: "Brand")!)"
-            }
-            
-            
-        }else if indexPath.section == 4{
-            
-            let footerIdentifier = "FooterCell2"
-            cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
-            cell?.selectionStyle = .none
-            let category = productDetailDic.value(forKey: "Category") as! String
-            if category != ""{
-                let category = cell!.viewWithTag(900)! as! UILabel
-                category.text = "Category"
-                
-                let categoryDesc = cell!.viewWithTag(901)! as! UILabel
-                categoryDesc.text = "\(productDetailDic.value(forKey: "Category")!)"
-            }
-            
+        }else{
+            needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String
+            let str = productDetailDic.value(forKey: descriptionTagsDescArr[indexPath.section - 2] as! String) as? String
+            let desclimeStr = str?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+            needyBeeDetailCell.decriptionLbl.text = desclimeStr
+            return needyBeeDetailCell
         }
+
         return cell!
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
-    {
-        return UITableViewAutomaticDimension
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat{
+        if indexPath.section == 1{
+            return 62
+        }else{
+            return UITableViewAutomaticDimension
+        }
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
-    {
-        return UITableViewAutomaticDimension
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat{
+        if indexPath.section == 1{
+            return 62
+        }else{
+            return UITableViewAutomaticDimension
+        }
     }
     
     @IBAction func addToCartAction(_ sender: UIButton) {
@@ -276,8 +245,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             online.url = productDetailDic.value(forKey: "BuyOnlineLink") as! String!
             online.productName = productDetailDic.value(forKey: "Name") as! String!
             self.navigationController?.pushViewController(online, animated: true)
-            
-            
             
         }else{
             

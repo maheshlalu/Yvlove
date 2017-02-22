@@ -12,20 +12,19 @@ import FacebookCore
 import FBSDKCoreKit
 import Alamofire
 
-
-
-
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,KYButtonDelegate {
+    
     var arrAdditinalCategery = NSMutableArray()
     var screenWidth: CGFloat! = nil
     var products: NSArray!
     let chooseArticleDropDown = DropDown()
+    
     @IBOutlet var updatecollectionview: UICollectionView!
     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
-     @IBOutlet weak var button: KYButton!
+    @IBOutlet weak var button: KYButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +36,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         getAddtinalCategryList()
-        
-        button.kyDelegate = self
-        button.openType = .popUp
-        button.plusColor = UIColor.black
-        button.fabTitleColor = UIColor.white
         getTheProducts()
         //setupDropDowns()
     }
@@ -58,7 +52,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         button.kyDelegate = self
         button.openType = .popUp
-        button.plusColor = UIColor.black
+        button.plusColor = UIColor.white
         button.fabTitleColor = UIColor.white
         
         var dictcategeryadd = NSMutableArray()
@@ -82,8 +76,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
             }
         }else{
-            
-            
             for name in dictcategeryadd
             {
                 self.button.add(color: CXAppConfig.sharedInstance.getAppTheamColor(), title: name as? String, image: UIImage(named: "sidePanel")!){
@@ -92,21 +84,17 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                     self.callAddtinalCategerySevice(str: (item._titleLabel?.text!)! as String as NSString)
                 }
             }
-            
-        }   }
+        }
+    }
     
     func callAddtinalCategerySevice(str : NSString)
     {
-    
         print(str)
         
-    let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
+        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
             //print("Sub categery details \(responceDic)")
-          //  var arrCategeryData =
-            
-            
-            
+            //  var arrCategeryData =
             CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
                 print(response)
                 let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
@@ -114,18 +102,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 let resultstr =  str.replacingOccurrences(of: " ", with: "")
                 
                 let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
-                    fetchRequest.predicate = predicate
+                fetchRequest.predicate = predicate
                 self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
                 self.updatecollectionview.reloadData()
                 
             })
-            
-            }
-
-        
-    
-    
-    
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -193,7 +175,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         if floatDis == ""{
             floatDiscount = 0.0
         }
-
+        
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
         
         
@@ -225,13 +207,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         // Enhancements in nowfloats
         let MRP = FinalPrice
         if MRP == "0"{
-            cell.viewMoreLbl.isHidden = false
             cell.productpriceLabel.isHidden = true
             cell.productFinalPriceLabel.isHidden = true
             cell.cartaddedbutton.isHidden = true
             
         }else{
-            cell.viewMoreLbl.isHidden = true
             cell.productpriceLabel.isHidden = false
             cell.productFinalPriceLabel.isHidden = false
             cell.cartaddedbutton.isHidden = false
@@ -298,10 +278,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         var link = Bool()
         var mrp = Bool()
         /*
-        if dict.value(forKey: "BuyOnlineLink") as! String == ""{
-            link = false
-        }else{link = true}
- */
+         if dict.value(forKey: "BuyOnlineLink") as! String == ""{
+         link = false
+         }else{link = true}
+         */
         
         if dict.value(forKey: "MRP") as! String == "0"{
             mrp = false

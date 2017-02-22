@@ -39,7 +39,7 @@ class HomeViewController: UITabBarController {
         product.title = "PRODUCTS"
         product.tabBarItem.image = UIImage(named: "productsImage")
         
-        let photos = GalleryTabBarViewController()//storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController
+        let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController //GalleryTabBarViewController()
         photos.title = "PHOTOS"
         
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage

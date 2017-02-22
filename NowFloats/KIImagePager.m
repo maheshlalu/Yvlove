@@ -223,16 +223,17 @@
             self.pagerView =  [[[NSBundle mainBundle] loadNibNamed:@"PagerCustomView" owner:self options:nil] objectAtIndex:0];
             ProductModelClass *data = [_dataSource populateTheProductData:i inPager:self];
 
-            self.pagerView.productImage.hidden = YES;
-            self.pagerView.productNameLbl.hidden = YES;
-            self.pagerView.productSubLbl.hidden = YES;
-            self.pagerView.orederNowBtn.hidden = YES;
-            [self.pagerView.pageImageView sd_setImageWithURL:[NSURL URLWithString:data.productimage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                
+            self.pagerView.productImage.hidden = NO;
+            self.pagerView.productNameLbl.hidden = NO;
+            self.pagerView.productSubLbl.hidden = NO;
+            self.pagerView.orederNowBtn.hidden = NO;
+            
+            [self.pagerView.productImage sd_setImageWithURL:[NSURL URLWithString:data.productimage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             }];
+            self.pagerView.productNameLbl.text = [data productName];            
            
             //CGRect imageFrame = CGRectMake(_scrollView.frame.size.width * i +50, 20, 100, 100);
-            self.pagerView.frame =  CGRectMake(_scrollView.frame.size.width * i , 0, _scrollView.frame.size.width, _scrollView.frame.size.height-50);
+            self.pagerView.frame =  CGRectMake(_scrollView.frame.size.width * i , 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
             
             
             // Add GestureRecognizer to ImageView

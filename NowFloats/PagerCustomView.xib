@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -20,79 +24,55 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="whefiuashfhsafsajhfljs aflikshafkjlshafkljhkjsajfsajhskhjl" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unJ-Pp-ZbP">
-                    <rect key="frame" x="163" y="15" width="161" height="79"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="161" id="D4n-SS-QDA"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="155" y="20" width="161" height="59.5"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Exclusively on app)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-7Y-47T">
-                    <rect key="frame" x="163" y="95" width="90" height="14"/>
+                    <rect key="frame" x="155" y="80.5" width="161" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="161" id="g5S-JH-zmB"/>
+                        <constraint firstAttribute="height" constant="14" id="hT5-8A-kLG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egA-IS-sy6">
-                    <rect key="frame" x="163" y="117" width="81" height="34"/>
-                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHU-IK-g5z">
+                    <rect key="frame" x="16" y="20" width="131" height="131"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="34" id="YRW-zp-Olh"/>
+                        <constraint firstAttribute="width" constant="131" id="1wz-Jv-wCI"/>
+                        <constraint firstAttribute="height" constant="131" id="QqC-4d-iDI"/>
                     </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egA-IS-sy6">
+                    <rect key="frame" x="155" y="101.5" width="81" height="34"/>
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="Qpx-ZA-Icy"/>
+                        <constraint firstAttribute="width" constant="81" id="Vbc-5N-DjA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="13"/>
                     <state key="normal" title="Order Now"/>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHU-IK-g5z">
-                    <rect key="frame" x="8" y="23" width="131" height="113"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="113" id="g5c-3X-qPG"/>
-                        <constraint firstAttribute="width" constant="131" id="vHu-rp-0IQ"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="vHu-rp-0IQ"/>
-                        </mask>
-                    </variation>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rNq-08-iwp">
-                    <rect key="frame" x="0.0" y="0.0" width="332" height="171"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="unJ-Pp-ZbP" secondAttribute="trailing" constant="8" id="0gt-0e-AEw"/>
-                <constraint firstItem="rNq-08-iwp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7Am-Nz-W4b"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="top" secondItem="unJ-Pp-ZbP" secondAttribute="bottom" constant="1" id="8ET-Tl-tdj"/>
-                <constraint firstItem="FHU-IK-g5z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="94a-hn-nIl"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="17" id="BSB-qT-TnH"/>
-                <constraint firstItem="unJ-Pp-ZbP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="E19-Bh-ieB"/>
-                <constraint firstAttribute="trailing" secondItem="egA-IS-sy6" secondAttribute="trailing" constant="88" id="GE4-yt-13k"/>
-                <constraint firstAttribute="trailing" secondItem="unJ-Pp-ZbP" secondAttribute="trailing" constant="8" id="LwS-np-2fX"/>
-                <constraint firstAttribute="bottom" secondItem="rNq-08-iwp" secondAttribute="bottom" id="N2q-jG-oSh"/>
-                <constraint firstItem="egA-IS-sy6" firstAttribute="top" secondItem="W5o-7Y-47T" secondAttribute="bottom" constant="8" symbolic="YES" id="PlX-oN-CCB"/>
-                <constraint firstItem="FHU-IK-g5z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Sw4-b9-pjk"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="leading" secondItem="egA-IS-sy6" secondAttribute="leading" id="Tru-mU-7ta"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="leading" secondItem="unJ-Pp-ZbP" secondAttribute="trailing" constant="-149" id="WVj-bc-zxv"/>
-                <constraint firstAttribute="bottom" secondItem="egA-IS-sy6" secondAttribute="bottom" constant="20" id="aWi-cX-UDs"/>
-                <constraint firstItem="FHU-IK-g5z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="b8u-wB-OvF"/>
-                <constraint firstItem="rNq-08-iwp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dAb-0S-AGD"/>
-                <constraint firstAttribute="trailing" secondItem="rNq-08-iwp" secondAttribute="trailing" id="htJ-Xg-son"/>
-                <constraint firstItem="unJ-Pp-ZbP" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="24" id="loK-xS-R4B"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="top" secondItem="unJ-Pp-ZbP" secondAttribute="bottom" constant="1" id="sli-ut-rQi"/>
-                <constraint firstItem="W5o-7Y-47T" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="24" id="vgt-51-2BR"/>
+                <constraint firstItem="FHU-IK-g5z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="3ap-iU-pvo"/>
+                <constraint firstItem="FHU-IK-g5z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7YV-kr-OUT"/>
+                <constraint firstAttribute="trailing" secondItem="unJ-Pp-ZbP" secondAttribute="trailing" constant="16" id="A8c-a4-kGI"/>
+                <constraint firstItem="egA-IS-sy6" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="8" id="CNE-3h-PrT"/>
+                <constraint firstItem="egA-IS-sy6" firstAttribute="top" secondItem="W5o-7Y-47T" secondAttribute="bottom" constant="7" id="Da2-6h-MSd"/>
+                <constraint firstAttribute="trailing" secondItem="W5o-7Y-47T" secondAttribute="trailing" constant="16" id="Dk9-4a-u2S"/>
+                <constraint firstItem="unJ-Pp-ZbP" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="8" id="YMS-c7-xPg"/>
+                <constraint firstItem="unJ-Pp-ZbP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="hAJ-4P-ozF"/>
+                <constraint firstItem="W5o-7Y-47T" firstAttribute="leading" secondItem="FHU-IK-g5z" secondAttribute="trailing" constant="8" id="nXL-kp-or7"/>
+                <constraint firstItem="W5o-7Y-47T" firstAttribute="top" secondItem="unJ-Pp-ZbP" secondAttribute="bottom" constant="1" id="vJM-AO-BOb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Sw4-b9-pjk"/>
-                    <exclude reference="LwS-np-2fX"/>
-                    <exclude reference="BSB-qT-TnH"/>
-                    <exclude reference="WVj-bc-zxv"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="orederNowBtn" destination="egA-IS-sy6" id="WCe-fr-kSY"/>
-                <outlet property="pageImageView" destination="rNq-08-iwp" id="q5B-XR-m0s"/>
                 <outlet property="productImage" destination="FHU-IK-g5z" id="k9s-NM-bNp"/>
                 <outlet property="productNameLbl" destination="unJ-Pp-ZbP" id="tNq-i2-hTO"/>
                 <outlet property="productSubLbl" destination="W5o-7Y-47T" id="XvE-Th-n0P"/>

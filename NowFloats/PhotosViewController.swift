@@ -39,6 +39,7 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         cell.layer.masksToBounds = true
         let gallaeryData : CX_Gallery =  (self.gallaryItems[indexPath.item] as? CX_Gallery)!
         cell.photosImage.sd_setImage(with: NSURL(string: gallaeryData.gImageUrl!) as URL!)
+        cell.photosImage.contentMode = .scaleAspectFill
         return cell
     }
     
@@ -66,7 +67,7 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
 extension PhotosViewController {
     
     func getTheGalleryItems(){
-        self.gallaryItems = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Gallery", predicate: NSPredicate(format:"isBannerImage=%@","false" ), ispredicate: true, orederByKey: "").dataArray
+        self.gallaryItems = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Gallery", predicate: NSPredicate(format:"isBannerImage=%@","true" ), ispredicate: true, orederByKey: "").dataArray
         self.photosCollectionView.reloadData()
         for  gallaeryData  in self.gallaryItems {
             let imageData : CX_Gallery = (gallaeryData as? CX_Gallery)!

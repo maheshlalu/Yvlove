@@ -43,7 +43,7 @@ class ServiceFormViewController: XLFormViewController {
     var addmoreBool:Bool = Bool()
     var navController:UINavigationController = UINavigationController()
     func getFormData(){
- 
+        
         LoadingView.show(true)
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"allServicesJobTypes" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject/*CXAppConfig.sharedInstance.getAppMallID()*/]) { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "orgs")! as! NSArray
@@ -104,7 +104,7 @@ class ServiceFormViewController: XLFormViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-           }
+    }
     
     func removeTheDublicateValuesInGroup(){
         
@@ -113,7 +113,7 @@ class ServiceFormViewController: XLFormViewController {
         self.groupNames.removeAllObjects()
         self.groupNames.addObjects(from: orderSet.array)
         print( self.groupNames)
-
+        
     }
     
     func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{
@@ -122,7 +122,7 @@ class ServiceFormViewController: XLFormViewController {
         
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -135,7 +135,7 @@ class ServiceFormViewController: XLFormViewController {
         var row : XLFormRowDescriptor
         form = XLFormDescriptor(title: self.serViceCategory)
         
-
+        
         for (index, sectionName) in self.groupNames.enumerated() {
             section = XLFormSectionDescriptor()
             section.title = sectionName as? String
@@ -156,7 +156,7 @@ class ServiceFormViewController: XLFormViewController {
                         //textView.userInteractionEnabled
                         //row.cellConfigAtConfigure["textView.userInteractionEnabled"] =  true
                         section.addFormRow(row)
-                      
+                        
                     }else if formService.type == "Date Time" {
                         //Date with time
                         // DateTime
@@ -179,7 +179,7 @@ class ServiceFormViewController: XLFormViewController {
                         row.selectorOptions =  allowedValues as [AnyObject]
                         row.value = allowedValues.firstObject
                         section.addFormRow(row)
-                       
+                        
                         
                     }else if formService.type == "Large Selection" {
                         //Not applicable
@@ -220,7 +220,7 @@ class ServiceFormViewController: XLFormViewController {
                         //row.cellConfigAtConfigure["textField.placeholder"] = "Required..."
                         row.cellConfigAtConfigure["textField.textAlignment"] = NSTextAlignment.right.rawValue
                         row.isRequired = true
-                      //  row.addValidator(XLFormRegexValidator(msg: "At least 6, max 32 characters", andRegexString: "^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"))
+                        //  row.addValidator(XLFormRegexValidator(msg: "At least 6, max 32 characters", andRegexString: "^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"))
                         section.addFormRow(row)
                         
                     }else if formService.type == "Auto Date Time" {
@@ -267,8 +267,16 @@ class ServiceFormViewController: XLFormViewController {
                 // row.cellConfig["textLabel.font"] = UIFont.systemFontOfSize(40)
                 section.addFormRow(row)
             }
+            
+            
+            // form = Section(sectionName)
+            
         }
-         self.form = form
+        
+        
+        
+        self.form = form
+        
     }
     
     override func didSelectFormRow(_ formRow: XLFormRowDescriptor!) {
@@ -320,15 +328,15 @@ class ServiceFormViewController: XLFormViewController {
         
         
         
-      /*  CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory,"json":"","dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":""]) { (responseDict) in
-            
-            let string = responseDict.valueForKeyPath("myHashMap.status")
-            
-            if ((string?.rangeOfString("1")) != nil){
-                
-            }
-        }
-        */
+        /*  CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory,"json":"","dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":""]) { (responseDict) in
+         
+         let string = responseDict.valueForKeyPath("myHashMap.status")
+         
+         if ((string?.rangeOfString("1")) != nil){
+         
+         }
+         }
+         */
         
     }
     
@@ -339,10 +347,10 @@ class ServiceFormViewController: XLFormViewController {
         return parameters
     }
     
- 
+    
     
     func subMitTheServiceFormData(_ serviceFormDic:NSMutableDictionary){
-
+        
         serviceFormDic.removeObject(forKey: "Submit")
         print(serviceFormDic)
         
@@ -417,15 +425,16 @@ class ServiceFormViewController: XLFormViewController {
                     let imgStr = Response.value(forKey: "filePath") as! String
                     UserDefaults.standard.setValue(imgStr, forKey: "IMAGE_PATH")
                     LoadingView.hide()
+                    
                 })
             }
         }
     }
-
+    
     func formIntilizer(){
         self.serviceFormDesigning()
         return
-      
+        
     }
     
     func showAlertView(_ message:String, status:Int) {
@@ -446,7 +455,7 @@ class ServiceFormViewController: XLFormViewController {
 /*
  
  <select class="additionaldetailstextfld" name="additionalDetails[0].type" title="Field Type">
-  <option value="Small Text" selected="selected">Small Text</option>
+ <option value="Small Text" selected="selected">Small Text</option>
  
  <option value="ReadOnly Small Text">ReadOnly Small Text</option>
  
@@ -465,9 +474,9 @@ class ServiceFormViewController: XLFormViewController {
  <option value="Large Heading">Large Heading</option>
  
  <option value="Radio OR CheckBox">Radio OR CheckBox</option>
-  <option value="Attachment">Attachment</option>
+ <option value="Attachment">Attachment</option>
  
-  <option value="Hidden Text Field">Hidden Text Field</option>
+ <option value="Hidden Text Field">Hidden Text Field</option>
  option value="Auto Date Time">Auto Date Time</option>
  <option value="Auto Date">Auto Date</option>
  
