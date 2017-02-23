@@ -84,7 +84,7 @@ class KYButtonCells: UIView {
     
     override var frame: CGRect{
         didSet{
-            _iconImageView?.center = CGPoint(x: self.frame.width/2, y: self.frame.height/3.2)
+            _iconImageView?.center = CGPoint(x: self.frame.width/2, y: self.frame.height/1.2)
         }
     }
     

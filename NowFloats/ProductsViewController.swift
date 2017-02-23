@@ -12,8 +12,12 @@ import FacebookCore
 import FBSDKCoreKit
 import Alamofire
 
-class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,KYButtonDelegate {
+class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
     
+    
+    @IBOutlet weak var viewAdditinalCategery: UIView!
+    
+    @IBOutlet weak var btnAdditinalCategery: UIButton!
     var arrAdditinalCategery = NSMutableArray()
     var screenWidth: CGFloat! = nil
     var products: NSArray!
@@ -24,38 +28,77 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
-    @IBOutlet weak var button: KYButton!
+    @IBOutlet weak var tableviewAdditinalcategery: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         chooseArticleButton.isHidden = false
+        self.viewAdditinalCategery.isHidden = true
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
+        self.btnAdditinalCategery.layer.cornerRadius = self.btnAdditinalCategery.frame.size.width / 2;
+        self.btnAdditinalCategery.clipsToBounds = true
+        
+        
         getAddtinalCategryList()
         getTheProducts()
         //setupDropDowns()
     }
     
-    func openKYButton(_ button: KYButton) {
-        print("> <")
+    //MARK: AddtinalCategery Action
+    
+    @IBAction func btnAdditinalClicedMenu(_ sender: Any) {
+        if self.viewAdditinalCategery.isHidden == false {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromLeft
+            viewAdditinalCategery.layer.add(transition, forKey: kCATransition)
+        self.viewAdditinalCategery.isHidden = true
+            
+             self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2 / 45));
+            
+            
+        }else{
+            self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
+            
+            self.tableviewAdditinalcategery.reloadData()
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            viewAdditinalCategery.layer.add(transition, forKey: kCATransition)
+            self.viewAdditinalCategery.isHidden = false
+            
+        
+        }
+    
+        
     }
     
-    func closeKYButton(_ button: KYButton) {
-        print("= =")
+    //MARK: Addtinal Data Tableview Delegate & Data Sources Methods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrAdditinalCategery.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
     }
     
     func getAddtinalCategryList(){
-        
-        button.kyDelegate = self
-        button.openType = .popUp
-        button.plusColor = UIColor.white
-        button.fabTitleColor = UIColor.white
-        
-        var dictcategeryadd = NSMutableArray()
+             var dictcategeryadd = NSMutableArray()
         if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
         {
             print("NULL")
@@ -71,28 +114,25 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                     let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
                     let name:String = (dictindividual.value(forKey: "Name") as? String)!
                     self.arrAdditinalCategery.add(name)
-                    self.button.add(color: CXAppConfig.sharedInstance.getAppTheamColor(), title: name as? String)
                 }
                 UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
+                print(self.arrAdditinalCategery)
             }
         }else{
             for name in dictcategeryadd
             {
-                self.button.add(color: CXAppConfig.sharedInstance.getAppTheamColor(), title: name as? String, image: UIImage(named: "sidePanel")!){
-                    (item) in
-                    print(item._titleLabel?.text! as Any)
-                    self.callAddtinalCategerySevice(str: (item._titleLabel?.text!)! as String as NSString)
-                }
+               self.arrAdditinalCategery.add(name)
             }
         }
     }
     
-    func callAddtinalCategerySevice(str : NSString)
+    func callAddtinalCategerySevice(str : String)
     {
         print(str)
+        self.viewAdditinalCategery.isHidden = true
         
-        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
-        CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any] 
+        CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             //print("Sub categery details \(responceDic)")
             //  var arrCategeryData =
             CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
@@ -159,7 +199,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         }else{
             cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
         }
+        if products.imageUrl != nil{
         cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
+        }else{
+            print("no image url here")
+        
+        }
         
         let rupee = "\u{20B9}"
         

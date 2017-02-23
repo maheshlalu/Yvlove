@@ -194,7 +194,7 @@ class KYButton: UIView{
     open func add(color:UIColor,title:String?,image:UIImage,handle:@escaping ((KYButtonCells)->Void)){
         let item = KYButtonCells()
         item.buttonItemColor = color
-        item.icon = image
+       // item.icon = image
         item.backgroundColor = UIColor.clear
         item.alpha = 0
         item.title = title

@@ -50,10 +50,8 @@ class CXDataProvider: NSObject {
     }
     
     func saveTheProducts(_ jsonDic:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void){
-        
         let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
-        
-        
+        var isNewData = false
         MagicalRecord.save({ (localContext) in
             for prodDic in jobs {
                  let prod = prodDic as? NSDictionary
@@ -61,7 +59,7 @@ class CXDataProvider: NSObject {
                 let cartlist : NSArray =  CX_Products.mr_findAll(with: predicate) as NSArray
                 
                 if cartlist.count == 0 {
-                   
+                   isNewData = true
                     let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
                     let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                     enProduct!.createdById = createByID
@@ -84,6 +82,8 @@ class CXDataProvider: NSObject {
                     enProduct?.type = finalStr //(prod as AnyObject).value(forKey: "jobTypeName") as? String //Remove The Spaces in JobType key
                     enProduct?.imageUrl =  (prod as AnyObject).value(forKey: "Image_URL") as? String
                     
+                    
+                    //spotlight search
                     self.addTheProductsToSpotlightSearch(productName: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Name"),
                                                          thumNailUrl: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Image_URL"),
                                                          productDic: CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: prodDic as! NSDictionary, sourceKey: "Description"),
@@ -91,16 +91,19 @@ class CXDataProvider: NSObject {
                     
 
                 }
-                
-                
+            }
+        }){ (success, error) in
+            if !isNewData{
+                completion(true)
+                return
             }
             
-        }) { (success, error) in
             if success == true {
                 completion(success)
                 
             } else {
                 print("Error\(error)")
+                
             }
         }
     }
