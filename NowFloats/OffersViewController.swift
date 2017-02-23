@@ -52,7 +52,7 @@ extension OffersViewController{
 extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return featureProducts.count
+        return featureProducts.count+1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -163,7 +163,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         if cell == nil {
             collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-        productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+       // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
@@ -217,7 +217,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         cell.orderNowBtn.tag = fId!
 
         cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
-        self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        //self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         return cell
     }
     
@@ -264,7 +264,7 @@ extension OffersViewController :UISearchBarDelegate{
     }
     
     func refreshSearchBar (){
-        self.productsSearchBar.resignFirstResponder()
+        //self.productsSearchBar.resignFirstResponder()
         // Clear search bar text
         self.productsSearchBar.text = "";
         // Hide the cancel button
