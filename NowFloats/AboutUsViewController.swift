@@ -25,7 +25,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
     var str:String = ""
     var aboutUsArray : NSArray!
     var aboutUsDict: NSDictionary!
-    var mallDistance:String!
+    var mallDistance:String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -249,6 +249,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
                 aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
+                print("Checking now \(mallDistance)")
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
@@ -392,11 +393,10 @@ extension AboutUsViewController{
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
-        self.mallDistance = mallDistance(locValue.latitude, currentLon: locValue.longitude)
-        self.aboutustableview.reloadData()
+        self.mallDistance = String(mallDistance(locValue.latitude, currentLon: locValue.longitude))
     }
     
-    func mallDistance(_ currentLat:Double,currentLon:Double)->String{
+    func mallDistance(_ currentLat:Double,currentLon:Double) -> Double{
         
         let currentLat:Double = currentLat
         let currentLon:Double = currentLon
@@ -405,15 +405,8 @@ extension AboutUsViewController{
         let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.value(forKeyPath: "Latitude") as! String!)!, longitude: Double(self.aboutUsDict.value(forKeyPath: "Longitude") as! String!)!)
         
         let distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
-        print(distance)
-        
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        
-        /*let distanceInKM = formatter.string(from: NSNumber(distance))
-        print(distanceInKM!)
-        
-        return distanceInKM!*/
-        return ""
+        print("Distance is \(distance)")
+
+        return distance
     }
 }

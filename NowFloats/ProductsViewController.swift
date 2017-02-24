@@ -12,11 +12,13 @@ import FacebookCore
 import FBSDKCoreKit
 import Alamofire
 
+
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
     
     
     @IBOutlet weak var viewAdditinalCategery: UIView!
     
+    @IBOutlet weak var lblEmptyProduct: UILabel!
     @IBOutlet weak var btnAdditinalCategery: UIButton!
     var arrAdditinalCategery = NSMutableArray()
     var screenWidth: CGFloat! = nil
@@ -47,6 +49,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         getAddtinalCategryList()
         getTheProducts()
         //setupDropDowns()
+        
+        self.tableviewAdditinalcategery.tableFooterView = UIView()
     }
     
     //MARK: AddtinalCategery Action
@@ -60,11 +64,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             viewAdditinalCategery.layer.add(transition, forKey: kCATransition)
         self.viewAdditinalCategery.isHidden = true
             
-             self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2 / 45));
+            // self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2 / 45));
             
             
         }else{
-            self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
+           // self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
             
             self.tableviewAdditinalcategery.reloadData()
             let transition = CATransition()
@@ -93,9 +97,15 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: .zero)
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
+        LoadingView.show("Loading", animated: true)
+    
     }
+    
     
     func getAddtinalCategryList(){
              var dictcategeryadd = NSMutableArray()
@@ -144,7 +154,22 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
                 fetchRequest.predicate = predicate
                 self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+                print(self.products.count)
+                if self.products.count == 0{
+                self.lblEmptyProduct.isHidden = false
+                    self.updatecollectionview.isHidden = true
+                    //self.viewAdditinalCategery.isHidden = true
+                    
+                }else{
+                    self.lblEmptyProduct.isHidden = true
+                    self.updatecollectionview.isHidden = false
+                    //self.viewAdditinalCategery.isHidden = false
+
+                
+                }
                 self.updatecollectionview.reloadData()
+                
+                LoadingView.hide()
                 
             })
         }

@@ -95,9 +95,10 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         let str = featureProducts.name! as String
-        let str1 = str.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
-        //let headerStr = removeSpecialCharsFromString(str)
-        feturedProuctsCell.headerLbl.text = "\(str1)"
+       // let str1 = str.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
+        let strRemove =  str.replacingOccurrences(of: "_", with: " ")
+        
+        feturedProuctsCell.headerLbl.text = "\(strRemove)"
         feturedProuctsCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
         return feturedProuctsCell
     }
@@ -163,11 +164,17 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         if cell == nil {
             collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
         }
-       // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+
+        cell.layer.borderWidth = 1.0
+                cell.layer.borderColor = UIColor.lightGray.cgColor
+                cell.layer.cornerRadius = 10.0
+        
+        // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         cell.productName.text = featuredProductJobs.name
        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
         cell.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
+        
         
         if featuredProductJobs.fDescription != nil{
             
@@ -196,18 +203,18 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             FinalPrice = String(finalPriceNum) as String
             
             if finalPrice == FinalPrice{
-                cell.productPriceLbl.isHidden = true
+                //cell.productPriceLbl.isHidden = true
                 cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }else{
-                cell.productPriceLbl.isHidden = false
-                cell.productPriceLbl.attributedText = attributeString
+               // cell.productPriceLbl.isHidden = false
+               // cell.productPriceLbl.attributedText = attributeString
                 cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }
         }
 
         if featureProducts.name == "Brands"{
             
-            cell.productPriceLbl.isHidden = true
+            //cell.productPriceLbl.isHidden = true
             cell.finalPriceLbl.isHidden = true
             cell.orderNowBtn.isHidden = true
             
