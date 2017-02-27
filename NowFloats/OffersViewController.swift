@@ -348,10 +348,32 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         print("\(sender.tag)")
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-        productDetails.productString = proListData.json
-        self.navigationController?.pushViewController(productDetails, animated: true)
+
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+            
+            let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
+            self.navigationController?.pushViewController(cart, animated: true)
+        })
+        
+        
+//       // let storyBoard1 = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
+//        self.navigationController?.pushViewController(cart, animated: true)
+//        //self.navigationController?.pushViewController(productDetails, animated: true)
+        
+        
     }
+    
+    
+    
+}
+
+func gettingDate() {
+    
+    let report = ProductDetailsViewController()
+    
+     report.getValue()
+    
 }
 
 extension OffersViewController {

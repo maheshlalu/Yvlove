@@ -91,8 +91,9 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
                 
                 let dict:NSMutableDictionary = NSMutableDictionary()
                 let str = self.queryTxtView.text.replacingOccurrences(of: "\"", with: "")
+                let userName = UserDefaults.standard.value(forKey: "FULL_NAME") as! String
                 dict.setObject(str, forKey: "Message" as NSCopying)
-                //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
+                dict.setObject(userName, forKey: "Name" as NSCopying)
                 print(dict)
                 
                 let listArray : NSMutableArray = NSMutableArray()
@@ -110,6 +111,7 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
                     print(error)
                 }
                 let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
+                
                 
                 CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"Enquiry" as AnyObject ,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":self.contactTxtField.text as AnyObject]) { (responseDict) in
                     print(responseDict)
