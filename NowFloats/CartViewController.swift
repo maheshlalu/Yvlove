@@ -263,6 +263,14 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
 
     @IBAction func checkoutNowBtn(_ sender: UIButton) {
         
+        
+        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
+                {
+                    let name = CXSignInSignUpViewController()
+                    self.navigationController?.pushViewController(name, animated: true)
+                }
+        else
+        {
         let popup = PopupController
             .create(self)
             .customize(
@@ -290,7 +298,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         popup.show(container)
         
     }
-    
+    }
     
 
 }

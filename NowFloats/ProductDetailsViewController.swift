@@ -46,7 +46,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         getDescriptionTags()
         
         print("\(productDetailDic)")
- 
+        
     }
     
     func getDescriptionTags(){
@@ -93,10 +93,20 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     }
     
     func setUpRatingView(){
+        
+        // ratingView.delegate = self
         ratingView.contentMode = UIViewContentMode.scaleAspectFit
-        ratingView.editable = false
+        ratingView.maxRating = 5
+        ratingView.minRating = 1
+        ratingView.rating = 2.5
+        ratingView.editable = true
         ratingView.halfRatings = true
         ratingView.floatRatings = false
+        
+        //        ratingView.contentMode = UIViewContentMode.scaleAspectFit
+        //        ratingView.editable = true
+        //        ratingView.halfRatings = true
+        //        ratingView.floatRatings = false
         self.ratingBgView.backgroundColor = UIColor.clear
     }
     
@@ -124,38 +134,38 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         print(isMRP,isLink)
         
         /*
-        //MRP is False and Link is False
-        if !isMRP && !isLink {
-            
-            needMoreInfoBtn.isHidden = false
-            placeOrderBtn.isHidden = true
-            addToCartBtn.isHidden = true
-            needMoreInfoBtn.setTitle("Ask For A Quote", for: .normal)
-            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
-            needMoreInfoBtn.setImage(nil, for: .normal)
-            
-            //MRP is False and Link is True
-        }else if !isMRP && isLink {
-            placeOrderBtn.isHidden = true
-            needMoreInfoBtn.isHidden = false
-            addToCartBtn.isHidden = false
-            needMoreInfoBtn.setTitle("Need More Info", for: .normal)
-            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
-            needMoreInfoBtn.setImage(nil, for: .normal)
-            addToCartBtn.setTitle("Proceed To Online Store", for: .normal)
-            addToCartBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
-            addToCartBtn.setImage(nil, for: .normal)
-            
-            //MRP is True and Link is True
-        }else if isMRP && isLink {
-            placeOrderBtn.isHidden = false
-            needMoreInfoBtn.isHidden = false
-            addToCartBtn.isHidden = false
-            needMoreInfoBtn.setTitle("Need More Info", for: .normal)
-            needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
-            needMoreInfoBtn.setImage(nil, for: .normal)
-        }
- */
+         //MRP is False and Link is False
+         if !isMRP && !isLink {
+         
+         needMoreInfoBtn.isHidden = false
+         placeOrderBtn.isHidden = true
+         addToCartBtn.isHidden = true
+         needMoreInfoBtn.setTitle("Ask For A Quote", for: .normal)
+         needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+         needMoreInfoBtn.setImage(nil, for: .normal)
+         
+         //MRP is False and Link is True
+         }else if !isMRP && isLink {
+         placeOrderBtn.isHidden = true
+         needMoreInfoBtn.isHidden = false
+         addToCartBtn.isHidden = false
+         needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+         needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+         needMoreInfoBtn.setImage(nil, for: .normal)
+         addToCartBtn.setTitle("Proceed To Online Store", for: .normal)
+         addToCartBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+         addToCartBtn.setImage(nil, for: .normal)
+         
+         //MRP is True and Link is True
+         }else if isMRP && isLink {
+         placeOrderBtn.isHidden = false
+         needMoreInfoBtn.isHidden = false
+         addToCartBtn.isHidden = false
+         needMoreInfoBtn.setTitle("Need More Info", for: .normal)
+         needMoreInfoBtn.titleLabel?.font = UIFont(name: "Roboto-Regular", size:13)
+         needMoreInfoBtn.setImage(nil, for: .normal)
+         }
+         */
         
     }
     
@@ -216,7 +226,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             needyBeeDetailCell.decriptionLbl.text = desclimeStr
             return needyBeeDetailCell
         }
-
+        
         return cell!
         
     }
@@ -265,11 +275,18 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         }
     }
     @IBAction func placeOrderNowAction(_ sender: AnyObject) {
+        
+//        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
+//        {
+//            let name = CXSignInSignUpViewController()
+//            self.navigationController?.pushViewController(name, animated: true)
+//        }
+     
         getValue()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
         self.navigationController?.pushViewController(cart, animated: true)
-        
+       
     }
     
     func getValue() {
@@ -277,7 +294,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             
         })
         
-       
+        
         
         
         
@@ -306,7 +323,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
             self.navigationController?.pushViewController(signInViewCnt, animated: true)
             return
-        
+            
         }else{
             let popup = PopupController
                 .create(self)
@@ -328,11 +345,11 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
             if (sender as! UIButton).titleLabel?.text == "Need More Info" {
                 container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
             }
-       
-        container.closeHandler = { _ in
-            popup.dismiss()
-        }
-        popup.show(container)
+            
+            container.closeHandler = { _ in
+                popup.dismiss()
+            }
+            popup.show(container)
         }
     }
     
@@ -344,6 +361,28 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         textView.frame = newFrame;
     }
+    
+    // MARK: FloatRatingViewDelegate
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
+    {
+        
+        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+        
+    }
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float){
+        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+        
+    }
+    
+    
+    
+    //    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
+    //        self.productRattingLbl.text = NSString(format: "%.2f", floatRatingView.rating) as String
+    //    }
+    //
+    //    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
+    //        self.productRattingLbl.text = NSString(format: "%.2f", floatRatingView.rating) as String
+    //    }
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{

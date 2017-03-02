@@ -28,22 +28,42 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.designMapview()
-        
+        mapView.delegate = self
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
+//
+//        let request = MKDirectionsRequest()
+//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 40.7127, longitude: -74.0059), addressDictionary: nil))
+//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.783333, longitude: -122.416667), addressDictionary: nil))
+//        request.requestsAlternateRoutes = true
+//        request.transportType = .automobile
+//        
+//        let directions = MKDirections(request: request)
+//        directions.calculate { [unowned self] response, error in
+//            guard let unwrappedResponse = response else { return }
+//            
+//            for route in unwrappedResponse.routes {
+//                self.mapView.add(route.polyline)
+//                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+//            }
+//        }
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-
       
         // Do any additional setup after loading the view.
     }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
+//        renderer.strokeColor = UIColor.blue
+//        return renderer
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,10 +107,17 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     
     func showMapDirection(){
         
-        //self.showMapPointLocation()
+        self.showMapPointLocation()
         
     }
     func showMapPointLocation () {
+        
+//        let lat = 37.7
+//        let lon = -122.4
+//        if (UIApplication.shared.canOpenURL(NSURL(string:"https://maps.google.com")! as URL)) {
+//            UIApplication.shared.openURL(NSURL(string:
+//                "https://maps.google.com/?q=@\(lat),\(lon)")! as URL)
+//        }
 
         var annotations:Array = [Station]()
         let annotation = Station(latitude:lat, longitude:lon)
@@ -110,6 +137,7 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
         let polyline = MKPolyline(coordinates: &points, count: points.count)
         
         mapView.add(polyline)
+  
         
     }
     

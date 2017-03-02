@@ -564,6 +564,7 @@ extension CXNavDrawer {
             if index == 0{
                 self.showAlertView("Are You Sure??", status: 1)
             }
+            
         }
     }
     
@@ -589,7 +590,7 @@ extension CXNavDrawer {
         UserDefaults.standard.removeObject(forKey: "BANNER_PATH")
         UserDefaults.standard.removeObject(forKey: "IMAGE_PATH")
         UserDefaults.standard.synchronize()
-        showAlertView("user logout Successfully", status: 2)
+        showAlertView("User logout Successfully", status: 2)
     }
     func showAlertView(_ message:String, status:Int) {
         let alert = UIAlertController(title:message, message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -611,4 +612,5 @@ extension CXNavDrawer {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
 }

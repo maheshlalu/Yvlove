@@ -184,11 +184,14 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         self.view.endEditing(true)
         if self.isValidEmail(self.emailAddressField.text!) {
             self.sendSignDetails()
+            self.navigationController?.popViewController(animated: true)
+
         } else {
                 let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 //print("Please enter valid email")
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

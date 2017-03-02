@@ -68,7 +68,7 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
             if self.commentsView.text.characters.count < 50 {
                 self.showAlertView("Please enter at least 50 characters.", status: 0)
             }else{
-               // self.submitTheComments()
+                self.submitTheComments()
             }
         }
     }

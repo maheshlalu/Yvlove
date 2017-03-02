@@ -364,7 +364,7 @@
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		3B4FD8131D6446D200A6EBBE /* NowFloats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowFloats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4FD8131D6446D200A6EBBE /* NeedyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeedyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B4FD8181D6446D300A6EBBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B4FD81B1D6446D300A6EBBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -847,7 +847,7 @@
 		3B4FD8141D6446D200A6EBBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3B4FD8131D6446D200A6EBBE /* NowFloats.app */,
+				3B4FD8131D6446D200A6EBBE /* NeedyBee.app */,
 				3B4FD82A1D6446D300A6EBBE /* NowFloatsTests.xctest */,
 				3B4FD8351D6446D300A6EBBE /* NowFloatsUITests.xctest */,
 			);
@@ -1069,7 +1069,7 @@
 			);
 			name = NowFloats;
 			productName = NowFloats;
-			productReference = 3B4FD8131D6446D200A6EBBE /* NowFloats.app */;
+			productReference = 3B4FD8131D6446D200A6EBBE /* NeedyBee.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3B4FD8291D6446D300A6EBBE /* NowFloatsTests */ = {
@@ -1664,7 +1664,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NeedyBee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
@@ -1691,7 +1691,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nowFloats.cx;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NeedyBee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";

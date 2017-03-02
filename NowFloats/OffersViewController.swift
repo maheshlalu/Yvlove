@@ -27,6 +27,7 @@ class OffersViewController: CXViewController{
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
         self.registerTableViewCell()
         self.getTheProducts()
+
     }
     
     func getTheProducts(){
@@ -157,29 +158,37 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        
+        
+        
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferCollectionViewCell", for: indexPath)as? OfferCollectionViewCell
+        DispatchQueue.main.async(execute: { () -> Void in
+            cell?.productName.text = featuredProductJobs.name
+        })
+        
+        
+//        let identifier = "OfferCollectionViewCell"
+//        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
+//        if cell == nil {
+//            collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+////            let nib = UINib(nibName: "OfferCollectionViewCell", bundle: nil)
+////            self.offersTableView.register(nib, forCellReuseIdentifier: "OfferCollectionViewCell")
+//                    }
         
         
         
-        let identifier = "OfferCollectionViewCell"
-        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
-        if cell == nil {
-            collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
-        }
-
-        cell.layer.borderWidth = 1.0
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.cornerRadius = 10.0
+        cell?.layer.borderWidth = 1.0
+        cell?.layer.borderColor = UIColor.lightGray.cgColor
+        cell?.layer.cornerRadius = 10.0
         
         // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
        // print(featuredProductJobs.name!)
-        DispatchQueue.main.async(execute: { () -> Void in
-            cell.productName.text = featuredProductJobs.name
-        })
+        
        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
-        cell.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
+        cell?.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
         
         
         if featuredProductJobs.fDescription != nil{
@@ -210,28 +219,28 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             
             if finalPrice == FinalPrice{
                 //cell.productPriceLbl.isHidden = true
-                cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
+                cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }else{
                // cell.productPriceLbl.isHidden = false
                // cell.productPriceLbl.attributedText = attributeString
-                cell.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
+                cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }
         }
 
         if featureProducts.name == "Brands"{
             
             //cell.productPriceLbl.isHidden = true
-            cell.finalPriceLbl.isHidden = true
-            cell.orderNowBtn.isHidden = true
+            cell?.finalPriceLbl.isHidden = true
+            cell?.orderNowBtn.isHidden = true
             
         }
         
         let fId = Int(featuredProductJobs.fID! as String)
-        cell.orderNowBtn.tag = fId!
+        cell?.orderNowBtn.tag = fId!
 
-        cell.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
+        cell?.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
         //self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        return cell
+        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
@@ -356,7 +365,7 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-            
+
             let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
             self.navigationController?.pushViewController(cart, animated: true)
         })
