@@ -54,6 +54,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
     @IBOutlet weak var lastNameTxtField: SkyFloatingLabelTextField!
     @IBOutlet weak var saveImageBtn: UIButton!
     
+    @IBOutlet weak var editScrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +65,68 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         let imgTap:UIGestureRecognizer = UITapGestureRecognizer.init()
         imgTap.addTarget(self, action: #selector(editBtnAction(_:)))
         editDPImage.addGestureRecognizer(imgTap)
+        
+        firstNameTxtField.delegate = self
+        lastNameTxtField.delegate = self
+        addressTxtField.delegate = self
+        cityTxtField.delegate = self
+        notificationCall()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        self.view.addGestureRecognizer(tap)
+      
 
+    }
+    //MARK: Notification call Method
+    func notificationCall()
+    {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(EditUserProfileViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(EditUserProfileViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    //MARK: Keyboard willshow and Will hide Methods
+    func keyboardWillShow(sender: NSNotification) {
+        if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            view.frame.origin.y = 0
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y = -(keyboardSize.height-65)
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        if ((sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 65
+            }
+            else {
+                
+            }
+        }
+        
+    }
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        // handling code
+        self.view.endEditing(true)
     }
     
     func dataIntegration(){
+        
+        if (mobile.isEmpty) {
+            staticMobileNumber.isUserInteractionEnabled = true
+            staticMobileNumber.lineHeight = 1
+            
+            
+        }else{
+        staticMobileNumber.isUserInteractionEnabled = false
+            staticMobileNumber.lineHeight = 0
+        }
+        
         staticEmail.text = emai
         staticMobileNumber.text = mobile
         
@@ -244,6 +303,11 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
             //return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.characters.indices) == nil
         }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
         return true
     }
     

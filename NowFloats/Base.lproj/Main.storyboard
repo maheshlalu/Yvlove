@@ -348,7 +348,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tzc-d8-Z2F">
-                                        <rect key="frame" x="-16" y="5" width="359" height="183"/>
+                                        <rect key="frame" x="-15.5" y="5" width="359" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="183"/>
@@ -461,7 +461,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="WishlistCollectionViewCell" id="k0S-L2-aLa">
-                                        <rect key="frame" x="-9" y="15" width="337" height="163"/>
+                                        <rect key="frame" x="-8.5" y="15" width="337" height="163"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="337" height="163"/>
@@ -529,7 +529,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updates Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvR-3e-ad4">
-                                <rect key="frame" x="90" y="274" width="140" height="19"/>
+                                <rect key="frame" x="90" y="274.5" width="140" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -639,7 +639,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a32-OQ-fMD">
-                                <rect key="frame" x="97" y="275.5" width="126" height="18.5"/>
+                                <rect key="frame" x="98" y="276.5" width="124.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -710,7 +710,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tmJ-Rw-dnS" customClass="ProductsCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
-                                        <rect key="frame" x="-32" y="15" width="383" height="222"/>
+                                        <rect key="frame" x="-31.5" y="15" width="383" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="222"/>
@@ -1006,7 +1006,7 @@
                                         <rect key="frame" x="0.0" y="22" width="328" height="207"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7aT-7n-f9u" id="HL5-cS-ooV">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="206"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="206.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfY-HV-Dp3">
@@ -1059,7 +1059,7 @@
                                         <rect key="frame" x="0.0" y="229" width="328" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nai-Ff-sSI" id="Mhu-4P-Hb5">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="61"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZs-bZ-nlU">
@@ -1175,7 +1175,7 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goo-ld-43v">
                                                 <rect key="frame" x="0.0" y="0.0" width="99.5" height="35"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
                                                 <state key="normal" title="ADD TO CART" image="addToCart_White">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1187,7 +1187,7 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv8-AP-MeL">
                                                 <rect key="frame" x="104.5" y="0.0" width="99" height="35"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
                                                 <state key="normal" title=" ORDER  COD" image="placeOrderImg">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1198,7 +1198,7 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCZ-qQ-WqQ">
                                                 <rect key="frame" x="208.5" y="0.0" width="99.5" height="35"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
                                                 <state key="normal" title="Need More Info" image="addToCart_White">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1334,7 +1334,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Previous Orders!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Wx-PxQ">
-                                <rect key="frame" x="97" y="274" width="126" height="19"/>
+                                <rect key="frame" x="97" y="274.5" width="126" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1826,7 +1826,7 @@
                                         <rect key="frame" x="0.0" y="28" width="300" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gqf-I9-gOw" id="hvB-3N-xAK">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="82.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfu-Q7-0Fb">
@@ -1929,7 +1929,7 @@
                                         <rect key="frame" x="0.0" y="111" width="300" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cQ2-5Y-zF1" id="IVm-8k-6sr">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="82.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Addresses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pe-ir-9m3">
@@ -2002,7 +2002,7 @@
                                         <rect key="frame" x="0.0" y="194" width="300" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3f-Ag-GRB" id="uec-Hq-Faj">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qh1-b5-oIP">
@@ -2044,7 +2044,7 @@
                                         <rect key="frame" x="0.0" y="239" width="300" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pPM-Fl-b37" id="vaW-CV-Mke">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Flk-4E-Fbc">
@@ -2086,7 +2086,7 @@
                                         <rect key="frame" x="0.0" y="284" width="300" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Es-7S-Ki5" id="cb1-hW-IrN">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="500" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCk-Hf-YE3">
@@ -2128,7 +2128,7 @@
                                         <rect key="frame" x="0.0" y="332" width="300" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="361-oQ-QEQ" id="fyg-dD-U8P">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="46.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="600" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w33-zH-sY5">
@@ -2635,92 +2635,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmA-mF-f6B">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXO-nB-SvR" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="637" width="300" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="317" id="Hgi-mM-jYW"/>
-                                            <constraint firstAttribute="height" constant="60" id="RL2-kY-upL"/>
-                                            <constraint firstAttribute="height" constant="30" id="bpC-DV-nfj">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="45"/>
-                                            </constraint>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
-                                                <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
-                                                <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Mobile Number"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mobile Number"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="9640339556"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Hgi-mM-jYW"/>
-                                                <exclude reference="RL2-kY-upL"/>
-                                                <exclude reference="bpC-DV-nfj"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <exclude reference="Hgi-mM-jYW"/>
-                                                <include reference="RL2-kY-upL"/>
-                                                <exclude reference="bpC-DV-nfj"/>
-                                            </mask>
-                                        </variation>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lD3-0J-7JI">
-                                        <rect key="frame" x="82" y="585" width="149" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="InU-CW-aXH"/>
-                                            <constraint firstAttribute="width" constant="149" id="sZa-Li-GpX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <state key="normal" title="Save Changes">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="InU-CW-aXH"/>
-                                                <exclude reference="sZa-Li-GpX"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="InU-CW-aXH"/>
-                                                <include reference="sZa-Li-GpX"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="saveChangesAction:" destination="SRx-ir-GhL" eventType="touchUpInside" id="Jsc-GS-vQh"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AGt-ma-Z0i">
-                                        <rect key="frame" x="10" y="225" width="300" height="320"/>
+                                        <rect key="frame" x="10" y="225" width="300" height="200"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-3f-ls1" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -2753,7 +2672,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-gN-hhi" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="65" width="300" height="60"/>
+                                                <rect key="frame" x="0.0" y="41" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="YiM-bH-oly">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -2804,7 +2723,7 @@
                                                 </variation>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdq-iC-LRv" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="130" width="300" height="60"/>
+                                                <rect key="frame" x="0.0" y="82" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="DXo-eQ-bQA">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -2855,7 +2774,7 @@
                                                 </variation>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvN-vq-9Xf" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="195" width="300" height="60"/>
+                                                <rect key="frame" x="0.0" y="123" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="317" id="3b7-SB-7mu"/>
                                                     <constraint firstAttribute="height" constant="30" id="Zfw-xO-dVQ">
@@ -2906,7 +2825,7 @@
                                                 </variation>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wp6-bf-veG" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="260" width="300" height="60"/>
+                                                <rect key="frame" x="0.0" y="164" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="PYg-V4-Lwy">
                                                         <variation key="heightClass=regular-widthClass=compact" constant="45"/>
@@ -2958,7 +2877,7 @@
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="viM-SO-osx"/>
+                                            <constraint firstAttribute="height" constant="200" id="viM-SO-osx"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -3049,9 +2968,9 @@
                                         </variation>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOv-WG-hX8" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="713" width="174" height="55"/>
+                                        <rect key="frame" x="10" y="520" width="174" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="3Yq-4f-xJV"/>
+                                            <constraint firstAttribute="height" constant="40" id="3Yq-4f-xJV"/>
                                             <constraint firstAttribute="height" constant="30" id="Gyp-pN-Yq9">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="45"/>
                                             </constraint>
@@ -3131,6 +3050,87 @@
                                             <action selector="saveImageAction:" destination="SRx-ir-GhL" eventType="touchUpInside" id="bbL-F8-Pb0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lD3-0J-7JI">
+                                        <rect key="frame" x="82" y="442" width="149" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="InU-CW-aXH"/>
+                                            <constraint firstAttribute="width" constant="149" id="sZa-Li-GpX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <state key="normal" title="Save Changes">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="InU-CW-aXH"/>
+                                                <exclude reference="sZa-Li-GpX"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="InU-CW-aXH"/>
+                                                <include reference="sZa-Li-GpX"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="saveChangesAction:" destination="SRx-ir-GhL" eventType="touchUpInside" id="Jsc-GS-vQh"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXO-nB-SvR" customClass="SkyFloatingLabelTextField" customModule="NowFloats" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="471" width="300" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="1Wx-nC-rJh"/>
+                                            <constraint firstAttribute="width" constant="317" id="Hgi-mM-jYW"/>
+                                            <constraint firstAttribute="height" constant="38" id="RL2-kY-upL"/>
+                                            <constraint firstAttribute="height" constant="30" id="bpC-DV-nfj">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="45"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedLineHeight">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Mobile Number"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mobile Number"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Hgi-mM-jYW"/>
+                                                <exclude reference="RL2-kY-upL"/>
+                                                <exclude reference="bpC-DV-nfj"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="Hgi-mM-jYW"/>
+                                                <include reference="RL2-kY-upL"/>
+                                                <exclude reference="bpC-DV-nfj"/>
+                                            </mask>
+                                        </variation>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3140,11 +3140,8 @@
                                     <constraint firstItem="db6-vN-vVx" firstAttribute="centerX" secondItem="lD3-0J-7JI" secondAttribute="centerX" id="5fM-Zg-GLW">
                                         <variation key="heightClass=regular-widthClass=compact" constant="3.5"/>
                                     </constraint>
+                                    <constraint firstItem="sOv-WG-hX8" firstAttribute="top" secondItem="TXO-nB-SvR" secondAttribute="bottom" constant="11" id="6QQ-Xv-z0j"/>
                                     <constraint firstItem="AGt-ma-Z0i" firstAttribute="leading" secondItem="qmA-mF-f6B" secondAttribute="leading" constant="10" id="6tg-uR-PSI"/>
-                                    <constraint firstItem="TXO-nB-SvR" firstAttribute="top" secondItem="AGt-ma-Z0i" secondAttribute="bottom" constant="92" id="7Kd-VC-ROj"/>
-                                    <constraint firstItem="sOv-WG-hX8" firstAttribute="top" secondItem="TXO-nB-SvR" secondAttribute="bottom" constant="19" id="DCo-qG-F71">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="16"/>
-                                    </constraint>
                                     <constraint firstItem="lD3-0J-7JI" firstAttribute="centerX" secondItem="TXO-nB-SvR" secondAttribute="centerX" id="ICd-Ip-Il9">
                                         <variation key="heightClass=regular-widthClass=compact" constant="-3.5"/>
                                     </constraint>
@@ -3153,11 +3150,12 @@
                                     <constraint firstItem="db6-vN-vVx" firstAttribute="top" secondItem="qmA-mF-f6B" secondAttribute="top" id="O0a-7z-VIK"/>
                                     <constraint firstItem="AGt-ma-Z0i" firstAttribute="top" secondItem="db6-vN-vVx" secondAttribute="bottom" constant="21" id="Tze-TU-KBV"/>
                                     <constraint firstAttribute="bottom" secondItem="sOv-WG-hX8" secondAttribute="bottom" constant="38" id="VSQ-eI-5vR">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="-200"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                                     </constraint>
+                                    <constraint firstItem="TXO-nB-SvR" firstAttribute="top" secondItem="lD3-0J-7JI" secondAttribute="bottom" constant="-1" id="W7p-Lq-ec1"/>
                                     <constraint firstItem="db6-vN-vVx" firstAttribute="leading" secondItem="qmA-mF-f6B" secondAttribute="leading" id="YgQ-bO-11G"/>
+                                    <constraint firstItem="lD3-0J-7JI" firstAttribute="top" secondItem="AGt-ma-Z0i" secondAttribute="bottom" constant="17" id="cdM-Ho-Cfa"/>
                                     <constraint firstItem="TXO-nB-SvR" firstAttribute="leading" secondItem="sOv-WG-hX8" secondAttribute="leading" id="fdd-zF-UYD"/>
-                                    <constraint firstItem="TXO-nB-SvR" firstAttribute="top" secondItem="lD3-0J-7JI" secondAttribute="bottom" constant="22" id="fuw-FH-37w"/>
                                     <constraint firstAttribute="trailing" secondItem="db6-vN-vVx" secondAttribute="trailing" id="nBW-oU-wbq"/>
                                     <constraint firstItem="AGt-ma-Z0i" firstAttribute="top" secondItem="db6-vN-vVx" secondAttribute="bottom" constant="10" id="tDp-QK-fAo"/>
                                     <constraint firstItem="AGt-ma-Z0i" firstAttribute="top" secondItem="db6-vN-vVx" secondAttribute="bottom" constant="21" id="ucF-g7-N7l"/>
@@ -3180,10 +3178,7 @@
                                         <exclude reference="ucF-g7-N7l"/>
                                         <exclude reference="x81-t8-eKK"/>
                                         <exclude reference="ICd-Ip-Il9"/>
-                                        <exclude reference="7Kd-VC-ROj"/>
                                         <exclude reference="fdd-zF-UYD"/>
-                                        <exclude reference="fuw-FH-37w"/>
-                                        <exclude reference="DCo-qG-F71"/>
                                         <exclude reference="VSQ-eI-5vR"/>
                                     </mask>
                                 </variation>
@@ -3206,10 +3201,7 @@
                                         <include reference="ucF-g7-N7l"/>
                                         <include reference="x81-t8-eKK"/>
                                         <include reference="ICd-Ip-Il9"/>
-                                        <include reference="7Kd-VC-ROj"/>
                                         <include reference="fdd-zF-UYD"/>
-                                        <include reference="fuw-FH-37w"/>
-                                        <include reference="DCo-qG-F71"/>
                                         <include reference="VSQ-eI-5vR"/>
                                     </mask>
                                 </variation>
@@ -3246,6 +3238,7 @@
                         <outlet property="editBtn" destination="LdB-wf-gpT" id="lUL-a6-Zc1"/>
                         <outlet property="editDPImage" destination="9Au-xO-PP6" id="HH9-58-Lp6"/>
                         <outlet property="editProfileView" destination="db6-vN-vVx" id="R6Q-xk-YeF"/>
+                        <outlet property="editScrollView" destination="qmA-mF-f6B" id="uuX-k4-XVl"/>
                         <outlet property="firstNameTxtField" destination="xLg-3f-ls1" id="0aO-fp-DZ9"/>
                         <outlet property="lastNameTxtField" destination="DOu-gN-hhi" id="1iw-fN-vWB"/>
                         <outlet property="saveChangesBtn" destination="lD3-0J-7JI" id="4kY-HD-uSX"/>
@@ -3257,7 +3250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S4l-FR-tjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4223" y="-1755"/>
+            <point key="canvasLocation" x="-4224.375" y="-1755.6338028169014"/>
         </scene>
         <!--Products View Controller-->
         <scene sceneID="ALD-YH-clc">
@@ -3372,11 +3365,11 @@
                                                 <rect key="frame" x="0.0" y="28" width="180" height="33"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oZd-Oi-Jec" id="eoD-SH-te1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="32.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XIx-EZ-8wb">
-                                                            <rect key="frame" x="15" y="0.0" width="150" height="32"/>
+                                                            <rect key="frame" x="15" y="0.0" width="150" height="32.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

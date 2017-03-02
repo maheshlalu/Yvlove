@@ -32,6 +32,7 @@ class OffersViewController: CXViewController{
     func getTheProducts(){
         let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
         self.products  = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
+        
         self.offersTableView.reloadData()
     }
 }
@@ -159,6 +160,8 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         
+        
+        
         let identifier = "OfferCollectionViewCell"
         let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
         if cell == nil {
@@ -166,11 +169,14 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         }
 
         cell.layer.borderWidth = 1.0
-                cell.layer.borderColor = UIColor.lightGray.cgColor
-                cell.layer.cornerRadius = 10.0
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.cornerRadius = 10.0
         
         // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        cell.productName.text = featuredProductJobs.name
+       // print(featuredProductJobs.name!)
+        DispatchQueue.main.async(execute: { () -> Void in
+            cell.productName.text = featuredProductJobs.name
+        })
        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
         cell.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)

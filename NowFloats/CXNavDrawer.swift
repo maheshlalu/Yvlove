@@ -589,6 +589,7 @@ extension CXNavDrawer {
         UserDefaults.standard.removeObject(forKey: "BANNER_PATH")
         UserDefaults.standard.removeObject(forKey: "IMAGE_PATH")
         UserDefaults.standard.synchronize()
+        showAlertView("user logout Successfully", status: 2)
     }
     func showAlertView(_ message:String, status:Int) {
         let alert = UIAlertController(title:message, message: nil, preferredStyle: UIAlertControllerStyle.alert)

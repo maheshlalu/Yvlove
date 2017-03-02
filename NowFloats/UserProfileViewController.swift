@@ -33,6 +33,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         self.profileTableView.separatorStyle = .none
         headerViewAlignments()
         profileDataIntegration()
+        
 
     }
     
