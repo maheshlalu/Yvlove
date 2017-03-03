@@ -112,13 +112,12 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     }
     func showMapPointLocation () {
         
-//        let lat = 37.7
-//        let lon = -122.4
-//        if (UIApplication.shared.canOpenURL(NSURL(string:"https://maps.google.com")! as URL)) {
-//            UIApplication.shared.openURL(NSURL(string:
-//                "https://maps.google.com/?q=@\(lat),\(lon)")! as URL)
-//        }
-
+        let lat = 17.4371
+        let lon = 78.4462
+    
+        let googleMapUrlString = String.localizedStringWithFormat("http://maps.google.com/?daddr=%f,%f", lat, lon)
+        UIApplication.shared.openURL(NSURL(string:
+                googleMapUrlString)! as URL)
         var annotations:Array = [Station]()
         let annotation = Station(latitude:lat, longitude:lon)
 

@@ -21,7 +21,10 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
         self.customizeBgView()
         self.customizeDetailCollectionView()
+        //self.detailCollectionView.reloadData()
+
     }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -63,7 +66,7 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.detailCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.detailCollectionView.showsHorizontalScrollIndicator = false
         self.detailCollectionView.frame = CGRect(x: 8, y: self.headerLbl.frame.size.height, width: cellWidth-16, height: CXConstant.DetailCollectionViewFrame.size.height)
-        
+
         // CXConstant.DetailCollectionViewFrame
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         self.detailCollectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "DetailCollectionViewCell")
@@ -71,6 +74,7 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.detailCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCellID")
         self.detailCollectionView.backgroundColor = UIColor.clear
         self.addSubview(self.detailCollectionView)
+
     }
 
     
@@ -88,12 +92,11 @@ extension OfferFeaturedProductCell {
     }
     
     func setCollectionViewDataSourceDelegate(dataSource:UICollectionViewDataSource,delegate:UICollectionViewDelegate,forRow:Int){
-        
         self.detailCollectionView.dataSource = dataSource
         self.detailCollectionView.delegate = delegate
         self.detailCollectionView.tag = forRow
         self.detailCollectionView.reloadData()
-        
+
     }
     
 //    func setCollectionViewDataSourceDelegate<D: (UICollectionViewDataSource & UICollectionViewDelegate)>(_ dataSourceDelegate: D, forRow row: Int) {

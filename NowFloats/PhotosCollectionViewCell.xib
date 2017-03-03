@@ -11,25 +11,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotosCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="159" height="170"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotosCollectionViewCell" customModule="NeedyBee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="159" height="170"/>
+                <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slD-ds-hKb">
-                        <rect key="frame" x="0.0" y="0.0" width="159" height="170"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="slD-ds-hKb">
+                        <rect key="frame" x="0.0" y="0.0" width="185" height="222"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="slD-ds-hKb" secondAttribute="bottom" id="ZSX-Bu-GXi"/>
+                <constraint firstAttribute="trailing" secondItem="slD-ds-hKb" secondAttribute="trailing" id="dfn-6k-bo6"/>
+                <constraint firstItem="slD-ds-hKb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jSk-hE-pLM"/>
+                <constraint firstItem="slD-ds-hKb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="liu-bo-7qk"/>
+            </constraints>
             <size key="customSize" width="159" height="170"/>
             <connections>
                 <outlet property="photosImage" destination="slD-ds-hKb" id="nZ7-6b-fJC"/>
             </connections>
-            <point key="canvasLocation" x="439" y="132"/>
+            <point key="canvasLocation" x="438.5" y="132"/>
         </collectionViewCell>
     </objects>
 </document>

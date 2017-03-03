@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDetailsViewController: CXViewController,UITextViewDelegate {
+class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRatingViewDelegate {
     
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
@@ -40,11 +40,11 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
         
         self.productDetailsTableView?.register(UINib(nibName: "NeedyBeeDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "NeedyBeeDetailTableViewCell")
-        
-        self.setUpRatingView()
+        setUpRatingView()
         customisingBtns()
         getDescriptionTags()
-        
+        self.ratingBgView.backgroundColor = UIColor.clear
+        //self.ratingView.backgroundColor = UIColor.white
         print("\(productDetailDic)")
         
     }
@@ -93,22 +93,39 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     }
     
     func setUpRatingView(){
-        
-        // ratingView.delegate = self
-        ratingView.contentMode = UIViewContentMode.scaleAspectFit
-        ratingView.maxRating = 5
-        ratingView.minRating = 1
-        ratingView.rating = 2.5
+       self.ratingView.contentMode = UIViewContentMode.scaleAspectFit
+        ratingView.delegate = self
         ratingView.editable = true
         ratingView.halfRatings = true
         ratingView.floatRatings = false
-        
-        //        ratingView.contentMode = UIViewContentMode.scaleAspectFit
-        //        ratingView.editable = true
-        //        ratingView.halfRatings = true
-        //        ratingView.floatRatings = false
         self.ratingBgView.backgroundColor = UIColor.clear
+//        self.ratingView.backgroundColor = UIColor.clear
+//        self.ratingView.editable = false
     }
+    
+//   func setUpRatingView(){
+////    
+////    
+//          //self.ratingView.delegate = self
+////        
+////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
+////        ratingView.editable = true
+////        ratingView.maxRating = 5
+////        ratingView.minRating = 1
+////        ratingView.rating = 2.5
+////        ratingView.isUserInteractionEnabled = true
+////        ratingView.backgroundColor = UIColor.white
+////        ratingView.halfRatings = false
+////        ratingView.floatRatings = true
+//////
+////////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
+////////        ratingView.editable = false
+////////        ratingView.halfRatings = true
+////////        ratingView.floatRatings = false
+//    
+//    
+//        self.ratingBgView.backgroundColor = UIColor.clear
+//  }
     
     func customisingBtns(){
         
@@ -363,26 +380,28 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate {
     }
     
     // MARK: FloatRatingViewDelegate
-    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
-    {
-        
-        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
-        
-    }
-    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float){
-        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
-        
-    }
+//    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
+//    {
+//        
+//        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+//        
+//    }
+//    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float){
+//        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+//        
+//
+//        self.setUpRatingView()
+//    }
     
     
     
-    //    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
-    //        self.productRattingLbl.text = NSString(format: "%.2f", floatRatingView.rating) as String
-    //    }
-    //
-    //    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
-    //        self.productRattingLbl.text = NSString(format: "%.2f", floatRatingView.rating) as String
-    //    }
+        func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
+            self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
+        }
+    
+        func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
+            self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
+        }
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{

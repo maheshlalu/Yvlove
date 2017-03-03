@@ -43,17 +43,19 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         return cell
     }
     
-    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //screenWidth =  UIScreen.main.bounds.size.width
-         return CGSize(width: self.view.frame.size.width/2-9, height: 150);
+         //return CGSize(width: self.view.frame.size.width/2-9, height: 150)
+        return CGSize(width: self.view.frame.size.width/2-8, height: 222)
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

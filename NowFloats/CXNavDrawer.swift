@@ -611,6 +611,15 @@ extension CXNavDrawer {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+        if status == 2
+        {
+            let okAction1 = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+                UIAlertAction in
+                
+                self.showAlertView("User Logout Successfully", status: 2)
+            }
+            alert.addAction(okAction1)
+        }
     }
     
 }

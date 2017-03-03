@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="05Q-G7-9aQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="05Q-G7-9aQ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
         <!--Demo Popup View Controller2-->
         <scene sceneID="ZPl-XE-XZo">
             <objects>
-                <viewController id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="NowFloats" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DemoPopupViewController2" id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="NeedyBee" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n5c-fn-lEd"/>
                         <viewControllerLayoutGuide type="bottom" id="kWo-hi-e32"/>
@@ -30,36 +30,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-4t-TfY">
-                                <rect key="frame" x="111" y="255" width="60" height="39"/>
-                                <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="ljA-rF-AsW"/>
-                                    <constraint firstAttribute="width" constant="60" id="q1N-C1-eYm"/>
-                                    <constraint firstAttribute="height" constant="39" id="zl5-1A-1Xd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <state key="normal" title="Ok">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ljA-rF-AsW"/>
-                                        <exclude reference="q1N-C1-eYm"/>
-                                        <exclude reference="zl5-1A-1Xd"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="ljA-rF-AsW"/>
-                                        <include reference="q1N-C1-eYm"/>
-                                        <exclude reference="zl5-1A-1Xd"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="okButtonAction:" destination="05Q-G7-9aQ" eventType="touchUpInside" id="HeR-Jv-Q3F"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRn-ph-A15">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                 <subviews>
@@ -203,6 +173,36 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-4t-TfY">
+                                <rect key="frame" x="80" y="253" width="121" height="39"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="ljA-rF-AsW"/>
+                                    <constraint firstAttribute="width" constant="121" id="q1N-C1-eYm"/>
+                                    <constraint firstAttribute="height" constant="39" id="zl5-1A-1Xd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <state key="normal" title="SUBMIT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ljA-rF-AsW"/>
+                                        <exclude reference="q1N-C1-eYm"/>
+                                        <exclude reference="zl5-1A-1Xd"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="ljA-rF-AsW"/>
+                                        <include reference="q1N-C1-eYm"/>
+                                        <exclude reference="zl5-1A-1Xd"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="okButtonAction:" destination="05Q-G7-9aQ" eventType="touchUpInside" id="HeR-Jv-Q3F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -221,7 +221,7 @@
                             <constraint firstItem="ZYM-e0-4ec" firstAttribute="top" secondItem="TRn-ph-A15" secondAttribute="bottom" constant="20" id="iM6-mm-fch"/>
                             <constraint firstItem="kWo-hi-e32" firstAttribute="top" secondItem="rRy-4t-TfY" secondAttribute="bottom" constant="11" id="ihu-rO-lUW"/>
                             <constraint firstItem="kWo-hi-e32" firstAttribute="top" secondItem="rRy-4t-TfY" secondAttribute="bottom" constant="11" id="nfd-8p-QYe">
-                                <variation key="heightClass=regular-widthClass=compact" constant="6"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstItem="TRn-ph-A15" firstAttribute="top" secondItem="fX4-NP-0jd" secondAttribute="top" id="qHi-I8-FKv"/>
                             <constraint firstItem="rRy-4t-TfY" firstAttribute="centerX" secondItem="ZYM-e0-4ec" secondAttribute="centerX" id="vZv-ys-516">
@@ -253,8 +253,8 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="rRy-4t-TfY"/>
                                 <include reference="TRn-ph-A15"/>
+                                <include reference="rRy-4t-TfY"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="4Zu-26-N8S"/>
@@ -286,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01X-ar-iS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="149" y="128"/>
+            <point key="canvasLocation" x="160.86956521739131" y="-130.43478260869566"/>
         </scene>
     </scenes>
 </document>

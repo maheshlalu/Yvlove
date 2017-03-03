@@ -263,41 +263,40 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
 
     @IBAction func checkoutNowBtn(_ sender: UIButton) {
         
-        
         if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
-                {
-                    let name = CXSignInSignUpViewController()
-                    self.navigationController?.pushViewController(name, animated: true)
-                }
+        {
+            let name = CXSignInSignUpViewController()
+            self.navigationController?.pushViewController(name, animated: true)
+        }
         else
         {
-        let popup = PopupController
-            .create(self)
-            .customize(
-                [
-                    .animation(.slideUp),
-                    .scrollable(false),
-                    .layout(.center),
-                    .backgroundStyle(.blackFilter(alpha: 0.7))
-                ]
-            )
-            .didShowHandler { popup in
+            let popup = PopupController
+                .create(self)
+                .customize(
+                    [
+                        .animation(.slideUp),
+                        .scrollable(false),
+                        .layout(.center),
+                        .backgroundStyle(.blackFilter(alpha: 0.7))
+                    ]
+                )
+                .didShowHandler { popup in
+                }
+                .didCloseHandler { _ in
             }
-            .didCloseHandler { _ in
+            let container = DemoPopupViewController2.instance() as! DemoPopupViewController2
+            container.closeHandler = { _ in
+                popup.dismiss()
+            }
+            container.sendDetails = { _ in
+                CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
+                    self.view.makeToast(message: "Product Ordered Successfully!!!")
+                    self.navController.popViewController(animated: true)
+                })
+            }
+            popup.show(container)
+            
         }
-        let container = DemoPopupViewController2.instance()
-        container.closeHandler = { _ in
-            popup.dismiss()
-        }
-        container.sendDetails = { _ in
-            CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
-                self.view.makeToast(message: "Product Ordered Successfully!!!")
-                self.navController.popViewController(animated: true)
-            })
-        }
-        popup.show(container)
-        
-    }
     }
     
 
