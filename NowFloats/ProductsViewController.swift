@@ -367,6 +367,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
+        self.viewAdditinalCategery.isHidden = true
     }
 }
 

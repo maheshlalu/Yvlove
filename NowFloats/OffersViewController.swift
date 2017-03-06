@@ -258,6 +258,44 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: 0, height: 0)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //        print("\(indexPath.row)")
+        //
+        //        let fID = String(indexPath.row)
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        print(featuredProductJobs.json!)
+        
+        let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
+        
+        //Trimming Price And Discount
+        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        
+        //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+        
+        let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+        
+        var floatDiscount:Float = Float()
+        
+        if floatDis == ""{
+            floatDiscount = 0.0
+        }
+        
+        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        
+        //FinalPrice after subtracting the discount
+        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let FinalPrice = String(finalPriceNum) as String!
+        
+        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+        productDetails.productString = featuredProductJobs.json
+        self.navigationController?.pushViewController(productDetails, animated: true)
+        
+    }
+
   
 }
 
@@ -394,37 +432,48 @@ func gettingDate() {
 
 extension OffersViewController {
     
-    func orderNowBtnAction(_ sender:UIButton){
-        print("\(sender.tag)")
-        
-        let fID = String(sender.tag)
-        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        print(featuredProductJobs.json!)
-        let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
-        
-        //Trimming Price And Discount
-        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
-        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
-        
-        //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
-        
-        let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
-        
-        var floatDiscount:Float = Float()
-        
-        if floatDis == ""{
-            floatDiscount = 0.0
-        }
-        
-        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
-        
-        //FinalPrice after subtracting the discount
-        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
-        let FinalPrice = String(finalPriceNum) as String!
-        
-        let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-        productDetails.productString = featuredProductJobs.json
-        self.navigationController?.pushViewController(productDetails, animated: true)
+   func orderNowBtnAction(_ sender:UIButton){
+            print("\(sender.tag)")
+            
+            let fID = String(sender.tag)
+            let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            print(featuredProductJobs.json!)
+            
+            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(featuredProductJobs.json!, itemID: fID, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
+                
+                let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
+                self.navigationController?.pushViewController(cart, animated: true)
+            })
+            
+            
+            /*
+             let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
+             
+             //Trimming Price And Discount
+             let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+             let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+             
+             //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+             
+             let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+             
+             var floatDiscount:Float = Float()
+             
+             if floatDis == ""{
+             floatDiscount = 0.0
+             }
+             
+             let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+             
+             //FinalPrice after subtracting the discount
+             let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+             let FinalPrice = String(finalPriceNum) as String!
+             
+             let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+             productDetails.productString = featuredProductJobs.json
+             self.navigationController?.pushViewController(productDetails, animated: true)
+             */
+    
     }
 }

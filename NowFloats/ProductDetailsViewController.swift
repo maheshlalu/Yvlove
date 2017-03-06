@@ -442,6 +442,12 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     
     //MARK : ViewWillAppera
     override func viewWillAppear(_ animated: Bool) {
+        
+        if CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToCart{
+            addToCartBtn.isSelected = true
+        }else{
+            addToCartBtn.isSelected = false
+        }
         super.viewWillAppear(animated)
     }
 }

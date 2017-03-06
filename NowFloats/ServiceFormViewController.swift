@@ -357,7 +357,7 @@ class ServiceFormViewController: XLFormViewController {
         let dict:NSMutableDictionary = NSMutableDictionary()
         dict.setObject(serviceFormDic.value(forKey: "Name")!, forKey: "Name" as NSCopying)
         dict.setObject(serviceFormDic.value(forKey: "Message")!, forKey: "Message" as NSCopying)
-        dict.setObject(serviceFormDic.value(forKey: "Address")!, forKey: "Address" as NSCopying)
+        //dict.setObject(serviceFormDic.value(forKey: "Address")!, forKey: "Address" as NSCopying)
         dict.setObject(serviceFormDic.value(forKey: "Phone number")!, forKey: "Phone number" as NSCopying)
         //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
         print(dict)
