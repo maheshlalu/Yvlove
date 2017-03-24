@@ -177,13 +177,14 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     func quntityPlusButtonAction(_ button : UIButton!){
         
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        var mybalance = proListData.quantity! as NSNumber
+        var mybalance = proListData.quantity! as NSInteger
         print(proListData.json!)
         
         //TODo work
-        //mybalance = mybalance.intValue + 1
+        mybalance += 1
+      //  mybalance = mybalance.toIntMax() + 1
         
-        proListData.quantity = 1 // mybalance
+        proListData.quantity = mybalance as NSNumber? // mybalance
         NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
         self.collectionview.reloadData()
         self.updateProductsPriceLabel()
@@ -193,14 +194,14 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     func quantityMinusButtonAction(_ button : UIButton!){
         
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
-        var mybalance = proListData.quantity! as NSNumber
-        if mybalance.intValue > 1 {
+        var mybalance = proListData.quantity! as NSInteger
+        if mybalance > 1 {
             
             //TODo work
 
-           // mybalance = mybalance.intValue - 1
+            mybalance -= 1
             
-            proListData.quantity = 1 //mybalance
+            proListData.quantity = mybalance as NSNumber? //mybalance
             NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
             self.collectionview.reloadData()
             self.updateProductsPriceLabel()
@@ -289,14 +290,30 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
                 popup.dismiss()
             }
             container.sendDetails = { _ in
+                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
+                let navController = UINavigationController(rootViewController: paymentcontroller)
+                navController.navigationItem.hidesBackButton = true
+                self.present(navController, animated: true, completion: nil)
+                
+             /*
                 CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
-                    self.view.makeToast(message: "Product Ordered Successfully!!!")
-                    self.navController.popViewController(animated: true)
+                    //self.view.makeToast(message: "Product Ordered Successfully!!!")
+                    //self.navController.popViewController(animated: true)
+                    
+                    let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
+                    let navController = UINavigationController(rootViewController: paymentcontroller)
+                    navController.navigationItem.hidesBackButton = true
+                    self.present(navController, animated: true, completion: nil)
+                    
                 })
+ */
             }
             popup.show(container)
             
         }
+            
     }
     
 

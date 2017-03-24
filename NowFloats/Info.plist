@@ -20,6 +20,25 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.709097464071-0q67mn1rraequcts349vb94gp7bs6adn</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb122900748244366</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>Fabric</key>
@@ -36,9 +55,13 @@
 			</dict>
 		</array>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>122900748244366</string>
+	<key>FacebookDisplayName</key>
+	<string>NeedyBee</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>telprompt</string>
+		<string>fbauth2</string>
 		<string>tel</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>

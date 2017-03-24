@@ -14,8 +14,10 @@ import Alamofire
 
 
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
+    @IBOutlet weak var filterBtn: UIButton!
     
-    
+    @IBAction func filterBtnActtion(_ sender: UIButton) {
+    }
     @IBOutlet weak var viewAdditinalCategery: UIView!
     
     @IBOutlet weak var lblEmptyProduct: UILabel!
@@ -34,13 +36,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chooseArticleButton.isHidden = false
+       // chooseArticleButton.isHidden = false
         self.viewAdditinalCategery.isHidden = true
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+       // chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         self.btnAdditinalCategery.layer.cornerRadius = self.btnAdditinalCategery.frame.size.width / 2;
         self.btnAdditinalCategery.clipsToBounds = true
@@ -48,9 +50,21 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         getAddtinalCategryList()
         getTheProducts()
-        //setupDropDowns()
+       // setupDropDowns()
+        self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
         
         self.tableviewAdditinalcategery.tableFooterView = UIView()
+    }
+    
+    func FilterBtnAction()
+    {
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")as? FilterViewController
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let hashtagcontroller : FilterViewController = (storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController)!
+        let navController = UINavigationController(rootViewController: hashtagcontroller)
+        navController.navigationItem.hidesBackButton = false
+       // hashtagcontroller.hashTagNamestr = hashTagName
+        self.present(navController, animated: true, completion: nil)
     }
     
     //MARK: AddtinalCategery Action
@@ -94,15 +108,30 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
+        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
+        cell.textLabel?.text = subDict.value(forKey: "Name") as! String
+       // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
-        LoadingView.show("Loading", animated: true)
+       // self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
+       // LoadingView.show("Loading", animated: true)
+        self.viewAdditinalCategery.isHidden = true
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
+        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
+        
+        print("Dictvaluees \(subDict)")
+        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! NSString
+        productcontroller.referID = subDict.value(forKey: "id") as! NSNumber
+        let navController = UINavigationController(rootViewController: productcontroller)
+        navController.navigationItem.hidesBackButton = true
+        
+        
+        self.present(navController, animated: true, completion: nil)
     
     }
     
@@ -117,16 +146,17 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         }
         
         if (dictcategeryadd.count == 0){
+            
             let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
             CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
                 let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
                 for dictData in jobsData {
                     let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
-                    let name:String = (dictindividual.value(forKey: "Name") as? String)!
-                    self.arrAdditinalCategery.add(name)
+                    //let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    self.arrAdditinalCategery.add(dictindividual)
                 }
                 UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
-                print(self.arrAdditinalCategery)
+                print("additinal \(self.arrAdditinalCategery)")
             }
         }else{
             for name in dictcategeryadd

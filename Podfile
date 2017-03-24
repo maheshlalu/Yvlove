@@ -9,9 +9,13 @@ target 'NowFloats' do
     pod 'MagicalRecord/Shorthand'
     pod 'Alamofire', '~> 4.0'
     pod 'SDWebImage', '~> 3.8'
+    pod 'Google/SignIn'
+    pod 'Firebase/Core'
+    pod 'SwiftyJSON'
     pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
     pod 'AFNetworking', '~> 3.1'
     pod 'XLForm', '~> 3.2'
+    
 
     pod 'Fabric'
     pod 'Crashlytics'

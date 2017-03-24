@@ -8,18 +8,23 @@
 
 import UIKit
 import Foundation
-
+import Google
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 protocol CXSingInDelegate {
     func didGoogleSignIn()
 }
 
-class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
+class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
     var emailAddressField: UITextField!
     var passwordField: UITextField!
     var signInBtn:UIButton!
     var signUpBtn:UIButton!
     var backButton:UIButton!
+    var googlePlusButton:UIButton!
+    var facebookBtn:UIButton!
     
     var cScrollView:UIScrollView!
     var keyboardIsShown:Bool!
@@ -30,16 +35,143 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
     var delegate:CXSingInDelegate?
     var heder: UIView!
     
-    
+    let signIn = GIDSignIn.sharedInstance()
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white;
         self.keyboardIsShown = false
         self.customizeMainView()
+        signIn?.shouldFetchBasicProfile = true
+        signIn?.delegate = self;
+        signIn?.uiDelegate = self
+        //self.setUpDelegatesForGoogle()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(CXSignInSignUpViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ForgotNotification"), object: nil)
+    }
+    
+    func googleBtnAction()
+    {
+        signIn?.signOut()
+        signIn?.clientID = "709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com"
+        signIn?.signIn()
+        
+    }
+    func facebookBtnAction()
+    {
+        
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                if fbloginresult.grantedPermissions != nil {
+                    if(fbloginresult.grantedPermissions.contains("email"))
+                    {
+                        //CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+                        //self.getFBUserData()
+                        fbLoginManager.logOut()
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+   
+
+
+    
+    func sign(_ signIn: GIDSignIn!,
+              present viewController: UIViewController!) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    // Dismiss the "Sign in with Google" view
+    func sign(_ signIn: GIDSignIn!,
+              dismiss viewController: UIViewController!) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user:GIDGoogleUser!,
+              withError error: Error!) {
+        
+        
+       /*
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            // ...
+        } else {
+            print("\(error.localizedDescription)")
+        }
+*/
+        
+        // Perform any operations on signed in user here.
+      //  if (error == nil) {
+    //        var firstName = ""
+  //          var lastName = ""
+//            // let userId = user.userID
+//            var profilePic = ""
+//            var email = ""
+//            
+//            //CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+           // let url = NSURL(string:  "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)")
+            //let session = URLSession.shared
+           //session.dataTask(with: url! as URL) {(data, response, error) -> Void in
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                do {
+//                    let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
+//                    //print(userData)
+//                    firstName = userData!["given_name"] as! String
+//                    lastName = userData!["family_name"] as! String
+//                    profilePic = userData!["picture"] as! String
+//                    email = userData!["email"] as! String
+//                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
+//                    print("\(email)\(firstName)\(lastName)\(profilePic)")
+//                    self.googleResponseDict = userData as NSDictionary!
+//                    MagicalRecord.save({ (localContext) in
+//                        
+//                        UserProfile.mr_truncateAll(in: localContext)
+//                    })
+                    
+                    
+//                    CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred, isKeyGenarated, email) in
+//                        if isKeyGenarated {
+//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                            appDelegate.navigateToTabBar()
+//                        }else{
+//                            //Navigate to user name genarated page
+//                            print("not signup")
+//                            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
+//                            storyboard?.userEmail =  email;
+//                            
+//                            self.navigationController?.pushViewController(storyboard!, animated: true)
+//                        }
+                   // })
+                    
+//                } catch {
+//                    NSLog("Account Information could not be loaded")
+//                }
+//                
+//                }.resume()
+//        }
+//            
+//        else {
+//            //Login Failed
+//            NSLog("login failed")
+//            return
+//            
+//        }
+        
     }
     
     
@@ -63,14 +195,21 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate {
         self.cScrollView.addSubview(self.passwordField)
         
         self.signInBtn = self.createButton(CGRect(x: 25, y: self.passwordField.frame.size.height+self.passwordField.frame.origin.y+30, width: self.view.frame.size.width-50, height: 50), title: "SIGN IN", tag: 3, bgColor: CXAppConfig.sharedInstance.getAppTheamColor())
-          self.signInBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.signInAction), for: .touchUpInside)
+        self.signInBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.signInAction), for: .touchUpInside)
         self.cScrollView.addSubview(self.signInBtn)
         
         self.signUpBtn = self.createButton(CGRect(x: 25, y: self.signInBtn.frame.size.height+self.signInBtn.frame.origin.y+20, width: self.view.frame.size.width-50, height: 50), title: "SIGN UP", tag: 3, bgColor: UIColor.signUpColor())
         self.signUpBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.signUpAction), for: .touchUpInside)
         self.cScrollView.addSubview(self.signUpBtn)
         
-      
+        self.googlePlusButton = self.createButton(CGRect(x: 25, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "G+", tag: 3, bgColor: UIColor.init(red: 223/255.0, green: 75/255.0, blue: 55/255.0, alpha: 1.0))
+        self.googlePlusButton.addTarget(self, action: #selector(CXSignInSignUpViewController.googleBtnAction), for: .touchUpInside)
+        self.cScrollView.addSubview(self.googlePlusButton)
+        
+        self.facebookBtn = self.createButton(CGRect(x: 165, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "f", tag: 3, bgColor:UIColor.init(red: 58/255.0, green: 88/255.0, blue: 158/255.0, alpha: 1.0) )
+        self.facebookBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.facebookBtnAction), for: .touchUpInside)
+        self.cScrollView.addSubview(self.facebookBtn)
+        
         
     }
     

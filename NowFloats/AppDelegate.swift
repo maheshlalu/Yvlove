@@ -15,6 +15,9 @@ import Fabric
 import Crashlytics
 import FacebookCore
 import FBSDKCoreKit
+import Firebase
+import Google
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
-        
+        FIRApp.configure()
         
         return true
     }
@@ -132,6 +135,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
         return isHandled
     }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let callBack:Bool
+        // print("***************************url Schemaaa:", url.scheme);
+        
+        if url.scheme == "fb122900748244366" {
+            callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        } else if url.scheme == "709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com"{
+            callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        }else if url.scheme == "apps.storeongo.com" {
+            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
+            print(url.host!)
+        }
+        return true
+    }
+
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="CX_Cart" representedClassName="CX_Cart" syncable="YES">
-        <attribute name="addToCart" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="addToWishList" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="addToCart" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="addToWishList" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="createdByID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favourite" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,8 +12,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="p3rdCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="productPrice" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="productPrice" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="storeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subCatNameID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +24,7 @@
         <attribute name="fDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_Code" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="itHasJobs" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="itHasJobs" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="jobId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,8 +69,8 @@
         <attribute name="json" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pPrice" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="pUpdateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="pPrice" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pUpdateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subCateNameId" optional="YES" attributeType="String" syncable="YES"/>
