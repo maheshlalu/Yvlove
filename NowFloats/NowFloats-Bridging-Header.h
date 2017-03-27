@@ -14,3 +14,5 @@
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "Mixpanel/Mixpanel.h"
+#import "CX_Products+CoreDataProperties.h"
+#import "CX_Products+CoreDataClass.h"

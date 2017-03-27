@@ -38,7 +38,7 @@
                                         <rect key="frame" x="5" y="128" width="220" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xm-bZ-ldb">
-                                                <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="30"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="8"/>
                                                 <state key="normal" title="CALL US" image="call">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,7 +48,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmP-Yx-13U">
-                                                <rect key="frame" x="75" y="0.0" width="70" height="30"/>
+                                                <rect key="frame" x="74.5" y="0.0" width="71" height="30"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="8"/>
                                                 <state key="normal" title=" ENQUIRE" image="message">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,7 +58,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-sa-o2y">
-                                                <rect key="frame" x="149" y="0.0" width="71" height="30"/>
+                                                <rect key="frame" x="149.5" y="0.0" width="70.5" height="30"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="8"/>
                                                 <state key="normal" title="VIEW MAP" image="mapImage">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -323,7 +323,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Cart is Empty!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpd-xq-A2T">
-                                <rect key="frame" x="96" y="275" width="128" height="19"/>
+                                <rect key="frame" x="96" y="275.5" width="128" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -335,13 +335,13 @@
                                         <rect key="frame" x="15" y="12" width="77" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="3 Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDo-dZ-Hwu">
-                                                <rect key="frame" x="0.0" y="0.0" width="64" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47747474" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEg-XM-OXk">
-                                                <rect key="frame" x="0.0" y="18" width="77" height="18"/>
+                                                <rect key="frame" x="0.0" y="17.5" width="77" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -535,7 +535,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Wishlist is Empty!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39d-mP-3zh">
-                                <rect key="frame" x="84" y="275" width="152" height="19"/>
+                                <rect key="frame" x="84.5" y="275.5" width="152" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -618,7 +618,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updates Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvR-3e-ad4">
-                                <rect key="frame" x="90" y="275" width="140" height="19"/>
+                                <rect key="frame" x="90" y="275.5" width="140" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -728,7 +728,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a32-OQ-fMD">
-                                <rect key="frame" x="97" y="275" width="126" height="19"/>
+                                <rect key="frame" x="97.5" y="275.5" width="126" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1424,7 +1424,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Previous Orders!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-Wx-PxQ">
-                                <rect key="frame" x="97" y="275" width="126" height="19"/>
+                                <rect key="frame" x="97" y="275.5" width="126" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1849,19 +1849,19 @@
                                         <rect key="frame" x="10" y="131" width="300" height="109"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Suresh Kumar Yadavalli" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVy-Ti-JMd">
-                                                <rect key="frame" x="28" y="0.0" width="245" height="30"/>
+                                                <rect key="frame" x="27.5" y="0.0" width="245" height="30.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="23"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iamsky.mme@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-rS-ZNT">
-                                                <rect key="frame" x="71" y="30" width="159" height="19"/>
+                                                <rect key="frame" x="71" y="30.5" width="158.5" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="9640339556" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edK-wu-2Cp">
-                                                <rect key="frame" x="108" y="49" width="85" height="20"/>
+                                                <rect key="frame" x="108" y="49" width="84.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -3730,23 +3730,26 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="k9F-9k-o72">
                                         <rect key="frame" x="8" y="311" width="20" height="84"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkP-B0-ZiN">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Sj-YZ-LER">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal" image="UncheckedImahe"/>
-                                                <state key="selected" image="CheckedFill"/>
+                                                <connections>
+                                                    <action selector="shippingMethodBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="GKy-yy-ps9"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4A8-nb-9Mi">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGF-cM-Zsa">
                                                 <rect key="frame" x="0.0" y="31" width="20" height="22"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="UncheckedImahe"/>
-                                                <state key="selected" image="CheckedFill"/>
+                                                <state key="normal" title="Button" image="UncheckedImahe"/>
+                                                <connections>
+                                                    <action selector="shippingMethodBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="4Cw-gF-fF4"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-m2-Hx7">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDl-iW-MO9">
                                                 <rect key="frame" x="0.0" y="62" width="20" height="22"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="UncheckedImahe"/>
-                                                <state key="selected" image="CheckedFill"/>
+                                                <state key="normal" title="Button" image="UncheckedImahe"/>
+                                                <connections>
+                                                    <action selector="shippingMethodBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="nsI-x7-nWh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -3755,7 +3758,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gift Wrap(Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="se1-0I-gt6">
-                                        <rect key="frame" x="8" y="433" width="148" height="27"/>
+                                        <rect key="frame" x="8" y="433" width="147.5" height="27"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="ixY-iK-yGH"/>
@@ -3796,21 +3799,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="SDt-hB-EMV">
                                         <rect key="frame" x="8" y="484" width="20" height="84"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlZ-m8-NVx">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlZ-m8-NVx">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                                 <state key="normal" image="UncheckedImahe"/>
                                                 <connections>
                                                     <action selector="papaerGiftBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="K49-2u-Q2X"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-N5-5A9">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-N5-5A9">
                                                 <rect key="frame" x="0.0" y="31" width="20" height="22"/>
                                                 <state key="normal" title="Button" image="UncheckedImahe"/>
                                                 <connections>
                                                     <action selector="papaerGiftBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="BMi-CM-Lru"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgt-gs-UiL">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgt-gs-UiL">
                                                 <rect key="frame" x="0.0" y="62" width="20" height="22"/>
                                                 <state key="normal" title="Button" image="UncheckedImahe"/>
                                                 <connections>
@@ -3922,19 +3925,6 @@
                                             <constraint firstAttribute="height" constant="100" id="Kpf-Lx-Iga"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeT-8g-xif">
-                                        <rect key="frame" x="278" y="433" width="30" height="27"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="MHj-zv-8ml"/>
-                                            <constraint firstAttribute="height" constant="27" id="Wly-z4-Jla"/>
-                                        </constraints>
-                                        <state key="normal" image="UncheckedImahe"/>
-                                        <state key="selected" image="CheckedFill"/>
-                                        <connections>
-                                            <action selector="giftBtnAction:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="XQc-VI-Dek"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="erX-GY-0US">
                                         <rect key="frame" x="8" y="35" width="233" height="30"/>
                                         <constraints>
@@ -3967,6 +3957,17 @@
                                             <action selector="couponCheckBtnTapped:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="jN5-Dr-n8S"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sk8-Tm-Y8g">
+                                        <rect key="frame" x="283" y="431" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Sbd-Jj-yTC"/>
+                                            <constraint firstAttribute="width" constant="30" id="mDc-xT-kxp"/>
+                                        </constraints>
+                                        <state key="normal" image="UncheckedImahe"/>
+                                        <connections>
+                                            <action selector="giftBtnAction:" destination="GzG-Q7-Nvm" eventType="touchUpInside" id="bTv-gA-AEM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="SbC-Ub-l5p" firstAttribute="leading" secondItem="jN5-kv-6EY" secondAttribute="leading" constant="8" id="53R-Pq-2WD"/>
@@ -3974,12 +3975,11 @@
                                     <constraint firstAttribute="trailing" secondItem="9K0-z1-8AY" secondAttribute="trailing" constant="52" id="6mQ-YS-Wwv"/>
                                     <constraint firstItem="ikI-bx-Uso" firstAttribute="leading" secondItem="h2W-yS-xnD" secondAttribute="trailing" constant="14" id="7Kj-81-vmg"/>
                                     <constraint firstItem="vMw-Nm-ghO" firstAttribute="top" secondItem="SbC-Ub-l5p" secondAttribute="bottom" constant="14" id="89R-9R-Vee"/>
-                                    <constraint firstAttribute="trailing" secondItem="JeT-8g-xif" secondAttribute="trailing" constant="12.5" id="DFP-v4-6k8"/>
+                                    <constraint firstItem="Sk8-Tm-Y8g" firstAttribute="top" secondItem="Vgv-xT-1AN" secondAttribute="bottom" constant="27" id="BHr-7P-pxU"/>
                                     <constraint firstItem="Vgv-xT-1AN" firstAttribute="leading" secondItem="k9F-9k-o72" secondAttribute="trailing" constant="14" id="EnN-yT-1NH"/>
                                     <constraint firstItem="h2W-yS-xnD" firstAttribute="top" secondItem="Ou1-NS-MwI" secondAttribute="bottom" constant="20" id="Eq4-Dh-PV5"/>
                                     <constraint firstItem="erX-GY-0US" firstAttribute="top" secondItem="bkH-q5-4Gn" secondAttribute="bottom" constant="6" id="Hye-MY-f31"/>
                                     <constraint firstItem="9K0-z1-8AY" firstAttribute="leading" secondItem="SDt-hB-EMV" secondAttribute="trailing" constant="14" id="IVe-Aa-Egs"/>
-                                    <constraint firstItem="JeT-8g-xif" firstAttribute="top" secondItem="Vgv-xT-1AN" secondAttribute="bottom" constant="29" id="Izf-VJ-ONu"/>
                                     <constraint firstItem="LvO-wP-Cpb" firstAttribute="top" secondItem="vMw-Nm-ghO" secondAttribute="bottom" constant="8" id="Jph-w0-5xC"/>
                                     <constraint firstItem="Ou1-NS-MwI" firstAttribute="top" secondItem="SDt-hB-EMV" secondAttribute="bottom" constant="24" id="KKx-KF-Bg2"/>
                                     <constraint firstItem="7MJ-ZZ-rYO" firstAttribute="leading" secondItem="Ou1-NS-MwI" secondAttribute="leading" id="LVd-Wa-gOo"/>
@@ -3990,6 +3990,7 @@
                                     <constraint firstItem="7MJ-ZZ-rYO" firstAttribute="top" secondItem="erX-GY-0US" secondAttribute="bottom" constant="15" id="Rb3-VZ-l0c"/>
                                     <constraint firstItem="se1-0I-gt6" firstAttribute="top" secondItem="Vgv-xT-1AN" secondAttribute="bottom" constant="29" id="Rqn-aB-Coo"/>
                                     <constraint firstAttribute="trailing" secondItem="7MJ-ZZ-rYO" secondAttribute="trailing" constant="126" id="WhQ-6h-eG6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sk8-Tm-Y8g" secondAttribute="trailing" constant="7" id="aKU-0V-Qe0"/>
                                     <constraint firstItem="SDt-hB-EMV" firstAttribute="top" secondItem="se1-0I-gt6" secondAttribute="bottom" constant="24" id="cHl-Uc-gk4"/>
                                     <constraint firstItem="erX-GY-0US" firstAttribute="leading" secondItem="jN5-kv-6EY" secondAttribute="leading" constant="8" id="iN5-zX-N4F"/>
                                     <constraint firstItem="bkH-q5-4Gn" firstAttribute="top" secondItem="jN5-kv-6EY" secondAttribute="top" constant="8" id="jXj-Wj-Rcr"/>
@@ -3997,9 +3998,7 @@
                                     <constraint firstItem="SbC-Ub-l5p" firstAttribute="top" secondItem="UH0-6h-aMe" secondAttribute="bottom" constant="28" id="kxt-2i-5CL"/>
                                     <constraint firstAttribute="trailing" secondItem="UH0-6h-aMe" secondAttribute="trailing" constant="18" id="l2h-AB-BEw"/>
                                     <constraint firstItem="7MJ-ZZ-rYO" firstAttribute="leading" secondItem="h2W-yS-xnD" secondAttribute="leading" id="lWr-Hf-UkC"/>
-                                    <constraint firstItem="JeT-8g-xif" firstAttribute="leading" secondItem="se1-0I-gt6" secondAttribute="trailing" constant="122" id="mPE-r8-xxK"/>
                                     <constraint firstItem="bkH-q5-4Gn" firstAttribute="leading" secondItem="jN5-kv-6EY" secondAttribute="leading" constant="8" id="mQX-Eg-agI"/>
-                                    <constraint firstItem="se1-0I-gt6" firstAttribute="baseline" secondItem="JeT-8g-xif" secondAttribute="baseline" id="nS3-ad-uAw"/>
                                     <constraint firstItem="7MJ-ZZ-rYO" firstAttribute="top" secondItem="UH0-6h-aMe" secondAttribute="top" id="nle-yk-oDk"/>
                                     <constraint firstItem="m7Q-gc-0zx" firstAttribute="top" secondItem="jN5-kv-6EY" secondAttribute="top" constant="34" id="nzj-AA-smh"/>
                                     <constraint firstItem="7MJ-ZZ-rYO" firstAttribute="leading" secondItem="vMw-Nm-ghO" secondAttribute="leading" id="oAz-q3-c5o"/>
@@ -4045,16 +4044,20 @@
                         <outlet property="cashonDeleveryBtn" destination="CY6-d2-G01" id="cVH-k7-NKA"/>
                         <outlet property="couponField" destination="erX-GY-0US" id="KA4-de-NaE"/>
                         <outlet property="discountCreditDebitcardlbl" destination="3qM-O4-KdV" id="og0-Rq-661"/>
+                        <outlet property="expenditeShippinBtn" destination="eGF-cM-Zsa" id="q3V-tj-K3t"/>
                         <outlet property="giftBtn1" destination="IlZ-m8-NVx" id="gfi-xN-FIB"/>
                         <outlet property="giftBtn2" destination="8Et-N5-5A9" id="fBD-6I-fg7"/>
                         <outlet property="giftBtn3" destination="hgt-gs-UiL" id="fQ8-aN-Zqp"/>
                         <outlet property="giftLabel1" destination="cXh-3B-Fax" id="E82-K8-zTF"/>
                         <outlet property="giftLabel2" destination="WsV-vf-ZIB" id="VgD-FF-IWW"/>
                         <outlet property="giftLabel3" destination="l8h-wX-LXD" id="Kzy-9V-byb"/>
+                        <outlet property="giftWrapOtinanBtn" destination="Sk8-Tm-Y8g" id="4FF-aU-nvH"/>
                         <outlet property="netBankingBtn" destination="7rP-8v-QLp" id="bYV-K3-nHv"/>
                         <outlet property="ordersTotallbl" destination="dfo-KD-NfL" id="OGf-Ub-Mv5"/>
+                        <outlet property="overNightShippingBtn" destination="SDl-iW-MO9" id="8ZD-6D-qJr"/>
                         <outlet property="prepaidBtn" destination="LLF-fK-shz" id="AhW-Me-Pfi"/>
                         <outlet property="scrollView" destination="jN5-kv-6EY" id="DdG-22-xNb"/>
+                        <outlet property="standedshippinbtn" destination="6Sj-YZ-LER" id="oeg-75-LgJ"/>
                         <outlet property="totalPayAmountlbl" destination="7nn-HC-dTf" id="cuN-YT-w4J"/>
                     </connections>
                 </viewController>
@@ -4064,7 +4067,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CheckedFill" width="20" height="20"/>
         <image name="UncheckedImahe" width="20" height="20"/>
         <image name="addToCart_White" width="20" height="20"/>
         <image name="bell_Stencil" width="20" height="20"/>

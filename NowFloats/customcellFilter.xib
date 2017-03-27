@@ -49,7 +49,7 @@
                 <outlet property="name" destination="a6D-0u-Lrv" id="F1s-zT-Gxc"/>
                 <outlet property="radioButton" destination="Cgs-dh-r20" id="aJa-zo-gA5"/>
             </connections>
-            <point key="canvasLocation" x="303" y="-138"/>
+            <point key="canvasLocation" x="120" y="-163"/>
         </tableViewCell>
     </objects>
     <resources>

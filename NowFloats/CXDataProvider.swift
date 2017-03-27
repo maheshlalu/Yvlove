@@ -65,7 +65,10 @@ class CXDataProvider: NSObject {
                     enProduct!.createdById = createByID
                     enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
                     let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
+                   // print("json string \(prod?.value(forKey: "meta_keyword"))")
+                    enProduct?.metaData = (prod?.value(forKey: "meta_keyword")) as? String
                     enProduct!.json = jsonString as String
+                    
                     enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
                     enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
                     enProduct?.pPrice = 1
