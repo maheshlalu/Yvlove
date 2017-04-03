@@ -17,6 +17,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var giftBtn2: UIButton!
     @IBOutlet weak var giftBtn3: UIButton!
     
+    @IBOutlet weak var couponDiscountLbl: UILabel!
     @IBOutlet weak var giftWrapOtinanBtn: UIButton!
     @IBOutlet weak var discountCreditDebitcardlbl: UILabel!
     @IBOutlet weak var totalPayAmountlbl: UILabel!
@@ -148,7 +149,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
         // http://apps.storeongo.com:8081/Services/applyCoupon?orgId=4&couponCode=MARCH0618
         //var couponData = NSDictionary()
         if !(couponField.text?.isEmpty)!{
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":"SALE10P" as AnyObject]) { (responseDict) in
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":couponField.text as AnyObject]) { (responseDict) in
                 print("CouponData \(responseDict)")
                 let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                 if status == 1{
@@ -189,6 +190,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
                 var total = (data.quantity as? NSInteger)! * (data.productPrice as? NSInteger)!
                 total = (total * Int(amount)!)/100
                 discountAmount = discountAmount + total
+                couponDiscountLbl.text = String(total)
             }
             self.ordersTotallbl.text = String(describing: Int(self.ordersTotallbl.text!)! - discountAmount)
             self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - discountAmount)
@@ -197,6 +199,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
                 let data = obje as! CX_Cart
                 let total = (data.quantity as? NSInteger)! * Int(amount)!
                 discountAmount = discountAmount + total
+                couponDiscountLbl.text = String(total)
             }
             self.ordersTotallbl.text = String(describing: Int(self.ordersTotallbl.text!)! - discountAmount)
             self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - discountAmount)
@@ -251,7 +254,14 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
         }else{
             self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
         }
-        print("shipping amount is \(standerdShipp)")
+       // print("shipping amount is \(standerdShipp)")
         last = Int(self.totalPayAmountlbl.text!)!
     }
+    
+    @IBAction func paymentBtnAction(_ sender: Any) {
+        
+        
+        
+    }
+    
 }
