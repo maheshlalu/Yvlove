@@ -24,9 +24,12 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var couponField: UITextField!
     var amountData = NSInteger()
     var products = NSMutableArray()
-    var sampleData = NSInteger()
     var totalFinalData = NSInteger()
-    var deselectAmount = NSInteger()
+    //var totalAmountDis = NSInteger()
+    var standerdShipp = NSInteger()
+    var last = NSInteger()
+    
+    var giftAmount = NSInteger()
     // payment btn
     @IBOutlet weak var cashonDeleveryBtn: UIButton!
     @IBOutlet weak var netBankingBtn: UIButton!
@@ -45,8 +48,9 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
         getTheProducts()
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.scrollView.contentSize.height = 780
+        standerdShipp = 0
+        giftAmount = 0
     }
-    
     func getTheProducts(){
         let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToCart = %@", "1")) as NSArray
         for obj in cartlist {
@@ -54,17 +58,17 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             let total = (data.quantity as? NSInteger)! * (data.productPrice as? NSInteger)!
             amountData = NSInteger(self.totalPayAmountlbl.text!)! + total
             self.totalPayAmountlbl.text = String(amountData)
-            print("total amount \(amountData)")
             totalFinalData = amountData
             self.ordersTotallbl.text = String(amountData)
         }
-        print("tot ?? \(totalFinalData)")
-        
     }
     @IBAction func giftBtnAction(_ sender: UIButton) {
-        print("gift data \(totalFinalData)")
         
         if sender.isSelected{
+            self.totalPayAmountlbl.text = String(Int(self.totalPayAmountlbl.text!)! - giftAmount)
+            giftAmount = 0
+            
+            
             self.giftWrapOtinanBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             sender.isSelected  = false
             giftBtn1.isEnabled = false
@@ -76,10 +80,12 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.totalPayAmountlbl.text = String(totalFinalData)
-            print(" deselect gift data \(totalFinalData)")
+            // self.totalPayAmountlbl.text= String(totalFinalData)
+            last = Int(self.totalPayAmountlbl.text!)!
         }
         else{
+            
+            
             self.giftWrapOtinanBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             sender.isSelected  = true
             giftBtn1.isEnabled = true
@@ -88,14 +94,13 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             self.giftLabel1.textColor = UIColor.black
             self.giftLabel2.textColor = UIColor.black
             self.giftLabel3.textColor = UIColor.black
-            totalFinalData = Int(self.totalPayAmountlbl.text!)!
-            print("selected gift data \(totalFinalData)")
+            last = Int(self.totalPayAmountlbl.text!)!
         }
     }
     //MARK: Gift Wrap(Optional)
     @IBAction func papaerGiftBtnTapped(_ sender: UIButton) {
-        let Totalam = totalFinalData
-        var giftAmount = NSInteger()
+       // let Totalam = totalFinalData
+        
         if sender.tag == 1{
             self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
@@ -114,8 +119,11 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             giftAmount = 100
             
         }
-        self.totalPayAmountlbl.text = String(describing: Totalam + giftAmount)
-        print("papaerGiftBtnTapped \(totalFinalData)")
+        
+        print("gift amount \(giftAmount)")
+        self.totalPayAmountlbl.text = String(describing: totalFinalData + giftAmount + standerdShipp)
+        last = Int(self.totalPayAmountlbl.text!)!
+//        print("papaerGiftBtnTapped \(totalFinalData)")
         
         
     }
@@ -139,61 +147,64 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
     @IBAction func couponCheckBtnTapped(_ sender: Any) {
         // http://apps.storeongo.com:8081/Services/applyCoupon?orgId=4&couponCode=MARCH0618
         //var couponData = NSDictionary()
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":"SALE10P" as AnyObject]) { (responseDict) in
-            print("CouponData \(responseDict)")
-            let status: Int = Int(responseDict.value(forKey: "status") as! String)!
-            if status == 1{
-                let couponType = responseDict.value(forKey: "couponType") as! String
-                let couponAmount = responseDict.value(forKey: "amount") as! String
-                self.convertCoponType(type: couponType, amount: couponAmount)
-            }else{
-                print("invalide data")
+        if !(couponField.text?.isEmpty)!{
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":"SALE10P" as AnyObject]) { (responseDict) in
+                print("CouponData \(responseDict)")
+                let status: Int = Int(responseDict.value(forKey: "status") as! String)!
+                if status == 1{
+                    let couponType = responseDict.value(forKey: "couponType") as! String
+                    let couponAmount = responseDict.value(forKey: "amount") as! String
+                    self.convertCoponType(type: couponType, amount: couponAmount)
+                }else{
+                    self.showAlertView("Please enter valide Coupon Number", status: 0)
+                    print("invalide data")
+                }
             }
+        }else{
+            self.showAlertView("Please enter Coupon Number", status: 1)
         }
     }
+    //MARK: AlertView
+    func showAlertView(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "Alert!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
     //MARK: Get Percentage coupon Type
     func convertCoponType(type: String,amount: String){
-        print("typpe :\(type) Amount :\(amount)")
         let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToCart = %@", "1")) as NSArray
         var discountAmount = NSInteger()
         if type == "percentage"{
             for obj in cartlist {
                 let data = obj as! CX_Cart
                 var total = (data.quantity as? NSInteger)! * (data.productPrice as? NSInteger)!
-                // print("data amount is \(total)")
                 total = (total * Int(amount)!)/100
-                // print("Discount Price \(total)")
                 discountAmount = discountAmount + total
             }
-            // print("total Dis \(discountAmount)")
             self.ordersTotallbl.text = String(describing: Int(self.ordersTotallbl.text!)! - discountAmount)
             self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - discountAmount)
-            
-           // totalFinalData = NSInteger(self.totalPayAmountlbl.text!)!
-            
         }else if type == "Amount"{
             for obje in cartlist{
                 let data = obje as! CX_Cart
                 let total = (data.quantity as? NSInteger)! * Int(amount)!
-                // print("data amount is \(total)")
-                //amount = total - Int(amount)!
-                //print("Discount Price \(Int(amount)!)")
                 discountAmount = discountAmount + total
             }
-            
-            // print("total Dis \(discountAmount)")
             self.ordersTotallbl.text = String(describing: Int(self.ordersTotallbl.text!)! - discountAmount)
             self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - discountAmount)
-           // totalFinalData = NSInteger(self.totalPayAmountlbl.text!)!
         }
-        
-        
     }
     //MARK: Payment Option Action
     @IBAction func paymentOptionBtnTapped(_ sender: UIButton){
-        var totalAmountDis = totalFinalData
-         print("papaerGiftBtnTapped \(totalFinalData)")
+      var totalAmountDis = Int(self.ordersTotallbl.text!)!
         //  print("totalData \(totalAmountDis)")
         if sender.tag == 1{
             self.cashonDeleveryBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
@@ -207,7 +218,6 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             totalAmountDis = (totalAmountDis * 3)/100
             self.discountCreditDebitcardlbl.text = String(totalAmountDis)
-            
         }else if sender.tag == 3{
             self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
@@ -215,23 +225,17 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             totalAmountDis = (totalAmountDis * 3)/100
             self.discountCreditDebitcardlbl.text = String(totalAmountDis)
         }
-        print("discount Data is \(totalAmountDis)")
-       // self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - totalAmountDis)
-        
+        self.totalPayAmountlbl.text = String(describing: last - totalAmountDis)
     }
     //MARK: Shipping Methods
-    
     @IBAction func shippingMethodBtnTapped(_ sender: UIButton) {
-        var standerdShipp = NSInteger()
-         print("shippingMethodBtnTapped \(totalFinalData)")
+        
         if sender.tag == 1{
             self.standedshippinbtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.expenditeShippinBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.overNightShippingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            
             standerdShipp = 0
         }else if sender.tag == 2{
-            
             self.standedshippinbtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.expenditeShippinBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.overNightShippingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
@@ -242,21 +246,12 @@ class PaymentViewController: UIViewController,UITextFieldDelegate {
             self.overNightShippingBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             standerdShipp = 280
         }
-        
         if totalFinalData < 350{
-        self.totalPayAmountlbl.text = String(totalFinalData + 40)
-        
+            self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp)
         }else{
-        
-            self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp)
-        
+            self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
         }
-        print("shippingMethodBtnTapped lbl \(self.totalPayAmountlbl.text)")
-        deselectAmount = amountData
-        
+        print("shipping amount is \(standerdShipp)")
+        last = Int(self.totalPayAmountlbl.text!)!
     }
-    
-    
-    
-    
 }

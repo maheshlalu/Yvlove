@@ -74,7 +74,6 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let orederDataDic : NSDictionary = self.ordersArray[indexPath.section] as! NSDictionary
-        print(orederDataDic)
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let productDetails = storyBoard.instantiateViewController(withIdentifier: "MY_ORDERS") as! MyOrderViewController
         productDetails.orderDetailDict = orederDataDic

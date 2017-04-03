@@ -57,27 +57,39 @@ class CXDataProvider: NSObject {
                  let prod = prodDic as? NSDictionary
                 let predicate = NSPredicate.init(format: "pid=%@", CXConstant.resultString(prod!.value(forKey: "id") as AnyObject))
                 let cartlist : NSArray =  CX_Products.mr_findAll(with: predicate) as NSArray
+                print("Agedetails \(prod)")
                 
                 if cartlist.count == 0 {
                    isNewData = true
                     let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "CX_Products", into: localContext!) as? CX_Products
                     let createByID : String = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
                     enProduct!.createdById = createByID
+                    enProduct?.age = prod?.value(forKey: "recommended_age") as? String
+                    enProduct?.discountprice = prod?.value(forKey: "DiscountAmount") as? String
                     enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
                     let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
                    // print("json string \(prod?.value(forKey: "meta_keyword"))")
-                    enProduct?.metaData = (prod?.value(forKey: "meta_keyword")) as? String
+                   // enProduct?.metaData = (prod?.value(forKey: "meta_keyword")) as? String
                     enProduct!.json = jsonString as String
                     
                     enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
                     enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
-                    enProduct?.pPrice = 1
-                    let updateDate = prod?.value(forKey: "UpdatedOn") as? String
-                    let component = updateDate?.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
-                    /*let list = component?.filter({ $0 != "" })
-                     let number = Int((list?[0])!)
-                     enProduct?.pUpdateDate =  number as NSNumber?
-                     enProduct?.pPrice = Int((prod?.value(forKey: "MRP") as? String)!) as NSNumber?//MRP*/
+                    enProduct?.metaData = (prod as AnyObject).value(forKey: "meta_keyword") as? String
+                    enProduct?.categoryType = (prod as AnyObject).value(forKey: "CategoryType") as? String
+                    enProduct?.subCategoryType = (prod as AnyObject).value(forKey: "SubCategoryType") as? String
+                    enProduct?.p3rdCategory = (prod as AnyObject).value(forKey: "P3rdCategory") as? String
+                   // enProduct?.pPrice = 1
+//                    let updateDate = prod?.value(forKey: "UpdatedOn") as? String
+//                    let component = updateDate?.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+//                    let list = component?.filter({ $0 != "" })
+//                     let number = Int((list?[0])!)
+//                     enProduct?.pUpdateDate =  number as NSNumber?
+                    let priceis = (prod?.value(forKey: "MRP") as? String)!
+//
+                     enProduct?.pPrice = (priceis as NSString).integerValue as NSNumber? //MRP*/
+                   
+                    
+                    
                     
                     //enProduct!.storeId = CXConstant.resultString((prod.valueForKey("storeId"))!)
                     let str = (prod as AnyObject).value(forKey: "jobTypeName") as? String

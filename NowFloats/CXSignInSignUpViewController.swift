@@ -99,7 +99,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
               withError error: Error!) {
         
         
-       /*
+      /*
         if (error == nil) {
             // Perform any operations on signed in user here.
             let userId = user.userID                  // For client-side use only!
@@ -111,8 +111,8 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
             // ...
         } else {
             print("\(error.localizedDescription)")
-        }
-*/
+        }*/
+
         
         // Perform any operations on signed in user here.
       //  if (error == nil) {

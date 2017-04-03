@@ -207,6 +207,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.CX.NowFloats" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print("pathv\(urls[urls.count-1] as URL)")
         return urls[urls.count-1]
     }()
     

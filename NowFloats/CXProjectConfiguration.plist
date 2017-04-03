@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NOWFLOATS_MALL_ID</key>
-	<string>396</string>
+	<string>3</string>
 	<key>AppTheamColor</key>
 	<array>
 		<string>255</string>
@@ -11,7 +11,7 @@
 		<string>0</string>
 	</array>
 	<key>NowFloats_BaseUrl</key>
-	<string>http://apps.storeongo.com:8081/</string>
+	<string>http://appjee.com:8081/</string>
 	<key>getMaster</key>
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>

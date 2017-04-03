@@ -35,9 +35,9 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 196
-        
+        print("orders array \(orderDetailDict)")
         DispatchQueue.main.async {
-            self.getOrderDetails()
+           // self.getOrderDetails()
         }
         
     }
@@ -111,6 +111,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             let strOrder = orderDetailDict.value(forKey: "OrderItemName")
             orderName[0] = strOrder!
         }else{
+            print("Ordername \(orderDetailDict)")
             let order = orderDetailDict.value(forKey: "OrderItemName") as! NSArray
             orderName = order.mutableCopy() as! NSMutableArray
         }

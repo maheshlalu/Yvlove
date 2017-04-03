@@ -2,7 +2,7 @@
 //  CX_Products+CoreDataProperties.m
 //  NowFloats
 //
-//  Created by SRINIVASULU on 27/03/17.
+//  Created by SRINIVASULU on 30/03/17.
 //  Copyright © 2017 CX. All rights reserved.
 //
 
@@ -15,19 +15,24 @@
 }
 
 @dynamic addToCart;
+@dynamic categoryType;
 @dynamic createdById;
 @dynamic favourite;
 @dynamic imageUrl;
 @dynamic itemCode;
 @dynamic json;
+@dynamic metaData;
 @dynamic name;
+@dynamic p3rdCategory;
 @dynamic pid;
 @dynamic pPrice;
 @dynamic pUpdateDate;
 @dynamic quantity;
 @dynamic storeId;
+@dynamic subCategoryType;
 @dynamic subCateNameId;
 @dynamic type;
-@dynamic metaData;
+@dynamic age;
+@dynamic discountprice;
 
 @end

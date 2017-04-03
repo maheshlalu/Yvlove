@@ -16,6 +16,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     var descriptionTagsArr:NSMutableArray = NSMutableArray()
     var descriptionTagsDescArr:NSMutableArray = NSMutableArray()
     
+    
     @IBOutlet weak var placeOrderBtn: UIButton!
     @IBOutlet weak var addToCartBtn: UIButton!
     @IBOutlet weak var ratingView: FloatRatingView!

@@ -171,8 +171,8 @@
 		890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890150F71E8531DD007C02F0 /* customColorCell.swift */; };
 		890150FA1E8531DD007C02F0 /* customColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890150F81E8531DD007C02F0 /* customColorCell.xib */; };
 		8918530B1E602CD6007AE5C4 /* whitemenu40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */; };
-		893298171E89272400310EE6 /* CX_Products+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 893298141E89272400310EE6 /* CX_Products+CoreDataClass.m */; };
-		893298181E89272400310EE6 /* CX_Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 893298161E89272400310EE6 /* CX_Products+CoreDataProperties.m */; };
+		895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */; };
+		895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */; };
 		897EAD461E5EFFDE001899F1 /* plus-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EAD451E5EFFDD001899F1 /* plus-empty.png */; };
 		899B7B1B1E5437E0006C1F79 /* ButtonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B7B151E5437E0006C1F79 /* ButtonLayer.swift */; };
 		899B7B1C1E5437E0006C1F79 /* KYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B7B161E5437E0006C1F79 /* KYButton.swift */; };
@@ -416,10 +416,10 @@
 		890150F71E8531DD007C02F0 /* customColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customColorCell.swift; sourceTree = "<group>"; };
 		890150F81E8531DD007C02F0 /* customColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customColorCell.xib; sourceTree = "<group>"; };
 		8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitemenu40x40.png; sourceTree = "<group>"; };
-		893298131E89272400310EE6 /* CX_Products+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataClass.h"; sourceTree = "<group>"; };
-		893298141E89272400310EE6 /* CX_Products+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataClass.m"; sourceTree = "<group>"; };
-		893298151E89272400310EE6 /* CX_Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataProperties.h"; sourceTree = "<group>"; };
-		893298161E89272400310EE6 /* CX_Products+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataProperties.m"; sourceTree = "<group>"; };
+		895D5CFA1E8CEB2D005E652D /* CX_Products+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataClass.h"; sourceTree = "<group>"; };
+		895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataClass.m"; sourceTree = "<group>"; };
+		895D5CFC1E8CEB2D005E652D /* CX_Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataProperties.h"; sourceTree = "<group>"; };
+		895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataProperties.m"; sourceTree = "<group>"; };
 		897EAD451E5EFFDD001899F1 /* plus-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-empty.png"; sourceTree = "<group>"; };
 		899B7B151E5437E0006C1F79 /* ButtonLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayer.swift; sourceTree = "<group>"; };
 		899B7B161E5437E0006C1F79 /* KYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYButton.swift; sourceTree = "<group>"; };
@@ -760,10 +760,10 @@
 		1868BCFB1D783A6F0050BC72 /* ManagedObjectContests */ = {
 			isa = PBXGroup;
 			children = (
-				893298131E89272400310EE6 /* CX_Products+CoreDataClass.h */,
-				893298141E89272400310EE6 /* CX_Products+CoreDataClass.m */,
-				893298151E89272400310EE6 /* CX_Products+CoreDataProperties.h */,
-				893298161E89272400310EE6 /* CX_Products+CoreDataProperties.m */,
+				895D5CFA1E8CEB2D005E652D /* CX_Products+CoreDataClass.h */,
+				895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */,
+				895D5CFC1E8CEB2D005E652D /* CX_Products+CoreDataProperties.h */,
+				895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */,
 				18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */,
 				18F36C6E1D869E890043710A /* CX_Cart.swift */,
 				18A6BFBE1D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift */,
@@ -1550,7 +1550,7 @@
 				11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */,
 				18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */,
 				118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */,
-				893298171E89272400310EE6 /* CX_Products+CoreDataClass.m in Sources */,
+				895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */,
 				11325D3B1D8A66CB00A7F10E /* MyordersTableViewCell.swift in Sources */,
 				18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */,
 				118346B71D86C155000BE1D4 /* CXForgotPassword.swift in Sources */,
@@ -1560,7 +1560,7 @@
 				3B61E3621D6ACA0800B09F8E /* ADPageControl.m in Sources */,
 				113E5DA21D87DFED0003DA8D /* CartViewController.swift in Sources */,
 				183573A91D798F5400722AA2 /* CX_Stores.swift in Sources */,
-				893298181E89272400310EE6 /* CX_Products+CoreDataProperties.m in Sources */,
+				895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */,
 				890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */,
 				11370F8C1D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift in Sources */,
 				89A896E91E813159000B97B9 /* colortableviewcell.swift in Sources */,

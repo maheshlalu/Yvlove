@@ -54,6 +54,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
         
         self.tableviewAdditinalcategery.tableFooterView = UIView()
+        NotificationCenter.default.addObserver(self,selector: #selector(ProductsViewController.filterSelectionCompleted),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
+    }
+    
+    func filterSelectionCompleted(notification:Notification)
+    {
+        let str = notification.object as! String
+        let filterArr = str.components(separatedBy: "|")
+        let predicate = NSPredicate.init(format: "categoryType = %@ OR subCategoryType = %@ OR p3rdCategory = %@", filterArr[0],filterArr[1],filterArr[2])
+        self.products = CX_Products.mr_findAll(with: predicate) as NSArray!
+        self.updatecollectionview.reloadData()
     }
     
     func FilterBtnAction()
@@ -125,8 +135,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
         
         print("Dictvaluees \(subDict)")
-        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! NSString
-        productcontroller.referID = subDict.value(forKey: "id") as! NSNumber
+        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String 
+        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
+            AnyObject)
+        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
         let navController = UINavigationController(rootViewController: productcontroller)
         navController.navigationItem.hidesBackButton = true
         
