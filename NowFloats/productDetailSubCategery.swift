@@ -56,7 +56,7 @@ class productDetailSubCategery: UIViewController {
         // http://apps.storeongo.com:8081/Services/getMasters?type=pSubCategories&mallId=396&refTypeProperty=MasterCategory&refId=12872
         
         self.additinalDataArr = NSMutableArray()
-        let dataKyes = ["type":categeryType,"mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"MasterCategory","refId":referID] as [String : Any]
+        let dataKyes = ["type":"pSubCategories","mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"MasterCategory","refId":referID] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
             for dictData in jobsData {
@@ -65,9 +65,7 @@ class productDetailSubCategery: UIViewController {
                 self.categoryArr.add(dictindividual)
                 self.boolArray.add(true)
             }
-            
             self.additinalTable.reloadData()
-            
         }
         
     }
@@ -75,7 +73,7 @@ class productDetailSubCategery: UIViewController {
     func productSubWithSubCategeryServiceCall(categeryType: String,referID: String){
         // http://apps.storeongo.com:8081/Services/getMasters?type=p3rdlevelCategories&mallId=396&refTypeProperty=SubCategory&refId=8043
         self.additinalDataArr = NSMutableArray()
-        let dataKyes = ["type":categeryType,"mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"SubCategory","refId":referID] as [String : Any]
+        let dataKyes = ["type":"p3rdlevelCategories","mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"SubCategory","refId":referID] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             self.additinalDataArr = responceDic.value(forKey: "jobs")! as! NSArray
             DispatchQueue.main.async {
@@ -136,16 +134,13 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let dict = self.additinalDataArr.object(at: indexPath.row) as! NSDictionary
         selectedP3Category = NSString.init(format: "%@(%@)", dict.value(forKey: "Name") as! CVarArg,dict.value(forKey: "id") as! CVarArg) as String
-        let selectedStr = "\(selectedCategoryType)|\(selectedSubCategoryType)|\(selectedP3Category)"
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FilterSelectionCompleted"), object: selectedStr)
-//        let predicate = NSPredicate.init(format: "categoryType = %@ OR subCategoryType = %@ OR p3rdCategory = %@", selectedCategoryType,selectedSubCategoryType,selectedP3Category)
-//       let products = CX_Products.mr_findAll(with: predicate) as NSArray!
-        
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            let selectedStr = "\(self.selectedCategoryType)|\(self.selectedSubCategoryType)|\(self.selectedP3Category)"
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FilterSelectionCompleted"), object: selectedStr)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
