@@ -15,39 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "361"
             endingLineNumber = "361"
-            landmarkName = "orderNowBtnAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/CXDataProvider.swift"
-            timestampString = "509348816.749507"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
-            landmarkName = "CXDataProvider"
-            landmarkType = "4">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/CXDataProvider.swift"
-            timestampString = "509348816.749507"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
-            landmarkName = "getTheFeaturedProducts(_:ispredicate:)"
+            landmarkName = "doSearch()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -86,11 +54,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CXSignUpViewController.sendSignUpDetails () -&gt; ()"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.CXSignUpViewController.sendSignUpDetails () -&gt; ()"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CXSignUpViewController.swift"
-                  timestampString = "509460546.59511"
+                  timestampString = "512907909.024906"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -101,16 +69,16 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CXSignUpViewController.(sendSignUpDetails () -&gt; ()).(closure #1)"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.CXSignUpViewController.(sendSignUpDetails () -&gt; ()).(closure #1)"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CXSignUpViewController.swift"
-                  timestampString = "509460546.597251"
+                  timestampString = "512907909.027616"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "39">
+                  offsetFromSymbolStart = "46">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -214,31 +182,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.InfoQueryViewController.sendMessage () -&gt; ()"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.InfoQueryViewController.sendMessage () -&gt; ()"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/InfoQueryViewController.swift"
-                  timestampString = "509460546.615669"
+                  timestampString = "512907909.056265"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "5257">
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "6953">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.InfoQueryViewController.(sendMessage () -&gt; ()).(closure #1)"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.InfoQueryViewController.(sendMessage () -&gt; ()).(closure #1)"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/InfoQueryViewController.swift"
-                  timestampString = "509460546.616994"
+                  timestampString = "512907909.058139"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "115"
-                  endingLineNumber = "115"
-                  offsetFromSymbolStart = "26">
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "35">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -257,6 +225,38 @@
             endingLineNumber = "115"
             landmarkName = "sendMessage()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NeedyBee.InfoQueryViewController.sendMessage () -&gt; ()"
+                  moduleName = "NeedyBee"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/InfoQueryViewController.swift"
+                  timestampString = "512907909.061857"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "6953">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NeedyBee.InfoQueryViewController.(sendMessage () -&gt; ()).(closure #1)"
+                  moduleName = "NeedyBee"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/InfoQueryViewController.swift"
+                  timestampString = "512907909.063857"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -361,102 +361,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "507814057.579905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "OffersViewController"
-            landmarkType = "4">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "NowFloats/BookTestViewController.swift"
             timestampString = "507046917.940658"
             startingColumnNumber = "9223372036854775807"
@@ -511,7 +415,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "272"
             endingLineNumber = "272"
-            landmarkName = "getOrderProductImage(itemId:completion:)"
+            landmarkName = "checkOutCartItems(_:email:address1:address2:number:subTotal:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -591,8 +495,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
             endingLineNumber = "319"
-            landmarkName = "askUsAction(_:)"
-            landmarkType = "7">
+            landmarkName = "AboutUsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -657,38 +561,6 @@
             endingLineNumber = "281"
             landmarkName = "checkoutNowBtn(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CartViewController.checkoutNowBtn (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "NowFloats"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CartViewController.swift"
-                  timestampString = "509460546.703641"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
-                  offsetFromSymbolStart = "748">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CartViewController.(checkoutNowBtn (__ObjC.UIButton) -&gt; ()).(closure #3)"
-                  moduleName = "NowFloats"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CartViewController.swift"
-                  timestampString = "509460546.705224"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "282"
-                  endingLineNumber = "282"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -710,31 +582,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CartViewController.checkoutNowBtn (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.CartViewController.checkoutNowBtn (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CartViewController.swift"
-                  timestampString = "509460546.708746"
+                  timestampString = "512907909.132193"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "284"
                   endingLineNumber = "284"
-                  offsetFromSymbolStart = "965">
+                  offsetFromSymbolStart = "1189">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "NowFloats.CartViewController.(checkoutNowBtn (__ObjC.UIButton) -&gt; ()).(closure #4)"
-                  moduleName = "NowFloats"
+                  symbolName = "NeedyBee.CartViewController.(checkoutNowBtn (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "NeedyBee"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/CartViewController.swift"
-                  timestampString = "509460546.710032"
+                  timestampString = "512907909.133515"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "285"
                   endingLineNumber = "285"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -897,6 +769,38 @@
             endingLineNumber = "149"
             landmarkName = "getOrderDetails()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NeedyBee.MyOrderViewController.getOrderDetails () -&gt; ()"
+                  moduleName = "NeedyBee"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/MyOrderViewController.swift"
+                  timestampString = "512907909.158796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "12942">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[3] = Value Promoted from Box, Arg[4] = Value Promoted from Box, Arg[5] = Value Promoted from Box, Arg[6] = Value Promoted from Box&gt; of NeedyBee.MyOrderViewController.(getOrderDetails () -&gt; ()).(closure #1)"
+                  moduleName = "NeedyBee"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cx_one/BitBucket/needybee_app/NowFloats/MyOrderViewController.swift"
+                  timestampString = "512907909.160074"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "69">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -921,61 +825,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NowFloats/CXDataProvider.swift"
-            timestampString = "509454603.001938"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "saveStoreInDB(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/OffersViewController.swift"
-            timestampString = "509455808.271547"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowFloats/CXAppDataManager.swift"
-            timestampString = "509458349.623896"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "getTheFeaturedProductJobs()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "NowFloats/OffersViewController.swift"
             timestampString = "509458442.35484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "340"
             endingLineNumber = "340"
-            landmarkName = "pagerOrderNowBtnAction(_:)"
+            landmarkName = "searchBarTextDidBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1024,6 +880,86 @@
             startingLineNumber = "147"
             endingLineNumber = "147"
             landmarkName = "getOrderDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/productDetailSubCategery.swift"
+            timestampString = "512894758.766854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "productSubWithSubCategeryServiceCall(categeryType:referID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/productDetailSubCategery.swift"
+            timestampString = "512896808.741763"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "productSubCategeryServiceCall(categeryType:referID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/ProductsViewController.swift"
+            timestampString = "512907538.2058"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "filterSelectionCompleted(notification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/ProductsViewController.swift"
+            timestampString = "512907554.630692"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "filterSelectionCompleted(notification:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowFloats/ProductsViewController.swift"
+            timestampString = "512907555.434755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "filterSelectionCompleted(notification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

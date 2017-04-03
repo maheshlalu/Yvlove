@@ -26,12 +26,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     var screenWidth: CGFloat! = nil
     var products: NSArray!
     let chooseArticleDropDown = DropDown()
-    
+    var p3CatBool:Bool = false
     @IBOutlet var updatecollectionview: UICollectionView!
     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
+    var p3catDict:NSMutableDictionary = NSMutableDictionary()
     @IBOutlet weak var tableviewAdditinalcategery: UITableView!
     
     override func viewDidLoad() {
@@ -54,15 +55,15 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
         
         self.tableviewAdditinalcategery.tableFooterView = UIView()
-        NotificationCenter.default.addObserver(self,selector: #selector(ProductsViewController.filterSelectionCompleted),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
     }
     
     func filterSelectionCompleted(notification:Notification)
     {
         let str = notification.object as! String
         let filterArr = str.components(separatedBy: "|")
-        let predicate = NSPredicate.init(format: "categoryType = %@ OR subCategoryType = %@ OR p3rdCategory = %@", filterArr[0],filterArr[1],filterArr[2])
+        let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
         self.products = CX_Products.mr_findAll(with: predicate) as NSArray!
+        print(products.count)
         self.updatecollectionview.reloadData()
     }
     
@@ -222,6 +223,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.updatecollectionview.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self,selector: #selector(filterSelectionCompleted(notification:)),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
+    }
     @IBAction func chooseBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()
     }
