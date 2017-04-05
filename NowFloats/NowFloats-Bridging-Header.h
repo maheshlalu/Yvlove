@@ -16,3 +16,4 @@
 #import "Mixpanel/Mixpanel.h"
 #import "CX_Products+CoreDataProperties.h"
 #import "CX_Products+CoreDataClass.h"
+#import "PaymentsSDK.h"
