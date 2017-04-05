@@ -37,7 +37,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.MyorderstableView.estimatedRowHeight = 196
         print("orders array \(orderDetailDict)")
         DispatchQueue.main.async {
-           // self.getOrderDetails()
+            self.getOrderDetails()
         }
         
     }

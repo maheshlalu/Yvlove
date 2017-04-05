@@ -181,11 +181,11 @@ open class CXAppDataManager: NSObject {
     
     //Mark Place order
     
-    func placeOder(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:@escaping (_ isDataSaved:Bool) -> Void){
+    func placeOder(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,orderType:String ,completion:@escaping (_ isDataSaved:Bool) -> Void){
         //NSString* const POSTORDER_URL = @"http://storeongo.com:8081/MobileAPIs/postedJobs?type=PlaceOrder&";
         
         LoadingView.show("Processing Your Order", animated: true)
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder" as AnyObject,"json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":orderType as AnyObject,"json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
             completion(true)
             let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
             
@@ -339,19 +339,16 @@ open class CXAppDataManager: NSObject {
     }
     
     //MARK : GET ALL ORDERS
-    
     func getOrders(_ completion:@escaping (_ responseDict:NSDictionary) -> Void){
-        // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
-        //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
-        
         let number : NSNumber = UserDefaults.standard.value(forKey: "USER_ID") as! NSNumber
         let userId : String = number.stringValue
-        
-        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId": userId as AnyObject ,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+        //http://appjee.com:8081/Services/getMasters?mallId=3&type=PlaceOrders&consumerId=4
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId": userId as AnyObject ,"type":"PlaceOrders" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            print(responseDict)
             completion(responseDict)
         }
-
     }
+    
     //MARK : UPDATE PROFILE
     
     func profileUpdate(_ email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:@escaping (_ responseDict:NSDictionary)-> Void){

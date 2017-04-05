@@ -289,34 +289,18 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             container.closeHandler = { _ in
                 popup.dismiss()
             }
+
             container.sendDetails = { _ in
+                let dataDict = container.dataDict
                 let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
+                paymentcontroller.dataDict = dataDict
                 let navController = UINavigationController(rootViewController: paymentcontroller)
                 navController.navigationItem.hidesBackButton = true
                 self.present(navController, animated: true, completion: nil)
-                
-             /*
-                  CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
-                    //self.view.makeToast(message: "Product Ordered Successfully!!!")
-                    //self.navController.popViewController(animated: true)
-                    
-                   /* let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
-                    let navController = UINavigationController(rootViewController: paymentcontroller)
-                    navController.navigationItem.hidesBackButton = true
-                    self.present(navController, animated: true, completion: nil)
-                    */
-                })
- */
- 
             }
             popup.show(container)
-            
         }
-            
     }
-    
-
 }
 

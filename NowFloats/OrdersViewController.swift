@@ -9,6 +9,7 @@
 import UIKit
 
 class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDelegate {
+    @IBOutlet weak var noOrdersLbl: UILabel!
     
     var nameArray = ["india","america","newzealand"]
     var ordersArray:NSArray = NSArray()
@@ -30,6 +31,20 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
             let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             self.ordersArray = jobs
             self.orderstableview.reloadData()
+        }
+        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if ordersArray.count == 0{
+            noOrdersLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            noOrdersLbl.isHidden = false
+            orderstableview.isHidden = true
+        }else{
+            noOrdersLbl.isHidden = true
+            orderstableview.isHidden = false
         }
     }
     

@@ -21,7 +21,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     var sidePanelDataArr : NSArray!
     
-    
     var profileDPImageView:UIImageView!
     var titleLable: UILabel!
     var mailLable: UILabel!
@@ -33,13 +32,11 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.getSingleMall()
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.register(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.white
-
     }
     
     func getSingleMall(){

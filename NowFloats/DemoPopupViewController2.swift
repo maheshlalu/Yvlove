@@ -52,7 +52,7 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
     @IBOutlet weak var addressLine2TxtField: UITextField!
     @IBOutlet weak var addressLine1TxtField: UITextField!
     @IBOutlet weak var mobileNoTxtField: UITextField!
-    
+    let dataDict:NSMutableDictionary = NSMutableDictionary()
     @IBOutlet weak var okBtn: UIButton!
     
     override func viewDidLoad() {
@@ -127,6 +127,12 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
             }else{
             UserDefaults.standard.set(self.mobileNoTxtField.text!, forKey: "MOBILE")
             }
+            
+            dataDict.setObject(self.nameTxtField.text!, forKey: "name" as NSCopying)
+            dataDict.setObject(self.emailTxtField.text!, forKey: "email" as NSCopying)
+            dataDict.setObject(self.addressLine1TxtField.text!, forKey: "addressLine1" as NSCopying)
+            dataDict.setObject(self.addressLine2TxtField.text!, forKey: "addressLine2" as NSCopying)
+            dataDict.setObject(self.mobileNoTxtField.text!, forKey: "mobile" as NSCopying)
             
             sendDetails?()
             

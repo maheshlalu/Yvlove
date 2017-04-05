@@ -34,7 +34,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
     var products = NSArray()
     var finalColorSelectedArr = NSMutableArray()
     var colorCode = NSMutableArray()
-    
+    var save = UIBarButtonItem()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Price
@@ -76,15 +76,177 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         let menuItem = UIBarButtonItem(image: UIImage(named: "LeftArrow"), style: .plain, target: self, action: #selector(FilterViewController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
-        let save = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(FilterViewController.filterTapped))
+        save = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(FilterViewController.filterTapped))
         self.navigationItem.rightBarButtonItem = save
-        
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
-    func backBtnClicked()
-    {
+    func backBtnClicked(){
         self.dismiss(animated: true, completion: nil)
     }
+
+    // tableview Data Source methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if priceKey == "Price"{
+            return self.priceArr.count
+        }else if ageKey == "Age" {
+            return self.ageArr.count
+        }else if discountKey == "Discount"
+        {
+            return self.discountArr.count
+        }else if colorKeyword == "ColorWord"{
+            return self.colorArr.count
+        }else {
+            return 0
+        }
+    }
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        if colorKeyword == "ColorWord"{
+            let cell:customColorCell = tableView.dequeueReusableCell(withIdentifier: "Cellcolor", for: indexPath) as! customColorCell
+            cell.nameLbl.text = self.colorArr.object(at: indexPath.row) as? String
+            
+            if cell.nameLbl.text == "Multicolor"{
+                cell.viewColor.backgroundColor = UIColor(patternImage:UIImage(named:"multiColor")!)
+            }else{
+                cell.viewColor.backgroundColor = UIColor().HexToColor(hexString: self.colorCode.object(at: indexPath.row) as! String, alpha: 1.0)
+            }
+            
+            cell.viewColor.layer.borderWidth = 1
+            cell.viewColor.layer.cornerRadius = 4
+            cell.viewColor.layer.borderColor = UIColor.lightGray.cgColor
+            cell.checkBtncolor.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
+            cell.checkBtncolor.tag = indexPath.row + 100
+            let values : String = colorSelectedArr.object(at: indexPath.row) as! String
+            if values == "NO"{
+                cell.checkBtncolor.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                cell.checkBtncolor.isSelected = false
+            }else{
+                cell.checkBtncolor.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                cell.checkBtncolor.isSelected = true
+            }
+            return cell
+        }else{
+            let cell:customcellFilter = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! customcellFilter
+            if priceKey == "Price"{
+                cell.name.text = self.priceArr.object(at: indexPath.row) as? String
+                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
+                cell.radioButton.tag = indexPath.row + 100
+                let values : String = priceSelectedArr.object(at: indexPath.row) as! String
+                if values == "NO"{
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                    cell.radioButton.isSelected = false
+                }else{
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                    cell.radioButton.isSelected = true
+                }
+            }else if ageKey == "Age" {
+                cell.name.text = self.ageArr.object(at: indexPath.row) as? String
+                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
+                cell.radioButton.tag = indexPath.row + 100
+                let values : String = ageSelectedArr.object(at: indexPath.row) as! String
+                if values == "NO"{
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                    cell.radioButton.isSelected = false
+                    //
+                }else{
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                    cell.radioButton.isSelected = true
+                }
+            }else if discountKey == "Discount"
+            {
+                cell.name.text = self.discountArr.object(at: indexPath.row) as? String
+                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
+                cell.radioButton.tag = indexPath.row + 100
+                let values : String = discountSelectedArr.object(at: indexPath.row) as! String
+                if values == "NO"{
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                    cell.radioButton.isSelected = false
+                    //
+                }else{
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                    cell.radioButton.isSelected = true
+                }
+            }
+            return cell
+        }
+    }
+    func radioBtnTapped(_ sender: UIButton){
+        
+        if sender.isSelected {
+            sender.isSelected = false
+            sender.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            if priceKey == "Price"{
+                priceSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
+                finalPriceSelectedArr.remove(priceArr.object(at: sender.tag - 100))
+            }else if ageKey == "Age" {
+                ageSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
+                finalAgeSelectedArr.remove(ageArr.object(at: sender.tag - 100))
+            }else if discountKey == "Discount"
+            {
+                discountSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
+                finalDiscountSelectedArr.remove(discountArr.object(at: sender.tag - 100))
+            }else if colorKeyword == "ColorWord"{
+                colorSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
+                finalColorSelectedArr.remove(colorArr.object(at: sender.tag - 100))
+            }
+        }else{
+            sender.isSelected = true
+            sender.setImage(UIImage(named: "CheckedFill"), for: .normal)
+            if priceKey == "Price"{
+                priceSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
+                finalPriceSelectedArr.add(priceArr.object(at: sender.tag - 100))
+            }else if ageKey == "Age" {
+                ageSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
+                finalAgeSelectedArr.add(ageArr.object(at: sender.tag - 100))
+            }else if discountKey == "Discount"
+            {
+                discountSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
+                finalDiscountSelectedArr.add(discountArr.object(at: sender.tag - 100))
+            }else if colorKeyword == "ColorWord"{
+                colorSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
+                finalColorSelectedArr.add(colorArr.object(at: sender.tag - 100))
+            }
+        }
+        
+    }
+    
+    //MARK: Price action
+    @IBAction func priceBtnTapped(_ sender: Any) {
+        colorKeyword = ""
+        self.priceKey = "Price"
+        self.ageKey = ""
+        self.discountKey = ""
+        self.filterTableView.reloadData()
+    }
+    //MARK: Age action
+    @IBAction func agebtnTapped(_ sender: Any) {
+        self.colorKeyword = ""
+        self.priceKey = ""
+        self.ageKey = "Age"
+        self.discountKey = ""
+        self.filterTableView.reloadData()
+    }
+    //MARK: Discount action
+    @IBAction func discountBtnTapped(_ sender: Any) {
+        self.colorKeyword = ""
+        self.priceKey = ""
+        self.ageKey = ""
+        self.discountKey = "Discount"
+        self.filterTableView.reloadData()
+    }
+    //MARK: Color action
+    @IBAction func colorBtnTapped(_ sender: Any) {
+        self.colorKeyword = "ColorWord"
+        self.priceKey = ""
+        self.ageKey = ""
+        self.discountKey = ""
+        self.filterTableView.reloadData()
+    }
+ 
     //MARK: filter Action
     func filterTapped(){
         
@@ -96,8 +258,8 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
          request.predicate = andPredicate
          */
         
-//        let mainPredicate:NSCompoundPredicate = NSCompoundPredicate()
-//        let subPredicates:NSPredicate = NSPredicate()
+        //        let mainPredicate:NSCompoundPredicate = NSCompoundPredicate()
+        //        let subPredicates:NSPredicate = NSPredicate()
         
         let dataArr = NSMutableArray()
         var predicateStr:String = String()
@@ -236,182 +398,6 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         
     }
-    
-    // tableview Data Source methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        if priceKey == "Price"{
-            return self.priceArr.count
-        }else if ageKey == "Age" {
-            return self.ageArr.count
-        }else if discountKey == "Discount"
-        {
-            return self.discountArr.count
-        }else if colorKeyword == "ColorWord"{
-            return self.colorArr.count
-        }else {
-            return 0
-        }
-    }
-    func numberOfSections(in tableView: UITableView) -> Int{
-        return 1
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if colorKeyword == "ColorWord"{
-            let cell:customColorCell = tableView.dequeueReusableCell(withIdentifier: "Cellcolor", for: indexPath) as! customColorCell
-            cell.nameLbl.text = self.colorArr.object(at: indexPath.row) as? String
-            
-            if cell.nameLbl.text == "Multicolor"{
-                cell.viewColor.backgroundColor = UIColor(patternImage:UIImage(named:"multiColor")!)
-            }else{
-                cell.viewColor.backgroundColor = UIColor().HexToColor(hexString: self.colorCode.object(at: indexPath.row) as! String, alpha: 1.0)
-            }
-            
-            cell.viewColor.layer.borderWidth = 1
-            cell.viewColor.layer.cornerRadius = 4
-            cell.viewColor.layer.borderColor = UIColor.lightGray.cgColor
-            cell.checkBtncolor.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
-            cell.checkBtncolor.tag = indexPath.row + 100
-            let values : String = colorSelectedArr.object(at: indexPath.row) as! String
-            if values == "NO"{
-                cell.checkBtncolor.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-                cell.checkBtncolor.isSelected = false
-            }else{
-                cell.checkBtncolor.setImage(UIImage(named: "CheckedFill"), for: .normal)
-                cell.checkBtncolor.isSelected = true
-            }
-            return cell
-        }else{
-            let cell:customcellFilter = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! customcellFilter
-            if priceKey == "Price"{
-                cell.name.text = self.priceArr.object(at: indexPath.row) as? String
-                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
-                cell.radioButton.tag = indexPath.row + 100
-                let values : String = priceSelectedArr.object(at: indexPath.row) as! String
-                if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-                    cell.radioButton.isSelected = false
-                }else{
-                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
-                    cell.radioButton.isSelected = true
-                }
-            }else if ageKey == "Age" {
-                cell.name.text = self.ageArr.object(at: indexPath.row) as? String
-                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
-                cell.radioButton.tag = indexPath.row + 100
-                let values : String = ageSelectedArr.object(at: indexPath.row) as! String
-                if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-                    cell.radioButton.isSelected = false
-                    //
-                }else{
-                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
-                    cell.radioButton.isSelected = true
-                }
-            }else if discountKey == "Discount"
-            {
-                cell.name.text = self.discountArr.object(at: indexPath.row) as? String
-                cell.radioButton.addTarget(self, action: #selector(FilterViewController.radioBtnTapped(_:)), for: .touchUpInside)
-                cell.radioButton.tag = indexPath.row + 100
-                let values : String = discountSelectedArr.object(at: indexPath.row) as! String
-                if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-                    cell.radioButton.isSelected = false
-                    //
-                }else{
-                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
-                    cell.radioButton.isSelected = true
-                }
-            }
-            return cell
-        }
-    }
-    func radioBtnTapped(_ sender: UIButton)
-    {
-        if sender.isSelected {
-            sender.isSelected = false
-            sender.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            if priceKey == "Price"{
-                priceSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
-                finalPriceSelectedArr.remove(priceArr.object(at: sender.tag - 100))
-            }else if ageKey == "Age" {
-                ageSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
-                finalAgeSelectedArr.remove(ageArr.object(at: sender.tag - 100))
-            }else if discountKey == "Discount"
-            {
-                discountSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
-                finalDiscountSelectedArr.remove(discountArr.object(at: sender.tag - 100))
-            }else if colorKeyword == "ColorWord"{
-                colorSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
-                finalColorSelectedArr.remove(colorArr.object(at: sender.tag - 100))
-            }
-        }else{
-            sender.isSelected = true
-            sender.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            if priceKey == "Price"{
-                priceSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
-                finalPriceSelectedArr.add(priceArr.object(at: sender.tag - 100))
-            }else if ageKey == "Age" {
-                ageSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
-                finalAgeSelectedArr.add(ageArr.object(at: sender.tag - 100))
-            }else if discountKey == "Discount"
-            {
-                discountSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
-                finalDiscountSelectedArr.add(discountArr.object(at: sender.tag - 100))
-            }else if colorKeyword == "ColorWord"{
-                colorSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
-                finalColorSelectedArr.add(colorArr.object(at: sender.tag - 100))
-            }
-        }
-        
-    }
-    //MARK: Price action
-    @IBAction func priceBtnTapped(_ sender: Any) {
-        colorKeyword = ""
-        self.priceKey = "Price"
-        self.ageKey = ""
-        self.discountKey = ""
-        self.filterTableView.reloadData()
-    }
-    //MARK: Age action
-    @IBAction func agebtnTapped(_ sender: Any) {
-        self.colorKeyword = ""
-        self.priceKey = ""
-        self.ageKey = "Age"
-        self.discountKey = ""
-        self.filterTableView.reloadData()
-    }
-    //MARK: Discount action
-    @IBAction func discountBtnTapped(_ sender: Any) {
-        self.colorKeyword = ""
-        self.priceKey = ""
-        self.ageKey = ""
-        self.discountKey = "Discount"
-        self.filterTableView.reloadData()
-    }
-    //MARK: Color action
-    @IBAction func colorBtnTapped(_ sender: Any) {
-        self.colorKeyword = "ColorWord"
-        self.priceKey = ""
-        self.ageKey = ""
-        self.discountKey = ""
-        self.filterTableView.reloadData()
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 extension UIColor{
