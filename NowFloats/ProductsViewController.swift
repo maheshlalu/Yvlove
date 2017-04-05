@@ -57,12 +57,18 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.tableviewAdditinalcategery.tableFooterView = UIView()
     }
     
-    func filterSelectionCompleted(notification:Notification)
-    {
+    func filterSelectionCompleted(notification:Notification){
         let str = notification.object as! String
         let filterArr = str.components(separatedBy: "|")
         let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
         self.products = CX_Products.mr_findAll(with: predicate) as NSArray!
+        print(products.count)
+        self.updatecollectionview.reloadData()
+    }
+    
+    func filterCompleted(notification:Notification){
+        let arr = notification.object as! NSArray
+        self.products = arr
         print(products.count)
         self.updatecollectionview.reloadData()
     }
@@ -226,6 +232,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self,selector: #selector(filterSelectionCompleted(notification:)),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
+        //FILTER_COMPLETED
+        NotificationCenter.default.addObserver(self,selector: #selector(filterCompleted(notification:)),name: NSNotification.Name(rawValue: "FILTER_COMPLETED"),object: nil)
     }
     @IBAction func chooseBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()
@@ -275,7 +283,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
         }else{
             print("no image url here")
-        
         }
         
         let rupee = "\u{20B9}"

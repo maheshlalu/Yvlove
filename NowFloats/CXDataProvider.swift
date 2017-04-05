@@ -74,7 +74,7 @@ class CXDataProvider: NSObject {
                     
                     enProduct!.name = (prod as AnyObject).value(forKey: "Name") as? String
                     enProduct!.pid = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
-                    enProduct?.metaData = (prod as AnyObject).value(forKey: "meta_keyword") as? String
+                    enProduct?.metaData = (prod as AnyObject).value(forKey: "color") as? String
                     enProduct?.categoryType = (prod as AnyObject).value(forKey: "CategoryType") as? String
                     enProduct?.subCategoryType = (prod as AnyObject).value(forKey: "SubCategoryType") as? String
                     enProduct?.p3rdCategory = (prod as AnyObject).value(forKey: "P3rdCategory") as? String
