@@ -45,7 +45,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         // age
         self.ageKey = "Age"
-        self.ageArr = ["0-3 Months","3-6 Months","6-12 Months","12-18 Months","18-24 Months","2-3 Years","3-4 Years","4-5 Years"]
+        self.ageArr = ["1-4 Years","2-3 Years","0-2 years","2-5 years","2-6 years","3-8 Years"]//"0-3 Months","3-6 Months","6-12 Months","12-18 Months","18-24 Months","2-3 Years","3-4 Years","4-5 Years"
         for _ in 0 ..< self.ageArr.count {
             (ageSelectedArr as AnyObject).add("NO")
         }
@@ -57,8 +57,8 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         // color
         self.colorKey = "ColorWord"
-        self.colorArr = ["Black","White","Red","Blue","Yellow","Maroon","Silver","Biege","Brown","Peach","Orange","Purple/ Violet","Grey","Green"]
-        self.colorCode = ["000000","FFFFFF","FF0000","0000FF","FFFF00","bd012e","c7c7c7","ffe8c5","983900","ffcc99","ff6c00","4100ad","5c5c5c","008000"]
+        self.colorArr = ["Black","White","Red","Blue","Yellow","Maroon","Silver","Biege","Brown","Peach","Orange","Purple/Violet","Grey","Green","Multicolor"]
+        self.colorCode = ["000000","FFFFFF","FF0000","0000FF","FFFF00","bd012e","c7c7c7","ffe8c5","983900","ffcc99","ff6c00","4100ad","5c5c5c","008000",""]
         for _ in 0 ..< self.colorArr.count {
             (colorSelectedArr as AnyObject).add("NO")
         }
@@ -70,6 +70,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.filterTableView.register(nib, forCellReuseIdentifier: "Cell")
         let colorCell = UINib(nibName: "customColorCell", bundle: nil)
         self.filterTableView.register(colorCell, forCellReuseIdentifier: "Cellcolor")
+        filterTableView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -86,44 +87,153 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     //MARK: filter Action
     func filterTapped(){
-    print("seleted arrays \(finalPriceSelectedArr) \(finalAgeSelectedArr) \(finalDiscountSelectedArr)  \(finalColorSelectedArr)")
-       let dic = NSMutableDictionary()
+        
+        print("seleted arrays \(finalPriceSelectedArr) \(finalAgeSelectedArr) \(finalDiscountSelectedArr)  \(finalColorSelectedArr)")
+        
+        /*let converstationKeyPredicate = NSPredicate(format: "conversationKey = %@", conversationKey)
+         let messageKeyPredicate = NSPredicate(format: "messageKey = %@", messageKey)
+         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [converstationKeyPredicate, messageKeyPredicate])
+         request.predicate = andPredicate
+         */
+        
+//        let mainPredicate:NSCompoundPredicate = NSCompoundPredicate()
+//        let subPredicates:NSPredicate = NSPredicate()
+        
+        let dataArr = NSMutableArray()
+        var predicateStr:String = String()
+        var pricePredicateString:String = String()
+        var agePredicateString:String = String()
+        var discountPredicateString:String = String()
+        var colorPredicateString:String = String()
+        
+        //Price Predicate Construction
         if finalPriceSelectedArr.count != 0{
-        dic.setValue(finalPriceSelectedArr, forKey: "PRICE")
-        }
-        if finalAgeSelectedArr.count != 0{
-        dic.setValue(finalAgeSelectedArr, forKey: "AGE")
-        }
-        if finalDiscountSelectedArr.count != 0 {
-        dic.setValue(finalAgeSelectedArr, forKey: "DISCOUNT")
-        }
-        if finalColorSelectedArr.count != 0 {
-        dic.setValue(finalColorSelectedArr, forKey: "COLOR")
-        }
-        for dictValues in dic{
-            //let dictva = dictValues.value
-            print("arrays \(dictValues.key)")
-       
+            if finalPriceSelectedArr.description.contains("0 - 500"){
+                pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
+            }
+            if finalPriceSelectedArr.description.contains("500 - 1000"){
+                pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
+            }
+            if finalPriceSelectedArr.description.contains("1000 - 2000"){
+                pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
+            }
+            if finalPriceSelectedArr.description.contains("More Than 2000"){
+                pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+            }
             
-        
+            let finalOne = String(pricePredicateString.characters.dropLast())
+            pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+            pricePredicateString = "(\(pricePredicateString))"
+            dataArr.add(pricePredicateString)
         }
         
-//        let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
-//        for str in finalColorSelectedArr{
-//            
-//        let predicate =  NSPredicate(format: "metaData contains[c] %@" , argumentArray: [str])
-//        
-//            fetchRequest.predicate = predicate
-//                    let arr:NSArray  =  CX_Products.mr_findAll(with: predicate) as NSArray
-//                    for data in arr
-//                    {
-//                        let dict = data as! CX_Products
-//                        let id = dict.pid
-//                        print("ids \(id!)")
-//                        }
-//        }
-//
+        //"0-3 Months","3-6 Months","6-12 Months","12-18 Months","18-24 Months","2-3 Years","3-4 Years","4-5 Years"
+        //SELECT * FROM ZCX_PRODUCTS WHERE ZAGE="1-4 Years" OR ZAGE="2-3 Years"
+        //SELECT * FROM ZCX_PRODUCTS WHERE ZPPRICE >=80 AND ZPPRICE<=150 OR  ZPPRICE >=0 AND ZPPRICE<=100 OR  ZPPRICE >=100 AND ZPPRICE<=2000 OR ZPPRICE>=2000 FOR PRICE
+        //SELECT * FROM ZCX_PRODUCTS WHERE (ZPPRICE >=0 AND ZPPRICE <=500 OR ZPPRICE >=1000 AND ZPPRICE <=2000) AND (ZAGE="0-2 years" OR ZAGE="2-5 years" OR ZAGE="1-4 Years" OR ZAGE="2-3 Years" OR ZAGE="3-8 Years")
+        //###########################################################################################################################################
+        /* //Age Predicate Construction
+         if finalAgeSelectedArr.count != 0{
+         if finalAgeSelectedArr.description.contains("0-3 Months"){
+         pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("3-6 Months"){
+         pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("6-12 Months"){
+         pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("12-18 Months"){
+         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("18-24 Months"){
+         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("2-3 Years"){
+         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("3-4 Years"){
+         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+         }
+         
+         if finalAgeSelectedArr.description.contains("4-5 Years"){
+         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+         }
+         
+         
+         let finalOne = String(pricePredicateString.characters.dropLast())
+         pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+         print(pricePredicateString)
+         
+         }
+         */
+        //###########################################################################################################################################
         
+        
+        //Dummy Age predicate. Please remove after updation of server. For any queries consult Naresh.
+        //"1-4 Years","2-3 Years","0-2 years","2-5 years","2-6 years","3-8 Years" --- Dummy array
+        if finalAgeSelectedArr.count != 0{
+            
+            var filteredData:String = String()
+            for filter in finalAgeSelectedArr{
+                filteredData = filteredData + " age=\"\(filter)\" #"
+            }
+            
+            let finalOne = String(filteredData.characters.dropLast())
+            agePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+            agePredicateString = "(\(agePredicateString))"
+            dataArr.add(agePredicateString)
+        }
+        
+        //Discount Predicate Construction
+        if finalDiscountSelectedArr.count != 0{
+            var filteredData:String = String()
+            for filter in finalDiscountSelectedArr{
+                filteredData = filteredData + " discountprice=\"\(String((filter as! String).characters.dropLast()))\" #"
+            }
+            let finalOne = String(filteredData.characters.dropLast())
+            discountPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+            discountPredicateString = "(\(discountPredicateString))"
+            dataArr.add(discountPredicateString)
+        }
+        
+        //Color Predicate Construction
+        if finalColorSelectedArr.count != 0 {
+            var filteredData:String = String()
+            for filter in finalColorSelectedArr{
+                //let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
+                filteredData = filteredData + " metaData contains[c] \"\(filter)\" #"
+            }
+            let finalOne = String(filteredData.characters.dropLast())
+            colorPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+            colorPredicateString = "(\(colorPredicateString))"
+            dataArr.add(colorPredicateString)
+        }
+        
+        //Attaching the complete predicate
+        var filteredData:String = String()
+        for filter in dataArr{
+            filteredData = "\(filteredData) AND \(filter)"
+        }
+        let finalPredicate = String(filteredData.characters.dropFirst(5))
+        print(finalPredicate)
+        predicateStr = finalPredicate
+        
+        var dummyArr = NSArray()
+        let predicate = NSPredicate.init(format:predicateStr)
+        dummyArr = CX_Products.mr_findAll(with: predicate) as NSArray!
+        print(dummyArr.count)
+        
+        self.dismiss(animated: true) {
+            let filteredProductArry = dummyArr
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FILTER_COMPLETED"), object: filteredProductArry)
+        }
         
     }
     
@@ -150,7 +260,13 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         if colorKeyword == "ColorWord"{
             let cell:customColorCell = tableView.dequeueReusableCell(withIdentifier: "Cellcolor", for: indexPath) as! customColorCell
             cell.nameLbl.text = self.colorArr.object(at: indexPath.row) as? String
-            cell.viewColor.backgroundColor = UIColor().HexToColor(hexString: self.colorCode.object(at: indexPath.row) as! String, alpha: 1.0)
+            
+            if cell.nameLbl.text == "Multicolor"{
+                cell.viewColor.backgroundColor = UIColor(patternImage:UIImage(named:"multiColor")!)
+            }else{
+                cell.viewColor.backgroundColor = UIColor().HexToColor(hexString: self.colorCode.object(at: indexPath.row) as! String, alpha: 1.0)
+            }
+            
             cell.viewColor.layer.borderWidth = 1
             cell.viewColor.layer.cornerRadius = 4
             cell.viewColor.layer.borderColor = UIColor.lightGray.cgColor
@@ -158,10 +274,10 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
             cell.checkBtncolor.tag = indexPath.row + 100
             let values : String = colorSelectedArr.object(at: indexPath.row) as! String
             if values == "NO"{
-                cell.checkBtncolor.setImage(UIImage(named: "uncheckbtn"), for: .normal)
+                cell.checkBtncolor.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
                 cell.checkBtncolor.isSelected = false
             }else{
-                cell.checkBtncolor.setImage(UIImage(named: "checkBtn"), for: .normal)
+                cell.checkBtncolor.setImage(UIImage(named: "CheckedFill"), for: .normal)
                 cell.checkBtncolor.isSelected = true
             }
             return cell
@@ -173,10 +289,10 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell.radioButton.tag = indexPath.row + 100
                 let values : String = priceSelectedArr.object(at: indexPath.row) as! String
                 if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "uncheckbtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
                     cell.radioButton.isSelected = false
                 }else{
-                    cell.radioButton.setImage(UIImage(named: "checkBtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
                     cell.radioButton.isSelected = true
                 }
             }else if ageKey == "Age" {
@@ -185,11 +301,11 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell.radioButton.tag = indexPath.row + 100
                 let values : String = ageSelectedArr.object(at: indexPath.row) as! String
                 if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "uncheckbtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
                     cell.radioButton.isSelected = false
                     //
                 }else{
-                    cell.radioButton.setImage(UIImage(named: "checkBtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
                     cell.radioButton.isSelected = true
                 }
             }else if discountKey == "Discount"
@@ -199,11 +315,11 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell.radioButton.tag = indexPath.row + 100
                 let values : String = discountSelectedArr.object(at: indexPath.row) as! String
                 if values == "NO"{
-                    cell.radioButton.setImage(UIImage(named: "uncheckbtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
                     cell.radioButton.isSelected = false
                     //
                 }else{
-                    cell.radioButton.setImage(UIImage(named: "checkBtn"), for: .normal)
+                    cell.radioButton.setImage(UIImage(named: "CheckedFill"), for: .normal)
                     cell.radioButton.isSelected = true
                 }
             }
@@ -214,7 +330,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
     {
         if sender.isSelected {
             sender.isSelected = false
-            sender.setImage(UIImage(named: "uncheckbtn"), for: .normal)
+            sender.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             if priceKey == "Price"{
                 priceSelectedArr.replaceObject(at: sender.tag - 100, with: "NO")
                 finalPriceSelectedArr.remove(priceArr.object(at: sender.tag - 100))
@@ -231,7 +347,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
         }else{
             sender.isSelected = true
-            sender.setImage(UIImage(named: "checkBtn"), for: .normal)
+            sender.setImage(UIImage(named: "CheckedFill"), for: .normal)
             if priceKey == "Price"{
                 priceSelectedArr.replaceObject(at: sender.tag - 100, with: "YES")
                 finalPriceSelectedArr.add(priceArr.object(at: sender.tag - 100))
