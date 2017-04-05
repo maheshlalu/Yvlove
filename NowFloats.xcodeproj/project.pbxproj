@@ -171,6 +171,8 @@
 		890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890150F71E8531DD007C02F0 /* customColorCell.swift */; };
 		890150FA1E8531DD007C02F0 /* customColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890150F81E8531DD007C02F0 /* customColorCell.xib */; };
 		8918530B1E602CD6007AE5C4 /* whitemenu40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */; };
+		892491AB1E950CC400CB8097 /* libPaymentsSDK_v2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 892491AA1E950CC400CB8097 /* libPaymentsSDK_v2.0.a */; };
+		892491AD1E950F8900CB8097 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892491AC1E950F8900CB8097 /* SystemConfiguration.framework */; };
 		892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892E89491E92894C0080C239 /* CXPayMentController.swift */; };
 		895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */; };
 		895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */; };
@@ -417,6 +419,13 @@
 		890150F71E8531DD007C02F0 /* customColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customColorCell.swift; sourceTree = "<group>"; };
 		890150F81E8531DD007C02F0 /* customColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customColorCell.xib; sourceTree = "<group>"; };
 		8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitemenu40x40.png; sourceTree = "<group>"; };
+		892491A51E950BB500CB8097 /* PaymentsSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentsSDK.h; sourceTree = "<group>"; };
+		892491A61E950BB500CB8097 /* PGMerchantConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGMerchantConfiguration.h; sourceTree = "<group>"; };
+		892491A71E950BB500CB8097 /* PGOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGOrder.h; sourceTree = "<group>"; };
+		892491A81E950BB500CB8097 /* PGServerEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGServerEnvironment.h; sourceTree = "<group>"; };
+		892491A91E950BB500CB8097 /* PGTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGTransactionViewController.h; sourceTree = "<group>"; };
+		892491AA1E950CC400CB8097 /* libPaymentsSDK_v2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPaymentsSDK_v2.0.a; path = ../libPaymentsSDK_v2.0.a; sourceTree = "<group>"; };
+		892491AC1E950F8900CB8097 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		892E89491E92894C0080C239 /* CXPayMentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXPayMentController.swift; sourceTree = "<group>"; };
 		895D5CFA1E8CEB2D005E652D /* CX_Products+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataClass.h"; sourceTree = "<group>"; };
 		895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -451,6 +460,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892491AD1E950F8900CB8097 /* SystemConfiguration.framework in Frameworks */,
 				1155F8E41DB7516900886633 /* CoreLocation.framework in Frameworks */,
 				117D1BC61DA61F0900BE4AE1 /* MobileCoreServices.framework in Frameworks */,
 				8900AD811E82B52C0064438C /* FBSDKShareKit.framework in Frameworks */,
@@ -460,6 +470,7 @@
 				DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */,
 				8900AD7F1E82B52C0064438C /* FBSDKCoreKit.framework in Frameworks */,
 				1635D6E0E2BC4D6CFBEB6CA1 /* Pods_NowFloats.framework in Frameworks */,
+				892491AB1E950CC400CB8097 /* libPaymentsSDK_v2.0.a in Frameworks */,
 				8900AD7B1E82B4FF0064438C /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +497,7 @@
 		0E1CF002394DE794901016D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				892491AC1E950F8900CB8097 /* SystemConfiguration.framework */,
 				8900AD781E8292F50064438C /* GoogleService-Info.plist */,
 				1169F0E81E011BD600D9D740 /* AFNetworking.framework */,
 				1169F0E91E011BD600D9D740 /* Alamofire.framework */,
@@ -901,6 +913,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				892491A41E950BB500CB8097 /* PayTM Integration */,
 				897EAD451E5EFFDD001899F1 /* plus-empty.png */,
 				1841CF911E39E16600B58FE4 /* Mixpanel */,
 				1825CCBC1E1BAA2E00CD3C3B /* Catageories */,
@@ -1078,6 +1091,20 @@
 				0942C8092495C1C71EAF2AE3 /* Pods-MyLabs.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		892491A41E950BB500CB8097 /* PayTM Integration */ = {
+			isa = PBXGroup;
+			children = (
+				892491AA1E950CC400CB8097 /* libPaymentsSDK_v2.0.a */,
+				892491A51E950BB500CB8097 /* PaymentsSDK.h */,
+				892491A61E950BB500CB8097 /* PGMerchantConfiguration.h */,
+				892491A71E950BB500CB8097 /* PGOrder.h */,
+				892491A81E950BB500CB8097 /* PGServerEnvironment.h */,
+				892491A91E950BB500CB8097 /* PGTransactionViewController.h */,
+			);
+			name = "PayTM Integration";
+			path = ../include;
 			sourceTree = "<group>";
 		};
 		899B7B131E5437E0006C1F79 /* KYFloatingActionButton */ = {
@@ -1734,7 +1761,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1744,6 +1771,10 @@
 				INFOPLIST_FILE = NowFloats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
 				PRODUCT_NAME = NeedyBee;
 				PROVISIONING_PROFILE = "";
@@ -1762,7 +1793,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1772,6 +1803,10 @@
 				INFOPLIST_FILE = NowFloats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
 				PRODUCT_NAME = NeedyBee;
 				PROVISIONING_PROFILE = "";
