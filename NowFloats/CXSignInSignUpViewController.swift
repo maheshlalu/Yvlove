@@ -18,6 +18,8 @@ protocol CXSingInDelegate {
 }
 
 class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
+    var googleResponseDict: NSDictionary! = nil
+    var facebookResponseDict: NSDictionary! = nil
     var emailAddressField: UITextField!
     var passwordField: UITextField!
     var signInBtn:UIButton!
@@ -36,19 +38,23 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     var heder: UIView!
     
     let signIn = GIDSignIn.sharedInstance()
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white;
         self.keyboardIsShown = false
         self.customizeMainView()
-        signIn?.shouldFetchBasicProfile = true
-        signIn?.delegate = self;
-        signIn?.uiDelegate = self
+        setUpDelegatesForGoogle()
         //self.setUpDelegatesForGoogle()
-
+        
     }
-    
+    func setUpDelegatesForGoogle()
+    {
+        signIn?.shouldFetchBasicProfile = true
+        signIn?.delegate = self
+        signIn?.uiDelegate = self
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(CXSignInSignUpViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ForgotNotification"), object: nil)
     }
@@ -70,19 +76,42 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
                 if fbloginresult.grantedPermissions != nil {
                     if(fbloginresult.grantedPermissions.contains("email"))
                     {
-                        //CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-                        //self.getFBUserData()
-                        fbLoginManager.logOut()
+                        //                        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+                        self.getFbdata()
+                        //fbLoginManager.logOut()
                         
                     }
                 }
             }
         }
+        
+    }
+    func getFbdata(){
+        
+        if FBSDKAccessToken.current() != nil{
+            
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    self.facebookResponseDict = result as! [String:AnyObject] as NSDictionary!
+                    //print(result)
+                    // self.sendSignDetails()
+                    print(self.facebookResponseDict)
+                    UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "email"), forKey: "USER_EMAIL")
+                    UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "first_name"), forKey: "FIRST_NAME")
+                    UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "name"), forKey: "FULL_NAME")
+                    self.navigationController?.popViewController(animated: true)
+                    
+                    // UserDefaults.standard.set(false, forKey: "isLoggedUser")
+                    
+                }
+            })
+            
+        }
+        
     }
     
-   
-
-
+    
+    
     
     func sign(_ signIn: GIDSignIn!,
               present viewController: UIViewController!) {
@@ -97,80 +126,37 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user:GIDGoogleUser!,
               withError error: Error!) {
-        
-        
-      /*
+       // signIn.shouldFetchBasicProfile = true
         if (error == nil) {
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }*/
-
-        
-        // Perform any operations on signed in user here.
-      //  if (error == nil) {
-    //        var firstName = ""
-  //          var lastName = ""
-//            // let userId = user.userID
-//            var profilePic = ""
-//            var email = ""
-//            
-//            //CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
-//            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-           // let url = NSURL(string:  "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)")
-            //let session = URLSession.shared
-           //session.dataTask(with: url! as URL) {(data, response, error) -> Void in
-//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//                do {
-//                    let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
-//                    //print(userData)
-//                    firstName = userData!["given_name"] as! String
-//                    lastName = userData!["family_name"] as! String
-//                    profilePic = userData!["picture"] as! String
-//                    email = userData!["email"] as! String
-//                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
-//                    print("\(email)\(firstName)\(lastName)\(profilePic)")
-//                    self.googleResponseDict = userData as NSDictionary!
-//                    MagicalRecord.save({ (localContext) in
-//                        
-//                        UserProfile.mr_truncateAll(in: localContext)
-//                    })
+            var firstName = ""
+            var lastName = ""
+            //let userId = user.userID
+            var profilePic = ""
+            var email = ""
+            
+            //CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            let url = NSURL(string:  "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)")
+            let session = URLSession.shared
+            session.dataTask(with: url! as URL) {(data, response, error) -> Void in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                do {
+                    let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
+                    print(userData!)
+                    firstName = userData!["given_name"] as! String
+                    lastName = userData!["family_name"] as! String
+                    profilePic = userData!["picture"] as! String
+                    email = userData!["email"] as! String
+                   UserDefaults.standard.set(false, forKey: "isLoggedUser")
+                    //print("\(email)\(firstName)\(lastName)\(profilePic)")
+                    self.googleResponseDict = userData as NSDictionary!
                     
-                    
-//                    CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred, isKeyGenarated, email) in
-//                        if isKeyGenarated {
-//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                            appDelegate.navigateToTabBar()
-//                        }else{
-//                            //Navigate to user name genarated page
-//                            print("not signup")
-//                            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
-//                            storyboard?.userEmail =  email;
-//                            
-//                            self.navigationController?.pushViewController(storyboard!, animated: true)
-//                        }
-                   // })
-                    
-//                } catch {
-//                    NSLog("Account Information could not be loaded")
-//                }
-//                
-//                }.resume()
-//        }
-//            
-//        else {
-//            //Login Failed
-//            NSLog("login failed")
-//            return
-//            
-//        }
+                }
+                catch {
+                    NSLog("Account Information could not be loaded")
+                }
+                }.resume()
+        }
         
     }
     
@@ -178,9 +164,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     func customizeMainView() {
         self.cScrollView = UIScrollView.init(frame: CGRect(x: 0,y: 0, width: self.view.frame.size.width, height: (self.view.frame.size.height)))
         self.cScrollView.backgroundColor = UIColor.clear
-       // self.cScrollView.contentSize = CGSizeMake(self.view.frame.size.width,600)
+        // self.cScrollView.contentSize = CGSizeMake(self.view.frame.size.width,600)
         self.view.addSubview(self.cScrollView)
-
+        
         let signUpLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: 40, width: self.cScrollView.frame.size.width-40, height: 50), text: "Sign In",font:UIFont.init(name: "Roboto-Regular", size: 40)!)
         self.cScrollView.addSubview(signUpLbl)
         
@@ -209,8 +195,6 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         self.facebookBtn = self.createButton(CGRect(x: 165, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "f", tag: 3, bgColor:UIColor.init(red: 58/255.0, green: 88/255.0, blue: 158/255.0, alpha: 1.0) )
         self.facebookBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.facebookBtnAction), for: .touchUpInside)
         self.cScrollView.addSubview(self.facebookBtn)
-        
-        
     }
     
     override func methodOfReceivedNotification(_ notification: NSNotification){
@@ -232,7 +216,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         return button
         
     }
-  
+    
     func showAlertView(_ message:String, status:Int) {
         DispatchQueue.main.async(execute: {
             let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -259,7 +243,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     
     
     func sendSignDetails() {
-  
+        
         CXAppDataManager.sharedInstance.singWithUserDetails(self.emailAddressField.text!, password: self.passwordField.text!) { (responseDict) in
             
             /*   UserId = 2003;
@@ -282,41 +266,41 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
              userBannerPath = "";
              userImagePath = "";*/
             
-        let status: Int = Int(responseDict.value(forKey: "status") as! String)!
+            let status: Int = Int(responseDict.value(forKey: "status") as! String)!
             
             if status == 1{
-            UserDefaults.standard.set(responseDict.value(forKey: "state"), forKey: "STATE")
-            UserDefaults.standard.set(responseDict.value(forKey: "emailId"), forKey: "USER_EMAIL")
-            UserDefaults.standard.set(responseDict.value(forKey: "firstName"), forKey: "FIRST_NAME")
-            UserDefaults.standard.set(responseDict.value(forKey: "lastName"), forKey: "LAST_NAME")
-            UserDefaults.standard.set(responseDict.value(forKey: "gender"), forKey: "GENDER")
-            UserDefaults.standard.set(responseDict.value(forKey: "UserId"), forKey: "USER_ID")
-            UserDefaults.standard.set(responseDict.value(forKey: "macId"), forKey: "MAC_ID")
-            UserDefaults.standard.set(responseDict.value(forKey: "mobile"), forKey: "MOBILE")
-            UserDefaults.standard.set(responseDict.value(forKey: "address"), forKey: "ADDRESS")
-            UserDefaults.standard.set(responseDict.value(forKey: "fullName"), forKey: "FULL_NAME")
-            UserDefaults.standard.set(responseDict.value(forKey: "city"), forKey: "CITY")
-            UserDefaults.standard.set(responseDict.value(forKey: "orgId"), forKey: "ORG_ID")
-            UserDefaults.standard.set(responseDict.value(forKey: "macIdJobId"), forKey: "MACID_JOBID")
-            UserDefaults.standard.set(responseDict.value(forKey: "organisation"), forKey: "ORGANIZATION")
-            UserDefaults.standard.set(responseDict.value(forKey: "msg"), forKey: "MESSAGE")
-            UserDefaults.standard.set(responseDict.value(forKey: "status"), forKey: "STATUS")
-            UserDefaults.standard.set(responseDict.value(forKey: "country"), forKey: "COUNTRY")
-            UserDefaults.standard.set(responseDict.value(forKey: "userBannerPath"), forKey: "BANNER_PATH")
-            UserDefaults.standard.set(responseDict.value(forKey: "userImagePath"), forKey: "IMAGE_PATH")
-            UserDefaults.standard.synchronize()
-            
+                UserDefaults.standard.set(responseDict.value(forKey: "state"), forKey: "STATE")
+                UserDefaults.standard.set(responseDict.value(forKey: "emailId"), forKey: "USER_EMAIL")
+                UserDefaults.standard.set(responseDict.value(forKey: "firstName"), forKey: "FIRST_NAME")
+                UserDefaults.standard.set(responseDict.value(forKey: "lastName"), forKey: "LAST_NAME")
+                UserDefaults.standard.set(responseDict.value(forKey: "gender"), forKey: "GENDER")
+                UserDefaults.standard.set(responseDict.value(forKey: "UserId"), forKey: "USER_ID")
+                UserDefaults.standard.set(responseDict.value(forKey: "macId"), forKey: "MAC_ID")
+                UserDefaults.standard.set(responseDict.value(forKey: "mobile"), forKey: "MOBILE")
+                UserDefaults.standard.set(responseDict.value(forKey: "address"), forKey: "ADDRESS")
+                UserDefaults.standard.set(responseDict.value(forKey: "fullName"), forKey: "FULL_NAME")
+                UserDefaults.standard.set(responseDict.value(forKey: "city"), forKey: "CITY")
+                UserDefaults.standard.set(responseDict.value(forKey: "orgId"), forKey: "ORG_ID")
+                UserDefaults.standard.set(responseDict.value(forKey: "macIdJobId"), forKey: "MACID_JOBID")
+                UserDefaults.standard.set(responseDict.value(forKey: "organisation"), forKey: "ORGANIZATION")
+                UserDefaults.standard.set(responseDict.value(forKey: "msg"), forKey: "MESSAGE")
+                UserDefaults.standard.set(responseDict.value(forKey: "status"), forKey: "STATUS")
+                UserDefaults.standard.set(responseDict.value(forKey: "country"), forKey: "COUNTRY")
+                UserDefaults.standard.set(responseDict.value(forKey: "userBannerPath"), forKey: "BANNER_PATH")
+                UserDefaults.standard.set(responseDict.value(forKey: "userImagePath"), forKey: "IMAGE_PATH")
+                UserDefaults.standard.synchronize()
+                
                 let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let profile = storyBoard.instantiateViewController(withIdentifier: "PROFILE") as! UserProfileViewController
                 profile.isFromSignIn = true
                 self.navigationController?.pushViewController(profile, animated: true)
-            
                 
-        } else {
-               self.showAlertView("Please enter valid credentials", status: status)
+                
+            } else {
+                self.showAlertView("Please enter valid credentials", status: status)
             }
         }
-        }
+    }
     
     func signInAction() {
         // print ("Sign In action")
@@ -324,12 +308,12 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         if self.isValidEmail(self.emailAddressField.text!) {
             self.sendSignDetails()
             self.navigationController?.popViewController(animated: true)
-
+            
         } else {
-                let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                //print("Please enter valid email")
+            let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            //print("Please enter valid email")
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -338,7 +322,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         print ("Sign Up action")
         self.view.endEditing(true)
         let signUpView = CXSignUpViewController.init()
-//signUpView.orgID = self.orgID
+        //signUpView.orgID = self.orgID
         self.navigationController?.pushViewController(signUpView, animated: true)
     }
     
@@ -435,7 +419,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         return true
     }
     
-
+    
 }
 
 

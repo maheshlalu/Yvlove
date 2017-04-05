@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if url.scheme == "fb122900748244366" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
             return callBack
-        } else if url.scheme == "709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com"{
+        } else if url.scheme == "com.googleusercontent.apps.709097464071-0q67mn1rraequcts349vb94gp7bs6adn"{
             callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
             return callBack
         }else if url.scheme == "apps.storeongo.com" {

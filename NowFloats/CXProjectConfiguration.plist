@@ -45,6 +45,8 @@
 	<string>MobileAPIs/updateUserDetails?</string>
 	<key>photoUpload</key>
 	<string>Services/uploadFileFromAndroidToServer</string>
+	<key>testPaymentUrl</key>
+	<string>http://46.137.241.54:9000/TestPaymentGateway/payments?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string>235</string>

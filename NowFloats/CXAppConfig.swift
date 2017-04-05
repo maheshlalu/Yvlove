@@ -97,6 +97,12 @@ class CXAppConfig {
             return config!.value(forKey: "SidePanelList") as! NSArray
     }
     
+    //MARK: payment url
+    func getTestPaymentGatewayUrl() -> String{
+    
+    return config!.value(forKey: "testPaymentUrl") as! String
+    }
+    
     func getAppTheamColor() -> UIColor {
         let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
         let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue

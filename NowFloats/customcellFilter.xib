@@ -29,19 +29,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cgs-dh-r20">
-                        <rect key="frame" x="3" y="8" width="35" height="35"/>
+                        <rect key="frame" x="0.0" y="-9" width="50" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="35" id="JCv-V4-ClN"/>
-                            <constraint firstAttribute="width" constant="35" id="cca-QR-3s9"/>
+                            <constraint firstAttribute="height" constant="70" id="JCv-V4-ClN"/>
+                            <constraint firstAttribute="width" constant="50" id="cca-QR-3s9"/>
                         </constraints>
-                        <state key="normal" image="uncheckbtn"/>
+                        <state key="normal" image="UncheckedImahe"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="a6D-0u-Lrv" secondAttribute="trailing" constant="29" id="1si-3a-Dj6"/>
-                    <constraint firstItem="a6D-0u-Lrv" firstAttribute="leading" secondItem="Cgs-dh-r20" secondAttribute="trailing" constant="20" id="iUX-ji-PAc"/>
-                    <constraint firstItem="Cgs-dh-r20" firstAttribute="leading" secondItem="a90-q5-SZF" secondAttribute="leading" constant="3" id="ijy-f9-6T1"/>
-                    <constraint firstItem="Cgs-dh-r20" firstAttribute="top" secondItem="a90-q5-SZF" secondAttribute="top" constant="8" id="j4l-iA-kDX"/>
+                    <constraint firstItem="a6D-0u-Lrv" firstAttribute="leading" secondItem="Cgs-dh-r20" secondAttribute="trailing" constant="8" id="iUX-ji-PAc"/>
+                    <constraint firstItem="Cgs-dh-r20" firstAttribute="leading" secondItem="a90-q5-SZF" secondAttribute="leading" id="ijy-f9-6T1"/>
+                    <constraint firstItem="Cgs-dh-r20" firstAttribute="top" secondItem="a90-q5-SZF" secondAttribute="top" constant="-9" id="j4l-iA-kDX"/>
                     <constraint firstItem="a6D-0u-Lrv" firstAttribute="top" secondItem="a90-q5-SZF" secondAttribute="topMargin" constant="-1" id="y9E-wL-NQo"/>
                 </constraints>
             </tableViewCellContentView>
@@ -49,10 +49,10 @@
                 <outlet property="name" destination="a6D-0u-Lrv" id="F1s-zT-Gxc"/>
                 <outlet property="radioButton" destination="Cgs-dh-r20" id="aJa-zo-gA5"/>
             </connections>
-            <point key="canvasLocation" x="120" y="-163"/>
+            <point key="canvasLocation" x="119.5" y="-163.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="uncheckbtn" width="40" height="40"/>
+        <image name="UncheckedImahe" width="20" height="20"/>
     </resources>
 </document>

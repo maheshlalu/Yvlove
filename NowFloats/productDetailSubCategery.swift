@@ -18,16 +18,17 @@ class productDetailSubCategery: UIViewController {
     var selectedCategoryType = String()
     var selectedSubCategoryType = String()
     var selectedP3Category = String()
+    
+    @IBOutlet weak var noProductlbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(selectedCategoryType)
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
-      //  print("categery \(productCategeryType)")
-        // Do any additional setup after loading the view.
         self.productSubCategeryServiceCall(categeryType: productCategeryType, referID: referID)
-       // self.additinalTable.reloadData()
         
+        self.noProductlbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        self.additinalTable.backgroundColor = UIColor.lightGray
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,31 +45,45 @@ class productDetailSubCategery: UIViewController {
     {
         
         self.dismiss(animated: true, completion: nil)
-        //        if subCategeryStr == "Subcate"{
-        //        productSubCategeryServiceCall(categeryType: "", referID: 22)
-        //        }else{
-        //        self.dismiss(animated: true, completion: nil)
-        //        }
+       
     }
     
     //MARK: product MasterCategery
     func productSubCategeryServiceCall(categeryType: String,referID: String){
         // http://apps.storeongo.com:8081/Services/getMasters?type=pSubCategories&mallId=396&refTypeProperty=MasterCategory&refId=12872
-        
+        self.additinalTable.isHidden = false
         self.additinalDataArr = NSMutableArray()
         let dataKyes = ["type":"pSubCategories","mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"MasterCategory","refId":referID] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+            if jobsData.count == 0{
+           // self.showAlertView("No Products right now here", status: 1)
+                self.additinalTable.isHidden = true
+            }else{
             for dictData in jobsData {
                 let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
-                //let name:String = (dictindividual.value(forKey: "Name") as? String)!
                 self.categoryArr.add(dictindividual)
                 self.boolArray.add(true)
             }
             self.additinalTable.reloadData()
+            }
         }
         
     }
+    
+    //MARK: AlertView
+    func showAlertView(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "Alert!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
     //MARK: Get Sub With Sub categery items
     func productSubWithSubCategeryServiceCall(categeryType: String,referID: String){
         // http://apps.storeongo.com:8081/Services/getMasters?type=p3rdlevelCategories&mallId=396&refTypeProperty=SubCategory&refId=8043
@@ -76,38 +91,18 @@ class productDetailSubCategery: UIViewController {
         let dataKyes = ["type":"p3rdlevelCategories","mallId":CXAppConfig.sharedInstance.getAppMallID(),"refTypeProperty":"SubCategory","refId":referID] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             self.additinalDataArr = responceDic.value(forKey: "jobs")! as! NSArray
+            if self.additinalDataArr.count == 0{
+            self.showAlertView("No Products right now here", status: 1)
+                self.additinalTable.reloadData()
+            }else{
             DispatchQueue.main.async {
                  self.additinalTable.reloadData()
             }
         }
+        }
       }
     }
-    /*
-     //MARK: Extenal Data Tableview Delegate & Data Sources Methods
-     
-     func numberOfSections(in tableView: UITableView) -> Int {
-     return 1
-     }
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return self.additinalDataArr.count
-     }
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-     let subDict = self.additinalDataArr.object(at: indexPath.row) as! NSDictionary
-     cell.textLabel?.text = subDict.value(forKey: "Name") as? String
-     cell.textLabel?.textColor = UIColor.lightGray
-     // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
-     return cell
-     }
-     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-     return UIView(frame: .zero)
-     }
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-     self.productSubWithSubCategeryServiceCall(categeryType: "", referID: 888)
-     
-     }
-     */
+
 extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int // Default is 1 if not implemented
@@ -130,7 +125,7 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let subDict = self.additinalDataArr.object(at: indexPath.row) as! NSDictionary
         cell.textLabel?.text = subDict.value(forKey: "Name") as? String
-        cell.textLabel?.textColor = UIColor.lightGray
+        cell.textLabel?.textColor = UIColor.black
         return cell
     }
     
@@ -152,11 +147,12 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
         let view = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
         view.backgroundColor = UIColor.lightGray
         
-        let label = UILabel.init(frame: CGRect(x: 0, y: 12, width: tableView.frame.size.width, height: 20))
+        let label = UILabel.init(frame: CGRect(x: 10, y: 12, width: tableView.frame.size.width, height: 20))
         //label.text = categoryArr[section] as? String
         let subDict = self.categoryArr.object(at: section) as! NSDictionary
         label.text = subDict.value(forKey: "Name") as? String
-        label.textAlignment = NSTextAlignment.center
+        label.textAlignment = NSTextAlignment.left
+        label.textColor = UIColor.white
         view.addSubview(label)
         
         let btn = UIButton.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))

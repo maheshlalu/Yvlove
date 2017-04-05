@@ -112,7 +112,6 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
             if self.mobileNoTxtField.text?.characters.count < 10 {
                 let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid Phone number.", preferredStyle: UIAlertControllerStyle.alert)
                 let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
@@ -125,7 +124,10 @@ class DemoPopupViewController2: CXViewController, PopupContentViewController, UI
                 
                 
                 return
+            }else{
+            UserDefaults.standard.set(self.mobileNoTxtField.text!, forKey: "MOBILE")
             }
+            
             sendDetails?()
             
         } else {

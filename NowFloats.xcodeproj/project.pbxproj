@@ -171,6 +171,7 @@
 		890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890150F71E8531DD007C02F0 /* customColorCell.swift */; };
 		890150FA1E8531DD007C02F0 /* customColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 890150F81E8531DD007C02F0 /* customColorCell.xib */; };
 		8918530B1E602CD6007AE5C4 /* whitemenu40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */; };
+		892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892E89491E92894C0080C239 /* CXPayMentController.swift */; };
 		895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */; };
 		895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */; };
 		897EAD461E5EFFDE001899F1 /* plus-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EAD451E5EFFDD001899F1 /* plus-empty.png */; };
@@ -416,6 +417,7 @@
 		890150F71E8531DD007C02F0 /* customColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customColorCell.swift; sourceTree = "<group>"; };
 		890150F81E8531DD007C02F0 /* customColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customColorCell.xib; sourceTree = "<group>"; };
 		8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitemenu40x40.png; sourceTree = "<group>"; };
+		892E89491E92894C0080C239 /* CXPayMentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXPayMentController.swift; sourceTree = "<group>"; };
 		895D5CFA1E8CEB2D005E652D /* CX_Products+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataClass.h"; sourceTree = "<group>"; };
 		895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataClass.m"; sourceTree = "<group>"; };
 		895D5CFC1E8CEB2D005E652D /* CX_Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 				11BE21D21E361F3C00F15C14 /* CXFBEvents.swift */,
 				118346BA1D86C264000BE1D4 /* UIColor+SMColor.swift */,
 				3B4FD8181D6446D300A6EBBE /* ViewController.swift */,
+				892E89491E92894C0080C239 /* CXPayMentController.swift */,
 				3B4FD81A1D6446D300A6EBBE /* Main.storyboard */,
 				3B4FD8201D6446D300A6EBBE /* Assets.xcassets */,
 				3B4FD8221D6446D300A6EBBE /* LaunchScreen.storyboard */,
@@ -1354,7 +1357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		25DABB56DBC2E02536BF8EA6 /* [CP] Check Pods Manifest.lock */ = {
@@ -1369,7 +1372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27B8D76FBFB0748BCD09A082 /* [CP] Copy Pods Resources */ = {
@@ -1444,7 +1447,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1493,6 +1496,7 @@
 				113E5D9C1D87DFCB0003DA8D /* NowfloatWishlistViewController.swift in Sources */,
 				1159BC731E5C3CF900F4187D /* NeedyBeeDetailTableViewCell.swift in Sources */,
 				18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */,
+				892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				11F1DE5D1D883AF7002AF5B0 /* AboutusTableViewCell.swift in Sources */,
 				18A6BF851D7FD96200D7D533 /* CX_SingleMall+CoreDataProperties.swift in Sources */,
