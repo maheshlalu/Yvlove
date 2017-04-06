@@ -15,10 +15,10 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     @IBOutlet weak var checkOutNowBtn: UIButton!
     @IBOutlet weak var productsCountLbl: UILabel!
     @IBOutlet weak var totalPriceLbl: UILabel!
-    var totalPriceString:NSString!
     
     @IBOutlet var collectionview: UICollectionView!
     var products: NSMutableArray!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CXMixpanel.sharedInstance.mixelCartTrack()
@@ -82,15 +82,11 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         self.updateProductsPriceLabel()
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
       return self.products.count
-        
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         flow.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5)
         let width = UIScreen.main.bounds.size.width - 6
@@ -102,8 +98,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         cell.cartviewminusbutton.layer.cornerRadius = 10
         cell.cartviewminusbutton.layer.borderWidth = 1
         cell.cartviewminusbutton.layer.borderColor = UIColor.clear.cgColor
-        
-        
         
         cell.cartviewplusbutton.backgroundColor = UIColor.lightGray
         cell.cartviewplusbutton.layer.cornerRadius = 10
@@ -117,9 +111,9 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             CX_Cart)!
         let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "pID = %@", products.pID!)) as NSArray
         products =  (cartlist.lastObject as? CX_Cart)!
-
+        
         //let products:CX_Cart = (self.products[indexPath.item]as?
-          //  CX_Cart)!
+        //  CX_Cart)!
         
         cell.cartviewimagetitlelabel.text = products.name
         
@@ -143,10 +137,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         cell.cartviewplusbutton.addTarget(self, action: #selector(CartViewController.quntityPlusButtonAction(_:)), for: .touchUpInside)
         cell.cartviewminusbutton.addTarget(self, action: #selector(CartViewController.quantityMinusButtonAction(_:)), for: .touchUpInside)
         
-        
-
-    return cell
-  
+        return cell
     }
     func cartDeleteBtnAction(_ button : UIButton!){
         print(button.tag-1)
@@ -158,7 +149,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         })
         self.updateProductsPriceLabel()
 
-    
     }
     
     func cartWishListButtonAction(_ button : UIButton!){
@@ -167,11 +157,9 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         self.products.removeObject(at: button.tag-1)
         self.collectionview.reloadData()
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
-            
         })
         self.updateProductsPriceLabel()
 
-        
     }
 
     func quntityPlusButtonAction(_ button : UIButton!){
@@ -213,9 +201,45 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
     }
     
-    func updateQuantityItems(){
+    @IBAction func checkoutNowBtn(_ sender: UIButton) {
         
-        
+        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
+        {
+            let name = CXSignInSignUpViewController()
+            self.navigationController?.pushViewController(name, animated: true)
+        }
+        else
+        {
+            let popup = PopupController
+                .create(self)
+                .customize(
+                    [
+                        .animation(.slideUp),
+                        .scrollable(false),
+                        .layout(.center),
+                        .backgroundStyle(.blackFilter(alpha: 0.7))
+                    ]
+                )
+                .didShowHandler { popup in
+                }
+                .didCloseHandler { _ in
+            }
+            let container = DemoPopupViewController2.instance()
+            container.closeHandler = { _ in
+                popup.dismiss()
+            }
+            
+            container.sendDetails = { _ in
+                let dataDict = container.dataDict
+                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
+                paymentcontroller.dataDict = dataDict
+                let navController = UINavigationController(rootViewController: paymentcontroller)
+                navController.navigationItem.hidesBackButton = true
+                self.present(navController, animated: true, completion: nil)
+            }
+            popup.show(container)
+        }
     }
     
     //MAR:Heder options enable
@@ -262,45 +286,5 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func checkoutNowBtn(_ sender: UIButton) {
-        
-        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
-        {
-            let name = CXSignInSignUpViewController()
-            self.navigationController?.pushViewController(name, animated: true)
-        }
-        else
-        {
-            let popup = PopupController
-                .create(self)
-                .customize(
-                    [
-                        .animation(.slideUp),
-                        .scrollable(false),
-                        .layout(.center),
-                        .backgroundStyle(.blackFilter(alpha: 0.7))
-                    ]
-                )
-                .didShowHandler { popup in
-                }
-                .didCloseHandler { _ in
-            }
-            let container = DemoPopupViewController2.instance() 
-            container.closeHandler = { _ in
-                popup.dismiss()
-            }
-
-            container.sendDetails = { _ in
-                let dataDict = container.dataDict
-                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
-                paymentcontroller.dataDict = dataDict
-                let navController = UINavigationController(rootViewController: paymentcontroller)
-                navController.navigationItem.hidesBackButton = true
-                self.present(navController, animated: true, completion: nil)
-            }
-            popup.show(container)
-        }
-    }
 }
 

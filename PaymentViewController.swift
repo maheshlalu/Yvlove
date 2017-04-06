@@ -25,22 +25,26 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     @IBOutlet weak var couponField: UITextField!
     @IBOutlet weak var otherPaymenOtionBtn: UIButton!
     
-    var amountData = NSInteger()
-    var products = NSMutableArray()
     var totalFinalData = NSInteger()
-    //var totalAmountDis = NSInteger()
     var standerdShipp = NSInteger()
-    var last = NSInteger()
-    var dataDict:NSMutableDictionary = NSMutableDictionary()
     var giftAmount = NSInteger()
-   // payment btn
+    
+    var products = NSMutableArray()
+    var dataDict:NSMutableDictionary = NSMutableDictionary()
+    
+    // payment btn
     @IBOutlet weak var cashonDeleveryBtn: UIButton!
     @IBOutlet weak var netBankingBtn: UIButton!
     @IBOutlet weak var prepaidBtn: UIButton!
+    
     //shipping Methods
     @IBOutlet weak var standedshippinbtn: UIButton!
     @IBOutlet weak var overNightShippingBtn: UIButton!
     @IBOutlet weak var expenditeShippinBtn: UIButton!
+   
+    //PayU
+    var params : PUMRequestParams = PUMRequestParams.shared()
+    var utils : Utils = Utils()
     
     var isCOD = false
     var isCreditOrDebit = false
@@ -49,13 +53,11 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     var isPayPal = false
     var isPayUBiz = false
     var isAmazonPay = false
-    
     var isOtherOptions = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
-        //self.navigationItem.title = "Payment"
         self.giftLabel1.textColor = UIColor.lightGray
         self.giftLabel2.textColor = UIColor.lightGray
         self.giftLabel3.textColor = UIColor.lightGray
@@ -64,96 +66,102 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         self.scrollView.contentSize.height = 780
         standerdShipp = 0
         giftAmount = 0
+        makeStangeredShippingBtn()
     }
+    
+    func makeStangeredShippingBtn(){
+        self.standedshippinbtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+        self.expenditeShippinBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.overNightShippingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        standerdShipp = 0
+        
+        if totalFinalData < 350{
+            self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
+            print(self.totalPayAmountlbl.text!)
+            standerdShipp = 40 + standerdShipp
+            print(standerdShipp)
+        }else{
+            self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
+        }
+    }
+    
+    func uncheckingThePaymentMethodButtons(){
+        self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.discountCreditDebitcardlbl.text = "0.00"
+        let total = String(Float(totalPayAmountlbl.text!)! - 0)
+        self.totalPayAmountlbl.text = total
+    }
+    
+    func uncheckingGiftOptions(){
+        self.totalPayAmountlbl.text = String(Int(Float(self.totalPayAmountlbl.text!)!) - giftAmount)
+        giftAmount = 0
+        self.giftWrapOtinanBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        giftWrapOtinanBtn.isSelected = false
+        giftBtn1.isEnabled = false
+        giftBtn2.isEnabled = false
+        giftBtn3.isEnabled = false
+        self.giftLabel1.textColor = UIColor.lightGray
+        self.giftLabel2.textColor = UIColor.lightGray
+        self.giftLabel3.textColor = UIColor.lightGray
+        self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+    
+    }
+    
+    func forApplyingCoupon(){
+        uncheckingThePaymentMethodButtons()
+        makeStangeredShippingBtn()
+        uncheckingGiftOptions()
+        
+    }
+    
     func getTheProducts(){
         let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToCart = %@", "1")) as NSArray
         for obj in cartlist {
             let data = obj as! CX_Cart
             let total = (data.quantity as? NSInteger)! * (data.productPrice as? NSInteger)!
-            amountData = NSInteger(self.totalPayAmountlbl.text!)! + total
-            self.totalPayAmountlbl.text = String(amountData)
-            totalFinalData = amountData
-            self.ordersTotallbl.text = String(amountData)
+            totalFinalData = NSInteger(self.totalPayAmountlbl.text!)! + total
+            self.totalPayAmountlbl.text = String(totalFinalData)
+            self.ordersTotallbl.text = String(totalFinalData)
         }
     }
-    @IBAction func giftBtnAction(_ sender: UIButton) {
-        
-        if sender.isSelected{
-            self.totalPayAmountlbl.text = String(Int(self.totalPayAmountlbl.text!)! - giftAmount)
-            giftAmount = 0
-            self.giftWrapOtinanBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            sender.isSelected  = false
-            giftBtn1.isEnabled = false
-            giftBtn2.isEnabled = false
-            giftBtn3.isEnabled = false
-            self.giftLabel1.textColor = UIColor.lightGray
-            self.giftLabel2.textColor = UIColor.lightGray
-            self.giftLabel3.textColor = UIColor.lightGray
-            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            last = Int(self.totalPayAmountlbl.text!)!
-        }
-        else{
-            self.giftWrapOtinanBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            sender.isSelected  = true
-            giftBtn1.isEnabled = true
-            giftBtn2.isEnabled = true
-            giftBtn3.isEnabled = true
-            self.giftLabel1.textColor = UIColor.black
-            self.giftLabel2.textColor = UIColor.black
-            self.giftLabel3.textColor = UIColor.black
-            last = Int(self.totalPayAmountlbl.text!)!
-        }
-    }
-    //MARK: Gift Wrap(Optional)
-    @IBAction func papaerGiftBtnTapped(_ sender: UIButton) {
-        // let Totalam = totalFinalData
-        
-        if sender.tag == 1{
-            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn1.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            giftAmount = 40
-            
-        }else if sender.tag == 2 {
-            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn2.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            giftAmount = 70
-        }else if sender.tag == 3{
-            self.giftBtn3.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            giftAmount = 100
-            
-        }
-        
-        print("gift amount \(giftAmount)")
-        self.totalPayAmountlbl.text = String(describing: totalFinalData + giftAmount + standerdShipp)
-        last = Int(self.totalPayAmountlbl.text!)!
-        //        print("papaerGiftBtnTapped \(totalFinalData)")
-        
-        
-    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         let menuItem = UIBarButtonItem(image: UIImage(named: "LeftArrow"), style: .plain, target: self, action: #selector(PaymentViewController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
-    func backBtnClicked()
-    {
+    
+    func backBtnClicked(){
         self.dismiss(animated: true, completion: nil)
     }
+    
     //MARK: TextField Delegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    //MARK: AlertView
+    func showAlertView(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "Alert!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //########################################################### COUPON ####################################################################
     //MARK: Coupon Button action
     @IBAction func couponCheckBtnTapped(_ sender: Any) {
+        self.forApplyingCoupon()
         // http://apps.storeongo.com:8081/Services/applyCoupon?orgId=4&couponCode=MARCH0618
         //var couponData = NSDictionary()
         if !(couponField.text?.isEmpty)!{
@@ -173,20 +181,6 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             self.showAlertView("Please enter Coupon Number", status: 1)
         }
     }
-    //MARK: AlertView
-    func showAlertView(_ message:String, status:Int) {
-        let alert = UIAlertController(title: "Alert!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            if status == 1 {
-                
-            }
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
     
     //MARK: Get Percentage coupon Type
     func convertCoponType(type: String,amount: String){
@@ -213,52 +207,12 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             self.totalPayAmountlbl.text = String(describing: Int(self.totalPayAmountlbl.text!)! - discountAmount)
         }
     }
-    //MARK: Payment Option Action
-    @IBAction func paymentOptionBtnTapped(_ sender: UIButton){
-      var totalAmountDis = Double(self.ordersTotallbl.text!)!
-        //  print("totalData \(totalAmountDis)")
-        if sender.tag == 1{
-            self.cashonDeleveryBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.discountCreditDebitcardlbl.text = "0.00"
-            isCOD = true
-        }else if sender.tag == 2 {
-            self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.prepaidBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-
-            totalAmountDis = (totalAmountDis * 0.03)
-            totalAmountDis = round(totalAmountDis)
-            self.discountCreditDebitcardlbl.text = String(totalAmountDis)
-            isCreditOrDebit = true
-        }else if sender.tag == 3{
-            self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.netBankingBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            totalAmountDis = (totalAmountDis * 3)/100
-            totalAmountDis = round(totalAmountDis)
-            self.discountCreditDebitcardlbl.text = String(totalAmountDis)
-            isNetBanking = true
-        }else if sender.tag == 4{
-            self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-            self.otherPaymenOtionBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
-            totalAmountDis = 0
-            isOtherOptions = true
-        }
-        
-        self.totalPayAmountlbl.text = String(describing: last - Int(totalAmountDis))
-        let str = self.totalPayAmountlbl.text! as String
-        self.totalPayAmountlbl.text = String(str.characters.dropFirst())
-    }
+    //########################################################### COUPON ###################################################################
+    
+    //########################################################### SHIPPING OPTIONS ###################################################################
     //MARK: Shipping Methods
     @IBAction func shippingMethodBtnTapped(_ sender: UIButton) {
-        
+        uncheckingThePaymentMethodButtons()
         if sender.tag == 1{
             self.standedshippinbtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.expenditeShippinBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
@@ -276,13 +230,126 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             standerdShipp = 280
         }
         if totalFinalData < 350{
-            self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp)
+            self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
+            print(self.totalPayAmountlbl.text!)
+            standerdShipp = 40 + standerdShipp
+            print(standerdShipp)
         }else{
             self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
         }
-        // print("shipping amount is \(standerdShipp)")
-        last = Int(self.totalPayAmountlbl.text!)!
     }
+    //########################################################### SHIPPING OPTIONS ###################################################################
+    
+    //########################################################### GIFT OPTIONS ###################################################################
+    @IBAction func giftBtnAction(_ sender: UIButton) {
+        uncheckingThePaymentMethodButtons()
+        if sender.isSelected{
+            //let totalPayAmount:Int = Int(self.totalPayAmountlbl.text!)!
+            self.totalPayAmountlbl.text = String(Int(Float(self.totalPayAmountlbl.text!)!) - giftAmount)
+            giftAmount = 0
+            self.giftWrapOtinanBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            sender.isSelected  = false
+            giftBtn1.isEnabled = false
+            giftBtn2.isEnabled = false
+            giftBtn3.isEnabled = false
+            self.giftLabel1.textColor = UIColor.lightGray
+            self.giftLabel2.textColor = UIColor.lightGray
+            self.giftLabel3.textColor = UIColor.lightGray
+            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+        }
+        else{
+            self.giftWrapOtinanBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+            sender.isSelected  = true
+            giftBtn1.isEnabled = true
+            giftBtn2.isEnabled = true
+            giftBtn3.isEnabled = true
+            self.giftLabel1.textColor = UIColor.black
+            self.giftLabel2.textColor = UIColor.black
+            self.giftLabel3.textColor = UIColor.black
+        }
+    }
+    
+    //MARK: Gift Wrap(Optional)
+    @IBAction func papaerGiftBtnTapped(_ sender: UIButton) {
+        // let Totalam = totalFinalData
+        uncheckingThePaymentMethodButtons()
+        if sender.tag == 1{
+            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn1.setImage(UIImage(named: "CheckedFill"), for: .normal)
+            giftAmount = 40
+        }else if sender.tag == 2 {
+            self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn2.setImage(UIImage(named: "CheckedFill"), for: .normal)
+            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            giftAmount = 70
+        }else if sender.tag == 3{
+            self.giftBtn3.setImage(UIImage(named: "CheckedFill"), for: .normal)
+            self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+            giftAmount = 100
+            
+        }
+        self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
+    }
+    //########################################################### GIFT OPTIONS ###################################################################
+    
+    //########################################################### PAYMENT OPTIONS ###################################################################
+    //MARK: Payment Option Action
+    @IBAction func paymentOptionBtnTapped(_ sender: UIButton){
+        let totalAmountDis = Float(self.ordersTotallbl.text!)!
+        print(self.totalPayAmountlbl.text!)
+        var discountPrice:Float = Float()
+        //  print("totalData \(totalAmountDis)")
+        if sender.tag == 1 || sender.tag == 5 {
+            let total = String(Float(totalPayAmountlbl.text!)! + Float(self.discountCreditDebitcardlbl.text!)!)
+            self.totalPayAmountlbl.text = total
+            if sender.tag == 1{
+                self.cashonDeleveryBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.discountCreditDebitcardlbl.text = "0.00"
+                discountPrice = 0
+                isCOD = true
+            }else if sender.tag == 5{
+                self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.otherPaymenOtionBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                discountPrice = 0
+                self.discountCreditDebitcardlbl.text = "0.00"
+                isOtherOptions = true
+            }
+        }else if sender.tag == 2 || sender.tag == 3{
+            let total = String(Float(totalPayAmountlbl.text!)! + Float(self.discountCreditDebitcardlbl.text!)!)
+            self.totalPayAmountlbl.text = total
+            if sender.tag == 2{
+                self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.prepaidBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                self.netBankingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                isCreditOrDebit = true
+            }else if sender.tag == 3{
+                self.cashonDeleveryBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.prepaidBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                self.netBankingBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
+                self.otherPaymenOtionBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
+                isNetBanking = true
+            }
+            discountPrice = totalAmountDis * 0.03
+            self.discountCreditDebitcardlbl.text = String(discountPrice)
+        }
+        
+        let total = String(Float(totalPayAmountlbl.text!)! - discountPrice)
+        self.totalPayAmountlbl.text = total
+    }
+    //########################################################### PAYMENT OPTIONS ###################################################################
+}
+
+extension PaymentViewController{
     
     @IBAction func paymentBtnAction(_ sender: Any) {
         
@@ -307,7 +374,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             CXAppDataManager.sharedInstance.placeOder(name as! String, email:email as! String, address1:address1 as! String, address2:address2 as! String, number: mobile as! String ,subTotal:self.totalPayAmountlbl.text!,orderType:"PlaceOrder_COD" ,completion: { (isDataSaved) in
                 self.dismiss(animated: true, completion: {self.view.makeToast(message: "Product Ordered Successfully!!!")})
             })
-        }else if isCreditOrDebit{
+        }else if isCreditOrDebit || isNetBanking{
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getTestPaymentGatewayUrl(), parameters: ["name":name as AnyObject,"email":email as AnyObject,"amount":self.totalPayAmountlbl.text! as AnyObject,"description":"NeedyBee Payment" as AnyObject, "Phone":mobile as AnyObject,"macId":UserDefaults.standard.value(forKey: "MAC_ID")! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 
                 let payMentCntl : CXPayMentController = CXPayMentController()
@@ -330,9 +397,6 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             self.otherPaymentListAlert()
         }
     }
-}
-
-extension PaymentViewController{
     
     //MARK: Other payment Otions (AlertView)
     func otherPaymentListAlert(){
@@ -341,12 +405,20 @@ extension PaymentViewController{
             (alert: UIAlertAction!) -> Void in
             print("Paytm clicked")
             self.paytmOptionTapped()
+            
         })
-        let saveAction = UIAlertAction(title: "Payu", style: .default, handler: {
+        let saveAction = UIAlertAction(title: "PayU Biz", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.payUstartPayment()
+            
         })
-        let amezonAction = UIAlertAction(title: "Amezon Pay", style: .default, handler: {
+        let amezonAction = UIAlertAction(title: "Amazon Pay", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            self.showAlertViewWithTitle(title: "Alert", message: "under construction ")
+        })
+        let PaypalAction = UIAlertAction(title: "Paypal", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.showAlertViewWithTitle(title: "Alert", message: "under construction ")
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -355,6 +427,7 @@ extension PaymentViewController{
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(amezonAction)
+        optionMenu.addAction(PaypalAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
         
@@ -383,6 +456,8 @@ extension PaymentViewController{
         orderDict["ORDER_ID"] = "TestMerchant000111008"
         orderDict["REQUEST_TYPE"] = "DEFAULT"
         orderDict["CUST_ID"] = "1234567890"
+        orderDict["CALLBACK_URL"] = "https://pguat.paytm.com/paytmchecksum/paytmCheckSumVerify.jsp"
+        orderDict["CHECKSUMHASH"] = "o3ARWrsxEfuJwDhkG7/m57ZU+YpHJWNVOTqJb9kfp0fbioRG/lsn1ReNBPUr0UKMMB5Iq4e/JUVSHrbFl9g1VyCyQqcHl/jPOqNvYHVE4Ko="
         
         let order: PGOrder = PGOrder(params: orderDict as[NSObject : AnyObject])
         
@@ -392,7 +467,6 @@ extension PaymentViewController{
         PGServerEnvironment.selectServerDialog(self.view, completionHandler: {(type: ServerType) -> Void in
             
             let txnController = PGTransactionViewController.init(transactionFor: order)
-            
             
             if type != eServerTypeNone {
                 txnController?.serverType = type
@@ -425,20 +499,33 @@ extension PaymentViewController{
         }
     }
     
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
     
     // MARK: Delegate methods of Payment SDK.
-    
-    func didSucceedTransaction(_ controller: PGTransactionViewController!, response: [AnyHashable : Any]!) {
-        print("ViewController::didSucceedTransactionresponse= %@", response)
-    }
-    func didFailTransaction(_ controller: PGTransactionViewController!, error: Error!, response: [AnyHashable : Any]!) {
-        print("ViewController::didFailTransaction error = %@ response= %@", error, response)
-    }
-    func didCancelTransaction(_ controller: PGTransactionViewController!, error: Error!, response: [AnyHashable : Any]!) {
-        self.removeController(controller: controller)
+    func didFinishedResponse(_ controller: PGTransactionViewController!, response responseString: String!) {
+        print("response data is \(responseString.description)")
+        let dict = convertToDictionary(text: responseString)
+        print("Dict values \(dict)")
+        //let respons
+        
         
     }
-    func didFinishCASTransaction(_ controller: PGTransactionViewController!, response: [AnyHashable : Any]!) {
-        print("ViewController::didFinishCASTransaction:response = %@", response)
+    func didCancelTrasaction(_ controller: PGTransactionViewController!) {
+        print("Cancel procees")
+        self.removeController(controller: controller)
+    }
+    func errorMisssingParameter(_ controller: PGTransactionViewController!, error: Error!) {
+        
+        print("error data \(error)")
+        
     }
 }

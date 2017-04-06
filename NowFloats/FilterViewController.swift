@@ -78,7 +78,6 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationItem.leftBarButtonItem = menuItem
         save = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(FilterViewController.filterTapped))
         self.navigationItem.rightBarButtonItem = save
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     func backBtnClicked(){
@@ -252,153 +251,159 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         print("seleted arrays \(finalPriceSelectedArr) \(finalAgeSelectedArr) \(finalDiscountSelectedArr)  \(finalColorSelectedArr)")
         
-        /*let converstationKeyPredicate = NSPredicate(format: "conversationKey = %@", conversationKey)
-         let messageKeyPredicate = NSPredicate(format: "messageKey = %@", messageKey)
-         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [converstationKeyPredicate, messageKeyPredicate])
-         request.predicate = andPredicate
-         */
-        
-        //        let mainPredicate:NSCompoundPredicate = NSCompoundPredicate()
-        //        let subPredicates:NSPredicate = NSPredicate()
-        
-        let dataArr = NSMutableArray()
-        var predicateStr:String = String()
-        var pricePredicateString:String = String()
-        var agePredicateString:String = String()
-        var discountPredicateString:String = String()
-        var colorPredicateString:String = String()
-        
-        //Price Predicate Construction
-        if finalPriceSelectedArr.count != 0{
-            if finalPriceSelectedArr.description.contains("0 - 500"){
-                pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
-            }
-            if finalPriceSelectedArr.description.contains("500 - 1000"){
-                pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
-            }
-            if finalPriceSelectedArr.description.contains("1000 - 2000"){
-                pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
-            }
-            if finalPriceSelectedArr.description.contains("More Than 2000"){
-                pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+        if finalPriceSelectedArr.count == 0 && finalAgeSelectedArr.count == 0 && finalDiscountSelectedArr.count == 0 && finalColorSelectedArr.count == 0{
+            let alert = UIAlertController(title: "Alert!!!", message: "Please select an option!!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            
+            /*let converstationKeyPredicate = NSPredicate(format: "conversationKey = %@", conversationKey)
+             let messageKeyPredicate = NSPredicate(format: "messageKey = %@", messageKey)
+             let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [converstationKeyPredicate, messageKeyPredicate])
+             request.predicate = andPredicate
+             */
+            
+            //        let mainPredicate:NSCompoundPredicate = NSCompoundPredicate()
+            //        let subPredicates:NSPredicate = NSPredicate()
+            
+            let dataArr = NSMutableArray()
+            var predicateStr:String = String()
+            var pricePredicateString:String = String()
+            var agePredicateString:String = String()
+            var discountPredicateString:String = String()
+            var colorPredicateString:String = String()
+            
+            //Price Predicate Construction
+            if finalPriceSelectedArr.count != 0{
+                if finalPriceSelectedArr.description.contains("0 - 500"){
+                    pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
+                }
+                if finalPriceSelectedArr.description.contains("500 - 1000"){
+                    pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
+                }
+                if finalPriceSelectedArr.description.contains("1000 - 2000"){
+                    pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
+                }
+                if finalPriceSelectedArr.description.contains("More Than 2000"){
+                    pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+                }
+                
+                let finalOne = String(pricePredicateString.characters.dropLast())
+                pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+                pricePredicateString = "(\(pricePredicateString))"
+                dataArr.add(pricePredicateString)
             }
             
-            let finalOne = String(pricePredicateString.characters.dropLast())
-            pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-            pricePredicateString = "(\(pricePredicateString))"
-            dataArr.add(pricePredicateString)
-        }
-        
-        //"0-3 Months","3-6 Months","6-12 Months","12-18 Months","18-24 Months","2-3 Years","3-4 Years","4-5 Years"
-        //SELECT * FROM ZCX_PRODUCTS WHERE ZAGE="1-4 Years" OR ZAGE="2-3 Years"
-        //SELECT * FROM ZCX_PRODUCTS WHERE ZPPRICE >=80 AND ZPPRICE<=150 OR  ZPPRICE >=0 AND ZPPRICE<=100 OR  ZPPRICE >=100 AND ZPPRICE<=2000 OR ZPPRICE>=2000 FOR PRICE
-        //SELECT * FROM ZCX_PRODUCTS WHERE (ZPPRICE >=0 AND ZPPRICE <=500 OR ZPPRICE >=1000 AND ZPPRICE <=2000) AND (ZAGE="0-2 years" OR ZAGE="2-5 years" OR ZAGE="1-4 Years" OR ZAGE="2-3 Years" OR ZAGE="3-8 Years")
-        //###########################################################################################################################################
-        /* //Age Predicate Construction
-         if finalAgeSelectedArr.count != 0{
-         if finalAgeSelectedArr.description.contains("0-3 Months"){
-         pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("3-6 Months"){
-         pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("6-12 Months"){
-         pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("12-18 Months"){
-         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("18-24 Months"){
-         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("2-3 Years"){
-         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("3-4 Years"){
-         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
-         }
-         
-         if finalAgeSelectedArr.description.contains("4-5 Years"){
-         pricePredicateString = pricePredicateString + " pPrice>=2000 #"
-         }
-         
-         
-         let finalOne = String(pricePredicateString.characters.dropLast())
-         pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-         print(pricePredicateString)
-         
-         }
-         */
-        //###########################################################################################################################################
-        
-        
-        //Dummy Age predicate. Please remove after updation of server. For any queries consult Naresh.
-        //"1-4 Years","2-3 Years","0-2 years","2-5 years","2-6 years","3-8 Years" --- Dummy array
-        if finalAgeSelectedArr.count != 0{
+            //"0-3 Months","3-6 Months","6-12 Months","12-18 Months","18-24 Months","2-3 Years","3-4 Years","4-5 Years"
+            //SELECT * FROM ZCX_PRODUCTS WHERE ZAGE="1-4 Years" OR ZAGE="2-3 Years"
+            //SELECT * FROM ZCX_PRODUCTS WHERE ZPPRICE >=80 AND ZPPRICE<=150 OR  ZPPRICE >=0 AND ZPPRICE<=100 OR  ZPPRICE >=100 AND ZPPRICE<=2000 OR ZPPRICE>=2000 FOR PRICE
+            //SELECT * FROM ZCX_PRODUCTS WHERE (ZPPRICE >=0 AND ZPPRICE <=500 OR ZPPRICE >=1000 AND ZPPRICE <=2000) AND (ZAGE="0-2 years" OR ZAGE="2-5 years" OR ZAGE="1-4 Years" OR ZAGE="2-3 Years" OR ZAGE="3-8 Years")
+            //###########################################################################################################################################
+            /* //Age Predicate Construction
+             if finalAgeSelectedArr.count != 0{
+             if finalAgeSelectedArr.description.contains("0-3 Months"){
+             pricePredicateString = " pPrice>=0 AND pPrice<=500 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("3-6 Months"){
+             pricePredicateString = pricePredicateString + " pPrice>=500 AND pPrice<=1000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("6-12 Months"){
+             pricePredicateString = pricePredicateString + " pPrice>=1000 AND pPrice<=2000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("12-18 Months"){
+             pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("18-24 Months"){
+             pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("2-3 Years"){
+             pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("3-4 Years"){
+             pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+             }
+             
+             if finalAgeSelectedArr.description.contains("4-5 Years"){
+             pricePredicateString = pricePredicateString + " pPrice>=2000 #"
+             }
+             
+             
+             let finalOne = String(pricePredicateString.characters.dropLast())
+             pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+             print(pricePredicateString)
+             
+             }
+             */
+            //###########################################################################################################################################
             
-            var filteredData:String = String()
-            for filter in finalAgeSelectedArr{
-                filteredData = filteredData + " age=\"\(filter)\" #"
+            
+            //Dummy Age predicate. Please remove after updation of server. For any queries consult Naresh.
+            //"1-4 Years","2-3 Years","0-2 years","2-5 years","2-6 years","3-8 Years" --- Dummy array
+            if finalAgeSelectedArr.count != 0{
+                
+                var filteredData:String = String()
+                for filter in finalAgeSelectedArr{
+                    filteredData = filteredData + " age=\"\(filter)\" #"
+                }
+                
+                let finalOne = String(filteredData.characters.dropLast())
+                agePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+                agePredicateString = "(\(agePredicateString))"
+                dataArr.add(agePredicateString)
             }
             
-            let finalOne = String(filteredData.characters.dropLast())
-            agePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-            agePredicateString = "(\(agePredicateString))"
-            dataArr.add(agePredicateString)
-        }
-        
-        //Discount Predicate Construction
-        if finalDiscountSelectedArr.count != 0{
-            var filteredData:String = String()
-            for filter in finalDiscountSelectedArr{
-                filteredData = filteredData + " discountprice=\"\(String((filter as! String).characters.dropLast()))\" #"
+            //Discount Predicate Construction
+            if finalDiscountSelectedArr.count != 0{
+                var filteredData:String = String()
+                for filter in finalDiscountSelectedArr{
+                    filteredData = filteredData + " discountprice=\"\(String((filter as! String).characters.dropLast()))\" #"
+                }
+                let finalOne = String(filteredData.characters.dropLast())
+                discountPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+                discountPredicateString = "(\(discountPredicateString))"
+                dataArr.add(discountPredicateString)
             }
-            let finalOne = String(filteredData.characters.dropLast())
-            discountPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-            discountPredicateString = "(\(discountPredicateString))"
-            dataArr.add(discountPredicateString)
-        }
-        
-        //Color Predicate Construction
-        if finalColorSelectedArr.count != 0 {
-            var filteredData:String = String()
-            for filter in finalColorSelectedArr{
-                //let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
-                filteredData = filteredData + " metaData contains[c] \"\(filter)\" #"
+            
+            //Color Predicate Construction
+            if finalColorSelectedArr.count != 0 {
+                var filteredData:String = String()
+                for filter in finalColorSelectedArr{
+                    //let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
+                    filteredData = filteredData + " metaData contains[c] \"\(filter)\" #"
+                }
+                let finalOne = String(filteredData.characters.dropLast())
+                colorPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
+                colorPredicateString = "(\(colorPredicateString))"
+                dataArr.add(colorPredicateString)
             }
-            let finalOne = String(filteredData.characters.dropLast())
-            colorPredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-            colorPredicateString = "(\(colorPredicateString))"
-            dataArr.add(colorPredicateString)
+            
+            //Attaching the complete predicate
+            var filteredData:String = String()
+            for filter in dataArr{
+                filteredData = "\(filteredData) AND \(filter)"
+            }
+            let finalPredicate = String(filteredData.characters.dropFirst(5))
+            print(finalPredicate)
+            predicateStr = finalPredicate
+            
+            var dummyArr = NSArray()
+            let predicate = NSPredicate.init(format:predicateStr)
+            dummyArr = CX_Products.mr_findAll(with: predicate) as NSArray!
+            print(dummyArr.count)
+            
+            self.dismiss(animated: true) {
+                let filteredProductArry = dummyArr
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FILTER_COMPLETED"), object: filteredProductArry)
+            }
+            
         }
-        
-        //Attaching the complete predicate
-        var filteredData:String = String()
-        for filter in dataArr{
-            filteredData = "\(filteredData) AND \(filter)"
-        }
-        let finalPredicate = String(filteredData.characters.dropFirst(5))
-        print(finalPredicate)
-        predicateStr = finalPredicate
-        
-        var dummyArr = NSArray()
-        let predicate = NSPredicate.init(format:predicateStr)
-        dummyArr = CX_Products.mr_findAll(with: predicate) as NSArray!
-        print(dummyArr.count)
-        
-        self.dismiss(animated: true) {
-            let filteredProductArry = dummyArr
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FILTER_COMPLETED"), object: filteredProductArry)
-        }
-        
     }
-    
 }
 extension UIColor{
     func HexToColor(hexString: String, alpha:CGFloat? = 1.0) -> UIColor {
