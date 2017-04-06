@@ -50,8 +50,8 @@ class CXMixpanel: NSObject {
     //MARK: Call, Message us, View Map
     
     func trackTheCallInformation(){
-        mixpanel.timeEvent("Call")
-        mixpanel.track("Call")
+        mixpanel?.timeEvent("Call")
+        mixpanel?.track("Call")
     }
     
     func mixelcallTrack(){
@@ -59,51 +59,51 @@ class CXMixpanel: NSObject {
     }
     
     func mixelMessageTrack(){
-        mixpanel.timeEvent("Messaging")
-        mixpanel.track("Messaging")
+        mixpanel?.timeEvent("Messaging")
+        mixpanel?.track("Messaging")
     }
     func mixelViewMapTrack(){
-        mixpanel.timeEvent("Map")
-        mixpanel.track("Map")
+        mixpanel?.timeEvent("Map")
+        mixpanel?.track("Map")
     }
     func mixelAboutTrack(){
-        mixpanel.timeEvent("About us")
-        mixpanel.track("About us")
+        mixpanel?.timeEvent("About us")
+        mixpanel?.track("About us")
     }
     func mixelOrdersTrack(){
-        mixpanel.timeEvent("Orders")
-        mixpanel.track("Orders")
+        mixpanel?.timeEvent("Orders")
+        mixpanel?.track("Orders")
     }
     
     func mixelProfileTarck(){
-        mixpanel.timeEvent("Profile")
-        mixpanel.track("Profile")
+        mixpanel?.timeEvent("Profile")
+        mixpanel?.track("Profile")
     }
     
     func mixelCartTrack(){
-        mixpanel.timeEvent("Cart View")
-        mixpanel.track("Cart View")
+        mixpanel?.timeEvent("Cart View")
+        mixpanel?.track("Cart View")
         
     }
     
     func mixelFavoriteTrack(){
-        mixpanel.timeEvent("Products Favorite")
-        mixpanel.track("Products Favorite")
+        mixpanel?.timeEvent("Products Favorite")
+        mixpanel?.track("Products Favorite")
     }
     
     func mixelWishListTrack(){
-        mixpanel.timeEvent("Wishlist")
-        mixpanel.track("Wishlist")
+        mixpanel?.timeEvent("Wishlist")
+        mixpanel?.track("Wishlist")
     }
     
     func mixelGalleryTrack(){
-        mixpanel.timeEvent("Gallery")
-        mixpanel.track("Gallery")
+        mixpanel?.timeEvent("Gallery")
+        mixpanel?.track("Gallery")
     }
     
     func mixelNotificationTrack(){
-        mixpanel.timeEvent("Notifications")
-        mixpanel.track("Notifications")
+        mixpanel?.timeEvent("Notifications")
+        mixpanel?.track("Notifications")
     }
     /*
      

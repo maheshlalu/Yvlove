@@ -88,7 +88,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
 
         let weekday = getDayOfWeek(today: "\(year!)-\(month!)-\(day!)")//yyyy-mm-dd
         print(weekday)
-
+/*
         let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
         print(hrsOfOperation.description)
         
@@ -130,6 +130,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         default:break
         }
+ */
  
     }
     
@@ -265,7 +266,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 if indexPath.section == 2{
                     aboutUsExtra.extraTitleLbl.text = "We're happily available from"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.availability()
+                    //aboutUsExtra.extraDescLbl.text = self.availability()
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{
@@ -401,12 +402,31 @@ extension AboutUsViewController{
         let currentLat:Double = currentLat
         let currentLon:Double = currentLon
         let myLocation:CLLocation = CLLocation(latitude:currentLat, longitude: currentLon)
+        let lat = self.aboutUsDict.value(forKeyPath: "Latitude") as! String!
+        let long = self.aboutUsDict.value(forKeyPath: "Longitude") as! String!
         
+        if lat == "" || long == ""{
+        //self.showAlertViewWithTitle(title: "Warning", message: "No latitude and longitude ")
+            print("No get latitude and longitude from siverside ")
+        }else{
         let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.value(forKeyPath: "Latitude") as! String!)!, longitude: Double(self.aboutUsDict.value(forKeyPath: "Longitude") as! String!)!)
-        
         let distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
         print("Distance is \(distance)")
-
+        
         return distance
+        }
+        return 0
+        
+    }
+    
+    //MARK: Alert showing
+    func showAlertViewWithTitle(title : String,message:String) -> Void {
+        let alertController : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
