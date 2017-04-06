@@ -94,15 +94,15 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     
     func zoomToRegion() {
         
-        let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        
-        let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
-        
-        let annotation = Station(latitude: location.latitude, longitude: location.longitude)
-        
-        mapView.addAnnotation(annotation)
-        
-        mapView.setRegion(region, animated: true)
+//        let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+//        
+//        let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
+//        
+//        let annotation = Station(latitude: location.latitude, longitude: location.longitude)
+//        
+//        mapView.addAnnotation(annotation)
+//        
+//        mapView.setRegion(region, animated: true)
     }
     
     func showMapDirection(){
@@ -195,16 +195,16 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
         self.currentLon = locValue.longitude
         myLocation  = CLLocation(latitude:currentLat, longitude: currentLon)
         
-        let mallLocation = CLLocation(latitude: lat, longitude: lon)
+        //let mallLocation = CLLocation(latitude: lat, longitude: lon)
         
-        distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
-        print(distance)
+      //  distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
+        //print(distance)
         
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        
-       let distanceInKM = formatter.string(from: distance as NSNumber)
-        print(distanceInKM!)
+//        let formatter = NumberFormatter()
+//        formatter.minimumFractionDigits = 0
+//        
+//       let distanceInKM = formatter.string(from: distance as NSNumber)
+//        print(distanceInKM!)
         
  
     }
