@@ -42,6 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "App Launched", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
         }
         
+        //MARK: Google Plus
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        //GIDSignIn.sharedInstance().delegate = self
+
+        
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         FIRApp.configure()

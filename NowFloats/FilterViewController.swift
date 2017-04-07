@@ -127,6 +127,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                 cell.checkBtncolor.setImage(UIImage(named: "CheckedFill"), for: .normal)
                 cell.checkBtncolor.isSelected = true
             }
+            cell.selectionStyle = .none
             return cell
         }else{
             let cell:customcellFilter = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! customcellFilter
@@ -170,8 +171,10 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                     cell.radioButton.isSelected = true
                 }
             }
+            cell.selectionStyle = .none
             return cell
         }
+        
     }
     func radioBtnTapped(_ sender: UIButton){
         

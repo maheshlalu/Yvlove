@@ -15,11 +15,7 @@ import Alamofire
 
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var filterBtn: UIButton!
-    
-    @IBAction func filterBtnActtion(_ sender: UIButton) {
-    }
     @IBOutlet weak var viewAdditinalCategery: UIView!
-    
     @IBOutlet weak var lblEmptyProduct: UILabel!
     @IBOutlet weak var btnAdditinalCategery: UIButton!
     var arrAdditinalCategery = NSMutableArray()
@@ -55,6 +51,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
         
         self.tableviewAdditinalcategery.tableFooterView = UIView()
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+
     }
     
     func filterSelectionCompleted(notification:Notification){
@@ -75,10 +74,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func FilterBtnAction()
     {
+        
         //let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")as? FilterViewController
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let hashtagcontroller : FilterViewController = (storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController)!
-        let navController = UINavigationController(rootViewController: hashtagcontroller)
+        let filtercontroller : FilterViewController = (storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController)!
+        let navController = UINavigationController(rootViewController: filtercontroller)
         navController.navigationItem.hidesBackButton = false
        // hashtagcontroller.hashTagNamestr = hashTagName
         self.present(navController, animated: true, completion: nil)
@@ -126,7 +126,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
-        cell.textLabel?.text = subDict.value(forKey: "Name") as! String
+        cell.textLabel?.text = subDict.value(forKey: "Name") as? String
        // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
@@ -234,6 +234,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         NotificationCenter.default.addObserver(self,selector: #selector(filterSelectionCompleted(notification:)),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
         //FILTER_COMPLETED
         NotificationCenter.default.addObserver(self,selector: #selector(filterCompleted(notification:)),name: NSNotification.Name(rawValue: "FILTER_COMPLETED"),object: nil)
+       // NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
     }
     @IBAction func chooseBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()
@@ -379,7 +380,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+         self.viewAdditinalCategery.isHidden = true
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         print(products.json!)
@@ -563,4 +564,20 @@ extension ProductsViewController {
             self.updatecollectionview.reloadData()
         }
     }
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        
+        return true
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        
+        return true
+    }
+
 }
