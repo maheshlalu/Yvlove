@@ -30,6 +30,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         CXAppDataManager.sharedInstance.getOrders { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             self.ordersArray = jobs
+            print("order list is \(self.ordersArray)")
             self.orderstableview.reloadData()
         }
         

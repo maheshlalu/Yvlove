@@ -12,11 +12,9 @@ import Google
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
-
 protocol CXSingInDelegate {
     func didGoogleSignIn()
 }
-
 class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
     var googleResponseDict: NSDictionary! = nil
     var facebookResponseDict: NSDictionary! = nil
@@ -27,33 +25,28 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     var backButton:UIButton!
     var googlePlusButton:UIButton!
     var facebookBtn:UIButton!
-    
     var cScrollView:UIScrollView!
     var keyboardIsShown:Bool!
-    
     //var orgID:String! = CXConstant.MallID
     var profileImageStr:String!
     var profileImagePic:UIImageView!
     var delegate:CXSingInDelegate?
     var heder: UIView!
-    
     let signIn = GIDSignIn.sharedInstance()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white;
         self.keyboardIsShown = false
         self.customizeMainView()
         setUpDelegatesForGoogle()
+//        FIRInvites.inviteDialog()
         //self.setUpDelegatesForGoogle()
-        
     }
     func setUpDelegatesForGoogle()
     {
         signIn?.shouldFetchBasicProfile = true
         signIn?.delegate = self
         signIn?.uiDelegate = self
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(CXSignInSignUpViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ForgotNotification"), object: nil)
@@ -64,11 +57,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         signIn?.signOut()
         signIn?.clientID = "709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com"
         signIn?.signIn()
-        
     }
     func facebookBtnAction()
     {
-        
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if (error == nil){

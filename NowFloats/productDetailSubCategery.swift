@@ -22,7 +22,7 @@ class productDetailSubCategery: UIViewController {
     @IBOutlet weak var noProductlbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         print(selectedCategoryType)
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
         self.productSubCategeryServiceCall(categeryType: productCategeryType, referID: referID)
@@ -43,9 +43,9 @@ class productDetailSubCategery: UIViewController {
     }
     func backBtnClicked()
     {
-        
-        self.dismiss(animated: true, completion: nil)
-       
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CartAction"), object: nil)
+        }
     }
     
     //MARK: product MasterCategery
@@ -57,18 +57,17 @@ class productDetailSubCategery: UIViewController {
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
             if jobsData.count == 0{
-           // self.showAlertView("No Products right now here", status: 1)
+                // self.showAlertView("No Products right now here", status: 1)
                 self.additinalTable.isHidden = true
             }else{
-            for dictData in jobsData {
-                let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
-                self.categoryArr.add(dictindividual)
-                self.boolArray.add(true)
-            }
-            self.additinalTable.reloadData()
+                for dictData in jobsData {
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    self.categoryArr.add(dictindividual)
+                    self.boolArray.add(true)
+                }
+                self.additinalTable.reloadData()
             }
         }
-        
     }
     
     //MARK: AlertView
@@ -83,7 +82,7 @@ class productDetailSubCategery: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     //MARK: Get Sub With Sub categery items
     func productSubWithSubCategeryServiceCall(categeryType: String,referID: String){
         // http://apps.storeongo.com:8081/Services/getMasters?type=p3rdlevelCategories&mallId=396&refTypeProperty=SubCategory&refId=8043
@@ -92,23 +91,21 @@ class productDetailSubCategery: UIViewController {
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             self.additinalDataArr = responceDic.value(forKey: "jobs")! as! NSArray
             if self.additinalDataArr.count == 0{
-            self.showAlertView("No Products right now here", status: 1)
+                self.showAlertView("No Products right now here", status: 1)
                 self.additinalTable.reloadData()
             }else{
-            DispatchQueue.main.async {
-                 self.additinalTable.reloadData()
+                DispatchQueue.main.async {
+                    self.additinalTable.reloadData()
+                }
             }
         }
-        }
-      }
     }
+}
 
 extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
-    
     func numberOfSections(in tableView: UITableView) -> Int // Default is 1 if not implemented
     {
         return categoryArr.count
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -135,6 +132,7 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
         self.dismiss(animated: true) {
             let selectedStr = "\(self.selectedCategoryType)|\(self.selectedSubCategoryType)|\(self.selectedP3Category)"
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FilterSelectionCompleted"), object: selectedStr)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CartAction"), object: nil)
         }
     }
     
@@ -146,9 +144,7 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
     {
         let view = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
         view.backgroundColor = UIColor.lightGray
-        
         let label = UILabel.init(frame: CGRect(x: 10, y: 12, width: tableView.frame.size.width, height: 20))
-        //label.text = categoryArr[section] as? String
         let subDict = self.categoryArr.object(at: section) as! NSDictionary
         label.text = subDict.value(forKey: "Name") as? String
         label.textAlignment = NSTextAlignment.left
@@ -159,32 +155,23 @@ extension productDetailSubCategery : UITableViewDataSource,UITableViewDelegate {
         btn.addTarget(self, action: #selector(headerBtnClicked), for: .touchUpInside)
         btn.tag = section
         view.addSubview(btn)
-        
         return view
     }
     
     func headerBtnClicked(sender:UIButton)
     {
-//        if boolArray[sender.tag] as! Bool {
-//            boolArray.remove(at: sender.tag)
-//            boolArray.insert(false, at: sender.tag)
-//        }
-//        else {
-//            boolArray.remove(at: sender.tag)
-//            boolArray.insert(true, at: sender.tag)
-//        }
         let dict = categoryArr[sender.tag] as! NSDictionary
         selectedSubCategoryType = NSString.init(format: "%@(%@)", dict.value(forKey: "Name") as! CVarArg,dict.value(forKey: "id") as! CVarArg) as String
         boolArray.removeAllObjects()
         for (index, element) in categoryArr.enumerated() {
             if index == sender.tag {
-                 self.boolArray.add(true)
+                self.boolArray.add(true)
             }
             else {
                 self.boolArray.add(false)
             }
         }
-         productSubWithSubCategeryServiceCall(categeryType: dict.value(forKey: "Name") as! String, referID: CXAppConfig.resultString(input: dict.value(forKey: "id") as AnyObject))
+        productSubWithSubCategeryServiceCall(categeryType: dict.value(forKey: "Name") as! String, referID: CXAppConfig.resultString(input: dict.value(forKey: "id") as AnyObject))
     }
 }
 

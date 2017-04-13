@@ -49,11 +49,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         getTheProducts()
        // setupDropDowns()
         self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
-        
         self.tableviewAdditinalcategery.tableFooterView = UIView()
-        
-        //NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
-
+    }
+    func CartActionNO(notification:Notification){
+    NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ProfileNotification"), object: nil)
+    
     }
     
     func filterSelectionCompleted(notification:Notification){
@@ -235,6 +236,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         //FILTER_COMPLETED
         NotificationCenter.default.addObserver(self,selector: #selector(filterCompleted(notification:)),name: NSNotification.Name(rawValue: "FILTER_COMPLETED"),object: nil)
        // NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(CartActionNO(notification:)),name: NSNotification.Name(rawValue: "CartAction"),object: nil)
+        
     }
     @IBAction func chooseBtnAction(_ sender: AnyObject) {
         chooseArticleDropDown.show()

@@ -7,8 +7,15 @@
 //
 
 import UIKit
-
-class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegate,PGTransactionDelegate {
+class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegate,PGTransactionDelegate,PayPalPaymentDelegate {
+    var environment:String = PayPalEnvironmentNoNetwork {
+        willSet(newEnvironment) {
+            if (newEnvironment != environment) {
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
+            }
+        }
+    }
+    var payPalConfig = PayPalConfiguration() // default
     
     @IBOutlet weak var giftLabel1: UILabel!
     @IBOutlet weak var giftLabel2: UILabel!
@@ -41,7 +48,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     @IBOutlet weak var standedshippinbtn: UIButton!
     @IBOutlet weak var overNightShippingBtn: UIButton!
     @IBOutlet weak var expenditeShippinBtn: UIButton!
-   
+    
     //PayU
     var params : PUMRequestParams = PUMRequestParams.shared()
     var utils : Utils = Utils()
@@ -57,6 +64,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Payment"
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
         self.giftLabel1.textColor = UIColor.lightGray
         self.giftLabel2.textColor = UIColor.lightGray
@@ -109,7 +117,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
         self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
         self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
-    
+        
     }
     
     func forApplyingCoupon(){
@@ -134,6 +142,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         let menuItem = UIBarButtonItem(image: UIImage(named: "LeftArrow"), style: .plain, target: self, action: #selector(PaymentViewController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        PayPalMobile.preconnect(withEnvironment: environment)
     }
     
     func backBtnClicked(){
@@ -206,16 +215,8 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             }
             self.ordersTotallbl.text = String(describing: Float(self.ordersTotallbl.text!)! - Float(couponDiscountLbl.text!)!)
             self.totalPayAmountlbl.text = String(describing: Float(self.totalPayAmountlbl.text!)! - Float(couponDiscountLbl.text!)!)
-           // totalFinalData = totalFinalData - Int(couponDiscountLbl.text!)!
-           // print("totla data \(NSInteger(self.totalPayAmountlbl!.text!)!)")
-
-            
         }
-        
-        print("after discount \(totalFinalData - discountAmount)")
         totalFinalData = totalFinalData - discountAmount
-        //print("totla data \(Int(self.totalPayAmountlbl.text!)!)")
-        //self.totalFinalData = Int(self.totalPayAmountlbl.text!)!
     }
     //########################################################### COUPON ###################################################################
     
@@ -415,12 +416,10 @@ extension PaymentViewController{
             (alert: UIAlertAction!) -> Void in
             print("Paytm clicked")
             self.paytmOptionTapped()
-            
         })
         let saveAction = UIAlertAction(title: "PayU Biz", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.startPayment()
-            
         })
         let amezonAction = UIAlertAction(title: "Amazon Pay", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -428,9 +427,8 @@ extension PaymentViewController{
         })
         let PaypalAction = UIAlertAction(title: "Paypal", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.showAlertViewWithTitle(title: "Alert", message: "under construction ")
+            self.paypalbtnTapped()
         })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
@@ -440,44 +438,27 @@ extension PaymentViewController{
         optionMenu.addAction(PaypalAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
-        
-        
     }
     
     func paytmOptionTapped(){
-        //Step 1: Create a default merchant config object
         let mc: PGMerchantConfiguration = PGMerchantConfiguration.default()
-        
-        //Step 2: If you have your own checksum generation and validation url set this here. Otherwise use the default Paytm urls
-        
         mc.checksumGenerationURL = "https://pguat.paytm.com/paytmchecksum/paytmCheckSumGenerator.jsp"
         mc.checksumValidationURL = "https://pguat.paytm.com/paytmchecksum/paytmCheckSumVerify.jsp"
-        
-        //Step 3: Create the order with whatever params you want to add. But make sure that you include the merchant mandatory params
         let orderDict = NSMutableDictionary()
-        
         orderDict["MID"] = "WorldP64425807474247"
-        //Merchant configuration in the order object
         orderDict["CHANNEL_ID"] = "WAP"
         orderDict["INDUSTRY_TYPE_ID"] = "Retail"
         orderDict["WEBSITE"] = "worldpressplg"
-        //Order configuration in the order object
         orderDict["TXN_AMOUNT"] = "100"
         orderDict["ORDER_ID"] = "TestMerchant000111008"
         orderDict["REQUEST_TYPE"] = "DEFAULT"
         orderDict["CUST_ID"] = "1234567890"
         orderDict["CALLBACK_URL"] = "https://pguat.paytm.com/paytmchecksum/paytmCheckSumVerify.jsp"
         orderDict["CHECKSUMHASH"] = "o3ARWrsxEfuJwDhkG7/m57ZU+YpHJWNVOTqJb9kfp0fbioRG/lsn1ReNBPUr0UKMMB5Iq4e/JUVSHrbFl9g1VyCyQqcHl/jPOqNvYHVE4Ko="
-        
         let order: PGOrder = PGOrder(params: orderDict as[NSObject : AnyObject])
-        
         print("oder list is \(order)")
-        //Step 4: Choose the PG server. In your production build dont call selectServerDialog. Just create a instance of the
-        //PGTransactionViewController and set the serverType to eServerTypeProduction
         PGServerEnvironment.selectServerDialog(self.view, completionHandler: {(type: ServerType) -> Void in
-            
             let txnController = PGTransactionViewController.init(transactionFor: order)
-            
             if type != eServerTypeNone {
                 txnController?.serverType = type
                 txnController?.merchant = mc
@@ -498,7 +479,6 @@ extension PaymentViewController{
             })
         }
     }
-    
     func removeController(controller: PGTransactionViewController) {
         if self.navigationController != nil {
             self.navigationController!.popViewController(animated: true)
@@ -508,7 +488,6 @@ extension PaymentViewController{
             })
         }
     }
-    
     func convertToDictionary(text: String) -> [String: Any]? {
         if let data = text.data(using: .utf8) {
             do {
@@ -525,26 +504,17 @@ extension PaymentViewController{
         print("response data is \(responseString.description)")
         let dict = convertToDictionary(text: responseString)
         print("Dict values \(dict)")
-        //let respons
-        
-        
     }
     func didCancelTrasaction(_ controller: PGTransactionViewController!) {
         print("Cancel procees")
         self.removeController(controller: controller)
     }
     func errorMisssingParameter(_ controller: PGTransactionViewController!, error: Error!) {
-        
         print("error data \(error)")
-        
     }
     //MARK: PayU integration
     func startPayment() -> Void {
-        
-            params.amount = self.totalPayAmountlbl.text!
-    //PUMEnvironment.test for test environment and PUMEnvironment.production for live environment.
-       
-
+        params.amount = self.totalPayAmountlbl.text!
         params.environment = PUMEnvironment.test;
         params.firstname = dataDict.value(forKey: "name") as! String!
         params.key = "40747T"
@@ -556,9 +526,6 @@ extension PaymentViewController{
         params.txnid = utils.getRandomString(2);  //set your correct transaction id here
         params.surl = "https://www.payumoney.com/mobileapp/payumoney/success.php";
         params.furl = "https://www.payumoney.com/mobileapp/payumoney/failure.php";
-        
-        //Below parameters are optional. It is to store any information you would like to save in PayU Database regarding trasnsaction. If you do not intend to store any additional info, set below params as empty strings.
-        
         params.udf1 = "";
         params.udf2 = "";
         params.udf3 = "";
@@ -569,54 +536,42 @@ extension PaymentViewController{
         params.udf8 = "";
         params.udf9 = "";
         params.udf10 = "";
-        //We strictly recommend that you calculate hash on your server end. Just so that you can quickly see demo app working, we are providing a means to do it here. Once again, this should be avoided.
         if(params.environment == PUMEnvironment.production){
             generateHashForProdAndNavigateToSDK()
         }
         else{
             calculateHashFromServer()
         }
-        // assign delegate for payment callback.
         params.delegate = self;
     }
-    
     func generateHashForProdAndNavigateToSDK() -> Void {
         let txnid = params.txnid!
-        //add your salt in place of 'salt' if you want to test on live environment.
-        //We suggest to calculate hash from server and not to keep the salt in app as it is a severe security vulnerability.
         let hashSequence : NSString = "\(params.key)|\(txnid)|\(params.amount)|\(params.productinfo)|\(params.firstname)|\(params.email)|||||||||||salt" as NSString
         let data :NSString = utils.createSHA512(hashSequence as String!) as NSString
         params.hashValue = data as String!;
         startPaymentFlow();
     }
-    
-    
     func transactinCanceledByUser() -> Void {
         self.dismiss(animated: true){
             self.showAlertViewWithTitle(title: "Message", message: "Payment Cancelled ")
         }
     }
-    
     func startPaymentFlow() -> Void {
         let paymentVC : PUMMainVController = PUMMainVController()
         var paymentNavController : UINavigationController;
         paymentNavController = UINavigationController(rootViewController: paymentVC);
         self.present(paymentNavController, animated: true, completion: nil)
     }
-    
     func transactionCompleted(withResponse response : NSDictionary,errorDescription error:NSError) -> Void {
         self.dismiss(animated: true){
             self.showAlertViewWithTitle(title: "Message", message: "congrats! Payment is Successful")
         }
     }
-    
-    
     func transactinFailed(withResponse response : NSDictionary,errorDescription error:NSError) -> Void {
         self.dismiss(animated: true){
             self.showAlertViewWithTitle(title: "Message", message: "Oops!!! Payment Failed")
         }
     }
-    
     func showAlertViewWithTitle(title : String,message:String) -> Void {
         let alertController : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
@@ -626,14 +581,11 @@ extension PaymentViewController{
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
     // MARK:HASH CALCULATION
     
-    //hash calculation strictly recommended to be done on your server end. This is just to show the hash sequence format and oe the api call for hash should be. Encryption is SHA-512.
     func prepareHashBody()->NSString{
         return "key=\(params.key!)&amount=\(params.amount!)&txnid=\(params.txnid!)&productinfo=\(params.productinfo!)&email=\(params.email!)&firstname=\(params.firstname!)" as NSString;
     }
-    
     func calculateHashFromServer(){
         let config = URLSessionConfiguration.default // Session Configuration
         let session = URLSession(configuration: config) // Load configuration into Session
@@ -641,7 +593,6 @@ extension PaymentViewController{
         var request = URLRequest(url: url)
         request.httpBody = prepareHashBody().data(using: String.Encoding.utf8.rawValue)
         request.httpMethod = "POST"
-        
         let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
             if error != nil {
@@ -672,9 +623,58 @@ extension PaymentViewController{
         })
         task.resume()
     }
-
+    //MARK: PayPal integration
+    func paypalbtnTapped()
+    {
+        self.paypaldata()
+        //print("PayPal iOS SDK Version: \(PayPalMobile.libraryVersion())")
+        //let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 2, withPrice: NSDecimalNumber(string: "84.99"), withCurrency: "USD", withSku: "Hip-0037")
+        //let item2 = PayPalItem(name: "Free rainbow patch", withQuantity: 1, withPrice: NSDecimalNumber(string: "0.00"), withCurrency: "USD", withSku: "Hip-00066")
+        let item3 = PayPalItem(name: "Needybee", withQuantity: 1, withPrice: NSDecimalNumber(string: "37.99"), withCurrency: "USD", withSku: "IND-00291")
+        let items = [item3]
+        let subtotal = PayPalItem.totalPrice(forItems: items)
+        let shipping = NSDecimalNumber(string: "5.99")
+        let tax = NSDecimalNumber(string: "2.50")
+        let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
+        let total = subtotal.adding(shipping).adding(tax)
+        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "NeedyBee products", intent: .sale)
+        payment.items = items
+        payment.paymentDetails = paymentDetails
+        if (payment.processable) {
+            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
+            print("Payment processalbe: \(payment)")
+            present(paymentViewController!, animated: true, completion: nil)
+        }
+        else {
+            print("Payment not processalbe: \(payment)")
+        }
+    }
     
-    
+    func paypaldata(){
+        payPalConfig.acceptCreditCards = true
+        payPalConfig.languageOrLocale = "en"
+        payPalConfig.alwaysDisplayCurrencyCodes = true
+        payPalConfig.defaultUserPhoneCountryCode = "(91+)"
+        payPalConfig.defaultUserPhoneNumber = "8297211777"
+        payPalConfig.defaultUserEmail = "challasrinu.mca@gmail.com"
+        payPalConfig.merchantName = "Awesome Shirts, Inc."
+        payPalConfig.merchantPrivacyPolicyURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
+        payPalConfig.merchantUserAgreementURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
+        payPalConfig.languageOrLocale = Locale.preferredLanguages[0]
+        payPalConfig.payPalShippingAddressOption = .payPal;
+    }
+    //MARK: PayPalPaymentDelegate
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+        print("PayPal Payment Cancelled")
+        paymentViewController.dismiss(animated: true, completion: nil)
+    }
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
+        print("PayPal Payment Success !")
+        paymentViewController.dismiss(animated: true, completion: { () -> Void in
+            // send completed confirmaion to your server
+            print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
+        })
+    }
 }
 
 ////////////////////////// modifying ////////////////

@@ -81,7 +81,9 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     func backBtnClicked(){
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CartAction"), object: nil)
+        }
     }
 
     // tableview Data Source methods
@@ -403,6 +405,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.dismiss(animated: true) {
                 let filteredProductArry = dummyArr
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FILTER_COMPLETED"), object: filteredProductArry)
+                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CartAction"), object: nil)
             }
             
         }

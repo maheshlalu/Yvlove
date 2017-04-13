@@ -19,7 +19,7 @@ target 'NowFloats' do
 
     pod 'Fabric'
     pod 'Crashlytics'
-    
+    pod 'PayPal-iOS-SDK'
     pod 'FacebookCore'
     pod 'FacebookLogin'
     pod 'Mixpanel'

@@ -342,6 +342,7 @@ open class CXAppDataManager: NSObject {
     func getOrders(_ completion:@escaping (_ responseDict:NSDictionary) -> Void){
         let number : NSNumber = UserDefaults.standard.value(forKey: "USER_ID") as! NSNumber
         let userId : String = number.stringValue
+        
         //http://appjee.com:8081/Services/getMasters?mallId=3&type=PlaceOrders&consumerId=4
         CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId": userId as AnyObject ,"type":"PlaceOrders" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             print(responseDict)

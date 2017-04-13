@@ -43,20 +43,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         //MARK: Google Plus
-        var configureError: NSError?
+//        var configureError: NSError?
+//        GGLContext.sharedInstance().configureWithError(&configureError)
+//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        
+        var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
+    
+        //GINInvite.applicationDidFinishLaunching()
+
+        //FIRInvites.applicationDidFinishLaunching(options: launchOptions)
+
         //GIDSignIn.sharedInstance().delegate = self
 
         
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         FIRApp.configure()
+        //MARK: Paypal
+        PayPalMobile .initializeWithClientIds(forEnvironments: [PayPalEnvironmentProduction: "YOUR_CLIENT_ID_FOR_PRODUCTION",PayPalEnvironmentSandbox: "YOUR_CLIENT_ID_FOR_SANDBOX"])
+        
+        //PayPalMobile
+        
         
         return true
     }
-    
+      
     func blockOperationsTest1(){
         
         let operationQueue = OperationQueue()
