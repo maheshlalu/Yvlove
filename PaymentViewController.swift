@@ -24,6 +24,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     @IBOutlet weak var giftBtn1: UIButton!
     @IBOutlet weak var giftBtn2: UIButton!
     @IBOutlet weak var giftBtn3: UIButton!
+    var giftWrapType = String()
     @IBOutlet weak var couponDiscountLbl: UILabel!
     @IBOutlet weak var giftWrapOtinanBtn: UIButton!
     @IBOutlet weak var discountCreditDebitcardlbl: UILabel!
@@ -48,6 +49,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     @IBOutlet weak var standedshippinbtn: UIButton!
     @IBOutlet weak var overNightShippingBtn: UIButton!
     @IBOutlet weak var expenditeShippinBtn: UIButton!
+    var shippingType = String()
     
     //PayU
     var params : PUMRequestParams = PUMRequestParams.shared()
@@ -65,6 +67,8 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Payment"
+        self.shippingType = "Standard Shipping(4-6 Business days):Free"
+        self.giftWrapType = "nil"
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
         self.giftLabel1.textColor = UIColor.lightGray
         self.giftLabel2.textColor = UIColor.lightGray
@@ -229,16 +233,19 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             self.expenditeShippinBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.overNightShippingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             standerdShipp = 0
+            self.shippingType = "Standard Shipping(4-6 Business days):Free"
         }else if sender.tag == 2{
             self.standedshippinbtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.expenditeShippinBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.overNightShippingBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             standerdShipp = 40
+            self.shippingType = "Expedite Shipping(Rs 40 Extra)2-4 Business Days"
         }else if sender.tag == 3{
             self.standedshippinbtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.expenditeShippinBtn.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.overNightShippingBtn.setImage(UIImage(named: "CheckedFill"), for: .normal)
             standerdShipp = 280
+            self.shippingType = "Overnight Shipping(Metros only-Kolkata,New delhi,NCR,Mumbai):Rs 280"
         }
         if totalFinalData < 350{
             self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
@@ -291,16 +298,19 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
             self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn1.setImage(UIImage(named: "CheckedFill"), for: .normal)
             giftAmount = 40
+            self.giftWrapType = "Paper Gift Wrap Rs.40"
         }else if sender.tag == 2 {
             self.giftBtn3.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn2.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             giftAmount = 70
+            self.giftWrapType = "Box Wrap Rs.70"
         }else if sender.tag == 3{
             self.giftBtn3.setImage(UIImage(named: "CheckedFill"), for: .normal)
             self.giftBtn2.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             self.giftBtn1.setImage(UIImage(named: "UncheckedImahe"), for: .normal)
             giftAmount = 100
+            self.giftWrapType = "Paper Gift Wrap with gift bag Rs.100"
             
         }
         self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
@@ -364,15 +374,14 @@ extension PaymentViewController{
     
     @IBAction func paymentBtnAction(_ sender: Any) {
         
-        print("\(standerdShipp) \(giftAmount) \(discountCreditDebitcardlbl.text)")
-        print(dataDict)
-        
+       // print("\(standerdShipp) \(giftAmount) \(discountCreditDebitcardlbl.text)")
+        //print(dataDict)
         let name = dataDict.value(forKey: "name")
         let email = dataDict.value(forKey: "email")
         let address1 = dataDict.value(forKey: "addressLine1")
         let address2 = dataDict.value(forKey: "addressLine2")
         let mobile = dataDict.value(forKey: "mobile")
-        
+        let address = "\(address1!) \(address2!)"
         /*PlaceOrder_COD
          PlaceOrder_AmazonPay
          PlaceOrder_Paytm
@@ -380,32 +389,32 @@ extension PaymentViewController{
          PlaceOrder_Paypal
          PlaceOrder_PayUBiz
          PlaceOrder_BankTransfer*/
-        
         if isCOD{
-            CXAppDataManager.sharedInstance.placeOder(name as! String, email:email as! String, address1:address1 as! String, address2:address2 as! String, number: mobile as! String ,subTotal:self.totalPayAmountlbl.text!,orderType:"PlaceOrder_COD" ,completion: { (isDataSaved) in
+            CXAppDataManager.sharedInstance.postPlaceOrder("PlaceOrder_COD", totlaAmount: self.totalPayAmountlbl.text!, paymentMode: "PlaceOrder_COD", CouponDiscount: self.couponDiscountLbl.text!, onlinePaymentDiscount: self.discountCreditDebitcardlbl.text!, shippingType: shippingType, contactNumber: mobile as! String, couponCode: self.couponField.text!, itemCount: "2", address: address, name: name as! String, email: email as! String, completion: { (isDataSaved) in
                 self.dismiss(animated: true, completion: {self.view.makeToast(message: "Product Ordered Successfully!!!")})
             })
         }else if isCreditOrDebit || isNetBanking{
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getTestPaymentGatewayUrl(), parameters: ["name":name as AnyObject,"email":email as AnyObject,"amount":self.totalPayAmountlbl.text! as AnyObject,"description":"NeedyBee Payment" as AnyObject, "Phone":mobile as AnyObject,"macId":UserDefaults.standard.value(forKey: "MAC_ID")! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getTestPaymentGatewayUrl(), parameters: ["name":name as AnyObject,"email":email as AnyObject,"amount":self.totalPayAmountlbl.text! as AnyObject,"description":"NeedyBee Payment" as AnyObject, "Phone":mobile as AnyObject,"macId":UserDefaults.standard.value(forKey: "MAC_ID")! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
                 
                 let payMentCntl : CXPayMentController = CXPayMentController()
                 payMentCntl.paymentUrl =  NSURL(string: responseDict.value(forKey: "payment_url")! as! String)
                 self.navigationController?.pushViewController(payMentCntl, animated: true)
-                
                 payMentCntl.paymentDelegate  = self
                 payMentCntl.completion = {_ in responseDict
                     print(responseDict)
-                    CXAppDataManager.sharedInstance.placeOder(name as! String, email:email as! String, address1:address1 as! String, address2:address2 as! String, number: mobile as! String ,subTotal:self.totalPayAmountlbl.text!,orderType:"PlaceOrder_Instamojo" ,completion: { (isDataSaved) in
+                    CXAppDataManager.sharedInstance.postPlaceOrder("PlaceOrder_Instamojo", totlaAmount: self.totalPayAmountlbl.text!, paymentMode: "PlaceOrder_Instamojo", CouponDiscount: self.couponDiscountLbl.text!, onlinePaymentDiscount: self.discountCreditDebitcardlbl.text!, shippingType: self.shippingType, contactNumber: mobile as! String, couponCode: self.couponField.text!, itemCount: "2", address: address, name: name as! String, email: email as! String, completion: { (isDataSaved) in
                         self.dismiss(animated: true, completion: {self.view.makeToast(message: "Product Ordered Successfully!!!")})
                     })
                 }
             }
         }else if isNetBanking{
-            CXAppDataManager.sharedInstance.placeOder(name as! String, email:email as! String, address1:address1 as! String, address2:address2 as! String, number: mobile as! String ,subTotal:self.totalPayAmountlbl.text!,orderType:"PlaceOrder_BankTransfer" ,completion: { (isDataSaved) in
+            CXAppDataManager.sharedInstance.postPlaceOrder("PlaceOrder_Instamojo", totlaAmount: self.totalPayAmountlbl.text!, paymentMode: "PlaceOrder_Instamojo", CouponDiscount: self.couponDiscountLbl.text!, onlinePaymentDiscount: self.discountCreditDebitcardlbl.text!, shippingType: self.shippingType, contactNumber: mobile as! String, couponCode: self.couponField.text!, itemCount: "2", address: address, name: name as! String, email: email as! String, completion: { (isDataSaved) in
                 self.dismiss(animated: true, completion: {self.view.makeToast(message: "Product Ordered Successfully!!!")})
             })
         }else if isOtherOptions{
             self.otherPaymentListAlert()
+        }else{
+            self.showAlertView("please selecet payment Options", status: 11)
         }
     }
     
@@ -466,11 +475,9 @@ extension PaymentViewController{
                 self.showController(controller: txnController!)
             }
         })
-        
     }
     //MARK : paytm integration
     func showController(controller: PGTransactionViewController) {
-        
         if self.navigationController != nil {
             self.navigationController!.pushViewController(controller, animated: true)
         }

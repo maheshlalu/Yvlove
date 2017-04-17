@@ -176,6 +176,7 @@
 		892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892E89491E92894C0080C239 /* CXPayMentController.swift */; };
 		895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */; };
 		895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */; };
+		89615AEB1EA0EFBB003806E6 /* Coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 89615AEA1EA0EFBB003806E6 /* Coupon.png */; };
 		8972B8971E9CFBE5005CE0A2 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8972B8961E9CFBE5005CE0A2 /* libPayPalMobile.a */; };
 		8972B8991E9CFD99005CE0A2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8972B8981E9CFD98005CE0A2 /* Accelerate.framework */; };
 		8972B89B1E9CFDA4005CE0A2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8972B89A1E9CFDA4005CE0A2 /* AudioToolbox.framework */; };
@@ -470,6 +471,7 @@
 		895D5CFB1E8CEB2D005E652D /* CX_Products+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataClass.m"; sourceTree = "<group>"; };
 		895D5CFC1E8CEB2D005E652D /* CX_Products+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CX_Products+CoreDataProperties.h"; sourceTree = "<group>"; };
 		895D5CFD1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CX_Products+CoreDataProperties.m"; sourceTree = "<group>"; };
+		89615AEA1EA0EFBB003806E6 /* Coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coupon.png; sourceTree = "<group>"; };
 		8972B8961E9CFBE5005CE0A2 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = "Pods/PayPal-iOS-SDK/PayPalMobile/libPayPalMobile.a"; sourceTree = "<group>"; };
 		8972B8981E9CFD98005CE0A2 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8972B89A1E9CFDA4005CE0A2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1004,6 +1006,7 @@
 		3B4FD80A1D6446D200A6EBBE = {
 			isa = PBXGroup;
 			children = (
+				89615AEA1EA0EFBB003806E6 /* Coupon.png */,
 				8918530A1E602CD6007AE5C4 /* whitemenu40x40.png */,
 				3B4FD8151D6446D300A6EBBE /* NowFloats */,
 				3B4FD82D1D6446D300A6EBBE /* NowFloatsTests */,
@@ -1451,6 +1454,7 @@
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
+				89615AEB1EA0EFBB003806E6 /* Coupon.png in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
 				110329BE1D8A6BA00008A3B7 /* HistoryTableViewCell.xib in Resources */,
