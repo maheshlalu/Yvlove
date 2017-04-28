@@ -132,6 +132,7 @@
 		18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */; };
 		18B381A51D9D580500A02343 /* ServiceFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B381A41D9D580500A02343 /* ServiceFormViewController.swift */; };
 		18C089D41D8D2132005DFF7C /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C089D31D8D2132005DFF7C /* star.png */; };
+		18CC94331EB1B3CB00E62002 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CC94321EB1B3CB00E62002 /* Images.xcassets */; };
 		18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */; };
 		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
@@ -408,6 +409,7 @@
 		18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
 		18B381A41D9D580500A02343 /* ServiceFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFormViewController.swift; sourceTree = "<group>"; };
 		18C089D31D8D2132005DFF7C /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		18CC94321EB1B3CB00E62002 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
@@ -419,7 +421,7 @@
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		3B4FD8131D6446D200A6EBBE /* NeedyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeedyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4FD8131D6446D200A6EBBE /* SHAH'S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHAH'S.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B4FD8181D6446D300A6EBBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B4FD81B1D6446D300A6EBBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1020,7 +1022,7 @@
 		3B4FD8141D6446D200A6EBBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3B4FD8131D6446D200A6EBBE /* NeedyBee.app */,
+				3B4FD8131D6446D200A6EBBE /* SHAH'S.app */,
 				3B4FD82A1D6446D300A6EBBE /* NowFloatsTests.xctest */,
 				3B4FD8351D6446D300A6EBBE /* NowFloatsUITests.xctest */,
 			);
@@ -1063,6 +1065,7 @@
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
 				89D5DE991E83D6EE00DCE67D /* New Group */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
+				18CC94321EB1B3CB00E62002 /* Images.xcassets */,
 			);
 			path = NowFloats;
 			sourceTree = "<group>";
@@ -1332,7 +1335,7 @@
 			);
 			name = NowFloats;
 			productName = NowFloats;
-			productReference = 3B4FD8131D6446D200A6EBBE /* NeedyBee.app */;
+			productReference = 3B4FD8131D6446D200A6EBBE /* SHAH'S.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3B4FD8291D6446D300A6EBBE /* NowFloatsTests */ = {
@@ -1433,6 +1436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */,
+				18CC94331EB1B3CB00E62002 /* Images.xcassets in Resources */,
 				189A1E3D1D79479800724120 /* Roboto-Black.ttf in Resources */,
 				18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */,
 				113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */,
@@ -1876,6 +1880,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "SHAH'S";
 				PROVISIONING_PROFILE = "a374eddd-9062-4b01-858c-46171e5faac5";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1918,6 +1923,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "SHAH'S";
 				PROVISIONING_PROFILE = "a374eddd-9062-4b01-858c-46171e5faac5";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1953,7 +1959,7 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
-				PRODUCT_NAME = NeedyBee;
+				PRODUCT_NAME = "SHAH'S";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
@@ -1991,7 +1997,7 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
-				PRODUCT_NAME = NeedyBee;
+				PRODUCT_NAME = "SHAH'S";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";

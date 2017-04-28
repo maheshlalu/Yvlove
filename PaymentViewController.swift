@@ -527,7 +527,7 @@ extension PaymentViewController{
         params.key = "40747T"
         params.merchantid = "396132";  //Merchant merchantid
         params.logo_url = ""; //Merchant logo_url
-        params.productinfo = "NeedyBee";
+        params.productinfo = "SHAH'S";
         params.email =  dataDict.value(forKey: "email") as! String! //user email
         params.phone = dataDict.value(forKey: "mobile") as! String! //user phone
         params.txnid = utils.getRandomString(2);  //set your correct transaction id here
@@ -637,7 +637,7 @@ extension PaymentViewController{
         //print("PayPal iOS SDK Version: \(PayPalMobile.libraryVersion())")
         //let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 2, withPrice: NSDecimalNumber(string: "84.99"), withCurrency: "USD", withSku: "Hip-0037")
         //let item2 = PayPalItem(name: "Free rainbow patch", withQuantity: 1, withPrice: NSDecimalNumber(string: "0.00"), withCurrency: "USD", withSku: "Hip-00066")
-        let item3 = PayPalItem(name: "Needybee", withQuantity: 1, withPrice: NSDecimalNumber(string: "37.99"), withCurrency: "USD", withSku: "IND-00291")
+        let item3 = PayPalItem(name: "SHAH'S", withQuantity: 1, withPrice: NSDecimalNumber(string: "37.99"), withCurrency: "USD", withSku: "IND-00291")
         let items = [item3]
         let subtotal = PayPalItem.totalPrice(forItems: items)
         let shipping = NSDecimalNumber(string: "5.99")

@@ -50,7 +50,7 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
             (ageSelectedArr as AnyObject).add("NO")
         }
         //Discount
-        self.discountKey = "Discount"
+       /* self.discountKey = "Discount"
         self.discountArr = ["5%","10%","20%","30%"]
         for _ in 0 ..< self.discountArr.count {
             (discountSelectedArr as AnyObject).add("NO")
@@ -61,9 +61,9 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.colorCode = ["000000","FFFFFF","FF0000","0000FF","FFFF00","bd012e","c7c7c7","ffe8c5","983900","ffcc99","ff6c00","4100ad","5c5c5c","008000",""]
         for _ in 0 ..< self.colorArr.count {
             (colorSelectedArr as AnyObject).add("NO")
-        }
+        }*/
         //print("selected \(selectedArr)")
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 228/255.0, green: 49/255.0, blue: 44/255.0, alpha: 1.0)
         self.navigationItem.title = "Filter's Selection"
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         let nib = UINib(nibName: "customcellFilter", bundle: nil)
