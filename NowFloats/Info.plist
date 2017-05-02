@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>SHAH'S</string>
+	<string>SHAH&apos;S</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ongo.NeedyBee</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.709097464071-0q67mn1rraequcts349vb94gp7bs6adn</string>
+				<string>com.googleusercontent.apps.393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0</string>
 			</array>
 		</dict>
 		<dict>
@@ -66,12 +66,6 @@
 		<string>com.paypal.ppclient.touch.v1</string>
 		<string>com.paypal.ppclient.touch.v2</string>
 		<string>org-appextension-feature-password-management</string>
-	</array>
-	<key>LSApplicationQueriesSchemes - 2</key>
-	<array>
-		<string>org-appextension-feature-password-management</string>
-		<string>com.paypal.ppclient.touch.v1</string>
-		<string>com.paypal.ppclient.touch.v2</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

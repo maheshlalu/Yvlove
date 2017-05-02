@@ -48,7 +48,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.aboutustableview.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()
 
         self.titleLbl.text = aboutUsDict.value(forKeyPath: "Name") as? String
-        self.titleLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        //self.titleLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         let imgUrl = UserDefaults.standard.value(forKey: "CoverImage")
         if (imgUrl != nil){
             self.aboutusimageview.sd_setImage(with: URL(string: imgUrl! as! String))

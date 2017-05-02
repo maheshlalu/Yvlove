@@ -50,13 +50,13 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
             (ageSelectedArr as AnyObject).add("NO")
         }
         //Discount
-       /* self.discountKey = "Discount"
+        self.discountKey = "Discount"
         self.discountArr = ["5%","10%","20%","30%"]
         for _ in 0 ..< self.discountArr.count {
             (discountSelectedArr as AnyObject).add("NO")
         }
         // color
-        self.colorKey = "ColorWord"
+        /*self.colorKey = "ColorWord"
         self.colorArr = ["Black","White","Red","Blue","Yellow","Maroon","Silver","Biege","Brown","Peach","Orange","Purple/Violet","Grey","Green","Multicolor"]
         self.colorCode = ["000000","FFFFFF","FF0000","0000FF","FFFF00","bd012e","c7c7c7","ffe8c5","983900","ffcc99","ff6c00","4100ad","5c5c5c","008000",""]
         for _ in 0 ..< self.colorArr.count {

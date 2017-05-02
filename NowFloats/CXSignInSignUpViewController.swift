@@ -38,6 +38,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         self.view.backgroundColor = UIColor.white;
         self.keyboardIsShown = false
         self.customizeMainView()
+        signIn?.shouldFetchBasicProfile = true
+        signIn?.delegate = self
+        signIn?.uiDelegate = self
         setUpDelegatesForGoogle()
 //        FIRInvites.inviteDialog()
         //self.setUpDelegatesForGoogle()
@@ -55,7 +58,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     func googleBtnAction()
     {
         signIn?.signOut()
-        signIn?.clientID = "709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com"
+        signIn?.clientID = "393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0.apps.googleusercontent.com"
         signIn?.signIn()
     }
     func facebookBtnAction()
@@ -90,6 +93,9 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "email"), forKey: "USER_EMAIL")
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "first_name"), forKey: "FIRST_NAME")
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "name"), forKey: "FULL_NAME")
+                    
+                    UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "id"), forKey: "USER_ID")
+                    
                     self.navigationController?.popViewController(animated: true)
                     
                     // UserDefaults.standard.set(false, forKey: "isLoggedUser")
@@ -141,6 +147,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
                     //print("\(email)\(firstName)\(lastName)\(profilePic)")
                     self.googleResponseDict = userData as NSDictionary!
+                    self.navigationController?.popViewController(animated: true)
                     
                 }
                 catch {
@@ -180,7 +187,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         self.cScrollView.addSubview(self.signUpBtn)
         
         self.googlePlusButton = self.createButton(CGRect(x: 25, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "G+", tag: 3, bgColor: UIColor.init(red: 223/255.0, green: 75/255.0, blue: 55/255.0, alpha: 1.0))
-        self.googlePlusButton.addTarget(self, action: #selector(CXSignInSignUpViewController.googleBtnAction), for: .touchUpInside)
+        self.googlePlusButton.addTarget(self, action: #selector(googleBtnAction), for: .touchUpInside)
         self.cScrollView.addSubview(self.googlePlusButton)
         
         self.facebookBtn = self.createButton(CGRect(x: 165, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "f", tag: 3, bgColor:UIColor.init(red: 58/255.0, green: 88/255.0, blue: 158/255.0, alpha: 1.0) )

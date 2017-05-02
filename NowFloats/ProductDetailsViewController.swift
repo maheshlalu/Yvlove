@@ -52,45 +52,49 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     
     func getDescriptionTags(){
         
-        if productDetailDic.value(forKey: "SKU") as! String != ""{
-            descriptionTagsArr.add("SKU")
-            descriptionTagsDescArr.add("SKU")
+        if productDetailDic.value(forKey: "Name") as! String != ""{
+            descriptionTagsArr.add("Name")
+            descriptionTagsDescArr.add("Name")
         }
         
-        if productDetailDic.value(forKey: "width") as! String != ""{
-            descriptionTagsArr.add("Width")
-            descriptionTagsDescArr.add("width")
+        if productDetailDic.value(forKey: "Description") as! String != ""{
+            descriptionTagsArr.add("Description")
+            descriptionTagsDescArr.add("Description")
         }
+//        if productDetailDic.value(forKey: "Widget_Type") as! String != ""{
+//            descriptionTagsArr.add("Widget_Type")
+//            descriptionTagsDescArr.add("Widget_Type")
+//        }
         
-        if productDetailDic.value(forKey: "height") as! String != ""{
-            descriptionTagsArr.add("Height")
-            descriptionTagsDescArr.add("height")
-        }
+//        if productDetailDic.value(forKey: " overallRating") as! String != ""{
+//            descriptionTagsArr.add(" overallRating")
+//            descriptionTagsDescArr.add(" overallRating")
+//        }
         
-        if productDetailDic.value(forKey: "fabric") as! String != ""{
-            descriptionTagsArr.add("Fabric")
-            descriptionTagsDescArr.add("fabric")
-        }
-        
-        if productDetailDic.value(forKey: "disclaimer") as! String != ""{
-            descriptionTagsArr.add("Disclaimer")
-            descriptionTagsDescArr.add("disclaimer")
-        }
-        
-        if productDetailDic.value(forKey: "color") as! String != ""{
-            descriptionTagsArr.add("Color")
-            descriptionTagsDescArr.add("color")
-        }
-        
-        if productDetailDic.value(forKey: "weight") as! String != ""{
-            descriptionTagsArr.add("Weight")
-            descriptionTagsDescArr.add("weight")
-        }
-        
-        if productDetailDic.value(forKey: "recommended_age") as! String != ""{
-            descriptionTagsArr.add("Recommended Age")
-            descriptionTagsDescArr.add("recommended_age")
-        }
+//        if productDetailDic.value(forKey: "DiscountAmount") as! String != ""{
+//            descriptionTagsArr.add("DiscountAmount")
+//            descriptionTagsDescArr.add("DiscountAmount")
+//        }
+//        
+//        if productDetailDic.value(forKey: "totalReviews") as! String != ""{
+//            descriptionTagsArr.add("totalReviews")
+//            descriptionTagsDescArr.add("totalReviews")
+//        }
+//        
+//        if productDetailDic.value(forKey: "color") as! String != ""{
+//            descriptionTagsArr.add("Color")
+//            descriptionTagsDescArr.add("color")
+//        }
+//        
+//        if productDetailDic.value(forKey: "weight") as! String != ""{
+//            descriptionTagsArr.add("Weight")
+//            descriptionTagsDescArr.add("weight")
+//        }
+//        
+//        if productDetailDic.value(forKey: "recommended_age") as! String != ""{
+//            descriptionTagsArr.add("Recommended Age")
+//            descriptionTagsDescArr.add("recommended_age")
+//        }
     }
     
     func setUpRatingView(){
@@ -229,14 +233,14 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             
             let rupee = "\u{20B9}"
-            let price:String = productDetailDic.value(forKey: "MRP") as! String
-            
-            if price == "0"{
-                finalPriceLbl.isHidden = true
-            }else{
-                finalPriceLbl.isHidden = false
-                finalPriceLbl.text = "\(rupee) \(price)"
-            }
+//            let price:String = productDetailDic.value(forKey: "MRP") as! String
+//            
+//            if price == "0"{
+//                finalPriceLbl.isHidden = true
+//            }else{
+//                finalPriceLbl.isHidden = false
+//                finalPriceLbl.text = "\(rupee) \(price)"
+//            }
         }else{
             needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String
             let str = productDetailDic.value(forKey: descriptionTagsDescArr[indexPath.section - 2] as! String) as? String

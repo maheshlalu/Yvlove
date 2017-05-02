@@ -137,21 +137,27 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
        // LoadingView.show("Loading", animated: true)
-        self.viewAdditinalCategery.isHidden = true
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
+//        self.viewAdditinalCategery.isHidden = true
+//        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
+//        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
+//        
+//        print("Dictvaluees \(subDict)")
+//        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String 
+//        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
+//            AnyObject)
+//        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
+//        let navController = UINavigationController(rootViewController: productcontroller)
+//        navController.navigationItem.hidesBackButton = true
+//        
+//        
+//        self.present(navController, animated: true, completion: nil)
+        
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
-        
-        print("Dictvaluees \(subDict)")
-        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String 
-        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
-            AnyObject)
-        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
-        let navController = UINavigationController(rootViewController: productcontroller)
-        navController.navigationItem.hidesBackButton = true
-        
-        
-        self.present(navController, animated: true, completion: nil)
+        let name = subDict.value(forKey: "Name") as! String
+        self.callAddtinalCategerySevice(str: name)
+        LoadingView.show("Loading", animated: true)
+        //self.present(navController, animated: true, completion: nil)
     
     }
     

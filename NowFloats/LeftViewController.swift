@@ -27,6 +27,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var websiteLbl:UILabel!
     var sidePanelDataDict: NSDictionary! = nil
     var sidePanelSingleMallDataDict: NSDictionary!
+    let categoryNameArray = NSMutableArray()
     
     var navController : CXNavDrawer = CXNavDrawer()
     
@@ -60,7 +61,7 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if CX_Stores.mr_findAll().count != 0{
             let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
             let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
-            let fetchRequest: NSFetchRequest<NSFetchRequestResult>= CX_Stores.mr_requestAllSorted(by: "itemCode", ascending: true)
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CX_Stores.mr_requestAllSorted(by: "itemCode", ascending: true)
             fetchRequest.predicate = predicate
             fetchRequest.entity = productEn
             self.sidePanelDataArr = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
@@ -194,7 +195,57 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
         }
+        else if itemName == "Storelocator"{
+            
+            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
+                print("print Stores\(responseDic)")
+                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
+                for obj in categoryJobArray{
+                    let dict = obj as! NSDictionary
+                    self.categoryNameArray.add(dict.value(forKey: "City")as! String)
+                }
+            
+            })
+        }
     }
+    
+    //Mark: Storecategory api call
+    
+//    func storeCategories() {
+//        let categoryNameArray = NSMutableArray()
+//        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+//            print("print Stores\(responseDict)")
+//            let categoryJobArray = responseDict.value(forKey: "jobs")as! NSArray
+//            for obj in categoryJobArray{
+//                let dict = obj as! NSDictionary
+//                categoryNameArray.add(dict.value(forKey: "City")as! String)
+//            }
+//            completion(categoryNameArray)
+//        }
+//
+//        
+//        
+//    }
+    
+   /* func getStoreCategories(completion:@escaping (_ responseArr:NSMutableArray) -> Void){
+        
+        let categoryNameArray = NSMutableArray()
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            print("print Stores\(responseDict)")
+            let categoryJobArray = responseDict.value(forKey: "jobs")as! NSArray
+            for obj in categoryJobArray{
+                let dict = obj as! NSDictionary
+                categoryNameArray.add(dict.value(forKey: "City")as! String)
+            }
+            completion(categoryNameArray)
+        }
+        
+    }*/
+    
+    //MARK: Service Api call
+    
+
     
     func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{
         let allKeys : NSArray = responceDic.allKeys as NSArray

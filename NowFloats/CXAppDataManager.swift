@@ -63,6 +63,18 @@ open class CXAppDataManager: NSObject {
             completion(categoryNamesArr)
         }
     }
+    func getStoreCategories(completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        
+        let url = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl()
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(url, parameters: ["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID as AnyObject]) { (responseDic) in
+            print("print products\(responseDic)")
+            completion(responseDic)
+        }
+    }
+        
+
+   
     
     func getAllProductsData()
     {

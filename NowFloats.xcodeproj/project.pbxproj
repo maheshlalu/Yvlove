@@ -84,6 +84,10 @@
 		11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE6A1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift */; };
 		11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11F1DE6C1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib */; };
 		11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */; };
+		126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */; };
+		126549BF1EB8BC5700165B9F /* StorelocatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */; };
+		126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */; };
+		12DC4DC31EB7800E00B32C96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */; };
 		1635D6E0E2BC4D6CFBEB6CA1 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 		180F249E1D9E732F00E69B0A /* Serices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F249D1D9E732F00E69B0A /* Serices.swift */; };
 		1825CCBF1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
@@ -164,7 +168,6 @@
 		435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435521661D7FEE5B0099159D /* PhotosCollectionViewCell.swift */; };
 		435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */; };
 		8900AD751E8253E60064438C /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8900AD741E8253E60064438C /* PaymentViewController.swift */; };
-		8900AD791E8292F50064438C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8900AD781E8292F50064438C /* GoogleService-Info.plist */; };
 		8900AD7B1E82B4FF0064438C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8900AD7A1E82B4FF0064438C /* Bolts.framework */; };
 		8900AD7F1E82B52C0064438C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8900AD7C1E82B52C0064438C /* FBSDKCoreKit.framework */; };
 		8900AD801E82B52C0064438C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8900AD7D1E82B52C0064438C /* FBSDKLoginKit.framework */; };
@@ -346,6 +349,10 @@
 		11F1DE6A1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistCollectionViewCell.swift; sourceTree = "<group>"; };
 		11F1DE6C1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WishlistCollectionViewCell.xib; sourceTree = "<group>"; };
 		11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorViewController.swift; sourceTree = "<group>"; };
+		126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorTableViewCell.swift; sourceTree = "<group>"; };
+		126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StorelocatorTableViewCell.xib; sourceTree = "<group>"; };
+		12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		180F249D1D9E732F00E69B0A /* Serices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serices.swift; sourceTree = "<group>"; };
 		1825CCBD1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
@@ -421,7 +428,7 @@
 		3B370D0D1D65976900DB332F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		3B370D111D65979200DB332F /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		3B370D151D6597AA00DB332F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
-		3B4FD8131D6446D200A6EBBE /* SHAH'S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHAH'S.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B4FD8131D6446D200A6EBBE /* Needybee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Needybee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4FD8161D6446D300A6EBBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B4FD8181D6446D300A6EBBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B4FD81B1D6446D300A6EBBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -453,7 +460,6 @@
 		435521661D7FEE5B0099159D /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		435521671D7FEE5B0099159D /* PhotosCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		8900AD741E8253E60064438C /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = ../PaymentViewController.swift; sourceTree = "<group>"; };
-		8900AD781E8292F50064438C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8900AD7A1E82B4FF0064438C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		8900AD7C1E82B52C0064438C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8900AD7D1E82B52C0064438C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -616,7 +622,6 @@
 				8972B8961E9CFBE5005CE0A2 /* libPayPalMobile.a */,
 				897479AE1E9CDA8D00A58744 /* libxml2.tbd */,
 				892491AC1E950F8900CB8097 /* SystemConfiguration.framework */,
-				8900AD781E8292F50064438C /* GoogleService-Info.plist */,
 				1169F0E81E011BD600D9D740 /* AFNetworking.framework */,
 				1169F0E91E011BD600D9D740 /* Alamofire.framework */,
 				1169F0EA1E011BD600D9D740 /* MagicalRecord.framework */,
@@ -1022,7 +1027,7 @@
 		3B4FD8141D6446D200A6EBBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3B4FD8131D6446D200A6EBBE /* SHAH'S.app */,
+				3B4FD8131D6446D200A6EBBE /* Needybee.app */,
 				3B4FD82A1D6446D300A6EBBE /* NowFloatsTests.xctest */,
 				3B4FD8351D6446D300A6EBBE /* NowFloatsUITests.xctest */,
 			);
@@ -1063,6 +1068,7 @@
 				3B4FD8201D6446D300A6EBBE /* Assets.xcassets */,
 				3B4FD8221D6446D300A6EBBE /* LaunchScreen.storyboard */,
 				3B4FD8251D6446D300A6EBBE /* Info.plist */,
+				12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */,
 				89D5DE991E83D6EE00DCE67D /* New Group */,
 				3B4FD8471D644E2E00A6EBBE /* NowFloats-Bridging-Header.h */,
 				18CC94321EB1B3CB00E62002 /* Images.xcassets */,
@@ -1159,6 +1165,9 @@
 				3B4FD84C1D64508500A6EBBE /* LeftViewController.swift */,
 				4336BAAD1D77F14200A38498 /* LeftViewTableViewCell.swift */,
 				4336BAAE1D77F14200A38498 /* LeftViewTableViewCell.xib */,
+				126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */,
+				126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */,
+				126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */,
 				3B4FD8511D645BD500A6EBBE /* HomeViewController.swift */,
 				89C4B1221E7FB46300F730F5 /* FilterViewController.swift */,
 				89C4B1261E7FE90D00F730F5 /* customcellFilter.swift */,
@@ -1335,7 +1344,7 @@
 			);
 			name = NowFloats;
 			productName = NowFloats;
-			productReference = 3B4FD8131D6446D200A6EBBE /* SHAH'S.app */;
+			productReference = 3B4FD8131D6446D200A6EBBE /* Needybee.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3B4FD8291D6446D300A6EBBE /* NowFloatsTests */ = {
@@ -1446,7 +1455,6 @@
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				11F1DE5F1D883AFF002AF5B0 /* AboutusTableViewCell.xib in Resources */,
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
-				8900AD791E8292F50064438C /* GoogleService-Info.plist in Resources */,
 				1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */,
 				89C4B1291E7FE90D00F730F5 /* customcellFilter.xib in Resources */,
 				8918530B1E602CD6007AE5C4 /* whitemenu40x40.png in Resources */,
@@ -1459,6 +1467,7 @@
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				89615AEB1EA0EFBB003806E6 /* Coupon.png in Resources */,
+				126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				1868BCF21D78316A0050BC72 /* KICamera.png in Resources */,
 				110329BE1D8A6BA00008A3B7 /* HistoryTableViewCell.xib in Resources */,
@@ -1473,6 +1482,7 @@
 				116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
 				1890B6F11D8163EE00AF140A /* UpdateTableViewCell.xib in Resources */,
+				12DC4DC31EB7800E00B32C96 /* GoogleService-Info.plist in Resources */,
 				11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */,
 				110329CC1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.xib in Resources */,
 				183573951D797B2300722AA2 /* OfferCollectionViewCell.xib in Resources */,
@@ -1533,14 +1543,14 @@
 		};
 		114E91B21E13C54E00E22D18 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2e7c156e37ba0c4174ff5d41d9965ffae5ecd735 775aa1b4ed862492cc866b7d1006437ce8ae0542ae9654444a295f8ef18a767e";
 		};
@@ -1754,6 +1764,7 @@
 				11370F641D893B0E00CCBE01 /* PopupController.swift in Sources */,
 				11F1DE651D883B77002AF5B0 /* OrdersViewController.swift in Sources */,
 				11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */,
+				126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */,
 				18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */,
 				118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */,
 				895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */,
@@ -1769,6 +1780,7 @@
 				895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */,
 				890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */,
 				11370F8C1D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift in Sources */,
+				126549BF1EB8BC5700165B9F /* StorelocatorTableViewCell.swift in Sources */,
 				89A896E91E813159000B97B9 /* colortableviewcell.swift in Sources */,
 				899B7B1B1E5437E0006C1F79 /* ButtonLayer.swift in Sources */,
 				11F1DE671D883BA3002AF5B0 /* AboutUsViewController.swift in Sources */,
@@ -1947,7 +1959,7 @@
 					"$(PROJECT_DIR)/NowFloats/lib",
 				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1958,8 +1970,8 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
-				PRODUCT_NAME = "SHAH'S";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShaElectronics;
+				PRODUCT_NAME = Needybee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
@@ -1985,7 +1997,7 @@
 					"$(PROJECT_DIR)/NowFloats/lib",
 				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1996,8 +2008,8 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.NeedyBee;
-				PRODUCT_NAME = "SHAH'S";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShaElectronics;
+				PRODUCT_NAME = Needybee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";

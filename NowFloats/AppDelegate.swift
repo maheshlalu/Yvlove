@@ -62,13 +62,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
-        FIRApp.configure()
         //MARK: Paypal
         PayPalMobile .initializeWithClientIds(forEnvironments: [PayPalEnvironmentProduction: "YOUR_CLIENT_ID_FOR_PRODUCTION",PayPalEnvironmentSandbox: "YOUR_CLIENT_ID_FOR_SANDBOX"])
         
         //PayPalMobile
         
-        
+        FIRApp.configure()
+
         return true
     }
       
@@ -154,10 +154,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
         return isHandled
-    }
+    } */
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
@@ -165,17 +165,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if url.scheme == "fb122900748244366" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
-            return callBack
-        } else if url.scheme == "com.googleusercontent.apps.709097464071-0q67mn1rraequcts349vb94gp7bs6adn"{
+        } else {
             callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
-            return callBack
-        }else if url.scheme == "apps.storeongo.com" {
-            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
-            print(url.host!)
         }
-        return true
+        return callBack
     }
-
+    
+    
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         
@@ -304,6 +300,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.foregroundAlpha = 0.5
         LoadingView.setConfig(config)
     }
+    
+    
+}
+
+extension AppDelegate{
+    
+ /*   @objc(application:openURL:sourceApplication:annotation:) func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let callBack:Bool
+        // print("***************************url Schemaaa:", url.scheme);
+        
+        if url.scheme == "fb122900748244366" {
+            callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        } else if url.scheme == "com.googleusercontent.apps.393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0"{
+            callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        }else if url.scheme == "apps.storeongo.com" {
+            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
+            print(url.host!)
+        }
+        return true
+    } */
+
     
     
 }

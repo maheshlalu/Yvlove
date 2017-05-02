@@ -20,6 +20,7 @@
 		<string>About us</string>
 		<string>Orders</string>
 		<string>Wishlist</string>
+		<string>Storelocator</string>
 	</array>
 	<key>APPFONT_NAME_REGULAR</key>
 	<string>Roboto-Regular</string>
@@ -32,7 +33,7 @@
 	<key>ISPagerEnable</key>
 	<true/>
 	<key>PRODUCT_NAME</key>
-	<string>NeedyBee</string>
+	<string>SHAH&apos;S</string>
 	<key>signInMethod</key>
 	<string>MobileAPIs/loginConsumerForOrg?</string>
 	<key>signUpMethod</key>

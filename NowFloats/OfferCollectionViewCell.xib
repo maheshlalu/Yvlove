@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OfferCollectionViewCell" id="waj-4o-qgz" customClass="OfferCollectionViewCell" customModule="NowFloats" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OfferCollectionViewCell" id="waj-4o-qgz" customClass="OfferCollectionViewCell" customModule="Needybee" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="228" height="245"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -20,19 +20,19 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XKP-Cq-Cs8">
-                        <rect key="frame" x="0.0" y="8" width="228" height="139"/>
+                        <rect key="frame" x="8" y="8" width="212" height="140"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VGUARD WATER HEATER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmn-E1-wYl">
-                        <rect key="frame" x="0.0" y="158" width="228" height="21"/>
+                        <rect key="frame" x="0.0" y="159" width="228" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YKQ-M7-S30">
-                        <rect key="frame" x="15" y="185" width="198" height="21"/>
+                        <rect key="frame" x="15" y="185.5" width="198" height="20.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="$2223" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FQ-RX-uiw">
-                                <rect key="frame" x="0.0" y="0.0" width="198" height="21"/>
+                                <rect key="frame" x="0.0" y="0.0" width="198" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,11 +57,11 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YKQ-M7-S30" secondAttribute="trailing" constant="3" id="1og-jV-BN9"/>
-                <constraint firstItem="Mmn-E1-wYl" firstAttribute="leading" secondItem="XKP-Cq-Cs8" secondAttribute="leading" id="3ht-Sm-yL1"/>
+                <constraint firstItem="Mmn-E1-wYl" firstAttribute="leading" secondItem="XKP-Cq-Cs8" secondAttribute="leading" constant="-8" id="3ht-Sm-yL1"/>
                 <constraint firstItem="Mmn-E1-wYl" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" id="7X6-UZ-huK"/>
                 <constraint firstAttribute="trailing" secondItem="YKQ-M7-S30" secondAttribute="trailing" id="AVh-Ro-I8r"/>
                 <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" constant="15" id="Bv8-h2-MpF"/>
-                <constraint firstItem="Mmn-E1-wYl" firstAttribute="trailing" secondItem="XKP-Cq-Cs8" secondAttribute="trailing" id="C7w-lQ-0Fw"/>
+                <constraint firstItem="Mmn-E1-wYl" firstAttribute="trailing" secondItem="XKP-Cq-Cs8" secondAttribute="trailing" constant="8" id="C7w-lQ-0Fw"/>
                 <constraint firstItem="9a2-nh-WTG" firstAttribute="bottom" secondItem="waj-4o-qgz" secondAttribute="bottomMargin" constant="3" id="KY7-Ee-RNR"/>
                 <constraint firstItem="YKQ-M7-S30" firstAttribute="leading" secondItem="waj-4o-qgz" secondAttribute="leading" constant="3" id="MqW-t8-eMy"/>
                 <constraint firstAttribute="bottom" secondItem="YKQ-M7-S30" secondAttribute="bottom" constant="39" id="NzK-NO-Rav"/>
@@ -89,7 +89,7 @@
                 <outlet property="productImageView" destination="XKP-Cq-Cs8" id="n5y-pk-tW4"/>
                 <outlet property="productName" destination="Mmn-E1-wYl" id="FDn-aP-rQt"/>
             </connections>
-            <point key="canvasLocation" x="-118" y="242"/>
+            <point key="canvasLocation" x="-118" y="241.5"/>
         </collectionViewCell>
     </objects>
 </document>

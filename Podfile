@@ -12,6 +12,7 @@ target 'NowFloats' do
     pod 'Google/SignIn'
     pod 'Firebase/Core'
     pod 'SwiftyJSON'
+    pod 'Firebase/Database'
     pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
     pod 'AFNetworking', '~> 3.1'
     pod 'XLForm', '~> 3.2'

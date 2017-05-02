@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>709097464071-0q67mn1rraequcts349vb94gp7bs6adn.apps.googleusercontent.com</string>
+	<string>393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.709097464071-0q67mn1rraequcts349vb94gp7bs6adn</string>
+	<string>com.googleusercontent.apps.393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBV2-0uTJViHgvtXKR4O2Nvfol_Qg2JvKs</string>
+	<string>AIzaSyCm_UPOqDgVc9tu4kCEcfLe7-zKk_OAIq0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>709097464071</string>
+	<string>393622930287</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ongo.NeedyBee</string>
+	<string>com.ongo.ShaElectronics</string>
 	<key>PROJECT_ID</key>
-	<string>needybee-6db94</string>
+	<string>powerlist-5c2ec</string>
 	<key>STORAGE_BUCKET</key>
-	<string>needybee-6db94.appspot.com</string>
+	<string>powerlist-5c2ec.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:709097464071:ios:a3a5f91f74e35caf</string>
+	<string>1:393622930287:ios:45ac17e9f4f5e5da</string>
 	<key>DATABASE_URL</key>
-	<string>https://needybee-6db94.firebaseio.com</string>
+	<string>https://powerlist-5c2ec.firebaseio.com</string>
 </dict>
 </plist>
