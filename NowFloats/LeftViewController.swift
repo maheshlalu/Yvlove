@@ -197,15 +197,23 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         else if itemName == "Storelocator"{
             
-            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
-                print("print Stores\(responseDic)")
-                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
-                for obj in categoryJobArray{
-                    let dict = obj as! NSDictionary
-                    self.categoryNameArray.add(dict.value(forKey: "City")as! String)
-                }
+//            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
+//                print("print Stores\(responseDic)")
+//                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
+//                for obj in categoryJobArray{
+//                    let dict = obj as! NSDictionary
+//                    self.categoryNameArray.add(dict.value(forKey: "City")as! String)
+//                }
+//
+//            
+//            })
             
-            })
+//            let storyboard = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
+//            self.navigationController?.pushViewController(storyboard, animated: true)
+            let store = storyBoard.instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
+            self.navController.pushViewController(store, animated: true)
+            
+            
         }
     }
     

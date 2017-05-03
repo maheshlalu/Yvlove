@@ -9,7 +9,15 @@
 import UIKit
 
 class StorelocatorTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var mobileNumberLabel: UILabel!
+   
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var citeNameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
