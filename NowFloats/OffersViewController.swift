@@ -90,7 +90,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
             tableView.register(UINib(nibName: "OfferFeaturedProductCell", bundle: nil), forCellReuseIdentifier: reuseIdentFier)
             feturedProuctsCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentFier) as? OfferFeaturedProductCell
         }
-        feturedProuctsCell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, forRow: indexPath.row)
+        feturedProuctsCell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, forRow: indexPath.section)
         //feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
@@ -150,7 +150,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag - 1] as? CX_FeaturedProducts)!
  
         return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").totalCount
     }
@@ -160,7 +160,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         
         
         
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag - 1] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferCollectionViewCell", for: indexPath)as? OfferCollectionViewCell
         DispatchQueue.main.async(execute: { () -> Void in
@@ -260,7 +260,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
         //        let fID = String(indexPath.row)
-        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
+        let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag - 1] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         

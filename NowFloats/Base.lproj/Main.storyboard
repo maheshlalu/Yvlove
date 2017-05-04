@@ -3070,7 +3070,7 @@
                                         </variation>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOv-WG-hX8" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="523" width="174" height="40"/>
+                                        <rect key="frame" x="10" y="523" width="9" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="3Yq-4f-xJV"/>
                                             <constraint firstAttribute="height" constant="30" id="Gyp-pN-Yq9">

@@ -52,8 +52,8 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     var shippingType = String()
     
     //PayU
-    var params : PUMRequestParams = PUMRequestParams.shared()
-    var utils : Utils = Utils()
+//    var params : PUMRequestParams = PUMRequestParams.shared()
+//    var utils : Utils = Utils()
     
     var isCOD = false
     var isCreditOrDebit = false
@@ -416,7 +416,7 @@ extension PaymentViewController{
         })
         let saveAction = UIAlertAction(title: "PayU Biz", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.startPayment()
+           // self.startPayment()
         })
         let amezonAction = UIAlertAction(title: "Amazon Pay", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -458,7 +458,7 @@ extension PaymentViewController{
             if type != eServerTypeNone {
                 txnController?.serverType = type
                 txnController?.merchant = mc
-                txnController?.delegate = self
+                txnController?.delegate = self as! PGTransactionDelegate
                 self.showController(controller: txnController!)
             }
         })
@@ -501,6 +501,17 @@ extension PaymentViewController{
     }
     func errorMisssingParameter(_ controller: PGTransactionViewController!, error: Error!) {
     }
+
+    func showAlertViewWithTitle(title : String,message:String) -> Void {
+        let alertController : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+}
+    /*
     //MARK: PayU integration
     func startPayment() -> Void {
         params.amount = self.totalPayAmountlbl.text!
@@ -561,17 +572,18 @@ extension PaymentViewController{
             self.showAlertViewWithTitle(title: "Message", message: "Oops!!! Payment Failed")
         }
     }
-    func showAlertViewWithTitle(title : String,message:String) -> Void {
-        let alertController : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            NSLog("OK Pressed")
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
+ */
+//    func showAlertViewWithTitle(title : String,message:String) -> Void {
+//        let alertController : UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//            UIAlertAction in
+//            NSLog("OK Pressed")
+//        }
+//        alertController.addAction(okAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
     // MARK:HASH CALCULATION
-    
+    /*
     func prepareHashBody()->NSString{
         return "key=\(params.key!)&amount=\(params.amount!)&txnid=\(params.txnid!)&productinfo=\(params.productinfo!)&email=\(params.email!)&firstname=\(params.firstname!)" as NSString;
     }
@@ -608,7 +620,7 @@ extension PaymentViewController{
             }
         })
         task.resume()
-    }
+    }*/
     //MARK: PayPal integration
     func paypalbtnTapped()
     {

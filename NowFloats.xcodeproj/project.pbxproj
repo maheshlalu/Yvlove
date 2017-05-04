@@ -203,10 +203,6 @@
 		8972B8CC1E9E34EF005CE0A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8972B8CB1E9E34EF005CE0A2 /* UIKit.framework */; };
 		897479AF1E9CDA8D00A58744 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 897479AE1E9CDA8D00A58744 /* libxml2.tbd */; };
 		897EAD461E5EFFDE001899F1 /* plus-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EAD451E5EFFDD001899F1 /* plus-empty.png */; };
-		898E72A61E961C7900EB8A30 /* PayUmoney_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898E72A51E961C7900EB8A30 /* PayUmoney_SDK.framework */; };
-		898E72AA1E961CEB00EB8A30 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 898E72A91E961CEB00EB8A30 /* Utils.m */; };
-		898E72AB1E96216E00EB8A30 /* PayUmoney_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898E72A51E961C7900EB8A30 /* PayUmoney_SDK.framework */; };
-		898E72AC1E96216E00EB8A30 /* PayUmoney_SDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 898E72A51E961C7900EB8A30 /* PayUmoney_SDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		899B7B1B1E5437E0006C1F79 /* ButtonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B7B151E5437E0006C1F79 /* ButtonLayer.swift */; };
 		899B7B1C1E5437E0006C1F79 /* KYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B7B161E5437E0006C1F79 /* KYButton.swift */; };
 		899B7B1D1E5437E0006C1F79 /* KYButtonCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B7B171E5437E0006C1F79 /* KYButtonCells.swift */; };
@@ -240,20 +236,6 @@
 			remoteInfo = NowFloats;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		898E72AD1E96216E00EB8A30 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				898E72AC1E96216E00EB8A30 /* PayUmoney_SDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0942C8092495C1C71EAF2AE3 /* Pods-MyLabs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLabs.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyLabs/Pods-MyLabs.release.xcconfig"; sourceTree = "<group>"; };
@@ -518,9 +500,6 @@
 		8972B8CB1E9E34EF005CE0A2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		897479AE1E9CDA8D00A58744 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		897EAD451E5EFFDD001899F1 /* plus-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-empty.png"; sourceTree = "<group>"; };
-		898E72A51E961C7900EB8A30 /* PayUmoney_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PayUmoney_SDK.framework; sourceTree = "<group>"; };
-		898E72A81E961CEB00EB8A30 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		898E72A91E961CEB00EB8A30 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		899B7B151E5437E0006C1F79 /* ButtonLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayer.swift; sourceTree = "<group>"; };
 		899B7B161E5437E0006C1F79 /* KYButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYButton.swift; sourceTree = "<group>"; };
 		899B7B171E5437E0006C1F79 /* KYButtonCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYButtonCells.swift; sourceTree = "<group>"; };
@@ -569,11 +548,9 @@
 				8972B8A31E9CFDFB005CE0A2 /* SafariServices.framework in Frameworks */,
 				8972B8AD1E9E334E005CE0A2 /* libPayPalMobile.a in Frameworks */,
 				8972B8971E9CFBE5005CE0A2 /* libPayPalMobile.a in Frameworks */,
-				898E72A61E961C7900EB8A30 /* PayUmoney_SDK.framework in Frameworks */,
 				8900AD811E82B52C0064438C /* FBSDKShareKit.framework in Frameworks */,
 				8900AD801E82B52C0064438C /* FBSDKLoginKit.framework in Frameworks */,
 				117D1BC41DA61F0200BE4AE1 /* CoreSpotlight.framework in Frameworks */,
-				898E72AB1E96216E00EB8A30 /* PayUmoney_SDK.framework in Frameworks */,
 				110329C41D8A72B40008A3B7 /* MapKit.framework in Frameworks */,
 				DB9A494AC3CAAB4810726C4A /* Pods_NowFloats.framework in Frameworks */,
 				8972B8BC1E9E33A3005CE0A2 /* libCardIO.a in Frameworks */,
@@ -1041,7 +1018,6 @@
 			children = (
 				12C008891EBB081A005B5ED4 /* CXLog.swift */,
 				8972B8A41E9E334C005CE0A2 /* PAYPAL */,
-				898E72A41E961C7900EB8A30 /* PayUBiz */,
 				892491A41E950BB500CB8097 /* PayTM Integration */,
 				897EAD451E5EFFDD001899F1 /* plus-empty.png */,
 				1841CF911E39E16600B58FE4 /* Mixpanel */,
@@ -1277,17 +1253,6 @@
 			path = CardIO;
 			sourceTree = "<group>";
 		};
-		898E72A41E961C7900EB8A30 /* PayUBiz */ = {
-			isa = PBXGroup;
-			children = (
-				898E72A81E961CEB00EB8A30 /* Utils.h */,
-				898E72A91E961CEB00EB8A30 /* Utils.m */,
-				898E72A51E961C7900EB8A30 /* PayUmoney_SDK.framework */,
-			);
-			name = PayUBiz;
-			path = lib;
-			sourceTree = "<group>";
-		};
 		899B7B131E5437E0006C1F79 /* KYFloatingActionButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,7 +1304,6 @@
 				0F7AA0D69327AAD436C68781 /* [CP] Embed Pods Frameworks */,
 				0E262B6DE857E921229F5A8E /* [CP] Copy Pods Resources */,
 				114E91B21E13C54E00E22D18 /* ShellScript */,
-				898E72AD1E96216E00EB8A30 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1406,7 +1370,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 95Y7Y2H9V8;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3B4FD8291D6446D300A6EBBE = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1700,7 +1664,6 @@
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
 				899B7B1F1E5437E0006C1F79 /* OverLayView.swift in Sources */,
 				11F0B3E01D8AC11B00873979 /* Station.swift in Sources */,
-				898E72AA1E961CEB00EB8A30 /* Utils.m in Sources */,
 				1147CB9A1D8BB3ED00138C4E /* CXCommentRatingViewController.swift in Sources */,
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
@@ -1953,7 +1916,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1974,10 +1937,10 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShaElectronics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1991,7 +1954,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2012,10 +1975,10 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShaElectronics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

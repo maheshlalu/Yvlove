@@ -33,7 +33,9 @@
 	<key>ISPagerEnable</key>
 	<true/>
 	<key>PRODUCT_NAME</key>
-	<string>SHAH&apos;S</string>
+	<string>Shah&apos;s
+Shah Electronics Appliances
+</string>
 	<key>signInMethod</key>
 	<string>MobileAPIs/loginConsumerForOrg?</string>
 	<key>signUpMethod</key>
