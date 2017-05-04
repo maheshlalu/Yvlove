@@ -46,7 +46,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
         getDescriptionTags()
         self.ratingBgView.backgroundColor = UIColor.clear
         //self.ratingView.backgroundColor = UIColor.white
-        print("\(productDetailDic)")
         
     }
     
@@ -153,7 +152,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             addToCartBtn.isSelected = false
         }
         
-        print(isMRP,isLink)
         
         /*
          //MRP is False and Link is False
@@ -340,7 +338,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     }
     
     @IBAction func needMoreAction(_ sender: Any) {
-        print("needMoreAction")
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
             self.navigationController?.pushViewController(signInViewCnt, animated: true)

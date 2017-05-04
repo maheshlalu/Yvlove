@@ -52,10 +52,8 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
     
     func sendButtonAction() {//"Please enter valid email address."
         self.view.endEditing(true)
-        print("Send button")
         if self.isValidEmail(self.emailAddressField.text!) {
             CXAppDataManager.sharedInstance.forgotPassword(self.emailAddressField.text!, completion: { (responseDict) in
-                print(responseDict)
                 let message = responseDict.value(forKey: "result") as? String
                 let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                 if status == 1{
@@ -108,7 +106,6 @@ class CXForgotPassword: CXViewController,UITextFieldDelegate {
     
     
     func isValidEmail(_ email: String) -> Bool {
-        //print("validate email: \(email)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if emailTest.evaluate(with: email) {

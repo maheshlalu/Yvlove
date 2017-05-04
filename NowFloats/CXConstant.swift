@@ -152,7 +152,6 @@ class CXConstant: NSObject {
     
     
     func saveTheFid(_ storeID:String){
-          print(storeID)
         UserDefaults.standard.set(storeID, forKey: "FID")
         
     }
@@ -185,13 +184,10 @@ class CXConstant: NSObject {
         var dataString: String!
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
-            //print("JSON data is \(jsonData)")
             dataString = String(data: jsonData, encoding: String.Encoding.utf8)
-            //print("Converted JSON string is \(dataString)")
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
             dataString = ""
-            print(error)
         }
         return dataString as NSString
     }
@@ -202,7 +198,6 @@ class CXConstant: NSObject {
         do {
             jsonDict = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.mutableContainers ) as! NSDictionary            // CXDBSettings.sharedInstance.saveAllMallsInDB((jsonData.valueForKey("orgs") as? NSArray)!)
         } catch {
-            //print("Error in parsing")
         }
         return jsonDict
     }
@@ -244,20 +239,15 @@ class CXConstant: NSObject {
         
         switch height {
         case 480.0:
-            print("iPhone 3,4")
             return IPHONE_4S
         case 568.0:
-            print("iPhone 5")
             return IPHONE_5S
         case 667.0:
-            print("iPhone 6")
             return IPHONE_6
         case 736.0:
-            print("iPhone 6+")
             return IPHONE_6PLUS
             
         default:
-            print("not an iPhone")
             return NOT_IPHONE
         }
     }
@@ -279,7 +269,6 @@ extension String {
     
     func urlEncoding() -> String {
         let escapedString = self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        //print("escapedString: \(escapedString)")
         return escapedString!
     }
 

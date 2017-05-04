@@ -32,11 +32,9 @@ open class CXDataService: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    //print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .failure(let error):
-                    print(error)
                 }
         }
         }else{
@@ -47,8 +45,6 @@ open class CXDataService: NSObject {
         Alamofire.request(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl(), method: .post, parameters: parameters, encoding: URLEncoding.`default`)
             .responseJSON { response in
                 
-                print(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl())
-                print(parameters)
                 //to get status code
                 switch (response.result) {
                 case .success:
@@ -63,7 +59,6 @@ open class CXDataService: NSObject {
                     if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
                         //timeout here
                     }
-                    print("\n\nAuth request failed with error:\n \(error)")
                     break
                 }
         }        
@@ -83,14 +78,11 @@ open class CXDataService: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                   // print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .failure(let error):
-                    print(error)
                 }
         }*/
-        print("url:\(urlstring) and parameters:\(parameters)")
         Alamofire.request(urlstring, method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
             .validate()
             .validate(contentType: ["application/json"])
@@ -109,7 +101,6 @@ open class CXDataService: NSObject {
                     if error._code == NSURLErrorTimedOut {
                         //timeout here
                     }
-                    print("\n\nAuth request failed with error:\n \(error)")
                     break
                 }
                 
@@ -132,7 +123,6 @@ open class CXDataService: NSObject {
             data, response, error) in
             
             guard let _:NSData = data as NSData?, let _:URLResponse = response  , error == nil else {
-                print("error")
                 return
             }
             let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
@@ -155,8 +145,6 @@ open class CXDataService: NSObject {
 //                    fileName: "uploadedFile.jpg", mimeType: "")
 //            },
 //            encodingCompletion: { encodingResult in
-//                print(encodingResult)
-//                print("result")
 //            }
 //        )
     }
@@ -168,7 +156,6 @@ open class CXDataService: NSObject {
         do {
             jsonDict = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.mutableContainers ) as! NSDictionary            // CXDBSettings.sharedInstance.saveAllMallsInDB((jsonData.valueForKey("orgs") as? NSArray)!)
         } catch {
-            //print("Error in parsing")
         }
         return jsonDict
     }
@@ -180,17 +167,14 @@ open class CXDataService: NSObject {
          
          clientId=5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6&skipBy=0&fpid=kljadlkcjasd898979
         */
-        //print(parameters)
        /* Alamofire.request(.GET,"https://api.withfloats.com/Discover/v2/floatingPoint/bizFloats?", parameters: parameters)
             .validate()
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                   // print("Validation Successful\(response.result.value)")
                     completion(responseDict: (response.result.value as? NSDictionary)!)
                     break
                 case .failure(let error):
-                    print(error)
                 }
         }
         */
@@ -213,7 +197,6 @@ open class CXDataService: NSObject {
                     if error._code == NSURLErrorTimedOut {
                         //timeout here
                     }
-                    print("\n\nAuth request failed with error:\n \(error)")
                     break
                 }
         }

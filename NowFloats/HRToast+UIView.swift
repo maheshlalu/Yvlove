@@ -333,7 +333,6 @@ extension UIView {
             return position.cgPointValue
         }
         
-        print("Warning: Invalid position for toast.")
         return self.centerPointForPosition(HRToastPositionDefault as AnyObject, toast: toast)
     }
     

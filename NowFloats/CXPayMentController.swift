@@ -67,12 +67,10 @@ class CXPayMentController: UIViewController {
         
         let refreshAlert = UIAlertController(title: "", message: "Do you want to cancel this transaction and go back?", preferredStyle: .alert)
         refreshAlert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
             //Stay same place
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
             //Go back
            // self.goBackcompletion(isGoBack: true)
             self.navigationController?.popToRootViewController(animated: true)
@@ -112,7 +110,6 @@ class CXPayMentController: UIViewController {
 extension CXPayMentController : UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool{
         self.webRequestArry.add(String(describing: request.url!))
-        print(request)
         return true
     }
     func webViewDidStartLoad(_ webView: UIWebView){
@@ -122,15 +119,12 @@ extension CXPayMentController : UIWebViewDelegate {
         activity.startAnimating()
     }
     func webViewDidFinishLoad(_ webView: UIWebView){
-      //  print(self.webRequestArry.lastObject)
        // CXDataService.sharedInstance.hideLoader()
         let lastRequest : String = String(describing: self.webRequestArry.lastObject!)
-        print(lastRequest)
         if ((lastRequest.range(of:"paymentOrderResponse")) != nil)  {
           //  CXDataService.sharedInstance.showLoader(message: "Processing...")
             //CXDataService.sharedInstance.showLoader(view: self.view, message: "Processing...")
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(lastRequest, completion: { (responseDict) in
-               // print(responseDict)
                 let status : String = (responseDict.value(forKey: "status") as? String)!
                 if status == "Completed" {
                     self.completion(responseDict)

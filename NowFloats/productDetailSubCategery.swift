@@ -23,7 +23,6 @@ class productDetailSubCategery: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(selectedCategoryType)
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255.0, green: 145/255.0, blue: 0/255.0, alpha: 1.0)
         self.productSubCategeryServiceCall(categeryType: productCategeryType, referID: referID)
         

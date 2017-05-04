@@ -37,7 +37,6 @@ class UpdatesViewController: CXViewController {
         self.setUpTableView()
         self.getUpdates()
         
-        print(updatesArray.count)
         
         
         // Do any additional setup after loading the view.
@@ -197,7 +196,6 @@ extension UpdatesViewController:UISearchBarDelegate{
         //self.doSearch()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // print("search string \(searchText)")
         if (self.updatesSearch.text!.characters.count > 0) {
             //self.doSearch()
         } else {

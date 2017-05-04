@@ -27,7 +27,6 @@ class CXAppConfig {
         if let path = Bundle.main.path(forResource: "CXProjectConfiguration", ofType: "plist") {
             config = NSDictionary(contentsOfFile: path)
             
-            print(config!)
         }
     }
     

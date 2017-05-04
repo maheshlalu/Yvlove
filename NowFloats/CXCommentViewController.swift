@@ -30,7 +30,6 @@ class CXCommentViewController: CXViewController {
 //       let height = UIScreen.mainScreen().bounds.size.height
 //        
 //        let vHeight = self.view.frame.size.height
-        //print("Screen height \(height) and view frame \(vHeight)")
         
         let comentImageView = UIImageView.init(frame: CGRect(x: (self.view.frame.size.width - 60)/2,y: (self.view.frame.size.height-65-60-50)/2 , width: 60, height: 60))
         //comentImageView.backgroundColor = UIColor.redColor()

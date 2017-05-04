@@ -171,7 +171,6 @@ open class ViewPager: UIView {
             }
         }
         
-        // print(scrollView.subviews.count)
     }
     
     func setFrameForView(_ view:UIView,index:Int){

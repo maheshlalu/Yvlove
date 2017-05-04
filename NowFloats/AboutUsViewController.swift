@@ -87,46 +87,29 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let day = components.day
 
         let weekday = getDayOfWeek(today: "\(year!)-\(month!)-\(day!)")//yyyy-mm-dd
-        print(weekday)
 /*
         let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
-        print(hrsOfOperation.description)
-        
         switch weekday {
         case 1:
-            print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 2:
-            print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 3:
-            print("Tuesday")
             let dayOperations = hrsOfOperation[5] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 4:
-            print("Wednesday")
             let dayOperations = hrsOfOperation[4] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 5:
-            print("Thursday")
             let dayOperations = hrsOfOperation[3] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 6:
-            print("Friday")
             let dayOperations = hrsOfOperation[2] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         case 7:
-            print("Saturday")
             let dayOperations = hrsOfOperation[1] as! NSDictionary
-            print(dayOperations.value(forKey: "endTime")!)
             self.timingsLbl.text = "OPEN TILL \(dayOperations.value(forKey: "endTime") as! String) TODAY"
         default:break
         }
@@ -144,38 +127,29 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let day = components.day
         
         let weekday = getDayOfWeek(today: "\(year!)-\(month!)-\(day!)")//yyyy-mm-dd
-        print(weekday)
 
         let hrsOfOperation = self.aboutUsDict.value(forKey: "hrsOfOperation")as! NSArray
-        print(hrsOfOperation.description)
         
         switch weekday {
         case 1:
-            print("Sunday")
             let dayOperations = hrsOfOperation[0] as! NSDictionary
             str = "Closed Today"
         case 2:
-            print("Monday")
             let dayOperations = hrsOfOperation[6] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 3:
-            print("Tuesday")
             let dayOperations = hrsOfOperation[5] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 4:
-            print("Wednesday")
             let dayOperations = hrsOfOperation[4] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 5:
-            print("Thursday")
             let dayOperations = hrsOfOperation[3] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 6:
-            print("Friday")
             let dayOperations = hrsOfOperation[2] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         case 7:
-            print("Saturday")
             let dayOperations = hrsOfOperation[1] as! NSDictionary
             str = "\(dayOperations.value(forKey: "startTime") as! String) to \(dayOperations.value(forKey: "endTime") as! String)"
         default:break
@@ -194,7 +168,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.aboutUsArray = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
         let storesEntity : CX_Stores = self.aboutUsArray.lastObject as! CX_Stores
         self.aboutUsDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        print(aboutUsDict)
         
     }
     
@@ -250,7 +223,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUs.aboutusDescriptionlabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.text = "We are Located in"
                 aboutUs.aboutuskmLabel.text = "\(mallDistance) KM Away"
-                print("Checking now \(mallDistance)")
                 aboutUs.aboutuskmLabel.font = CXAppConfig.sharedInstance.appMediumFont()
                 aboutUs.aboutusrootLabel.font = CXAppConfig.sharedInstance.appLargeFont()
                 aboutUs.aboutusgoogleLabel.addTarget(self, action: #selector(AboutUsViewController.viewMapAction(_:)), for: UIControlEvents.touchUpInside)
@@ -393,7 +365,6 @@ extension AboutUsViewController{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.mallDistance = String(mallDistance(locValue.latitude, currentLon: locValue.longitude))
     }
     
@@ -407,11 +378,9 @@ extension AboutUsViewController{
         
         if lat == "" || long == ""{
         //self.showAlertViewWithTitle(title: "Warning", message: "No latitude and longitude ")
-            print("No get latitude and longitude from siverside ")
         }else{
         let mallLocation = CLLocation(latitude: Double(self.aboutUsDict.value(forKeyPath: "Latitude") as! String!)!, longitude: Double(self.aboutUsDict.value(forKeyPath: "Longitude") as! String!)!)
         let distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
-        print("Distance is \(distance)")
         
         return distance
         }

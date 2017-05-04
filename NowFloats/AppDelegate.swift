@@ -92,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func doCalculations(){
         NSLog("do Calculations")
         for i in 100...105{
-            print("i in do calculations is \(i)")
             sleep(1)
         }
     }
@@ -100,7 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func doSomeMoreCalculations(){
         NSLog("do Some More Calculations")
         for j in 1...5{
-            print("j in do some more calculations is \(j)")
             sleep(1)
         }
         
@@ -161,7 +159,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
-        // print("***************************url Schemaaa:", url.scheme);
         
         if url.scheme == "fb122900748244366" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
@@ -190,7 +187,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
             let productString = CXConstant.sharedInstance.convertDictionayToString(productDic)
-            print(productDic)
             
             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
             //Trimming Price And Discount
@@ -226,7 +222,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.CX.NowFloats" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        print("pathv\(urls[urls.count-1] as URL)")
         return urls[urls.count-1]
     }()
     
@@ -241,7 +236,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
-        print(url)
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
@@ -273,7 +267,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        print(managedObjectContext.hasChanges)
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
@@ -308,8 +301,7 @@ extension AppDelegate{
     
  /*   @objc(application:openURL:sourceApplication:annotation:) func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
-        // print("***************************url Schemaaa:", url.scheme);
-        
+     
         if url.scheme == "fb122900748244366" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
             return callBack
@@ -318,7 +310,6 @@ extension AppDelegate{
             return callBack
         }else if url.scheme == "apps.storeongo.com" {
             //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
-            print(url.host!)
         }
         return true
     } */

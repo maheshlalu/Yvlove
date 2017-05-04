@@ -87,9 +87,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     self.facebookResponseDict = result as! [String:AnyObject] as NSDictionary!
-                    //print(result)
                     // self.sendSignDetails()
-                    print(self.facebookResponseDict)
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "email"), forKey: "USER_EMAIL")
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "first_name"), forKey: "FIRST_NAME")
                     UserDefaults.standard.set(self.facebookResponseDict.value(forKey: "name"), forKey: "FULL_NAME")
@@ -139,13 +137,11 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 do {
                     let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
-                    print(userData!)
                     firstName = userData!["given_name"] as! String
                     lastName = userData!["family_name"] as! String
                     profilePic = userData!["picture"] as! String
                     email = userData!["email"] as! String
                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
-                    //print("\(email)\(firstName)\(lastName)\(profilePic)")
                     self.googleResponseDict = userData as NSDictionary!
                     self.navigationController?.popViewController(animated: true)
                     
@@ -311,7 +307,6 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
             let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            //print("Please enter valid email")
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -325,7 +320,6 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
     }
     
     func isValidEmail(_ email: String) -> Bool {
-        print("validate email: \(email)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if emailTest.evaluate(with: email) {

@@ -36,7 +36,6 @@ open class CXAppDataManager: NSObject {
         self.getProducts()
         // self.getTheFeaturedProduct()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print("print store category\(responseDict)")
             self.getTheStores({(isDataSaved) in
             })
         }
@@ -54,7 +53,6 @@ open class CXAppDataManager: NSObject {
     {
         let categoryNamesArr = NSMutableArray()
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"ProductCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print("print products\(responseDict)")
             let categoryJobsArr = responseDict.value(forKey: "jobs") as! NSArray
             for obj in categoryJobsArr {
                 let dict = obj as! NSDictionary
@@ -68,7 +66,6 @@ open class CXAppDataManager: NSObject {
         let url = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl()
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(url, parameters: ["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID as AnyObject]) { (responseDic) in
-            print("print products\(responseDic)")
             completion(responseDic)
         }
     }
@@ -89,7 +86,6 @@ open class CXAppDataManager: NSObject {
     func getAllProdctDetailsFromServer(type:String)
     {
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":type as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print("print products\(responseDict)")
             CXDataProvider.sharedInstance.saveTheProducts(responseDict, completion: { (isDataSaved) in
                 self.productCategories.remove(type)
                 self.getAllProductsData()
@@ -138,7 +134,6 @@ open class CXAppDataManager: NSObject {
     }
     
     func getTheFeaturedProduct(){
-        print("getTheFeaturedProduct")
         
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Featured Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
@@ -158,7 +153,6 @@ open class CXAppDataManager: NSObject {
     
     
     func getTheFeaturedProductJobs(){
-        print("getTheFeaturedProductJobs")
         
         let jobsArray : NSArray =  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(format:"itHasJobs == 0" ), ispredicate: true,orederByKey: "").dataArray
         if jobsArray.count != 0 {
@@ -167,7 +161,6 @@ open class CXAppDataManager: NSObject {
             //  NSManagedObjectContext.MR_contextForCurrentThread().save()
             
             CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                print(responseDict)
                 
                 let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
                 
@@ -222,11 +215,9 @@ open class CXAppDataManager: NSObject {
             completion(true)
             let string = responseDict.value(forKeyPath: "status") as! String
             if (string.contains("1")){
-                // print("All Malls \(jsonData)")
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Cart")
                 let cartsDataArrya : NSArray = CX_Cart.mr_executeFetchRequest(fetchRequest) as NSArray
                 for (index, element) in cartsDataArrya.enumerated() {
-                    print(index)
                     let cart : CX_Cart = element as! CX_Cart
                     NSManagedObjectContext.mr_contextForCurrentThread().delete(cart)
                     NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
@@ -283,10 +274,8 @@ open class CXAppDataManager: NSObject {
             jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
-            print(error)
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-        //print("order dic \(jsonStringFormat)")
         return jsonStringFormat!
     }
     
@@ -305,11 +294,9 @@ open class CXAppDataManager: NSObject {
             completion(true)
             let string = responseDict.value(forKeyPath: "status") as! String
             if (string.contains("1")){
-                // print("All Malls \(jsonData)")
                 let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Cart")
                 let cartsDataArrya : NSArray = CX_Cart.mr_executeFetchRequest(fetchRequest) as NSArray
                 for (index, element) in cartsDataArrya.enumerated() {
-                    print(index)
                     let cart : CX_Cart = element as! CX_Cart
                     NSManagedObjectContext.mr_contextForCurrentThread().delete(cart)
                     NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
@@ -382,7 +369,6 @@ open class CXAppDataManager: NSObject {
 //            orderSubTotal.append(String(finalSubtotal) + "`" + cart.pID!)
 //            orderItemId.append("\(cart.pID! + "`" + cart.pID!)")
 //            orderItemMRP.append(String(describing: cart.productPrice!) + "`" + cart.pID!)
-            //print("Item \(index): \(cart)")
         }
        // listArray.add(order)
 
@@ -406,8 +392,7 @@ open class CXAppDataManager: NSObject {
 //       // order.setValue(subTotal, forKey: "Total")
 //        
 //        
-//        //print("order dic \(order)")
-//        
+//
         
         
         let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
@@ -435,11 +420,9 @@ open class CXAppDataManager: NSObject {
             jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
-            print(error)
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-        //print("order dic \(jsonStringFormat)")
-        
+     
         return jsonStringFormat!
         
         
@@ -490,7 +473,6 @@ open class CXAppDataManager: NSObject {
         
         //http://appjee.com:8081/Services/getMasters?mallId=3&type=PlaceOrders&consumerId=4
         CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId": userId as AnyObject ,"type":"PlaceOrders" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print(responseDict)
             completion(responseDict)
         }
     }

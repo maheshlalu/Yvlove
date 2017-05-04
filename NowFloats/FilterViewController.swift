@@ -62,7 +62,6 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
         for _ in 0 ..< self.colorArr.count {
             (colorSelectedArr as AnyObject).add("NO")
         }*/
-        //print("selected \(selectedArr)")
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 228/255.0, green: 49/255.0, blue: 44/255.0, alpha: 1.0)
         self.navigationItem.title = "Filter's Selection"
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
@@ -254,7 +253,6 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
     //MARK: filter Action
     func filterTapped(){
         
-        print("seleted arrays \(finalPriceSelectedArr) \(finalAgeSelectedArr) \(finalDiscountSelectedArr)  \(finalColorSelectedArr)")
         
         if finalPriceSelectedArr.count == 0 && finalAgeSelectedArr.count == 0 && finalDiscountSelectedArr.count == 0 && finalColorSelectedArr.count == 0{
             let alert = UIAlertController(title: "Alert!!!", message: "Please select an option!!", preferredStyle: UIAlertControllerStyle.alert)
@@ -341,7 +339,6 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
              
              let finalOne = String(pricePredicateString.characters.dropLast())
              pricePredicateString = finalOne.replacingOccurrences(of: "#", with: "OR")
-             print(pricePredicateString)
              
              }
              */
@@ -394,13 +391,11 @@ class FilterViewController: UIViewController,UITableViewDelegate,UITableViewData
                 filteredData = "\(filteredData) AND \(filter)"
             }
             let finalPredicate = String(filteredData.characters.dropFirst(5))
-            print(finalPredicate)
             predicateStr = finalPredicate
             
             var dummyArr = NSArray()
             let predicate = NSPredicate.init(format:predicateStr)
             dummyArr = CX_Products.mr_findAll(with: predicate) as NSArray!
-            print(dummyArr.count)
             
             self.dismiss(animated: true) {
                 let filteredProductArry = dummyArr

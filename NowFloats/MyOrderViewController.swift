@@ -32,7 +32,6 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.MyorderstableView?.register(UINib(nibName: "MyorderTableViewCell1", bundle: nil), forCellReuseIdentifier: "MyorderTableViewCell1")
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 196
-        //print("orders array \(orderDetailDict)")
         DispatchQueue.main.async {
             self.getOrderDetails()
         }
@@ -84,17 +83,13 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     func getOrderDetails(){
         let subDataJobs = orderDetailDict.value(forKey: "CreatedSubJobs") as! NSArray
-        print("sub data \(subDataJobs)")
         
         //for _ in 0..<subDataJobs.count{
             let OrderItemName = subDataJobs.value(forKey: "OrderItemName")
-            print("orderdata is \(OrderItemName)")
         let OrderItemMRP = subDataJobs.value(forKey: "OrderItemMRP")
-        print("OrderItemMRP \(OrderItemMRP)")
         
         let OrderItemSubTotal = subDataJobs.value(forKey: "OrderItemSubTotal")
-        print("OrderItemSubTotal\(OrderItemSubTotal)")
-           
+        
             
         
        // }
@@ -115,7 +110,6 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             let strOrder = orderDetailDict.value(forKey: "OrderItemName")
             orderName[0] = strOrder!
         }else{
-           // print("Ordername \(orderDetailDict)")
             let order = orderDetailDict.value(forKey: "OrderItemName") as! NSArray
             orderName = order.mutableCopy() as! NSMutableArray
         }
@@ -149,7 +143,6 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             orderSubTotal = order.mutableCopy() as! NSMutableArray
         }
         
-        print(stringRepresentation)
         CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":stringRepresentation as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKeyPath: "jobs.Image_URL") as! NSArray
             if jobs.count == 1{

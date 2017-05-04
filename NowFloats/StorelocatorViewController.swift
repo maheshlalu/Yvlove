@@ -32,12 +32,9 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
         
         
                   /*  CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
-                        print("print Stores\(responseDic)")
                         var numbers = [self.categoryNameArray]
                                             numbers.uniqInPlace()
-                                            print(numbers)
                          self.categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray as! NSMutableArray
-                        print(self.categoryJobArray)
                         for obj in self.categoryJobArray{
                             let dict = obj as! NSDictionary
                             self.categoryNameArray.add(dict.value(forKey: "City")as! String)
@@ -55,7 +52,6 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
         
         let dataTask = session.dataTask(with: request as URLRequest) { (downloadData, response, error) in
             
-            print(downloadData)
             
             if error == nil
             {
@@ -63,7 +59,6 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
                 {
                     let dict = try JSONSerialization.jsonObject(with: downloadData!, options: .allowFragments) as! [String :AnyObject]
                     
-                    print(dict)
                     
                     
                     
@@ -72,20 +67,17 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
 ////                        let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
 ////                        indexSet.add(lastIndexOfArr + i)
 ////                        indexArr.add(index)
-//                        print(i)
 //                    }
 //                    
 //                    for element in self.storeArray {
 //                        let dict = element as NSDictionary
 //                        self.store.add(dict.value(forKey: "City"))
-//                        print(self.store)
-//                        
+//
 //                    }
 //                   
 //                    self.categories = self.store as! [String]
 //                    self.categories.uniqInPlace()
-//                    print(self.categories)
-//                    
+//
 //                    
 //                    for element in self.categories {
 //                        let category = element as String
@@ -94,18 +86,15 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
 //                            let dict = element as NSDictionary
 //                            if dict.value(forKey: "City") as! String == category {
 //                                tempArr.add(dict)
-//                                print(tempArr)
 //                            }
 //                        }
 //                        self.mainDataDict[category] = tempArr
-//                        print(self.mainDataDict)
 //                    }
 //                    
-//                    print(self.mainDataDict)
                     
                     
-                    print(self.storeArray.count)
-                    print(self.storeArray)
+                    CXLog.print(self.storeArray.count)
+                    CXLog.print(self.storeArray)
                     DispatchQueue.main.async(execute: {
                         self.storeTableView.reloadData()
                         
@@ -115,7 +104,7 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
                 }
                 catch let jsonError as NSError
                 {
-                    print(jsonError)
+                    CXLog.print(jsonError)
                 }
             }
         }
@@ -140,9 +129,7 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let dict = storeArray[indexPath.row]
-        print(dict)
 //        let dict = categoryJobArray[indexPath.row]
-//        print(dict)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StorelocatorTableViewCell", for: indexPath)as? StorelocatorTableViewCell
         
@@ -151,8 +138,31 @@ class StorelocatorViewController: UIViewController,UITableViewDataSource,UITable
         cell?.mobileNumberLabel.text = dict["Contact Number"]as? String
         cell?.addressLabel.text = dict["Address"]as? String
         cell?.timeLabel.text = dict[""]as? String
+        cell?.mapBtn.tag = indexPath.row
+        cell?.mapBtn.addTarget(self, action: #selector(mapBtnAction(sender:)), for: .touchUpInside)
         cell?.selectionStyle = .none
         return cell!
+    }
+    
+    func mapBtnAction(sender:UIButton){
+        
+        let dic = storeArray[sender.tag] as? NSDictionary
+        print(dic)
+        
+        let destinationLatitude = Double(dic?.value(forKey: "Latitude")! as! String)
+        let destinationLongtitude = Double(dic?.value(forKey: "Longitude")! as! String)
+        let googleMapUrlString = String.localizedStringWithFormat("http://maps.google.com/?daddr=%f,%f", destinationLatitude!, destinationLongtitude!)
+        UIApplication.shared.openURL(NSURL(string:
+            googleMapUrlString)! as URL)
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        
     }
 
   

@@ -92,7 +92,6 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }
         feturedProuctsCell.setCollectionViewDataSourceDelegate(dataSource: self, delegate: self, forRow: indexPath.row)
         //feturedProuctsCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section-1)
-        print("indext path tag \(indexPath.section)")
         //feturedProuctsCell.detailCollectionView.tag = indexPath.section
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
@@ -184,7 +183,6 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         cell?.layer.cornerRadius = 10.0
         
         // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
-       // print(featuredProductJobs.name!)
         
        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
@@ -260,13 +258,11 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        print("\(indexPath.row)")
         //
         //        let fID = String(indexPath.row)
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag] as? CX_FeaturedProducts)!
         let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").dataArray[indexPath.row] as?CX_FeaturedProductsJobs)!
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        print(featuredProductJobs.json!)
         
         let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
         
@@ -314,9 +310,7 @@ extension OffersViewController :UISearchBarDelegate{
         
         if (self.productsSearchBar.text!.characters.count > 0) {
         } else if self.productsSearchBar.text!.characters.count == 0{
-            print("inMethodCharectersCount0")
         }else if searchText.isEmpty{
-            print("SearchTextEmptyMethod")
         }
     }
     
@@ -399,7 +393,6 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     }
     
     func pagerOrderNowBtnAction(_ sender:UIButton){
-        print("\(sender.tag)")
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
@@ -433,12 +426,10 @@ func gettingDate() {
 extension OffersViewController {
     
    func orderNowBtnAction(_ sender:UIButton){
-            print("\(sender.tag)")
-            
+    
             let fID = String(sender.tag)
             let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            print(featuredProductJobs.json!)
             
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(featuredProductJobs.json!, itemID: fID, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
                 

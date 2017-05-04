@@ -95,12 +95,18 @@
                             <constraint firstAttribute="height" constant="1" id="Oyt-xp-gcb"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t27-4R-Xy7">
+                        <rect key="frame" x="8" y="116" width="234" height="54"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="DGO-qk-tv2" secondAttribute="trailing" constant="8" id="0S6-1l-4sr"/>
+                    <constraint firstItem="t27-4R-Xy7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="0xe-Ty-Cgx"/>
                     <constraint firstItem="mxj-yc-9Vo" firstAttribute="top" secondItem="HV7-Ew-mWk" secondAttribute="bottom" constant="42" id="1NT-uA-cfZ"/>
                     <constraint firstAttribute="trailing" secondItem="94G-IJ-ncM" secondAttribute="trailing" id="5Nq-dg-aTK"/>
                     <constraint firstItem="DGO-qk-tv2" firstAttribute="leading" secondItem="HV7-Ew-mWk" secondAttribute="trailing" constant="8" id="5eY-mq-A5f"/>
+                    <constraint firstItem="t27-4R-Xy7" firstAttribute="top" secondItem="DGO-qk-tv2" secondAttribute="bottom" constant="26" id="60Z-JS-Z0e"/>
                     <constraint firstAttribute="trailing" secondItem="I3g-aT-c3l" secondAttribute="trailing" constant="8" id="FHW-27-i9w"/>
                     <constraint firstItem="DGO-qk-tv2" firstAttribute="top" secondItem="GeO-rK-86J" secondAttribute="bottom" constant="8" id="GG1-Xf-SGd"/>
                     <constraint firstAttribute="trailing" secondItem="GeO-rK-86J" secondAttribute="trailing" constant="8" id="Ggz-SJ-rvu"/>
@@ -108,11 +114,13 @@
                     <constraint firstItem="s6a-vT-8P8" firstAttribute="top" secondItem="DGO-qk-tv2" secondAttribute="bottom" constant="26" id="L6L-uG-iyg"/>
                     <constraint firstAttribute="trailing" secondItem="yXW-SR-P17" secondAttribute="trailing" constant="8" id="PHD-zW-iU8"/>
                     <constraint firstItem="HV7-Ew-mWk" firstAttribute="top" secondItem="GeO-rK-86J" secondAttribute="bottom" constant="8" id="QnL-oi-8qu"/>
+                    <constraint firstAttribute="trailing" secondItem="t27-4R-Xy7" secondAttribute="trailing" constant="78" id="Rij-10-Tia"/>
                     <constraint firstItem="94G-IJ-ncM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YRG-i8-PAl"/>
                     <constraint firstItem="yXW-SR-P17" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="YoN-F5-tdc"/>
                     <constraint firstItem="yXW-SR-P17" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="b8l-Ah-pDI"/>
                     <constraint firstItem="s6a-vT-8P8" firstAttribute="leading" secondItem="mxj-yc-9Vo" secondAttribute="trailing" constant="8" id="gTF-AI-woY"/>
                     <constraint firstItem="GeO-rK-86J" firstAttribute="top" secondItem="yXW-SR-P17" secondAttribute="bottom" constant="15" id="gdJ-Gv-Szk"/>
+                    <constraint firstAttribute="bottom" secondItem="t27-4R-Xy7" secondAttribute="bottom" constant="11.5" id="iUL-Nt-si8"/>
                     <constraint firstItem="I3g-aT-c3l" firstAttribute="top" secondItem="DGO-qk-tv2" secondAttribute="bottom" constant="5" id="kMc-rj-Kbr"/>
                     <constraint firstItem="mxj-yc-9Vo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="oTX-GP-n4z"/>
                     <constraint firstItem="GeO-rK-86J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="pBn-e9-Wc4"/>
@@ -125,6 +133,7 @@
             <connections>
                 <outlet property="addressLabel" destination="s6a-vT-8P8" id="u4i-iU-jCf"/>
                 <outlet property="citeNameLabel" destination="yXW-SR-P17" id="1gh-sf-1aD"/>
+                <outlet property="mapBtn" destination="t27-4R-Xy7" id="Y9k-DN-eUc"/>
                 <outlet property="mobileNumberLabel" destination="DGO-qk-tv2" id="8zq-II-c7N"/>
                 <outlet property="productNameLabel" destination="GeO-rK-86J" id="5yO-qi-GdW"/>
                 <outlet property="timeLabel" destination="I3g-aT-c3l" id="lz2-Mh-Rkv"/>

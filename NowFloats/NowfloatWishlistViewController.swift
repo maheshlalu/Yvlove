@@ -98,7 +98,6 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let MRP = CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!)
         let Link = CXDataProvider.sharedInstance.getJobID("BuyOnlineLink", inputDic: products.json!)
         
-        print(MRP,Link)
         
         if CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!) == "0"{
 
@@ -185,7 +184,6 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             let products  = NSMutableArray(array: productsList)
             let storesEntity : CX_Products = products.lastObject as! CX_Products
             let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-            print(productDic)
             
             let popup = PopupController
                 .create(self)
@@ -232,7 +230,6 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
             self.wishlistcollectionView.reloadData()
             CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             })
-            print("delete the cell")
         }
     }
     
@@ -248,12 +245,10 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         
         // self.wishlistcollectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
         // self.wishlistcollectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: button.tag-1, inSection: 0)])
-        // print(proListData.pID)
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: false, isAddToCartList: false, isDeleteFromWishList: true, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
         
-        print("delete the cell");
         
     }
     
@@ -265,7 +260,6 @@ class NowfloatWishlistViewController: CXViewController,UICollectionViewDataSourc
         let products  = NSMutableArray(array: productsList)
         let storesEntity : CX_Products = products.lastObject as! CX_Products
         let productDic = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-        print(productDic)
         
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)

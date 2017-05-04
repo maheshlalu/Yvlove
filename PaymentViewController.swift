@@ -89,9 +89,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         
         if totalFinalData < 350{
             self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
-            print(self.totalPayAmountlbl.text!)
             standerdShipp = 40 + standerdShipp
-            print(standerdShipp)
         }else{
             self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
         }
@@ -179,7 +177,6 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         //var couponData = NSDictionary()
         if !(couponField.text?.isEmpty)!{
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":couponField.text as AnyObject]) { (responseDict) in
-                print("CouponData \(responseDict)")
                 let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                 if status == 1{
                     let couponType = responseDict.value(forKey: "couponType") as! String
@@ -187,7 +184,6 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
                     self.convertCoponType(type: couponType, amount: couponAmount)
                 }else{
                     self.showAlertView("Please enter valide Coupon Number", status: 0)
-                    print("invalide data")
                 }
             }
         }else{
@@ -249,9 +245,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
         }
         if totalFinalData < 350{
             self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
-            print(self.totalPayAmountlbl.text!)
             standerdShipp = 40 + standerdShipp
-            print(standerdShipp)
         }else{
             self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
         }
@@ -321,9 +315,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
     //MARK: Payment Option Action
     @IBAction func paymentOptionBtnTapped(_ sender: UIButton){
         let totalAmountDis = Float(self.ordersTotallbl.text!)!
-        print(self.totalPayAmountlbl.text!)
         var discountPrice:Float = Float()
-        //  print("totalData \(totalAmountDis)")
         if sender.tag == 1 || sender.tag == 5 {
             let total = String(Float(totalPayAmountlbl.text!)! + Float(self.discountCreditDebitcardlbl.text!)!)
             self.totalPayAmountlbl.text = total
@@ -374,8 +366,6 @@ extension PaymentViewController{
     
     @IBAction func paymentBtnAction(_ sender: Any) {
         
-       // print("\(standerdShipp) \(giftAmount) \(discountCreditDebitcardlbl.text)")
-        //print(dataDict)
         let name = dataDict.value(forKey: "name")
         let email = dataDict.value(forKey: "email")
         let address1 = dataDict.value(forKey: "addressLine1")
@@ -401,7 +391,6 @@ extension PaymentViewController{
                 self.navigationController?.pushViewController(payMentCntl, animated: true)
                 payMentCntl.paymentDelegate  = self
                 payMentCntl.completion = {_ in responseDict
-                    print(responseDict)
                     CXAppDataManager.sharedInstance.postPlaceOrder("PlaceOrder_Instamojo", totlaAmount: self.totalPayAmountlbl.text!, paymentMode: "PlaceOrder_Instamojo", CouponDiscount: self.couponDiscountLbl.text!, onlinePaymentDiscount: self.discountCreditDebitcardlbl.text!, shippingType: self.shippingType, contactNumber: mobile as! String, couponCode: self.couponField.text!, itemCount: "2", address: address, name: name as! String, email: email as! String, completion: { (isDataSaved) in
                         self.dismiss(animated: true, completion: {self.view.makeToast(message: "Product Ordered Successfully!!!")})
                     })
@@ -423,7 +412,6 @@ extension PaymentViewController{
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Paytm", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            print("Paytm clicked")
             self.paytmOptionTapped()
         })
         let saveAction = UIAlertAction(title: "PayU Biz", style: .default, handler: {
@@ -465,7 +453,6 @@ extension PaymentViewController{
         orderDict["CALLBACK_URL"] = "https://pguat.paytm.com/paytmchecksum/paytmCheckSumVerify.jsp"
         orderDict["CHECKSUMHASH"] = "o3ARWrsxEfuJwDhkG7/m57ZU+YpHJWNVOTqJb9kfp0fbioRG/lsn1ReNBPUr0UKMMB5Iq4e/JUVSHrbFl9g1VyCyQqcHl/jPOqNvYHVE4Ko="
         let order: PGOrder = PGOrder(params: orderDict as[NSObject : AnyObject])
-        print("oder list is \(order)")
         PGServerEnvironment.selectServerDialog(self.view, completionHandler: {(type: ServerType) -> Void in
             let txnController = PGTransactionViewController.init(transactionFor: order)
             if type != eServerTypeNone {
@@ -500,7 +487,6 @@ extension PaymentViewController{
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             } catch {
-                print(error.localizedDescription)
             }
         }
         return nil
@@ -508,16 +494,12 @@ extension PaymentViewController{
     
     // MARK: Delegate methods of Payment SDK.
     func didFinishedResponse(_ controller: PGTransactionViewController!, response responseString: String!) {
-        print("response data is \(responseString.description)")
         let dict = convertToDictionary(text: responseString)
-        print("Dict values \(dict)")
     }
     func didCancelTrasaction(_ controller: PGTransactionViewController!) {
-        print("Cancel procees")
         self.removeController(controller: controller)
     }
     func errorMisssingParameter(_ controller: PGTransactionViewController!, error: Error!) {
-        print("error data \(error)")
     }
     //MARK: PayU integration
     func startPayment() -> Void {
@@ -603,12 +585,10 @@ extension PaymentViewController{
         let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
             } else {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]{
                         //Implement your logic
-                        print(json)
                         let status : NSNumber = json["status"] as! NSNumber
                         if(status.intValue == 0)
                         {
@@ -624,7 +604,6 @@ extension PaymentViewController{
                         }
                     }
                 } catch {
-                    print("error in JSONSerialization")
                 }
             }
         })
@@ -634,7 +613,6 @@ extension PaymentViewController{
     func paypalbtnTapped()
     {
         self.paypaldata()
-        //print("PayPal iOS SDK Version: \(PayPalMobile.libraryVersion())")
         //let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 2, withPrice: NSDecimalNumber(string: "84.99"), withCurrency: "USD", withSku: "Hip-0037")
         //let item2 = PayPalItem(name: "Free rainbow patch", withQuantity: 1, withPrice: NSDecimalNumber(string: "0.00"), withCurrency: "USD", withSku: "Hip-00066")
         let item3 = PayPalItem(name: "SHAH'S", withQuantity: 1, withPrice: NSDecimalNumber(string: "37.99"), withCurrency: "USD", withSku: "IND-00291")
@@ -649,11 +627,9 @@ extension PaymentViewController{
         payment.paymentDetails = paymentDetails
         if (payment.processable) {
             let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
-            print("Payment processalbe: \(payment)")
             present(paymentViewController!, animated: true, completion: nil)
         }
         else {
-            print("Payment not processalbe: \(payment)")
         }
     }
     
@@ -672,14 +648,11 @@ extension PaymentViewController{
     }
     //MARK: PayPalPaymentDelegate
     func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
-        print("PayPal Payment Cancelled")
         paymentViewController.dismiss(animated: true, completion: nil)
     }
     func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
-        print("PayPal Payment Success !")
         paymentViewController.dismiss(animated: true, completion: { () -> Void in
             // send completed confirmaion to your server
-            print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
         })
     }
 }
@@ -755,9 +728,7 @@ extension PaymentViewController{
  
  if totalFinalData < 350{
  self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
- print(self.totalPayAmountlbl.text!)
  standerdShipp = 40 + standerdShipp
- print(standerdShipp)
  }else{
  self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
  }
@@ -844,7 +815,6 @@ extension PaymentViewController{
  //var couponData = NSDictionary()
  if !(couponField.text?.isEmpty)!{
  CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Services/applyCoupon?", parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"couponCode":couponField.text as AnyObject]) { (responseDict) in
- print("CouponData \(responseDict)")
  let status: Int = Int(responseDict.value(forKey: "status") as! String)!
  if status == 1{
  let couponType = responseDict.value(forKey: "couponType") as! String
@@ -852,7 +822,6 @@ extension PaymentViewController{
  self.convertCoponType(type: couponType, amount: couponAmount)
  }else{
  self.showAlertView("Please enter valide Coupon Number", status: 0)
- print("invalide data")
  }
  }
  }else{
@@ -885,14 +854,11 @@ extension PaymentViewController{
  self.ordersTotallbl.text = String(describing: Float(self.ordersTotallbl.text!)! - Float(couponDiscountLbl.text!)!)
  self.totalPayAmountlbl.text = String(describing: Float(self.totalPayAmountlbl.text!)! - Float(couponDiscountLbl.text!)!)
  // totalFinalData = totalFinalData - Int(couponDiscountLbl.text!)!
- // print("totla data \(NSInteger(self.totalPayAmountlbl!.text!)!)")
  
  
  }
  
- print("after discount \(totalFinalData - Int(discountAmount))")
  totalFinalData = totalFinalData - Int(discountAmount)
- //print("totla data \(Int(self.totalPayAmountlbl.text!)!)")
  //self.totalFinalData = Int(self.totalPayAmountlbl.text!)!
  }
  //########################################################### COUPON ###################################################################
@@ -919,9 +885,7 @@ extension PaymentViewController{
  }
  if totalFinalData < 350{
  self.totalPayAmountlbl.text = String(totalFinalData + 40 + standerdShipp + giftAmount)
- print(self.totalPayAmountlbl.text!)
  standerdShipp = 40 + standerdShipp
- print(standerdShipp)
  }else{
  self.totalPayAmountlbl.text = String(totalFinalData + standerdShipp + giftAmount)
  }
@@ -988,9 +952,7 @@ extension PaymentViewController{
  //MARK: Payment Option Action
  @IBAction func paymentOptionBtnTapped(_ sender: UIButton){
  let totalAmountDis = Float(self.ordersTotallbl.text!)!
- print(self.totalPayAmountlbl.text!)
  var discountPrice:Float = Float()
- //  print("totalData \(totalAmountDis)")
  if sender.tag == 1 || sender.tag == 5 {
  let total = String(Float(totalPayAmountlbl.text!)! + Float(self.discountCreditDebitcardlbl.text!)!)
  self.totalPayAmountlbl.text = total

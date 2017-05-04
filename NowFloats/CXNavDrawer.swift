@@ -424,7 +424,6 @@ class CXNavDrawer: UINavigationController {
 extension CXNavDrawer : UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print("nav controlller \(viewController)")
         self.upodateTheCartItems()
         if viewController.isKind(of: CXViewController.self) {
             
@@ -547,7 +546,6 @@ extension CXNavDrawer {
         chooseArticleDropDown.selectionAction = {(index, item) in
             //self.profileBtn.setTitle(nil, forState: .Normal)
             if index == 0{
-                //print("Forgot password")
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "ForgotNotification"), object: nil)
             }
         }

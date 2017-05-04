@@ -94,7 +94,6 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
                 let userName = UserDefaults.standard.value(forKey: "FULL_NAME") as! String
                 dict.setObject(str, forKey: "Message" as NSCopying)
                 dict.setObject(userName, forKey: "Name" as NSCopying)
-                print(dict)
                 
                 let listArray : NSMutableArray = NSMutableArray()
                 
@@ -108,13 +107,11 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
                     jsonData = try JSONSerialization.data(withJSONObject: cartJsonDict, options: JSONSerialization.WritingOptions.prettyPrinted)
                     // here "jsonData" is the dictionary encoded in JSON data
                 } catch let error as NSError {
-                    print(error)
                 }
                 let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
                 
                 
                 CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"Enquiry" as AnyObject ,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":self.contactTxtField.text as AnyObject]) { (responseDict) in
-                    print(responseDict)
                 
                     let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
                     
@@ -136,7 +133,6 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
     }
     
     func isValidEmail(_ email: String) -> Bool {
-        // print("validate email: \(email)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if emailTest.evaluate(with: email) {

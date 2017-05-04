@@ -58,7 +58,6 @@ class ServiceFormViewController: XLFormViewController {
                     for fldDic in (serviceDic.value(forKey: "Fields") as? NSArray)! {
                         
                         let fieldDic : NSDictionary =  (fldDic as? NSDictionary)!
-                        print("\(self.isContansKey(fieldDic , key: "addMore") as Bool)")
                         
                         
                         let servicData = Serices(name: self.isContansKey(fieldDic , key: "name") ? (fieldDic.value(forKey: "name") as? String)! : "",
@@ -112,7 +111,6 @@ class ServiceFormViewController: XLFormViewController {
         let orderSet : NSOrderedSet = NSOrderedSet(array: self.groupNames as [AnyObject])
         self.groupNames.removeAllObjects()
         self.groupNames.addObjects(from: orderSet.array)
-        print( self.groupNames)
         
     }
     
@@ -283,7 +281,6 @@ class ServiceFormViewController: XLFormViewController {
         super.didSelectFormRow(formRow)
         if formRow.tag == "Submit" {
             let formDic : NSDictionary = self.httpParameters() as NSDictionary
-            print("Form Details \(formDic)")
             
             self.submitServiceForm()
         }
@@ -302,7 +299,6 @@ class ServiceFormViewController: XLFormViewController {
                 let image: UIImage = (parameters.value(forKey: formService.name) as? UIImage)!
                 let imageData = NSData(data: UIImagePNGRepresentation(image)!) as Data
                 CXDataService.sharedInstance.imageUpload(imageData) { (Response) in
-                    print("\(Response)")
                     let status: Int = Int(Response.value(forKey: "status") as! String)!
                     if status == 1{
                         DispatchQueue.main.async(execute: {
@@ -352,7 +348,6 @@ class ServiceFormViewController: XLFormViewController {
     func subMitTheServiceFormData(_ serviceFormDic:NSMutableDictionary){
         
         serviceFormDic.removeObject(forKey: "Submit")
-        print(serviceFormDic)
         
         let dict:NSMutableDictionary = NSMutableDictionary()
         dict.setObject(serviceFormDic.value(forKey: "Name")!, forKey: "Name" as NSCopying)
@@ -360,7 +355,6 @@ class ServiceFormViewController: XLFormViewController {
         //dict.setObject(serviceFormDic.value(forKey: "Address")!, forKey: "Address" as NSCopying)
         dict.setObject(serviceFormDic.value(forKey: "Phone number")!, forKey: "Phone number" as NSCopying)
         //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
-        print(dict)
         
         let listArray : NSMutableArray = NSMutableArray()
         
@@ -374,7 +368,6 @@ class ServiceFormViewController: XLFormViewController {
             jsonData = try JSONSerialization.data(withJSONObject: formDict, options: JSONSerialization.WritingOptions.prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
         } catch let error as NSError {
-            print(error)
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
         
@@ -383,7 +376,6 @@ class ServiceFormViewController: XLFormViewController {
             
             let email = UserDefaults.standard.value(forKey: "USER_EMAIL")
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail": email as AnyObject]) { (responseDict) in
-                print(responseDict)
                 
                 let status: Int = Int(responseDict.value(forKeyPath: "status") as! String)!
                 
@@ -398,7 +390,6 @@ class ServiceFormViewController: XLFormViewController {
         }else{
             
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                print(responseDict)
                 
                 let status: Int = Int(responseDict.value(forKeyPath: "status") as! String)!
                 
@@ -418,7 +409,6 @@ class ServiceFormViewController: XLFormViewController {
         let image = UIImage()
         let imageData = NSData(data: UIImagePNGRepresentation(image)!) as Data
         CXDataService.sharedInstance.imageUpload(imageData) { (Response) in
-            print("\(Response)")
             let status: Int = Int(Response.value(forKey: "status") as! String)!
             if status == 1{
                 DispatchQueue.main.async(execute: {

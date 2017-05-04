@@ -44,13 +44,11 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if CX_SingleMall.mr_findAll().count != 0  {
             let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
             self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-            print("\(self.sidePanelSingleMallDataDict)")
             self.getStores()
         }else{
             CXAppDataManager.sharedInstance.getSingleMall({ (isDataSaved) in
                 let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
                 self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
-                print("\(self.sidePanelSingleMallDataDict)")
                 self.getStores()
             })
         }
@@ -67,7 +65,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.sidePanelDataArr = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
             let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
             self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-            print(self.sidePanelDataDict)
             self.sidepanelView()
             
             
@@ -81,7 +78,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.sidePanelDataArr = CX_Stores.mr_executeFetchRequest(fetchRequest) as NSArray
                 let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
                 self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
-                print(self.sidePanelDataDict)
                 self.sidepanelView()
                 
             })
@@ -198,7 +194,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         else if itemName == "Storelocator"{
             
 //            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
-//                print("print Stores\(responseDic)")
 //                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
 //                for obj in categoryJobArray{
 //                    let dict = obj as! NSDictionary
@@ -222,7 +217,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //    func storeCategories() {
 //        let categoryNameArray = NSMutableArray()
 //        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-//            print("print Stores\(responseDict)")
 //            let categoryJobArray = responseDict.value(forKey: "jobs")as! NSArray
 //            for obj in categoryJobArray{
 //                let dict = obj as! NSDictionary
@@ -240,7 +234,6 @@ class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let categoryNameArray = NSMutableArray()
         
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print("print Stores\(responseDict)")
             let categoryJobArray = responseDict.value(forKey: "jobs")as! NSArray
             for obj in categoryJobArray{
                 let dict = obj as! NSDictionary

@@ -164,7 +164,6 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
      }*/
     //    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     //        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-    //        print("locations = \(locValue.latitude) \(locValue.longitude)")
     ////
     ////        let location = locations.last! as CLLocation
     ////
@@ -190,7 +189,6 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-       // print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.currentLat = locValue.latitude
         self.currentLon = locValue.longitude
         myLocation  = CLLocation(latitude:currentLat, longitude: currentLon)
@@ -198,13 +196,11 @@ class MapViewCntl: CXViewController,MKMapViewDelegate, CLLocationManagerDelegate
         //let mallLocation = CLLocation(latitude: lat, longitude: lon)
         
       //  distance =  distanceBetweenTwoLocations(myLocation, destination: mallLocation)
-        //print(distance)
         
 //        let formatter = NumberFormatter()
 //        formatter.minimumFractionDigits = 0
 //        
 //       let distanceInKM = formatter.string(from: distance as NSNumber)
-//        print(distanceInKM!)
         
  
     }

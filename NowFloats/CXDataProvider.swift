@@ -44,7 +44,6 @@ class CXDataProvider: NSObject {
             if success == true {
                 
             }else {
-                print("Error\(error)")
             }
         }
     }
@@ -57,7 +56,6 @@ class CXDataProvider: NSObject {
                  let prod = prodDic as? NSDictionary
                 let predicate = NSPredicate.init(format: "pid=%@", CXConstant.resultString(prod!.value(forKey: "id") as AnyObject))
                 let cartlist : NSArray =  CX_Products.mr_findAll(with: predicate) as NSArray
-                print("Agedetails \(prod)")
                 
                 if cartlist.count == 0 {
                    isNewData = true
@@ -68,7 +66,6 @@ class CXDataProvider: NSObject {
                     enProduct?.discountprice = prod?.value(forKey: "DiscountAmount") as? String
                     enProduct!.itemCode = prod?.value(forKey: "ItemCode") as? String
                     let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
-                   // print("json string \(prod?.value(forKey: "meta_keyword"))")
                    // enProduct?.metaData = (prod?.value(forKey: "meta_keyword")) as? String
                     enProduct!.json = jsonString as String
                     
@@ -117,7 +114,6 @@ class CXDataProvider: NSObject {
                 completion(success)
                 
             } else {
-                print("Error\(error)")
                 
             }
         }
@@ -180,7 +176,6 @@ class CXDataProvider: NSObject {
                 completion(success)
                 
             } else {
-                print("Error\(error)")
             }
         }
     }
@@ -207,7 +202,6 @@ class CXDataProvider: NSObject {
             if success == true {
                 completion(success)
             } else {
-                print("Error\(error)")
             }
         }
     }
@@ -228,7 +222,6 @@ class CXDataProvider: NSObject {
             if success == true {
                 
             } else {
-                print("Error\(error)")
             }
         }
         
@@ -245,7 +238,6 @@ class CXDataProvider: NSObject {
     
     func saveSingleMallInDB(_ resDict:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void) {
         
-        print("single mall Dic \(resDict)")
         let jobs : NSArray =  resDict.value(forKey: "orgs")! as! NSArray
         CXConstant.sharedInstance.saveTheFid(CXConstant.resultString(resDict.value(forKeyPath: "orgs.fpId")! as AnyObject))
         MagicalRecord.save({ (localContext) in
@@ -258,7 +250,6 @@ class CXDataProvider: NSObject {
             if success == true {
                 completion(true)
             } else {
-                print("Error\(error)")
             }
         }
     }
@@ -294,9 +285,7 @@ extension CXDataProvider {
         
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
-                print("Indexing error: \(error.localizedDescription)")
             } else {
-                // print("Search item successfully indexed!")
             }
         }
     }
@@ -317,9 +306,7 @@ extension CXDataProvider {
         
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
-                print("Indexing error: \(error.localizedDescription)")
             } else {
-                // print("Search item successfully indexed!")
             }
         }
     }
@@ -341,7 +328,6 @@ extension CXDataProvider {
             
         } catch {
             let fetchError = error as NSError
-            print(fetchError)
         }
         
         return([],0)

@@ -140,7 +140,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         return cell
     }
     func cartDeleteBtnAction(_ button : UIButton!){
-        print(button.tag-1)
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
         self.products.removeObject(at: button.tag-1)
         self.collectionview.reloadData()
@@ -166,7 +165,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
         var mybalance = proListData.quantity! as NSInteger
-        print(proListData.json!)
         
         //TODo work
         mybalance += 1

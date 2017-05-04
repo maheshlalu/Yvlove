@@ -157,7 +157,6 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             LoadingView.show("Uploading!!", animated: true)
             let imgStr = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
                 CXAppDataManager.sharedInstance.profileUpdate(self.staticEmail.text!, address:self.addressTxtField.text!, firstName: self.firstNameTxtField.text!, lastName: self.lastNameTxtField.text!, mobileNumber: self.staticMobileNumber.text!, city: self.cityTxtField.text!, state:"",country:"",image:imgStr ) { (responseDict) in
-                    print(responseDict)
                     let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                     if status == 1{
                         DispatchQueue.main.async(execute: {
@@ -198,7 +197,6 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         let image = self.editDPImage.image! as UIImage
         let imageData = NSData(data: UIImagePNGRepresentation(image)!) as Data
         CXDataService.sharedInstance.imageUpload(imageData) { (Response) in
-            print("\(Response)")
             
             let status: Int = Int(Response.value(forKey: "status") as! String)!
             if status == 1{
@@ -225,7 +223,6 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             if index == 0{
-                print("choose from photos")
                 let image = UIImagePickerController()
                 image.delegate = self
                 image.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -233,7 +230,6 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
                 self.present(image, animated: true, completion: nil)
                 
             }else if index == 1{
-                print("choose from fb")
     
             }else if index == 2{
                 self.editDPImage.image = UIImage(named:"placeholder")
@@ -312,7 +308,6 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
     }
     
     func isValidEmail(_ email: String) -> Bool {
-        // print("validate email: \(email)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if emailTest.evaluate(with: email) {

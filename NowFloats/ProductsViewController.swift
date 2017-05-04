@@ -62,14 +62,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let filterArr = str.components(separatedBy: "|")
         let predicate = NSPredicate.init(format: "categoryType contains[c] %@ && subCategoryType contains[c] %@ && p3rdCategory contains[c] %@",filterArr[0],filterArr[1],filterArr[2])
         self.products = CX_Products.mr_findAll(with: predicate) as NSArray!
-        print(products.count)
         self.updatecollectionview.reloadData()
     }
     
     func filterCompleted(notification:Notification){
         let arr = notification.object as! NSArray
         self.products = arr
-        print(products.count)
         self.updatecollectionview.reloadData()
     }
     
@@ -142,8 +140,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
 //        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
 //        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
 //        
-//        print("Dictvaluees \(subDict)")
-//        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String 
+//        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String
 //        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
 //            AnyObject)
 //        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
@@ -166,7 +163,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
              var dictcategeryadd = NSMutableArray()
         if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
         {
-            print("NULL")
         }else{
             dictcategeryadd = UserDefaults.standard.value(forKey: "CategeryAdditinal") as! NSMutableArray
         }
@@ -182,7 +178,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                     self.arrAdditinalCategery.add(dictindividual)
                 }
                 UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
-                print("additinal \(self.arrAdditinalCategery)")
             }
         }else{
             for name in dictcategeryadd
@@ -194,15 +189,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func callAddtinalCategerySevice(str : String)
     {
-        print(str)
         self.viewAdditinalCategery.isHidden = true
         
         let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any] 
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
-            //print("Sub categery details \(responceDic)")
             //  var arrCategeryData =
             CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
-                print(response)
                 let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
                 
                 let resultstr =  str.replacingOccurrences(of: " ", with: "")
@@ -210,7 +202,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
                 fetchRequest.predicate = predicate
                 self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
-                print(self.products.count)
                 if self.products.count == 0{
                 self.lblEmptyProduct.isHidden = false
                     self.updatecollectionview.isHidden = true
@@ -292,7 +283,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         if products.imageUrl != nil{
         cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
         }else{
-            print("no image url here")
         }
         
         let rupee = "\u{20B9}"
@@ -392,7 +382,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
          self.viewAdditinalCategery.isHidden = true
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
-        print(products.json!)
         
         //Trimming Price And Discount
         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
@@ -408,7 +397,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = products.json
         let dict = CXConstant.sharedInstance.convertStringToDictionary(products.json!)
-        print(dict)
         var link = Bool()
         var mrp = Bool()
         /*
@@ -421,7 +409,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             mrp = false
         }else{mrp = true}
         
-        print(link,mrp)
         
         productDetails.isMRP = mrp
         productDetails.isLink = link
@@ -493,7 +480,6 @@ extension ProductsViewController:UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // print("search string \(searchText)")
         if (self.productSearhBar.text!.characters.count > 0) {
             self.doSearch()
         } else {

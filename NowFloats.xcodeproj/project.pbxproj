@@ -87,6 +87,7 @@
 		126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */; };
 		126549BF1EB8BC5700165B9F /* StorelocatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */; };
 		126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */; };
+		12C0088A1EBB081A005B5ED4 /* CXLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C008891EBB081A005B5ED4 /* CXLog.swift */; };
 		12DC4DC31EB7800E00B32C96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */; };
 		1635D6E0E2BC4D6CFBEB6CA1 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 		180F249E1D9E732F00E69B0A /* Serices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F249D1D9E732F00E69B0A /* Serices.swift */; };
@@ -352,6 +353,7 @@
 		126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorViewController.swift; sourceTree = "<group>"; };
 		126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorTableViewCell.swift; sourceTree = "<group>"; };
 		126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StorelocatorTableViewCell.xib; sourceTree = "<group>"; };
+		12C008891EBB081A005B5ED4 /* CXLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXLog.swift; sourceTree = "<group>"; };
 		12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		180F249D1D9E732F00E69B0A /* Serices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serices.swift; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				12C008891EBB081A005B5ED4 /* CXLog.swift */,
 				8972B8A41E9E334C005CE0A2 /* PAYPAL */,
 				898E72A41E961C7900EB8A30 /* PayUBiz */,
 				892491A41E950BB500CB8097 /* PayTM Integration */,
@@ -1765,6 +1768,7 @@
 				11F1DE651D883B77002AF5B0 /* OrdersViewController.swift in Sources */,
 				11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */,
 				126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */,
+				12C0088A1EBB081A005B5ED4 /* CXLog.swift in Sources */,
 				18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */,
 				118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */,
 				895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */,
