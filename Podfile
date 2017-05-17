@@ -17,7 +17,7 @@ target 'NowFloats' do
     pod 'AFNetworking', '~> 3.1'
     pod 'XLForm', '~> 3.2'
     
-
+    pod 'Firebase/Messaging'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'PayPal-iOS-SDK'

@@ -197,21 +197,22 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         let image = self.editDPImage.image! as UIImage
         let imageData = NSData(data: UIImagePNGRepresentation(image)!) as Data
         CXDataService.sharedInstance.imageUpload(imageData) { (Response) in
-            
+            print("\(Response)")
             let status: Int = Int(Response.value(forKey: "status") as! String)!
             if status == 1{
-                 DispatchQueue.main.async(execute: {
-                let imgStr = Response.value(forKey: "filePath") as! String
-                UserDefaults.standard.setValue(imgStr, forKey: "IMAGE_PATH")
-                self.saveImageBtn.isHidden = true
-                LoadingView.hide()
-                self.showAlertView("Photo Uploaded Successfully!!!", status: 1)
-
+                DispatchQueue.main.async(execute: {
+                    let imgStr = Response.value(forKey: "filePath") as! String
+                    UserDefaults.standard.setValue(imgStr, forKey: "IMAGE_PATH")
+                    self.saveImageBtn.isHidden = true
+                    LoadingView.hide()
+                    self.showAlertView("Photo Uploaded Successfully!!!", status: 1)
                 })
-               
+                
+            }else {
+                LoadingView.show(true)
+                self.showAlertView("invalide details", status: 111)
             }
         }
-        
     }
     func editDropDown(){
         
@@ -285,9 +286,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
             editDPImage.alpha = 0.5
         }
         
-       
     }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.tag == 3 {
             if  range.length==1 && string.characters.count == 0 {

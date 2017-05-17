@@ -84,6 +84,9 @@
 		11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1DE6A1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift */; };
 		11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11F1DE6C1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib */; };
 		11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */; };
+		12488AA31ECC1F4D0093F087 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12488AA11ECC1F4D0093F087 /* NotificationTableViewCell.swift */; };
+		12488AA41ECC1F4D0093F087 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12488AA21ECC1F4D0093F087 /* NotificationTableViewCell.xib */; };
+		12488AA61ECC23BC0093F087 /* NotificationDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12488AA51ECC23BC0093F087 /* NotificationDescriptionViewController.swift */; };
 		126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */; };
 		126549BF1EB8BC5700165B9F /* StorelocatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */; };
 		126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */; };
@@ -332,6 +335,9 @@
 		11F1DE6A1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistCollectionViewCell.swift; sourceTree = "<group>"; };
 		11F1DE6C1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WishlistCollectionViewCell.xib; sourceTree = "<group>"; };
 		11FA2C431D82BE830072CD46 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		12488AA11ECC1F4D0093F087 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		12488AA21ECC1F4D0093F087 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		12488AA51ECC23BC0093F087 /* NotificationDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDescriptionViewController.swift; sourceTree = "<group>"; };
 		126549BB1EB8BC2500165B9F /* StorelocatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorViewController.swift; sourceTree = "<group>"; };
 		126549BD1EB8BC5700165B9F /* StorelocatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorelocatorTableViewCell.swift; sourceTree = "<group>"; };
 		126549BE1EB8BC5700165B9F /* StorelocatorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StorelocatorTableViewCell.xib; sourceTree = "<group>"; };
@@ -695,6 +701,9 @@
 			isa = PBXGroup;
 			children = (
 				113A99591D8FEB88006B5BE5 /* NotificationsViewController.swift */,
+				12488AA11ECC1F4D0093F087 /* NotificationTableViewCell.swift */,
+				12488AA21ECC1F4D0093F087 /* NotificationTableViewCell.xib */,
+				12488AA51ECC23BC0093F087 /* NotificationDescriptionViewController.swift */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -1419,6 +1428,7 @@
 				189A1E3E1D79479800724120 /* Roboto-Bold.ttf in Resources */,
 				11F1DE531D883A46002AF5B0 /* DropDownCell.xib in Resources */,
 				189A1E3F1D79479800724120 /* Roboto-Italic.ttf in Resources */,
+				12488AA41ECC1F4D0093F087 /* NotificationTableViewCell.xib in Resources */,
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				11F1DE5F1D883AFF002AF5B0 /* AboutusTableViewCell.xib in Resources */,
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
@@ -1643,6 +1653,7 @@
 				118346BE1D86D789000BE1D4 /* FTPopOverMenu.m in Sources */,
 				180F249E1D9E732F00E69B0A /* Serices.swift in Sources */,
 				11F1DE4F1D883A31002AF5B0 /* DPDKeyboardListener.swift in Sources */,
+				12488AA61ECC23BC0093F087 /* NotificationDescriptionViewController.swift in Sources */,
 				116C04061DFFF4F400AF4C89 /* DemoPopupViewController2.swift in Sources */,
 				3B370D171D6597AA00DB332F /* PhotosViewController.swift in Sources */,
 				1868BD281D7853760050BC72 /* OfferFeaturedProductCell.swift in Sources */,
@@ -1753,6 +1764,7 @@
 				11F1DE671D883BA3002AF5B0 /* AboutUsViewController.swift in Sources */,
 				1890B6F01D8163EE00AF140A /* UpdateTableViewCell.swift in Sources */,
 				18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */,
+				12488AA31ECC1F4D0093F087 /* NotificationTableViewCell.swift in Sources */,
 				183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */,
 				11370F8B1D89A3A800CCBE01 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				11C8EF4B1E23BFEA0018EDE3 /* BuyOnlineWebViewController.swift in Sources */,

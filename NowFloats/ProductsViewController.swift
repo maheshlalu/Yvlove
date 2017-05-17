@@ -198,7 +198,6 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
                 
                 let resultstr =  str.replacingOccurrences(of: " ", with: "")
-                
                 let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
                 fetchRequest.predicate = predicate
                 self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
@@ -211,13 +210,10 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                     self.lblEmptyProduct.isHidden = true
                     self.updatecollectionview.isHidden = false
                     //self.viewAdditinalCategery.isHidden = false
-
-                
                 }
                 self.updatecollectionview.reloadData()
                 
                 LoadingView.hide()
-                
             })
         }
     }

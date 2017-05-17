@@ -18,13 +18,16 @@ import FBSDKCoreKit
 import Firebase
 import Google
 import GoogleSignIn
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,FIRMessagingDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
         
         Fabric.with([Crashlytics.self])
         
@@ -64,8 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         //MARK: Paypal
         PayPalMobile .initializeWithClientIds(forEnvironments: [PayPalEnvironmentProduction: "YOUR_CLIENT_ID_FOR_PRODUCTION",PayPalEnvironmentSandbox: "YOUR_CLIENT_ID_FOR_SANDBOX"])
-        
+         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         //PayPalMobile
+        self.registerNotification(application: application)
         
         FIRApp.configure()
 
@@ -101,9 +105,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for j in 1...5{
             sleep(1)
         }
+    }
+    func registerNotification(application:UIApplication){
         
+        if #available(iOS 10.0, *) {
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            // For iOS 10 data message (sent via FCM)
+            FIRMessaging.messaging().remoteMessageDelegate = self
+            
+        }else{
+            
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        
+        // [END register_for_notifications]
+        //FIRApp.configure()
+        
+        // [START add_token_refresh_observer]
+        // Add observer for InstanceID token refresh callback.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.tokenRefreshNotification),
+                                               name: .firInstanceIDTokenRefresh,
+                                               object: nil)
+        // [END add_token_refresh_observer]
     }
     
+    
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            // CXLog.print("InstanceID token: \(refreshedToken)")
+            CXAppConfig.sharedInstance.setDeviceToken(deviceToken: refreshedToken)
+            print("InstanceID token: \(refreshedToken)")
+        }
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        connectToFcm()
+    }
+    
+    func setDeviceToken(deviceToken:String){
+        
+        UserDefaults.standard.set(deviceToken, forKey: "deviceToken")
+    }
+    func connectToFcm() {
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return;
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                // FIRMessaging.messaging().subscribe(toTopic: CXAppConfig.sharedInstance.getAppMallID())
+                // CXLog.print("Unable to connect with FCM. \(error)")
+            } else {
+                // CXLog.print("Connected to FCM.")
+                FIRMessaging.messaging().subscribe(toTopic: CXAppConfig.sharedInstance.getAppMallID())
+            }
+        }
+    }
+    public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        
+        // CXLog.print(remoteMessage)
+    }
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
         
@@ -160,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
         
-        if url.scheme == "fb122900748244366" {
+        if url.scheme == "fb551701778362796" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
         } else {
             callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)

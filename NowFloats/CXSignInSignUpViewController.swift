@@ -182,13 +182,13 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         self.signUpBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.signUpAction), for: .touchUpInside)
         self.cScrollView.addSubview(self.signUpBtn)
         
-        self.googlePlusButton = self.createButton(CGRect(x: 25, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "G+", tag: 3, bgColor: UIColor.init(red: 223/255.0, green: 75/255.0, blue: 55/255.0, alpha: 1.0))
-        self.googlePlusButton.addTarget(self, action: #selector(googleBtnAction), for: .touchUpInside)
-        self.cScrollView.addSubview(self.googlePlusButton)
-        
-        self.facebookBtn = self.createButton(CGRect(x: 165, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "f", tag: 3, bgColor:UIColor.init(red: 58/255.0, green: 88/255.0, blue: 158/255.0, alpha: 1.0) )
-        self.facebookBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.facebookBtnAction), for: .touchUpInside)
-        self.cScrollView.addSubview(self.facebookBtn)
+//        self.googlePlusButton = self.createButton(CGRect(x: 25, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "G+", tag: 3, bgColor: UIColor.init(red: 223/255.0, green: 75/255.0, blue: 55/255.0, alpha: 1.0))
+//        self.googlePlusButton.addTarget(self, action: #selector(googleBtnAction), for: .touchUpInside)
+//        self.cScrollView.addSubview(self.googlePlusButton)
+//        
+//        self.facebookBtn = self.createButton(CGRect(x: 165, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: 130, height: 30), title: "f", tag: 3, bgColor:UIColor.init(red: 58/255.0, green: 88/255.0, blue: 158/255.0, alpha: 1.0) )
+//        self.facebookBtn.addTarget(self, action: #selector(CXSignInSignUpViewController.facebookBtnAction), for: .touchUpInside)
+//        self.cScrollView.addSubview(self.facebookBtn)
     }
     
     override func methodOfReceivedNotification(_ notification: NSNotification){

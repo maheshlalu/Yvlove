@@ -241,9 +241,9 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         return "Profile"
     }
     
-    override func profileDropdown() -> Bool{
-        return true
-    }
+//    override func profileDropdown() -> Bool{
+//        return true
+//    }
     
     override func profileDropdownForSignIn() -> Bool{
         return false

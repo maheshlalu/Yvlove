@@ -487,6 +487,9 @@ extension CXNavDrawer {
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             chooseArticleDropDown.show()
             ToggleWithProfileWithoutUserId()
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OFFERS")as? OffersViewController
+//            print(storyboard)
+//            self.navigationController?.pushViewController(storyboard!, animated: true)
         }else{
             chooseArticleDropDown.show()
             ToggleWithProfileWithUserId()
@@ -526,7 +529,7 @@ extension CXNavDrawer {
         chooseArticleDropDown.anchorView = profileBtn
         chooseArticleDropDown.bottomOffset = CGPoint(x: 0, y:self.navigationBar.frame.size.height-7)
         chooseArticleDropDown.dataSource = [
-            "Profile                    "
+            "Profile           "
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             self.profileBtn.setTitle(nil, for: UIControlState())
@@ -561,6 +564,8 @@ extension CXNavDrawer {
             self.profileBtn.setTitle(nil, for: UIControlState())
             if index == 0{
                 self.showAlertView("Are You Sure??", status: 1)
+               NotificationCenter.default.post(name: Notification.Name(rawValue: "OFFERS"), object: nil)
+               
             }
             
         }
@@ -597,7 +602,9 @@ extension CXNavDrawer {
             if status == 1 {
                 self.logout()
                 self.presentWindow?.makeToast(message: "User logout successfully")
-                self.popToRootViewController(animated: true)
+                //self.popToRootViewController(animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OFFERS")as? OffersViewController
+                self.navigationController?.popToViewController(storyboard!, animated: true)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {

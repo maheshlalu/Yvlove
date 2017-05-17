@@ -190,7 +190,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         if (self.aboutUsDict.value(forKeyPath: "Description") as?String) == ""{
             return 3
         }else{
-            return 5
+            return 4
         }
     }
     
@@ -248,15 +248,16 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                     aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = false
                     aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
-                }else if indexPath.section == 4{
-                    aboutUsExtra.extraTitleLbl.text = ""
-                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
-                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Primary Number") as?String //"9640339556"//mobile
-                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
-                    aboutUsExtra.callBtn.isHidden = false
-                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
-                
                 }
+//                else if indexPath.section == 4{
+//                    aboutUsExtra.extraTitleLbl.text = ""
+//                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+//                    aboutUsExtra.extraDescLbl.text = self.aboutUsDict.value(forKeyPath: "Primary Number") as?String //"9640339556"//mobile
+//                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+//                    aboutUsExtra.callBtn.isHidden = false
+//                    aboutUsExtra.callBtn.addTarget(self, action: #selector(AboutUsViewController.callAction(_:)), for: .touchUpInside)
+//                
+//                }
                 return aboutUsExtra
             }
         }

@@ -11,7 +11,7 @@ import UIKit
 import MessageUI
 import FacebookCore
 
-class LeftViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var viewMapBtn: UIButton!
     @IBOutlet weak var messageBtn: UIButton!
