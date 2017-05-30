@@ -112,10 +112,11 @@ class InfoQueryViewController: UIViewController, PopupContentViewController, UIT
                 
                 
                 CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"Enquiry" as AnyObject ,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":self.contactTxtField.text as AnyObject]) { (responseDict) in
+                    let staus: Int = Int(responseDict.value(forKey: "status") as! String)!
                 
-                    let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                    //let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
                     
-                    if status == 1{
+                    if staus == 1{
                     self.showAlertView("Success!!!", status: 1)
                     
                     }else{

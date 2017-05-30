@@ -20,7 +20,7 @@
         <!--Info Query View Controller-->
         <scene sceneID="OvO-4g-3H7">
             <objects>
-                <viewController storyboardIdentifier="InfoQueryViewController" id="Fio-3e-wUe" customClass="InfoQueryViewController" customModule="NeedyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoQueryViewController" id="Fio-3e-wUe" customClass="InfoQueryViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N3N-7h-Dj3"/>
                         <viewControllerLayoutGuide type="bottom" id="xIg-pD-H4T"/>
@@ -117,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="913-fM-kiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291.19999999999999" y="-29.685157421289357"/>
+            <point key="canvasLocation" x="-24" y="-32"/>
         </scene>
     </scenes>
 </document>

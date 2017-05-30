@@ -58,6 +58,7 @@ class ServiceFormViewController: XLFormViewController {
                     for fldDic in (serviceDic.value(forKey: "Fields") as? NSArray)! {
                         
                         let fieldDic : NSDictionary =  (fldDic as? NSDictionary)!
+                        print("\(self.isContansKey(fieldDic , key: "addMore") as Bool)")
                         
                         
                         let servicData = Serices(name: self.isContansKey(fieldDic , key: "name") ? (fieldDic.value(forKey: "name") as? String)! : "",
@@ -88,8 +89,6 @@ class ServiceFormViewController: XLFormViewController {
         }
     }
     
-    //
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -98,22 +97,16 @@ class ServiceFormViewController: XLFormViewController {
         view.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.navController.navigationBar.isHidden = true
         self.getFormData()
-        
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        
     }
-    
     func removeTheDublicateValuesInGroup(){
         
         //self.groupNames.removeObject("")
         let orderSet : NSOrderedSet = NSOrderedSet(array: self.groupNames as [AnyObject])
         self.groupNames.removeAllObjects()
         self.groupNames.addObjects(from: orderSet.array)
-        
     }
-    
     func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{
         let allKeys : NSArray = responceDic.allKeys as NSArray
         return  allKeys.contains(key)
@@ -424,11 +417,8 @@ class ServiceFormViewController: XLFormViewController {
     func formIntilizer(){
         self.serviceFormDesigning()
         return
-        
     }
-    
     func showAlertView(_ message:String, status:Int) {
-        
         let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
             UIAlertAction in
@@ -443,7 +433,6 @@ class ServiceFormViewController: XLFormViewController {
 }
 
 /*
- 
  <select class="additionaldetailstextfld" name="additionalDetails[0].type" title="Field Type">
  <option value="Small Text" selected="selected">Small Text</option>
  

@@ -10,6 +10,7 @@ import UIKit
 
 class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRatingViewDelegate {
     
+
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
     var productDetailDic: NSDictionary!
@@ -65,21 +66,21 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
 //            descriptionTagsDescArr.add("Widget_Type")
 //        }
         
-//        if productDetailDic.value(forKey: " overallRating") as! String != ""{
-//            descriptionTagsArr.add(" overallRating")
-//            descriptionTagsDescArr.add(" overallRating")
+//        if productDetailDic.value(forKey: "overallRating") as! String != ""{
+//            descriptionTagsArr.add("overallRating")
+//            descriptionTagsDescArr.add("overallRating")
 //        }
         
 //        if productDetailDic.value(forKey: "DiscountAmount") as! String != ""{
 //            descriptionTagsArr.add("DiscountAmount")
 //            descriptionTagsDescArr.add("DiscountAmount")
 //        }
-//        
+//
 //        if productDetailDic.value(forKey: "totalReviews") as! String != ""{
 //            descriptionTagsArr.add("totalReviews")
 //            descriptionTagsDescArr.add("totalReviews")
 //        }
-//        
+//
 //        if productDetailDic.value(forKey: "color") as! String != ""{
 //            descriptionTagsArr.add("Color")
 //            descriptionTagsDescArr.add("color")
@@ -313,11 +314,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(productString, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
-        
-        
-        
-        
-        
+   
     }
     
     @IBAction func heartAction(_ sender: UIButton) {

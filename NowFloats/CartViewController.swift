@@ -229,12 +229,13 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             
             container.sendDetails = { _ in
                 let dataDict = container.dataDict
-                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                let paymentcontroller : PaymentViewController = (storyBoard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController)!
-                paymentcontroller.dataDict = dataDict
-                let navController = UINavigationController(rootViewController: paymentcontroller)
-                navController.navigationItem.hidesBackButton = true
-                self.present(navController, animated: true, completion: nil)
+//                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//                let productController : ProductsViewController = (storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as? ProductsViewController)!
+//                productController.dataDict = dataDict
+//                let navController = UINavigationController(rootViewController: productController)
+//                navController.navigationItem.hidesBackButton = true
+//                self.present(navController, animated: true, completion: nil)
+             self.navigationController?.popToRootViewController(animated: true)
             }
             popup.show(container)
         }

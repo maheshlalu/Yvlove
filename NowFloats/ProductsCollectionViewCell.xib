@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,8 +41,9 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn6-uw-wkP">
-                        <rect key="frame" x="8" y="213" width="74" height="0.0"/>
+                        <rect key="frame" x="8" y="209" width="74" height="13"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="13" id="7pf-9p-CSs"/>
                             <constraint firstAttribute="height" constant="21" id="8Qa-Lb-959"/>
                             <constraint firstAttribute="width" constant="74" id="Heo-3n-j1S"/>
                         </constraints>
@@ -95,7 +96,7 @@
                         <state key="normal" image="heart_unselected"/>
                         <state key="selected" image="heart_selected"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23456" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsG-hu-zh8">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsG-hu-zh8">
                         <rect key="frame" x="8" y="187" width="69" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="36T-ZT-iSb"/>
@@ -128,7 +129,7 @@
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ldM-TZ-NzC"/>
                 <constraint firstItem="dgd-86-3eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ozP-n6-NOo"/>
                 <constraint firstAttribute="bottom" secondItem="zat-1g-efN" secondAttribute="bottom" constant="9" id="rbl-eq-Amh"/>
-                <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" constant="9" id="uQ2-Nk-xc3"/>
+                <constraint firstAttribute="bottom" secondItem="Pn6-uw-wkP" secondAttribute="bottom" id="uQ2-Nk-xc3"/>
                 <constraint firstItem="NKj-UO-GqA" firstAttribute="top" secondItem="dgd-86-3eo" secondAttribute="bottom" constant="2" id="wkH-jx-ZZM"/>
                 <constraint firstItem="Pn6-uw-wkP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="xRZ-4K-9ka"/>
                 <constraint firstItem="xsG-hu-zh8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="zCf-9G-Qe2"/>

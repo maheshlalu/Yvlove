@@ -21,7 +21,7 @@
         <!--Demo Popup View Controller2-->
         <scene sceneID="ZPl-XE-XZo">
             <objects>
-                <viewController storyboardIdentifier="DemoPopupViewController2" id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="NeedyBee" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DemoPopupViewController2" id="05Q-G7-9aQ" customClass="DemoPopupViewController2" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n5c-fn-lEd"/>
                         <viewControllerLayoutGuide type="bottom" id="kWo-hi-e32"/>

@@ -27,6 +27,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     var websiteLbl:UILabel!
     var sidePanelDataDict: NSDictionary! = nil
     var sidePanelSingleMallDataDict: NSDictionary!
+    
     let categoryNameArray = NSMutableArray()
     
     var navController : CXNavDrawer = CXNavDrawer()
@@ -260,7 +261,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         }else{
             CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "Call Attempted", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
         }
-        let primaryNumber = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "Primary Number")
+        let primaryNumber = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: self.sidePanelDataDict, sourceKey: "Contact Number")
         callNumber(primaryNumber)
     }
     

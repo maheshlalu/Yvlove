@@ -1377,7 +1377,6 @@
 				TargetAttributes = {
 					3B4FD8121D6446D200A6EBBE = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 95Y7Y2H9V8;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 					};
@@ -1928,8 +1927,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1938,7 +1937,7 @@
 					"$(PROJECT_DIR)/NowFloats/lib",
 				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1951,8 +1950,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
-				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1966,8 +1965,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1976,7 +1975,7 @@
 					"$(PROJECT_DIR)/NowFloats/lib",
 				);
 				INFOPLIST_FILE = NowFloats/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1989,8 +1988,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
-				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

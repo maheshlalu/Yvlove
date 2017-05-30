@@ -1,3 +1,4 @@
+
 //
 //  ProductsViewController.swift
 //  NowFloats
@@ -23,6 +24,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     var products: NSArray!
     let chooseArticleDropDown = DropDown()
     var p3CatBool:Bool = false
+    var dataDict:NSMutableDictionary = NSMutableDictionary()
     @IBOutlet var updatecollectionview: UICollectionView!
     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
@@ -33,13 +35,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // chooseArticleButton.isHidden = false
+        // chooseArticleButton.isHidden = false
         self.viewAdditinalCategery.isHidden = true
         let nib = UINib(nibName: "ProductsCollectionViewCell", bundle: nil)
         self.updatecollectionview.register(nib, forCellWithReuseIdentifier: "ProductsCollectionViewCell")
         
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
-       // chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
+        // chooseArticleButton.imageEdgeInsets = UIEdgeInsetsMake(0, chooseArticleButton.titleLabel!.frame.size.width+55, 0, -chooseArticleButton.titleLabel!.frame.size.width)
         
         self.btnAdditinalCategery.layer.cornerRadius = self.btnAdditinalCategery.frame.size.width / 2;
         self.btnAdditinalCategery.clipsToBounds = true
@@ -47,14 +49,14 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         getAddtinalCategryList()
         getTheProducts()
-       // setupDropDowns()
+        // setupDropDowns()
         self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
         self.tableviewAdditinalcategery.tableFooterView = UIView()
     }
     func CartActionNO(notification:Notification){
-    NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "ProfileNotification"), object: nil)
-    
+        
     }
     
     func filterSelectionCompleted(notification:Notification){
@@ -79,7 +81,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let filtercontroller : FilterViewController = (storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController)!
         let navController = UINavigationController(rootViewController: filtercontroller)
         navController.navigationItem.hidesBackButton = false
-       // hashtagcontroller.hashTagNamestr = hashTagName
+        // hashtagcontroller.hashTagNamestr = hashTagName
         self.present(navController, animated: true, completion: nil)
     }
     
@@ -92,13 +94,13 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromLeft
             viewAdditinalCategery.layer.add(transition, forKey: kCATransition)
-        self.viewAdditinalCategery.isHidden = true
+            self.viewAdditinalCategery.isHidden = true
             
             // self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2 / 45));
             
             
         }else{
-           // self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
+            // self.btnAdditinalCategery.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2));
             
             self.tableviewAdditinalcategery.reloadData()
             let transition = CATransition()
@@ -108,9 +110,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             viewAdditinalCategery.layer.add(transition, forKey: kCATransition)
             self.viewAdditinalCategery.isHidden = false
             
-        
+            
         }
-    
+        
         
     }
     
@@ -126,41 +128,41 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
         cell.textLabel?.text = subDict.value(forKey: "Name") as? String
-       // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
+        // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
-       // LoadingView.show("Loading", animated: true)
-//        self.viewAdditinalCategery.isHidden = true
-//        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
-//        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
-//        
-//        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String
-//        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
-//            AnyObject)
-//        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
-//        let navController = UINavigationController(rootViewController: productcontroller)
-//        navController.navigationItem.hidesBackButton = true
-//        
-//        
-//        self.present(navController, animated: true, completion: nil)
+        // self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
+        // LoadingView.show("Loading", animated: true)
+        //        self.viewAdditinalCategery.isHidden = true
+        //        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        //        let productcontroller : productDetailSubCategery = (storyBoard.instantiateViewController(withIdentifier: "productDetailSubCategery") as? productDetailSubCategery)!
+        //        let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
+        //
+        //        productcontroller.productCategeryType = subDict.value(forKey: "Name") as! String
+        //        productcontroller.referID =  CXAppConfig.resultString(input: subDict.value(forKey: "id") as
+        //            AnyObject)
+        //        productcontroller.selectedCategoryType = NSString.init(format: "%@(%@)", subDict.value(forKey: "Name") as! CVarArg,subDict.value(forKey: "id") as! CVarArg) as String
+        //        let navController = UINavigationController(rootViewController: productcontroller)
+        //        navController.navigationItem.hidesBackButton = true
+        //
+        //
+        //        self.present(navController, animated: true, completion: nil)
         
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
         let name = subDict.value(forKey: "Name") as! String
         self.callAddtinalCategerySevice(str: name)
         LoadingView.show("Loading", animated: true)
         //self.present(navController, animated: true, completion: nil)
-    
+        
     }
     
     
     func getAddtinalCategryList(){
-             var dictcategeryadd = NSMutableArray()
+        var dictcategeryadd = NSMutableArray()
         if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
         {
         }else{
@@ -182,7 +184,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         }else{
             for name in dictcategeryadd
             {
-               self.arrAdditinalCategery.add(name)
+                self.arrAdditinalCategery.add(name)
             }
         }
     }
@@ -191,7 +193,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     {
         self.viewAdditinalCategery.isHidden = true
         
-        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any] 
+        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
         CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
             //  var arrCategeryData =
             CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
@@ -202,7 +204,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
                 fetchRequest.predicate = predicate
                 self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
                 if self.products.count == 0{
-                self.lblEmptyProduct.isHidden = false
+                    self.lblEmptyProduct.isHidden = false
                     self.updatecollectionview.isHidden = true
                     //self.viewAdditinalCategery.isHidden = true
                     
@@ -228,7 +230,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         NotificationCenter.default.addObserver(self,selector: #selector(filterSelectionCompleted(notification:)),name: NSNotification.Name(rawValue: "FilterSelectionCompleted"),object: nil)
         //FILTER_COMPLETED
         NotificationCenter.default.addObserver(self,selector: #selector(filterCompleted(notification:)),name: NSNotification.Name(rawValue: "FILTER_COMPLETED"),object: nil)
-       // NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
+        // NotificationCenter.default.addObserver(self, selector: #selector(CXViewController.methodOfReceivedNotification(_:)), name:NSNotification.Name(rawValue: "CartButtonNotification"), object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(CartActionNO(notification:)),name: NSNotification.Name(rawValue: "CartAction"),object: nil)
         
     }
@@ -263,7 +265,9 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath)as! ProductsCollectionViewCell
-        
+        if self.products.count == 0 {
+            return UICollectionViewCell()
+        }
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         let productJson = products.value(forKey: "json") as! NSString
         let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
@@ -277,7 +281,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
         }
         if products.imageUrl != nil{
-        cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
+            cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
         }else{
         }
         
@@ -287,17 +291,22 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         
-        //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
-        let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
-        
-        var floatDiscount:Float = Float()
-        
-        if floatDis == ""{
-            floatDiscount = 0.0
-        }
-        
+        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        //let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
+        //var floatDiscount:Float = Float()
+        
+        //        if floatDis == ""{
+        //            floatDiscount = 0.0
+        //        }
+        
+        // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+        //        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+        //        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+        //
+        //        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+        //        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
         
         
         //Setting AttributedPrice
@@ -326,16 +335,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
         // Enhancements in nowfloats
         let MRP = FinalPrice
-        if MRP == "0"{
-            cell.productpriceLabel.isHidden = true
-            cell.productFinalPriceLabel.isHidden = true
-            cell.cartaddedbutton.isHidden = true
-            
-        }else{
-            cell.productpriceLabel.isHidden = false
-            cell.productFinalPriceLabel.isHidden = false
-            cell.cartaddedbutton.isHidden = false
-        }
+//        if MRP == "0"{
+//            cell.productpriceLabel.isHidden = true
+//            cell.productFinalPriceLabel.isHidden = true
+//            cell.cartaddedbutton.isHidden = true
+//            
+//        }else{
+//            cell.productpriceLabel.isHidden = false
+//            cell.productFinalPriceLabel.isHidden = false
+//            cell.cartaddedbutton.isHidden = false
+//        }
         
         return cell
         
@@ -375,7 +384,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         self.viewAdditinalCategery.isHidden = true
+        self.viewAdditinalCategery.isHidden = true
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         
@@ -570,5 +579,5 @@ extension ProductsViewController {
         
         return true
     }
-
+    
 }
