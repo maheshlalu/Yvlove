@@ -22,7 +22,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         CXMixpanel.sharedInstance.mixelCartTrack()
-
+        
         let nib = UINib(nibName: "NowfloatscartViewCollectionViewCell", bundle: nil)
         self.collectionview.register(nib, forCellWithReuseIdentifier: "NowfloatscartViewCollectionViewCell")
         getTheProducts()
@@ -74,16 +74,16 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     }
     
     func getTheProducts(){
-       // let fetchRequest : NSFetchRequest = NSFetchRequest(format: "addToCart = %@", "1")
+        // let fetchRequest : NSFetchRequest = NSFetchRequest(format: "addToCart = %@", "1")
         
-     let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToCart = %@", "1")) as NSArray
+        let cartlist : NSArray =  CX_Cart.mr_findAll(with: NSPredicate(format: "addToCart = %@", "1")) as NSArray
         self.products  = NSMutableArray(array: cartlist)
         self.collectionview.reloadData()
         self.updateProductsPriceLabel()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-      return self.products.count
+        return self.products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -147,7 +147,7 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             
         })
         self.updateProductsPriceLabel()
-
+        
     }
     
     func cartWishListButtonAction(_ button : UIButton!){
@@ -158,9 +158,9 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pID!, isAddToWishList: true, isAddToCartList: false, isDeleteFromWishList: false, isDeleteFromCartList: true, completionHandler: { (isAdded) in
         })
         self.updateProductsPriceLabel()
-
+        
     }
-
+    
     func quntityPlusButtonAction(_ button : UIButton!){
         
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
@@ -168,13 +168,13 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         
         //TODo work
         mybalance += 1
-      //  mybalance = mybalance.toIntMax() + 1
+        //  mybalance = mybalance.toIntMax() + 1
         
         proListData.quantity = mybalance as NSNumber? // mybalance
         NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
         self.collectionview.reloadData()
         self.updateProductsPriceLabel()
-
+        
     }
     
     func quantityMinusButtonAction(_ button : UIButton!){
@@ -184,18 +184,18 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         if mybalance > 1 {
             
             //TODo work
-
+            
             mybalance -= 1
             
             proListData.quantity = mybalance as NSNumber? //mybalance
             NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
             self.collectionview.reloadData()
             self.updateProductsPriceLabel()
-
+            
         }
-      
-      //  self.collectionview.reloadItemsAtIndexPaths(NSIndexPath(forItem: button.tag-1, inSection: 0))
-
+        
+        //  self.collectionview.reloadItemsAtIndexPaths(NSIndexPath(forItem: button.tag-1, inSection: 0))
+        
         
     }
     
@@ -228,14 +228,21 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             }
             
             container.sendDetails = { _ in
-                let dataDict = container.dataDict
-//                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                let productController : ProductsViewController = (storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as? ProductsViewController)!
-//                productController.dataDict = dataDict
-//                let navController = UINavigationController(rootViewController: productController)
-//                navController.navigationItem.hidesBackButton = true
-//                self.present(navController, animated: true, completion: nil)
-             self.navigationController?.popToRootViewController(animated: true)
+                //                let dataDict = container.dataDict
+                ////                let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                ////                let productController : payme = (storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as? ProductsViewController)!
+                ////                productController.dataDict = dataDict
+                ////                let navController = UINavigationController(rootViewController: productController)
+                ////                navController.navigationItem.hidesBackButton = true
+                ////                self.present(navController, animated: true, completion: nil)
+                //             self.navigationController?.popToRootViewController(animated: true)
+                popup.dismiss()
+                //                CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
+                //                    self.navController.popViewController(animated: true)
+                
+                CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!, subTotal: "", orderType: "", couponDiscount: "", onlinepaymentDiscount: "", shippingType: "", couponCode: "", itemCount: "", completion: { (isDataSaved) in
+                    self.navController.popViewController(animated: true)
+                })
             }
             popup.show(container)
         }
@@ -284,6 +291,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 

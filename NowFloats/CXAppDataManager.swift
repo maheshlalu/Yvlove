@@ -69,9 +69,9 @@ open class CXAppDataManager: NSObject {
             completion(responseDic)
         }
     }
-        
-
-   
+    
+    
+    
     
     func getAllProductsData()
     {
@@ -185,30 +185,30 @@ open class CXAppDataManager: NSObject {
     
     //MARK: PlaceOrder reconstructs
     /*http://appjee.com:8081/MobileAPIs/postAPlaceOrder?type=PlaceOrder_COD&dt=CAMPAIGNS&userId=3&consumerEmail=challasrinu.mca@gmail.com&category=PlaceOrders&json={
-    "Total": "96.55",
-    "PaymentMode": "COD",
-    "CouponDiscount": "6.5",
-    "OnlinePaymentDiscount": "1.95",
-    "shippingType": "Standard Shipping (4-6 Business days): Free",
-    "Contact_Number": "8688772372",
-    "CouponCode": "MARCH0618",
-    "ItemsCount": "2",
-    "Address": " hyd ",
-    "Name": "Sriram Viki",
-    "list": [{
-    "OrderItemId": "1366",
-    "OrderItemQuantity": "1",
-    "OrderItemName": "Chia Padding",
-    "OrderItemMRP": "25",
-    "OrderItemSubTotal": "25.0"
-    }, {
-    "OrderItemId": "1370",
-    "OrderItemQuantity": "1",
-    "OrderItemName": "Organic Eggs on Toast",
-    "OrderItemMRP": "40",
-    "OrderItemSubTotal": "40.0"
-    }]
-}*/
+     "Total": "96.55",
+     "PaymentMode": "COD",
+     "CouponDiscount": "6.5",
+     "OnlinePaymentDiscount": "1.95",
+     "shippingType": "Standard Shipping (4-6 Business days): Free",
+     "Contact_Number": "8688772372",
+     "CouponCode": "MARCH0618",
+     "ItemsCount": "2",
+     "Address": " hyd ",
+     "Name": "Sriram Viki",
+     "list": [{
+     "OrderItemId": "1366",
+     "OrderItemQuantity": "1",
+     "OrderItemName": "Chia Padding",
+     "OrderItemMRP": "25",
+     "OrderItemSubTotal": "25.0"
+     }, {
+     "OrderItemId": "1370",
+     "OrderItemQuantity": "1",
+     "OrderItemName": "Organic Eggs on Toast",
+     "OrderItemMRP": "40",
+     "OrderItemSubTotal": "40.0"
+     }]
+     }*/
     func postPlaceOrder(_ orderType:String, totlaAmount:String, paymentMode:String, CouponDiscount:String, onlinePaymentDiscount:String, shippingType:String, contactNumber:String, couponCode:String, itemCount:String, address:String, name:String,email:String,completion:@escaping (_ isDataSaved:Bool) -> Void){
         LoadingView.show("Processing Your Order", animated: true)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":orderType as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject,"category":"PlaceOrders" as AnyObject,"json":self.checOutCartList(totlaAmount, paymentMode: paymentMode, couponDiscount: CouponDiscount, onlinePaymentDiscount: onlinePaymentDiscount, shipping: shippingType, contactnumber: contactNumber, couponCode: couponCode, itemsCount: itemCount, address: address, name: name) as AnyObject]) { (responseDict) in
@@ -230,9 +230,9 @@ open class CXAppDataManager: NSObject {
                 
             }
         }
-    
+        
     }
-      //MARK:cart list
+    //MARK:cart list
     func checOutCartList(_ total:String,paymentMode:String,couponDiscount:String,onlinePaymentDiscount:String,shipping:String,contactnumber:String,couponCode:String,itemsCount:String,address:String,name:String)-> String{
         let productEn = NSEntityDescription.entity(forEntityName: "CX_Cart", in: NSManagedObjectContext.mr_contextForCurrentThread())
         let fetchRequest : NSFetchRequest<NSFetchRequestResult> = CX_Cart.mr_requestAllSorted(by: "name", ascending: true)
@@ -246,12 +246,12 @@ open class CXAppDataManager: NSObject {
             order.setValue(String(cart.pID!), forKey: "OrderItemId")
             order.setValue(String(describing: cart.quantity!), forKey: "OrderItemQuantity")
             order.setValue(String(cart.name!), forKey: "OrderItemName")
-             let finalSubtotal = (cart.quantity?.int32Value)! * (cart.productPrice?.int32Value)!
+            let finalSubtotal = (cart.quantity?.int32Value)! * (cart.productPrice?.int32Value)!
             order.setValue(String(describing: finalSubtotal), forKey: "OrderItemSubTotal")
             order.setValue(String(describing: cart.productPrice!), forKey: "OrderItemMRP")
             totalAmount = totalAmount + Float(String(describing: cart.productPrice!))!
             listArray.add(order)
-            }
+        }
         let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
         cartJsonDict.setValue(String(total), forKey: "Total")
         cartJsonDict.setValue(paymentMode, forKey: "PaymentMode")
@@ -280,10 +280,6 @@ open class CXAppDataManager: NSObject {
     }
     
     
-    
-    
-    
-    /*
     //Mark Place order
     
     func placeOder(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,orderType:String,couponDiscount:String,onlinepaymentDiscount:String,shippingType:String,couponCode:String,itemCount:String ,completion:@escaping (_ isDataSaved:Bool) -> Void){
@@ -311,7 +307,6 @@ open class CXAppDataManager: NSObject {
         }
     }
     
-    
     func checkOutCartItems(_ name:String ,email:String,address2:String,number:String,subTotal:String,totleP:String,paymentModeP:String,couponDiscountP:String,onlinePayMenDiscountP:String,shippingTypeP:String,contacatNumberP:String,couponCodeP:String,itemCountP:String,addressP:String,nameP:String)-> String{
         
         let productEn = NSEntityDescription.entity(forEntityName: "CX_Cart", in: NSManagedObjectContext.mr_contextForCurrentThread())
@@ -320,22 +315,22 @@ open class CXAppDataManager: NSObject {
         fetchRequest.entity = productEn
         
         
-//        let orderItemName: NSMutableString = NSMutableString()
-//        let orderItemQuantity: NSMutableString = NSMutableString()
-//        let orderSubTotal: NSMutableString = NSMutableString()
-//        let orderItemId: NSMutableString = NSMutableString()
-//        let orderItemMRP: NSMutableString = NSMutableString()
-//        
+        //        let orderItemName: NSMutableString = NSMutableString()
+        //        let orderItemQuantity: NSMutableString = NSMutableString()
+        //        let orderSubTotal: NSMutableString = NSMutableString()
+        //        let orderItemId: NSMutableString = NSMutableString()
+        //        let orderItemMRP: NSMutableString = NSMutableString()
+        //
         //let total: Double = 0
-       // order.setValue(name, forKey: "Name")
+        // order.setValue(name, forKey: "Name")
         //order["Name"] = ("\("kushal")")
         //should be replaced
         // order["Address"] = ("\("madhapur hyd")")
-       // order.setValue(address1, forKey: "Address")
+        // order.setValue(address1, forKey: "Address")
         
         //should be replaced
         //order["Contact_Number"] = ("\("7893335553")")
-       // order.setValue(number, forKey: "Contact_Number")
+        // order.setValue(number, forKey: "Contact_Number")
         
         //should be replaced
         
@@ -344,10 +339,10 @@ open class CXAppDataManager: NSObject {
         for (index, element) in CX_Cart.mr_executeFetchRequest(fetchRequest).enumerated() {
             let order: NSMutableDictionary = NSMutableDictionary()
             let cart : CX_Cart = element as! CX_Cart
-//            let OrderItemId11 = String(cart.pID!)
-//            let OrderItemQuantity11 = String(describing: cart.quantity!)
-//            let OrderItemName11 = String(cart.name!)
-//            let OrderItemSubTotal11 = String(describing: cart.productPrice!)
+            //            let OrderItemId11 = String(cart.pID!)
+            //            let OrderItemQuantity11 = String(describing: cart.quantity!)
+            //            let OrderItemName11 = String(cart.name!)
+            //            let OrderItemSubTotal11 = String(describing: cart.productPrice!)
             order.setValue(String(cart.pID!), forKey: "OrderItemId")
             order.setValue(String(describing: cart.quantity!), forKey: "OrderItemQuantity")
             order.setValue(String(cart.name!), forKey: "OrderItemName")
@@ -355,44 +350,44 @@ open class CXAppDataManager: NSObject {
             order.setValue(String(describing: cart.productPrice!), forKey: "OrderItemMRP")
             totalAmount = totalAmount + Float(String(describing: cart.productPrice!))!
             listArray.add(order)
-//            if index != 0 {
-//                orderItemName.append(("\("|")"))
-//                orderItemQuantity .append(("\("|")"))
-//                orderSubTotal .append(("\("|")"))
-//                orderItemId .append(("\("|")"))
-//                orderItemMRP .append(("\("|")"))
-//            }
-//            //            let responseString = String(data: data!, encoding: NSUTF8StringEncoding)
-//            let finalSubtotal = (cart.quantity?.int32Value)! * (cart.productPrice?.int32Value)!
-//            orderItemName.append("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
-//            orderItemQuantity.append("\(String(describing: cart.quantity!).addingPercentEscapes(using: String.Encoding.utf8)! + "`" + cart.pID!)")
-//            orderSubTotal.append(String(finalSubtotal) + "`" + cart.pID!)
-//            orderItemId.append("\(cart.pID! + "`" + cart.pID!)")
-//            orderItemMRP.append(String(describing: cart.productPrice!) + "`" + cart.pID!)
+            //            if index != 0 {
+            //                orderItemName.append(("\("|")"))
+            //                orderItemQuantity .append(("\("|")"))
+            //                orderSubTotal .append(("\("|")"))
+            //                orderItemId .append(("\("|")"))
+            //                orderItemMRP .append(("\("|")"))
+            //            }
+            //            //            let responseString = String(data: data!, encoding: NSUTF8StringEncoding)
+            //            let finalSubtotal = (cart.quantity?.int32Value)! * (cart.productPrice?.int32Value)!
+            //            orderItemName.append("\((cart.name?.escapeStr())! + "`" + cart.pID!)")
+            //            orderItemQuantity.append("\(String(describing: cart.quantity!).addingPercentEscapes(using: String.Encoding.utf8)! + "`" + cart.pID!)")
+            //            orderSubTotal.append(String(finalSubtotal) + "`" + cart.pID!)
+            //            orderItemId.append("\(cart.pID! + "`" + cart.pID!)")
+            //            orderItemMRP.append(String(describing: cart.productPrice!) + "`" + cart.pID!)
         }
-       // listArray.add(order)
-
+        // listArray.add(order)
+        
         
         //  order["OrderItemId"] = orderItemId
-//        order.setValue(orderItemId, forKey: "OrderItemId")
-//        
-//        //[order setObject:itemCode forKey:@"ItemCode"];
-//        //order["OrderItemQuantity"] = orderItemQuantity
-//        order.setValue(orderItemQuantity, forKey: "OrderItemQuantity")
-//        
-//        // order["OrderItemName"] = orderItemName
-//        order.setValue(orderItemName, forKey: "OrderItemName")
-//        
-//        //order["OrderItemSubTotal"] = ("\(orderSubTotal)")
-//        order.setValue(orderSubTotal, forKey: "OrderItemSubTotal")
-//        
-//        // order["OrderItemMRP"] = ("\(orderItemMRP)")
-//        order.setValue(orderItemMRP, forKey: "OrderItemMRP")
-//        
-//       // order.setValue(subTotal, forKey: "Total")
-//        
-//        
-//
+        //        order.setValue(orderItemId, forKey: "OrderItemId")
+        //
+        //        //[order setObject:itemCode forKey:@"ItemCode"];
+        //        //order["OrderItemQuantity"] = orderItemQuantity
+        //        order.setValue(orderItemQuantity, forKey: "OrderItemQuantity")
+        //
+        //        // order["OrderItemName"] = orderItemName
+        //        order.setValue(orderItemName, forKey: "OrderItemName")
+        //
+        //        //order["OrderItemSubTotal"] = ("\(orderSubTotal)")
+        //        order.setValue(orderSubTotal, forKey: "OrderItemSubTotal")
+        //
+        //        // order["OrderItemMRP"] = ("\(orderItemMRP)")
+        //        order.setValue(orderItemMRP, forKey: "OrderItemMRP")
+        //
+        //       // order.setValue(subTotal, forKey: "Total")
+        //
+        //
+        //
         
         
         let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
@@ -411,7 +406,7 @@ open class CXAppDataManager: NSObject {
         cartJsonDict.setValue(addressP, forKey: "Address")
         cartJsonDict.setValue(nameP, forKey: "Name")
         cartJsonDict.setObject(listArray, forKey: "list" as NSCopying)
-
+        
         
         
         //let jsonString = cartJsonDict.JSONString()
@@ -422,17 +417,17 @@ open class CXAppDataManager: NSObject {
         } catch let error as NSError {
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-     
+        
         return jsonStringFormat!
         
         
     }
- */
+    
     
     //MARK : GET ORDER HISTORY PICS
     //http://nowfloats.ongostore.com:8081/Services/getMasters?mallId=11&PrefferedJobs=163_165
     func getOrderProductImage(itemId:String ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
-
+        
     }
     
     //MARK : SIGN
@@ -480,7 +475,7 @@ open class CXAppDataManager: NSObject {
     //MARK : UPDATE PROFILE
     
     func profileUpdate(_ email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:@escaping (_ responseDict:NSDictionary)-> Void){
-
+        
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"address":address as AnyObject,"firstName":firstName as AnyObject,"lastName":lastName as AnyObject,"mobileNo":mobileNumber as AnyObject,"city":city as AnyObject,"state":state as AnyObject,"country":country as AnyObject,"userImagePath":image as AnyObject,"userBannerPath":"" as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
@@ -492,7 +487,7 @@ extension String {
     func escapeStr() -> (String) {
         let raw: NSString = self as NSString
         let str = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,raw,"[]." as CFString!,":/?&=;+!@#$()',*" as CFString!,CFStringConvertNSStringEncodingToEncoding(String.Encoding.utf8.rawValue))
-
+        
         return str as! (String)
     }
 }

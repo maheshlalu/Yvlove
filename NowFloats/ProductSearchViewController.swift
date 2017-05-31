@@ -9,10 +9,10 @@
 import UIKit
 
 class ProductSearchViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-
+    
     var screenWidth: CGFloat! = nil
     var products: NSArray!
-
+    
     @IBOutlet var updatecollectionview: UICollectionView!
     
     
@@ -23,14 +23,14 @@ class ProductSearchViewController: CXViewController,UICollectionViewDataSource,U
         UISearchBar.appearance().tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
         getTheProducts()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updatecollectionview.reloadData()
     }
-
+    
     
     func getTheProducts(){
         let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
@@ -119,7 +119,7 @@ class ProductSearchViewController: CXViewController,UICollectionViewDataSource,U
         
         
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.size.width-20, height: 222)

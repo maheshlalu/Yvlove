@@ -12,7 +12,7 @@ class BuyOnlineWebViewController: CXViewController {
     
     var url:String!
     var productName:String!
-
+    
     @IBOutlet weak var myWebView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class BuyOnlineWebViewController: CXViewController {
         self.myWebView.contentMode = UIViewContentMode.scaleAspectFit
         let requestObj = NSURLRequest(url:NSURL(string: self.url) as! URL)
         myWebView.loadRequest(requestObj as URLRequest)
-    
+        
     }
     
     //MAR:Heder options enable
@@ -36,7 +36,7 @@ class BuyOnlineWebViewController: CXViewController {
     override  func shouldShowCart() -> Bool{
         return false
     }
-
+    
     override func headerTitleText() -> String{
         return productName
     }
@@ -59,5 +59,5 @@ class BuyOnlineWebViewController: CXViewController {
         return false
     }
     
-
+    
 }

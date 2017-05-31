@@ -335,16 +335,16 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
         // Enhancements in nowfloats
         let MRP = FinalPrice
-//        if MRP == "0"{
-//            cell.productpriceLabel.isHidden = true
-//            cell.productFinalPriceLabel.isHidden = true
-//            cell.cartaddedbutton.isHidden = true
-//            
-//        }else{
-//            cell.productpriceLabel.isHidden = false
-//            cell.productFinalPriceLabel.isHidden = false
-//            cell.cartaddedbutton.isHidden = false
-//        }
+        //        if MRP == "0"{
+        //            cell.productpriceLabel.isHidden = true
+        //            cell.productFinalPriceLabel.isHidden = true
+        //            cell.cartaddedbutton.isHidden = true
+        //
+        //        }else{
+        //            cell.productpriceLabel.isHidden = false
+        //            cell.productFinalPriceLabel.isHidden = false
+        //            cell.cartaddedbutton.isHidden = false
+        //        }
         
         return cell
         

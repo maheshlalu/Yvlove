@@ -22,13 +22,12 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.customizeBgView()
         self.customizeDetailCollectionView()
         //self.detailCollectionView.reloadData()
-
+        
     }
     
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -49,7 +48,6 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.headerLbl.textAlignment = NSTextAlignment.left
         self.headerLbl.textColor = UIColor.gray
         self.bgView.addSubview(self.headerLbl)
-        
     }
     
     func customizeDetailCollectionView(){
@@ -66,7 +64,7 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.detailCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.detailCollectionView.showsHorizontalScrollIndicator = false
         self.detailCollectionView.frame = CGRect(x: 8, y: self.headerLbl.frame.size.height, width: cellWidth-16, height: CXConstant.DetailCollectionViewFrame.size.height)
-
+        
         // CXConstant.DetailCollectionViewFrame
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         self.detailCollectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "DetailCollectionViewCell")
@@ -74,12 +72,9 @@ class OfferFeaturedProductCell: UITableViewCell {
         self.detailCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCellID")
         self.detailCollectionView.backgroundColor = UIColor.clear
         self.addSubview(self.detailCollectionView)
-
+        
     }
-
-    
 }
-
 extension OfferFeaturedProductCell {
     
     var collectionViewOffset: CGFloat {
@@ -96,15 +91,15 @@ extension OfferFeaturedProductCell {
         self.detailCollectionView.delegate = delegate
         self.detailCollectionView.tag = forRow
         self.detailCollectionView.reloadData()
-
+        
     }
     
-//    func setCollectionViewDataSourceDelegate<D: (UICollectionViewDataSource & UICollectionViewDelegate)>(_ dataSourceDelegate: D, forRow row: Int) {
-//        
-//        self.detailCollectionView.delegate = dataSourceDelegate
-//        self.detailCollectionView.dataSource = dataSourceDelegate
-//        self.detailCollectionView.tag = row
-//        self.detailCollectionView.reloadData()
-//    }
+    //    func setCollectionViewDataSourceDelegate<D: (UICollectionViewDataSource & UICollectionViewDelegate)>(_ dataSourceDelegate: D, forRow row: Int) {
+    //
+    //        self.detailCollectionView.delegate = dataSourceDelegate
+    //        self.detailCollectionView.dataSource = dataSourceDelegate
+    //        self.detailCollectionView.tag = row
+    //        self.detailCollectionView.reloadData()
+    //    }
     
 }

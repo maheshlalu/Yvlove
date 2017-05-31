@@ -10,7 +10,7 @@ import UIKit
 
 class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRatingViewDelegate {
     
-
+    
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
     var productDetailDic: NSDictionary!
@@ -61,76 +61,76 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             descriptionTagsArr.add("Description")
             descriptionTagsDescArr.add("Description")
         }
-//        if productDetailDic.value(forKey: "Widget_Type") as! String != ""{
-//            descriptionTagsArr.add("Widget_Type")
-//            descriptionTagsDescArr.add("Widget_Type")
-//        }
+        //        if productDetailDic.value(forKey: "Widget_Type") as! String != ""{
+        //            descriptionTagsArr.add("Widget_Type")
+        //            descriptionTagsDescArr.add("Widget_Type")
+        //        }
         
-//        if productDetailDic.value(forKey: "overallRating") as! String != ""{
-//            descriptionTagsArr.add("overallRating")
-//            descriptionTagsDescArr.add("overallRating")
-//        }
+        //        if productDetailDic.value(forKey: "overallRating") as! String != ""{
+        //            descriptionTagsArr.add("overallRating")
+        //            descriptionTagsDescArr.add("overallRating")
+        //        }
         
-//        if productDetailDic.value(forKey: "DiscountAmount") as! String != ""{
-//            descriptionTagsArr.add("DiscountAmount")
-//            descriptionTagsDescArr.add("DiscountAmount")
-//        }
-//
-//        if productDetailDic.value(forKey: "totalReviews") as! String != ""{
-//            descriptionTagsArr.add("totalReviews")
-//            descriptionTagsDescArr.add("totalReviews")
-//        }
-//
-//        if productDetailDic.value(forKey: "color") as! String != ""{
-//            descriptionTagsArr.add("Color")
-//            descriptionTagsDescArr.add("color")
-//        }
-//        
-//        if productDetailDic.value(forKey: "weight") as! String != ""{
-//            descriptionTagsArr.add("Weight")
-//            descriptionTagsDescArr.add("weight")
-//        }
-//        
-//        if productDetailDic.value(forKey: "recommended_age") as! String != ""{
-//            descriptionTagsArr.add("Recommended Age")
-//            descriptionTagsDescArr.add("recommended_age")
-//        }
+        //        if productDetailDic.value(forKey: "DiscountAmount") as! String != ""{
+        //            descriptionTagsArr.add("DiscountAmount")
+        //            descriptionTagsDescArr.add("DiscountAmount")
+        //        }
+        //
+        //        if productDetailDic.value(forKey: "totalReviews") as! String != ""{
+        //            descriptionTagsArr.add("totalReviews")
+        //            descriptionTagsDescArr.add("totalReviews")
+        //        }
+        //
+        //        if productDetailDic.value(forKey: "color") as! String != ""{
+        //            descriptionTagsArr.add("Color")
+        //            descriptionTagsDescArr.add("color")
+        //        }
+        //
+        //        if productDetailDic.value(forKey: "weight") as! String != ""{
+        //            descriptionTagsArr.add("Weight")
+        //            descriptionTagsDescArr.add("weight")
+        //        }
+        //
+        //        if productDetailDic.value(forKey: "recommended_age") as! String != ""{
+        //            descriptionTagsArr.add("Recommended Age")
+        //            descriptionTagsDescArr.add("recommended_age")
+        //        }
     }
     
     func setUpRatingView(){
-       self.ratingView.contentMode = UIViewContentMode.scaleAspectFit
+        self.ratingView.contentMode = UIViewContentMode.scaleAspectFit
         ratingView.delegate = self
         ratingView.editable = true
         ratingView.halfRatings = true
         ratingView.floatRatings = false
         self.ratingBgView.backgroundColor = UIColor.clear
-//        self.ratingView.backgroundColor = UIColor.clear
-//        self.ratingView.editable = false
+        //        self.ratingView.backgroundColor = UIColor.clear
+        //        self.ratingView.editable = false
     }
     
-//   func setUpRatingView(){
-////    
-////    
-//          //self.ratingView.delegate = self
-////        
-////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
-////        ratingView.editable = true
-////        ratingView.maxRating = 5
-////        ratingView.minRating = 1
-////        ratingView.rating = 2.5
-////        ratingView.isUserInteractionEnabled = true
-////        ratingView.backgroundColor = UIColor.white
-////        ratingView.halfRatings = false
-////        ratingView.floatRatings = true
-//////
-////////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
-////////        ratingView.editable = false
-////////        ratingView.halfRatings = true
-////////        ratingView.floatRatings = false
-//    
-//    
-//        self.ratingBgView.backgroundColor = UIColor.clear
-//  }
+    //   func setUpRatingView(){
+    ////
+    ////
+    //          //self.ratingView.delegate = self
+    ////
+    ////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
+    ////        ratingView.editable = true
+    ////        ratingView.maxRating = 5
+    ////        ratingView.minRating = 1
+    ////        ratingView.rating = 2.5
+    ////        ratingView.isUserInteractionEnabled = true
+    ////        ratingView.backgroundColor = UIColor.white
+    ////        ratingView.halfRatings = false
+    ////        ratingView.floatRatings = true
+    //////
+    ////////        ratingView.contentMode = UIViewContentMode.scaleAspectFit
+    ////////        ratingView.editable = false
+    ////////        ratingView.halfRatings = true
+    ////////        ratingView.floatRatings = false
+    //
+    //
+    //        self.ratingBgView.backgroundColor = UIColor.clear
+    //  }
     
     func customisingBtns(){
         
@@ -232,14 +232,14 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             
             let rupee = "\u{20B9}"
-//            let price:String = productDetailDic.value(forKey: "MRP") as! String
-//            
-//            if price == "0"{
-//                finalPriceLbl.isHidden = true
-//            }else{
-//                finalPriceLbl.isHidden = false
-//                finalPriceLbl.text = "\(rupee) \(price)"
-//            }
+            //            let price:String = productDetailDic.value(forKey: "MRP") as! String
+            //
+            //            if price == "0"{
+            //                finalPriceLbl.isHidden = true
+            //            }else{
+            //                finalPriceLbl.isHidden = false
+            //                finalPriceLbl.text = "\(rupee) \(price)"
+            //            }
         }else{
             needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String
             let str = productDetailDic.value(forKey: descriptionTagsDescArr[indexPath.section - 2] as! String) as? String
@@ -297,24 +297,24 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     }
     @IBAction func placeOrderNowAction(_ sender: AnyObject) {
         
-//        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
-//        {
-//            let name = CXSignInSignUpViewController()
-//            self.navigationController?.pushViewController(name, animated: true)
-//        }
-     
+        //        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
+        //        {
+        //            let name = CXSignInSignUpViewController()
+        //            self.navigationController?.pushViewController(name, animated: true)
+        //        }
+        
         getValue()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
         self.navigationController?.pushViewController(cart, animated: true)
-       
+        
     }
     
     func getValue() {
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(productString, itemID: CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject), isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
         })
-   
+        
     }
     
     @IBAction func heartAction(_ sender: UIButton) {
@@ -379,28 +379,28 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     }
     
     // MARK: FloatRatingViewDelegate
-//    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
-//    {
-//        
-//        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
-//        
-//    }
-//    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float){
-//        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
-//        
-//
-//        self.setUpRatingView()
-//    }
+    //    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
+    //    {
+    //
+    //        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+    //
+    //    }
+    //    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float){
+    //        self.productRattingLbl.text = NSString(format: "%.2f", self.ratingView.rating) as String
+    //
+    //
+    //        self.setUpRatingView()
+    //    }
     
     
     
-        func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
-            self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
-        }
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
+        self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
+    }
     
-        func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
-            self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
-        }
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
+        self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
+    }
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
