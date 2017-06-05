@@ -46,36 +46,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         }
         
         //MARK: Google Plus
-//        var configureError: NSError?
-//        GGLContext.sharedInstance().configureWithError(&configureError)
-//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        //        var configureError: NSError?
+        //        GGLContext.sharedInstance().configureWithError(&configureError)
+        //        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-    
+        
         //GINInvite.applicationDidFinishLaunching()
-
+        
         //FIRInvites.applicationDidFinishLaunching(options: launchOptions)
-
+        
         //GIDSignIn.sharedInstance().delegate = self
-
+        
         
         //MARK: Mixpanel Integration
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         //MARK: Paypal
         PayPalMobile .initializeWithClientIds(forEnvironments: [PayPalEnvironmentProduction: "YOUR_CLIENT_ID_FOR_PRODUCTION",PayPalEnvironmentSandbox: "YOUR_CLIENT_ID_FOR_SANDBOX"])
-         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
+        CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         //PayPalMobile
         self.registerNotification(application: application)
         
         FIRApp.configure()
-
+        
         return true
     }
-      
+    
     func blockOperationsTest1(){
         
         let operationQueue = OperationQueue()
@@ -228,9 +228,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
-        return isHandled
-    } */
+     let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
+     return isHandled
+     } */
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
@@ -327,7 +327,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-        
         return coordinator
     }()
     
@@ -356,7 +355,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     //MARK: Loader configuration
-    
     func configure (){
         var config : LoadingView.Config = LoadingView.Config()
         config.size = 100
@@ -368,28 +366,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         config.foregroundAlpha = 0.5
         LoadingView.setConfig(config)
     }
-    
-    
 }
-
 extension AppDelegate{
     
- /*   @objc(application:openURL:sourceApplication:annotation:) func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let callBack:Bool
+    /*   @objc(application:openURL:sourceApplication:annotation:) func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+     let callBack:Bool
      
-        if url.scheme == "fb122900748244366" {
-            callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
-            return callBack
-        } else if url.scheme == "com.googleusercontent.apps.393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0"{
-            callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
-            return callBack
-        }else if url.scheme == "apps.storeongo.com" {
-            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
-        }
-        return true
-    } */
-
-    
-    
+     if url.scheme == "fb122900748244366" {
+     callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+     return callBack
+     } else if url.scheme == "com.googleusercontent.apps.393622930287-ogib1af4lvgspag2ic1l7cbmgph2o5v0"{
+     callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+     return callBack
+     }else if url.scheme == "apps.storeongo.com" {
+     //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
+     }
+     return true
+     } */
 }
 

@@ -331,7 +331,6 @@ open class CXAppDataManager: NSObject {
         //should be replaced
         //order["Contact_Number"] = ("\("7893335553")")
         // order.setValue(number, forKey: "Contact_Number")
-        
         //should be replaced
         
         let listArray : NSMutableArray = NSMutableArray()
@@ -385,10 +384,6 @@ open class CXAppDataManager: NSObject {
         //        order.setValue(orderItemMRP, forKey: "OrderItemMRP")
         //
         //       // order.setValue(subTotal, forKey: "Total")
-        //
-        //
-        //
-        
         
         let cartJsonDict :NSMutableDictionary = NSMutableDictionary()
         cartJsonDict.setValue(String(totalAmount), forKey: "Total")
@@ -406,9 +401,7 @@ open class CXAppDataManager: NSObject {
         cartJsonDict.setValue(addressP, forKey: "Address")
         cartJsonDict.setValue(nameP, forKey: "Name")
         cartJsonDict.setObject(listArray, forKey: "list" as NSCopying)
-        
-        
-        
+ 
         //let jsonString = cartJsonDict.JSONString()
         var jsonData : Data = Data()
         do {
@@ -417,12 +410,8 @@ open class CXAppDataManager: NSObject {
         } catch let error as NSError {
         }
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
-        
         return jsonStringFormat!
-        
-        
     }
-    
     
     //MARK : GET ORDER HISTORY PICS
     //http://nowfloats.ongostore.com:8081/Services/getMasters?mallId=11&PrefferedJobs=163_165

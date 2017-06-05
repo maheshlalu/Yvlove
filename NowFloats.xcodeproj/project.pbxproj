@@ -1377,6 +1377,7 @@
 				TargetAttributes = {
 					3B4FD8121D6446D200A6EBBE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 95Y7Y2H9V8;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 					};
@@ -1871,7 +1872,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "SHAH'S";
-				PROVISIONING_PROFILE = "a374eddd-9062-4b01-858c-46171e5faac5";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1914,7 +1915,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "SHAH'S";
-				PROVISIONING_PROFILE = "a374eddd-9062-4b01-858c-46171e5faac5";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1927,9 +1928,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NowFloats",
@@ -1950,8 +1951,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1965,9 +1966,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NowFloats",
@@ -1988,8 +1989,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
 				PRODUCT_NAME = Needybee;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d56a807f-f949-4eaa-96ae-67a7dd435b64";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_sha;
 				SWIFT_OBJC_BRIDGING_HEADER = "NowFloats/NowFloats-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

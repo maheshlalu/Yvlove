@@ -216,18 +216,18 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             FinalPrice = String(finalPriceNum) as String
             
             if finalPrice == FinalPrice{
-                //cell.productPriceLbl.isHidden = true
+                cell?.productPriceLbl.isHidden = true
                 cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }else{
-               // cell.productPriceLbl.isHidden = false
-               // cell.productPriceLbl.attributedText = attributeString
+            cell?.productPriceLbl.isHidden = false
+                cell?.productPriceLbl.attributedText = attributeString
                 cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
             }
         }
 
         if featureProducts.name == "Brands"{
             
-            //cell.productPriceLbl.isHidden = true
+            cell?.productPriceLbl.isHidden = true
             cell?.finalPriceLbl.isHidden = true
             cell?.orderNowBtn.isHidden = true
             

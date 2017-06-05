@@ -103,10 +103,7 @@ open class CXDataService: NSObject {
                     }
                     break
                 }
-                
         }
-
-        
     }
     
     open func imageUpload(_ imageData:Data,completion:@escaping (_ Response:NSDictionary) -> Void){

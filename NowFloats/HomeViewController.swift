@@ -20,7 +20,8 @@ class HomeViewController: UITabBarController {
         //getAddtinalCategryList()
     }
     
-    func addTheTabBarControllers(){
+    func addTheTabBarControllers
+        (){
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let firstTab : UIViewController!
         
@@ -44,44 +45,30 @@ class HomeViewController: UITabBarController {
         
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
-        
     }
     
     func cartButtonAction(){
     }
-    
     func notificationBellAction(){
     }
-    
     func profileToggleAction(){
     }
-    
-    
     func getAddtinalCategryList(){
-        
-        
         if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
         {
         }else{
             
             let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
-            
             CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
-                
-                
                 let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
-                
-                
                 for dictData in jobsData {
                     
                     let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
                     let name:String = (dictindividual.value(forKey: "Name") as? String)!
                     self.additionalCatArr.add(name)
-                    
                 }
                 UserDefaults.standard.set(self.additionalCatArr, forKey: "CategeryAdditinal")
             }
-
         }
     }
     
@@ -89,7 +76,7 @@ class HomeViewController: UITabBarController {
 
 extension HomeViewController :AppDataDelegate {
     func completedTheFetchingTheData(_ sender: CXAppDataManager) {
-         self.addTheTabBarControllers()
+        self.addTheTabBarControllers()
         LoadingView.hide()
     }
 }

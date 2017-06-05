@@ -295,7 +295,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         let act = ServiceFormViewController()
         self.navigationController?.pushViewController(act, animated: true)
     }
-
     
     func viewMapAction(_ button : UIButton!){
         

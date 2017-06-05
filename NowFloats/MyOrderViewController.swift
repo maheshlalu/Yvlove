@@ -33,7 +33,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
         self.MyorderstableView.rowHeight = UITableViewAutomaticDimension
         self.MyorderstableView.estimatedRowHeight = 196
         DispatchQueue.main.async {
-            self.getOrderDetails()
+             self.getOrderDetails()
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,20 +83,13 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     }
     func getOrderDetails(){
         let subDataJobs = orderDetailDict.value(forKey: "CreatedSubJobs") as! NSArray
-        
         //for _ in 0..<subDataJobs.count{
             let OrderItemName = subDataJobs.value(forKey: "OrderItemName")
-        let OrderItemMRP = subDataJobs.value(forKey: "OrderItemMRP")
-        
-        let OrderItemSubTotal = subDataJobs.value(forKey: "OrderItemSubTotal")
-        
-            
-        
+            let OrderItemMRP = subDataJobs.value(forKey: "OrderItemMRP")
+            let OrderItemSubTotal = subDataJobs.value(forKey: "OrderItemSubTotal")
+
        // }
-        
-        
-        
-        
+
         /*
     
         LoadingView.show(true)

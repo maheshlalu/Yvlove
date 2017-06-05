@@ -33,9 +33,7 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
             self.orderstableview.reloadData()
         }
         
-
     }
-   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if ordersArray.count == 0{
@@ -68,7 +66,6 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         
         let date :String =  (orederDataDic.value(forKey: "createdOn") as? String)!
         cell.placedonresultlabel.text = date.getTheCurrentDateTime(dateString: date)
-        
         cell.orderpriceresultlabel.text = "₹ \(orederDataDic.value(forKey: "Total")!)"
         cell.statusresultlabel.text = orederDataDic.value(forKey: "Current_Job_Status") as? String
         
@@ -92,12 +89,12 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let productDetails = storyBoard.instantiateViewController(withIdentifier: "MY_ORDERS") as! MyOrderViewController
         productDetails.orderDetailDict = orederDataDic
-       /*
-        productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
-        productDetails.orderIdStr = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
-        productDetails.priceStr = orederDataDic.value(forKey: "Total") as?String
-        productDetails.placedStr = orederDataDic.value(forKey: "createdOn") as?String
-        */
+        /*
+         productDetails.orderData = self.ordersArray[indexPath.section] as! NSDictionary
+         productDetails.orderIdStr = CXConstant.resultString(orederDataDic.value(forKey: "id")! as AnyObject)
+         productDetails.priceStr = orederDataDic.value(forKey: "Total") as?String
+         productDetails.placedStr = orederDataDic.value(forKey: "createdOn") as?String
+         */
         self.navigationController?.pushViewController(productDetails, animated: true)
     }
     
