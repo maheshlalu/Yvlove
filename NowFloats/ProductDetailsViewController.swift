@@ -232,14 +232,14 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             
             let rupee = "\u{20B9}"
-            //            let price:String = productDetailDic.value(forKey: "MRP") as! String
-            //
-            //            if price == "0"{
-            //                finalPriceLbl.isHidden = true
-            //            }else{
-            //                finalPriceLbl.isHidden = false
-            //                finalPriceLbl.text = "\(rupee) \(price)"
-            //            }
+                        let price:String = productDetailDic.value(forKey: "MRP") as! String
+            
+                        if price == "0"{
+                            finalPriceLbl.isHidden = true
+                        }else{
+                            finalPriceLbl.isHidden = false
+                            finalPriceLbl.text = "\(rupee) \(price)"
+                        }
         }else{
             needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String
             let str = productDetailDic.value(forKey: descriptionTagsDescArr[indexPath.section - 2] as! String) as? String

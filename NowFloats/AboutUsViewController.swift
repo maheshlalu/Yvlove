@@ -236,10 +236,10 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                 aboutUsExtra.selectionStyle = .none
                 
                 if indexPath.section == 2{
-                    aboutUsExtra.extraTitleLbl.text = "We're happily available from"
-                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appLargeFont()
+                    aboutUsExtra.extraTitleLbl.text = "we are happily available from is displaying phone number instead of time"
+                    aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appSmallFont()
                     //aboutUsExtra.extraDescLbl.text = self.availability()
-                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appSmallFont()
                     aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{
                     aboutUsExtra.extraTitleLbl.text = "You can reach us at"

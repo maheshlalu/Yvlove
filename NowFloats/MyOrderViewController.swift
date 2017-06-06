@@ -90,7 +90,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
 
        // }
 
-        /*
+        
     
         LoadingView.show(true)
         var orderName:NSMutableArray = NSMutableArray()
@@ -166,7 +166,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
                     }
                 }
             }
-        }*/
+        }
     }
     
     

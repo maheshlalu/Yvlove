@@ -91,9 +91,11 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
         self.cScrollView.addSubview(signUpSubLbl)
         
         self.firstNameField = self.createField(CGRect(x: 30, y: signUpSubLbl.frame.size.height+signUpSubLbl.frame.origin.y+20, width: self.cScrollView.frame.size.width-60, height: 40), tag: 1, placeHolder: "First Name")
+        self.firstNameField.keyboardType = UIKeyboardType.alphabet
         self.cScrollView.addSubview(self.firstNameField)
         
         self.lastNameField = self.createField(CGRect(x: 30, y: self.firstNameField.frame.size.height+self.firstNameField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 2, placeHolder: "Last Name")
+         self.lastNameField.keyboardType = UIKeyboardType.alphabet
         self.cScrollView.addSubview(self.lastNameField)
         
         self.mobileNumField = self.createField(CGRect(x: 30, y: self.lastNameField.frame.size.height+self.lastNameField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 3, placeHolder: "Mobile Number")
@@ -229,6 +231,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid email address.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                
                 return
             }
             
@@ -236,7 +239,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
                 let alert = UIAlertController(title: "Alert!!!", message: "Please enter valid Phone number.", preferredStyle: UIAlertControllerStyle.alert)
                 let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
                     UIAlertAction in
-                    //self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popViewController(animated: true)
                     
                 }
                 alert.addAction(okAction)

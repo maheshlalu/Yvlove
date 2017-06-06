@@ -283,6 +283,8 @@ class ServiceFormViewController: XLFormViewController {
     func submitServiceForm(){
         let parameters : NSMutableDictionary = NSMutableDictionary(dictionary: self.formValues())
         
+        print(parameters.allKeys)
+        print(parameters.allValues)
         var isAtachment : Bool = true
         for service in self.seriveformDataArray {
             let formService : Serices = (service as? Serices)!
@@ -313,9 +315,7 @@ class ServiceFormViewController: XLFormViewController {
         if isAtachment {
             self.subMitTheServiceFormData(parameters)
         }
-        
-        
-        
+       
         
         /*  CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory,"json":"","dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":""]) { (responseDict) in
          

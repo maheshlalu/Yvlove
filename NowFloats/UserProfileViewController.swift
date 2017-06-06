@@ -86,7 +86,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 6
+        return 5
         
     }
     
@@ -152,8 +152,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
             //btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
             
-            
-        }else if indexPath.section == 5{
+        }/*else if indexPath.section == 5{
             let footerIdentifier = "Legal"
             cell = tableView.dequeueReusableCell(withIdentifier: footerIdentifier)!
             cell?.selectionStyle = .none
@@ -163,7 +162,7 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             btn.isUserInteractionEnabled = false
             btn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
            // btn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), forState: .Normal)
-        }
+        }*/
         return cell!
         
     }
@@ -181,9 +180,9 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
             self.navigationController?.pushViewController(comentsView, animated: true)
         }else if indexPath.section == 4 {
             shareAppAction()
-        }else if indexPath.section == 5{
+        }/*else if indexPath.section == 5{
             presentWindow?.makeToast(message: "Disclaimer to be shown")
-        }
+        }*/
     }
     
     func shareAppAction(){
