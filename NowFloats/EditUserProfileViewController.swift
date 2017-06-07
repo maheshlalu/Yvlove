@@ -71,11 +71,10 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         addressTxtField.delegate = self
         cityTxtField.delegate = self
         notificationCall()
-        
+        self.staticMobileNumber.isUserInteractionEnabled = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.view.addGestureRecognizer(tap)
       
-
     }
     //MARK: Notification call Method
     func notificationCall()
@@ -220,7 +219,7 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         chooseArticleDropDown.anchorView = editBtn
         chooseArticleDropDown.bottomOffset = CGPoint(x:-10, y:self.editBtn.bounds.size.height+2)
         chooseArticleDropDown.dataSource = [
-            "Choose from Photos", "Get from Facebook", "Remove profile pic"
+            "Choose from Photos", "Remove profile pic"
         ]
         chooseArticleDropDown.selectionAction = {(index, item) in
             if index == 0{

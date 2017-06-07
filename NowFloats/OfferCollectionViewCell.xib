@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -88,9 +88,9 @@
             <size key="customSize" width="228" height="245"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="05y-jS-K9v"/>
                     <exclude reference="YBm-c0-fdS"/>
                     <exclude reference="aeJ-yS-Vqy"/>
-                    <exclude reference="05y-jS-K9v"/>
                     <exclude reference="w0h-ho-zRI"/>
                 </mask>
             </variation>
@@ -101,7 +101,7 @@
                 <outlet property="productName" destination="rR6-Hp-INz" id="TeE-hB-lqV"/>
                 <outlet property="productPriceLbl" destination="ubd-SW-jRA" id="lvg-aU-Nuj"/>
             </connections>
-            <point key="canvasLocation" x="-249" y="244"/>
+            <point key="canvasLocation" x="-206" y="212"/>
         </collectionViewCell>
     </objects>
 </document>

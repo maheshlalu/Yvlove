@@ -29,7 +29,7 @@
 	<key>APPFONT_LARGE</key>
 	<integer>15</integer>
 	<key>APPFONT_SMALL</key>
-	<integer>10</integer>
+	<integer>9</integer>
 	<key>ISPagerEnable</key>
 	<true/>
 	<key>PRODUCT_NAME</key>

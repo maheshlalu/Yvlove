@@ -271,7 +271,7 @@ class ServiceFormViewController: XLFormViewController {
     }
     
     override func didSelectFormRow(_ formRow: XLFormRowDescriptor!) {
-        super.didSelectFormRow(formRow)
+        //super.didSelectFormRow(formRow)
         if formRow.tag == "Submit" {
             let formDic : NSDictionary = self.httpParameters() as NSDictionary
             
@@ -280,11 +280,23 @@ class ServiceFormViewController: XLFormViewController {
         
     }
     
+   
+    
     func submitServiceForm(){
         let parameters : NSMutableDictionary = NSMutableDictionary(dictionary: self.formValues())
         
         print(parameters.allKeys)
         print(parameters.allValues)
+        for key in parameters.allKeys {
+            let keyvalue = key as? String
+            if keyvalue != "Submit"{
+                if parameters.value(forKey: key as! String)!  is NSNull {
+                    self.showAlertView("Please fill the all fields", status: 0)
+                    return
+                }
+            }
+            
+        }
         var isAtachment : Bool = true
         for service in self.seriveformDataArray {
             let formService : Serices = (service as? Serices)!

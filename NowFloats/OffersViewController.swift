@@ -199,30 +199,26 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             
             let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
             
-            var floatDiscount:Float = Float()
+//            var floatDiscount:Float = Float()
+//            
+//            if floatDis == ""{
+//                floatDiscount = 0.0
+//            }
             
-            if floatDis == ""{
-                floatDiscount = 0.0
-            }
-            
-            let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
-            
-            //Setting AttributedPrice
-            let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+           // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
             
             //FinalPrice after subtracting the discount
-            let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+            let finalPriceNum:Int! = Int(finalPrice)!-Int(floatDis)!
             FinalPrice = String(finalPriceNum) as String
             
-            if finalPrice == FinalPrice{
-                cell?.productPriceLbl.isHidden = true
-                cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
-            }else{
+            //Setting AttributedPrice
+            let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: finalPrice)
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            
             cell?.productPriceLbl.isHidden = false
-                cell?.productPriceLbl.attributedText = attributeString
-                cell?.finalPriceLbl.text! = "\(rupee) \(FinalPrice!)"
-            }
+            cell?.productPriceLbl.text = "\(rupee) \(FinalPrice!)"
+            cell?.finalPriceLbl.attributedText = attributeString
+            
         }
 
         if featureProducts.name == "Brands"{

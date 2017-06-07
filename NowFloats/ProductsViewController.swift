@@ -310,8 +310,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
         //Setting AttributedPrice
-        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: "\(rupee) \(finalPrice)")
-        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: finalPrice)
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
         
         //FinalPrice after subtracting the discount
         let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!

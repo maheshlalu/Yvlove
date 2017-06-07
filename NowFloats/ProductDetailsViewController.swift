@@ -223,8 +223,10 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             cell?.selectionStyle = .none
             
             let finalPriceLbl = (cell!.viewWithTag(200)! as! UILabel)
+            let discountPriceLbl = cell?.viewWithTag(300)! as! UILabel
+            discountPriceLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            let discountPersentageLbl = cell?.viewWithTag(400)! as! UILabel
             let favoriteBtn = cell?.viewWithTag(1000)! as! UIButton
-            
             if  CXDataProvider.sharedInstance.isAddToCart(CXConstant.resultString(productDetailDic.value(forKey: "id")! as AnyObject) as NSString).isAddedToWishList{
                 favoriteBtn.isSelected = true
             }else{
@@ -233,13 +235,39 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             
             let rupee = "\u{20B9}"
                         let price:String = productDetailDic.value(forKey: "MRP") as! String
-            
+                        let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
                         if price == "0"{
+                            discountPriceLbl.isHidden = true
+                            discountPersentageLbl.isHidden = true
                             finalPriceLbl.isHidden = true
                         }else{
                             finalPriceLbl.isHidden = false
+                            discountPriceLbl.isHidden = false
+                            discountPersentageLbl.isHidden = false
                             finalPriceLbl.text = "\(rupee) \(price)"
                         }
+            
+            if discount == "0" {
+                discountPriceLbl.isHidden = true
+                discountPersentageLbl.isHidden = true
+                finalPriceLbl.text = "\(rupee) \(price)"
+            }else{
+                discountPriceLbl.isHidden = false
+                discountPersentageLbl.isHidden = false
+                let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: price)
+                attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+                discountPriceLbl.attributedText = attributeString
+                let finalPriceNum:Int = Int(price)!-Int(discount)!
+                finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
+                
+                let discountPrice: Float = Float(discount)!
+                let actualPrice: Float = Float(price)!
+                let perCent = 100*(discountPrice/actualPrice)
+                let perCentCGFloat =  Int(floor(CGFloat(perCent)))
+                discountPersentageLbl.text = "\(perCentCGFloat)%"
+            }
+
+            
         }else{
             needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String
             let str = productDetailDic.value(forKey: descriptionTagsDescArr[indexPath.section - 2] as! String) as? String

@@ -131,12 +131,12 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         }
 
     func submitTheComments(){
-        /*
-         return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
-         / userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74 /
+        
+         //return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
+         //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
          
         
-         */
+        
         
 
     }

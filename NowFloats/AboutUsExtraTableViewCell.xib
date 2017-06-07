@@ -31,7 +31,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="cnq-qm-pM0"/>
                             <constraint firstAttribute="width" constant="275" id="vJZ-6m-XZx"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                         <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -54,7 +54,7 @@
                             <constraint firstAttribute="height" constant="25" id="KCJ-If-aA5"/>
                             <constraint firstAttribute="width" constant="361" id="tRD-N7-YB9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="8"/>
                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

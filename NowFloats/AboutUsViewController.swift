@@ -239,7 +239,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
                     aboutUsExtra.extraTitleLbl.text = "we are happily available from is displaying phone number instead of time"
                     aboutUsExtra.extraTitleLbl.font = CXAppConfig.sharedInstance.appSmallFont()
                     //aboutUsExtra.extraDescLbl.text = self.availability()
-                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appSmallFont()
+                    aboutUsExtra.extraDescLbl.font = CXAppConfig.sharedInstance.appMediumFont()
                     aboutUsExtra.callBtn.isHidden = true
                 }else if indexPath.section == 3{
                     aboutUsExtra.extraTitleLbl.text = "You can reach us at"
