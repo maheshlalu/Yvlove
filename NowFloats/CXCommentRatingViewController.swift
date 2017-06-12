@@ -134,11 +134,9 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         
          //return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
          //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-         
-        
-        
-        
-
+//        let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
+//        //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+//        return reqString
     }
     
     func clearNumPadAction() {

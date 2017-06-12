@@ -17,7 +17,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     var descriptionTagsArr:NSMutableArray = NSMutableArray()
     var descriptionTagsDescArr:NSMutableArray = NSMutableArray()
     
-    
     @IBOutlet weak var placeOrderBtn: UIButton!
     @IBOutlet weak var addToCartBtn: UIButton!
     @IBOutlet weak var ratingView: FloatRatingView!
@@ -234,18 +233,18 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             
             let rupee = "\u{20B9}"
-                        let price:String = productDetailDic.value(forKey: "MRP") as! String
-                        let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
-                        if price == "0"{
-                            discountPriceLbl.isHidden = true
-                            discountPersentageLbl.isHidden = true
-                            finalPriceLbl.isHidden = true
-                        }else{
-                            finalPriceLbl.isHidden = false
-                            discountPriceLbl.isHidden = false
-                            discountPersentageLbl.isHidden = false
-                            finalPriceLbl.text = "\(rupee) \(price)"
-                        }
+            let price:String = productDetailDic.value(forKey: "MRP") as! String
+            let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
+            if price == "0"{
+                discountPriceLbl.isHidden = true
+                discountPersentageLbl.isHidden = true
+                finalPriceLbl.isHidden = true
+            }else{
+                finalPriceLbl.isHidden = false
+                discountPriceLbl.isHidden = false
+                discountPersentageLbl.isHidden = false
+                finalPriceLbl.text = "\(rupee) \(price)"
+            }
             
             if discount == "0" {
                 discountPriceLbl.isHidden = true
@@ -257,16 +256,21 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
                 let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: price)
                 attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
                 discountPriceLbl.attributedText = attributeString
-                let finalPriceNum:Int = Int(price)!-Int(discount)!
-                finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
                 
-                let discountPrice: Float = Float(discount)!
+                var finalPriceNum:Int = Int()
+                var discountPrice: Float = Float()
+                if discount == ""{
+                    finalPriceNum = Int(price)!
+                }else{
+                    finalPriceNum = Int(price)!-Int(discount)!
+                    discountPrice = Float(discount)!
+                }
+                finalPriceLbl.text = "\(rupee) \(String(finalPriceNum))"
                 let actualPrice: Float = Float(price)!
                 let perCent = 100*(discountPrice/actualPrice)
                 let perCentCGFloat =  Int(floor(CGFloat(perCent)))
                 discountPersentageLbl.text = "\(perCentCGFloat)%"
             }
-
             
         }else{
             needyBeeDetailCell.titleLbl.text = descriptionTagsArr[indexPath.section - 2] as? String

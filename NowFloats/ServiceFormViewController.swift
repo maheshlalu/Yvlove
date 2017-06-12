@@ -139,13 +139,15 @@ class ServiceFormViewController: XLFormViewController {
                         row.cellConfigAtConfigure["textField.placeholder"] = formService.name
                         row.cellConfigAtConfigure["textField.textAlignment"] =  NSTextAlignment.left.rawValue
                         row.isRequired = true
+                        row.cellConfigAtConfigure["textField.userInteractionEnabled"] =  true
                         section.addFormRow(row)
                     }else if formService.type == "Large Text" {
                         row = XLFormRowDescriptor(tag: formService.name, rowType: XLFormRowDescriptorTypeTextView)
                         row.cellConfigAtConfigure["textView.textAlignment"] =  NSTextAlignment.left.rawValue
                         row.cellConfigAtConfigure["textView.placeholder"] = formService.name
                         //textView.userInteractionEnabled
-                        //row.cellConfigAtConfigure["textView.userInteractionEnabled"] =  true
+                        row.cellConfigAtConfigure["textView.userInteractionEnabled"] =  true
+                        
                         section.addFormRow(row)
                         
                     }else if formService.type == "Date Time" {
@@ -248,8 +250,6 @@ class ServiceFormViewController: XLFormViewController {
                         //section.addFormRow(row)
                     }
                 }
-                
-                
             }
             if index ==  self.groupNames.count-1{
                 row = XLFormRowDescriptor(tag: "Submit", rowType: XLFormRowDescriptorTypeButton, title:"Submit")
@@ -258,20 +258,13 @@ class ServiceFormViewController: XLFormViewController {
                 // row.cellConfig["textLabel.font"] = UIFont.systemFontOfSize(40)
                 section.addFormRow(row)
             }
-            
-            
             // form = Section(sectionName)
-            
         }
-        
-        
-        
         self.form = form
-        
     }
     
     override func didSelectFormRow(_ formRow: XLFormRowDescriptor!) {
-        //super.didSelectFormRow(formRow)
+        super.didSelectFormRow(formRow)
         if formRow.tag == "Submit" {
             let formDic : NSDictionary = self.httpParameters() as NSDictionary
             
@@ -279,8 +272,6 @@ class ServiceFormViewController: XLFormViewController {
         }
         
     }
-    
-   
     
     func submitServiceForm(){
         let parameters : NSMutableDictionary = NSMutableDictionary(dictionary: self.formValues())
@@ -295,7 +286,6 @@ class ServiceFormViewController: XLFormViewController {
                     return
                 }
             }
-            
         }
         var isAtachment : Bool = true
         for service in self.seriveformDataArray {
@@ -327,7 +317,7 @@ class ServiceFormViewController: XLFormViewController {
         if isAtachment {
             self.subMitTheServiceFormData(parameters)
         }
-       
+        
         
         /*  CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory,"json":"","dt":"CAMPAIGNS","category":"Services","userId":CXAppConfig.sharedInstance.getAppMallID(),"consumerEmail":""]) { (responseDict) in
          

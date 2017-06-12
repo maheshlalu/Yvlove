@@ -27,7 +27,7 @@ class OffersViewController: CXViewController{
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
         self.registerTableViewCell()
         self.getTheProducts()
-
+        
     }
     
     func getTheProducts(){
@@ -96,7 +96,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         feturedProuctsCell.detailCollectionView.allowsSelection = true
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[indexPath.section-1] as? CX_FeaturedProducts)!
         let str = featureProducts.name! as String
-       // let str1 = str.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
+        // let str1 = str.trimmingCharacters(in: CharacterSet.init(charactersIn: "_"))
         let strRemove =  str.replacingOccurrences(of: "_", with: " ")
         
         feturedProuctsCell.headerLbl.text = "\(strRemove)"
@@ -110,27 +110,27 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         return String(text.characters.filter {okayChars.contains($0) })
     }
     
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-//        let arr:Array = ["Suresh","Mahesh","Balu"]
-//        
-//        if section < arr.count {
-//            return arr[section]
-//        }
-//        
-//        return nil
-//    
-//    }
+    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+    //        let arr:Array = ["Suresh","Mahesh","Balu"]
+    //
+    //        if section < arr.count {
+    //            return arr[section]
+    //        }
+    //
+    //        return nil
+    //
+    //    }
     
     /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if indexPath.row == 0 {
-            return 200
-        }else {
-            
-        }
-        return 150
-    }
-    */
+     
+     if indexPath.row == 0 {
+     return 200
+     }else {
+     
+     }
+     return 150
+     }
+     */
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return CXConstant.tableViewHeigh - 75;
@@ -151,7 +151,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         let featureProducts : CX_FeaturedProducts =  (self.featureProducts[collectionView.tag - 1] as? CX_FeaturedProducts)!
- 
+        
         return CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "parentID == %@",featureProducts.fID!), ispredicate: true, orederByKey: "").totalCount
     }
     
@@ -168,13 +168,13 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         })
         
         
-//        let identifier = "OfferCollectionViewCell"
-//        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
-//        if cell == nil {
-//            collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
-////            let nib = UINib(nibName: "OfferCollectionViewCell", bundle: nil)
-////            self.offersTableView.register(nib, forCellReuseIdentifier: "OfferCollectionViewCell")
-//                    }
+        //        let identifier = "OfferCollectionViewCell"
+        //        let cell: OfferCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as?OfferCollectionViewCell
+        //        if cell == nil {
+        //            collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+        ////            let nib = UINib(nibName: "OfferCollectionViewCell", bundle: nil)
+        ////            self.offersTableView.register(nib, forCellReuseIdentifier: "OfferCollectionViewCell")
+        //                    }
         
         
         
@@ -184,7 +184,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         
         // productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
-       // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
+        // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
         cell?.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
         
@@ -199,13 +199,13 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             
             let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
             
-//            var floatDiscount:Float = Float()
-//            
-//            if floatDis == ""{
-//                floatDiscount = 0.0
-//            }
+            //            var floatDiscount:Float = Float()
+            //
+            //            if floatDis == ""{
+            //                floatDiscount = 0.0
+            //            }
             
-           // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+            // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
             
             //FinalPrice after subtracting the discount
             let finalPriceNum:Int! = Int(finalPrice)!-Int(floatDis)!
@@ -220,7 +220,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             cell?.finalPriceLbl.attributedText = attributeString
             
         }
-
+        
         if featureProducts.name == "Brands"{
             
             cell?.productPriceLbl.isHidden = true
@@ -231,7 +231,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         
         let fId = Int(featuredProductJobs.fID! as String)
         cell?.orderNowBtn.tag = fId!
-
+        
         cell?.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
         //self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         return cell!
@@ -239,14 +239,14 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         // Set cell width to 100%
-
-            return CXConstant.DetailCollectionCellSize
+        
+        return CXConstant.DetailCollectionCellSize
     }
     
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
-    
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -287,8 +287,8 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         self.navigationController?.pushViewController(productDetails, animated: true)
         
     }
-
-  
+    
+    
 }
 
 
@@ -391,18 +391,18 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     func pagerOrderNowBtnAction(_ sender:UIButton){
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
+        
         CXDataProvider.sharedInstance.itemAddToWishListOrCarts(proListData.json!, itemID: proListData.pid!, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-
+            
             let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
             self.navigationController?.pushViewController(cart, animated: true)
         })
         
         
-//       // let storyBoard1 = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
-//        self.navigationController?.pushViewController(cart, animated: true)
-//        //self.navigationController?.pushViewController(productDetails, animated: true)
+        //       // let storyBoard1 = UIStoryboard(name: "Main", bundle: Bundle.main)
+        //        let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
+        //        self.navigationController?.pushViewController(cart, animated: true)
+        //        //self.navigationController?.pushViewController(productDetails, animated: true)
         
         
     }
@@ -415,52 +415,52 @@ func gettingDate() {
     
     let report = ProductDetailsViewController()
     
-     report.getValue()
+    report.getValue()
     
 }
 
 extension OffersViewController {
     
-   func orderNowBtnAction(_ sender:UIButton){
-    
-            let fID = String(sender.tag)
-            let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
-            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    func orderNowBtnAction(_ sender:UIButton){
+        
+        let fID = String(sender.tag)
+        let featuredProductJobs : CX_FeaturedProductsJobs = (CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProductsJobs", predicate: NSPredicate(format: "fID == %@",fID), ispredicate: true, orederByKey: "").dataArray[0] as?CX_FeaturedProductsJobs)!
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        CXDataProvider.sharedInstance.itemAddToWishListOrCarts(featuredProductJobs.json!, itemID: fID, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
             
-            CXDataProvider.sharedInstance.itemAddToWishListOrCarts(featuredProductJobs.json!, itemID: fID, isAddToWishList: false, isAddToCartList: true, isDeleteFromWishList: false, isDeleteFromCartList: false, completionHandler: { (isAdded) in
-                
-                let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
-                self.navigationController?.pushViewController(cart, animated: true)
-            })
-            
-            
-            /*
-             let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
-             
-             //Trimming Price And Discount
-             let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
-             let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
-             
-             //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
-             
-             let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
-             
-             var floatDiscount:Float = Float()
-             
-             if floatDis == ""{
-             floatDiscount = 0.0
-             }
-             
-             let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
-             
-             //FinalPrice after subtracting the discount
-             let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
-             let FinalPrice = String(finalPriceNum) as String!
-             
-             let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
-             productDetails.productString = featuredProductJobs.json
-             self.navigationController?.pushViewController(productDetails, animated: true)
-             */
-    
+            let cart = storyBoard.instantiateViewController(withIdentifier: "CART") as! CartViewController
+            self.navigationController?.pushViewController(cart, animated: true)
+        })
+        
+        
+        /*
+         let dict = CXDataService.sharedInstance.convertStringToDictionary(featuredProductJobs.json! as String) as NSDictionary
+         
+         //Trimming Price And Discount
+         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+         let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+         
+         //let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!))!
+         
+         let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+         
+         var floatDiscount:Float = Float()
+         
+         if floatDis == ""{
+         floatDiscount = 0.0
+         }
+         
+         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+         
+         //FinalPrice after subtracting the discount
+         let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+         let FinalPrice = String(finalPriceNum) as String!
+         
+         let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
+         productDetails.productString = featuredProductJobs.json
+         self.navigationController?.pushViewController(productDetails, animated: true)
+         */
+        
     }
 }
