@@ -246,7 +246,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
                 finalPriceLbl.text = "\(rupee) \(price)"
             }
             
-            if discount == "0" {
+            if discount == "0" || discount == "" {
                 discountPriceLbl.isHidden = true
                 discountPersentageLbl.isHidden = true
                 finalPriceLbl.text = "\(rupee) \(price)"

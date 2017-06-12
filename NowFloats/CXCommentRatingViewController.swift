@@ -122,21 +122,64 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     }
     //MARK: Submit the comment
     
-        func commentSubiturl(_ userID:String, jobID:String,comment:String,rating:String,commentId:String) ->String{
-    
-            //let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-            let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
-            //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-            return reqString
+        func commentSubiturl(_ userID:String, jobID:String,comment:String,rating:String,commentId:String){
+////    
+//////            //let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+//////            let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?//userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
+//////            //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+//////            return reqString
+          //  let reqString = CXAppConfig.sharedInstance.getBaseUrl + "/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&disabled=false"
+            
+            let userID = UserDefaults.standard.value(forKey: "USER_ID")
+            let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
+            let comment = self.commentsView.text
+            let rating = self.ratingLabel.text
+            
+            let urlStr = "\(CXAppConfig.sharedInstance.getBaseUrl)/jobs/saveJobCommentJSON?"
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":"userID" as AnyObject,"jobId":"jobID " as AnyObject,"comment":"comment" as AnyObject,"rating":"rating" as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
+           
+        
+            }
+           
+            //http://storeongo.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+
+       
         }
 
     func submitTheComments(){
         
          //return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
-         //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-//        let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
-//        //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+////         //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+//        let userID = UserDefaults.standard.value(forKey: "USER_ID")
+//        let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
+//        let comment = self.commentsView.text
+//        let rating = self.floatRatingView.rating
+//        let reqString = "http://storeongo.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
+//////        //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
 //        return reqString
+        
+        
+        /*
+         return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
+         / userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74 /
+         
+         
+         */
+        
+        let userID = UserDefaults.standard.value(forKey: "USER_ID")
+        let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
+        let comment = self.commentsView.text
+        let rating = self.ratingLabel.text
+        
+        let urlStr = "\(CXAppConfig.sharedInstance.getBaseUrl)/jobs/saveJobCommentJSON?"
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":"userID" as AnyObject,"jobId":"jobID " as AnyObject,"comment":"comment" as AnyObject,"rating":"rating" as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
+            
+            
+        }
+
+        
+        
+
     }
     
     func clearNumPadAction() {
