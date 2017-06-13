@@ -155,6 +155,7 @@ class ServiceFormViewController: XLFormViewController {
                         // DateTime
                         row = XLFormRowDescriptor(tag: formService.name, rowType: XLFormRowDescriptorTypeDateTime, title: formService.name)
                         row.value = Date()
+                        row.cellConfigAtConfigure["textView.userInteractionEnabled"] = true
                         section.addFormRow(row)
                         
                     }else if formService.type == "Date" {
@@ -270,6 +271,7 @@ class ServiceFormViewController: XLFormViewController {
             
             self.submitServiceForm()
         }
+       
         
     }
     

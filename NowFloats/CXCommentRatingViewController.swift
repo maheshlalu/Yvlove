@@ -9,18 +9,18 @@
 import UIKit
 
 class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UITextViewDelegate {
-
+    
     var ratingLabel:UILabel!
     var floatRatingView: FloatRatingView!
     var commentsView:UITextView!
     var cScrollView:UIScrollView!
     var jobID : String!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.smBackgroundColor()
         self.customizeMainView()
-
+        
     }
     
     
@@ -36,6 +36,7 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         
         self.ratingLabel = UILabel.init(frame: CGRect(x: labelText.frame.size.width+labelText.frame.origin.x+5, y: 0, width: (self.cScrollView.frame.size.width/2)-10, height: 45))
         self.ratingLabel.text = "0.0"
+        self.ratingLabel.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.ratingLabel.font = UIFont(name: "Roboto-Regular",size: 15)
         self.ratingLabel.textAlignment = NSTextAlignment.right
         self.cScrollView.addSubview(self.ratingLabel)
@@ -85,8 +86,8 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
-
-
+    
+    
     func customizeRatingView(_ frame:CGRect) -> FloatRatingView {
         let ratView : FloatRatingView = FloatRatingView.init(frame: frame)
         
@@ -122,41 +123,41 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     }
     //MARK: Submit the comment
     
-        func commentSubiturl(_ userID:String, jobID:String,comment:String,rating:String,commentId:String){
-////    
-//////            //let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-//////            let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?//userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
-//////            //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-//////            return reqString
-          //  let reqString = CXAppConfig.sharedInstance.getBaseUrl + "/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&disabled=false"
-            
-            let userID = UserDefaults.standard.value(forKey: "USER_ID")
-            let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
-            let comment = self.commentsView.text
-            let rating = self.ratingLabel.text
-            
-            let urlStr = "\(CXAppConfig.sharedInstance.getBaseUrl)/jobs/saveJobCommentJSON?"
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":"userID" as AnyObject,"jobId":"jobID " as AnyObject,"comment":"comment" as AnyObject,"rating":"rating" as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
-           
-        
-            }
-           
-            //http://storeongo.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-
-       
-        }
-
+    /* func commentSubiturl(_ userID:String, jobID:String,comment:String,rating:String,commentId:String){
+     ////
+     //////            //let escapedString = productType.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+     //////            let reqString = "http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?//userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
+     //////            //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+     //////            return reqString
+     //  let reqString = CXAppConfig.sharedInstance.getBaseUrl + "/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&disabled=false"
+     
+     let userID = UserDefaults.standard.value(forKey: "USER_ID")
+     let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
+     let comment = self.commentsView.text
+     let rating = self.ratingLabel.text
+     
+     let urlStr = "\(CXAppConfig.sharedInstance.getBaseUrl)/jobs/saveJobCommentJSON?"
+     CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":"userID" as AnyObject,"jobId":"jobID " as AnyObject,"comment":"comment" as AnyObject,"rating":"rating" as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
+     
+     
+     }
+     
+     //http://storeongo.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+     
+     
+     }*/
+    
     func submitTheComments(){
         
-         //return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
-////         //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-//        let userID = UserDefaults.standard.value(forKey: "USER_ID")
-//        let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
-//        let comment = self.commentsView.text
-//        let rating = self.floatRatingView.rating
-//        let reqString = "http://storeongo.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
-//////        //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
-//        return reqString
+        //return getHostUrl(mContext) + "/jobs/saveJobCommentJSON?";
+        ////         //userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+        //        let userID = UserDefaults.standard.value(forKey: "USER_ID")
+        //        let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
+        //        let comment = self.commentsView.text
+        //        let rating = self.floatRatingView.rating
+        //        let reqString = "http://storeongo.com:8081/jobs/saveJobCommentJSON?userId="+userID+"&jobId="+jobID+"&comment="+comment+"&rating="+rating+"&commentId="+commentId
+        //////        //http://sillymonksapp.com:8081/jobs/saveJobCommentJSON?/ userId=11&jobId=239&comment=excellent&rating=0.5&commentId=74
+        //        return reqString
         
         
         /*
@@ -166,28 +167,22 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
          
          */
         
-        let userID = UserDefaults.standard.value(forKey: "USER_ID")
-        let jobID = UserDefaults.standard.value(forKey: "MACID_JOBID")
-        let comment = self.commentsView.text
-        let rating = self.ratingLabel.text
+        let userId =  "\(UserDefaults.standard.value(forKey: "USER_ID")!)"
+        let jobId = "\(UserDefaults.standard.value(forKey: "MACID_JOBID")!)"
+        let comment = (self.commentsView.text!)
+        let rating = (self.ratingLabel.text!)
         
-        let urlStr = "\(CXAppConfig.sharedInstance.getBaseUrl)/jobs/saveJobCommentJSON?"
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":"userID" as AnyObject,"jobId":"jobID " as AnyObject,"comment":"comment" as AnyObject,"rating":"rating" as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
-            
-            
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getCommentUrl()
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":userId as AnyObject,"jobId":jobId as AnyObject,"comment":comment as AnyObject,"rating":rating as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
+            print(responseDict)
+            self.navigationController?.popViewController(animated: true)
         }
-
-        
-        
-
     }
     
     func clearNumPadAction() {
         self.view.endEditing(true)
         self.commentsView.text = nil
     }
-
-
     
     func backAction() {
         self.navigationController?.popViewController(animated: true)
@@ -195,8 +190,8 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
         //ratingView.rating = 0
-//        let signInView = CXSignInSignUpViewController.init()
-//        self.navigationController?.pushViewController(signInView, animated: true)
+        //        let signInView = CXSignInSignUpViewController.init()
+        //        self.navigationController?.pushViewController(signInView, animated: true)
     }
     
     func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
@@ -229,21 +224,21 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
     }
     
     func textViewDidChange(_ textView: UITextView) {
-//        let line : CGRect = textView.caretRectForPosition((textView.selectedTextRange?.start)!)
-//        let overFlow: CGFloat = (line.origin.y + line.size.height) - ((textView.contentOffset.y + textView.bounds.size.height) - textView.contentInset.bottom - textView.contentInset.top)
-//        if overFlow > 0 {
-//            var offset = textView.contentOffset
-//            offset.y += overFlow+7
-//            UIView.animateWithDuration(0.2, animations: { 
-//                textView.setContentOffset(offset, animated: true)
-//            })
-//        }
+        //        let line : CGRect = textView.caretRectForPosition((textView.selectedTextRange?.start)!)
+        //        let overFlow: CGFloat = (line.origin.y + line.size.height) - ((textView.contentOffset.y + textView.bounds.size.height) - textView.contentInset.bottom - textView.contentInset.top)
+        //        if overFlow > 0 {
+        //            var offset = textView.contentOffset
+        //            offset.y += overFlow+7
+        //            UIView.animateWithDuration(0.2, animations: {
+        //                textView.setContentOffset(offset, animated: true)
+        //            })
+        //        }
         
         
         
         
     }
-
+    
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
         
@@ -283,5 +278,5 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         return false
     }
     
-
+    
 }

@@ -57,6 +57,9 @@ class CXAppConfig {
         return config!.value(forKey: "NowFloats_BaseUrl") as! String
     }
     
+    func getCommentUrl() -> String {
+        return config!.value(forKey: "commentUrl") as! String
+    }
     func getMasterUrl() -> String {
         return config!.value(forKey: "getMaster") as! String
     }
