@@ -44,7 +44,7 @@ open class CXDataService: NSObject {
         
         Alamofire.request(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl(), method: .post, parameters: parameters, encoding: URLEncoding.`default`)
             .responseJSON { response in
-                
+            
                 //to get status code
                 switch (response.result) {
                 case .success:

@@ -364,7 +364,7 @@ class PaymentViewController: UIViewController,UITextFieldDelegate,paymentDelegat
 
 extension PaymentViewController{
     
-    @IBAction func paymentBtnAction(_ sender: Any) {
+  /*  @IBAction func paymentBtnAction(_ sender: Any) {
         
         let name = dataDict.value(forKey: "name")
         let email = dataDict.value(forKey: "email")
@@ -406,7 +406,7 @@ extension PaymentViewController{
             self.showAlertView("please selecet payment Options", status: 11)
         }
     }
-    
+    */
     //MARK: Other payment Otions (AlertView)
     func otherPaymentListAlert(){
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)

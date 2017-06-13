@@ -30,20 +30,29 @@ class OrdersViewController: CXViewController,UITableViewDataSource,UITableViewDe
         CXAppDataManager.sharedInstance.getOrders { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             self.ordersArray = jobs
-            self.orderstableview.reloadData()
+            if self.ordersArray.count == 0{
+                self.noOrdersLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
+                self.noOrdersLbl.isHidden = false
+                self.orderstableview.isHidden = true
+            }else{
+                self.noOrdersLbl.isHidden = true
+                self.orderstableview.isHidden = false
+                self.orderstableview.reloadData()
+
+            }
         }
         
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if ordersArray.count == 0{
+       /* if ordersArray.count == 0{
             noOrdersLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
             noOrdersLbl.isHidden = false
             orderstableview.isHidden = true
         }else{
             noOrdersLbl.isHidden = true
             orderstableview.isHidden = false
-        }
+        } */
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

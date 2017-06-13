@@ -237,10 +237,9 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
                 ////                self.present(navController, animated: true, completion: nil)
                 //             self.navigationController?.popToRootViewController(animated: true)
                 popup.dismiss()
-                //                CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
+                               CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!,subTotal:self.totalPriceLbl.text! ,completion: { (isDataSaved) in
                 //                    self.navController.popViewController(animated: true)
-                
-                CXAppDataManager.sharedInstance.placeOder(container.nameTxtField.text!, email: container.emailTxtField.text!, address1: container.addressLine1TxtField.text!, address2: container.addressLine2TxtField.text!, number: container.mobileNoTxtField.text!, subTotal: "", orderType: "", couponDiscount: "", onlinepaymentDiscount: "", shippingType: "", couponCode: "", itemCount: "", completion: { (isDataSaved) in
+             
                     self.navController.popViewController(animated: true)
                 })
             }
