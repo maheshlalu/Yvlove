@@ -357,7 +357,12 @@ extension OffersViewController :UISearchBarDelegate{
 extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     
     public func array(withImages pager: KIImagePager!) -> [Any]! {
-        return ["" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject,"" as AnyObject]
+        
+        let products = NSMutableArray()
+        for product in self.products {
+            products.add(product)
+        }
+        return products as! [Any]
     }
     
     func contentMode(forImage image: UInt, in pager: KIImagePager!) -> UIViewContentMode {
@@ -370,6 +375,7 @@ extension OffersViewController : KIImagePagerDelegate,KIImagePagerDataSource {
     
     func populateTheProductData(_ index: UInt, in pager: KIImagePager!) -> ProductModelClass! {
         let productModelData : ProductModelClass = ProductModelClass.init()
+        
         let productData : CX_Products = self.products.object(at: Int(index)) as! CX_Products
         productModelData.productName = productData.name
         productModelData.productimage = productData.imageUrl;
