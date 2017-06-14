@@ -41,7 +41,7 @@ Shah Electronics Appliances
 	<key>signUpMethod</key>
 	<string>MobileAPIs/regAndloyaltyAPI?</string>
 	<key>placeOrder</key>
-	<string>MobileAPIs/postAPlaceOrder?</string>
+	<string>MobileAPIs/postedJobs?</string>
 	<key>forgotPassordMethod</key>
 	<string>MobileAPIs/forgotpwd?</string>
 	<key>updateProfile</key>

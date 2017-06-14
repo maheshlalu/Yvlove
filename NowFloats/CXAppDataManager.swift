@@ -225,7 +225,7 @@ open class CXAppDataManager: NSObject {
         LoadingView.show("Processing Your Order", animated: true)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"PlaceOrder" as AnyObject,"json":self.checkOutCartItems(name, email: email, address1: address1, address2: address2,number:number,subTotal:subTotal) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":email as AnyObject]) { (responseDict) in
             completion(true)
-            let string = responseDict.value(forKeyPath: "myHashMap.status") as! String
+            let string = responseDict.value(forKeyPath: "status") as! String
             
             if (string.contains("1")){
                 // print("All Malls \(jsonData)")
@@ -246,7 +246,6 @@ open class CXAppDataManager: NSObject {
             }
         }
     }
-    
     
     func checkOutCartItems(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String)-> String{
 
@@ -377,7 +376,7 @@ open class CXAppDataManager: NSObject {
        // NSString* urlString = [NSString stringWithFormat:@"%@consumerId=%@&type=PlaceOrder&mallId=%@",GetAllORDERS_URL,userId,mallId];
         //NSString* const GetAllORDERS_URL = @"http://storeongo.com:8081/Services/getMasters?";
         
-        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":"717" as AnyObject,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":UserDefaults.standard.value(forKey: "USER_ID") as AnyObject,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
 

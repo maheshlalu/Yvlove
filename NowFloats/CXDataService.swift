@@ -27,42 +27,43 @@ open class CXDataService: NSObject {
     
     open func getTheAppDataFromServer(_ parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         if Bool(1) {
-      /*  Alamofire.request(.GET,CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl() , parameters: parameters)
-            .validate()
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    completion(responseDict: (response.result.value as? NSDictionary)!)
-                    break
-                case .failure(let error):
-                }
-        }
-        }else{
+            /*  Alamofire.request(.GET,CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl() , parameters: parameters)
+             .validate()
+             .responseJSON { response in
+             switch response.result {
+             case .success:
+             completion(responseDict: (response.result.value as? NSDictionary)!)
+             break
+             case .failure(let error):
+             }
+             }
+             }else{
+             
+             }
+             */
             
+            Alamofire.request(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl(), method: .post, parameters: parameters, encoding: URLEncoding.`default`)
+                .responseJSON { response in
+                    print(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl())
+                    print(parameters)
+                    //to get status code
+                    switch (response.result) {
+                    case .success:
+                        //to get JSON return value
+                        if let result = response.result.value {
+                            let JSON = result as! NSDictionary
+                            //completion((response.result.value as? NSDictionary)!)
+                            completion(JSON)
+                        }
+                        break
+                    case .failure(let error):
+                        if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
+                            //timeout here
+                        }
+                        break
+                    }
+            }
         }
-        */
-        
-        Alamofire.request(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl(), method: .post, parameters: parameters, encoding: URLEncoding.`default`)
-            .responseJSON { response in
-            
-                //to get status code
-                switch (response.result) {
-                case .success:
-                    //to get JSON return value
-                    if let result = response.result.value {
-                        let JSON = result as! NSDictionary
-                        //completion((response.result.value as? NSDictionary)!)
-                        completion(JSON)
-                    }
-                    break
-                case .failure(let error):
-                    if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
-                        //timeout here
-                    }
-                    break
-                }
-        }        
-    }
     }
     
     func generateBoundaryString() -> String
