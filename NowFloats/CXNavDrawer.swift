@@ -593,7 +593,7 @@ extension CXNavDrawer {
         UserDefaults.standard.removeObject(forKey: "BANNER_PATH")
         UserDefaults.standard.removeObject(forKey: "IMAGE_PATH")
         UserDefaults.standard.synchronize()
-        showAlertView("User logout Successfully", status: 2)
+        //showAlertView("User logout Successfully", status: 2)
     }
     func showAlertView(_ message:String, status:Int) {
         let alert = UIAlertController(title:message, message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -602,9 +602,9 @@ extension CXNavDrawer {
             if status == 1 {
                 self.logout()
                 self.presentWindow?.makeToast(message: "User logout successfully")
-                //self.popToRootViewController(animated: true)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OFFERS")as? OffersViewController
-                self.navigationController?.popToViewController(storyboard!, animated: true)
+                self.popToRootViewController(animated: true)
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OFFERS")as? OffersViewController
+//                self.navigationController?.popToViewController(storyboard!, animated: true)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {

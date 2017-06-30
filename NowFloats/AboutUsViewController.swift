@@ -32,7 +32,7 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         
         self.getStores()
         self.locationManagerAuthentication()
-        self.timingsLbl.layer.cornerRadius = 10
+        //self.timingsLbl.layer.cornerRadius = 10
         self.questionBtn.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.aboutustableview?.register(UINib(nibName: "AboutusTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutusTableViewCell")
         self.aboutustableview?.register(UINib(nibName: "AboutUsExtraTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutUsExtraTableViewCell")

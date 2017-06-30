@@ -39,6 +39,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
         self.productDetailsTableView.separatorStyle = .none
         self.view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         productDetailDic = CXConstant.sharedInstance.convertStringToDictionary(productString)
+        print(productDetailDic)
         
         self.productDetailsTableView?.register(UINib(nibName: "NeedyBeeDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "NeedyBeeDetailTableViewCell")
         setUpRatingView()
