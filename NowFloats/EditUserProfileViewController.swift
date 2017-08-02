@@ -230,12 +230,15 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
                 self.present(image, animated: true, completion: nil)
                 
             }else if index == 1{
-    
-            }else if index == 2{
+                
                 self.editDPImage.image = UIImage(named:"placeholder")
                 self.editDPImage.alpha = 0.4
                 self.saveImageBtn.isHidden = false
-            }
+            }/*else if index == 2{
+                self.editDPImage.image = UIImage(named:"placeholder")
+                self.editDPImage.alpha = 0.4
+                self.saveImageBtn.isHidden = false
+            }*/
         }
     
     }
