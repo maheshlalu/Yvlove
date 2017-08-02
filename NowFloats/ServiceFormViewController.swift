@@ -374,7 +374,7 @@ class ServiceFormViewController: XLFormViewController {
             let email = UserDefaults.standard.value(forKey: "USER_EMAIL")
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":self.serViceCategory as AnyObject,"json":jsonStringFormat! as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Services" as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail": email as AnyObject]) { (responseDict) in
                 
-                let status: Int = Int(responseDict.value(forKeyPath: "status") as! String)!
+                let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
                 
                 if status == 1{
                     self.showAlertView("Success!!!", status: 1)
