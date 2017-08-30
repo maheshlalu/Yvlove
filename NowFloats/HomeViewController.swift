@@ -8,15 +8,21 @@
 
 import UIKit
 import Alamofire
+import Firebase
+
 
 class HomeViewController: UITabBarController {
     
     let additionalCatArr: NSMutableArray = NSMutableArray()
+    var viewContollerDic : NSMutableDictionary = NSMutableDictionary()
     
+    lazy var userRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child("84").child("screens")
+
     override func viewDidLoad() {
         super.viewDidLoad()
         CXAppDataManager.sharedInstance.dataDelegate = self
         CXAppDataManager.sharedInstance.getTheStoreCategory()
+       // self.getAllNotificationList()
         //getAddtinalCategryList()
     }
     
@@ -30,21 +36,47 @@ class HomeViewController: UITabBarController {
             firstTab.title = "UPDATES"
             firstTab.tabBarItem.image = UIImage(named: "updateTabImg")
             
+            viewContollerDic["UPDATES"] = firstTab
+            
         }else{
             firstTab = storyBoard.instantiateViewController(withIdentifier: "OFFERS") as! OffersViewController
             firstTab.title = "OFFERS"
             firstTab.tabBarItem.image = UIImage(named: "offers")
+            viewContollerDic["OFFERS"] = firstTab
+
         }
         
         let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
         product.tabBarItem.image = UIImage(named: "productsImage")
+        viewContollerDic["PRODUCTS"] = firstTab
+
         
         let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController //GalleryTabBarViewController()
         photos.title = "PHOTOS"
+        viewContollerDic["PHOTOS"] = firstTab
+
         
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
+    }
+    
+    func getAllNotificationList(){
+        //let channelRef = userRef
+        userRef.observe(.value, with: { (snapshot) -> Void in
+           // self.channels.removeAllObjects()
+            for channelSnap in snapshot.children {
+                let channelData = (channelSnap as! FIRDataSnapshot).value as! Dictionary<String, AnyObject>
+                
+                print(channelData)
+                // if status == -1 (Rejected by user)
+               // if channelData["status"] as! String != "-1"
+                //{
+                  //  self.channels.add(channelData)
+                //}
+            }
+          //  print( self.channels)
+        })
     }
     
     func cartButtonAction(){
