@@ -22,15 +22,15 @@ class HomeViewController: UITabBarController {
         super.viewDidLoad()
         CXAppDataManager.sharedInstance.dataDelegate = self
         CXAppDataManager.sharedInstance.getTheStoreCategory()
-       //self.getAllNotificationList()
+       // self.getAllNotificationList()
         //getAddtinalCategryList()
     }
     
-    func addTheTabBarControllers(){
+    func addTheTabBarControllers
+        (){
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let firstTab : UIViewController!
         
-       /*
         if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             firstTab = storyBoard.instantiateViewController(withIdentifier: "UPDATE") as! UpdatesViewController
             firstTab.title = "UPDATES"
@@ -45,21 +45,18 @@ class HomeViewController: UITabBarController {
             viewContollerDic["OFFERS"] = firstTab
 
         }
-        */
-        
-        firstTab = storyBoard.instantiateViewController(withIdentifier: "UPDATE") as! UpdatesViewController
-        firstTab.title = "UPDATES"
-        firstTab.tabBarItem.image = UIImage(named: "updateTabImg")
-        viewContollerDic["UPDATES"] = firstTab
         
         let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
         product.title = "PRODUCTS"
         product.tabBarItem.image = UIImage(named: "productsImage")
         viewContollerDic["PRODUCTS"] = firstTab
 
+        
         let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController //GalleryTabBarViewController()
         photos.title = "PHOTOS"
         viewContollerDic["PHOTOS"] = firstTab
+
+        
         photos.tabBarItem.image = UIImage(named: "picsImage")//picsImage
         self.tabBarController?.setViewControllers([firstTab,product,photos], animated: true)
     }

@@ -9,7 +9,9 @@
 import Foundation
 
 extension UIColor {
+    
 
+    
     class func signUpColor() -> UIColor {
         let bgColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         return bgColor

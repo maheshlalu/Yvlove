@@ -130,6 +130,7 @@ open class CXAppDataManager: NSObject {
             }
         }else{
             self.getTheFeaturedProduct()
+            
         }
          #endif
     }
@@ -153,9 +154,11 @@ open class CXAppDataManager: NSObject {
     
     func getTheProductCategory(){
         
+        
     }
     
     func getTheServieCategory(){
+        
         
     }
     
@@ -171,6 +174,7 @@ open class CXAppDataManager: NSObject {
                     }else{
                         self.dataDelegate?.completedTheFetchingTheData(self)
                     }
+                    
                 })
             }
         }else{
@@ -178,22 +182,14 @@ open class CXAppDataManager: NSObject {
         }
     }
     
-    //http://storeongo.com:8081/Services/getMasters?type=Updates&mallId=31
-    func getUpdates(completion:@escaping (_ responseArr:NSArray) -> Void){
-        print("getUpdates")
-        
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Updates" as AnyObject,"mallId": "31" as AnyObject /*CXAppConfig.sharedInstance.getAppMallID() as AnyObject*/]) { (responseDict) in
-            let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
-            completion(jobs)
-        }
-    }
-
+    
     func getTheFeaturedProductJobs(){
         print("getTheFeaturedProductJobs")
         
         let jobsArray : NSArray =  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(format:"itHasJobs == 0" ), ispredicate: true,orederByKey: "").dataArray
         if jobsArray.count != 0 {
-            let featuredProducts:CX_FeaturedProducts = (jobsArray.lastObject as? CX_FeaturedProducts)!
+            let featuredProducts:CX_FeaturedProducts
+                =    (jobsArray.lastObject as? CX_FeaturedProducts)!
             //  NSManagedObjectContext.MR_contextForCurrentThread().save()
             
             CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":featuredProducts.campaign_Jobs! as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
@@ -218,6 +214,9 @@ open class CXAppDataManager: NSObject {
     }
     
     //Get Service Form
+    
+ 
+    
     //Mark Place order
     
     func placeOder(_ name:String ,email:String,address1:String,address2:String,number:String,subTotal:String,completion:@escaping (_ isDataSaved:Bool) -> Void){
@@ -335,21 +334,26 @@ open class CXAppDataManager: NSObject {
         //print("order dic \(jsonStringFormat)")
         
         return jsonStringFormat!
+        
     
     }
+    
 
     //MARK : SIGN 
     //http://storeongo.com:8081/MobileAPIs/loginConsumerForOrg?
     func singWithUserDetails(_ email:String, password:String ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
+        
     }
     
     //MARK: SIGN UP
     func signUpWithUserDetails (_ fistName:String, lastName:String, mobileNumber:String, email:String, password:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
     // let signUpUrl = "http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
-
+        
+        
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"userEmailId":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject,"firstName":fistName as AnyObject,"lastName":lastName as AnyObject,"mobileNo":mobileNumber as AnyObject]) { (responseDict) in
             completion(responseDict)
 
@@ -357,6 +361,7 @@ open class CXAppDataManager: NSObject {
     }
     
     //MARK : FORGOOT PASSWORD
+    
     func  forgotPassword(_ email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject]) { (responseDict) in
@@ -374,13 +379,18 @@ open class CXAppDataManager: NSObject {
         CXDataService.sharedInstance.getTheAppDataFromServer(["consumerId":UserDefaults.standard.value(forKey: "USER_ID") as AnyObject,"type":"PlaceOrder" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
+
+
+        
     }
     
     //MARK : UPDATE PROFILE
+    
     func profileUpdate(_ email:String,address:String,firstName:String,lastName:String,mobileNumber:String,city:String,state:String,country:String,image:String,completion:@escaping (_ responseDict:NSDictionary)-> Void){
         
        // CXDataService.sharedInstance.imageUpload(UIImageJPEGRepresentation(image, 0.5)!) { (imageFileUrl) in
-
+            
+            
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getupdateProfileUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"address":address as AnyObject,"firstName":firstName as AnyObject,"lastName":lastName as AnyObject,"mobileNo":mobileNumber as AnyObject,"city":city as AnyObject,"state":state as AnyObject,"country":country as AnyObject,"userImagePath":image as AnyObject,"userBannerPath":"" as AnyObject]) { (responseDict) in
                 completion(responseDict)
             }
@@ -388,7 +398,12 @@ open class CXAppDataManager: NSObject {
         //}
         //   NSString* urlString = [NSString stringWithFormat:@"%@orgId=%@&email=%@&dt=DEVICES&firstName=%@&lastName=%@&address=%@&mobileNo=%@&city=%@&state=%@&country=%@&userImagePath=%@&userBannerPath=%@",UpdateProfile_URL,mallId,dict[@"emailId"], dict[@"firstName"],dict[@"lastName"],dict[@"address"],dict[@"mobile"],dict[@"city"],dict[@"state"],dict[@"country"], dict[@"userImagePath"], dict[@"userBannerPath"]];
 
+        
     }
+    
+    
+  
+    
 }
 
 extension String {

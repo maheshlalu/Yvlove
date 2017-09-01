@@ -10,26 +10,20 @@ target 'NowFloats' do
     pod 'Alamofire', '~> 4.0'
     pod 'SDWebImage', '~> 3.8'
     pod 'Google/SignIn'
+    pod 'Firebase/Core'
     pod 'SwiftyJSON'
+    pod 'Firebase/Database'
     pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
     pod 'AFNetworking', '~> 3.1'
     pod 'XLForm', '~> 3.2'
     
-    pod 'Firebase/Core'
     pod 'Firebase/Messaging'
-    pod 'Firebase/Storage'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Database'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Crash'
-    
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'PayPal-iOS-SDK'
     pod 'FacebookCore'
     pod 'FacebookLogin'
     pod 'Mixpanel'
-    
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing
