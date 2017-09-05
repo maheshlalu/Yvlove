@@ -287,7 +287,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     // MARK: - Core Data stack
     
     func setUpMagicalDB() {
+        
+        //[MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:[@"SingleViewCoreData.sqlite"]];
+        
         //MagicalRecord.setupCoreDataStackWithStoreNamed("Silly_Monks")
+        MagicalRecord.setupCoreDataStack(withAutoMigratingSqliteStoreNamed: "SingleViewCoreData.sqlite")
         NSPersistentStoreCoordinator.mr_setDefaultStoreCoordinator(persistentStoreCoordinator)
         NSManagedObjectContext.mr_initializeDefaultContext(with: persistentStoreCoordinator)
     }
@@ -295,6 +299,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.CX.NowFloats" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        CXLog.print("coredata path \(urls)")
         return urls[urls.count-1]
     }()
     

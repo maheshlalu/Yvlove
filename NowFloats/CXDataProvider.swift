@@ -15,8 +15,13 @@ import MobileCoreServices
 private var _sharedInstance:CXDataProvider! = CXDataProvider()
 
 class CXDataProvider: NSObject {
+    var tabBar : HomeViewController!
+
     class var sharedInstance : CXDataProvider {
         return _sharedInstance
+    }
+    func tabBarInstance(tab:HomeViewController){
+        self.tabBar = tab
     }
     
     fileprivate override init() {
@@ -47,6 +52,64 @@ class CXDataProvider: NSObject {
             }
         }
     }
+    
+    
+    
+    
+    func saveTheWidgets(_ resDict:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void) {
+        
+       // let jobs : NSArray =  resDict.value(forKey: "jobs")! as! NSArray
+       // let widGetsDic : NSDictionary = (jobs.object(at: 0) as? NSDictionary)!
+        let widGetsArray : NSArray = resDict.value(forKey: "widgets") as! NSArray
+        
+        MagicalRecord.save({ (localContext) in
+            for prodDic in widGetsArray {
+                let prod = prodDic as? NSDictionary
+                
+                let predicate = NSPredicate.init(format: "name=%@", CXConstant.resultString(prod!.value(forKey: "Name") as AnyObject))
+                let cartlist : NSArray =  CXWidgets.mr_findAll(with: predicate) as NSArray
+                
+                if cartlist.count == 0 {
+                    let widGet = NSEntityDescription.insertNewObject(forEntityName: "CXWidgets", into: localContext!) as? CXWidgets
+                    widGet?.displayName = prod?.value(forKey: "Display_Name") as? String
+                    widGet?.visibility = prod?.value(forKey: "Visibility") as? String
+                    widGet?.widgetType = prod?.value(forKey: "Widget_Type") as? String
+                    widGet?.name = prod?.value(forKey: "Name") as? String
+                }
+                /*
+                 @NSManaged public var visibility: String?
+                 @NSManaged public var widgetType: String?
+                 @NSManaged public var highlighted: String?
+                 @NSManaged public var enabledReviews: String?
+                 @NSManaged public var displayName: String?
+                 @NSManaged public var name: String?
+                 @NSManaged public var enabledUserAddition: String?
+                 
+                 "Name": "View Tracking",
+                 "Display_Name": "View Tracking",
+                 "Visibility": "Yes",
+                 "Widget_Type": "native",
+                 "Highlighted": ""
+                 */
+                
+                
+                /*enStore!.storeID = CXConstant.resultString(prod!.value(forKey: "id")! as AnyObject)
+                 enStore!.name = (prod as AnyObject).value(forKey: "Name") as? String
+                 enStore!.type = (prod as AnyObject).value(forKey: "Type") as? String
+                 let jsonString = CXConstant.sharedInstance.convertDictionayToString(prod!)
+                 enStore!.json = jsonString as String
+                 enStore!.createdById = CXConstant.resultString(prod!.value(forKey: "createdById")! as AnyObject)
+                 enStore!.itemCode = (prod as AnyObject).value(forKey: "ItemCode") as? String*/
+            }
+        }) { (success, error) in
+            if success == true {
+                completion(success)
+            } else {
+            }
+        }
+    }
+    
+
     
     func saveTheProducts(_ jsonDic:NSDictionary ,completion:@escaping (_ isDataSaved:Bool) -> Void){
         let jobs : NSArray =  jsonDic.value(forKey: "jobs")! as! NSArray
@@ -205,6 +268,10 @@ class CXDataProvider: NSObject {
             }
         }
     }
+    
+    
+    
+    
     
     func SaveTheGallaryItems(_ galeryItems:NSArray){
         MagicalRecord.save({ (localContext) in

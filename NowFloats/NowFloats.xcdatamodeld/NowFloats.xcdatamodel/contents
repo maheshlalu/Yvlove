@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CX_Cart" representedClassName="CX_Cart" syncable="YES">
         <attribute name="addToCart" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="addToWishList" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -126,6 +126,18 @@
         <attribute name="storeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="CXWidgets" representedClassName="CXWidgets" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enabledReviews" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enabledUserAddition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="highlighted" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visibility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="widgetType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Events" representedClassName="Events" syncable="YES">
+        <attribute name="eventDate" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CX_Cart" positionX="-279" positionY="18" width="128" height="285"/>
         <element name="CX_FeaturedProducts" positionX="-171" positionY="81" width="128" height="180"/>
@@ -138,5 +150,7 @@
         <element name="CX_SingleMall" positionX="-288" positionY="9" width="128" height="255"/>
         <element name="CX_StoreCategory" positionX="-198" positionY="-135" width="128" height="120"/>
         <element name="CX_Stores" positionX="-486" positionY="9" width="128" height="150"/>
+        <element name="Events" positionX="-288" positionY="9" width="128" height="60"/>
+        <element name="CXWidgets" positionX="-279" positionY="27" width="128" height="150"/>
     </elements>
 </model>
