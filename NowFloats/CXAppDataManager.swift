@@ -37,6 +37,11 @@ open class CXAppDataManager: NSObject {
        // self.getTheFeaturedProduct()
 
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+           /*
+            CXDataProvider.sharedInstance.saveTheWidgets(responseDict, completion: { (isSave) in
+                
+            })*/
+            
             print("print store category\(responseDict)")
           self.getTheStores({(isDataSaved) in
           })
@@ -162,6 +167,23 @@ open class CXAppDataManager: NSObject {
         
     }
     
+    //Get Calendar Events
+    //http://storeongo.com:8081/Services/getMasters?type= CalenderEvents &mallId= 4724
+    func getCalanderEvents(completion:@escaping (_ response:NSArray) -> Void){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"CalenderEvents" as AnyObject,"mallId":"4724" as AnyObject]) { (responseDict) in
+           let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
+            completion(jobs)
+        }
+    }
+    
+    //Get Updates
+    //http://storeongo.com:8081/Services/getMasters?type=Updates&mallId=31
+    func getUpdates(completion:@escaping (_ response:NSArray) -> Void){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Updates" as AnyObject,"mallId":"31" as AnyObject]) { (responseDict) in
+            let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
+            completion(jobs)
+        }
+    }
     
     func getTheFeaturedProduct(){
         print("getTheFeaturedProduct")
@@ -174,7 +196,6 @@ open class CXAppDataManager: NSObject {
                     }else{
                         self.dataDelegate?.completedTheFetchingTheData(self)
                     }
-                    
                 })
             }
         }else{
@@ -342,7 +363,6 @@ open class CXAppDataManager: NSObject {
     //MARK : SIGN 
     //http://storeongo.com:8081/MobileAPIs/loginConsumerForOrg?
     func singWithUserDetails(_ email:String, password:String ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
-        
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject]) { (responseDict) in
             completion(responseDict)
         }
@@ -352,8 +372,7 @@ open class CXAppDataManager: NSObject {
     //MARK: SIGN UP
     func signUpWithUserDetails (_ fistName:String, lastName:String, mobileNumber:String, email:String, password:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
     // let signUpUrl = "http://sillymonksapp.com:8081/MobileAPIs/regAndloyaltyAPI?orgId="+orgID+"&userEmailId="+self.emailAddressField.text!+"&dt=DEVICES&firstName="+self.firstNameField.text!.urlEncoding()+"&lastName="+self.lastNameField.text!.urlEncoding()+"&password="+self.passwordField.text!.urlEncoding()
-        
-        
+
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignUpInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"userEmailId":email as AnyObject,"dt":"DEVICES" as AnyObject,"password":password as AnyObject,"firstName":fistName as AnyObject,"lastName":lastName as AnyObject,"mobileNo":mobileNumber as AnyObject]) { (responseDict) in
             completion(responseDict)
 
@@ -361,7 +380,6 @@ open class CXAppDataManager: NSObject {
     }
     
     //MARK : FORGOOT PASSWORD
-    
     func  forgotPassword(_ email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject]) { (responseDict) in

@@ -26,6 +26,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
     var orderProductImages:NSMutableArray = NSMutableArray()
     var stringRepresentation:String = String()
     @IBOutlet weak var MyorderstableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.MyorderstableView?.register(UINib(nibName: "MyordersTableViewCell", bundle: nil), forCellReuseIdentifier: "MyordersTableViewCell")
@@ -36,12 +37,15 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
              self.getOrderDetails()
         }
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.orderDetailsArr.count + 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let myordercell:MyordersTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "MyordersTableViewCell") as? MyordersTableViewCell
@@ -68,6 +72,7 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             return myordercell1
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         if indexPath.section != 0{
             return 143
@@ -75,23 +80,22 @@ class MyOrderViewController: CXViewController,UITableViewDataSource,UITableViewD
             return UITableViewAutomaticDimension
         }
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat{
         return 20.0
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return cellSpacingHeight
     }
+    
     func getOrderDetails(){
         let subDataJobs = orderDetailDict.value(forKey: "CreatedSubJobs") as! NSArray
-        //for _ in 0..<subDataJobs.count{
-            let OrderItemName = subDataJobs.value(forKey: "OrderItemName")
-            let OrderItemMRP = subDataJobs.value(forKey: "OrderItemMRP")
-            let OrderItemSubTotal = subDataJobs.value(forKey: "OrderItemSubTotal")
-
-       // }
-
         
-    
+        let OrderItemName = subDataJobs.value(forKey: "OrderItemName")
+        let OrderItemMRP = subDataJobs.value(forKey: "OrderItemMRP")
+        let OrderItemSubTotal = subDataJobs.value(forKey: "OrderItemSubTotal")
+        
         LoadingView.show(true)
         var orderName:NSMutableArray = NSMutableArray()
         var orderPrice:NSMutableArray = NSMutableArray()

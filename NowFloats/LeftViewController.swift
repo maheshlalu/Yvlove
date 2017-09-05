@@ -177,6 +177,52 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
             
+            return
+            
+            if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil{
+                let name = CXSignInSignUpViewController()
+                self.navigationController?.pushViewController(name, animated: true)
+            }else{
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let chatList = storyBoard.instantiateViewController(withIdentifier: "LFChatListViewController") as! LFChatListViewController
+                
+                /*UserDefaults.standard.set(responseDict.value(forKey: "state"), forKey: "STATE")
+                 UserDefaults.standard.set(responseDict.value(forKey: "emailId"), forKey: "USER_EMAIL")
+                 UserDefaults.standard.set(responseDict.value(forKey: "firstName"), forKey: "FIRST_NAME")
+                 UserDefaults.standard.set(responseDict.value(forKey: "lastName"), forKey: "LAST_NAME")
+                 UserDefaults.standard.set(responseDict.value(forKey: "gender"), forKey: "GENDER")
+                 UserDefaults.standard.set(responseDict.value(forKey: "UserId"), forKey: "USER_ID")
+                 UserDefaults.standard.set(responseDict.value(forKey: "macId"), forKey: "MAC_ID")
+                 UserDefaults.standard.set(responseDict.value(forKey: "mobile"), forKey: "MOBILE")
+                 UserDefaults.standard.set(responseDict.value(forKey: "address"), forKey: "ADDRESS")
+                 UserDefaults.standard.set(responseDict.value(forKey: "fullName"), forKey: "FULL_NAME")
+                 UserDefaults.standard.set(responseDict.value(forKey: "city"), forKey: "CITY")
+                 UserDefaults.standard.set(responseDict.value(forKey: "orgId"), forKey: "ORG_ID")
+                 UserDefaults.standard.set(responseDict.value(forKey: "macIdJobId"), forKey: "MACID_JOBID")
+                 UserDefaults.standard.set(responseDict.value(forKey: "organisation"), forKey: "ORGANIZATION")
+                 UserDefaults.standard.set(responseDict.value(forKey: "msg"), forKey: "MESSAGE")
+                 UserDefaults.standard.set(responseDict.value(forKey: "status"), forKey: "STATUS")
+                 UserDefaults.standard.set(responseDict.value(forKey: "country"), forKey: "COUNTRY")
+                 UserDefaults.standard.set(responseDict.value(forKey: "userBannerPath"), forKey: "BANNER_PATH")
+                 UserDefaults.standard.set(responseDict.value(forKey: "userImagePath"), forKey: "IMAGE_PATH")*/
+                
+                let macUserId = UserDefaults.standard.value(forKey: "MACID_JOBID")
+                let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
+                let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
+                let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
+                
+                chatList.userID = String(macUserId as! Int)
+                
+                let chatData:NSMutableDictionary = NSMutableDictionary()
+                chatData.setValue(userEmail, forKey: "FromUserEmail")
+                chatData.setValue(userName, forKey: "FromUserName")
+                chatData.setValue(userPic, forKey: "FromUserPic")
+                chatData.setValue(macUserId, forKey: "FromUserId")
+                
+                chatList.userDetailsDic = chatData
+                self.navController.pushViewController(chatList, animated: true)
+            }
+            
         }else if itemName == "Orders"{
             CXMixpanel.sharedInstance.mixelOrdersTrack()
             if UserDefaults.standard.value(forKey: "USER_ID") != nil{
@@ -191,8 +237,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             CXMixpanel.sharedInstance.mixelWishListTrack()
             let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
-        }
-        else if itemName == "Storelocator"{
+        }else if itemName == "Storelocator"{
             
 //            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
 //                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
@@ -208,8 +253,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
 //            self.navigationController?.pushViewController(storyboard, animated: true)
             let store = storyBoard.instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
             self.navController.pushViewController(store, animated: true)
-            
-            
         }
     }
     

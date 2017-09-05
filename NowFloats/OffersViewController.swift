@@ -36,6 +36,10 @@ class OffersViewController: CXViewController{
         
         self.offersTableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
 }
 
 //MARK: Featured Product Tableview

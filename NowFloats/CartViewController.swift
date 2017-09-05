@@ -178,7 +178,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     }
     
     func quantityMinusButtonAction(_ button : UIButton!){
-        
         let proListData : CX_Cart = self.products[button.tag-1] as! CX_Cart
         var mybalance = proListData.quantity! as NSInteger
         if mybalance > 1 {
@@ -191,23 +190,14 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
             NSManagedObjectContext.mr_contextForCurrentThread().mr_saveToPersistentStoreAndWait()
             self.collectionview.reloadData()
             self.updateProductsPriceLabel()
-            
         }
-        
-        //  self.collectionview.reloadItemsAtIndexPaths(NSIndexPath(forItem: button.tag-1, inSection: 0))
-        
-        
     }
     
     @IBAction func checkoutNowBtn(_ sender: UIButton) {
-        
-        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
-        {
+        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil{
             let name = CXSignInSignUpViewController()
             self.navigationController?.pushViewController(name, animated: true)
-        }
-        else
-        {
+        }else{
             let popup = PopupController
                 .create(self)
                 .customize(
@@ -285,11 +275,6 @@ class CartViewController: CXViewController,UICollectionViewDataSource,UICollecti
     override func profileDropdownForSignIn() -> Bool{
         return false
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
 }
 

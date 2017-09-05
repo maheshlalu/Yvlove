@@ -9,12 +9,12 @@
 import UIKit
 
 class UpdatesViewController: CXViewController {
-
+    
     @IBOutlet weak var offersNotAvailLbl: UILabel!
     let monthsMillisecond:Int64 = 2592000000
     @IBOutlet weak var updateTableView: UITableView!
     @IBOutlet weak var updatesSearch: UISearchBar!
-    var updatesArray : NSArray! = nil
+    var updatesArray : NSArray = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,35 +22,30 @@ class UpdatesViewController: CXViewController {
         self.updateTableView.backgroundColor = UIColor.clear
         self.view.backgroundColor =  CXAppConfig.sharedInstance.getAppBGColor()
         self.offersNotAvailLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
-        self.updatesArray = NSArray()
-        
-        if updatesArray.count == 0{
-            self.offersNotAvailLbl.isHidden = false
-            self.updateTableView.isHidden = true
-            self.updatesSearch.isHidden = true
-        }else{
-            self.offersNotAvailLbl.isHidden = true
-            self.updateTableView.isHidden = false
-            self.updatesSearch.isHidden = false
-        }
-        
         self.setUpTableView()
         self.getUpdates()
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func getUpdates(){
-        CXDataService.sharedInstance.getTheUpdatesFromServer(["clientId":"5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6" as AnyObject,"skipBy":"0" as AnyObject,"fpid":"\(CXConstant.sharedInstance.getTheFid())" as AnyObject]) { (responseDict) in
-            self.updatesArray = NSArray(array: (responseDict.value(forKey: "floats") as? NSArray)!)
+        
+        CXAppDataManager.sharedInstance.getUpdates { (response) in
+            self.updatesArray = response
+            if self.updatesArray.count == 0{
+                self.offersNotAvailLbl.isHidden = false
+                self.updateTableView.isHidden = true
+                self.updatesSearch.isHidden = true
+            }else{
+                self.offersNotAvailLbl.isHidden = true
+                self.updateTableView.isHidden = false
+                self.updatesSearch.isHidden = false
+            }
+            
             self.updateTableView.reloadData()
         }
+        
     }
     
     func setUpTableView(){
-        
         let nib = UINib(nibName: "UpdateTableViewCell", bundle: nil)
         self.updateTableView.register(nib, forCellReuseIdentifier: "UpdateTableViewCell")
         self.updateTableView.rowHeight = UITableViewAutomaticDimension
@@ -59,67 +54,48 @@ class UpdatesViewController: CXViewController {
         self.updateTableView.delegate =  self
         self.updateTableView.dataSource = self
     }
-
 }
 
-
-
 extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
-        
+    func numberOfSections(in tableView: UITableView) -> Int{
         return self.updatesArray.count
-        
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return UITableViewAutomaticDimension
-        
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    {
-        
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
         return 0.0
-        
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 7.0
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         self.updateTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         return 1
-        
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateTableViewCell", for: indexPath)as! UpdateTableViewCell
         //cell.backgroundColor = UIColor.clearColor()
         cell.backgroundView?.backgroundColor = UIColor.clear
         let updateDic : NSDictionary = self.updatesArray[indexPath.section] as! NSDictionary
         cell.selectionStyle = .none
-        cell.descriptionLabel.text = updateDic.value(forKey: "message") as?String
+        cell.descriptionLabel.text = updateDic.value(forKey: "Feed") as?String
         
-        let createdDate = updateDic.value(forKey: "createdOn") as?String
+        let createdDate = updateDic.value(forKey: "createdOn") as? String
         let createdTimeStr = getCreatedTime(createdDate!)
         cell.monthLabel.text = createdTimeStr
         
         
-        let imgUrl = updateDic.value(forKey: "imageUri") as?String
+        let imgUrl = updateDic.value(forKey: "Image") as?String
         if (imgUrl!.lowercased().range(of: "https") != nil){
             cell.nameimageView.sd_setImage(with: URL(string:imgUrl!))
         }
@@ -128,17 +104,13 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         cell.descriptionLabel.font = CXAppConfig.sharedInstance.appMediumFont()
         cell.monthLabel.font = CXAppConfig.sharedInstance.appSmallFont()
 
-
-        
         return cell
-
     }
     
     func shareBtnAction(_ button : UIButton!){
-        
         let updateDic : NSDictionary = self.updatesArray[button.tag-1] as! NSDictionary
-        let description = updateDic.value(forKey: "message") as?String
-        let url = updateDic.value(forKey: "url") as? String
+        let description = updateDic.value(forKey: "Feed") as?String
+        let url = updateDic.value(forKey: "publicURL") as? String
         
         let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [description!,url!], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [UIActivityType.print, UIActivityType.postToWeibo, UIActivityType.copyToPasteboard, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
@@ -147,7 +119,6 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func getCreatedTime(_ createdDate:String) -> String{
-
         let component = createdDate.components(separatedBy: CharacterSet.decimalDigits.inverted)
         let list = component.filter({ $0 != "" })
         let number: Int64? = Int64(list[0])
@@ -190,12 +161,12 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
 }
 
 extension UpdatesViewController:UISearchBarDelegate{
-    func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
-    {
+    func searchBarSearchButtonClicked( _ searchBar: UISearchBar){
         self.updatesSearch.resignFirstResponder()
         //self.doSearch()
     }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         if (self.updatesSearch.text!.characters.count > 0) {
             //self.doSearch()
         } else {
@@ -231,11 +202,9 @@ extension UpdatesViewController:UISearchBarDelegate{
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.updatesSearch.showsCancelButton = false;
-        
     }
     
-    func doSearch () {
-        
+    func doSearch(){
         let productEn = NSEntityDescription.entity(forEntityName: "CX_Products", in: NSManagedObjectContext.mr_contextForCurrentThread())
         let predicate:NSPredicate =  NSPredicate(format: "name contains[c] %@",self.updatesSearch.text!)
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CX_Products.mr_requestAllSorted(by: "pid", ascending: false)
@@ -263,8 +232,4 @@ extension UpdatesViewController:UISearchBarDelegate{
          self.productCollectionView.reloadData()*/
         
     }
-    
-    
-    
-    
 }
