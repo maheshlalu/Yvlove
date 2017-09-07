@@ -42,7 +42,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     }
     
     func getSingleMall(){
-        if CX_SingleMall.mr_findAll().count != 0  {
+        if CX_SingleMall.mr_findAll().count != 0{
             let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
             self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
             self.getStores()
@@ -56,7 +56,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     }
     
     func getStores(){
-        
         if CX_Stores.mr_findAll().count != 0{
             let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
             let predicate:NSPredicate =  NSPredicate(format: "itemCode contains[c] %@",CXAppConfig.sharedInstance.getAppMallID())
@@ -67,8 +66,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
             self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
             self.sidepanelView()
-            
-            
         }else{
             CXAppDataManager.sharedInstance.getTheStores({(isDataSaved) in
                 let productEn = NSEntityDescription.entity(forEntityName: "CX_Stores", in: NSManagedObjectContext.mr_contextForCurrentThread())
@@ -80,7 +77,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let storesEntity : CX_Stores = self.sidePanelDataArr.lastObject as! CX_Stores
                 self.sidePanelDataDict = CXConstant.sharedInstance.convertStringToDictionary(storesEntity.json!)
                 self.sidepanelView()
-                
             })
         }
     }
@@ -186,26 +182,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let chatList = storyBoard.instantiateViewController(withIdentifier: "LFChatListViewController") as! LFChatListViewController
                 
-                /*UserDefaults.standard.set(responseDict.value(forKey: "state"), forKey: "STATE")
-                 UserDefaults.standard.set(responseDict.value(forKey: "emailId"), forKey: "USER_EMAIL")
-                 UserDefaults.standard.set(responseDict.value(forKey: "firstName"), forKey: "FIRST_NAME")
-                 UserDefaults.standard.set(responseDict.value(forKey: "lastName"), forKey: "LAST_NAME")
-                 UserDefaults.standard.set(responseDict.value(forKey: "gender"), forKey: "GENDER")
-                 UserDefaults.standard.set(responseDict.value(forKey: "UserId"), forKey: "USER_ID")
-                 UserDefaults.standard.set(responseDict.value(forKey: "macId"), forKey: "MAC_ID")
-                 UserDefaults.standard.set(responseDict.value(forKey: "mobile"), forKey: "MOBILE")
-                 UserDefaults.standard.set(responseDict.value(forKey: "address"), forKey: "ADDRESS")
-                 UserDefaults.standard.set(responseDict.value(forKey: "fullName"), forKey: "FULL_NAME")
-                 UserDefaults.standard.set(responseDict.value(forKey: "city"), forKey: "CITY")
-                 UserDefaults.standard.set(responseDict.value(forKey: "orgId"), forKey: "ORG_ID")
-                 UserDefaults.standard.set(responseDict.value(forKey: "macIdJobId"), forKey: "MACID_JOBID")
-                 UserDefaults.standard.set(responseDict.value(forKey: "organisation"), forKey: "ORGANIZATION")
-                 UserDefaults.standard.set(responseDict.value(forKey: "msg"), forKey: "MESSAGE")
-                 UserDefaults.standard.set(responseDict.value(forKey: "status"), forKey: "STATUS")
-                 UserDefaults.standard.set(responseDict.value(forKey: "country"), forKey: "COUNTRY")
-                 UserDefaults.standard.set(responseDict.value(forKey: "userBannerPath"), forKey: "BANNER_PATH")
-                 UserDefaults.standard.set(responseDict.value(forKey: "userImagePath"), forKey: "IMAGE_PATH")*/
-                
                 let macUserId = UserDefaults.standard.value(forKey: "MACID_JOBID")
                 let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
                 let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
@@ -287,11 +263,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         }
         
     }*/
-    
-    //MARK: Service Api call
-    
 
-    
     func isContansKey(_ responceDic : NSDictionary , key : String) -> Bool{
         let allKeys : NSArray = responceDic.allKeys as NSArray
         return  allKeys.contains(key)
@@ -315,7 +287,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         self.navController.pushViewController(signInViewCnt, animated: true)
     }
     
-    
     @IBAction func viewMapAction(_ sender: UIButton) {
         CXMixpanel.sharedInstance.mixelViewMapTrack()
         self.navController.drawerToggle()
@@ -327,7 +298,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             AppEventsLogger.log("Map Attempted")
         }else{
-            
             CXFBEvents.sharedInstance.logAppLaunchedEvent(_eventName: "Map Attempted", UserDefaults.standard.value(forKey: "USER_EMAIL")! as! String)
         }
     }

@@ -68,42 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         CXMixpanel.sharedInstance.registerMixpanelFrameWorkWithApiKey()
         //PayPalMobile
         self.registerNotification(application: application)
-        
         FIRApp.configure()
-        
+        //
         return true
     }
     
-    func blockOperationsTest1(){
-        
-        let operationQueue = OperationQueue()
-        
-        let operation1 : BlockOperation = BlockOperation (block: {
-            self.doCalculations()
-            
-            let operation2 : BlockOperation = BlockOperation (block: {
-                
-                self.doSomeMoreCalculations()
-                
-            })
-            operationQueue.addOperation(operation2)
-        })
-        operationQueue.addOperation(operation1)
-    }
-    
-    func doCalculations(){
-        NSLog("do Calculations")
-        for i in 100...105{
-            sleep(1)
-        }
-    }
-    
-    func doSomeMoreCalculations(){
-        NSLog("do Some More Calculations")
-        for j in 1...5{
-            sleep(1)
-        }
-    }
+   
     func registerNotification(application:UIApplication){
         
         if #available(iOS 10.0, *) {
@@ -125,8 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         }
         
         application.registerForRemoteNotifications()
-        
-        
         // [END register_for_notifications]
         //FIRApp.configure()
         
@@ -179,17 +147,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     //MARK: Sidepanel setup
     func setUpSidePanelview(){
-        
+        let window = UIApplication.shared.windows[0]
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let homeView = storyBoard.instantiateViewController(withIdentifier: "CXNavDrawer") as! CXNavDrawer
+        window.rootViewController = homeView
+        window.makeKeyAndVisible()
         /* let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-         
-         
-         
          let homeView = storyBoard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
          
          let menuVC = storyBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-         //        let menuVC = storyBoard.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
-         
-         
+         // let menuVC = storyBoard.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
          let navHome = UINavigationController(rootViewController: menuVC)
          let revealVC = SWRevealViewController(rearViewController: homeView, frontViewController: navHome)
          revealVC.delegate = self

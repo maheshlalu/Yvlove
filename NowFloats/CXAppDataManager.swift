@@ -37,10 +37,10 @@ open class CXAppDataManager: NSObject {
        // self.getTheFeaturedProduct()
 
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"StoreCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-           /*
+           
             CXDataProvider.sharedInstance.saveTheWidgets(responseDict, completion: { (isSave) in
                 
-            })*/
+            })
             
             print("print store category\(responseDict)")
           self.getTheStores({(isDataSaved) in

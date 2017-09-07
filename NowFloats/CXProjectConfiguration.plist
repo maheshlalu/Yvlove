@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>loyalCards</key>
+	<string>MobileAPIs/getConJobInstances?</string>
 	<key>NOWFLOATS_MALL_ID</key>
-	<string>31</string>
+	<string>4724</string>
 	<key>AppTheamColor</key>
 	<array>
 		<string>228</string>
@@ -21,6 +23,9 @@
 		<string>Orders</string>
 		<string>Wishlist</string>
 		<string>Storelocator</string>
+		<string>Book Appointment</string>
+		<string>Services</string>
+		<string>Chat</string>
 	</array>
 	<key>APPFONT_NAME_REGULAR</key>
 	<string>Roboto-Regular</string>

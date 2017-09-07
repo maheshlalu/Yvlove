@@ -8,28 +8,159 @@
 
 import UIKit
 
-class CXCommentViewController: CXViewController {
+class CXCommentViewController: CXViewController,UITableViewDataSource,UITableViewDelegate{
     
     var writeBtn:UIButton!
     var ratingBtn:UIButton!
     var headerTitle:String!
     var orgID: String!
     var jobID : String!
-
+    var array = ["Rating"]
+    var tableView = UITableView()
+    var itemCode = String()
+    var compareString = String()
+    var jobDocumentArray = NSArray()
+    var refresher : UIRefreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.smBackgroundColor()
-        self.customizeMainView()
+        self.view.backgroundColor = UIColor.white
+     
+        //smBackgroundColor()
+        //self.customizeMainView()
+        getTheComments()
+        refresher = UIRefreshControl()
+        refresher.tintColor = UIColor.blue
+        /*let table: UITableViewController = UITableViewController()
+        let tableView: UITableView = UITableView()
+        tableView.frame = CGRect(x: 0, y: 10, width: self.view.frame.size.width, height: 500)
+        tableView.dataSource = table
+        tableView.delegate = table
+        tableView.dataSource = self
+        tableView.delegate = self
+        self.view.addSubview(tableView)*/
         
-
         // Do any additional setup after loading the view.
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return jobDocumentArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let dictionary =  jobDocumentArray[indexPath.row] as? NSDictionary
+        print(dictionary)
+        let cellId = "MyCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
+        let screen =  UIScreen.main.bounds
+        
+        if cell  == nil{
+            
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: cellId)
+            
+            //cell?.contentView.backgroundColor = UIColor.lightGray
+            let title = UILabel()
+            title.frame  = CGRect(x: 40, y: 10, width: 140, height: 20)
+            //title.backgroundColor = UIColor.redColor()
+            title.tag = 101
+            title.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+            cell?.contentView.addSubview(title)
+            
+            let deslabel = UILabel()
+            deslabel.frame  = CGRect(x: 40, y: 50, width: 245, height: 40)
+            // deslabel.backgroundColor = UIColor.yellowColor()
+            deslabel.tag = 102
+            deslabel.numberOfLines = 0
+            deslabel.font = UIFont(name: "HelveticaNeue-Italic", size: 16)
+            cell?.contentView.addSubview(deslabel)
+            
+            let view = UIView()
+            view.frame = CGRect(x: screen.size.width-50, y: 5, width: 40, height: 40)
+            view.tag = 103
+            view.layer.cornerRadius = 20
+            view.layer.borderWidth = 1
+            view.layer.masksToBounds = true
+            view.backgroundColor = UIColor.black
+            cell?.contentView.addSubview(view)
+            
+            let ratingLabel = UILabel()
+            ratingLabel.frame = CGRect(x: 0, y: 4, width: 40, height: 30)
+            ratingLabel.tag = 104
+            ratingLabel.backgroundColor = UIColor.clear
+            ratingLabel.textColor = UIColor.white
+            ratingLabel.textAlignment = .center
+            view.addSubview(ratingLabel)
+            
+            
+            let timeLabel = UILabel()
+            timeLabel.frame  = CGRect(x: 40, y: 100, width: 200, height: 40)
+            timeLabel.tag = 105
+            timeLabel.numberOfLines = 0
+            timeLabel.font = UIFont(name: "HelveticaNeue-Italic", size: 16)
+            cell?.contentView.addSubview(timeLabel)
+        }
+        
+        let titlelabel = cell?.contentView.viewWithTag(101) as! UILabel
+        let deslabel = cell?.contentView.viewWithTag(102) as! UILabel
+        let Ratinglabel = cell?.contentView.viewWithTag(104) as! UILabel
+        let timingLabel = cell?.contentView.viewWithTag(105) as! UILabel
+        titlelabel.text = dictionary?.value(forKey: "postedBy_Name") as? String
+        deslabel.text = dictionary?.value(forKey: "comment") as? String
+        Ratinglabel.text = dictionary?.value(forKey: "rating") as? String
+        timingLabel.text = dictionary?.value(forKey: "time") as? String
+        cell?.selectionStyle = .none
+        
+        cell?.selectionStyle = .none
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 160
+    }
+    func getTheComments(){
+        //let userId =  "\(UserDefaults.standard.value(forKey: "USER_ID")!)"
+        //let jobId = "\(UserDefaults.standard.value(forKey: "MACID_JOBID")!)"
+        refresher = UIRefreshControl()
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            print(responseDict)
+            let commentArray = responseDict.value(forKey: "jobs") as! NSArray
+            for obj in commentArray{
+                let dict = (obj as? NSDictionary)!
+                self.itemCode = (dict.value(forKey: "ItemCode") as? String)!
+                if self.itemCode.contains(CXAppConfig.sharedInstance.getAppMallID()) {
+                    self.jobDocumentArray = dict.value(forKey: "jobComments") as! NSArray
+                    print(self.jobDocumentArray)
+                    self.tableView.reloadData()
+                    self.refresher.endRefreshing()
+                     let table: UITableViewController = UITableViewController()
+                     self.tableView.frame = CGRect(x: 0, y: 10, width: self.view.frame.size.width, height: 500)
+                     self.tableView.dataSource = table
+                     self.tableView.delegate = table
+                     self.tableView.dataSource = self
+                     self.tableView.delegate = self
+                     self.view.addSubview(self.tableView)
+                }else{
+                    self.customizeMainView()
+                }
+            }
+        }
     }
     
     func customizeMainView() {
         
-//       let height = UIScreen.mainScreen().bounds.size.height
-//        
-//        let vHeight = self.view.frame.size.height
+        //       let height = UIScreen.mainScreen().bounds.size.height
+        //
+        //        let vHeight = self.view.frame.size.height
         
         let comentImageView = UIImageView.init(frame: CGRect(x: (self.view.frame.size.width - 60)/2,y: (self.view.frame.size.height-65-60-50)/2 , width: 60, height: 60))
         //comentImageView.backgroundColor = UIColor.redColor()
@@ -45,7 +176,7 @@ class CXCommentViewController: CXViewController {
         self.view.addSubview(writeLbl)
         
         
-        let btnsView = UIView.init(frame: CGRect(x: 0, y: self.view.frame.size.height-65-50, width: self.view.frame.size.width, height: 50))
+        let btnsView = UIView.init(frame: CGRect(x: 0, y: self.view.frame.size.height-65-30, width: self.view.frame.size.width, height: 50))
         btnsView.backgroundColor = UIColor.yellow
         self.view.addSubview(btnsView)
         
@@ -69,8 +200,9 @@ class CXCommentViewController: CXViewController {
     
     func overallRatingAction() {
         
+        
     }
-
+    
     func backAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -85,8 +217,8 @@ class CXCommentViewController: CXViewController {
         button.backgroundColor = bgColor
         return button
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -131,5 +263,5 @@ class CXCommentViewController: CXViewController {
         return false
     }
     
-
+    
 }

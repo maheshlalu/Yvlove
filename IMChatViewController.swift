@@ -12,8 +12,8 @@ import JSQMessagesViewController
 
 class IMChatViewController: JSQMessagesViewController {
     
-    lazy var messageRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child(CXAppConfig.sharedInstance.getAppMallID()).child("Messages")
-    lazy var userRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child(CXAppConfig.sharedInstance.getAppMallID()).child("Users")
+    lazy var messageRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child(CXAppConfig.sharedInstance.getAppMallID()).child("Chat").child("Messages")
+    lazy var userRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child(CXAppConfig.sharedInstance.getAppMallID()).child("Chat").child("UsersChat")
     @IBOutlet weak var navigationLbl: UILabel!
     
     private var newMessageRefHandle: FIRDatabaseHandle?

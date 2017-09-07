@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="LoyalSunmmaryTableViewCell" customModule="Needybee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="323" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="323" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sw1-Nb-nt4">
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="66.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYU-0u-PLA">
+                                <rect key="frame" x="3" y="3" width="317" height="60.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AYU-0u-PLA" secondAttribute="trailing" constant="3" id="3it-og-wJu"/>
+                            <constraint firstAttribute="bottom" secondItem="AYU-0u-PLA" secondAttribute="bottom" constant="3" id="54x-Nn-jiS"/>
+                            <constraint firstItem="AYU-0u-PLA" firstAttribute="leading" secondItem="sw1-Nb-nt4" secondAttribute="leading" constant="3" id="BlR-7E-iA1"/>
+                            <constraint firstItem="AYU-0u-PLA" firstAttribute="top" secondItem="sw1-Nb-nt4" secondAttribute="top" constant="3" id="ZmE-x7-0aZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="sw1-Nb-nt4" secondAttribute="trailing" id="63P-sV-A62"/>
+                    <constraint firstItem="sw1-Nb-nt4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VSK-CW-KLF"/>
+                    <constraint firstAttribute="bottom" secondItem="sw1-Nb-nt4" secondAttribute="bottom" id="tTM-DF-6lD"/>
+                    <constraint firstItem="sw1-Nb-nt4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yTo-h5-zMy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="summaryDetailLbl" destination="AYU-0u-PLA" id="510-RN-uoW"/>
+            </connections>
+            <point key="canvasLocation" x="23.5" y="77.5"/>
+        </tableViewCell>
+    </objects>
+</document>

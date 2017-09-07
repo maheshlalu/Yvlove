@@ -125,6 +125,7 @@
 		183573AF1D798F5400722AA2 /* CX_ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A11D798F5400722AA2 /* CX_ProductCategory.swift */; };
 		183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */; };
 		183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */; };
+		18380D8B1F600E12008A67D3 /* CXLoyalityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18380D8A1F600E12008A67D3 /* CXLoyalityClass.swift */; };
 		1841CF931E39E1FC00B58FE4 /* CXMixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841CF921E39E1FC00B58FE4 /* CXMixpanel.swift */; };
 		1868BCF21D78316A0050BC72 /* KICamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868BCEE1D78316A0050BC72 /* KICamera.png */; };
 		1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868BCF11D78316A0050BC72 /* KIImagePager.m */; };
@@ -154,6 +155,12 @@
 		18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */; };
 		18B381A51D9D580500A02343 /* ServiceFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B381A41D9D580500A02343 /* ServiceFormViewController.swift */; };
 		18C089D41D8D2132005DFF7C /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C089D31D8D2132005DFF7C /* star.png */; };
+		18CF657B1F612995003970DE /* CXPromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF657A1F612995003970DE /* CXPromotionViewController.swift */; };
+		18CF657D1F612A34003970DE /* CXLoyalCrdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF657C1F612A34003970DE /* CXLoyalCrdViewController.swift */; };
+		18CF657F1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF657E1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift */; };
+		18CF65811F612A45003970DE /* LoyalSunmmaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CF65801F612A45003970DE /* LoyalSunmmaryTableViewCell.xib */; };
+		18CF65841F612B9D003970DE /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 18CF65831F612B9D003970DE /* YTPlayer.html */; };
+		18CF65861F612BA7003970DE /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF65851F612BA7003970DE /* YouTubePlayer.swift */; };
 		18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */; };
 		18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D871D756336001E27D4 /* CXNavDrawer.swift */; };
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
@@ -390,6 +397,7 @@
 		183573A11D798F5400722AA2 /* CX_ProductCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ProductCategory.swift; sourceTree = "<group>"; };
 		183573A21D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_ServiceCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		183573A31D798F5400722AA2 /* CX_ServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_ServiceCategory.swift; sourceTree = "<group>"; };
+		18380D8A1F600E12008A67D3 /* CXLoyalityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXLoyalityClass.swift; sourceTree = "<group>"; };
 		1841CF921E39E1FC00B58FE4 /* CXMixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXMixpanel.swift; sourceTree = "<group>"; };
 		1850F3011E0019C900F55062 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		1850F3021E0019C900F55062 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/NowFloats-dgdgqdwztrxcvjchgleolepjihjd/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -433,6 +441,12 @@
 		18A6BFC41D802B5800D7D533 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
 		18B381A41D9D580500A02343 /* ServiceFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFormViewController.swift; sourceTree = "<group>"; };
 		18C089D31D8D2132005DFF7C /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		18CF657A1F612995003970DE /* CXPromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXPromotionViewController.swift; sourceTree = "<group>"; };
+		18CF657C1F612A34003970DE /* CXLoyalCrdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXLoyalCrdViewController.swift; sourceTree = "<group>"; };
+		18CF657E1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyalSunmmaryTableViewCell.swift; sourceTree = "<group>"; };
+		18CF65801F612A45003970DE /* LoyalSunmmaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoyalSunmmaryTableViewCell.xib; sourceTree = "<group>"; };
+		18CF65831F612B9D003970DE /* YTPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
+		18CF65851F612BA7003970DE /* YouTubePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubePlayer.swift; sourceTree = "<group>"; };
 		18E46A6F1D7ED82D00B021C2 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		18EC9D871D756336001E27D4 /* CXNavDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXNavDrawer.swift; sourceTree = "<group>"; };
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
@@ -919,6 +933,14 @@
 			name = Offers;
 			sourceTree = "<group>";
 		};
+		18380D891F600D74008A67D3 /* LoyalityPoits */ = {
+			isa = PBXGroup;
+			children = (
+				18380D8A1F600E12008A67D3 /* CXLoyalityClass.swift */,
+			);
+			name = LoyalityPoits;
+			sourceTree = "<group>";
+		};
 		1841CF911E39E16600B58FE4 /* Mixpanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1036,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		18CF65821F612B87003970DE /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				18CF65831F612B9D003970DE /* YTPlayer.html */,
+				18CF65851F612BA7003970DE /* YouTubePlayer.swift */,
+			);
+			name = Youtube;
+			sourceTree = "<group>";
+		};
 		18E46A6E1D7ED80F00B021C2 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,6 +1116,8 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				18CF65821F612B87003970DE /* Youtube */,
+				18380D891F600D74008A67D3 /* LoyalityPoits */,
 				11AE90021F5EBF78005CA934 /* Campaings */,
 				11F319E71F5D6C49004625D8 /* String+StringOperation.swift */,
 				12C008891EBB081A005B5ED4 /* CXLog.swift */,
@@ -1157,6 +1190,10 @@
 		3B4FD8501D64508B00A6EBBE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18CF657A1F612995003970DE /* CXPromotionViewController.swift */,
+				18CF657C1F612A34003970DE /* CXLoyalCrdViewController.swift */,
+				18CF657E1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift */,
+				18CF65801F612A45003970DE /* LoyalSunmmaryTableViewCell.xib */,
 				11CECEC91F5963020096DD89 /* Calender */,
 				113A99581D8FEB5D006B5BE5 /* Notifications */,
 				11370F691D8950CF00CCBE01 /* Profile */,
@@ -1506,6 +1543,7 @@
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				89615AEB1EA0EFBB003806E6 /* Coupon.png in Resources */,
+				18CF65841F612B9D003970DE /* YTPlayer.html in Resources */,
 				126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				11F319EC1F5D6CAF004625D8 /* LFChatTableViewCell.xib in Resources */,
@@ -1522,6 +1560,7 @@
 				11325D3C1D8A66CB00A7F10E /* MyordersTableViewCell.xib in Resources */,
 				116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */,
 				3B61E3631D6ACA0800B09F8E /* ADPageControl.xib in Resources */,
+				18CF65811F612A45003970DE /* LoyalSunmmaryTableViewCell.xib in Resources */,
 				1890B6F11D8163EE00AF140A /* UpdateTableViewCell.xib in Resources */,
 				12DC4DC31EB7800E00B32C96 /* GoogleService-Info.plist in Resources */,
 				11F1DE6D1D883EDB002AF5B0 /* WishlistCollectionViewCell.xib in Resources */,
@@ -1607,7 +1646,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		25DABB56DBC2E02536BF8EA6 /* [CP] Check Pods Manifest.lock */ = {
@@ -1622,7 +1661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		27B8D76FBFB0748BCD09A082 /* [CP] Copy Pods Resources */ = {
@@ -1697,7 +1736,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1724,6 +1763,7 @@
 				11F1DE691D883BEB002AF5B0 /* NiceButton.swift in Sources */,
 				183573A81D798F5400722AA2 /* CX_Stores+CoreDataProperties.swift in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
+				18CF657D1F612A34003970DE /* CXLoyalCrdViewController.swift in Sources */,
 				11AE900A1F5EBF8C005CA934 /* CXCampaignsViewController.swift in Sources */,
 				18F36C701D869E890043710A /* CX_Cart.swift in Sources */,
 				899B7B201E5437E0006C1F79 /* UIColorExtension.swift in Sources */,
@@ -1746,9 +1786,11 @@
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
+				18CF657F1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift in Sources */,
 				11F1DE571D883A4B002AF5B0 /* DropDown.swift in Sources */,
 				11F319EA1F5D6C77004625D8 /* LFChatTableViewCell.swift in Sources */,
 				113E5D9C1D87DFCB0003DA8D /* NowfloatWishlistViewController.swift in Sources */,
+				18380D8B1F600E12008A67D3 /* CXLoyalityClass.swift in Sources */,
 				1159BC731E5C3CF900F4187D /* NeedyBeeDetailTableViewCell.swift in Sources */,
 				18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */,
 				892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */,
@@ -1770,6 +1812,7 @@
 				110329CB1D8A8EE40008A3B7 /* AboutUsExtraTableViewCell.swift in Sources */,
 				18E46A701D7ED82D00B021C2 /* LoadingView.swift in Sources */,
 				3B4FD84E1D64508500A6EBBE /* LeftViewController.swift in Sources */,
+				18CF657B1F612995003970DE /* CXPromotionViewController.swift in Sources */,
 				8900AD751E8253E60064438C /* PaymentViewController.swift in Sources */,
 				183573A51D798F5400722AA2 /* CX_Rating.swift in Sources */,
 				113A995D1D8FF46A006B5BE5 /* HRToast+UIView.swift in Sources */,
@@ -1799,6 +1842,7 @@
 				1868BD2C1D7873060050BC72 /* ProductModelClass.m in Sources */,
 				11C8EF491E23BC110018EDE3 /* InfoQueryViewController.swift in Sources */,
 				435521681D7FEE5B0099159D /* PhotosCollectionViewCell.swift in Sources */,
+				18CF65861F612BA7003970DE /* YouTubePlayer.swift in Sources */,
 				11F319E31F5D5CB4004625D8 /* IMChatViewController.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,
 				11370F721D89581200CCBE01 /* MTCoordinateContainer.swift in Sources */,

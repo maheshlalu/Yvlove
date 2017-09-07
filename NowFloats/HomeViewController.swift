@@ -84,6 +84,7 @@ class HomeViewController: UITabBarController {
             }else if widGetData?.visibility == "Yes" && widGetData?.name == "Reviews" {
                 let review = CXCommentViewController.init()
                 review.title = widGetData?.displayName
+                review.tabBarItem.image = UIImage(named: "review")
                 self.tabsController.append(review)
                 if let key = widGetData?.name {
                     viewContollerDic[key] = review
@@ -91,13 +92,23 @@ class HomeViewController: UITabBarController {
 
                 //review.tabBarItem.image = UIImage(named: "productsImage")
             }else if widGetData?.visibility == "Yes" && widGetData?.name == "Calendar" {
-                //viewContollerDic["\(String(describing: widGetData?.name))"] = firstTab
-
+                let calender = storyBoard.instantiateViewController(withIdentifier: "CXCalenderViewController") as! CXCalenderViewController
+                calender.title = widGetData?.displayName
+                calender.tabBarItem.image = UIImage(named: "offers")
+                self.tabsController.append(calender)
+                if let key = widGetData?.name {
+                    viewContollerDic[key] = calender
+                }
                 
-            }else if widGetData?.visibility == "Yes" && widGetData?.name == "IsOnlyLoyalty" {
-                //viewContollerDic["\(String(describing: widGetData?.name))"] = firstTab
-
-                
+            }else if widGetData?.visibility == "Yes" && widGetData?.name == "Loyalty" {
+                //viewContollerDic["\(String(describing: widGetD ata?.name))"] = firstTab
+                let loyaltyCard = storyBoard.instantiateViewController(withIdentifier: "LOYALCARD") as! CXLoyalCrdViewController
+                loyaltyCard.title = widGetData?.displayName
+                loyaltyCard.tabBarItem.image = UIImage(named: "")
+                self.tabsController.append(loyaltyCard)
+                if let key = widGetData?.name {
+                    viewContollerDic[key] = loyaltyCard
+                }
             }
         }
        // self.tabBarController?.setViewControllers(self.tabsController, animated: true)
@@ -121,11 +132,6 @@ class HomeViewController: UITabBarController {
             viewContollerDic["OFFERS"] = firstTab
 
         }*/
-  
-  
-        
-        
-        
         /*4
          
          */
@@ -134,10 +140,8 @@ class HomeViewController: UITabBarController {
     
     func arrangeTheTabsOrder(){
         //let channelRef = userRef
-        
         userRef.observe(.value, with: { (snapshot) -> Void in
             var tabsWithOrder = [UIViewController]()
-
             // self.channels.removeAllObjects()
             var positions = [Int]()
             for channelSnap in snapshot.children {
@@ -150,13 +154,10 @@ class HomeViewController: UITabBarController {
                 //  self.channels.add(channelData)
                 //}
             }
-            
             positions.sort {
                 return $0 < $1
             }
-            
             for position in positions{
-                
                 for channelSnap in snapshot.children {
                     let channelData = (channelSnap as! FIRDataSnapshot).value as! Dictionary<String, AnyObject>
                     let value = channelData["position"] as! Int
@@ -171,26 +172,27 @@ class HomeViewController: UITabBarController {
                         break
                     }
                 }
+            }
+            if tabsWithOrder.count != 0 {
+                self.tabsController.removeAll()
+                self.tabsController = tabsWithOrder
+            }else{
                 
             }
-            self.tabsController.removeAll()
-            self.tabsController = tabsWithOrder
             //CXLog.print(self.tabsController)
-            
            // CXDataProvider.sharedInstance.tabBar.tabBarController?.setViewControllers(self.tabsController, animated: true)
             //CXLog.print("print the tabbar \(tab)")
-
           if let tab = self.tabBarController {
               tab.setViewControllers(self.tabsController, animated: true)
-
           }else{
-            
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.setUpSidePanelview()
             CXLog.print("called firebase data")
             //self.viewControllers = self.tabsController
             //self.tabBarCntl.setViewControllers(self.tabsController, animated: true)
             //self.viewWillAppear(true)
             //CXDataProvider.sharedInstance.tabBar.setViewControllers(self.tabsController, animated: true)
-            // self.setViewControllers(self.tabsController, animated: <#T##Bool#>)
+            // self.setViewControllers(self.tabsController, animated: Bool)
             }
             //  print( self.channels)
         })
@@ -206,6 +208,7 @@ class HomeViewController: UITabBarController {
      */
     
     func getAllNotificationList(){
+        
         //let channelRef = userRef
         userRef.observe(.value, with: { (snapshot) -> Void in
            // self.channels.removeAllObjects()

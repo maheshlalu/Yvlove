@@ -98,6 +98,9 @@ class CXAppConfig {
     func getSidePanelList() -> NSArray{
             return config!.value(forKey: "SidePanelList") as! NSArray
     }
+    func getLoyalcards() -> String{
+        return config!.value(forKey: "loyalCards") as! String
+    }
     
     //MARK: payment url
     func getTestPaymentGatewayUrl() -> String{

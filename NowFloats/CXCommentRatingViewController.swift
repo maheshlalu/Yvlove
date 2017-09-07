@@ -47,7 +47,7 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
         self.floatRatingView.backgroundColor = UIColor.clear
         self.cScrollView.addSubview(self.floatRatingView)
         
-        self.commentsView = UITextView.init(frame: CGRect(x: 5, y: self.floatRatingView.frame.size.height+self.floatRatingView.frame.origin.y, width: self.cScrollView.frame.size.width-10, height: 220))
+        self.commentsView = UITextView.init(frame: CGRect(x: 5, y: self.floatRatingView.frame.size.height+self.floatRatingView.frame.origin.y+15, width: self.cScrollView.frame.size.width-10, height: 220))
         self.commentsView.delegate = self
         self.commentsView.font = UIFont(name: "Roboto-Regular", size: 15)
         self.commentsView.text = "Wrire at least 50 characters"
@@ -167,17 +167,35 @@ class CXCommentRatingViewController: CXViewController,FloatRatingViewDelegate,UI
          
          */
         
-        let userId =  "\(UserDefaults.standard.value(forKey: "USER_ID")!)"
-        let jobId = "\(UserDefaults.standard.value(forKey: "MACID_JOBID")!)"
-        let comment = (self.commentsView.text!)
-        let rating = (self.ratingLabel.text!)
-        
-        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getCommentUrl()
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":userId as AnyObject,"jobId":jobId as AnyObject,"comment":comment as AnyObject,"rating":rating as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
-            print(responseDict)
-            self.navigationController?.popViewController(animated: true)
+        if UserDefaults.standard.value(forKey: "USER_ID") != nil{
+            
+            let userId =  "\(UserDefaults.standard.value(forKey: "USER_ID")!)"
+            let jobId = "\(UserDefaults.standard.value(forKey: "MACID_JOBID")!)"
+            let comment = (self.commentsView.text!)
+            let rating = (self.ratingLabel.text!)
+            
+            let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getCommentUrl()
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["userId":userId as AnyObject,"jobId":jobId as AnyObject,"comment":comment as AnyObject,"rating":rating as AnyObject,"disabled":"false" as AnyObject]) { (responseDict) in
+                print(responseDict)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+        }else{
+            
+            showAlert()
         }
     }
+    
+    func showAlert(){
+        
+        let alertController = UIAlertController(title: "YVOLV", message: "PLease Login...", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+       
     
     func clearNumPadAction() {
         self.view.endEditing(true)
