@@ -18,12 +18,13 @@
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>
 	<array>
+		<string>Blog</string>
 		<string>Home</string>
-		<string>About us</string>
+		<string>About Us</string>
 		<string>Orders</string>
-		<string>Wishlist</string>
-		<string>Storelocator</string>
-		<string>Book Appointment</string>
+		<string>Wish List</string>
+		<string>Store Locator</string>
+		<string>BookAppointment</string>
 		<string>Services</string>
 		<string>Chat</string>
 	</array>

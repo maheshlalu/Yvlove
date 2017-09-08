@@ -10,9 +10,21 @@
 import UIKit
 import MessageUI
 import FacebookCore
+import Firebase
+
+class sidePanleData {
+
+    var name: String!
+    var displayName : String!
+    
+    
+}
 
 class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegate {
     
+    
+    lazy var leftMenuRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Apps").child(CXAppConfig.sharedInstance.getAppMallID()).child("LeftMenu")
+
     @IBOutlet weak var viewMapBtn: UIButton!
     @IBOutlet weak var messageBtn: UIButton!
     @IBOutlet weak var callUsBtn: UIButton!
@@ -20,6 +32,8 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var contentsTableView: UITableView!
     
     var sidePanelDataArr : NSArray!
+    
+    var sidepanelList : NSMutableArray = NSMutableArray()
     
     var profileDPImageView:UIImageView!
     var titleLable: UILabel!
@@ -33,12 +47,80 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     var navController : CXNavDrawer = CXNavDrawer()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.getSidelPanelFromFirebase()
         self.getSingleMall()
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.register(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
         self.view.backgroundColor = UIColor.white
+    }
+    
+    func getSidelPanelFromFirebase(){
+        
+        
+        for item in CXAppConfig.sharedInstance.getSidePanelList() {
+            let data : sidePanleData = sidePanleData()
+            data.name = item as? String
+            data.displayName = data.name
+            self.sidepanelList.add(data)
+        }
+        
+        leftMenuRef.observe(.value, with: { (snapshot) -> Void in
+            let leftController = NSMutableArray()
+            // self.channels.removeAllObjects()
+            var positions = [Int]()
+            for channelSnap in snapshot.children {
+                let channelData = (channelSnap as! FIRDataSnapshot).value as! Dictionary<String, AnyObject>
+                positions.append(channelData["position"] as! Int)
+                print(channelData)
+                // if status == -1 (Rejected by user)
+                // if channelData["status"] as! String != "-1"
+                //{
+                //  self.channels.add(channelData)
+                //}
+            }
+            positions.sort {
+                return $0 < $1
+            }
+            for position in positions{
+                for channelSnap in snapshot.children {
+                    let channelData = (channelSnap as! FIRDataSnapshot).value as! Dictionary<String, AnyObject>
+                    let value = channelData["position"] as! Int
+                    if value == position {
+                        //let name = channelData["name"] as! String
+                        //let contller = self.sidepanelList.object(at: index)
+                        
+                        let data : sidePanleData = sidePanleData()
+                        data.name = channelData["name"] as! String
+                        data.displayName = channelData["title"] as! String
+                        
+                        if let visibility = channelData["visibility"] as? Bool , visibility == true{
+                            leftController.add(data)
+                        }
+                        
+                        /* if let contoller = self.viewContollerDic.value(forKey: name)  {
+                         tabsWithOrder.append(contoller as! UIViewController)
+                         }
+                         if name == "Photos" {
+                         tabsWithOrder.append(self.viewContollerDic.value(forKey: "Gallery") as! UIViewController)
+                         }*/
+                        break
+                    }
+                }
+            }
+            if leftController.count != 0 {
+               // self.sidepanelList.removeAllObjects()
+                self.sidepanelList = leftController
+                self.contentsTableView.reloadData()
+            }else{
+                
+            }
+     
+            //  print( self.channels)
+        })
+
     }
     
     func getSingleMall(){
@@ -146,13 +228,15 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CXAppConfig.sharedInstance.getSidePanelList().count
+        return self.sidepanelList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeftViewTableViewCell", for: indexPath) as! LeftViewTableViewCell
-        cell.contentsLbl.text = CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String
-        cell.iconImage.image = UIImage(named: (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!)
+        
+        let data : sidePanleData = self.sidepanelList[indexPath.row] as! sidePanleData
+        cell.contentsLbl.text = data.displayName
+        cell.iconImage.image = UIImage(named: (data.name)!)
         cell.contentsLbl.textColor = UIColor.gray
         cell.contentsLbl.font = cell.contentsLbl.font.withSize(15)
         return cell
@@ -163,12 +247,15 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         
+        let data : sidePanleData = self.sidepanelList[indexPath.row] as! sidePanleData
+        //let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
+        let itemName : String =  data.name
+
         if itemName == "Home"{
             self.navController.popToRootViewController(animated: true)
             
-        }else if itemName == "About us"{
+        }else if itemName == "About Us"{
             CXMixpanel.sharedInstance.mixelAboutTrack()
             let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
@@ -209,26 +296,21 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 self.navController.pushViewController(signInViewCnt, animated: true)
             }
             
-        }else if itemName == "Wishlist" {
+        }else if itemName == "Wish List" {
             CXMixpanel.sharedInstance.mixelWishListTrack()
             let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
             self.navController.pushViewController(wishlist, animated: true)
-        }else if itemName == "Storelocator"{
-            
-//            CXAppDataManager.sharedInstance.getStoreCategories(completion: { (responseDic) in
-//                let categoryJobArray = responseDic.value(forKey: "jobs")as! NSArray
-//                for obj in categoryJobArray{
-//                    let dict = obj as! NSDictionary
-//                    self.categoryNameArray.add(dict.value(forKey: "City")as! String)
-//                }
-//
-//            
-//            })
-            
-//            let storyboard = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
-//            self.navigationController?.pushViewController(storyboard, animated: true)
+        }else if itemName == "Store Locator"{
             let store = storyBoard.instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
             self.navController.pushViewController(store, animated: true)
+        }else if itemName == "Chat" {
+            
+        }else if itemName == "Blog" {
+            
+        }else if itemName == "Services" {
+            
+        }else if itemName == "BookAppointment" {
+            
         }
     }
     
