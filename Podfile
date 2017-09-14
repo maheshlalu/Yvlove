@@ -26,7 +26,7 @@ target 'NowFloats' do
     pod 'Mixpanel'
     pod 'JSQMessagesViewController'
     pod 'StartSDK', :git => 'https://github.com/payfort/start-ios-sdk.git'
-
+    pod 'IQKeyboardManagerSwift'
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing

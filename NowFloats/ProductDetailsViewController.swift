@@ -48,6 +48,11 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
         self.ratingBgView.backgroundColor = UIColor.clear
         //self.ratingView.backgroundColor = UIColor.white
         
+       //if price = 0
+         let price = productDetailDic.value(forKey: "MRP") as! String
+        if price == ""  {
+        needMoreInfoBtn.setImage(nil, for: .normal)
+        }
     }
     
     func getDescriptionTags(){
@@ -133,7 +138,16 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     //  }
     
     func customisingBtns(){
-        
+        //for no price remove the orderand cart btn
+         let price:String = productDetailDic.value(forKey: "MRP") as! String
+        if price == ""
+        {
+            addToCartBtn.isHidden = true
+            placeOrderBtn.isHidden = true
+        }else{
+             addToCartBtn.isHidden = false
+            addToCartBtn.isHidden = false
+        }
         placeOrderBtn.setTitleColor(CXAppConfig.sharedInstance.getAppTheamColor(), for: UIControlState())
         placeOrderBtn.imageView?.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         
@@ -393,7 +407,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             let container = InfoQueryViewController.instance()
             
-            if (sender as! UIButton).titleLabel?.text == "Need More Info" {
+            if (sender as! UIButton).titleLabel?.text == "Get quote" {
                 container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
             }
             

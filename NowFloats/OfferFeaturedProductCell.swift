@@ -34,19 +34,24 @@ class OfferFeaturedProductCell: UITableViewCell {
     func customizeBgView(){
         let cellWidth = UIScreen.main.bounds.size.width
         let viewHeight:CGFloat = CXConstant.RELATED_ARTICLES_CELL_HEIGHT-10
-        let cellFrame = CGRect(x: 10, y: 0, width: cellWidth-20, height: viewHeight-10)
+        let cellFrame = CGRect(x: 10, y: 5, width: cellWidth-20, height: viewHeight-5)
+        
         
         
         self.bgView = UIView.init(frame: cellFrame)//CXConstant.DetailTableView_Width
-        //self.bgView.backgroundColor = UIColor.redColor()
-        //self.bgView.layer.borderWidth = 1.0
+        self.bgView.backgroundColor = UIColor.white
+        self.bgView.layer.cornerRadius = 8.0
         //self.bgView.backgroundColor = CXAppConfig.sharedInstance.getAppBGColor()//UIColor.whiteColor()
         self.addSubview(self.bgView)
         
-        self.headerLbl = UILabel.init(frame: CGRect(x: 0, y: 0, width: self.bgView.frame.size.width, height: 30))
-        self.headerLbl.font = UIFont(name:"Roboto-Bold", size:16)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 25))
+        view.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
+        self.bgView.addSubview(view)
+        
+        self.headerLbl = UILabel.init(frame: CGRect(x: 15, y: -3, width: self.bgView.frame.size.width, height: 25))
+        self.headerLbl.font = UIFont(name:"Roboto-Bold", size:15)
         self.headerLbl.textAlignment = NSTextAlignment.left
-        self.headerLbl.textColor = UIColor.gray
+        self.headerLbl.textColor = UIColor.black
         self.bgView.addSubview(self.headerLbl)
     }
     
@@ -63,7 +68,7 @@ class OfferFeaturedProductCell: UITableViewCell {
         layout.itemSize = CXConstant.DetailCollectionCellSize
         self.detailCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.detailCollectionView.showsHorizontalScrollIndicator = false
-        self.detailCollectionView.frame = CGRect(x: 8, y: self.headerLbl.frame.size.height, width: cellWidth-16, height: CXConstant.DetailCollectionViewFrame.size.height)
+        self.detailCollectionView.frame = CGRect(x: 8, y: self.headerLbl.frame.size.height+5, width: cellWidth-16, height: CXConstant.DetailCollectionViewFrame.size.height)
         
         // CXConstant.DetailCollectionViewFrame
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal

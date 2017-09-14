@@ -61,7 +61,7 @@ class CancelSlotViewController: UIViewController {
             let statusNamestr = dict.value(forKey: "Status_Name") as! String
             let statusID = dict.value(forKey: "Status_Id") as! String
             if statusNamestr == "Rejected" {
-                let canID = dict.value(forKey: "Status_Id") as! Int
+                let canID = dict.value(forKey: "Status_Id") as! String
 
                 self.cancelID = String(canID)
                 CXLog.print("cancelID== \( self.cancelID )")

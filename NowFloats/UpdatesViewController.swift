@@ -48,8 +48,8 @@ class UpdatesViewController: CXViewController {
     func setUpTableView(){
         let nib = UINib(nibName: "UpdateTableViewCell", bundle: nil)
         self.updateTableView.register(nib, forCellReuseIdentifier: "UpdateTableViewCell")
-        self.updateTableView.rowHeight = UITableViewAutomaticDimension
-        self.updateTableView.estimatedRowHeight = 10.0
+        //self.updateTableView.rowHeight = UITableViewAutomaticDimension
+        //self.updateTableView.estimatedRowHeight = 10.0
         //self.tableview.contentInset = UIEdgeInsetsMake(0,5, 0,5)
         self.updateTableView.delegate =  self
         self.updateTableView.dataSource = self
@@ -62,7 +62,9 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return UITableViewAutomaticDimension
+        return 210
+        
+        //UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

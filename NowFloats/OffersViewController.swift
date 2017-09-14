@@ -141,7 +141,7 @@ extension OffersViewController : UITableViewDelegate,UITableViewDataSource {
         }else if indexPath.section == 2{
             return CXConstant.tableViewHeigh - 5;
         }else{
-            return CXConstant.tableViewHeigh - 25;
+            return CXConstant.tableViewHeigh - 5;
         }
     }
     
@@ -198,10 +198,14 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             let rupee = "\u{20B9}"
             
             //Trimming Price And Discount
-            let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
+            var floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: featuredProductJobs.json!))!
             let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
             
             let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: featuredProductJobs.json!)
+            if floatDis == "0" {
+                
+            }
+
             
             //            var floatDiscount:Float = Float()
             //
@@ -212,6 +216,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
             
             //FinalPrice after subtracting the discount
+            
             let finalPriceNum:Int! = Int(finalPrice)!-Int(floatDis)!
             FinalPrice = String(finalPriceNum) as String
             
@@ -223,6 +228,13 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
             cell?.productPriceLbl.text = "\(rupee) \(FinalPrice!)"
             cell?.finalPriceLbl.attributedText = attributeString
             
+            if Int(floatPrice) == 0 {
+                cell?.finalPriceLbl.isHidden = true
+                cell?.productPriceLbl.isHidden = true
+                cell?.orderNowBtn.isHidden = true
+            }else if Int(floatPrice) == Int(FinalPrice) {
+                cell?.finalPriceLbl.isHidden = true
+            }
         }
         
         if featureProducts.name == "Brands"{

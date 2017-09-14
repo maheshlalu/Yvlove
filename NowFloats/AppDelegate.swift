@@ -19,7 +19,7 @@ import Firebase
 import Google
 import GoogleSignIn
 import UserNotifications
-
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,FIRMessagingDelegate {
     
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         //        GGLContext.sharedInstance().configureWithError(&configureError)
         //        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-        
+        IQKeyboardManager.sharedManager().enable = true
         var configureError:NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")

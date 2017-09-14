@@ -12,10 +12,11 @@ import Google
 import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
+import IQKeyboardManagerSwift
 protocol CXSingInDelegate {
     func didGoogleSignIn()
 }
-class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSignInDelegate,GIDSignInUIDelegate {
+class CXSignInSignUpViewController: CXViewController,GIDSignInDelegate,GIDSignInUIDelegate,UITextFieldDelegate {
     var googleResponseDict: NSDictionary! = nil
     var facebookResponseDict: NSDictionary! = nil
     var emailAddressField: UITextField!
@@ -44,6 +45,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         setUpDelegatesForGoogle()
 //        FIRInvites.inviteDialog()
         //self.setUpDelegatesForGoogle()
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
     }
     func setUpDelegatesForGoogle()
     {
@@ -154,14 +156,13 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         
     }
     
-    
     func customizeMainView() {
         self.cScrollView = UIScrollView.init(frame: CGRect(x: 0,y: 0, width: self.view.frame.size.width, height: (self.view.frame.size.height)))
         self.cScrollView.backgroundColor = UIColor.clear
         // self.cScrollView.contentSize = CGSizeMake(self.view.frame.size.width,600)
         self.view.addSubview(self.cScrollView)
         
-        let signUpLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: 40, width: self.cScrollView.frame.size.width-40, height: 50), text: "Sign In",font:UIFont.init(name: "Roboto-Regular", size: 40)!)
+        let signUpLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: 40, width: self.cScrollView.frame.size.width-40, height: 50), text: "Sign In",font:UIFont.init(name: "Roboto-Bold", size: 40)!)
         self.cScrollView.addSubview(signUpLbl)
         
         let signUpSubLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: signUpLbl.frame.origin.y+signUpLbl.frame.size.height-10, width: self.cScrollView.frame.size.width-40, height: 40), text: "Sign up with email address",font:UIFont.init(name: "Roboto-Regular", size: 14)!)
@@ -359,18 +360,26 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         return button
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    /*func textFieldDidBeginEditing(_ textField: UITextField) {
         let scrollPoint = CGPoint(x: 0, y: textField.frame.origin.y)
         self.cScrollView.setContentOffset(scrollPoint, animated: true)
-    }
+    }*/
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.cScrollView.setContentOffset(CGPoint.zero, animated: true)
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        /* if textField == self.dobtxt {
+         self.selectDataPicker(textField: textField)
+         return false
+         }*/
+        return true
     }
+    
+    /*func textFieldDidEndEditing(_ textField: UITextField) {
+        self.cScrollView.setContentOffset(CGPoint.zero, animated: true)
+    }*/
     
     //MAR:Heder options enable
     override  func shouldShowRightMenu() -> Bool{
@@ -400,7 +409,7 @@ class CXSignInSignUpViewController: CXViewController,UITextFieldDelegate,GIDSign
         return false
     }
     override func headerTitleText() -> String{
-        return "Sign in and Sign up"
+        return "Sign in"
     }
     
     override func profileDropdown() -> Bool{

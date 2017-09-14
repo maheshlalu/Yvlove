@@ -25,7 +25,7 @@
         <!--Left View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LeftViewController" id="BYZ-38-t0r" customClass="LeftViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftViewController" id="BYZ-38-t0r" customClass="LeftViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -121,7 +121,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RUS-Ri-AfO"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storeongoLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-g7-1Om">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-g7-1Om">
                                 <rect key="frame" x="0.0" y="751" width="107" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="0TC-KV-QcJ">
@@ -173,7 +173,7 @@
         <!--Photos View Controller-->
         <scene sceneID="y8A-S7-YAu">
             <objects>
-                <viewController storyboardIdentifier="PHOTO" id="rhY-rU-Zhe" customClass="PhotosViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PHOTO" id="rhY-rU-Zhe" customClass="PhotosViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RYu-SQ-TvE"/>
                         <viewControllerLayoutGuide type="bottom" id="x1e-xi-XHf"/>
@@ -192,7 +192,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotosCollectionViewCell" id="rmc-mV-WI1" customClass="PhotosCollectionViewCell" customModule="Needybee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotosCollectionViewCell" id="rmc-mV-WI1" customClass="PhotosCollectionViewCell" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="149" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -227,7 +227,7 @@
         <!--Filter View Controller-->
         <scene sceneID="KQg-jL-BIC">
             <objects>
-                <viewController storyboardIdentifier="FilterViewController" id="jJr-Kv-uXs" customClass="FilterViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" id="jJr-Kv-uXs" customClass="FilterViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Trl-6N-vab"/>
                         <viewControllerLayoutGuide type="bottom" id="dqO-NF-drn"/>
@@ -358,7 +358,7 @@
         <!--Cart View Controller-->
         <scene sceneID="IOM-km-upo">
             <objects>
-                <viewController storyboardIdentifier="CART" id="Vba-a2-QP1" customClass="CartViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CART" id="Vba-a2-QP1" customClass="CartViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DGu-Hs-QHm"/>
                         <viewControllerLayoutGuide type="bottom" id="BAD-MY-JJj"/>
@@ -570,7 +570,7 @@
         <!--Nowfloat Wishlist View Controller-->
         <scene sceneID="faO-d7-kYh">
             <objects>
-                <viewController storyboardIdentifier="WISHLIST" id="4nQ-2j-SuH" customClass="NowfloatWishlistViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WISHLIST" id="4nQ-2j-SuH" customClass="NowfloatWishlistViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eej-B5-96d"/>
                         <viewControllerLayoutGuide type="bottom" id="h8w-wT-3rG"/>
@@ -580,7 +580,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Wishlist is Empty!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39d-mP-3zh">
-                                <rect key="frame" x="84.5" y="275.5" width="152" height="18.5"/>
+                                <rect key="frame" x="85" y="275.5" width="152" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -653,7 +653,7 @@
         <!--Updates View Controller-->
         <scene sceneID="mII-Kq-AJ4">
             <objects>
-                <viewController storyboardIdentifier="UPDATE" id="iEB-PT-Oi1" customClass="UpdatesViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UPDATE" id="iEB-PT-Oi1" customClass="UpdatesViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rRm-6I-jvG"/>
                         <viewControllerLayoutGuide type="bottom" id="72Z-5g-DgY"/>
@@ -668,7 +668,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-OK-rTL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="210" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-OK-rTL">
                                 <rect key="frame" x="5" y="56" width="310" height="507"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.92941176469999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -763,7 +763,7 @@
         <!--Offers View Controller-->
         <scene sceneID="cPf-fD-mBa">
             <objects>
-                <viewController storyboardIdentifier="OFFERS" id="SQE-Hz-Iey" customClass="OffersViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OFFERS" id="SQE-Hz-Iey" customClass="OffersViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Jb-z7-hVL"/>
                         <viewControllerLayoutGuide type="bottom" id="XF9-7f-Nrk"/>
@@ -773,7 +773,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a32-OQ-fMD">
-                                <rect key="frame" x="98" y="275.5" width="126" height="18.5"/>
+                                <rect key="frame" x="97.5" y="275.5" width="126" height="18.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -824,7 +824,7 @@
         <!--Product Search View Controller-->
         <scene sceneID="uOk-kO-wQS">
             <objects>
-                <viewController storyboardIdentifier="ProductSearchViewController" id="3aT-zi-KGv" customClass="ProductSearchViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductSearchViewController" id="3aT-zi-KGv" customClass="ProductSearchViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VLk-4R-HWm"/>
                         <viewControllerLayoutGuide type="bottom" id="D2w-Vq-jYF"/>
@@ -843,7 +843,7 @@
                                     <inset key="sectionInset" minX="5" minY="15" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tmJ-Rw-dnS" customClass="ProductsCollectionViewCell" customModule="Needybee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tmJ-Rw-dnS" customClass="ProductsCollectionViewCell" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="-31.5" y="15" width="383" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -904,7 +904,7 @@
         <!--Nav Drawer-->
         <scene sceneID="ZgF-6Y-Wz1">
             <objects>
-                <navigationController storyboardIdentifier="CXNavDrawer" id="2NF-ZE-gat" customClass="CXNavDrawer" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CXNavDrawer" id="2NF-ZE-gat" customClass="CXNavDrawer" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ipV-pl-vyv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -924,7 +924,7 @@
         <!--Home View Controller-->
         <scene sceneID="lnG-NN-AFc">
             <objects>
-                <viewController storyboardIdentifier="HOME" id="hii-O0-TPV" customClass="HomeViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HOME" id="hii-O0-TPV" customClass="HomeViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B3f-uU-JQ0"/>
                         <viewControllerLayoutGuide type="bottom" id="ZVQ-zm-AjE"/>
@@ -1007,7 +1007,7 @@
         <!--Product Details View Controller-->
         <scene sceneID="V9l-cn-6fx">
             <objects>
-                <viewController storyboardIdentifier="PRODUCT_DETAILS" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pnE-Yh-eOc" customClass="ProductDetailsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PRODUCT_DETAILS" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pnE-Yh-eOc" customClass="ProductDetailsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LDm-ke-lpo"/>
                         <viewControllerLayoutGuide type="bottom" id="3nN-Y1-19i"/>
@@ -1019,7 +1019,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUU-qZ-fYc">
                                 <rect key="frame" x="-2" y="0.0" width="326" height="20"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alf-9d-3ph" customClass="FloatRatingView" customModule="Needybee" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alf-9d-3ph" customClass="FloatRatingView" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="2" y="2" width="87" height="15"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1132,7 +1132,7 @@
                                 </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MBo-pf-4eJ">
-                                <rect key="frame" x="-4" y="20" width="328" height="503"/>
+                                <rect key="frame" x="-4" y="23" width="328" height="500"/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" red="0.3394455341" green="0.57428243889999997" blue="0.12806045160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1345,7 +1345,7 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goo-ld-43v">
                                                 <rect key="frame" x="0.0" y="0.0" width="99.5" height="35"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                                                 <state key="normal" title="ADD TO CART" image="addToCart_White">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1357,7 +1357,7 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zv8-AP-MeL">
                                                 <rect key="frame" x="104.5" y="0.0" width="99" height="35"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                                                 <state key="normal" title=" ORDER  COD" image="placeOrderImg">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1368,8 +1368,8 @@
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCZ-qQ-WqQ">
                                                 <rect key="frame" x="208.5" y="0.0" width="99.5" height="35"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
-                                                <state key="normal" title="Need More Info" image="addToCart_White">
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
+                                                <state key="normal" title="Get quote" image="addToCart_White">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <state key="selected" title="ADDED TO CART"/>
@@ -1423,7 +1423,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="hUU-qZ-fYc" secondAttribute="trailing" constant="-20" id="49F-A4-pd2"/>
                             <constraint firstItem="MBo-pf-4eJ" firstAttribute="leading" secondItem="y03-nt-4vE" secondAttribute="leadingMargin" constant="-20" id="4kW-h2-u88"/>
                             <constraint firstAttribute="trailingMargin" secondItem="z6u-Pg-iAR" secondAttribute="trailing" constant="-20" id="6vL-Yh-P5D"/>
-                            <constraint firstItem="MBo-pf-4eJ" firstAttribute="top" secondItem="hUU-qZ-fYc" secondAttribute="bottom" id="8HT-w5-nbY"/>
+                            <constraint firstItem="MBo-pf-4eJ" firstAttribute="top" secondItem="hUU-qZ-fYc" secondAttribute="bottom" constant="3" id="8HT-w5-nbY"/>
                             <constraint firstItem="hUU-qZ-fYc" firstAttribute="top" secondItem="y03-nt-4vE" secondAttribute="topMargin" id="8Wc-4R-oDu">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
@@ -1489,12 +1489,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n44-8q-5GH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5503.125" y="-2082.0422535211269"/>
+            <point key="canvasLocation" x="-5504" y="-2083"/>
         </scene>
         <!--Orders View Controller-->
         <scene sceneID="wRj-2p-hqD">
             <objects>
-                <viewController storyboardIdentifier="ORDERS" id="wv7-vf-2cN" customClass="OrdersViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ORDERS" id="wv7-vf-2cN" customClass="OrdersViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vwa-xa-xEc"/>
                         <viewControllerLayoutGuide type="bottom" id="eds-JL-nzE"/>
@@ -1568,7 +1568,7 @@
         <!--About Us View Controller-->
         <scene sceneID="i5T-ju-aj5">
             <objects>
-                <viewController storyboardIdentifier="ABOUT_US" id="Zyk-Gh-y9R" customClass="AboutUsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ABOUT_US" id="Zyk-Gh-y9R" customClass="AboutUsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AdX-vC-RMc"/>
                         <viewControllerLayoutGuide type="bottom" id="k22-gg-S3h"/>
@@ -1659,7 +1659,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-5v-gQs" customClass="FloatRatingView" customModule="Needybee" customModuleProvider="target">
+                                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-5v-gQs" customClass="FloatRatingView" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="-8" width="75" height="12"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -1742,13 +1742,13 @@
                                         </variation>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="68M Holides" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZr-hO-alQ">
-                                        <rect key="frame" x="0.0" y="17" width="320" height="23.5"/>
+                                        <rect key="frame" x="0.0" y="17" width="320" height="26.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open Till 11:30pm Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-5M-Gt3">
-                                        <rect key="frame" x="75" y="76" width="170" height="27"/>
+                                        <rect key="frame" x="75" y="79" width="170" height="27"/>
                                         <color key="backgroundColor" red="0.3411764706" green="0.67843137249999996" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="FRS-GM-9Kl"/>
@@ -1889,7 +1889,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="riN-PS-dh5">
             <objects>
-                <viewController storyboardIdentifier="PROFILE" id="p9e-WC-JK9" customClass="UserProfileViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PROFILE" id="p9e-WC-JK9" customClass="UserProfileViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BY0-eW-MlL"/>
                         <viewControllerLayoutGuide type="bottom" id="qVm-cv-q9b"/>
@@ -2335,7 +2335,7 @@
         <!--My Order View Controller-->
         <scene sceneID="71n-J6-fM5">
             <objects>
-                <viewController storyboardIdentifier="MY_ORDERS" id="mUe-sq-mEq" customClass="MyOrderViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MY_ORDERS" id="mUe-sq-mEq" customClass="MyOrderViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fXO-Fs-6ny"/>
                         <viewControllerLayoutGuide type="bottom" id="Tdv-SV-2wL"/>
@@ -2516,7 +2516,7 @@
         <!--Cancel Slot View Controller-->
         <scene sceneID="Ymg-tW-eRY">
             <objects>
-                <viewController storyboardIdentifier="CancelSlotViewController" id="68R-cZ-zLH" customClass="CancelSlotViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CancelSlotViewController" id="68R-cZ-zLH" customClass="CancelSlotViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dkv-yP-gRy"/>
                         <viewControllerLayoutGuide type="bottom" id="ahw-RR-mSI"/>
@@ -2525,7 +2525,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="okD-xq-uAS" customClass="CXImageView" customModule="Needybee" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="okD-xq-uAS" customClass="CXImageView" customModule="Yvolv_Consumer" customModuleProvider="target">
                                 <rect key="frame" x="110" y="36" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="M64-IP-Fxe"/>
@@ -2604,7 +2604,7 @@
         <!--HISTORY-->
         <scene sceneID="dGd-wN-FOG">
             <objects>
-                <viewController storyboardIdentifier="HISTORY" id="Cpj-JR-DPb" customClass="HistoryViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HISTORY" id="Cpj-JR-DPb" customClass="HistoryViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8a3-7j-WNn"/>
                         <viewControllerLayoutGuide type="bottom" id="2dl-kL-s72"/>
@@ -2670,7 +2670,7 @@
         <!--Notifications View Controller-->
         <scene sceneID="8y7-o9-dMD">
             <objects>
-                <viewController storyboardIdentifier="NOTIFICATIONS" id="uXZ-Li-dAB" customClass="NotificationsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NOTIFICATIONS" id="uXZ-Li-dAB" customClass="NotificationsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6pN-nA-5Sg"/>
                         <viewControllerLayoutGuide type="bottom" id="rgw-aG-yUI"/>
@@ -2707,7 +2707,7 @@
         <!--Message Home View Controller-->
         <scene sceneID="GzQ-Ms-GyV">
             <objects>
-                <tabBarController storyboardIdentifier="MESSAGE_TABBAR" automaticallyAdjustsScrollViewInsets="NO" id="i1p-0J-wu6" customClass="MessageHomeViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MESSAGE_TABBAR" automaticallyAdjustsScrollViewInsets="NO" id="i1p-0J-wu6" customClass="MessageHomeViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cqA-MV-yPF"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="yJN-5x-MDV">
@@ -2727,7 +2727,7 @@
         <!--Enquiry View Controller-->
         <scene sceneID="9Ac-jG-HHT">
             <objects>
-                <viewController storyboardIdentifier="ENQUIRY" id="DyY-3o-LmT" customClass="EnquiryViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ENQUIRY" id="DyY-3o-LmT" customClass="EnquiryViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UcF-H5-bJZ"/>
                         <viewControllerLayoutGuide type="bottom" id="xOH-Sh-0sW"/>
@@ -2834,7 +2834,7 @@
         <!--Edit User Profile View Controller-->
         <scene sceneID="SW7-Pp-1sq">
             <objects>
-                <viewController storyboardIdentifier="EDIT_PROFILE" id="SRx-ir-GhL" customClass="EditUserProfileViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EDIT_PROFILE" id="SRx-ir-GhL" customClass="EditUserProfileViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tLe-l7-FNH"/>
                         <viewControllerLayoutGuide type="bottom" id="D9q-RZ-1OG"/>
@@ -2849,7 +2849,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AGt-ma-Z0i">
                                         <rect key="frame" x="10" y="225" width="300" height="200"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-3f-ls1" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-3f-ls1" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="36"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -2882,7 +2882,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="First Name"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-gN-hhi" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-gN-hhi" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="41" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="YiM-bH-oly">
@@ -2933,7 +2933,7 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdq-iC-LRv" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdq-iC-LRv" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="82" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="DXo-eQ-bQA">
@@ -2984,7 +2984,7 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvN-vq-9Xf" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvN-vq-9Xf" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="123" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="317" id="3b7-SB-7mu"/>
@@ -3035,7 +3035,7 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wp6-bf-veG" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wp6-bf-veG" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="164" width="300" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="PYg-V4-Lwy">
@@ -3178,7 +3178,7 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOv-WG-hX8" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sOv-WG-hX8" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="10" y="523" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="3Yq-4f-xJV"/>
@@ -3288,7 +3288,7 @@
                                             <action selector="saveChangesAction:" destination="SRx-ir-GhL" eventType="touchUpInside" id="Jsc-GS-vQh"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXO-nB-SvR" customClass="SkyFloatingLabelTextField" customModule="Needybee" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXO-nB-SvR" customClass="SkyFloatingLabelTextField" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="10" y="474" width="300" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="1Wx-nC-rJh"/>
@@ -3467,7 +3467,7 @@
         <!--Products View Controller-->
         <scene sceneID="ALD-YH-clc">
             <objects>
-                <viewController storyboardIdentifier="PRODUCT" id="ulM-bS-QRi" customClass="ProductsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PRODUCT" id="ulM-bS-QRi" customClass="ProductsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yBA-vJ-9Nl"/>
                         <viewControllerLayoutGuide type="bottom" id="V7L-c3-zJS"/>
@@ -3527,7 +3527,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wUf-AV-6zx" customClass="ProductsCollectionViewCell" customModule="Needybee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wUf-AV-6zx" customClass="ProductsCollectionViewCell" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="146" height="191"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -3545,8 +3545,11 @@
                                 <rect key="frame" x="134" y="48" width="180" height="446"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="scC-sk-neP">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="446"/>
+                                        <rect key="frame" x="0.0" y="250" width="180" height="196"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="196" id="3CO-Jf-14d"/>
+                                        </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="XIx-EZ-8wb" rowHeight="33" style="IBUITableViewCellStyleDefault" id="oZd-Oi-Jec">
                                                 <rect key="frame" x="0.0" y="28" width="180" height="33"/>
@@ -3575,16 +3578,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="scC-sk-neP" secondAttribute="trailing" id="8OD-Pi-q5i"/>
                                     <constraint firstAttribute="width" constant="180" id="CHX-Yd-Jy6"/>
-                                    <constraint firstItem="scC-sk-neP" firstAttribute="top" secondItem="02Q-YK-cGB" secondAttribute="top" id="DHA-2f-PaN"/>
-                                    <constraint firstItem="scC-sk-neP" firstAttribute="leading" secondItem="02Q-YK-cGB" secondAttribute="leading" id="N29-S3-un5"/>
-                                    <constraint firstAttribute="bottom" secondItem="scC-sk-neP" secondAttribute="bottom" id="x3M-aH-yb6"/>
+                                    <constraint firstAttribute="trailing" secondItem="scC-sk-neP" secondAttribute="trailing" id="Nu4-sN-T35"/>
+                                    <constraint firstAttribute="bottom" secondItem="scC-sk-neP" secondAttribute="bottom" id="eBU-bh-TfR"/>
+                                    <constraint firstItem="scC-sk-neP" firstAttribute="leading" secondItem="02Q-YK-cGB" secondAttribute="leading" id="ol4-jx-ZQ3"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7k-Fh-vPb">
                                 <rect key="frame" x="249" y="507" width="35" height="35"/>
-                                <color key="backgroundColor" red="0.89411764705882346" green="0.19215686274509802" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99921911954879761" green="0.83587604761123657" blue="0.45128852128982544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="AbQ-mg-C0R"/>
                                     <constraint firstAttribute="height" constant="35" id="ytW-fN-BrZ"/>
@@ -3669,12 +3671,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKX-Yn-qeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1295.625" y="-1409.1549295774648"/>
+            <point key="canvasLocation" x="-1149.375" y="-1413.3802816901409"/>
         </scene>
         <!--Product Detail Sub Categery-->
         <scene sceneID="3Dc-su-jgR">
             <objects>
-                <viewController storyboardIdentifier="productDetailSubCategery" id="fsc-Ly-leS" customClass="productDetailSubCategery" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productDetailSubCategery" id="fsc-Ly-leS" customClass="productDetailSubCategery" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CE1-oJ-TPm"/>
                         <viewControllerLayoutGuide type="bottom" id="HTt-Tn-PYD"/>
@@ -4238,7 +4240,7 @@
         <!--Payment View Controller-->
         <scene sceneID="8rZ-Je-Z8E">
             <objects>
-                <viewController storyboardIdentifier="PaymentViewController" id="7kV-go-gHT" customClass="PaymentViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentViewController" id="7kV-go-gHT" customClass="PaymentViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SJf-Ia-qxx"/>
                         <viewControllerLayoutGuide type="bottom" id="9vh-xx-G3A"/>
@@ -4754,7 +4756,7 @@
         <!--Storelocator View Controller-->
         <scene sceneID="ZPz-E6-Ajy">
             <objects>
-                <viewController storyboardIdentifier="StorelocatorViewController" id="sND-1K-rVL" customClass="StorelocatorViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StorelocatorViewController" id="sND-1K-rVL" customClass="StorelocatorViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gfl-Px-CUQ"/>
                         <viewControllerLayoutGuide type="bottom" id="gXd-tW-jUo"/>
@@ -4791,7 +4793,7 @@
         <!--Notification Description View Controller-->
         <scene sceneID="5LZ-Be-rq0">
             <objects>
-                <viewController storyboardIdentifier="NOTIFICATION" id="orX-Bf-uAM" customClass="NotificationDescriptionViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NOTIFICATION" id="orX-Bf-uAM" customClass="NotificationDescriptionViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mR2-FI-gBV"/>
                         <viewControllerLayoutGuide type="bottom" id="fuz-MX-Dki"/>
@@ -4963,7 +4965,7 @@
         <!--Chat View Controller-->
         <scene sceneID="hy0-Ju-Z5W">
             <objects>
-                <viewController storyboardIdentifier="IMChatViewController" id="aqJ-2F-3iY" customClass="IMChatViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IMChatViewController" id="aqJ-2F-3iY" customClass="IMChatViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lz2-gc-Vuw"/>
                         <viewControllerLayoutGuide type="bottom" id="N8B-E3-dTn"/>
@@ -5026,7 +5028,7 @@
         <!--Campaign Detail View Controller-->
         <scene sceneID="Nas-37-2oE">
             <objects>
-                <viewController storyboardIdentifier="CAMPAIGNSDETAIL" id="gY1-Ru-4Aa" customClass="CXCampaignDetailViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CAMPAIGNSDETAIL" id="gY1-Ru-4Aa" customClass="CXCampaignDetailViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sn9-vA-pNU"/>
                         <viewControllerLayoutGuide type="bottom" id="f4d-hL-Ghv"/>
@@ -5046,7 +5048,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CampaignCollectionViewCell" id="zEH-nN-Fbm" customClass="CampaignCollectionViewCell" customModule="Needybee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CampaignCollectionViewCell" id="zEH-nN-Fbm" customClass="CampaignCollectionViewCell" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="146" height="188"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -5081,7 +5083,7 @@
         <!--Campaigns View Controller-->
         <scene sceneID="kup-t1-UPe">
             <objects>
-                <viewController storyboardIdentifier="CAMPAIGNS" id="nwp-xN-mmr" customClass="CXCampaignsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CAMPAIGNS" id="nwp-xN-mmr" customClass="CXCampaignsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dvl-3x-x7l"/>
                         <viewControllerLayoutGuide type="bottom" id="TZj-zh-Mrd"/>
@@ -5100,7 +5102,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CampaignCollectionViewCell" id="QEJ-AV-sTX" customClass="CampaignCollectionViewCell" customModule="Needybee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CampaignCollectionViewCell" id="QEJ-AV-sTX" customClass="CampaignCollectionViewCell" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="149" height="188"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -5135,7 +5137,7 @@
         <!--Calender View Controller-->
         <scene sceneID="eAQ-Sm-hbf">
             <objects>
-                <viewController storyboardIdentifier="CXCalenderViewController" id="osG-fi-YmK" customClass="CXCalenderViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CXCalenderViewController" id="osG-fi-YmK" customClass="CXCalenderViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Ud-ZQ-bHO"/>
                         <viewControllerLayoutGuide type="bottom" id="lFS-kH-cqA"/>
@@ -5204,7 +5206,7 @@
         <!--Promotion View Controller-->
         <scene sceneID="pYb-hS-Ynq">
             <objects>
-                <viewController storyboardIdentifier="PROMOTION" id="Hff-Rd-HKx" customClass="CXPromotionViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PROMOTION" id="Hff-Rd-HKx" customClass="CXPromotionViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8QB-gy-pzo"/>
                         <viewControllerLayoutGuide type="bottom" id="y3H-P4-wfO"/>
@@ -5230,7 +5232,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YVOLV" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhD-5A-kzu">
-                                                <rect key="frame" x="136" y="10" width="48" height="21.5"/>
+                                                <rect key="frame" x="136" y="9.5" width="48" height="21.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -5274,7 +5276,7 @@
         <!--Loyal Crd View Controller-->
         <scene sceneID="7kF-G4-Ief">
             <objects>
-                <viewController storyboardIdentifier="LOYALCARD" id="p7r-dJ-zpx" customClass="CXLoyalCrdViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LOYALCARD" id="p7r-dJ-zpx" customClass="CXLoyalCrdViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9TT-gT-ke9"/>
                         <viewControllerLayoutGuide type="bottom" id="HdH-UC-um3"/>
@@ -5311,7 +5313,7 @@
         <!--My Appointment View Controller-->
         <scene sceneID="zkz-0G-HWH">
             <objects>
-                <viewController storyboardIdentifier="MyAppointmentViewController" id="lVa-gh-C9Z" customClass="MyAppointmentViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyAppointmentViewController" id="lVa-gh-C9Z" customClass="MyAppointmentViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="twQ-rZ-VvV"/>
                         <viewControllerLayoutGuide type="bottom" id="djR-aw-ZjI"/>
@@ -5399,7 +5401,7 @@
         <!--Appointment Details View Controller-->
         <scene sceneID="bfg-O0-ngB">
             <objects>
-                <viewController storyboardIdentifier="AppointmentDetailsViewController" id="NJK-UM-F17" customClass="AppointmentDetailsViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentDetailsViewController" id="NJK-UM-F17" customClass="AppointmentDetailsViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ryI-Rc-0OY"/>
                         <viewControllerLayoutGuide type="bottom" id="CTL-fO-RvQ"/>
@@ -5453,7 +5455,7 @@
         <!--Booking Slot View Controller-->
         <scene sceneID="ibo-01-eFG">
             <objects>
-                <viewController storyboardIdentifier="BookingSlotViewController" id="hFO-OQ-yDh" customClass="BookingSlotViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookingSlotViewController" id="hFO-OQ-yDh" customClass="BookingSlotViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rm4-ZG-2Wq"/>
                         <viewControllerLayoutGuide type="bottom" id="RMu-dm-DYk"/>
@@ -5491,7 +5493,7 @@
         <!--Services View Controller-->
         <scene sceneID="BOJ-VD-AEk">
             <objects>
-                <viewController storyboardIdentifier="ServicesViewController" id="dKc-DN-aFx" customClass="ServicesViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServicesViewController" id="dKc-DN-aFx" customClass="ServicesViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Ll-0a-GGu"/>
                         <viewControllerLayoutGuide type="bottom" id="J9d-wA-bd7"/>
@@ -5503,7 +5505,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ggw-S2-ujB">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="330"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gx-LO-QJc" customClass="CXView" customModule="Needybee" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gx-LO-QJc" customClass="CXView" customModule="Yvolv_Consumer" customModuleProvider="target">
                                         <rect key="frame" x="20" y="74" width="240" height="248"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ek-Ao-qOf">
@@ -5625,7 +5627,6 @@
         <image name="rateFilled" width="40" height="40"/>
         <image name="shareImage" width="20" height="20"/>
         <image name="starImage" width="20" height="20"/>
-        <image name="storeongoLogo" width="150" height="67"/>
         <image name="viewPreviousOrders" width="20" height="20"/>
         <image name="whiteImage" width="112" height="112"/>
         <image name="whitemenu40x40.png" width="20" height="20"/>

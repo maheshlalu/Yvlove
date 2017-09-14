@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import IQKeyboardManagerSwift
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -53,7 +54,6 @@ enum SignUpMembers {
     case password
 }
 
-
 class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewDelegate {
     
     var cScrollView:UIScrollView!
@@ -72,6 +72,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.customizeMainView()
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,46 +81,46 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
     }
 
     func customizeMainView() {
-        self.cScrollView = UIScrollView.init(frame: CGRect(x: 0,y: 20, width: self.view.frame.size.width, height: (self.view.frame.size.height)))
+        /*self.cScrollView = UIScrollView.init(frame: CGRect(x: 0,y: 20, width: self.view.frame.size.width, height: (self.view.frame.size.height)))
         self.cScrollView.backgroundColor = UIColor.clear
         // self.cScrollView.contentSize = CGSizeMake(self.view.frame.size.width,600)
-        self.view.addSubview(self.cScrollView)
+        self.view.addSubview(self.cScrollView)*/
         
-        let signUpLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: 0, width: self.cScrollView.frame.size.width-40, height: 50), text: "Sign Up",font:UIFont.init(name: "Roboto-Regular", size: 40)!)
-        self.cScrollView.addSubview(signUpLbl)
-        let signUpSubLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: signUpLbl.frame.origin.y+signUpLbl.frame.size.height-10, width: self.cScrollView.frame.size.width-40, height: 40), text: "Sign up with email address",font:UIFont.init(name: "Roboto-Regular", size: 14)!)
-        self.cScrollView.addSubview(signUpSubLbl)
+        let signUpLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: 0, width: self.view.frame.size.width-40, height: 50), text: "Sign Up",font:UIFont.init(name: "Roboto-Bold", size: 40)!)
+        self.view.addSubview(signUpLbl)
+        let signUpSubLbl = UILabel.createHeaderLabel(CGRect(x: 20, y: signUpLbl.frame.origin.y+signUpLbl.frame.size.height-10, width: self.view.frame.size.width-40, height: 40), text: "Sign up with email address",font:UIFont.init(name: "Roboto-Regular", size: 14)!)
+        self.view.addSubview(signUpSubLbl)
         
-        self.firstNameField = self.createField(CGRect(x: 30, y: signUpSubLbl.frame.size.height+signUpSubLbl.frame.origin.y+20, width: self.cScrollView.frame.size.width-60, height: 40), tag: 1, placeHolder: "First Name")
+        self.firstNameField = self.createField(CGRect(x: 30, y: signUpSubLbl.frame.size.height+signUpSubLbl.frame.origin.y+20, width: self.view.frame.size.width-60, height: 40), tag: 1, placeHolder: "First Name")
         self.firstNameField.keyboardType = UIKeyboardType.alphabet
-        self.cScrollView.addSubview(self.firstNameField)
+        self.view.addSubview(self.firstNameField)
         
-        self.lastNameField = self.createField(CGRect(x: 30, y: self.firstNameField.frame.size.height+self.firstNameField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 2, placeHolder: "Last Name")
+        self.lastNameField = self.createField(CGRect(x: 30, y: self.firstNameField.frame.size.height+self.firstNameField.frame.origin.y+5, width: self.view.frame.size.width-60, height: 40), tag: 2, placeHolder: "Last Name")
          self.lastNameField.keyboardType = UIKeyboardType.alphabet
-        self.cScrollView.addSubview(self.lastNameField)
+        self.view.addSubview(self.lastNameField)
         
-        self.mobileNumField = self.createField(CGRect(x: 30, y: self.lastNameField.frame.size.height+self.lastNameField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 3, placeHolder: "Mobile Number")
+        self.mobileNumField = self.createField(CGRect(x: 30, y: self.lastNameField.frame.size.height+self.lastNameField.frame.origin.y+5, width: self.view.frame.size.width-60, height: 40), tag: 3, placeHolder: "Mobile Number")
         self.mobileNumField.keyboardType = UIKeyboardType.numberPad
         self.addAccessoryViewToField(self.mobileNumField)
-        self.cScrollView.addSubview(self.mobileNumField)
+        self.view.addSubview(self.mobileNumField)
         
-        self.emailAddressField = self.createField(CGRect(x: 30, y: self.mobileNumField.frame.size.height+self.mobileNumField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 4, placeHolder: "Email Address")
+        self.emailAddressField = self.createField(CGRect(x: 30, y: self.mobileNumField.frame.size.height+self.mobileNumField.frame.origin.y+5, width: self.view.frame.size.width-60, height: 40), tag: 4, placeHolder: "Email Address")
         self.emailAddressField.keyboardType = UIKeyboardType.emailAddress
-        self.cScrollView.addSubview(self.emailAddressField)
+        self.view.addSubview(self.emailAddressField)
         
-        self.passwordField = self.createField(CGRect(x: 30, y: self.emailAddressField.frame.size.height+self.emailAddressField.frame.origin.y+5, width: self.cScrollView.frame.size.width-60, height: 40), tag: 5, placeHolder: "Password")
+        self.passwordField = self.createField(CGRect(x: 30, y: self.emailAddressField.frame.size.height+self.emailAddressField.frame.origin.y+5, width: self.view.frame.size.width-60, height: 40), tag: 5, placeHolder: "Password")
         self.passwordField.isSecureTextEntry = true
-        self.cScrollView.addSubview(self.passwordField)
+        self.view.addSubview(self.passwordField)
         
         self.signUpBtn = self.createButton(CGRect(x: 25, y: self.passwordField.frame.size.height+self.passwordField.frame.origin.y+30, width: self.view.frame.size.width-50, height: 50), title: "SIGN UP", tag: 3, bgColor: UIColor.signUpColor())
         self.signUpBtn.setTitleColor(UIColor.white, for: UIControlState())
         self.signUpBtn.addTarget(self, action: #selector(CXSignUpViewController.signUpBtnAction), for: .touchUpInside)
-        self.cScrollView.addSubview(self.signUpBtn)
+        self.view.addSubview(self.signUpBtn)
         
         self.signInBtn = self.createButton(CGRect(x: 25, y: self.signUpBtn.frame.size.height+self.signUpBtn.frame.origin.y+20, width: self.view.frame.size.width-50, height: 50), title: "SIGN IN", tag: 3, bgColor:CXAppConfig.sharedInstance.getAppTheamColor())
         self.signInBtn.setTitleColor(UIColor.white, for: UIControlState())
         self.signInBtn.addTarget(self, action: #selector(CXSignUpViewController.signInBtnAction), for: .touchUpInside)
-        self.cScrollView.addSubview(self.signInBtn)
+        self.view.addSubview(self.signInBtn)
         
     }
     func clearNumPadAction() {
@@ -324,7 +325,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
     }
     override func shouldShowLeftMenuWithLogo() -> Bool{
         
-        return true
+        return false
     }
 
     override func headerTitleText() -> String{
@@ -339,19 +340,28 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
         }
         return false
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    //textField.frame.origin.y
+  /*func textFieldDidBeginEditing(_ textField: UITextField){
         let scrollPoint = CGPoint(x: 0, y: textField.frame.origin.y)
-        self.cScrollView.setContentOffset(scrollPoint, animated: true)
-    }
+        self.view.setContentOffset(scrollPoint, animated: true)
+    }*/
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
        return textField.resignFirstResponder()
+        
+        
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        /* if textField == self.dobtxt {
+         self.selectDataPicker(textField: textField)
+         return false
+         }*/
+        return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+   /* func textFieldDidEndEditing(_ textField: UITextField) {
         self.cScrollView.setContentOffset(CGPoint.zero, animated: true)
-    }
+    }*/
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.tag == 3 {

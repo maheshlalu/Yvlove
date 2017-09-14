@@ -127,6 +127,13 @@ class CXNavDrawer: UINavigationController {
         self.cartBtn.isHighlighted = false
         
         rightButtonsView.addSubview(self.profileBtn)
+        
+        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@","Cart" ), ispredicate: true, orederByKey: "").totalCount == 0{
+            self.cartBtn.isHidden = true
+        }else{
+            self.cartBtn.isHidden = false
+
+        }
         rightButtonsView.addSubview(self.cartBtn)
         rightButtonsView.addSubview(self.notificationBellBtn)
         
@@ -266,11 +273,18 @@ class CXNavDrawer: UINavigationController {
         }
         
         if viewController.shouldShowCart(){
+            
+            if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@","Cart" ), ispredicate: true, orederByKey: "").totalCount == 0{
+                self.cartBtn.isHidden =  true
+            }else{
             self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRect(x: buttonXposition, y: 1, width: 35, height: 35))
             self.cartBtn.isHighlighted = false
+                self.cartBtn.isHidden =  false
+
             rightButtonsView.addSubview(self.cartBtn)
             self.cartBtn.addTarget(self, action: #selector(cartButtonAction), for: .touchUpInside)
             self.upodateTheCartItems()
+            }
         }
         
         if viewController.profileDropdown(){

@@ -89,7 +89,9 @@ class CXViewController: UIViewController,UIPopoverPresentationControllerDelegate
     }
     
     func shouldShowCart() -> Bool{
-        
+        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@","Cart" ), ispredicate: true, orederByKey: "").totalCount == 0{
+            return false
+        }
         return true
     }
     

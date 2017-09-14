@@ -73,7 +73,14 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
 extension PhotosViewController {
     
     func getTheGalleryItems(){
-        self.gallaryItems = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Gallery", predicate: NSPredicate(format:"isBannerImage=%@","true" ), ispredicate: false, orederByKey: "").dataArray
+        
+        
+        let fetchRequest = CX_Gallery.mr_requestAllSorted(by: "gID", ascending: true)
+           // fetchRequest?.predicate = NSPredicate(format:"isBannerImage=%@","true" )
+        
+       self.gallaryItems = CX_Gallery.mr_executeFetchRequest(fetchRequest) as NSArray
+        
+       // self.gallaryItems = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Gallery", predicate: NSPredicate(format:"isBannerImage=%@","true" ), ispredicate: false, orederByKey: "").dataArray
         self.photosCollectionView.reloadData()
         for  gallaeryData  in self.gallaryItems {
             let imageData : CX_Gallery = (gallaeryData as? CX_Gallery)!

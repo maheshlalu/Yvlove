@@ -30,6 +30,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
+    var finalPriceStr:String!
     var p3catDict:NSMutableDictionary = NSMutableDictionary()
     @IBOutlet weak var tableviewAdditinalcategery: UITableView!
     
@@ -130,6 +131,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
         cell.textLabel?.text = subDict.value(forKey: "Name") as? String
+        cell.textLabel?.textColor = UIColor.black
         // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
@@ -291,7 +293,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         //Trimming Price And Discount
         let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
-        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
+         finalPriceStr = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         
         let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
@@ -312,17 +314,26 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         
         //Setting AttributedPrice
-        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: finalPrice)
+        let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: finalPriceStr)
         attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
         
         //FinalPrice after subtracting the discount
-        let finalPriceNum:Int! = Int(finalPrice)!-Int(finalDiscount)!
+        let finalPriceNum:Int! = Int(finalPriceStr)!-Int(finalDiscount)!
         FinalPrice = String(finalPriceNum) as String
-        
-        if finalPrice == FinalPrice{
+        //if price is 0 then hide card btn
+        if finalPriceStr == FinalPrice{
+            if FinalPrice == "0"{
+                cell.cartaddedbutton.isHidden = true
+            }else{
+                cell.cartaddedbutton.isHidden = false
+                  cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+            }
             cell.productpriceLabel.isHidden = true
-            cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+           
+
+            
         }else{
+             cell.cartaddedbutton.isHidden = false
             cell.productpriceLabel.isHidden = false
             cell.productpriceLabel.attributedText = attributeString
             cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
@@ -351,7 +362,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         return cell
         
     }
-    
+   
     func assignCartButtonWishtListProperTy(_ tableViewCell:ProductsCollectionViewCell,indexPath:IndexPath,productData:CX_Products){
         
         if CXDataProvider.sharedInstance.isAddToCart(productData.pid! as NSString).isAddedToCart{
@@ -374,6 +385,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         var mrp = finalPriceStr
+        CXLog.print("mrp== \(String(describing: mrp))")
+        if mrp == ""{
+            return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 100)
+        }
         return CGSize(width: (updatecollectionview.bounds.size.width)/2-8, height: 222)
     }
     

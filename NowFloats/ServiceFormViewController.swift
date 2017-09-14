@@ -42,6 +42,8 @@ class ServiceFormViewController: XLFormViewController {
     var serViceCategory : String = String()
     var addmoreBool:Bool = Bool()
     var navController:UINavigationController = UINavigationController()
+    var isFrom = String()
+    var headerDict = NSDictionary()
     func getFormData(){
         
         LoadingView.show(true)
@@ -92,11 +94,27 @@ class ServiceFormViewController: XLFormViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.serViceCategory = "Enquiry"
+        
+        if isFrom == "popup"{
+            
+            let backItem = UIBarButtonItem(image: UIImage(named: "LeftArrow"), landscapeImagePhone: nil, style:  .plain, target: self, action: #selector(goBack))
+            self.navigationItem.leftBarButtonItem = backItem
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+            self.title = headerDict.value(forKey: "Name") as? String
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        }
+        self.serViceCategory = "ServicesCategories"
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 50, 0)
         view.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.navController.navigationBar.isHidden = true
         self.getFormData()
+    }
+    func goBack()
+    {
+        self.dismiss(animated: true) {
+            
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
     }
@@ -347,10 +365,10 @@ class ServiceFormViewController: XLFormViewController {
         serviceFormDic.removeObject(forKey: "Submit")
         
         let dict:NSMutableDictionary = NSMutableDictionary()
-        dict.setObject(serviceFormDic.value(forKey: "Name")!, forKey: "Name" as NSCopying)
-        dict.setObject(serviceFormDic.value(forKey: "Message")!, forKey: "Message" as NSCopying)
+        //dict.setObject(serviceFormDic.value(forKey: "Name")!, forKey: "Name" as NSCopying)
+        //dict.setObject(serviceFormDic.value(forKey: "Message")!, forKey: "Message" as NSCopying)
         //dict.setObject(serviceFormDic.value(forKey: "Address")!, forKey: "Address" as NSCopying)
-        dict.setObject(serviceFormDic.value(forKey: "Phone number")!, forKey: "Phone number" as NSCopying)
+        //dict.setObject(serviceFormDic.value(forKey: "Phone number")!, forKey: "Phone number" as NSCopying)
         //dict.setObject(mobile, forKey: "Phone Number" as NSCopying)
         
         let listArray : NSMutableArray = NSMutableArray()
@@ -434,6 +452,7 @@ class ServiceFormViewController: XLFormViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+   
 }
 
 /*

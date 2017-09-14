@@ -50,7 +50,6 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlString,parameters: ["type":"ServicesCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responsDict) in
             print(responsDict)
-            
             self.servicesNamesArray = (responsDict.value(forKey: "jobs")as? NSArray)!
             print(self.servicesNamesArray)
             self.tableView.reloadData()
@@ -58,16 +57,19 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
         
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-            let appdelegate = UIApplication.shared.delegate as! AppDelegate
-            let service =  ServiceFormViewController.init()
+            //let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let service =  ServiceFormViewController.init()
+        
+        let nccontroller = UINavigationController(rootViewController: service)
             let dict = servicesNamesArray[indexPath.row]as? NSDictionary
             service.serViceCategory = (dict?.value(forKey: "Name") as? String)!
+        service.headerDict = dict!
+        service.isFrom = "popup"
+        self.present(nccontroller, animated: true, completion: nil)
             //self.present(service, animated: true, completion: nil)
-            appdelegate.window?.rootViewController? = service
-        
+            //appdelegate.window?.rootViewController? = service
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
