@@ -235,7 +235,9 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             
             let rupee = "\u{20B9}"
             let price:String = productDetailDic.value(forKey: "MRP") as! String
-            let discount:String = productDetailDic.value(forKey: "DiscountAmount") as! String
+            
+            
+            let discount:String = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: productDetailDic, sourceKey: "DiscountAmount")
             if price == "0"{
                 discountPriceLbl.isHidden = true
                 discountPersentageLbl.isHidden = true

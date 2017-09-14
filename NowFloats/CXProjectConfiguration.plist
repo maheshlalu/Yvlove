@@ -5,15 +5,15 @@
 	<key>loyalCards</key>
 	<string>MobileAPIs/getConJobInstances?</string>
 	<key>NOWFLOATS_MALL_ID</key>
-	<string>4724</string>
+	<string>19</string>
 	<key>AppTheamColor</key>
 	<array>
-		<string>228</string>
-		<string>49</string>
-		<string>44</string>
+		<string>255</string>
+		<string>196</string>
+		<string>35</string>
 	</array>
 	<key>NowFloats_BaseUrl</key>
-	<string>http://storeongo.com:8081/</string>
+	<string>http://47.91.107.151:8081/</string>
 	<key>getMaster</key>
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>

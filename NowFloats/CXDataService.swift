@@ -12,7 +12,6 @@ import AFNetworking
 private var _SingletonSharedInstance:CXDataService! = CXDataService()
 
 open class CXDataService: NSObject {
-
     class var sharedInstance : CXDataService {
         return _SingletonSharedInstance
     }
@@ -157,6 +156,40 @@ open class CXDataService: NSObject {
         } catch {
         }
         return jsonDict
+    }
+    func showAlert(message:String,viewController:UIViewController)
+    {
+        let alert = UIAlertController.init(title: "YVOLV", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "Ok", style: .default) { (okAction) in
+            
+        }
+        alert.addAction(okAction)
+        viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlertView(status:Int) {
+        self.hideLoader()
+        let alert = UIAlertController(title:"Network Error!!!", message:"Please bear with us.Thank You!!!", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            if status == 1 {
+                
+            }else{
+                
+            }
+        }
+        alert.addAction(okAction)
+        //self.present(alert, animated: true, completion: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    func showLoader(view:UIView,message:String){
+        LoadingView.show(true)
+    }
+    
+    func hideLoader(){
+        LoadingView.hide()
     }
 
     

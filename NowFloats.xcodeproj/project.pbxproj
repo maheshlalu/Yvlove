@@ -109,6 +109,7 @@
 		1635D6E0E2BC4D6CFBEB6CA1 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
 		180F249E1D9E732F00E69B0A /* Serices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F249D1D9E732F00E69B0A /* Serices.swift */; };
 		1825CCBF1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		183209951F6964FF00F1FD65 /* WeblinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183209941F6964FF00F1FD65 /* WeblinkViewController.swift */; };
 		183573941D797B2300722AA2 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */; };
 		183573951D797B2300722AA2 /* OfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */; };
 		183573A41D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183573961D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift */; };
@@ -166,6 +167,24 @@
 		18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */; };
 		18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */; };
 		18EC9D921D75C7B7001E27D4 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC9D911D75C7B7001E27D4 /* ViewPager.swift */; };
+		18F0A1AA1F6A48DE004059FF /* AppointmentDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A19E1F6A48DE004059FF /* AppointmentDetailsTableViewCell.swift */; };
+		18F0A1AB1F6A48DE004059FF /* AppointmentDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0A19F1F6A48DE004059FF /* AppointmentDetailsTableViewCell.xib */; };
+		18F0A1AC1F6A48DE004059FF /* AppointmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A01F6A48DE004059FF /* AppointmentDetailsViewController.swift */; };
+		18F0A1AD1F6A48DE004059FF /* BookingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A11F6A48DE004059FF /* BookingCollectionViewCell.swift */; };
+		18F0A1AE1F6A48DE004059FF /* BookingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0A1A21F6A48DE004059FF /* BookingCollectionViewCell.xib */; };
+		18F0A1AF1F6A48DE004059FF /* BookingSlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A31F6A48DE004059FF /* BookingSlotViewController.swift */; };
+		18F0A1B01F6A48DE004059FF /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A41F6A48DE004059FF /* BookingTableViewCell.swift */; };
+		18F0A1B11F6A48DE004059FF /* BookingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0A1A51F6A48DE004059FF /* BookingTableViewCell.xib */; };
+		18F0A1B21F6A48DE004059FF /* CancelSlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A61F6A48DE004059FF /* CancelSlotViewController.swift */; };
+		18F0A1B31F6A48DE004059FF /* MyAppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A71F6A48DE004059FF /* MyAppointmentTableViewCell.swift */; };
+		18F0A1B41F6A48DE004059FF /* MyAppointmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0A1A81F6A48DE004059FF /* MyAppointmentTableViewCell.xib */; };
+		18F0A1B51F6A48DE004059FF /* MyAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1A91F6A48DE004059FF /* MyAppointmentViewController.swift */; };
+		18F0A1BA1F6A4A0E004059FF /* CXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1B71F6A4A0E004059FF /* CXButton.swift */; };
+		18F0A1BB1F6A4A0E004059FF /* CXImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1B81F6A4A0E004059FF /* CXImageView.swift */; };
+		18F0A1BC1F6A4A0E004059FF /* CXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1B91F6A4A0E004059FF /* CXTextField.swift */; };
+		18F0A1C11F6A4B61004059FF /* ServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1BE1F6A4B61004059FF /* ServicesTableViewCell.swift */; };
+		18F0A1C21F6A4B61004059FF /* ServicesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F0A1BF1F6A4B61004059FF /* ServicesTableViewCell.xib */; };
+		18F0A1C31F6A4B61004059FF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0A1C01F6A4B61004059FF /* ServicesViewController.swift */; };
 		18F36C6F1D869E890043710A /* CX_Cart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */; };
 		18F36C701D869E890043710A /* CX_Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36C6E1D869E890043710A /* CX_Cart.swift */; };
 		3B370D0F1D65976900DB332F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B370D0D1D65976900DB332F /* UpdatesViewController.swift */; };
@@ -381,6 +400,7 @@
 		180F249D1D9E732F00E69B0A /* Serices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serices.swift; sourceTree = "<group>"; };
 		1825CCBD1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
+		183209941F6964FF00F1FD65 /* WeblinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeblinkViewController.swift; sourceTree = "<group>"; };
 		183573921D797B2300722AA2 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		183573931D797B2300722AA2 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
 		183573961D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_Rating+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -452,6 +472,24 @@
 		18EC9D8C1D75ABF3001E27D4 /* CXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXViewController.swift; sourceTree = "<group>"; };
 		18EC9D8E1D75C463001E27D4 /* OffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		18EC9D911D75C7B7001E27D4 /* ViewPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
+		18F0A19E1F6A48DE004059FF /* AppointmentDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		18F0A19F1F6A48DE004059FF /* AppointmentDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		18F0A1A01F6A48DE004059FF /* AppointmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsViewController.swift; sourceTree = "<group>"; };
+		18F0A1A11F6A48DE004059FF /* BookingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCollectionViewCell.swift; sourceTree = "<group>"; };
+		18F0A1A21F6A48DE004059FF /* BookingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingCollectionViewCell.xib; sourceTree = "<group>"; };
+		18F0A1A31F6A48DE004059FF /* BookingSlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingSlotViewController.swift; sourceTree = "<group>"; };
+		18F0A1A41F6A48DE004059FF /* BookingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
+		18F0A1A51F6A48DE004059FF /* BookingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingTableViewCell.xib; sourceTree = "<group>"; };
+		18F0A1A61F6A48DE004059FF /* CancelSlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelSlotViewController.swift; sourceTree = "<group>"; };
+		18F0A1A71F6A48DE004059FF /* MyAppointmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppointmentTableViewCell.swift; sourceTree = "<group>"; };
+		18F0A1A81F6A48DE004059FF /* MyAppointmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAppointmentTableViewCell.xib; sourceTree = "<group>"; };
+		18F0A1A91F6A48DE004059FF /* MyAppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppointmentViewController.swift; sourceTree = "<group>"; };
+		18F0A1B71F6A4A0E004059FF /* CXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXButton.swift; sourceTree = "<group>"; };
+		18F0A1B81F6A4A0E004059FF /* CXImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXImageView.swift; sourceTree = "<group>"; };
+		18F0A1B91F6A4A0E004059FF /* CXTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXTextField.swift; sourceTree = "<group>"; };
+		18F0A1BE1F6A4B61004059FF /* ServicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesTableViewCell.swift; sourceTree = "<group>"; };
+		18F0A1BF1F6A4B61004059FF /* ServicesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesTableViewCell.xib; sourceTree = "<group>"; };
+		18F0A1C01F6A4B61004059FF /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		18F36C6D1D869E890043710A /* CX_Cart+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CX_Cart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18F36C6E1D869E890043710A /* CX_Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_Cart.swift; sourceTree = "<group>"; };
 		30F85A60D666543E95A789BD /* Pods-MyLabs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLabs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyLabs/Pods-MyLabs.debug.xcconfig"; sourceTree = "<group>"; };
@@ -919,6 +957,14 @@
 			name = Catageories;
 			sourceTree = "<group>";
 		};
+		183209931F6964BE00F1FD65 /* WebLinks */ = {
+			isa = PBXGroup;
+			children = (
+				183209941F6964FF00F1FD65 /* WeblinkViewController.swift */,
+			);
+			name = WebLinks;
+			sourceTree = "<group>";
+		};
 		183573911D79758400722AA2 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,6 +1122,45 @@
 			name = ViewPager;
 			sourceTree = "<group>";
 		};
+		18F0A19D1F6A488F004059FF /* BookAppoinMent */ = {
+			isa = PBXGroup;
+			children = (
+				18F0A19E1F6A48DE004059FF /* AppointmentDetailsTableViewCell.swift */,
+				18F0A19F1F6A48DE004059FF /* AppointmentDetailsTableViewCell.xib */,
+				18F0A1A01F6A48DE004059FF /* AppointmentDetailsViewController.swift */,
+				18F0A1A11F6A48DE004059FF /* BookingCollectionViewCell.swift */,
+				18F0A1A21F6A48DE004059FF /* BookingCollectionViewCell.xib */,
+				18F0A1A31F6A48DE004059FF /* BookingSlotViewController.swift */,
+				18F0A1A41F6A48DE004059FF /* BookingTableViewCell.swift */,
+				18F0A1A51F6A48DE004059FF /* BookingTableViewCell.xib */,
+				18F0A1A61F6A48DE004059FF /* CancelSlotViewController.swift */,
+				18F0A1A71F6A48DE004059FF /* MyAppointmentTableViewCell.swift */,
+				18F0A1A81F6A48DE004059FF /* MyAppointmentTableViewCell.xib */,
+				18F0A1A91F6A48DE004059FF /* MyAppointmentViewController.swift */,
+			);
+			name = BookAppoinMent;
+			sourceTree = "<group>";
+		};
+		18F0A1B61F6A4A01004059FF /* CXViews */ = {
+			isa = PBXGroup;
+			children = (
+				18F0A1B71F6A4A0E004059FF /* CXButton.swift */,
+				18F0A1B81F6A4A0E004059FF /* CXImageView.swift */,
+				18F0A1B91F6A4A0E004059FF /* CXTextField.swift */,
+			);
+			name = CXViews;
+			sourceTree = "<group>";
+		};
+		18F0A1BD1F6A4AD9004059FF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				18F0A1BE1F6A4B61004059FF /* ServicesTableViewCell.swift */,
+				18F0A1BF1F6A4B61004059FF /* ServicesTableViewCell.xib */,
+				18F0A1C01F6A4B61004059FF /* ServicesViewController.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		3B370D0C1D65973B00DB332F /* TabControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,6 +1201,10 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				18F0A1BD1F6A4AD9004059FF /* Services */,
+				18F0A1B61F6A4A01004059FF /* CXViews */,
+				18F0A19D1F6A488F004059FF /* BookAppoinMent */,
+				183209931F6964BE00F1FD65 /* WebLinks */,
 				18CF65821F612B87003970DE /* Youtube */,
 				18380D891F600D74008A67D3 /* LoyalityPoits */,
 				11AE90021F5EBF78005CA934 /* Campaings */,
@@ -1521,6 +1610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435521691D7FEE5B0099159D /* PhotosCollectionViewCell.xib in Resources */,
+				18F0A1C21F6A4B61004059FF /* ServicesTableViewCell.xib in Resources */,
 				189A1E3D1D79479800724120 /* Roboto-Black.ttf in Resources */,
 				18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */,
 				113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */,
@@ -1531,6 +1621,7 @@
 				189A1E401D79479800724120 /* Roboto-Light.ttf in Resources */,
 				11F1DE5F1D883AFF002AF5B0 /* AboutusTableViewCell.xib in Resources */,
 				189A1E411D79479800724120 /* Roboto-Medium.ttf in Resources */,
+				18F0A1B11F6A48DE004059FF /* BookingTableViewCell.xib in Resources */,
 				1147CBA61D8C333300138C4E /* EnquiryTableViewCell.xib in Resources */,
 				89C4B1291E7FE90D00F730F5 /* customcellFilter.xib in Resources */,
 				8918530B1E602CD6007AE5C4 /* whitemenu40x40.png in Resources */,
@@ -1538,12 +1629,14 @@
 				189A1E421D79479800724120 /* Roboto-Regular.ttf in Resources */,
 				1140274B1E2396A800C87D86 /* InfoQuery.storyboard in Resources */,
 				18C089D41D8D2132005DFF7C /* star.png in Resources */,
+				18F0A1AE1F6A48DE004059FF /* BookingCollectionViewCell.xib in Resources */,
 				890150FA1E8531DD007C02F0 /* customColorCell.xib in Resources */,
 				189A1E431D79479800724120 /* RobotoCondensed-Bold.ttf in Resources */,
 				116FF6771DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.xib in Resources */,
 				189A1E441D79479800724120 /* RobotoCondensed-Light.ttf in Resources */,
 				89615AEB1EA0EFBB003806E6 /* Coupon.png in Resources */,
 				18CF65841F612B9D003970DE /* YTPlayer.html in Resources */,
+				18F0A1B41F6A48DE004059FF /* MyAppointmentTableViewCell.xib in Resources */,
 				126549C01EB8BC5700165B9F /* StorelocatorTableViewCell.xib in Resources */,
 				11F1DE631D883B2D002AF5B0 /* ordersTableViewCell.xib in Resources */,
 				11F319EC1F5D6CAF004625D8 /* LFChatTableViewCell.xib in Resources */,
@@ -1556,6 +1649,7 @@
 				897EAD461E5EFFDE001899F1 /* plus-empty.png in Resources */,
 				1868BCF91D7831790050BC72 /* PagerCustomView.xib in Resources */,
 				3B4FD8241D6446D300A6EBBE /* LaunchScreen.storyboard in Resources */,
+				18F0A1AB1F6A48DE004059FF /* AppointmentDetailsTableViewCell.xib in Resources */,
 				11325D3E1D8A66CB00A7F10E /* MyorderTableViewCell1.xib in Resources */,
 				11325D3C1D8A66CB00A7F10E /* MyordersTableViewCell.xib in Resources */,
 				116C04151DFFF9E700AF4C89 /* DemoPopupViewController2.storyboard in Resources */,
@@ -1750,10 +1844,12 @@
 				11F1DE581D883A4B002AF5B0 /* DropDown+Appearance.swift in Sources */,
 				110329C01D8A6BB00008A3B7 /* HistoryTableViewCell.swift in Sources */,
 				116FF6761DB5F5D300F6C375 /* AboutUsDescriptionTableViewCell.swift in Sources */,
+				18F0A1BB1F6A4A0E004059FF /* CXImageView.swift in Sources */,
 				11FA2C441D82BE830072CD46 /* ProductDetailsViewController.swift in Sources */,
 				899B7B1C1E5437E0006C1F79 /* KYButton.swift in Sources */,
 				11370F711D89581200CCBE01 /* CalcConversionEx.swift in Sources */,
 				118346BE1D86D789000BE1D4 /* FTPopOverMenu.m in Sources */,
+				18F0A1AA1F6A48DE004059FF /* AppointmentDetailsTableViewCell.swift in Sources */,
 				180F249E1D9E732F00E69B0A /* Serices.swift in Sources */,
 				11F1DE4F1D883A31002AF5B0 /* DPDKeyboardListener.swift in Sources */,
 				12488AA61ECC23BC0093F087 /* NotificationDescriptionViewController.swift in Sources */,
@@ -1764,6 +1860,7 @@
 				183573A81D798F5400722AA2 /* CX_Stores+CoreDataProperties.swift in Sources */,
 				3B4FD81F1D6446D300A6EBBE /* NowFloats.xcdatamodeld in Sources */,
 				18CF657D1F612A34003970DE /* CXLoyalCrdViewController.swift in Sources */,
+				18F0A1B21F6A48DE004059FF /* CancelSlotViewController.swift in Sources */,
 				11AE900A1F5EBF8C005CA934 /* CXCampaignsViewController.swift in Sources */,
 				18F36C701D869E890043710A /* CX_Cart.swift in Sources */,
 				899B7B201E5437E0006C1F79 /* UIColorExtension.swift in Sources */,
@@ -1786,13 +1883,16 @@
 				183573B01D798F5400722AA2 /* CX_ServiceCategory+CoreDataProperties.swift in Sources */,
 				18A6BF861D7FD96200D7D533 /* CX_SingleMall.swift in Sources */,
 				18EC9D8F1D75C463001E27D4 /* OffersViewController.swift in Sources */,
+				18F0A1B01F6A48DE004059FF /* BookingTableViewCell.swift in Sources */,
 				18CF657F1F612A3D003970DE /* LoyalSunmmaryTableViewCell.swift in Sources */,
 				11F1DE571D883A4B002AF5B0 /* DropDown.swift in Sources */,
 				11F319EA1F5D6C77004625D8 /* LFChatTableViewCell.swift in Sources */,
 				113E5D9C1D87DFCB0003DA8D /* NowfloatWishlistViewController.swift in Sources */,
+				18F0A1BC1F6A4A0E004059FF /* CXTextField.swift in Sources */,
 				18380D8B1F600E12008A67D3 /* CXLoyalityClass.swift in Sources */,
 				1159BC731E5C3CF900F4187D /* NeedyBeeDetailTableViewCell.swift in Sources */,
 				18A6BFC51D802B5800D7D533 /* ProductsCollectionViewCell.swift in Sources */,
+				18F0A1AD1F6A48DE004059FF /* BookingCollectionViewCell.swift in Sources */,
 				892E894A1E92894D0080C239 /* CXPayMentController.swift in Sources */,
 				3B7D99BA1D6D7EC700D73CAD /* CXDataService.swift in Sources */,
 				11F1DE5D1D883AF7002AF5B0 /* AboutusTableViewCell.swift in Sources */,
@@ -1800,11 +1900,13 @@
 				183573A61D798F5400722AA2 /* CX_StoreCategory+CoreDataProperties.swift in Sources */,
 				110329BC1D8A6B9A0008A3B7 /* HistoryViewController.swift in Sources */,
 				183573AE1D798F5400722AA2 /* CX_ProductCategory+CoreDataProperties.swift in Sources */,
+				18F0A1AC1F6A48DE004059FF /* AppointmentDetailsViewController.swift in Sources */,
 				11AE90091F5EBF8C005CA934 /* CXCampaignDetailViewController.swift in Sources */,
 				183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */,
 				11D695301E44835300949A0B /* CAPSPageMenu.swift in Sources */,
 				11AE90121F5EC779005CA934 /* Events+CoreDataProperties.swift in Sources */,
 				899B7B1E1E5437E0006C1F79 /* KYButtonDelegate.swift in Sources */,
+				18F0A1BA1F6A4A0E004059FF /* CXButton.swift in Sources */,
 				8972B8BB1E9E33A3005CE0A2 /* CardIO.m in Sources */,
 				1868BCF81D7831790050BC72 /* PagerCustomView.m in Sources */,
 				18A6BFC11D8020F700D7D533 /* CX_Gallery.swift in Sources */,
@@ -1828,6 +1930,7 @@
 				1147CBA41D8C332E00138C4E /* EnquiryViewController.swift in Sources */,
 				11F1DE591D883A4B002AF5B0 /* DropDownCell.swift in Sources */,
 				89D2F74E1E97A1FB00DC39F7 /* Payment.swift in Sources */,
+				18F0A1C31F6A4B61004059FF /* ServicesViewController.swift in Sources */,
 				113A995A1D8FEB88006B5BE5 /* NotificationsViewController.swift in Sources */,
 				11AE90111F5EC779005CA934 /* Events+CoreDataClass.swift in Sources */,
 				11F319E81F5D6C49004625D8 /* String+StringOperation.swift in Sources */,
@@ -1846,11 +1949,13 @@
 				11F319E31F5D5CB4004625D8 /* IMChatViewController.swift in Sources */,
 				183573A71D798F5400722AA2 /* CX_StoreCategory.swift in Sources */,
 				11370F721D89581200CCBE01 /* MTCoordinateContainer.swift in Sources */,
+				183209951F6964FF00F1FD65 /* WeblinkViewController.swift in Sources */,
 				113E5DA31D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.swift in Sources */,
 				11982DCC1D9E960800FAE0B0 /* ProductSearchViewController.swift in Sources */,
 				183573AC1D798F5400722AA2 /* CX_FeaturedProductsJobs+CoreDataProperties.swift in Sources */,
 				11CECECB1F5963390096DD89 /* CXCalenderViewController.swift in Sources */,
 				18EC9D8D1D75ABF3001E27D4 /* CXViewController.swift in Sources */,
+				18F0A1C11F6A4B61004059FF /* ServicesTableViewCell.swift in Sources */,
 				11370F731D89581200CCBE01 /* MTCoordinateManager.swift in Sources */,
 				3B4FD8171D6446D300A6EBBE /* AppDelegate.swift in Sources */,
 				11F319E51F5D5CCE004625D8 /* LFChatListViewController.swift in Sources */,
@@ -1858,11 +1963,13 @@
 				1147CB9B1D8BB3ED00138C4E /* CXCommentViewController.swift in Sources */,
 				1868BCF41D78316A0050BC72 /* KIImagePager.m in Sources */,
 				11370F641D893B0E00CCBE01 /* PopupController.swift in Sources */,
+				18F0A1B51F6A48DE004059FF /* MyAppointmentViewController.swift in Sources */,
 				11F1DE651D883B77002AF5B0 /* OrdersViewController.swift in Sources */,
 				11F1DE6B1D883ED2002AF5B0 /* WishlistCollectionViewCell.swift in Sources */,
 				126549BC1EB8BC2600165B9F /* StorelocatorViewController.swift in Sources */,
 				12C0088A1EBB081A005B5ED4 /* CXLog.swift in Sources */,
 				18A6BFC01D8020F700D7D533 /* CX_Gallery+CoreDataProperties.swift in Sources */,
+				18F0A1AF1F6A48DE004059FF /* BookingSlotViewController.swift in Sources */,
 				118346B81D86C155000BE1D4 /* CXSignInSignUpViewController.swift in Sources */,
 				895D5CFE1E8CEB2D005E652D /* CX_Products+CoreDataClass.m in Sources */,
 				11325D3B1D8A66CB00A7F10E /* MyordersTableViewCell.swift in Sources */,
@@ -1877,6 +1984,7 @@
 				895D5CFF1E8CEB2D005E652D /* CX_Products+CoreDataProperties.m in Sources */,
 				890150F91E8531DD007C02F0 /* customColorCell.swift in Sources */,
 				11370F8C1D89A3A800CCBE01 /* UITextField+fixCaretPosition.swift in Sources */,
+				18F0A1B31F6A48DE004059FF /* MyAppointmentTableViewCell.swift in Sources */,
 				11AE90071F5EBF8C005CA934 /* CampaignCollectionViewCell.swift in Sources */,
 				126549BF1EB8BC5700165B9F /* StorelocatorTableViewCell.swift in Sources */,
 				89A896E91E813159000B97B9 /* colortableviewcell.swift in Sources */,
@@ -2069,7 +2177,7 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.yvlov;
 				PRODUCT_NAME = Needybee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2107,7 +2215,7 @@
 					"$(PROJECT_DIR)/NowFloats/PAYPAL",
 					"$(PROJECT_DIR)/NowFloats/PAYPAL/CardIO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.ShahElectronicsAppliances;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.yvlov;
 				PRODUCT_NAME = Needybee;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

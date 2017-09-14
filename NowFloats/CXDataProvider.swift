@@ -278,12 +278,18 @@ class CXDataProvider: NSObject {
             for prodDic in galeryItems {
                 
                 let gallaeryData = prodDic as? NSDictionary
+                let imgUrl = (gallaeryData as AnyObject).value(forKey: "URL") as? String
+                if imgUrl != ""{
+                    let enStore = NSEntityDescription.insertNewObject(forEntityName: "CX_Gallery", into: localContext!) as? CX_Gallery
+                    enStore?.gID = CXConstant.resultString(gallaeryData!.value(forKey: "Id")! as AnyObject)
+                    enStore?.gImageUrl = (gallaeryData as AnyObject).value(forKey: "URL") as? String
+                    enStore?.isCoverImage = (gallaeryData as AnyObject).value(forKey: "isCoverImage") as? String
+                    enStore?.isBannerImage = (gallaeryData as AnyObject).value(forKey: "isBannerImage") as? String
+                }
+                    
                 
-                let enStore = NSEntityDescription.insertNewObject(forEntityName: "CX_Gallery", into: localContext!) as? CX_Gallery
-                enStore?.gID = CXConstant.resultString(gallaeryData!.value(forKey: "Id")! as AnyObject)
-                enStore?.gImageUrl = (gallaeryData as AnyObject).value(forKey: "URL") as? String
-                enStore?.isCoverImage = (gallaeryData as AnyObject).value(forKey: "isCoverImage") as? String
-                enStore?.isBannerImage = (gallaeryData as AnyObject).value(forKey: "isBannerImage") as? String
+                
+               
             }
         }) { (success, error) in
             if success == true {

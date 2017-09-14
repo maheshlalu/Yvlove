@@ -38,7 +38,11 @@ class PhotosViewController: CXViewController,UICollectionViewDataSource,UICollec
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: cell.layer.cornerRadius).cgPath
         cell.layer.masksToBounds = true
         let gallaeryData : CX_Gallery =  (self.gallaryItems[indexPath.item] as? CX_Gallery)!
-        cell.photosImage.sd_setImage(with: NSURL(string: gallaeryData.gImageUrl!) as URL!)
+        
+        if let urlStr = gallaeryData.gImageUrl {
+            cell.photosImage.sd_setImage(with: NSURL(string: urlStr) as URL!)
+
+        }
         cell.photosImage.contentMode = .scaleAspectFill
         return cell
     }
@@ -73,9 +77,12 @@ extension PhotosViewController {
         self.photosCollectionView.reloadData()
         for  gallaeryData  in self.gallaryItems {
             let imageData : CX_Gallery = (gallaeryData as? CX_Gallery)!
-            let photo = SKPhoto.photoWithImageURL(imageData.gImageUrl!)
-            photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
-            images.append(photo)
+           if let imageUrl = imageData.gImageUrl {
+                let photo = SKPhoto.photoWithImageURL(imageUrl)
+                photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
+                images.append(photo)
+            }
+          
         }
     }
 }

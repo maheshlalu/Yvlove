@@ -179,7 +179,8 @@ open class CXAppDataManager: NSObject {
     //Get Updates
     //http://storeongo.com:8081/Services/getMasters?type=Updates&mallId=31
     func getUpdates(completion:@escaping (_ response:NSArray) -> Void){
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Updates" as AnyObject,"mallId":"31" as AnyObject]) { (responseDict) in
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Updates" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             completion(jobs)
         }

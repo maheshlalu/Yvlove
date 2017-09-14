@@ -189,7 +189,6 @@ class CXCommentViewController: CXViewController,UITableViewDataSource,UITableVie
         self.ratingBtn = self.createButton(CGRect(x: self.writeBtn.frame.size.width+self.writeBtn.frame.origin.x, y: 0, width: btnsView.frame.size.width/2, height: 50), title: "OVERALL RATING", tag: 2, bgColor:CXAppConfig.sharedInstance.getAppTheamColor())
         self.ratingBtn.addTarget(self, action: #selector(CXCommentViewController.overallRatingAction), for: UIControlEvents.touchUpInside)
         btnsView.addSubview(self.ratingBtn)
-        
     }
     
     func writeCommentAction() {

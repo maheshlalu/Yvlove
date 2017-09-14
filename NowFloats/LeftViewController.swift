@@ -16,6 +16,7 @@ class sidePanleData {
 
     var name: String!
     var displayName : String!
+    var type:String!
     
     
 }
@@ -54,6 +55,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         btnBorderAlignments()
         let nib = UINib(nibName: "LeftViewTableViewCell", bundle: nil)
         self.contentsTableView.register(nib, forCellReuseIdentifier: "LeftViewTableViewCell")
+        self.contentsTableView.isScrollEnabled = true
         self.view.backgroundColor = UIColor.white
     }
     
@@ -73,7 +75,9 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             var positions = [Int]()
             for channelSnap in snapshot.children {
                 let channelData = (channelSnap as! FIRDataSnapshot).value as! Dictionary<String, AnyObject>
-                positions.append(channelData["position"] as! Int)
+                if let pos = channelData["position"]{
+                    positions.append(channelData["position"] as! Int)
+                }
                 print(channelData)
                 // if status == -1 (Rejected by user)
                 // if channelData["status"] as! String != "-1"
@@ -95,7 +99,8 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                         let data : sidePanleData = sidePanleData()
                         data.name = channelData["name"] as! String
                         data.displayName = channelData["title"] as! String
-                        
+                        data.type = channelData["type"] as! String
+
                         if let visibility = channelData["visibility"] as? Bool , visibility == true{
                             leftController.add(data)
                         }
@@ -133,6 +138,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let appdata:CX_SingleMall = CX_SingleMall.mr_findFirst() as! CX_SingleMall
                 self.sidePanelSingleMallDataDict = CXConstant.sharedInstance.convertStringToDictionary(appdata.json!)
                 self.getStores()
+            
             })
         }
     }
@@ -236,7 +242,7 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         
         let data : sidePanleData = self.sidepanelList[indexPath.row] as! sidePanleData
         cell.contentsLbl.text = data.displayName
-        cell.iconImage.image = UIImage(named: (data.name)!)
+        //cell.iconImage.image = UIImage(named: (data.name)!)
         cell.contentsLbl.textColor = UIColor.gray
         cell.contentsLbl.font = cell.contentsLbl.font.withSize(15)
         return cell
@@ -244,48 +250,20 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         let data : sidePanleData = self.sidepanelList[indexPath.row] as! sidePanleData
         //let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         let itemName : String =  data.name
-
+        
+        
         if itemName == "Home"{
             self.navController.popToRootViewController(animated: true)
-            
         }else if itemName == "About Us"{
             CXMixpanel.sharedInstance.mixelAboutTrack()
             let aboutUs = storyBoard.instantiateViewController(withIdentifier: "ABOUT_US") as! AboutUsViewController
             self.navController.pushViewController(aboutUs, animated: true)
-            
-            return
-            
-            if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil{
-                let name = CXSignInSignUpViewController()
-                self.navigationController?.pushViewController(name, animated: true)
-            }else{
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let chatList = storyBoard.instantiateViewController(withIdentifier: "LFChatListViewController") as! LFChatListViewController
-                
-                let macUserId = UserDefaults.standard.value(forKey: "MACID_JOBID")
-                let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
-                let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
-                let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
-                
-                chatList.userID = String(macUserId as! Int)
-                
-                let chatData:NSMutableDictionary = NSMutableDictionary()
-                chatData.setValue(userEmail, forKey: "FromUserEmail")
-                chatData.setValue(userName, forKey: "FromUserName")
-                chatData.setValue(userPic, forKey: "FromUserPic")
-                chatData.setValue(macUserId, forKey: "FromUserId")
-                
-                chatList.userDetailsDic = chatData
-                self.navController.pushViewController(chatList, animated: true)
-            }
-            
         }else if itemName == "Orders"{
             CXMixpanel.sharedInstance.mixelOrdersTrack()
             if UserDefaults.standard.value(forKey: "USER_ID") != nil{
@@ -295,7 +273,6 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
                 self.navController.pushViewController(signInViewCnt, animated: true)
             }
-            
         }else if itemName == "Wish List" {
             CXMixpanel.sharedInstance.mixelWishListTrack()
             let wishlist = storyBoard.instantiateViewController(withIdentifier: "WISHLIST") as! NowfloatWishlistViewController
@@ -304,14 +281,79 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             let store = storyBoard.instantiateViewController(withIdentifier: "StorelocatorViewController") as! StorelocatorViewController
             self.navController.pushViewController(store, animated: true)
         }else if itemName == "Chat" {
-            
+            if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil{
+                let name = CXSignInSignUpViewController()
+                self.navController.pushViewController(name, animated: true)
+            }else{
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let chatList = storyBoard.instantiateViewController(withIdentifier: "LFChatListViewController") as! LFChatListViewController
+                let macUserId = UserDefaults.standard.value(forKey: "MACID_JOBID")
+                let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
+                let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
+                let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
+                chatList.userID = String(macUserId as! Int)
+                let chatData:NSMutableDictionary = NSMutableDictionary()
+                chatData.setValue(userEmail, forKey: "FromUserEmail")
+                chatData.setValue(userName, forKey: "FromUserName")
+                chatData.setValue(userPic, forKey: "FromUserPic")
+                chatData.setValue(macUserId, forKey: "FromUserId")
+                chatList.userDetailsDic = chatData
+                self.navController.pushViewController(chatList, animated: true)
+            }
         }else if itemName == "Blog" {
             
         }else if itemName == "Services" {
+            self.showServiceOptionsView()
             
         }else if itemName == "BookAppointment" {
+            let bookAppointment = storyBoard.instantiateViewController(withIdentifier: "MyAppointmentViewController") as! MyAppointmentViewController
+            self.navController.pushViewController(bookAppointment, animated: true)
             
+        }else if itemName == "Calendar" {
+            let calender = storyBoard.instantiateViewController(withIdentifier: "CXCalenderViewController") as! CXCalenderViewController
+            self.navController.pushViewController(calender, animated: true)
+            
+        }else if itemName == "Reviews" {
+            let review = CXCommentViewController.init()
+            self.navController.pushViewController(review, animated: true)
+            
+        }else if itemName == "Gallery" {
+            let photos = storyBoard.instantiateViewController(withIdentifier: "PHOTO") as! PhotosViewController //GalleryTabBarViewController()
+            self.navController.pushViewController(photos, animated: true)
+        }else if itemName == "Products" {
+            let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
+            self.navController.pushViewController(product, animated: true)
+        }else if itemName == "IsOnlyLoyalty" {
+            
+        }else if itemName == "Updates" {
+            let updateVc = storyBoard.instantiateViewController(withIdentifier: "UPDATE") as! UpdatesViewController
+            self.navController.pushViewController(updateVc, animated: true)
+        }else if data.type == "Weblinks" {
+            //Open webpage with date.name
+            let webLinkVc = WeblinkViewController.init()
+            webLinkVc.webLink = data.name
+            webLinkVc.displayName = data.displayName
+            self.navController.pushViewController(webLinkVc, animated: true)
+            CXLog.print("clicked weblinks")
+        }else if data.type == "Custom Tab" {
+            //Open custom tab view
+            CXLog.print("Custom Tab")
+
         }
+    }
+    
+    func showServiceOptionsView(){
+        
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let referralVC = storyBoard.instantiateViewController(withIdentifier: "ServicesViewController") as! ServicesViewController
+        
+        referralVC.modalPresentationStyle = .overCurrentContext
+        referralVC.modalTransitionStyle = .crossDissolve
+        let popover = referralVC.popoverPresentationController
+        popover?.permittedArrowDirections = .any
+        appdelegate.window?.rootViewController?.present(referralVC, animated: true, completion: nil)
     }
     
     //Mark: Storecategory api call

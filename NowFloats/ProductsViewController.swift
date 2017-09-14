@@ -26,7 +26,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     var p3CatBool:Bool = false
     var dataDict:NSMutableDictionary = NSMutableDictionary()
     @IBOutlet var updatecollectionview: UICollectionView!
-    @IBOutlet weak var chooseArticleButton: UIButton!
+     @IBOutlet weak var chooseArticleButton: UIButton!
     @IBOutlet weak var productSearhBar: UISearchBar!
     var type : String = String()
     var FinalPrice:String! = nil
@@ -50,7 +50,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         getAddtinalCategryList()
         getTheProducts()
         // setupDropDowns()
-        self.filterBtn.addTarget(self, action: #selector(FilterBtnAction), for: .touchUpInside)
+        self.filterBtn.addTarget(self, action:  #selector(FilterBtnAction), for: .touchUpInside)
         self.tableviewAdditinalcategery.tableFooterView = UIView()
     }
     func CartActionNO(notification:Notification){
@@ -75,6 +75,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func FilterBtnAction()
     {
+        setupDropDowns()
+        return
         
         //let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController")as? FilterViewController
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)

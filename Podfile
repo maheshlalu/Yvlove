@@ -25,7 +25,8 @@ target 'NowFloats' do
     pod 'FacebookLogin'
     pod 'Mixpanel'
     pod 'JSQMessagesViewController'
-    
+    pod 'StartSDK', :git => 'https://github.com/payfort/start-ios-sdk.git'
+
     target 'NowFloatsTests' do
         inherit! :search_paths
         # Pods for testing
