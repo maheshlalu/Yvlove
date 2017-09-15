@@ -68,7 +68,7 @@ class BookingSlotViewController: CXViewController {
          CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         /*User Slots:
         http://storeongo.com:8081/Services/getMasters?type=user%20slots&mallid=4724*/
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"User Slots" as AnyObject,"mallid":"4724" as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"User Slots" as AnyObject,"mallid":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             // print("print Campaign\(responseDict)")
            CXDataService.sharedInstance.hideLoader()
             

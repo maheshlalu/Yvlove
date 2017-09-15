@@ -24,9 +24,7 @@ class HomeViewController: UITabBarController {
         super.viewDidLoad()
         self.tabBarCntl = self
         CXDataProvider.sharedInstance.tabBar = self
-        CXAppDataManager.sharedInstance.dataDelegate = self
-        CXAppDataManager.sharedInstance.getTheStoreCategory()
-        
+        self.addTheTabBarControllers()
        // self.getAllNotificationList()
         //getAddtinalCategryList()
     }
@@ -111,9 +109,15 @@ class HomeViewController: UITabBarController {
                 }
             }
         }
+    
+        if !NetworkReachabilityManager()!.isReachable {
+                       // do some tasks..
+             self.tabBarController?.setViewControllers(self.tabsController, animated: true)
+
+        }
+        
        // self.tabBarController?.setViewControllers(self.tabsController, animated: true)
-        
-        
+
         print(self.viewContollerDic)
         self.arrangeTheTabsOrder()
 
@@ -164,10 +168,15 @@ class HomeViewController: UITabBarController {
                     if value == position {
                         let name = channelData["name"] as! String
                         if let contoller = self.viewContollerDic.value(forKey: name)  {
-                            tabsWithOrder.append(contoller as! UIViewController)
+                            
+                            if let visibility = channelData["visibility"] as? Bool , visibility == true{
+                                tabsWithOrder.append(contoller as! UIViewController)
+                            }
                         }
                         if name == "Photos" {
-                            tabsWithOrder.append(self.viewContollerDic.value(forKey: "Gallery") as! UIViewController)
+                            if let visibility = channelData["visibility"] as? Bool , visibility == true{
+                                tabsWithOrder.append(self.viewContollerDic.value(forKey: "Gallery") as! UIViewController)
+                            }
                         }
                         break
                     }
@@ -253,10 +262,5 @@ class HomeViewController: UITabBarController {
     
 }
 
-extension HomeViewController :AppDataDelegate {
-    func completedTheFetchingTheData(_ sender: CXAppDataManager) {
-        self.addTheTabBarControllers()
-        LoadingView.hide()
-    }
-}
+
 

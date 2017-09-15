@@ -127,7 +127,7 @@ class AppointmentDetailsViewController: CXViewController,UITableViewDataSource,U
         let jsonStringFormat = String(data: jsonData, encoding: String.Encoding.utf8)
         
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(),parameters: ["type":"Resource Allocation"as AnyObject,"json":jsonStringFormat as AnyObject,"userId":"4724" as AnyObject,"category":"CalenderEvents" as AnyObject,"dt":"STORES" as AnyObject,"consumerEmail":self.mailTextField.text! as AnyObject,"parentJobId":dateNtimeDict.value(forKey: "jobID") as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(),parameters: ["type":"Resource Allocation"as AnyObject,"json":jsonStringFormat as AnyObject,"userId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"category":"CalenderEvents" as AnyObject,"dt":"STORES" as AnyObject,"consumerEmail":self.mailTextField.text! as AnyObject,"parentJobId":dateNtimeDict.value(forKey: "jobID") as AnyObject]) { (responseDict) in
             CXDataService.sharedInstance.hideLoader()
             CXLog.print(responseDict)
             let  status = responseDict.value(forKey: "status") as! String

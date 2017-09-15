@@ -297,7 +297,7 @@ class CXSignUpViewController: CXViewController,UITextFieldDelegate,UIScrollViewD
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.cScrollView.endEditing(true)
+        self.view.endEditing(true)
     }
     
     //MAR:Heder options enable

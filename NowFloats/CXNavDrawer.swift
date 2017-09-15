@@ -128,7 +128,7 @@ class CXNavDrawer: UINavigationController {
         
         rightButtonsView.addSubview(self.profileBtn)
         
-        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@","Cart" ), ispredicate: true, orederByKey: "").totalCount == 0{
+        if !CXDataProvider.sharedInstance.isDisplayCart(){
             self.cartBtn.isHidden = true
         }else{
             self.cartBtn.isHidden = false
@@ -274,7 +274,7 @@ class CXNavDrawer: UINavigationController {
         
         if viewController.shouldShowCart(){
             
-            if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@","Cart" ), ispredicate: true, orederByKey: "").totalCount == 0{
+            if !CXDataProvider.sharedInstance.isDisplayCart(){
                 self.cartBtn.isHidden =  true
             }else{
             self.cartBtn = self.createCartButton("whiteCartImage", frame: CGRect(x: buttonXposition, y: 1, width: 35, height: 35))

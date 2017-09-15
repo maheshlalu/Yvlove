@@ -107,6 +107,9 @@
 		12C0088A1EBB081A005B5ED4 /* CXLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C008891EBB081A005B5ED4 /* CXLog.swift */; };
 		12DC4DC31EB7800E00B32C96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */; };
 		1635D6E0E2BC4D6CFBEB6CA1 /* Pods_NowFloats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */; };
+		180696B01F6C042400CE29A1 /* customTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180696AD1F6C042400CE29A1 /* customTabTableViewCell.swift */; };
+		180696B11F6C042400CE29A1 /* customTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180696AE1F6C042400CE29A1 /* customTabTableViewCell.xib */; };
+		180696B21F6C042400CE29A1 /* CXCustomTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180696AF1F6C042400CE29A1 /* CXCustomTabViewController.swift */; };
 		180F249E1D9E732F00E69B0A /* Serices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F249D1D9E732F00E69B0A /* Serices.swift */; };
 		1825CCBF1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		183209951F6964FF00F1FD65 /* WeblinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183209941F6964FF00F1FD65 /* WeblinkViewController.swift */; };
@@ -397,6 +400,9 @@
 		12C008891EBB081A005B5ED4 /* CXLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXLog.swift; sourceTree = "<group>"; };
 		12DC4DC21EB7800E00B32C96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		15CBA0CAA6659B13F1E8448C /* Pods_NowFloats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NowFloats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		180696AD1F6C042400CE29A1 /* customTabTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTabTableViewCell.swift; sourceTree = "<group>"; };
+		180696AE1F6C042400CE29A1 /* customTabTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customTabTableViewCell.xib; sourceTree = "<group>"; };
+		180696AF1F6C042400CE29A1 /* CXCustomTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCustomTabViewController.swift; sourceTree = "<group>"; };
 		180F249D1D9E732F00E69B0A /* Serices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serices.swift; sourceTree = "<group>"; };
 		1825CCBD1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		1825CCBE1E1BAA4B00CD3C3B /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
@@ -939,6 +945,16 @@
 			name = WishList;
 			sourceTree = "<group>";
 		};
+		180696AC1F6C040100CE29A1 /* CustomTab */ = {
+			isa = PBXGroup;
+			children = (
+				180696AD1F6C042400CE29A1 /* customTabTableViewCell.swift */,
+				180696AE1F6C042400CE29A1 /* customTabTableViewCell.xib */,
+				180696AF1F6C042400CE29A1 /* CXCustomTabViewController.swift */,
+			);
+			name = CustomTab;
+			sourceTree = "<group>";
+		};
 		180F24981D9E66BE00E69B0A /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,6 +1069,7 @@
 		189A1E331D79475800724120 /* OtherResorces */ = {
 			isa = PBXGroup;
 			children = (
+				1868BCFA1D783A5B0050BC72 /* Model */,
 				189A1E341D79476400724120 /* Fonts */,
 			);
 			name = OtherResorces;
@@ -1201,6 +1218,7 @@
 		3B4FD8151D6446D300A6EBBE /* NowFloats */ = {
 			isa = PBXGroup;
 			children = (
+				180696AC1F6C040100CE29A1 /* CustomTab */,
 				18F0A1BD1F6A4AD9004059FF /* Services */,
 				18F0A1B61F6A4A01004059FF /* CXViews */,
 				18F0A19D1F6A488F004059FF /* BookAppoinMent */,
@@ -1224,7 +1242,6 @@
 				899B7B131E5437E0006C1F79 /* KYFloatingActionButton */,
 				118346AD1D8696A4000BE1D4 /* PopUp */,
 				189A1E331D79475800724120 /* OtherResorces */,
-				1868BCFA1D783A5B0050BC72 /* Model */,
 				18E46A6E1D7ED80F00B021C2 /* Loader */,
 				43674C111D71A11C002AD853 /* Sidepanel */,
 				3B61E3651D6B06E600B09F8E /* ProjectConfigureFile */,
@@ -1615,6 +1632,7 @@
 				18A6BFC61D802B5800D7D533 /* ProductsCollectionViewCell.xib in Resources */,
 				113E5DA41D87DFED0003DA8D /* NowfloatscartViewCollectionViewCell.xib in Resources */,
 				189A1E3E1D79479800724120 /* Roboto-Bold.ttf in Resources */,
+				180696B11F6C042400CE29A1 /* customTabTableViewCell.xib in Resources */,
 				11F1DE531D883A46002AF5B0 /* DropDownCell.xib in Resources */,
 				189A1E3F1D79479800724120 /* Roboto-Italic.ttf in Resources */,
 				12488AA41ECC1F4D0093F087 /* NotificationTableViewCell.xib in Resources */,
@@ -1874,6 +1892,7 @@
 				3B370D131D65979200DB332F /* ProductsViewController.swift in Sources */,
 				11D695321E4483B700949A0B /* GalleryTabBarViewController.swift in Sources */,
 				183573A41D798F5400722AA2 /* CX_Rating+CoreDataProperties.swift in Sources */,
+				180696B01F6C042400CE29A1 /* customTabTableViewCell.swift in Sources */,
 				18EC9D881D756336001E27D4 /* CXNavDrawer.swift in Sources */,
 				11F1DE501D883A31002AF5B0 /* DPDUIView+Extension.swift in Sources */,
 				3B7D99BC1D6D884200D73CAD /* CXAppDataManager.swift in Sources */,
@@ -1901,6 +1920,7 @@
 				110329BC1D8A6B9A0008A3B7 /* HistoryViewController.swift in Sources */,
 				183573AE1D798F5400722AA2 /* CX_ProductCategory+CoreDataProperties.swift in Sources */,
 				18F0A1AC1F6A48DE004059FF /* AppointmentDetailsViewController.swift in Sources */,
+				180696B21F6C042400CE29A1 /* CXCustomTabViewController.swift in Sources */,
 				11AE90091F5EBF8C005CA934 /* CXCampaignDetailViewController.swift in Sources */,
 				183573B11D798F5400722AA2 /* CX_ServiceCategory.swift in Sources */,
 				11D695301E44835300949A0B /* CAPSPageMenu.swift in Sources */,

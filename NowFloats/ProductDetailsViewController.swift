@@ -140,7 +140,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     func customisingBtns(){
         //for no price remove the orderand cart btn
          let price:String = productDetailDic.value(forKey: "MRP") as! String
-        if price == ""
+        if price == "" || !CXDataProvider.sharedInstance.isDisplayCart()
         {
             addToCartBtn.isHidden = true
             placeOrderBtn.isHidden = true

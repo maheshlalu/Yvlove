@@ -69,7 +69,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         //PayPalMobile
         self.registerNotification(application: application)
         FIRApp.configure()
+        self.getAppDataFromServer()
+
         //
+        return true
+    }
+    
+    func getAppDataFromServer(){
+       // LoadingView.show(true)
+        //LoadingView.show("Fetching...", animated: true)
+        CXAppDataManager.sharedInstance.dataDelegate = self
+        CXAppDataManager.sharedInstance.getTheStoreCategory()
+    }
+    
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool{
+        if url.host == "YVOLVShare"{
+            
+        }else{
+            return FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+        }
         return true
     }
     
@@ -199,13 +218,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         let callBack:Bool
-        
         if url.scheme == "fb551701778362796" {
             callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
-        } else {
+            return callBack
+        }else if url.scheme == "YVOLVShare"{
+            //navigateToUserPost(feedId: "")
+        }else{
             callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
         }
-        return callBack
+        return true
     }
     
     
@@ -337,6 +359,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         LoadingView.setConfig(config)
     }
 }
+
+extension AppDelegate :AppDataDelegate {
+    func completedTheFetchingTheData(_ sender: CXAppDataManager) {
+        self.setUpSidePanelview()
+        LoadingView.hide()
+    }
+}
+
 extension AppDelegate{
     
     /*   @objc(application:openURL:sourceApplication:annotation:) func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

@@ -116,7 +116,12 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
             
         }
         
-        
+        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
+        {
+        }else{
+            self.arrAdditinalCategery =  NSMutableArray(array: (UserDefaults.standard.value(forKey: "CategeryAdditinal") as? NSArray)!)
+        }
+        self.tableviewAdditinalcategery.reloadData()
     }
     
     //MARK: Addtinal Data Tableview Delegate & Data Sources Methods
@@ -124,9 +129,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrAdditinalCategery.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let subDict = self.arrAdditinalCategery.object(at: indexPath.row) as! NSDictionary
@@ -135,9 +142,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         // cell.textLabel?.text = self.arrAdditinalCategery.object(at: indexPath.row) as? String
         return cell
     }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // self.callAddtinalCategerySevice(str: (self.arrAdditinalCategery.object(at: indexPath.row) as? String)!)
         // LoadingView.show("Loading", animated: true)
@@ -163,38 +172,8 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         //self.present(navController, animated: true, completion: nil)
         
     }
-    
-    
-    func getAddtinalCategryList(){
-        var dictcategeryadd = NSMutableArray()
-        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
-        {
-        }else{
-            dictcategeryadd = UserDefaults.standard.value(forKey: "CategeryAdditinal") as! NSMutableArray
-        }
-        
-        if (dictcategeryadd.count == 0){
-            
-            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
-            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
-                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
-                for dictData in jobsData {
-                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
-                    //let name:String = (dictindividual.value(forKey: "Name") as? String)!
-                    self.arrAdditinalCategery.add(dictindividual)
-                }
-                UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
-            }
-        }else{
-            for name in dictcategeryadd
-            {
-                self.arrAdditinalCategery.add(name)
-            }
-        }
-    }
-    
-    func callAddtinalCategerySevice(str : String)
-    {
+
+    func callAddtinalCategerySevice(str : String){
         self.viewAdditinalCategery.isHidden = true
         
         let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
@@ -259,15 +238,47 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
     
     func getTheProducts(){
         self.products =  CX_Products.mr_findAll() as NSArray!
+        if self.products.count == 0 {
+            self.getAddtinalCategryList()
+        }
+    }
+    
+    func getAddtinalCategryList(){
+        var dictcategeryadd = NSMutableArray()
+        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
+        {
+        }else{
+            dictcategeryadd =  NSMutableArray(array: (UserDefaults.standard.value(forKey: "CategeryAdditinal") as? NSArray)!)
+        }
+        
+        if (dictcategeryadd.count == 0){
+            
+            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
+            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+                for dictData in jobsData {
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    //let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    self.arrAdditinalCategery.add(dictindividual)
+                }
+                UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
+            }
+        }else{
+            for name in dictcategeryadd
+            {
+                self.arrAdditinalCategery.add(name)
+                let subDict = self.arrAdditinalCategery.object(at:0) as! NSDictionary
+                let name = subDict.value(forKey: "Name") as! String
+                self.callAddtinalCategerySevice(str: name)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.products.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath)as! ProductsCollectionViewCell
         if self.products.count == 0 {
             return UICollectionViewCell()
@@ -275,20 +286,22 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let products:CX_Products = (self.products[indexPath.item] as? CX_Products)!
         let productJson = products.value(forKey: "json") as! NSString
         let dic = CXConstant.sharedInstance.convertStringToDictionary(productJson as String) as NSDictionary
-        let shipmentDuration = dic.value(forKey: "ShipmentDuration")
+        //let shipmentDuration = dic.value(forKey: "ShipmentDuration")
         
         cell.productdescriptionLabel.text = products.name
-        
+      /*
         if shipmentDuration != nil {
             cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
         }else{
             cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
         }
+ */
+        
         if products.imageUrl != nil{
             cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
         }else{
+            
         }
-        
         let rupee = "\u{20B9}"
         
         //Trimming Price And Discount
@@ -320,20 +333,22 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         //FinalPrice after subtracting the discount
         let finalPriceNum:Int! = Int(finalPriceStr)!-Int(finalDiscount)!
         FinalPrice = String(finalPriceNum) as String
+        
+        
         //if price is 0 then hide card btn
         if finalPriceStr == FinalPrice{
             if FinalPrice == "0"{
                 cell.cartaddedbutton.isHidden = true
+                cell.productFinalPriceLabel.isHidden = true
+                cell.askAQuoteBtn.isHidden = false
             }else{
+                cell.productFinalPriceLabel.isHidden = false
                 cell.cartaddedbutton.isHidden = false
-                  cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
+                cell.askAQuoteBtn.isHidden = true
+                cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
             }
-            cell.productpriceLabel.isHidden = true
-           
-
-            
         }else{
-             cell.cartaddedbutton.isHidden = false
+            cell.cartaddedbutton.isHidden = false
             cell.productpriceLabel.isHidden = false
             cell.productpriceLabel.attributedText = attributeString
             cell.productFinalPriceLabel.text! = "\(rupee) \(FinalPrice!)"
@@ -347,7 +362,7 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
         // Enhancements in nowfloats
-        let MRP = FinalPrice
+       // let MRP = FinalPrice
         //        if MRP == "0"{
         //            cell.productpriceLabel.isHidden = true
         //            cell.productFinalPriceLabel.isHidden = true

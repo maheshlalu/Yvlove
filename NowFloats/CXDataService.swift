@@ -24,6 +24,13 @@ open class CXDataService: NSObject {
         _SingletonSharedInstance = nil
     }
     
+    class Connectivity {
+        class func isConnectedToInternet() ->Bool {
+            return NetworkReachabilityManager()!.isReachable
+        }
+    }
+   
+    
     open func getTheAppDataFromServer(_ parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         if Bool(1) {
             /*  Alamofire.request(.GET,CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl() , parameters: parameters)
@@ -40,6 +47,13 @@ open class CXDataService: NSObject {
              
              }
              */
+            
+            if !Connectivity.isConnectedToInternet() {
+                CXLog.print("Yes! internet is available.")
+                self.showAlertView(status: 0)
+                return
+                // do some tasks..
+            }
             
             Alamofire.request(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl(), method: .post, parameters: parameters, encoding: URLEncoding.`default`)
                 .responseJSON { response in
@@ -58,6 +72,7 @@ open class CXDataService: NSObject {
                     case .failure(let error):
                         if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
                             //timeout here
+                            self.showAlertView(status: 0)
                         }
                         break
                     }
@@ -72,8 +87,12 @@ open class CXDataService: NSObject {
     
     open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
     
-    print(urlstring)
-        print(parameters)
+        if !Connectivity.isConnectedToInternet() {
+            CXLog.print("Yes! internet is available.")
+            self.showAlertView(status: 0)
+            return
+            // do some tasks..
+        }
        /* Alamofire.request(.POST,urlstring, parameters: parameters)
             .validate()
             .responseJSON { response in
@@ -101,6 +120,8 @@ open class CXDataService: NSObject {
                 case .failure(let error):
                     if error._code == NSURLErrorTimedOut {
                         //timeout here
+                        self.showAlertView(status: 0)
+
                     }
                     break
                 }
@@ -108,6 +129,12 @@ open class CXDataService: NSObject {
     }
     
     open func imageUpload(_ imageData:Data,completion:@escaping (_ Response:NSDictionary) -> Void){
+        if !Connectivity.isConnectedToInternet() {
+            CXLog.print("Yes! internet is available.")
+            self.showAlertView(status: 0)
+            return
+            // do some tasks..
+        }
 
         let mutableRequest : AFHTTPRequestSerializer = AFHTTPRequestSerializer()
         let request1 : NSMutableURLRequest =    mutableRequest.multipartFormRequest(withMethod: "POST", urlString: CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getphotoUploadUrl(), parameters: ["refFileName": self.generateBoundaryString()], constructingBodyWith: { (formatData:AFMultipartFormData) in
@@ -194,6 +221,12 @@ open class CXDataService: NSObject {
 
     
     open func getTheUpdatesFromServer(_ parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        if !Connectivity.isConnectedToInternet() {
+            CXLog.print("Yes! internet is available.")
+            self.showAlertView(status: 0)
+            return
+            // do some tasks..
+        }
         
        /* https://api.withfloats.com/Discover/v2/floatingPoint/bizFloats?clientId=5FAE0707506C43BAB8B8C9F554586895577B22880B834423A473E797607EFCF6&skipBy=0&fpid=kljadlkcjasd898979
          

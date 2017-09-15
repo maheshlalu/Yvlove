@@ -15,7 +15,7 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
     var campCreatedDateArray = NSArray()
     var imageStr = String()
     var prefJobIdStr = String()
-    var dict = NSDictionary()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "CampaignCollectionViewCell", bundle: nil)
@@ -27,12 +27,16 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
     func getCampaignIteams() {
         /*Campaign:
          http://storeongo.com:8081/Services/getMasters?type=Campaigns&mallId=4724*/
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Campaigns" as AnyObject,"mallId":"4724" as AnyObject]) { (responseDict) in
+        
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Campaigns" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
            // print("print Campaign\(responseDict)")
           
              self.jobArray = responseDict.value(forKey: "jobs") as! NSArray
              print("jobArray \( self.jobArray)")
             self.campaignCollectionView.reloadData()
+            CXDataService.sharedInstance.hideLoader()
             // self.campCreatedDateArray = responseDict.value(forKey: "createdOn") as! NSArray
         }
     }
@@ -46,7 +50,7 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
         cell.layer.cornerRadius = 10
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius: cell.layer.cornerRadius).cgPath
         cell.layer.masksToBounds = true
-         dict = self.jobArray[indexPath.item] as! NSDictionary
+        let dict = self.jobArray[indexPath.item] as! NSDictionary
        self.prefJobIdStr = dict.value(forKey: "Campaign_Jobs") as! String
        cell.campNameLbl.text = dict.value(forKey: "Name") as? String
         cell.campCreatedDateLbl.text = dict.value(forKey: "createdOn") as? String
@@ -84,7 +88,8 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
         // handle tap events
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
          let campaignDetails = storyBoard.instantiateViewController(withIdentifier: "CAMPAIGNSDETAIL") as! CXCampaignDetailViewController
-         campaignDetails.prefferedJodIdsStr =  self.prefJobIdStr
+        let dict = self.jobArray[indexPath.item] as! NSDictionary
+        campaignDetails.prefferedJodIdsStr = dict.value(forKey: "Campaign_Jobs") as! String
         campaignDetails.productString =  dict.value(forKey: "Name") as? String
          self.navigationController?.pushViewController(campaignDetails, animated: true)
     }
@@ -103,7 +108,7 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
     }
     
     override func headerTitleText() -> String{
-        return ""
+        return "Campaigns"
     }
     
     override func shouldShowLeftMenu() -> Bool{

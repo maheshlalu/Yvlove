@@ -29,9 +29,10 @@ class CXCampaignDetailViewController: CXViewController,UICollectionViewDataSourc
     func getMatchedProducts(){
          print("jobs== \(String(describing: self.prefferedJodIdsStr))")
          //http://storeongo.com:8081/Services/getMasters?PrefferedJobs=49856_49855_49854_49851_49850_49849_49830&mallId=4724
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         CXDataService.sharedInstance.getTheAppDataFromServer(["PrefferedJobs":self.prefferedJodIdsStr as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             print(responseDict)
-            
+            CXDataService.sharedInstance.hideLoader()
             let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             
             if jobs.count == 0{

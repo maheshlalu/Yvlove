@@ -298,31 +298,6 @@ class AboutUsViewController: CXViewController,UITableViewDataSource,UITableViewD
         }else{
             /* let act = ServiceFormViewController()
              self.navigationController?.pushViewController(act, animated: true)*/
-            
-            let macUserId = String(UserDefaults.standard.value(forKey: "MACID_JOBID") as! Int)
-            let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
-            let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
-            //let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
-            
-            let chatData:NSMutableDictionary = NSMutableDictionary()
-            chatData.setValue(userEmail, forKey: "FromUserEmail")
-            chatData.setValue(userName, forKey: "FromUserName")
-           // chatData.setValue(userPic, forKey: "FromUserPic")
-            chatData.setValue(macUserId, forKey: "FromUserId")
-            
-            
-            //This is User Profile Chat History
-            // chatData.setValue(itemDict.value(forKey: "id"), forKey: "ToUserId")
-            
-             chatData.setValue(String(aboutUsDict.value(forKey: "id") as! Int), forKey: "ToUserId")
-             chatData.setValue(aboutUsDict.value(forKeyPath: "Name") as? String, forKey: "ToUserName")
-             chatData.setValue("testmail@gmail.com", forKey: "ToUserEmail")
-            
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let chatView = storyBoard.instantiateViewController(withIdentifier: "IMChatViewController") as! IMChatViewController
-            chatView.userDetailsDic = chatData
-            let navHome = UINavigationController(rootViewController: chatView)
-            self.present(navHome, animated: false, completion: nil)
         }
     }
     

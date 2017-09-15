@@ -38,6 +38,16 @@
 				<string>fb551701778362796</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ongo.yvlov</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>YVOLVShare</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>

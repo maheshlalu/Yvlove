@@ -15,35 +15,52 @@ class UpdatesViewController: CXViewController {
     @IBOutlet weak var updateTableView: UITableView!
     @IBOutlet weak var updatesSearch: UISearchBar!
     var updatesArray : NSArray = NSArray()
+    var refreshControl : UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updatesSearch.isHidden = true
         self.updateTableView.backgroundView?.backgroundColor = UIColor.clear
         self.updateTableView.backgroundColor = UIColor.clear
         self.view.backgroundColor =  CXAppConfig.sharedInstance.getAppBGColor()
         self.offersNotAvailLbl.textColor = CXAppConfig.sharedInstance.getAppTheamColor()
         self.setUpTableView()
         self.getUpdates()
+        self.addThePullTorefresh()
     }
     
     func getUpdates(){
-        
+        LoadingView.show("Loading", animated: true)
         CXAppDataManager.sharedInstance.getUpdates { (response) in
+            LoadingView.hide()
             self.updatesArray = response
             if self.updatesArray.count == 0{
                 self.offersNotAvailLbl.isHidden = false
                 self.updateTableView.isHidden = true
-                self.updatesSearch.isHidden = true
             }else{
                 self.offersNotAvailLbl.isHidden = true
                 self.updateTableView.isHidden = false
-                self.updatesSearch.isHidden = false
             }
             
             self.updateTableView.reloadData()
         }
         
     }
+    
+    //MARK: Add The PullToRefresh
+    func addThePullTorefresh(){
+        self.refreshControl = UIRefreshControl()
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        self.updateTableView.addSubview(self.refreshControl)
+        self.updateTableView.alwaysBounceVertical = true
+        //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+    }
+    
+    func refresh(sender:UIRefreshControl) {
+        self.getUpdates()
+    }
+    
     
     func setUpTableView(){
         let nib = UINib(nibName: "UpdateTableViewCell", bundle: nil)
@@ -114,7 +131,7 @@ extension UpdatesViewController : UITableViewDelegate,UITableViewDataSource {
         let description = updateDic.value(forKey: "Feed") as?String
         let url = updateDic.value(forKey: "publicURL") as? String
         
-        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [description!,url!], applicationActivities: nil)
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: ["\(description!) Link: YVOLVShare://\(url!)"], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [UIActivityType.print, UIActivityType.postToWeibo, UIActivityType.copyToPasteboard, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
         self.present(activityViewController, animated: true, completion: nil)
         

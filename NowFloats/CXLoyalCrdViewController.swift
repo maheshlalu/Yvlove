@@ -25,42 +25,80 @@ class CXLoyalCrdViewController: CXViewController{
     }
    
     func getLoyalcards(){
-//                if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil
-//                {let alert = UIAlertController.init(title: "YVOLV", message: "Please signIn to view", preferredStyle: .alert)
-//                    let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: { (okAction) in
-//                   self.summaryTableView.isHidden = true
-//                        let name = CXSignInSignUpViewController()
-//                        self.navigationController?.pushViewController(name, animated: true)
-//                        self.dismiss(animated: true, completion: nil)
-//        
-//                    })
-//                    let cancelAction = UIAlertAction.init(title: "Cancel", style: .destructive, handler: { (cancelAction) in
-//                        
-//                    })
-//                    alert.addAction(okAction)
-//                    alert.addAction(cancelAction)
-//                    self.present(alert, animated: true, completion: nil)
-//                }else{
-                    self.summaryTableView.isHidden = false
-        let emailString = UserDefaults.standard.value(forKey: "USER_EMAIL")
-        //CXAppConfig.sharedInstance.getAppMallID()
-        //http://storeongo.com:8081/MobileAPIs/getConJobInstances?email=k@k.com&ownerId=4724
-        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getLoyalcards()
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["email":emailString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            CXLog.print(responseDict)
-            let activityArr = responseDict.value(forKey: "jobinstances") as! NSArray
-             CXLog.print(activityArr)
-            for activityData in activityArr{
-                let dict:NSDictionary = activityData as! NSDictionary
-                let activities = (dict.value(forKey: "actvities")!) as! NSArray
-                self.allActivitiesArr.addObjects(from: activities as! [Any])
+        if UserDefaults.standard.value(forKey: "USER_EMAIL") == nil{
+            let alert = UIAlertController.init(title: "YVOLV", message: "Please signIn to view", preferredStyle: .alert)
+            let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: { (okAction) in
+                self.summaryTableView.isHidden = true
+                let name = CXSignInSignUpViewController()
+                self.navigationController?.pushViewController(name, animated: true)
+                self.dismiss(animated: true, completion: nil)
+            })
+            let cancelAction = UIAlertAction.init(title: "Cancel", style: .destructive, handler: { (cancelAction) in
+                
+            })
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            self.summaryTableView.isHidden = false
+            let emailString = UserDefaults.standard.value(forKey: "USER_EMAIL")
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+            //http://storeongo.com:8081/MobileAPIs/getConJobInstances?email=k@k.com&ownerId=4724
+            let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getLoyalcards()
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["email":emailString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+                CXDataService.sharedInstance.hideLoader()
+                CXLog.print(responseDict)
+                let activityArr = responseDict.value(forKey: "jobinstances") as! NSArray
+                CXLog.print(activityArr)
+                for activityData in activityArr{
+                    let dict:NSDictionary = activityData as! NSDictionary
+                    let activities = (dict.value(forKey: "actvities")!) as! NSArray
+                    self.allActivitiesArr.addObjects(from: activities as! [Any])
+                }
+                CXLog.print("ALL Activities== \(self.allActivitiesArr.description)")
+                self.summaryTableView.reloadData()
+                //self.summaryTableView.endUpdates()
             }
-            CXLog.print("ALL Activities== \(self.allActivitiesArr.description)")
-             self.summaryTableView.reloadData()
-            //self.summaryTableView.endUpdates()
         }
-       // }
     }
+    
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        return false
+    }
+    
+    override func headerTitleText() -> String{
+        return "Summary"
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        return false
+    }
+    
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
+
 }
 extension CXLoyalCrdViewController : UITableViewDataSource, UITableViewDelegate {
     
@@ -85,42 +123,6 @@ extension CXLoyalCrdViewController : UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
 }
-//    //MAR:Heder options enable
-//    override  func shouldShowRightMenu() -> Bool{
-//        return true
-//    }
-//    
-//    override func shouldShowNotificatoinBell() ->Bool{
-//        return true
-//    }
-//    
-//    override  func shouldShowCart() -> Bool{
-//        return true
-//    }
-//    
-//    override func headerTitleText() -> String{
-//        return ""
-//    }
-//    
-//    override func shouldShowLeftMenu() -> Bool{
-//        return false
-//    }
-//    
-//    override func shouldShowLeftMenuWithLogo() -> Bool{
-//        return false
-//    }
-//    
-//    override func showLogoForAboutUs() -> Bool{
-//        return false
-//    }
-//    
-//    override func profileDropdown() -> Bool{
-//        return false
-//    }
-//    
-//    override func profileDropdownForSignIn() -> Bool{
-//        return false
-//    }
-    
+
 
 }

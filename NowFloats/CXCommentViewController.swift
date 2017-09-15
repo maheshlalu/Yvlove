@@ -27,19 +27,25 @@ class CXCommentViewController: CXViewController,UITableViewDataSource,UITableVie
      
         //smBackgroundColor()
         //self.customizeMainView()
-        getTheComments()
         refresher = UIRefreshControl()
         refresher.tintColor = UIColor.blue
-        /*let table: UITableViewController = UITableViewController()
+        self.designCommentTableView()
+        getTheComments()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    func designCommentTableView(){
+    
+        let table: UITableViewController = UITableViewController()
         let tableView: UITableView = UITableView()
         tableView.frame = CGRect(x: 0, y: 10, width: self.view.frame.size.width, height: 500)
         tableView.dataSource = table
         tableView.delegate = table
         tableView.dataSource = self
         tableView.delegate = self
-        self.view.addSubview(tableView)*/
+        self.view.addSubview(tableView)
         
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +54,7 @@ class CXCommentViewController: CXViewController,UITableViewDataSource,UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let dictionary =  jobDocumentArray[indexPath.row] as? NSDictionary
-        print(dictionary)
         let cellId = "MyCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
         let screen =  UIScreen.main.bounds
@@ -128,29 +132,17 @@ class CXCommentViewController: CXViewController,UITableViewDataSource,UITableVie
         return 160
     }
     func getTheComments(){
-        //let userId =  "\(UserDefaults.standard.value(forKey: "USER_ID")!)"
-        //let jobId = "\(UserDefaults.standard.value(forKey: "MACID_JOBID")!)"
-        refresher = UIRefreshControl()
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Stores" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-            print(responseDict)
+            CXDataService.sharedInstance.hideLoader()
             let commentArray = responseDict.value(forKey: "jobs") as! NSArray
             for obj in commentArray{
                 let dict = (obj as? NSDictionary)!
                 self.itemCode = (dict.value(forKey: "ItemCode") as? String)!
                 if self.itemCode.contains(CXAppConfig.sharedInstance.getAppMallID()) {
                     self.jobDocumentArray = dict.value(forKey: "jobComments") as! NSArray
-                    print(self.jobDocumentArray)
                     self.tableView.reloadData()
-                    self.refresher.endRefreshing()
-                     let table: UITableViewController = UITableViewController()
-                     self.tableView.frame = CGRect(x: 0, y: 10, width: self.view.frame.size.width, height: 500)
-                     self.tableView.dataSource = table
-                     self.tableView.delegate = table
-                     self.tableView.dataSource = self
-                     self.tableView.delegate = self
-                     self.view.addSubview(self.tableView)
-                }else{
-                    self.customizeMainView()
+                    CXDataService.sharedInstance.hideLoader()
                 }
             }
         }

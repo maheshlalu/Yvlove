@@ -16,6 +16,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var productdescriptionLabel: UILabel!
     @IBOutlet var produstimageview: UIImageView!
     @IBOutlet weak var productFinalPriceLabel: UILabel!
+    @IBOutlet weak var askAQuoteBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

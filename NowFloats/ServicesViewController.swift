@@ -12,6 +12,8 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var popUpView: UIView!
+  
+    
     var navController : CXNavDrawer = CXNavDrawer()
     var servicesNamesArray = NSArray()
     var serviceArray = ["Contact Us","Book Appointment","General Service","My Orders"]
@@ -24,6 +26,11 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
         self.tableView.register(nib, forCellReuseIdentifier: "ServicesTableViewCell")
         
         getServiceApiCall()
+        self.popUpView.layer.borderColor = CXAppConfig.sharedInstance.getAppTheamColor().cgColor
+        self.popUpView.layer.borderWidth = 2
+        self.popUpView.layer.cornerRadius = 10
+        self.popUpView.layer.masksToBounds = true
+//        self.tableView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,9 +41,6 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let dict = servicesNamesArray[indexPath.row]as? NSDictionary
-        
-        print(dict)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServicesTableViewCell", for: indexPath)as? ServicesTableViewCell
         
         cell?.servicesLabel.text = dict?.value(forKey: "Name") as? String
@@ -45,14 +49,14 @@ class ServicesViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func getServiceApiCall(){
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Fetching...")
         
         let urlString = CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl()
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlString,parameters: ["type":"ServicesCategories" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responsDict) in
-            print(responsDict)
             self.servicesNamesArray = (responsDict.value(forKey: "jobs")as? NSArray)!
-            print(self.servicesNamesArray)
             self.tableView.reloadData()
+            CXDataService.sharedInstance.hideLoader()
         }
         
     }

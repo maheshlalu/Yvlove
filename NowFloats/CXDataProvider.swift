@@ -406,6 +406,14 @@ extension CXDataProvider {
         return([],0)
     }
     
+    func isDisplayCart() ->Bool{
+        if CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CXWidgets", predicate: NSPredicate(format:"name=%@ AND visibility=%@","Cart","Yes" ), ispredicate: true, orederByKey: "").totalCount == 0{
+            return false
+        }else{
+            return true
+        }
+    }
+    
     func getTheProducts(_ predicate:NSPredicate,ispredicate:Bool) -> (dataArray:NSArray, totalCount:NSInteger){
         
         // let fetchRequest = CX_Products.MR_requestAllSortedBy("pid", ascending: false)

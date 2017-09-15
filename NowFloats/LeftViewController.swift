@@ -99,8 +99,13 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                         let data : sidePanleData = sidePanleData()
                         data.name = channelData["name"] as! String
                         data.displayName = channelData["title"] as! String
-                        data.type = channelData["type"] as! String
 
+                        if let type = channelData["type"] as? String{
+                            data.type = type
+
+                        }else{
+                             data.type = ""
+                        }
                         if let visibility = channelData["visibility"] as? Bool , visibility == true{
                             leftController.add(data)
                         }
@@ -285,20 +290,30 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let name = CXSignInSignUpViewController()
                 self.navController.pushViewController(name, animated: true)
             }else{
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let chatList = storyBoard.instantiateViewController(withIdentifier: "LFChatListViewController") as! LFChatListViewController
-                let macUserId = UserDefaults.standard.value(forKey: "MACID_JOBID")
+                let macUserId = String(UserDefaults.standard.value(forKey: "MACID_JOBID") as! Int)
                 let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
                 let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
-                let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
-                chatList.userID = String(macUserId as! Int)
+                //let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
+                
                 let chatData:NSMutableDictionary = NSMutableDictionary()
                 chatData.setValue(userEmail, forKey: "FromUserEmail")
                 chatData.setValue(userName, forKey: "FromUserName")
-                chatData.setValue(userPic, forKey: "FromUserPic")
+                // chatData.setValue(userPic, forKey: "FromUserPic")
                 chatData.setValue(macUserId, forKey: "FromUserId")
-                chatList.userDetailsDic = chatData
-                self.navController.pushViewController(chatList, animated: true)
+                
+                
+                //This is User Profile Chat History
+                // chatData.setValue(itemDict.value(forKey: "id"), forKey: "ToUserId")
+                
+                /*chatData.setValue(String(aboutUsDict.value(forKey: "id") as! Int), forKey: "ToUserId")
+                chatData.setValue(aboutUsDict.value(forKeyPath: "Name") as? String, forKey: "ToUserName")
+                chatData.setValue("testmail@gmail.com", forKey: "ToUserEmail")*/
+                
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let chatView = storyBoard.instantiateViewController(withIdentifier: "IMChatViewController") as! IMChatViewController
+                chatView.userDetailsDic = chatData
+                let navHome = UINavigationController(rootViewController: chatView)
+                 self.navController.pushViewController(navHome, animated: true)
             }
         }else if itemName == "Blog" {
             
@@ -324,7 +339,9 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
             let product = storyBoard.instantiateViewController(withIdentifier: "PRODUCT") as! ProductsViewController
             self.navController.pushViewController(product, animated: true)
         }else if itemName == "IsOnlyLoyalty" {
-            
+            let lydCrdVc = storyBoard.instantiateViewController(withIdentifier: "LOYALCARD") as! CXLoyalCrdViewController
+            self.navController.pushViewController(lydCrdVc, animated: true)
+
         }else if itemName == "Updates" {
             let updateVc = storyBoard.instantiateViewController(withIdentifier: "UPDATE") as! UpdatesViewController
             self.navController.pushViewController(updateVc, animated: true)
@@ -338,7 +355,12 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         }else if data.type == "Custom Tab" {
             //Open custom tab view
             CXLog.print("Custom Tab")
-
+            let customVc = storyBoard.instantiateViewController(withIdentifier: "CUSTOMTAB") as! CXCustomTabViewController
+            customVc.nameString = data.name
+            self.navController.pushViewController(customVc, animated: true)
+        }else if itemName == "Campaigns" {
+            let campaignVc = storyBoard.instantiateViewController(withIdentifier: "CAMPAIGNS") as! CXCampaignsViewController
+            self.navController.pushViewController(campaignVc, animated: true)
         }
     }
     

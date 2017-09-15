@@ -125,6 +125,18 @@ open class CXAppDataManager: NSObject {
    
   
         #else
+            let categoriesArray = NSMutableArray()
+            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
+            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+                for dictData in jobsData {
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    //let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    categoriesArray.add(dictindividual)
+                }
+                UserDefaults.standard.set(categoriesArray, forKey: "CategeryAdditinal")
+            }
+            
         
         if  CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_Products", predicate: NSPredicate(), ispredicate: false,orederByKey: "").totalCount == 0{
             CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Products" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
@@ -170,7 +182,7 @@ open class CXAppDataManager: NSObject {
     //Get Calendar Events
     //http://storeongo.com:8081/Services/getMasters?type= CalenderEvents &mallId= 4724
     func getCalanderEvents(completion:@escaping (_ response:NSArray) -> Void){
-        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"CalenderEvents" as AnyObject,"mallId":"4724" as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"CalenderEvents" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
            let jobs : NSArray =  responseDict.value(forKey: "jobs")! as! NSArray
             completion(jobs)
         }

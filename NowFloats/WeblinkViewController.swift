@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeblinkViewController: UIViewController {
+class WeblinkViewController: CXViewController {
     var payMentWebView: UIWebView!
     var activity: UIActivityIndicatorView = UIActivityIndicatorView()
     var webLink : String!
@@ -19,11 +19,11 @@ class WeblinkViewController: UIViewController {
         self.backButton()
         self.designWebView()
         
-        self.title = self.displayName
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "Roboto-Bold", size: 20)!
-        ]
+        //self.title = self.displayName
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSForegroundColorAttributeName: UIColor.white,
+//            NSFontAttributeName: UIFont(name: "Roboto-Bold", size: 20)!
+//        ]
         // Do any additional setup after loading the view.
     }
 
@@ -37,9 +37,12 @@ class WeblinkViewController: UIViewController {
         self.payMentWebView.frame = CGRect(x: 0, y: 0, width: CXAppConfig.sharedInstance.mainScreenSize().width, height: CXAppConfig.sharedInstance.mainScreenSize().height)
         self.view.addSubview(self.payMentWebView)
         payMentWebView.delegate = self
+        self.activity.center = CGPoint(x: CXAppConfig.sharedInstance.mainScreenSize().width/2, y: CXAppConfig.sharedInstance.mainScreenSize().height/2)
         
         let requestObj = NSURLRequest(url:  URL(string: self.webLink)!)
         self.payMentWebView.loadRequest(requestObj as URLRequest)
+        self.payMentWebView.addSubview(activity)
+        self.activity.startAnimating()
 
 
     }
@@ -68,6 +71,45 @@ class WeblinkViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    //MAR:Heder options enable
+    override  func shouldShowRightMenu() -> Bool{
+        return true
+    }
+    
+    override func shouldShowNotificatoinBell() ->Bool{
+        return false
+    }
+    
+    override  func shouldShowCart() -> Bool{
+        return false
+    }
+    
+    override func headerTitleText() -> String{
+        return self.displayName
+    }
+    
+    override func shouldShowLeftMenu() -> Bool{
+        return false
+    }
+    
+    override func shouldShowLeftMenuWithLogo() -> Bool{
+        return false
+    }
+    
+    override func showLogoForAboutUs() -> Bool{
+        return false
+    }
+    
+    override func profileDropdown() -> Bool{
+        return false
+    }
+    
+    override func profileDropdownForSignIn() -> Bool{
+        return false
+    }
+
+    
+    
 
 }
 
@@ -91,5 +133,8 @@ extension WeblinkViewController : UIWebViewDelegate {
         activity.isHidden = true
         activity.stopAnimating()
     }
+    
+    
+    
     
 }

@@ -39,9 +39,7 @@
 	<key>ISPagerEnable</key>
 	<true/>
 	<key>PRODUCT_NAME</key>
-	<string>Shah&apos;s
-Shah Electronics Appliances
-</string>
+	<string>Yvolv</string>
 	<key>signInMethod</key>
 	<string>MobileAPIs/loginConsumerForOrg?</string>
 	<key>signUpMethod</key>

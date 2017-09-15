@@ -15,7 +15,8 @@ class OffersViewController: CXViewController{
     
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
-    
+    var arrAdditinalCategery = NSMutableArray()
+
     var products : NSArray! = nil
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
@@ -35,7 +36,71 @@ class OffersViewController: CXViewController{
         self.products  = CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray
         
         self.offersTableView.reloadData()
+        
+        if self.products.count == 0 {
+            self.getAddtinalCategryList()
+        }
     }
+    
+    
+    func getAddtinalCategryList(){
+        var dictcategeryadd = NSMutableArray()
+        
+        if(UserDefaults.standard.object(forKey: "CategeryAdditinal") == nil)
+        {
+        }else{
+            dictcategeryadd =  NSMutableArray(array: (UserDefaults.standard.value(forKey: "CategeryAdditinal") as? NSArray)!)
+        }
+        
+        if (dictcategeryadd.count == 0){
+            
+            let dataKyes = ["type":"ProductCategories","mallId":CXAppConfig.sharedInstance.getAppMallID()]
+            CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]?) { (responceDic) in
+                let jobsData:NSArray = responceDic.value(forKey: "jobs")! as! NSArray
+                for dictData in jobsData {
+                    let dictindividual : NSDictionary =  (dictData as? NSDictionary)!
+                    //let name:String = (dictindividual.value(forKey: "Name") as? String)!
+                    self.arrAdditinalCategery.add(dictindividual)
+                }
+                UserDefaults.standard.set(self.arrAdditinalCategery, forKey: "CategeryAdditinal")
+            }
+        }else{
+            for name in dictcategeryadd
+            {
+                self.arrAdditinalCategery.add(name)
+                let subDict = self.arrAdditinalCategery.object(at:0) as! NSDictionary
+                let name = subDict.value(forKey: "Name") as! String
+                self.callAddtinalCategerySevice(str: name)
+            }
+        }
+    }
+    
+    func callAddtinalCategerySevice(str : String)
+    {
+        
+        let dataKyes = ["type":str,"mallId":CXAppConfig.sharedInstance.getAppMallID()] as [String : Any]
+        CXDataService.sharedInstance.getTheAppDataFromServer(dataKyes as [String : AnyObject]) { (responceDic) in
+            //  var arrCategeryData =
+            CXDataProvider.sharedInstance.saveTheProducts(responceDic, completion: { (response) in
+                let fetchRequest :  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CX_Products")
+                
+                let resultstr =  str.replacingOccurrences(of: " ", with: "")
+                let predicate =  NSPredicate(format: "type=='\(resultstr)'", argumentArray: nil)
+                fetchRequest.predicate = predicate
+                self.products =  CX_Products.mr_executeFetchRequest(fetchRequest) as NSArray!
+                if self.products.count == 0{
+                    
+                    
+                }else{
+                    self.offersTableView.reloadData()
+
+                }
+                
+            })
+        }
+    }
+
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -247,6 +312,9 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         
         let fId = Int(featuredProductJobs.fID! as String)
         cell?.orderNowBtn.tag = fId!
+        if !CXDataProvider.sharedInstance.isDisplayCart() {
+            cell?.orderNowBtn.isHidden = true
+        }
         
         cell?.orderNowBtn.addTarget(self, action: #selector(OffersViewController.orderNowBtnAction(_:)), for: UIControlEvents.touchUpInside)
         //self.productsSearchBar.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
