@@ -312,8 +312,10 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let chatView = storyBoard.instantiateViewController(withIdentifier: "IMChatViewController") as! IMChatViewController
                 chatView.userDetailsDic = chatData
-                let navHome = UINavigationController(rootViewController: chatView)
-                 self.navController.pushViewController(navHome, animated: true)
+                self.navController.pushViewController(chatView, animated: true)
+                
+                //let navHome = UINavigationController(rootViewController: chatView)
+                //self.navController.pushViewController(navHome, animated: true)
             }
         }else if itemName == "Blog" {
             

@@ -10,7 +10,6 @@ import UIKit
 
 class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRatingViewDelegate {
     
-    
     @IBOutlet weak var productDetailsTableView: UITableView!
     var productString : String!
     var productDetailDic: NSDictionary!
@@ -388,7 +387,6 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
             self.navigationController?.pushViewController(signInViewCnt, animated: true)
             return
-            
         }else{
             let popup = PopupController
                 .create(self)
@@ -407,10 +405,9 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
             }
             let container = InfoQueryViewController.instance()
             
-            if (sender as! UIButton).titleLabel?.text == "Get quote" {
+            if (sender as! UIButton).titleLabel?.text == "Get quote"{
                 container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
             }
-            
             container.closeHandler = { _ in
                 popup.dismiss()
             }
@@ -440,8 +437,7 @@ class ProductDetailsViewController: CXViewController,UITextViewDelegate,FloatRat
     //
     //        self.setUpRatingView()
     //    }
-    
-    
+
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
         self.productRattingLbl.text = NSString(format: "%.2f", ratingView.rating) as String
