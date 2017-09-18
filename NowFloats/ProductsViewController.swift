@@ -13,7 +13,6 @@ import FacebookCore
 import FBSDKCoreKit
 import Alamofire
 
-
 class ProductsViewController: CXViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var viewAdditinalCategery: UIView!
@@ -356,10 +355,11 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         
         cell.cartaddedbutton.tag = indexPath.row+1
         cell.likebutton.tag = indexPath.row+1
+        cell.askAQuoteBtn.tag = indexPath.row+1
         
         cell.cartaddedbutton.addTarget(self, action: #selector(ProductsViewController.productAddedToCart(_:)), for: UIControlEvents.touchUpInside)
         cell.likebutton.addTarget(self, action: #selector(ProductsViewController.productAddedToWishList(_:)), for: UIControlEvents.touchUpInside)
-        cell.askAQuoteBtn.addTarget(self, action: #selector(productsAskAQuoteAction), for: UIControlEvents.touchUpInside)
+        cell.askAQuoteBtn.addTarget(self, action: #selector(ProductsViewController.productsAskAQuoteAction(_:)), for: UIControlEvents.touchUpInside)
         
         self.assignCartButtonWishtListProperTy(cell, indexPath: indexPath, productData: products)
         // Enhancements in nowfloats
@@ -513,8 +513,7 @@ extension ProductsViewController {
     func productsAskAQuoteAction(_ sender:UIButton){
         
         let proListData : CX_Products = self.products[sender.tag-1] as! CX_Products
-        let indexPath = IndexPath(row: sender.tag-1, section: 0)
-        
+        //let indexPath = IndexPath(row: sender.tag-1, section: 0)
         
         if UserDefaults.standard.value(forKey: "USER_ID") == nil{
             let signInViewCnt : CXSignInSignUpViewController = CXSignInSignUpViewController()
@@ -540,8 +539,8 @@ extension ProductsViewController {
             let container = InfoQueryViewController.instance()
             
             //if (sender as! UIButton).titleLabel?.text == "Get quote" {
-                container.textViewString = "Hi, I am interested in \"\(productDetailDic.value(forKey: "Name") as! String)\" and need more information on the same. Please contact me."
-           // }
+            container.textViewString = "Hi, I am interested in \"\(proListData.name!)\" and need more information on the same. Please contact me."
+            // }
             
             container.closeHandler = { _ in
                 popup.dismiss()

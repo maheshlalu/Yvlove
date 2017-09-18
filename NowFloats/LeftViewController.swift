@@ -253,16 +253,12 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.navController.drawerToggle()
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
         let data : sidePanleData = self.sidepanelList[indexPath.row] as! sidePanleData
         //let itemName : String =  (CXAppConfig.sharedInstance.getSidePanelList()[indexPath.row] as? String)!
         let itemName : String =  data.name
-        
-        
         if itemName == "Home"{
             self.navController.popToRootViewController(animated: true)
         }else if itemName == "About Us"{
@@ -290,31 +286,25 @@ class LeftViewController:ViewController,UITableViewDataSource,UITableViewDelegat
                 let name = CXSignInSignUpViewController()
                 self.navController.pushViewController(name, animated: true)
             }else{
-                let macUserId = String(UserDefaults.standard.value(forKey: "MACID_JOBID") as! Int)
+                let macUserId = String(UserDefaults.standard.value(forKey: "USER_ID") as! Int)
                 let userEmail = UserDefaults.standard.value(forKey: "USER_EMAIL") as! String
                 let userName = UserDefaults.standard.value(forKey: "FIRST_NAME") as! String
-                //let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
-                
+                let userPic = UserDefaults.standard.value(forKey: "IMAGE_PATH") as! String
                 let chatData:NSMutableDictionary = NSMutableDictionary()
                 chatData.setValue(userEmail, forKey: "FromUserEmail")
                 chatData.setValue(userName, forKey: "FromUserName")
-                // chatData.setValue(userPic, forKey: "FromUserPic")
+                chatData.setValue(userPic, forKey: "FromUserPic")
                 chatData.setValue(macUserId, forKey: "FromUserId")
                 
-                
                 //This is User Profile Chat History
-                // chatData.setValue(itemDict.value(forKey: "id"), forKey: "ToUserId")
-                
-                /*chatData.setValue(String(aboutUsDict.value(forKey: "id") as! Int), forKey: "ToUserId")
-                chatData.setValue(aboutUsDict.value(forKeyPath: "Name") as? String, forKey: "ToUserName")
-                chatData.setValue("testmail@gmail.com", forKey: "ToUserEmail")*/
+                chatData.setValue(CXAppConfig.sharedInstance.getAppMallID(), forKey: "ToUserId")
+                chatData.setValue(self.titleLable.text, forKey: "ToUserName")
+                chatData.setValue("testmail@gmail.com", forKey: "ToUserEmail")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let chatView = storyBoard.instantiateViewController(withIdentifier: "IMChatViewController") as! IMChatViewController
                 chatView.userDetailsDic = chatData
                 self.navController.pushViewController(chatView, animated: true)
-                
-                //let navHome = UINavigationController(rootViewController: chatView)
                 //self.navController.pushViewController(navHome, animated: true)
             }
         }else if itemName == "Blog" {

@@ -28,7 +28,7 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
         /*Campaign:
          http://storeongo.com:8081/Services/getMasters?type=Campaigns&mallId=4724*/
         
-        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+        LoadingView.show("Loading", animated: true)
 
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"Campaigns" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
            // print("print Campaign\(responseDict)")
@@ -37,6 +37,7 @@ class CXCampaignsViewController: CXViewController,UICollectionViewDataSource,UIC
              print("jobArray \( self.jobArray)")
             self.campaignCollectionView.reloadData()
             CXDataService.sharedInstance.hideLoader()
+            LoadingView.hide()
             // self.campCreatedDateArray = responseDict.value(forKey: "createdOn") as! NSArray
         }
     }

@@ -19,7 +19,6 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
     var isFromSignIn = false
     var presentWindow:UIWindow?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         CXMixpanel.sharedInstance.mixelProfileTarck()
@@ -32,31 +31,30 @@ class UserProfileViewController: CXViewController,UITableViewDelegate,UITableVie
         self.profileTableView.estimatedRowHeight = 10.0
         self.profileTableView.separatorStyle = .none
         headerViewAlignments()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         profileDataIntegration()
-        
-
     }
     
     func profileDataIntegration(){
-        
         userNameLbl.text = UserDefaults.standard.value(forKey: "FULL_NAME") as? String
         userMobileLbl.text = UserDefaults.standard.value(forKey: "MOBILE") as? String
         userMailLbl.text = UserDefaults.standard.value(forKey: "USER_EMAIL") as? String
         let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
         if (imageUrl != "" && imageUrl != nil){
-            dpImageView.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
+          //  dpImageView.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
+           dpImageView.setImageWith(NSURL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!) as URL!, usingActivityIndicatorStyle: .gray)
+
             dpImageView.alpha = 1
             dpImageView.backgroundColor = UIColor.clear
         }else{
            // dpImageView.image = UIImage.init(imageLiteral: "placeholder")
             dpImageView.backgroundColor = CXAppConfig.sharedInstance.getAppTheamColor()
         }
-        
-      
     }
-    override func viewWillAppear(_ animated: Bool) {
-        profileDataIntegration()
-    }
+
     @IBAction func editBtnAction(_ sender: AnyObject) {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)

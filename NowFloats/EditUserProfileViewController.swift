@@ -279,7 +279,8 @@ class EditUserProfileViewController: CXViewController,UIImagePickerControllerDel
         
         let imageUrl = UserDefaults.standard.value(forKey: "IMAGE_PATH") as? String
         if (imageUrl != "" && imageUrl != nil){
-            editDPImage.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
+            //editDPImage.sd_setImage(with: URL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!))
+            editDPImage.setImageWith(NSURL(string: (UserDefaults.standard.value(forKey: "IMAGE_PATH") as?String)!) as URL!, usingActivityIndicatorStyle: .gray)
             editDPImage.alpha = 1
             editDPImage.backgroundColor = UIColor.clear
         }else{

@@ -7,16 +7,14 @@
 //
 
 import UIKit
-let reuseTableViewCellIdentifier = "OfferTableViewCell"
-let reuseCollectionViewCellIdentifier = "OfferCollectionViewCell"
 
-class OffersViewController: CXViewController{
+class OffersViewController: CXViewController {
     @IBOutlet weak var offersNotAvailLbl: UILabel!
-    
     @IBOutlet weak var offersTableView: UITableView!
     @IBOutlet weak var productsSearchBar: UISearchBar!
     var arrAdditinalCategery = NSMutableArray()
-
+    let reuseTableViewCellIdentifier = "OfferTableViewCell"
+    let reuseCollectionViewCellIdentifier = "OfferCollectionViewCell"
     var products : NSArray! = nil
     var storedOffsets = [Int: CGFloat]()
     var featureProducts: NSArray!
@@ -28,7 +26,12 @@ class OffersViewController: CXViewController{
         self.featureProducts = CXDataProvider.sharedInstance.getTheTableDataFromDataBase("CX_FeaturedProducts", predicate: NSPredicate(), ispredicate: false, orederByKey: "fID").dataArray
         self.registerTableViewCell()
         self.getTheProducts()
-        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func getTheProducts(){
@@ -98,12 +101,6 @@ class OffersViewController: CXViewController{
                 
             })
         }
-    }
-
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -369,10 +366,7 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         let productDetails = storyBoard.instantiateViewController(withIdentifier: "PRODUCT_DETAILS") as! ProductDetailsViewController
         productDetails.productString = featuredProductJobs.json
         self.navigationController?.pushViewController(productDetails, animated: true)
-        
     }
-    
-    
 }
 
 

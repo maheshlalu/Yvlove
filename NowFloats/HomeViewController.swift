@@ -97,7 +97,6 @@ class HomeViewController: UITabBarController {
                 if let key = widGetData?.name {
                     viewContollerDic[key] = calender
                 }
-                
             }else if widGetData?.visibility == "Yes" && widGetData?.name == "Loyalty" {
                 //viewContollerDic["\(String(describing: widGetD ata?.name))"] = firstTab
                 let loyaltyCard = storyBoard.instantiateViewController(withIdentifier: "LOYALCARD") as! CXLoyalCrdViewController
@@ -106,6 +105,15 @@ class HomeViewController: UITabBarController {
                 self.tabsController.append(loyaltyCard)
                 if let key = widGetData?.name {
                     viewContollerDic[key] = loyaltyCard
+                }
+            }else if widGetData?.visibility == "Yes" && widGetData?.name == "BookAppointment"{
+                let bookAppointment = storyBoard.instantiateViewController(withIdentifier: "MyAppointmentViewController") as! MyAppointmentViewController
+                bookAppointment.title = widGetData?.displayName
+                bookAppointment.tabBarItem.image = UIImage(named: "bookApoint")
+                //bookApoint
+                self.tabsController.append(bookAppointment)
+                if let key = widGetData?.name {
+                    viewContollerDic[key] = bookAppointment
                 }
             }
         }

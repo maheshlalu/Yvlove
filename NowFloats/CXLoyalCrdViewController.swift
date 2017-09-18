@@ -42,11 +42,11 @@ class CXLoyalCrdViewController: CXViewController{
         }else{
             self.summaryTableView.isHidden = false
             let emailString = UserDefaults.standard.value(forKey: "USER_EMAIL")
-            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+            LoadingView.show("Loading", animated: true)
             //http://storeongo.com:8081/MobileAPIs/getConJobInstances?email=k@k.com&ownerId=4724
             let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getLoyalcards()
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["email":emailString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                CXDataService.sharedInstance.hideLoader()
+                LoadingView.hide()
                 CXLog.print(responseDict)
                 let activityArr = responseDict.value(forKey: "jobinstances") as! NSArray
                 CXLog.print(activityArr)

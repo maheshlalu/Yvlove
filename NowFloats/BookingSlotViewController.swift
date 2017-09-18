@@ -65,15 +65,14 @@ class BookingSlotViewController: CXViewController {
 //    }
 
     func getUserSlots() {
-         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+        LoadingView.show("Loading", animated: true)
+
         /*User Slots:
         http://storeongo.com:8081/Services/getMasters?type=user%20slots&mallid=4724*/
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"User Slots" as AnyObject,"mallid":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
             // print("print Campaign\(responseDict)")
-           CXDataService.sharedInstance.hideLoader()
-            
-            self.jobTimeArray = responseDict.value(forKey: "jobs") as! NSArray 
-            print("jobTimeArray== \( self.jobTimeArray)")
+            LoadingView.hide()
+            self.jobTimeArray = responseDict.value(forKey: "jobs") as! NSArray
             for activityData in  self.jobTimeArray{
                 let dict:NSDictionary = activityData as! NSDictionary
                 self.frmDateStr = (dict.value(forKey: "FromDate")!) as! String

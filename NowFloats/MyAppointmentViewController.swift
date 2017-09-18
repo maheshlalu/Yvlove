@@ -95,24 +95,15 @@ class MyAppointmentViewController: UIViewController,UITableViewDataSource,UITabl
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }else{  self.myAppointmentTableView.isHidden = false
-            
-            
-            
-            
-            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+
+            LoadingView.show("Loading", animated: true)
             let url = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl()
             //CXAppConfig.sharedInstance.getAppMallID()
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(url,parameters: ["type":"Resource Allocation" as AnyObject,"mallid":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
-                CXDataService.sharedInstance.hideLoader()
-                print(responseDict)
-                
+                LoadingView.hide()
                 self.jobArray = responseDict.value(forKey: "jobs") as! NSArray
                 print(self.jobArray)
-                
-                
-                
-                
-                self.myAppointmentTableView.reloadData()
+                   self.myAppointmentTableView.reloadData()
             }
         }
     }
