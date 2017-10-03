@@ -5,12 +5,12 @@
 	<key>loyalCards</key>
 	<string>MobileAPIs/getConJobInstances?</string>
 	<key>NOWFLOATS_MALL_ID</key>
-	<string>19</string>
+	<string>53</string>
 	<key>AppTheamColor</key>
 	<array>
-		<string>255</string>
-		<string>196</string>
-		<string>35</string>
+		<string>252</string>
+		<string>89</string>
+		<string>0</string>
 	</array>
 	<key>NowFloats_BaseUrl</key>
 	<string>http://47.91.107.151:8081/</string>
@@ -50,6 +50,8 @@
 	<string>MobileAPIs/forgotpwd?</string>
 	<key>updateProfile</key>
 	<string>MobileAPIs/updateUserDetails?</string>
+	<key>CancelOrderUrl</key>
+	<string>Services/updateConsumerJobMetaData?</string>
 	<key>photoUpload</key>
 	<string>Services/uploadFileFromAndroidToServer</string>
 	<key>testPaymentUrl</key>

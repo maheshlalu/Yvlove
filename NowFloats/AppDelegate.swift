@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         //MARK: Google Plus
         //        var configureError: NSError?
-        //        GGLContext.sharedInstance().configureWithError(&configureError)
+        //        GGLContext.sharedInstance(f).configureWithError(&configureError)
         //        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         IQKeyboardManager.sharedManager().enable = true

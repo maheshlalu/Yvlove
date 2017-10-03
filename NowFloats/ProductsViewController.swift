@@ -288,19 +288,20 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         //let shipmentDuration = dic.value(forKey: "ShipmentDuration")
         
         cell.productdescriptionLabel.text = products.name
-      /*
-        if shipmentDuration != nil {
+         cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
+      /*if shipmentDuration != nil {
             cell.produstimageview.contentMode = UIViewContentMode.scaleToFill
         }else{
             cell.produstimageview.contentMode = UIViewContentMode.scaleAspectFit
-        }
- */
+        }*/
         
         if products.imageUrl != nil{
             cell.produstimageview.setImageWith(URL(string: products.imageUrl!), usingActivityIndicatorStyle: .gray)
         }else{
             
         }
+        
+        
         let rupee = "\u{20B9}"
         
         //Trimming Price And Discount
@@ -311,20 +312,20 @@ class ProductsViewController: CXViewController,UICollectionViewDataSource,UIColl
         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
         //let floatDis = CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!)
         
-        //var floatDiscount:Float = Float()
+      /*  var floatDiscount:Float = Float()
         
-        //        if floatDis == ""{
-        //            floatDiscount = 0.0
-        //        }
+                if floatDis == ""{
+                    floatDiscount = 0.0
+                }
         
-        // let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
-        //        let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
-        //        let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
-        //
-        //        let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
-        //        let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+         let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
+                let floatPrice: Float = Float(CXDataProvider.sharedInstance.getJobID("MRP", inputDic: products.json!))!
+                let finalPrice = String(format: floatPrice == floor(floatPrice) ? "%.0f" : "%.1f", floatPrice)
         
+                let floatDiscount:Float = Float(CXDataProvider.sharedInstance.getJobID("DiscountAmount", inputDic: products.json!))!
+                let finalDiscount = String(format: floatDiscount == floor(floatDiscount) ? "%.0f" : "%.1f", floatDiscount)
         
+        */
         //Setting AttributedPrice
         let attributeString: NSMutableAttributedString! =  NSMutableAttributedString(string: finalPriceStr)
         attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))

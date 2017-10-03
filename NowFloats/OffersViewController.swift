@@ -253,9 +253,11 @@ extension OffersViewController : UICollectionViewDataSource,UICollectionViewDele
         // cell.productImageView.sd_setImage(with: URL(string:featuredProductJobs.image_URL!)!)
         
         cell?.productImageView.setImageWith(NSURL(string: featuredProductJobs.image_URL!) as URL!, usingActivityIndicatorStyle: .gray)
-        
+        cell?.productImageView.contentMode = UIViewContentMode.scaleAspectFit
+
         
         if featuredProductJobs.fDescription != nil{
+            
             
             let rupee = "\u{20B9}"
             

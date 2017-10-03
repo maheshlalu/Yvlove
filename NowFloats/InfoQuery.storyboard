@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,7 +20,7 @@
         <!--Info Query View Controller-->
         <scene sceneID="OvO-4g-3H7">
             <objects>
-                <viewController storyboardIdentifier="InfoQueryViewController" id="Fio-3e-wUe" customClass="InfoQueryViewController" customModule="Needybee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoQueryViewController" id="Fio-3e-wUe" customClass="InfoQueryViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N3N-7h-Dj3"/>
                         <viewControllerLayoutGuide type="bottom" id="xIg-pD-H4T"/>
@@ -118,6 +118,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="913-fM-kiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-24" y="-32"/>
+        </scene>
+        <!--Cancel Appointment View Controller-->
+        <scene sceneID="b1m-Ko-7Tt">
+            <objects>
+                <viewController storyboardIdentifier="CancelAppointmentViewController" id="eFE-VQ-jkH" customClass="CancelAppointmentViewController" customModule="Yvolv_Consumer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tGc-jp-cg9"/>
+                        <viewControllerLayoutGuide type="bottom" id="OHl-tQ-rg1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0QN-dB-wq0">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9C-ln-bOu">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PP-7q-yeR">
+                                        <rect key="frame" x="15" y="25" width="250" height="165"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Reason for cancel Appointment" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7bt-Eh-ts9">
+                                                <rect key="frame" x="5" y="5" width="240" height="155"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.95686274510000002" green="0.76862745099999996" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.76862745099999996" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="7bt-Eh-ts9" secondAttribute="bottom" constant="5" id="H1u-ff-YWQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="7bt-Eh-ts9" secondAttribute="trailing" constant="5" id="SDt-8Z-xGc"/>
+                                            <constraint firstItem="7bt-Eh-ts9" firstAttribute="leading" secondItem="6PP-7q-yeR" secondAttribute="leading" constant="5" id="cLQ-YI-xWE"/>
+                                            <constraint firstItem="7bt-Eh-ts9" firstAttribute="top" secondItem="6PP-7q-yeR" secondAttribute="top" constant="5" id="iKC-Rh-lZp"/>
+                                            <constraint firstAttribute="width" constant="250" id="k7t-Px-0pk"/>
+                                            <constraint firstAttribute="height" constant="165" id="nSj-zJ-Jmg"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1po-1p-wA5">
+                                        <rect key="frame" x="23" y="213" width="234" height="45"/>
+                                        <color key="backgroundColor" red="0.99921911954879761" green="0.83587604761123657" blue="0.45128852128982544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="234" id="RwG-UJ-cW7"/>
+                                            <constraint firstAttribute="height" constant="45" id="hLk-jo-bvE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                        <state key="normal" title="CANCEL APPOINTMENT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelBtnAction:" destination="eFE-VQ-jkH" eventType="touchUpInside" id="DuW-1T-b6v"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6PP-7q-yeR" firstAttribute="top" secondItem="v9C-ln-bOu" secondAttribute="top" constant="25" id="Obe-xO-v6W"/>
+                                    <constraint firstItem="6PP-7q-yeR" firstAttribute="centerX" secondItem="1po-1p-wA5" secondAttribute="centerX" id="dYf-Uj-AvM"/>
+                                    <constraint firstItem="1po-1p-wA5" firstAttribute="top" secondItem="6PP-7q-yeR" secondAttribute="bottom" constant="23" id="lzR-AR-QzC"/>
+                                    <constraint firstItem="6PP-7q-yeR" firstAttribute="centerX" secondItem="v9C-ln-bOu" secondAttribute="centerX" id="qB5-sp-gqM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v9C-ln-bOu" firstAttribute="leading" secondItem="0QN-dB-wq0" secondAttribute="leading" id="3Jw-yy-m9F"/>
+                            <constraint firstItem="v9C-ln-bOu" firstAttribute="top" secondItem="0QN-dB-wq0" secondAttribute="top" id="fxM-rG-Y62"/>
+                            <constraint firstItem="OHl-tQ-rg1" firstAttribute="top" secondItem="v9C-ln-bOu" secondAttribute="bottom" id="wZT-P8-Xa0"/>
+                            <constraint firstAttribute="trailing" secondItem="v9C-ln-bOu" secondAttribute="trailing" id="xSt-Wa-nFy"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="280"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="6PP-7q-yeR" id="76z-gL-aiu"/>
+                        <outlet property="cancelAptmBtn" destination="1po-1p-wA5" id="dJ6-pJ-u9S"/>
+                        <outlet property="resonTxtView" destination="7bt-Eh-ts9" id="yQD-We-DH1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xve-Ar-jov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540.79999999999995" y="-32.383808095952027"/>
         </scene>
     </scenes>
 </document>

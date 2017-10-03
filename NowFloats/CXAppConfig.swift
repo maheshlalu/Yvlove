@@ -67,7 +67,9 @@ class CXAppConfig {
     func getSignInUrl() -> String {
         return config!.value(forKey: "signInMethod") as! String
     }
-    
+    func getTitleOfApp() -> String {
+        return config!.value(forKey: "PRODUCT_NAME") as! String
+    }
     func getSignUpInUrl() -> String {
         return config!.value(forKey: "signUpMethod") as! String
     }
@@ -108,6 +110,10 @@ class CXAppConfig {
     return config!.value(forKey: "testPaymentUrl") as! String
     }
     
+    //CancelOrderUrl
+    func getCancelOrderUrl() -> String{
+        return config!.value(forKey: "CancelOrderUrl") as! String
+    }
     func getAppTheamColor() -> UIColor {
         let appTheamColorArr : NSArray = config!.value(forKey: "AppTheamColor") as! NSArray
         let red : Double = (appTheamColorArr.object(at: 0) as! NSString).doubleValue
